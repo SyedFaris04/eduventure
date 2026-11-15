@@ -1,0 +1,15 @@
+{
+  "_note": "Single source for generated names (under-13 and guest players). scripts/gen-seed.mjs copies these into supabase/seed.sql; the database only accepts '<adjective> <noun>' from these lists for those players.",
+  "adjectives": [
+    "Brave", "Bright", "Breezy", "Calm", "Cheerful", "Clever", "Cosmic", "Cozy", "Curious", "Daring",
+    "Dreamy", "Eager", "Friendly", "Fuzzy", "Gentle", "Glowing", "Golden", "Happy", "Humble", "Jolly",
+    "Jumpy", "Kind", "Lucky", "Merry", "Mighty", "Misty", "Nimble", "Plucky", "Quick", "Radiant",
+    "Rosy", "Silver", "Sparkly", "Starry", "Sunny", "Swift", "Wise", "Witty", "Zesty", "Bold"
+  ],
+  "nouns": [
+    "Badger", "Bunny", "Comet", "Dolphin", "Dragon", "Eagle", "Falcon", "Firefly", "Fox", "Gecko",
+    "Hedgehog", "Hornbill", "Kancil", "Kitten", "Koala", "Lion", "Lynx", "Meerkat", "Narwhal", "Orangutan",
+    "Otter", "Owl", "Panda", "Pebble", "Penguin", "Phoenix", "Puffin", "Quokka", "Raccoon", "Robin",
+    "Seal", "Sparrow", "Squirrel", "Tapir", "Tiger", "Toucan", "Turtle", "Whale", "Wombat", "Zebra"
+  ]
+}
