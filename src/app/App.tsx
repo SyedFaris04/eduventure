@@ -35,6 +35,10 @@ const router = createBrowserRouter([
   { path: '/', element: <BootRoute /> },
   { path: '/welcome', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/landing/WelcomePage')).WelcomePage }) },
   { path: '/explore', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/landing/ExplorePage')).ExplorePage }) },
+  { path: '/login', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/authentication/LoginPage')).LoginPage }) },
+  { path: '/signup', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/authentication/SignupPage')).SignupPage }) },
+  { path: '/reset-password', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/authentication/ResetPasswordPage')).ResetPasswordPage }) },
+  { path: '/update-password', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/authentication/UpdatePasswordPage')).UpdatePasswordPage }) },
   { path: '/styleguide', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/styleguide/StyleguidePage')).StyleguidePage }) },
   { path: '*', element: <NotFound /> },
 ])

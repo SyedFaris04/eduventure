@@ -115,5 +115,51 @@
       "name": "Arène du Boss Mondial",
       "blurb": "Tout le monde s'unit contre des boss géants."
     }
+  },
+  "auth": {
+    "loginTitle": "Bon retour",
+    "signupTitle": "Crée ton compte",
+    "email": "E-mail",
+    "guardianEmail": "E-mail d'un parent ou tuteur",
+    "password": "Mot de passe",
+    "newPassword": "Nouveau mot de passe",
+    "passwordHint": "Au moins 10 caractères.",
+    "birthYear": "Ton année de naissance",
+    "birthYearHint": "Cela protège les plus jeunes joueurs. Toi seul peux la voir.",
+    "chooseYear": "Choisis une année",
+    "showPassword": "Afficher le mot de passe",
+    "loginButton": "Se connecter",
+    "signupButton": "Créer le compte",
+    "forgot": "Mot de passe oublié ?",
+    "noAccount": "Nouveau ? Crée un compte",
+    "haveAccount": "Déjà un compte ? Connecte-toi",
+    "verified": "E-mail confirmé. Tu peux te connecter.",
+    "resetTitle": "Réinitialiser le mot de passe",
+    "resetButton": "Envoyer le lien",
+    "resetSent": "Si un compte utilise cet e-mail, un lien de réinitialisation arrive. Vérifie ta boîte de réception.",
+    "updateTitle": "Choisis un nouveau mot de passe",
+    "choosePasswordTitle": "Choisis ton mot de passe",
+    "updateButton": "Enregistrer",
+    "linkExpired": "Ce lien a expiré ou a déjà servi. Demandes-en un nouveau.",
+    "checkEmailTitle": "Vérifie tes e-mails",
+    "checkEmail": "Nous avons envoyé un lien à {{email}}. Ouvre-le pour confirmer ton compte, puis connecte-toi.",
+    "checkEmailGuardian": "Nous avons envoyé un lien à {{email}}. Un parent ou tuteur doit l'ouvrir pour confirmer le compte.",
+    "under13Notice": "Les joueurs de moins de 13 ans ont besoin d'un parent ou tuteur. Demande-lui d'entrer son propre e-mail ci-dessous et de cocher la case.",
+    "guardianConsent": "Je suis le parent ou tuteur de ce joueur et j'accepte qu'il utilise Eduventure.",
+    "errors": {
+      "invalid": "L'e-mail et le mot de passe ne correspondent pas.",
+      "notConfirmed": "Confirme d'abord ton e-mail. Cherche le lien dans ta boîte de réception.",
+      "rateLimit": "Trop d'essais. Attends une minute et réessaie.",
+      "anonDisabled": "Le mode invité est désactivé sur le serveur. Propriétaire : active les connexions anonymes dans Supabase (Authentication → Sign In / Providers).",
+      "generic": "Un problème est survenu. Réessaie.",
+      "emailNotAuthorized": "Nous ne pouvons pas encore envoyer d'e-mail à cette adresse. Propriétaire : configure un SMTP personnalisé dans Supabase (Authentication → Emails) pour que les e-mails d'inscription arrivent à tous."
+    },
+    "validation": {
+      "email": "Saisis une adresse e-mail valide.",
+      "password": "Utilise entre 10 et 72 caractères.",
+      "passwordRequired": "Saisis ton mot de passe.",
+      "birthYear": "Choisis ton année de naissance.",
+      "consent": "Un parent ou tuteur doit accepter avant de continuer."
+    }
   }
 }

@@ -115,5 +115,51 @@
       "name": "Arena del Jefe Mundial",
       "blurb": "Todos unen fuerzas contra jefes gigantes."
     }
+  },
+  "auth": {
+    "loginTitle": "Bienvenido de nuevo",
+    "signupTitle": "Crea tu cuenta",
+    "email": "Correo electrónico",
+    "guardianEmail": "Correo del padre, madre o tutor",
+    "password": "Contraseña",
+    "newPassword": "Nueva contraseña",
+    "passwordHint": "Al menos 10 caracteres.",
+    "birthYear": "Año en que naciste",
+    "birthYearHint": "Esto protege a los jugadores más jóvenes. Solo tú puedes verlo.",
+    "chooseYear": "Elige un año",
+    "showPassword": "Mostrar contraseña",
+    "loginButton": "Iniciar sesión",
+    "signupButton": "Crear cuenta",
+    "forgot": "¿Olvidaste tu contraseña?",
+    "noAccount": "¿Eres nuevo? Crea una cuenta",
+    "haveAccount": "¿Ya tienes cuenta? Inicia sesión",
+    "verified": "Correo confirmado. Ya puedes iniciar sesión.",
+    "resetTitle": "Restablece tu contraseña",
+    "resetButton": "Enviar enlace",
+    "resetSent": "Si hay una cuenta con ese correo, te llegará un enlace para restablecerla. Revisa tu bandeja de entrada.",
+    "updateTitle": "Elige una nueva contraseña",
+    "choosePasswordTitle": "Elige tu contraseña",
+    "updateButton": "Guardar contraseña",
+    "linkExpired": "Este enlace caducó o ya se usó. Pide uno nuevo.",
+    "checkEmailTitle": "Revisa tu correo",
+    "checkEmail": "Enviamos un enlace a {{email}}. Ábrelo para confirmar tu cuenta y luego inicia sesión.",
+    "checkEmailGuardian": "Enviamos un enlace a {{email}}. Un padre, madre o tutor debe abrirlo para confirmar la cuenta.",
+    "under13Notice": "Los jugadores menores de 13 años necesitan a un padre, madre o tutor. Pídele que escriba su propio correo abajo y marque la casilla.",
+    "guardianConsent": "Soy el padre, la madre o el tutor de este jugador y acepto que use Eduventure.",
+    "errors": {
+      "invalid": "El correo y la contraseña no coinciden.",
+      "notConfirmed": "Primero confirma tu correo. Busca el enlace en tu bandeja de entrada.",
+      "rateLimit": "Demasiados intentos. Espera un minuto y vuelve a intentarlo.",
+      "anonDisabled": "El modo invitado está desactivado en el servidor. Propietario: activa los inicios de sesión anónimos en Supabase (Authentication → Sign In / Providers).",
+      "generic": "Algo salió mal. Inténtalo de nuevo.",
+      "emailNotAuthorized": "Todavía no podemos enviar correos a esa dirección. Propietario: configura un SMTP propio en Supabase (Authentication → Emails) para que los correos lleguen a todos."
+    },
+    "validation": {
+      "email": "Escribe un correo válido.",
+      "password": "Usa entre 10 y 72 caracteres.",
+      "passwordRequired": "Escribe tu contraseña.",
+      "birthYear": "Elige el año en que naciste.",
+      "consent": "Un padre, madre o tutor debe aceptar antes de continuar."
+    }
   }
 }

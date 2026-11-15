@@ -10,6 +10,9 @@ import './styles/index.css'
 import { App } from './app/App'
 import { Providers } from './app/providers'
 import { initI18n } from './i18n'
+import { startSessionSync } from './features/authentication/useSession'
+
+startSessionSync()
 
 // Languages load first (one small file) so the very first screen is already translated.
 // If that fails (offline), render anyway: English keys are better than a blank page.

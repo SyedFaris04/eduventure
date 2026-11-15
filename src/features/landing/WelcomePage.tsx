@@ -1,9 +1,11 @@
 import { lazy, Suspense, useState } from 'react'
-import { Link, useLocation } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { Compass, LogIn, Sparkles, UserPlus, WifiOff } from 'lucide-react'
+import { CircleAlert, Compass, LogIn, Sparkles, UserPlus, WifiOff } from 'lucide-react'
 import { Button, buttonClasses } from '../../components/ui'
 import { LanguagePicker } from '../../i18n/LanguagePicker'
+import { AuthMessageError, startGuest } from '../authentication/authActions'
+import { useSession } from '../authentication/useSession'
 import { SceneBackdrop } from './SceneBackdrop'
 import './landing.css'
 
@@ -25,8 +27,27 @@ function canRender3D(): boolean {
 export function WelcomePage() {
   const { t } = useTranslation()
   const location = useLocation()
+  const navigate = useNavigate()
+  const { session } = useSession()
   const offline = (location.state as { offline?: boolean } | null)?.offline === true
   const [show3D] = useState(canRender3D)
+  const [starting, setStarting] = useState(false)
+  const [startError, setStartError] = useState<string | null>(null)
+
+  // Returning players keep their account; everyone else starts as a guest with nothing personal stored.
+  async function start() {
+    setStartError(null)
+    if (session) return navigate('/onboarding')
+    setStarting(true)
+    try {
+      await startGuest()
+      navigate('/onboarding')
+    } catch (e) {
+      setStartError(e instanceof AuthMessageError ? e.key : 'auth.errors.generic')
+    } finally {
+      setStarting(false)
+    }
+  }
 
   return (
     <main className="relative min-h-dvh overflow-hidden">
@@ -62,10 +83,14 @@ export function WelcomePage() {
           )}
 
           <nav className="mt-6 flex w-full max-w-sm flex-col gap-3">
-            {/* shortcut: links straight to onboarding until guest sign-in lands in Task 6 */}
-            <Link to="/onboarding" className={buttonClasses('primary', 'lg', 'w-full')}>
-              <Sparkles size={22} aria-hidden /> {t('welcome.start')}
-            </Link>
+            <Button size="lg" className="w-full" onClick={start} disabled={starting}>
+              <Sparkles size={22} aria-hidden /> {starting ? t('common.loading') : t('welcome.start')}
+            </Button>
+            {startError && (
+              <p role="alert" className="flex items-start gap-2 rounded-xl bg-cream/90 p-2 text-start text-sm font-semibold text-ink">
+                <CircleAlert size={18} className="mt-0.5 shrink-0 text-danger" aria-hidden /> {t(startError)}
+              </p>
+            )}
             <div className="grid gap-3 min-[420px]:grid-cols-2">
               <Link to="/login" className={buttonClasses('secondary', 'md', 'whitespace-nowrap px-3')}>
                 <LogIn size={18} aria-hidden /> {t('welcome.login')}

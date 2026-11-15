@@ -115,5 +115,51 @@
       "name": "World Boss Arena",
       "blurb": "Everyone joins forces against giant bosses."
     }
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "signupTitle": "Create your account",
+    "email": "Email",
+    "guardianEmail": "Parent or guardian's email",
+    "password": "Password",
+    "newPassword": "New password",
+    "passwordHint": "At least 10 characters.",
+    "birthYear": "Year you were born",
+    "birthYearHint": "This keeps younger players safe. Only you can see it.",
+    "chooseYear": "Choose a year",
+    "showPassword": "Show password",
+    "loginButton": "Log in",
+    "signupButton": "Create account",
+    "forgot": "Forgot your password?",
+    "noAccount": "New here? Create an account",
+    "haveAccount": "Already have an account? Log in",
+    "verified": "Email confirmed. You can log in now.",
+    "resetTitle": "Reset your password",
+    "resetButton": "Send reset link",
+    "resetSent": "If an account uses that email, a reset link is on its way. Check your inbox.",
+    "updateTitle": "Choose a new password",
+    "choosePasswordTitle": "Choose your password",
+    "updateButton": "Save password",
+    "linkExpired": "This link has expired or was already used. Ask for a new one.",
+    "checkEmailTitle": "Check your email",
+    "checkEmail": "We sent a link to {{email}}. Open it to confirm your account, then log in.",
+    "checkEmailGuardian": "We sent a link to {{email}}. A parent or guardian needs to open it to confirm the account.",
+    "under13Notice": "Players under 13 need a parent or guardian. Please ask them to enter their own email below and tick the box.",
+    "guardianConsent": "I am this player's parent or guardian, and I agree to them using Eduventure.",
+    "errors": {
+      "invalid": "That email and password don't match.",
+      "notConfirmed": "Please confirm your email first. Look for the link in your inbox.",
+      "rateLimit": "Too many tries. Please wait a minute and try again.",
+      "anonDisabled": "Guest play is switched off on the server. Owner: enable anonymous sign-ins in Supabase (Authentication → Sign In / Providers).",
+      "generic": "Something went wrong. Please try again.",
+      "emailNotAuthorized": "We can't send email to that address yet. Owner: set up custom SMTP in Supabase (Authentication → Emails) so sign-up emails reach everyone."
+    },
+    "validation": {
+      "email": "Enter a valid email address.",
+      "password": "Use 10 to 72 characters.",
+      "passwordRequired": "Enter your password.",
+      "birthYear": "Choose the year you were born.",
+      "consent": "A parent or guardian must agree before continuing."
+    }
   }
 }

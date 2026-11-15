@@ -115,5 +115,51 @@
       "name": "Arena Bos Dunia",
       "blurb": "Semua bergabung tenaga menentang bos gergasi."
     }
+  },
+  "auth": {
+    "loginTitle": "Selamat kembali",
+    "signupTitle": "Cipta akaun anda",
+    "email": "E-mel",
+    "guardianEmail": "E-mel ibu bapa atau penjaga",
+    "password": "Kata laluan",
+    "newPassword": "Kata laluan baharu",
+    "passwordHint": "Sekurang-kurangnya 10 aksara.",
+    "birthYear": "Tahun anda dilahirkan",
+    "birthYearHint": "Ini membantu melindungi pemain yang lebih muda. Hanya anda yang boleh melihatnya.",
+    "chooseYear": "Pilih tahun",
+    "showPassword": "Tunjukkan kata laluan",
+    "loginButton": "Log masuk",
+    "signupButton": "Cipta akaun",
+    "forgot": "Lupa kata laluan?",
+    "noAccount": "Baru di sini? Cipta akaun",
+    "haveAccount": "Sudah ada akaun? Log masuk",
+    "verified": "E-mel disahkan. Anda boleh log masuk sekarang.",
+    "resetTitle": "Tetapkan semula kata laluan",
+    "resetButton": "Hantar pautan tetapan semula",
+    "resetSent": "Jika ada akaun yang menggunakan e-mel itu, pautan tetapan semula sedang dihantar. Semak peti masuk anda.",
+    "updateTitle": "Pilih kata laluan baharu",
+    "choosePasswordTitle": "Pilih kata laluan anda",
+    "updateButton": "Simpan kata laluan",
+    "linkExpired": "Pautan ini telah tamat tempoh atau sudah digunakan. Minta pautan baharu.",
+    "checkEmailTitle": "Semak e-mel anda",
+    "checkEmail": "Kami telah menghantar pautan ke {{email}}. Bukanya untuk mengesahkan akaun anda, kemudian log masuk.",
+    "checkEmailGuardian": "Kami telah menghantar pautan ke {{email}}. Ibu bapa atau penjaga perlu membukanya untuk mengesahkan akaun.",
+    "under13Notice": "Pemain bawah 13 tahun memerlukan ibu bapa atau penjaga. Minta mereka masukkan e-mel mereka sendiri di bawah dan tandakan kotak.",
+    "guardianConsent": "Saya ibu bapa atau penjaga pemain ini, dan saya bersetuju dia menggunakan Eduventure.",
+    "errors": {
+      "invalid": "E-mel dan kata laluan tidak sepadan.",
+      "notConfirmed": "Sila sahkan e-mel anda dahulu. Cari pautan dalam peti masuk anda.",
+      "rateLimit": "Terlalu banyak cubaan. Sila tunggu seminit dan cuba lagi.",
+      "anonDisabled": "Main sebagai tetamu dimatikan pada pelayan. Pemilik: hidupkan log masuk tanpa nama dalam Supabase (Authentication → Sign In / Providers).",
+      "generic": "Ada sesuatu yang tidak kena. Sila cuba lagi.",
+      "emailNotAuthorized": "Kami belum dapat menghantar e-mel ke alamat itu. Pemilik: sediakan SMTP tersuai dalam Supabase (Authentication → Emails) supaya e-mel pendaftaran sampai kepada semua."
+    },
+    "validation": {
+      "email": "Masukkan alamat e-mel yang sah.",
+      "password": "Gunakan 10 hingga 72 aksara.",
+      "passwordRequired": "Masukkan kata laluan anda.",
+      "birthYear": "Pilih tahun anda dilahirkan.",
+      "consent": "Ibu bapa atau penjaga mesti bersetuju sebelum meneruskan."
+    }
   }
 }

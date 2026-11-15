@@ -115,5 +115,51 @@
       "name": "ワールドボス・アリーナ",
       "blurb": "みんなで力を合わせて巨大ボスに挑もう。"
     }
+  },
+  "auth": {
+    "loginTitle": "おかえりなさい",
+    "signupTitle": "アカウントを作成",
+    "email": "メールアドレス",
+    "guardianEmail": "保護者のメールアドレス",
+    "password": "パスワード",
+    "newPassword": "新しいパスワード",
+    "passwordHint": "10文字以上。",
+    "birthYear": "生まれた年",
+    "birthYearHint": "年少のプレイヤーを守るために使います。あなたにしか見えません。",
+    "chooseYear": "年を選ぶ",
+    "showPassword": "パスワードを表示",
+    "loginButton": "ログイン",
+    "signupButton": "アカウント作成",
+    "forgot": "パスワードを忘れた？",
+    "noAccount": "はじめて？アカウントを作成",
+    "haveAccount": "アカウントをお持ちの方はログイン",
+    "verified": "メールが確認されました。ログインできます。",
+    "resetTitle": "パスワードの再設定",
+    "resetButton": "再設定リンクを送る",
+    "resetSent": "そのメールアドレスのアカウントがあれば、再設定リンクを送りました。受信箱を確認してください。",
+    "updateTitle": "新しいパスワードを設定",
+    "choosePasswordTitle": "パスワードを設定",
+    "updateButton": "パスワードを保存",
+    "linkExpired": "このリンクは期限切れか、すでに使われています。新しいリンクを申請してください。",
+    "checkEmailTitle": "メールを確認してください",
+    "checkEmail": "{{email}} にリンクを送りました。開いてアカウントを確認してから、ログインしてください。",
+    "checkEmailGuardian": "{{email}} にリンクを送りました。保護者の方が開いてアカウントを確認する必要があります。",
+    "under13Notice": "13歳未満のプレイヤーには保護者が必要です。保護者の方に、下に自分のメールアドレスを入力してチェックを入れてもらってください。",
+    "guardianConsent": "私はこのプレイヤーの保護者であり、Eduventure の利用に同意します。",
+    "errors": {
+      "invalid": "メールアドレスとパスワードが一致しません。",
+      "notConfirmed": "先にメールを確認してください。受信箱のリンクを開いてください。",
+      "rateLimit": "試行回数が多すぎます。1分待ってからもう一度お試しください。",
+      "anonDisabled": "サーバーでゲストプレイがオフになっています。管理者：Supabase（Authentication → Sign In / Providers）で匿名サインインを有効にしてください。",
+      "generic": "問題が発生しました。もう一度お試しください。",
+      "emailNotAuthorized": "このアドレスにはまだメールを送れません。管理者：Supabase（Authentication → Emails）でカスタム SMTP を設定すると、登録メールが全員に届きます。"
+    },
+    "validation": {
+      "email": "有効なメールアドレスを入力してください。",
+      "password": "10〜72文字にしてください。",
+      "passwordRequired": "パスワードを入力してください。",
+      "birthYear": "生まれた年を選んでください。",
+      "consent": "続けるには保護者の同意が必要です。"
+    }
   }
 }

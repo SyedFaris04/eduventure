@@ -16,7 +16,9 @@ describe('WelcomePage', () => {
         <WelcomePage />
       </MemoryRouter>,
     )
-    for (const name of ['Start Your Adventure', 'Login', 'Create Account', 'Explore the World']) {
+    // Starting creates a guest account first, so it is a button; the rest navigate, so they are links.
+    expect(screen.getByRole('button', { name: /Start Your Adventure/ })).toBeEnabled()
+    for (const name of ['Login', 'Create Account', 'Explore the World']) {
       expect(screen.getByRole('link', { name: new RegExp(name) })).toBeInTheDocument()
     }
   })
