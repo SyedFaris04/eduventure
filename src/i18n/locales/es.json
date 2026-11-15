@@ -1,0 +1,53 @@
+{
+  "_status": "unreviewed",
+  "common": {
+    "appName": "Eduventure",
+    "tagline": "Aprende. Explora. Crece. Conquista.",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "close": "Cerrar",
+    "retry": "Reintentar",
+    "loading": "Cargando…",
+    "language": "Idioma",
+    "sound": "Sonido",
+    "notFound": "Este camino no lleva a ninguna parte",
+    "backToStart": "Volver al inicio"
+  },
+  "loading": {
+    "title": "Cargando tu aventura…",
+    "progressLabel": "Progreso de carga",
+    "tipLabel": "Consejo",
+    "factLabel": "¿Sabías que…?",
+    "react": {
+      "boy": "Saluda al explorador",
+      "girl": "Saluda a la lectora",
+      "cat": "Acaricia al gato",
+      "slime": "Toca al slime",
+      "dino": "Saluda al dinosaurio"
+    },
+    "tips": [
+      "Lee la explicación después de cada respuesta, incluso las que aciertes.",
+      "Practicar un poco cada día es mejor que una sesión larga.",
+      "Los descansos cortos ayudan a tu cerebro a recordar lo aprendido.",
+      "Explicar un tema en voz alta es una de las mejores formas de aprenderlo.",
+      "Elige una dificultad que sea un poco desafiante, no imposible.",
+      "Equivocarse es parte de aprender. Cada respuesta incorrecta incluye una explicación.",
+      "Toca a los personajes de esta pantalla. ¡Les encanta la atención!",
+      "Activa el sonido con el botón del altavoz de la esquina."
+    ],
+    "facts": [
+      "Los pulpos tienen tres corazones.",
+      "La luz del Sol tarda unos 8 minutos en llegar a la Tierra.",
+      "Un día en Venus dura más que un año en Venus.",
+      "El esqueleto de una persona adulta tiene 206 huesos.",
+      "El agua se expande al congelarse; por eso el hielo flota.",
+      "Los ángulos de cualquier triángulo en una superficie plana suman 180 grados.",
+      "El monte Kinabalu, en Sabah (Malasia), mide unos 4095 metros.",
+      "El sonido viaja a unos 343 metros por segundo en el aire a 20 °C.",
+      "Las plantas fabrican su propio alimento con luz solar, agua y dióxido de carbono.",
+      "El Pacífico es el océano más grande y profundo de la Tierra.",
+      "Las aves son descendientes vivos de los dinosaurios.",
+      "Júpiter es el planeta más grande de nuestro sistema solar."
+    ]
+  }
+}

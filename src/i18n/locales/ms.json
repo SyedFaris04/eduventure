@@ -1,0 +1,53 @@
+{
+  "_status": "unreviewed",
+  "common": {
+    "appName": "Eduventure",
+    "tagline": "Belajar. Teroka. Berkembang. Takluk.",
+    "back": "Kembali",
+    "next": "Seterusnya",
+    "close": "Tutup",
+    "retry": "Cuba lagi",
+    "loading": "Memuatkan…",
+    "language": "Bahasa",
+    "sound": "Bunyi",
+    "notFound": "Jalan ini tidak menuju ke mana-mana",
+    "backToStart": "Kembali ke permulaan"
+  },
+  "loading": {
+    "title": "Memuatkan pengembaraan anda…",
+    "progressLabel": "Kemajuan memuatkan",
+    "tipLabel": "Tip",
+    "factLabel": "Tahukah anda?",
+    "react": {
+      "boy": "Tegur si penjelajah",
+      "girl": "Tegur si pembaca",
+      "cat": "Usap kucing",
+      "slime": "Cucuk si lendir",
+      "dino": "Lambai pada dinosaur"
+    },
+    "tips": [
+      "Baca penjelasan selepas setiap jawapan, walaupun jawapan anda betul.",
+      "Berlatih sedikit setiap hari lebih baik daripada satu sesi yang panjang.",
+      "Rehat sebentar membantu otak mengingati apa yang dipelajari.",
+      "Menerangkan sesuatu topik dengan kuat ialah salah satu cara terbaik untuk mempelajarinya.",
+      "Pilih tahap kesukaran yang sedikit mencabar, bukan mustahil.",
+      "Kesilapan ialah sebahagian daripada pembelajaran. Setiap jawapan salah disertakan penjelasan.",
+      "Ketik watak-watak di skrin ini. Mereka suka diberi perhatian!",
+      "Hidupkan bunyi dengan butang pembesar suara di penjuru."
+    ],
+    "facts": [
+      "Sotong kurita mempunyai tiga jantung.",
+      "Cahaya dari Matahari mengambil masa kira-kira 8 minit untuk sampai ke Bumi.",
+      "Sehari di Zuhrah lebih panjang daripada setahun di Zuhrah.",
+      "Rangka manusia dewasa mempunyai 206 tulang.",
+      "Air mengembang apabila membeku, sebab itulah ais terapung.",
+      "Jumlah sudut mana-mana segi tiga pada permukaan rata ialah 180 darjah.",
+      "Gunung Kinabalu di Sabah, Malaysia, setinggi kira-kira 4,095 meter.",
+      "Bunyi bergerak kira-kira 343 meter sesaat di udara pada suhu 20 °C.",
+      "Tumbuhan membuat makanan sendiri daripada cahaya matahari, air dan karbon dioksida.",
+      "Lautan Pasifik ialah lautan terbesar dan terdalam di Bumi.",
+      "Burung ialah keturunan dinosaur yang masih hidup.",
+      "Musytari ialah planet terbesar dalam sistem suria kita."
+    ]
+  }
+}

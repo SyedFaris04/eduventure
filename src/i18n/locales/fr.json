@@ -1,0 +1,53 @@
+{
+  "_status": "unreviewed",
+  "common": {
+    "appName": "Eduventure",
+    "tagline": "Apprends. Explore. Grandis. Conquiers.",
+    "back": "Retour",
+    "next": "Suivant",
+    "close": "Fermer",
+    "retry": "Réessayer",
+    "loading": "Chargement…",
+    "language": "Langue",
+    "sound": "Son",
+    "notFound": "Ce chemin ne mène nulle part",
+    "backToStart": "Retour au début"
+  },
+  "loading": {
+    "title": "Chargement de ton aventure…",
+    "progressLabel": "Progression du chargement",
+    "tipLabel": "Astuce",
+    "factLabel": "Le savais-tu ?",
+    "react": {
+      "boy": "Dis bonjour à l'explorateur",
+      "girl": "Dis bonjour à la lectrice",
+      "cat": "Caresse le chat",
+      "slime": "Touche le slime",
+      "dino": "Fais coucou au dinosaure"
+    },
+    "tips": [
+      "Lis l'explication après chaque réponse, même quand tu as juste.",
+      "S'entraîner un peu chaque jour vaut mieux qu'une seule longue séance.",
+      "De courtes pauses aident ton cerveau à retenir ce que tu as appris.",
+      "Expliquer un sujet à voix haute est l'une des meilleures façons de l'apprendre.",
+      "Choisis une difficulté un peu stimulante, mais pas impossible.",
+      "Se tromper fait partie de l'apprentissage. Chaque mauvaise réponse est accompagnée d'une explication.",
+      "Touche les personnages de cet écran. Ils adorent qu'on s'occupe d'eux !",
+      "Active le son avec le bouton haut-parleur dans le coin."
+    ],
+    "facts": [
+      "Les pieuvres ont trois cœurs.",
+      "La lumière du Soleil met environ 8 minutes à atteindre la Terre.",
+      "Sur Vénus, un jour dure plus longtemps qu'une année.",
+      "Le squelette d'un adulte compte 206 os.",
+      "L'eau se dilate en gelant, c'est pourquoi la glace flotte.",
+      "Sur une surface plane, la somme des angles d'un triangle est de 180 degrés.",
+      "Le mont Kinabalu, à Sabah (Malaisie), culmine à environ 4 095 mètres.",
+      "Dans l'air à 20 °C, le son parcourt environ 343 mètres par seconde.",
+      "Les plantes fabriquent leur nourriture à partir de lumière, d'eau et de dioxyde de carbone.",
+      "Le Pacifique est l'océan le plus grand et le plus profond de la Terre.",
+      "Les oiseaux sont des descendants vivants des dinosaures.",
+      "Jupiter est la plus grande planète de notre système solaire."
+    ]
+  }
+}

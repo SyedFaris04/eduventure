@@ -1,0 +1,53 @@
+{
+  "_status": "source",
+  "common": {
+    "appName": "Eduventure",
+    "tagline": "Learn. Explore. Grow. Conquer.",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close",
+    "retry": "Try again",
+    "loading": "Loading…",
+    "language": "Language",
+    "sound": "Sound",
+    "notFound": "This path leads nowhere",
+    "backToStart": "Back to the start"
+  },
+  "loading": {
+    "title": "Loading your adventure…",
+    "progressLabel": "Loading progress",
+    "tipLabel": "Tip",
+    "factLabel": "Did you know?",
+    "react": {
+      "boy": "Say hi to the explorer",
+      "girl": "Say hi to the reader",
+      "cat": "Pat the cat",
+      "slime": "Poke the slime",
+      "dino": "Wave at the dinosaur"
+    },
+    "tips": [
+      "Read the explanation after every answer, even the ones you got right.",
+      "Practising a little every day beats one long session.",
+      "Short breaks help your brain remember what you learned.",
+      "Explaining a topic out loud is one of the best ways to learn it.",
+      "Pick a difficulty that feels a little challenging, not impossible.",
+      "Mistakes are part of learning. Every wrong answer comes with an explanation.",
+      "Tap the characters on this screen. They like the attention!",
+      "Turn the sound on with the speaker button in the corner."
+    ],
+    "facts": [
+      "Octopuses have three hearts.",
+      "Light from the Sun takes about 8 minutes to reach Earth.",
+      "A day on Venus is longer than a year on Venus.",
+      "An adult human skeleton has 206 bones.",
+      "Water expands when it freezes, which is why ice floats.",
+      "The angles of any triangle on a flat surface add up to 180 degrees.",
+      "Mount Kinabalu in Sabah, Malaysia, is about 4,095 metres tall.",
+      "Sound travels about 343 metres per second through air at 20 °C.",
+      "Plants make their own food from sunlight, water and carbon dioxide.",
+      "The Pacific is the largest and deepest ocean on Earth.",
+      "Birds are living descendants of dinosaurs.",
+      "Jupiter is the largest planet in our solar system."
+    ]
+  }
+}
