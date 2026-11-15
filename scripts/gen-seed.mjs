@@ -73,7 +73,7 @@ const SUBJECTS = [
   ['early_literacy', 'Early Literacy', 'EA'],
   ['early_numeracy', 'Early Numeracy', 'EA'],
   ['world_around_us', 'The World Around Us', 'EA'],
-  ['mathematics', 'Mathematics', 'PLRDGMXVA'],
+  ['mathematics', 'Mathematics', 'PLURDGMXVA'],
   ['english', 'English', 'PLUVA'],
   ['malay_language', 'Bahasa Melayu', 'PLUA'],
   ['science', 'Science', 'PLA'],

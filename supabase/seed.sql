@@ -334,7 +334,7 @@ insert into public.subjects (id, name, level_ids) values
   ('early_literacy', 'Early Literacy', array['early_childhood','lifelong']::text[]),
   ('early_numeracy', 'Early Numeracy', array['early_childhood','lifelong']::text[]),
   ('world_around_us', 'The World Around Us', array['early_childhood','lifelong']::text[]),
-  ('mathematics', 'Mathematics', array['primary','lower_secondary','pre_university','diploma','undergraduate','postgraduate','doctoral','vocational','lifelong']::text[]),
+  ('mathematics', 'Mathematics', array['primary','lower_secondary','upper_secondary','pre_university','diploma','undergraduate','postgraduate','doctoral','vocational','lifelong']::text[]),
   ('english', 'English', array['primary','lower_secondary','upper_secondary','vocational','lifelong']::text[]),
   ('malay_language', 'Bahasa Melayu', array['primary','lower_secondary','upper_secondary','lifelong']::text[]),
   ('science', 'Science', array['primary','lower_secondary','lifelong']::text[]),

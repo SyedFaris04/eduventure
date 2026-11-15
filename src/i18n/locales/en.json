@@ -161,5 +161,96 @@
       "birthYear": "Choose the year you were born.",
       "consent": "A parent or guardian must agree before continuing."
     }
+  },
+  "onboarding": {
+    "title": "Your learning profile",
+    "editTitle": "Edit learning profile",
+    "stepOf": "Step {{n}} of {{total}}",
+    "finish": "Save and continue",
+    "isced": "UNESCO ISCED {{code}}",
+    "international": "International (any curriculum)",
+    "ageHint": "This keeps younger players safe and is never shown to others. You can set it only once.",
+    "searchCountry": "Search countries",
+    "curriculumHint": "Don't see yours? Choose International. More national curricula are on the way.",
+    "gradeSkip": "Not sure / skip",
+    "languageHint": "Questions stay in the language they were written in. More languages will be added over time.",
+    "subjectsHint": "Choose at least one. You can change these later.",
+    "goalsHint": "Optional. Pick any that fit you.",
+    "steps": {
+      "age": "When were you born?",
+      "level": "What are you studying?",
+      "country": "Where do you study?",
+      "curriculum": "Which curriculum or exam system?",
+      "grade": "Which year or grade?",
+      "language": "Which language do you want to learn in?",
+      "subjects": "Pick your subjects",
+      "goals": "What are your goals?",
+      "difficulty": "How challenging should it be?"
+    },
+    "errors": {
+      "loadFailed": "Couldn't load the options. Check your connection and try again.",
+      "saveFailed": "Couldn't save that. Please try again."
+    }
+  },
+  "levels": {
+    "early_childhood": {
+      "name": "Early Childhood / Pre-primary",
+      "description": "About ages 3–6. Letters, numbers and the world around us."
+    },
+    "primary": {
+      "name": "Primary School",
+      "description": "Reading, writing, maths and science basics."
+    },
+    "lower_secondary": {
+      "name": "Lower Secondary School",
+      "description": "The first years of secondary school."
+    },
+    "upper_secondary": {
+      "name": "Upper Secondary School",
+      "description": "Senior school and national exams such as SPM."
+    },
+    "pre_university": {
+      "name": "Pre-University / Foundation",
+      "description": "Foundation, matriculation, A-levels, STPM and similar."
+    },
+    "diploma": {
+      "name": "Diploma / Short-Cycle Higher Education",
+      "description": "Diplomas and other short higher-education programmes."
+    },
+    "undergraduate": {
+      "name": "University Undergraduate",
+      "description": "Bachelor's degree studies."
+    },
+    "postgraduate": {
+      "name": "Postgraduate / Master's",
+      "description": "Master's degrees and postgraduate certificates."
+    },
+    "doctoral": {
+      "name": "Doctoral / Research",
+      "description": "PhD and other research degrees."
+    },
+    "vocational": {
+      "name": "Vocational and Professional Learning",
+      "description": "Skills training, apprenticeships and professional certificates."
+    },
+    "lifelong": {
+      "name": "Lifelong / Independent Learning",
+      "description": "Learning for its own sake, at any age."
+    }
+  },
+  "goals": {
+    "exam_prep": "Prepare for exams",
+    "homework_help": "Help with schoolwork",
+    "catch_up": "Catch up on hard topics",
+    "get_ahead": "Learn ahead of my class",
+    "curiosity": "Explore for fun",
+    "career_skills": "Build skills for work"
+  },
+  "difficulty": {
+    "1": "Beginner",
+    "2": "Easy",
+    "3": "Intermediate",
+    "4": "Hard",
+    "5": "Expert"
   }
 }

@@ -161,5 +161,96 @@
       "birthYear": "请选择你的出生年份。",
       "consent": "继续之前需要家长或监护人同意。"
     }
+  },
+  "onboarding": {
+    "title": "你的学习档案",
+    "editTitle": "编辑学习档案",
+    "stepOf": "第 {{n}} 步，共 {{total}} 步",
+    "finish": "保存并继续",
+    "isced": "联合国教科文组织 ISCED {{code}}",
+    "international": "国际（任意课程）",
+    "ageHint": "这能保护年龄较小的玩家，绝不会展示给他人。只能设置一次。",
+    "searchCountry": "搜索国家或地区",
+    "curriculumHint": "没有你的课程？请选择“国际”。更多国家课程即将加入。",
+    "gradeSkip": "不确定 / 跳过",
+    "languageHint": "题目保持原本的编写语言。之后会陆续加入更多语言。",
+    "subjectsHint": "至少选择一个，之后可以修改。",
+    "goalsHint": "可选，选择适合你的即可。",
+    "steps": {
+      "age": "你是哪一年出生的？",
+      "level": "你在学习什么阶段？",
+      "country": "你在哪里上学？",
+      "curriculum": "哪种课程或考试体系？",
+      "grade": "哪个年级？",
+      "language": "你想用哪种语言学习？",
+      "subjects": "选择你的科目",
+      "goals": "你的目标是什么？",
+      "difficulty": "希望有多大挑战？"
+    },
+    "errors": {
+      "loadFailed": "无法加载选项。请检查网络后重试。",
+      "saveFailed": "保存失败，请重试。"
+    }
+  },
+  "levels": {
+    "early_childhood": {
+      "name": "幼儿教育 / 学前",
+      "description": "约 3–6 岁。字母、数字和我们身边的世界。"
+    },
+    "primary": {
+      "name": "小学",
+      "description": "阅读、写作、数学和科学的基础。"
+    },
+    "lower_secondary": {
+      "name": "初中",
+      "description": "中学的前几年。"
+    },
+    "upper_secondary": {
+      "name": "高中",
+      "description": "高中阶段及国家考试。"
+    },
+    "pre_university": {
+      "name": "大学预科 / 基础课程",
+      "description": "预科、A-level、STPM 等。"
+    },
+    "diploma": {
+      "name": "文凭 / 短期高等教育",
+      "description": "文凭及其他短期高等教育课程。"
+    },
+    "undergraduate": {
+      "name": "大学本科",
+      "description": "学士学位课程。"
+    },
+    "postgraduate": {
+      "name": "研究生 / 硕士",
+      "description": "硕士学位和研究生证书。"
+    },
+    "doctoral": {
+      "name": "博士 / 研究",
+      "description": "博士及其他研究型学位。"
+    },
+    "vocational": {
+      "name": "职业与专业培训",
+      "description": "技能培训、学徒制和职业证书。"
+    },
+    "lifelong": {
+      "name": "终身 / 自主学习",
+      "description": "为兴趣而学，不限年龄。"
+    }
+  },
+  "goals": {
+    "exam_prep": "备考",
+    "homework_help": "完成作业",
+    "catch_up": "补上难懂的内容",
+    "get_ahead": "提前学习",
+    "curiosity": "为兴趣探索",
+    "career_skills": "培养职业技能"
+  },
+  "difficulty": {
+    "1": "入门",
+    "2": "简单",
+    "3": "中等",
+    "4": "困难",
+    "5": "专家"
   }
 }

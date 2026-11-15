@@ -161,5 +161,96 @@
       "birthYear": "生まれた年を選んでください。",
       "consent": "続けるには保護者の同意が必要です。"
     }
+  },
+  "onboarding": {
+    "title": "学習プロフィール",
+    "editTitle": "学習プロフィールを編集",
+    "stepOf": "ステップ {{n}} / {{total}}",
+    "finish": "保存して続ける",
+    "isced": "ユネスコ ISCED {{code}}",
+    "international": "インターナショナル（どのカリキュラムでも）",
+    "ageHint": "年少のプレイヤーを守るために使い、ほかの人には表示されません。設定できるのは一度だけです。",
+    "searchCountry": "国・地域を検索",
+    "curriculumHint": "見つからない場合は「インターナショナル」を選んでください。各国のカリキュラムは順次追加予定です。",
+    "gradeSkip": "わからない / スキップ",
+    "languageHint": "問題は作成された言語のまま表示されます。対応言語は今後増えていきます。",
+    "subjectsHint": "1つ以上選んでください。あとで変更できます。",
+    "goalsHint": "任意です。当てはまるものを選んでください。",
+    "steps": {
+      "age": "生まれた年は？",
+      "level": "何を学んでいますか？",
+      "country": "どこで学んでいますか？",
+      "curriculum": "カリキュラム・試験制度は？",
+      "grade": "学年は？",
+      "language": "どの言語で学びたいですか？",
+      "subjects": "教科を選ぼう",
+      "goals": "目標は何ですか？",
+      "difficulty": "どのくらいの難しさにしますか？"
+    },
+    "errors": {
+      "loadFailed": "選択肢を読み込めませんでした。接続を確認して、もう一度お試しください。",
+      "saveFailed": "保存できませんでした。もう一度お試しください。"
+    }
+  },
+  "levels": {
+    "early_childhood": {
+      "name": "幼児教育 / 就学前",
+      "description": "3〜6歳ごろ。文字、数、身のまわりの世界。"
+    },
+    "primary": {
+      "name": "小学校",
+      "description": "読み書き、算数、理科の基礎。"
+    },
+    "lower_secondary": {
+      "name": "中学校",
+      "description": "中等教育の前半。"
+    },
+    "upper_secondary": {
+      "name": "高等学校",
+      "description": "高校課程と全国試験。"
+    },
+    "pre_university": {
+      "name": "大学予科 / ファウンデーション",
+      "description": "予科、A レベル、STPM など。"
+    },
+    "diploma": {
+      "name": "ディプロマ / 短期高等教育",
+      "description": "ディプロマや短期の高等教育課程。"
+    },
+    "undergraduate": {
+      "name": "大学（学士課程）",
+      "description": "学士号の課程。"
+    },
+    "postgraduate": {
+      "name": "大学院（修士）",
+      "description": "修士号や大学院の修了証。"
+    },
+    "doctoral": {
+      "name": "博士 / 研究",
+      "description": "博士号などの研究学位。"
+    },
+    "vocational": {
+      "name": "職業・専門教育",
+      "description": "技能訓練、見習い、専門資格。"
+    },
+    "lifelong": {
+      "name": "生涯学習 / 自主学習",
+      "description": "何歳でも、学ぶこと自体を楽しむ。"
+    }
+  },
+  "goals": {
+    "exam_prep": "試験対策",
+    "homework_help": "宿題・課題のサポート",
+    "catch_up": "苦手分野を取り戻す",
+    "get_ahead": "授業より先に学ぶ",
+    "curiosity": "楽しみながら探究",
+    "career_skills": "仕事に役立つスキル"
+  },
+  "difficulty": {
+    "1": "入門",
+    "2": "やさしい",
+    "3": "ふつう",
+    "4": "むずかしい",
+    "5": "エキスパート"
   }
 }

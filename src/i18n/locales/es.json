@@ -161,5 +161,96 @@
       "birthYear": "Elige el año en que naciste.",
       "consent": "Un padre, madre o tutor debe aceptar antes de continuar."
     }
+  },
+  "onboarding": {
+    "title": "Tu perfil de aprendizaje",
+    "editTitle": "Editar perfil de aprendizaje",
+    "stepOf": "Paso {{n}} de {{total}}",
+    "finish": "Guardar y continuar",
+    "isced": "UNESCO CINE {{code}}",
+    "international": "Internacional (cualquier currículo)",
+    "ageHint": "Esto protege a los jugadores más jóvenes y nunca se muestra a otros. Solo puedes indicarlo una vez.",
+    "searchCountry": "Buscar países",
+    "curriculumHint": "¿No ves el tuyo? Elige Internacional. Pronto habrá más currículos nacionales.",
+    "gradeSkip": "No estoy seguro / omitir",
+    "languageHint": "Las preguntas se mantienen en el idioma en que se escribieron. Se añadirán más idiomas con el tiempo.",
+    "subjectsHint": "Elige al menos una. Puedes cambiarlas después.",
+    "goalsHint": "Opcional. Elige las que encajen contigo.",
+    "steps": {
+      "age": "¿Cuándo naciste?",
+      "level": "¿Qué estás estudiando?",
+      "country": "¿Dónde estudias?",
+      "curriculum": "¿Qué currículo o sistema de exámenes?",
+      "grade": "¿Qué curso o grado?",
+      "language": "¿En qué idioma quieres aprender?",
+      "subjects": "Elige tus asignaturas",
+      "goals": "¿Cuáles son tus objetivos?",
+      "difficulty": "¿Qué tan difícil debe ser?"
+    },
+    "errors": {
+      "loadFailed": "No se pudieron cargar las opciones. Revisa tu conexión e inténtalo de nuevo.",
+      "saveFailed": "No se pudo guardar. Inténtalo de nuevo."
+    }
+  },
+  "levels": {
+    "early_childhood": {
+      "name": "Primera infancia / Preescolar",
+      "description": "Entre unos 3 y 6 años. Letras, números y el mundo que nos rodea."
+    },
+    "primary": {
+      "name": "Educación primaria",
+      "description": "Bases de lectura, escritura, matemáticas y ciencias."
+    },
+    "lower_secondary": {
+      "name": "Secundaria inferior",
+      "description": "Los primeros años de secundaria."
+    },
+    "upper_secondary": {
+      "name": "Secundaria superior",
+      "description": "Bachillerato y exámenes nacionales."
+    },
+    "pre_university": {
+      "name": "Preuniversitario / Curso puente",
+      "description": "Cursos puente, A-levels, STPM y similares."
+    },
+    "diploma": {
+      "name": "Diplomatura / Educación superior de ciclo corto",
+      "description": "Diplomas y otros programas superiores cortos."
+    },
+    "undergraduate": {
+      "name": "Grado universitario",
+      "description": "Estudios de grado o licenciatura."
+    },
+    "postgraduate": {
+      "name": "Posgrado / Máster",
+      "description": "Másteres y certificados de posgrado."
+    },
+    "doctoral": {
+      "name": "Doctorado / Investigación",
+      "description": "Doctorado y otros títulos de investigación."
+    },
+    "vocational": {
+      "name": "Formación profesional",
+      "description": "Formación técnica, prácticas y certificados profesionales."
+    },
+    "lifelong": {
+      "name": "Aprendizaje permanente / autónomo",
+      "description": "Aprender por gusto, a cualquier edad."
+    }
+  },
+  "goals": {
+    "exam_prep": "Prepararme para exámenes",
+    "homework_help": "Ayuda con tareas",
+    "catch_up": "Ponerme al día en temas difíciles",
+    "get_ahead": "Adelantarme a mi clase",
+    "curiosity": "Explorar por diversión",
+    "career_skills": "Desarrollar habilidades laborales"
+  },
+  "difficulty": {
+    "1": "Principiante",
+    "2": "Fácil",
+    "3": "Intermedio",
+    "4": "Difícil",
+    "5": "Experto"
   }
 }

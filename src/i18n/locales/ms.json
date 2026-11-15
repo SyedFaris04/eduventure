@@ -161,5 +161,96 @@
       "birthYear": "Pilih tahun anda dilahirkan.",
       "consent": "Ibu bapa atau penjaga mesti bersetuju sebelum meneruskan."
     }
+  },
+  "onboarding": {
+    "title": "Profil pembelajaran anda",
+    "editTitle": "Sunting profil pembelajaran",
+    "stepOf": "Langkah {{n}} daripada {{total}}",
+    "finish": "Simpan dan teruskan",
+    "isced": "UNESCO ISCED {{code}}",
+    "international": "Antarabangsa (mana-mana kurikulum)",
+    "ageHint": "Ini melindungi pemain yang lebih muda dan tidak akan ditunjukkan kepada orang lain. Anda hanya boleh menetapkannya sekali.",
+    "searchCountry": "Cari negara",
+    "curriculumHint": "Tiada kurikulum anda? Pilih Antarabangsa. Lebih banyak kurikulum kebangsaan akan ditambah.",
+    "gradeSkip": "Tidak pasti / langkau",
+    "languageHint": "Soalan kekal dalam bahasa asalnya. Lebih banyak bahasa akan ditambah dari semasa ke semasa.",
+    "subjectsHint": "Pilih sekurang-kurangnya satu. Anda boleh menukarnya kemudian.",
+    "goalsHint": "Pilihan. Pilih mana-mana yang sesuai.",
+    "steps": {
+      "age": "Bilakah anda dilahirkan?",
+      "level": "Apakah yang anda pelajari?",
+      "country": "Di manakah anda belajar?",
+      "curriculum": "Kurikulum atau sistem peperiksaan yang mana?",
+      "grade": "Tahun atau tingkatan berapa?",
+      "language": "Dalam bahasa apakah anda mahu belajar?",
+      "subjects": "Pilih mata pelajaran anda",
+      "goals": "Apakah matlamat anda?",
+      "difficulty": "Sejauh mana cabarannya?"
+    },
+    "errors": {
+      "loadFailed": "Pilihan tidak dapat dimuatkan. Semak sambungan anda dan cuba lagi.",
+      "saveFailed": "Tidak dapat menyimpan. Sila cuba lagi."
+    }
+  },
+  "levels": {
+    "early_childhood": {
+      "name": "Awal Kanak-kanak / Prasekolah",
+      "description": "Sekitar umur 3–6. Huruf, nombor dan dunia di sekeliling kita."
+    },
+    "primary": {
+      "name": "Sekolah Rendah",
+      "description": "Asas membaca, menulis, matematik dan sains."
+    },
+    "lower_secondary": {
+      "name": "Sekolah Menengah Rendah",
+      "description": "Tahun-tahun awal sekolah menengah."
+    },
+    "upper_secondary": {
+      "name": "Sekolah Menengah Atas",
+      "description": "Sekolah menengah atas dan peperiksaan kebangsaan seperti SPM."
+    },
+    "pre_university": {
+      "name": "Pra-Universiti / Asasi",
+      "description": "Asasi, matrikulasi, A-level, STPM dan seumpamanya."
+    },
+    "diploma": {
+      "name": "Diploma / Pengajian Tinggi Kitaran Pendek",
+      "description": "Diploma dan program pengajian tinggi yang singkat."
+    },
+    "undergraduate": {
+      "name": "Ijazah Sarjana Muda",
+      "description": "Pengajian ijazah sarjana muda."
+    },
+    "postgraduate": {
+      "name": "Pascasiswazah / Sarjana",
+      "description": "Ijazah sarjana dan sijil pascasiswazah."
+    },
+    "doctoral": {
+      "name": "Kedoktoran / Penyelidikan",
+      "description": "PhD dan ijazah penyelidikan lain."
+    },
+    "vocational": {
+      "name": "Pembelajaran Vokasional dan Profesional",
+      "description": "Latihan kemahiran, perantisan dan sijil profesional."
+    },
+    "lifelong": {
+      "name": "Pembelajaran Sepanjang Hayat / Kendiri",
+      "description": "Belajar kerana minat, pada usia berapa pun."
+    }
+  },
+  "goals": {
+    "exam_prep": "Bersedia untuk peperiksaan",
+    "homework_help": "Bantuan kerja sekolah",
+    "catch_up": "Mengejar topik yang sukar",
+    "get_ahead": "Belajar lebih awal daripada kelas",
+    "curiosity": "Meneroka untuk keseronokan",
+    "career_skills": "Membina kemahiran kerjaya"
+  },
+  "difficulty": {
+    "1": "Permulaan",
+    "2": "Mudah",
+    "3": "Sederhana",
+    "4": "Sukar",
+    "5": "Pakar"
   }
 }
