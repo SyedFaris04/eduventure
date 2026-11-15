@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env.local
+.env.*.local
+*.log
+.DS_Store
+Thumbs.db
+# Third-party screenshot used as a mood reference only: keep local, never publish
+docs/reference/
+# Supabase CLI local state
+supabase/.temp/
+supabase/.branches/
