@@ -1,0 +1,26 @@
+.scene-cloud {
+  animation: cloud-drift linear infinite;
+}
+@keyframes cloud-drift {
+  from { transform: translateX(-320px); }
+  to { transform: translateX(100vw); }
+}
+
+.scene-float {
+  animation: scene-float 6s ease-in-out infinite;
+}
+@keyframes scene-float {
+  50% { transform: translateY(-10px); }
+}
+
+.title-outline {
+  filter: drop-shadow(0 4px 0 #5c3a24) drop-shadow(0 -2px 0 #5c3a24) drop-shadow(2px 0 0 #5c3a24) drop-shadow(-2px 0 0 #5c3a24)
+    drop-shadow(0 10px 12px rgb(0 0 0 / 0.25));
+}
+
+.rise-in {
+  animation: rise-in 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(16px); }
+}

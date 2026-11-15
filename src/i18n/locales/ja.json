@@ -51,5 +51,69 @@
       "鳥は恐竜の子孫で、今も生きています。",
       "木星は太陽系でいちばん大きな惑星です。"
     ]
+  },
+  "welcome": {
+    "start": "冒険をはじめる",
+    "login": "ログイン",
+    "signup": "アカウント作成",
+    "explore": "世界を探検",
+    "offline": "サーバーに接続できません。接続を確認して、もう一度お試しください。",
+    "subtitle": "答えた問題のひとつひとつが、あなたを強くする冒険の世界。"
+  },
+  "explore": {
+    "title": "世界を探検",
+    "intro": "12の地域があなたを待っています。最初に開くのはグリーンヘイブン村。ほかの地域は Eduventure の成長とともに解放されます。",
+    "opensIn": "フェーズ{{phase}}で公開",
+    "firstStop": "最初の目的地"
+  },
+  "regions": {
+    "greenhaven": {
+      "name": "グリーンヘイブン村",
+      "blurb": "すべての冒険者の旅がはじまる、居心地のよい村。"
+    },
+    "knowledge_forest": {
+      "name": "知識の森",
+      "blurb": "古い木々が、読むことと言葉のなぞなぞをささやきます。"
+    },
+    "mathematics_mountains": {
+      "name": "数学山脈",
+      "blurb": "数とパターンとパズルの峰をのぼろう。"
+    },
+    "science_island": {
+      "name": "科学ラボ島",
+      "blurb": "泡立つ実験と好奇心いっぱいの生き物たちが待っています。"
+    },
+    "language_kingdom": {
+      "name": "言語王国",
+      "blurb": "物語と言葉と詩にあふれた王都。"
+    },
+    "history_ruins": {
+      "name": "歴史の遺跡",
+      "blurb": "過去を覚えている、崩れかけた広間。"
+    },
+    "technology_city": {
+      "name": "テクノロジーシティ",
+      "blurb": "歯車と回路とコードが動かす、明るい街。"
+    },
+    "university_district": {
+      "name": "大学地区",
+      "blurb": "最上級の学者のための壮大な図書館。"
+    },
+    "monster_wilderness": {
+      "name": "モンスターの荒野",
+      "blurb": "より手ごわいモンスターがうろつく荒れ地。"
+    },
+    "clan_territory": {
+      "name": "クラン領",
+      "blurb": "クランが本拠地を築き、力を合わせる場所。"
+    },
+    "ancient_dungeon": {
+      "name": "古代ダンジョン",
+      "blurb": "多段階の試練が待つ深い広間。"
+    },
+    "world_boss_arena": {
+      "name": "ワールドボス・アリーナ",
+      "blurb": "みんなで力を合わせて巨大ボスに挑もう。"
+    }
   }
 }

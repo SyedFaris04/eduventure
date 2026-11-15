@@ -51,5 +51,69 @@
       "Les oiseaux sont des descendants vivants des dinosaures.",
       "Jupiter est la plus grande planète de notre système solaire."
     ]
+  },
+  "welcome": {
+    "start": "Commence ton aventure",
+    "login": "Connexion",
+    "signup": "Créer un compte",
+    "explore": "Explorer le monde",
+    "offline": "Impossible de joindre le serveur. Vérifie ta connexion et réessaie.",
+    "subtitle": "Un monde d'aventure où chaque question à laquelle tu réponds te rend plus fort."
+  },
+  "explore": {
+    "title": "Explorer le monde",
+    "intro": "Douze régions t'attendent. Le village de Greenhaven ouvre en premier ; les autres se débloqueront à mesure qu'Eduventure grandit.",
+    "opensIn": "Ouverture en phase {{phase}}",
+    "firstStop": "Première étape"
+  },
+  "regions": {
+    "greenhaven": {
+      "name": "Village de Greenhaven",
+      "blurb": "Un village douillet où commence le voyage de chaque aventurier."
+    },
+    "knowledge_forest": {
+      "name": "Forêt du Savoir",
+      "blurb": "Des arbres anciens murmurent des énigmes sur la lecture et la langue."
+    },
+    "mathematics_mountains": {
+      "name": "Montagnes des Mathématiques",
+      "blurb": "Gravis des sommets de nombres, de motifs et d'énigmes."
+    },
+    "science_island": {
+      "name": "Île-Laboratoire des Sciences",
+      "blurb": "Des expériences bouillonnantes et des créatures curieuses t'attendent."
+    },
+    "language_kingdom": {
+      "name": "Royaume des Langues",
+      "blurb": "Une cité royale d'histoires, de mots et de poèmes."
+    },
+    "history_ruins": {
+      "name": "Ruines de l'Histoire",
+      "blurb": "Des salles en ruine qui se souviennent du passé."
+    },
+    "technology_city": {
+      "name": "Cité de la Technologie",
+      "blurb": "Engrenages, circuits et code font vivre cette cité lumineuse."
+    },
+    "university_district": {
+      "name": "Quartier Universitaire",
+      "blurb": "De grandes bibliothèques pour les érudits les plus avancés."
+    },
+    "monster_wilderness": {
+      "name": "Terres Sauvages des Monstres",
+      "blurb": "Des terres sauvages où rôdent des monstres plus coriaces."
+    },
+    "clan_territory": {
+      "name": "Territoire des Clans",
+      "blurb": "Là où les clans bâtissent leur quartier général et coopèrent."
+    },
+    "ancient_dungeon": {
+      "name": "Donjon Ancien",
+      "blurb": "Des salles profondes aux défis en plusieurs étapes."
+    },
+    "world_boss_arena": {
+      "name": "Arène du Boss Mondial",
+      "blurb": "Tout le monde s'unit contre des boss géants."
+    }
   }
 }

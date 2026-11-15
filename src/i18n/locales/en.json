@@ -51,5 +51,69 @@
       "Birds are living descendants of dinosaurs.",
       "Jupiter is the largest planet in our solar system."
     ]
+  },
+  "welcome": {
+    "start": "Start Your Adventure",
+    "login": "Login",
+    "signup": "Create Account",
+    "explore": "Explore the World",
+    "offline": "Can't reach the server. Check your connection and try again.",
+    "subtitle": "An adventure world where every question you answer makes you stronger."
+  },
+  "explore": {
+    "title": "Explore the World",
+    "intro": "Twelve regions are waiting. Greenhaven Village opens first; the others unlock as Eduventure grows.",
+    "opensIn": "Opens in Phase {{phase}}",
+    "firstStop": "First stop"
+  },
+  "regions": {
+    "greenhaven": {
+      "name": "Greenhaven Village",
+      "blurb": "A cosy village where every adventurer's journey begins."
+    },
+    "knowledge_forest": {
+      "name": "Knowledge Forest",
+      "blurb": "Ancient trees whisper riddles about reading and language."
+    },
+    "mathematics_mountains": {
+      "name": "Mathematics Mountains",
+      "blurb": "Climb peaks of numbers, patterns and puzzles."
+    },
+    "science_island": {
+      "name": "Science Laboratory Island",
+      "blurb": "Bubbling experiments and curious creatures await."
+    },
+    "language_kingdom": {
+      "name": "Language Kingdom",
+      "blurb": "A royal city of stories, words and poems."
+    },
+    "history_ruins": {
+      "name": "History Ruins",
+      "blurb": "Crumbling halls that remember the past."
+    },
+    "technology_city": {
+      "name": "Technology City",
+      "blurb": "Gears, circuits and code power this bright city."
+    },
+    "university_district": {
+      "name": "University District",
+      "blurb": "Grand libraries for the most advanced scholars."
+    },
+    "monster_wilderness": {
+      "name": "Monster Wilderness",
+      "blurb": "Wild lands where tougher monsters roam."
+    },
+    "clan_territory": {
+      "name": "Clan Territory",
+      "blurb": "Where clans build headquarters and work together."
+    },
+    "ancient_dungeon": {
+      "name": "Ancient Dungeon",
+      "blurb": "Deep halls full of multi-stage challenges."
+    },
+    "world_boss_arena": {
+      "name": "World Boss Arena",
+      "blurb": "Everyone joins forces against giant bosses."
+    }
   }
 }

@@ -13,4 +13,5 @@ export const BOOT_TASKS: BootTask[] = [
   { id: 'fonts', weight: 1, run: () => Promise.all([document.fonts.load('600 1em Fredoka'), document.fonts.load('400 1em Nunito')]) },
   { id: 'art', weight: 2, run: () => loadImage(ART.webp) },
   { id: 'session', weight: 2, run: checkServer },
+  { id: 'welcome-chunk', weight: 1, run: () => import('../features/landing/WelcomePage') },
 ]

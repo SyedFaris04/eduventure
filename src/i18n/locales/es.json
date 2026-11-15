@@ -51,5 +51,69 @@
       "Las aves son descendientes vivos de los dinosaurios.",
       "Júpiter es el planeta más grande de nuestro sistema solar."
     ]
+  },
+  "welcome": {
+    "start": "Empieza tu aventura",
+    "login": "Iniciar sesión",
+    "signup": "Crear cuenta",
+    "explore": "Explora el mundo",
+    "offline": "No se puede conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.",
+    "subtitle": "Un mundo de aventuras donde cada pregunta que respondes te hace más fuerte."
+  },
+  "explore": {
+    "title": "Explora el mundo",
+    "intro": "Doce regiones te esperan. La aldea de Greenhaven abre primero; las demás se desbloquearán a medida que Eduventure crezca.",
+    "opensIn": "Abre en la fase {{phase}}",
+    "firstStop": "Primera parada"
+  },
+  "regions": {
+    "greenhaven": {
+      "name": "Aldea Greenhaven",
+      "blurb": "Un pueblo acogedor donde comienza el viaje de todo aventurero."
+    },
+    "knowledge_forest": {
+      "name": "Bosque del Saber",
+      "blurb": "Árboles antiguos susurran acertijos sobre lectura y lenguaje."
+    },
+    "mathematics_mountains": {
+      "name": "Montañas de las Matemáticas",
+      "blurb": "Escala cumbres de números, patrones y acertijos."
+    },
+    "science_island": {
+      "name": "Isla Laboratorio de Ciencias",
+      "blurb": "Te esperan experimentos burbujeantes y criaturas curiosas."
+    },
+    "language_kingdom": {
+      "name": "Reino de las Lenguas",
+      "blurb": "Una ciudad real de historias, palabras y poemas."
+    },
+    "history_ruins": {
+      "name": "Ruinas de la Historia",
+      "blurb": "Salones derruidos que recuerdan el pasado."
+    },
+    "technology_city": {
+      "name": "Ciudad Tecnológica",
+      "blurb": "Engranajes, circuitos y código mueven esta ciudad brillante."
+    },
+    "university_district": {
+      "name": "Distrito Universitario",
+      "blurb": "Grandes bibliotecas para los estudiosos más avanzados."
+    },
+    "monster_wilderness": {
+      "name": "Tierras Salvajes de Monstruos",
+      "blurb": "Tierras indómitas donde rondan monstruos más fuertes."
+    },
+    "clan_territory": {
+      "name": "Territorio de Clanes",
+      "blurb": "Donde los clanes construyen sus cuarteles y colaboran."
+    },
+    "ancient_dungeon": {
+      "name": "Mazmorra Antigua",
+      "blurb": "Salas profundas con desafíos de varias etapas."
+    },
+    "world_boss_arena": {
+      "name": "Arena del Jefe Mundial",
+      "blurb": "Todos unen fuerzas contra jefes gigantes."
+    }
   }
 }

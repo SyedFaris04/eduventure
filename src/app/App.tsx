@@ -1,6 +1,5 @@
 import { createBrowserRouter, Link, RouterProvider, useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { StyleguidePage } from '../features/styleguide/StyleguidePage'
 import { LoadingScreen } from '../features/loading/LoadingScreen'
 import { BOOT_TASKS } from './bootTasks'
 
@@ -28,9 +27,15 @@ function BootRoute() {
   )
 }
 
+// Shown for the instant a page chunk is downloading on a direct visit.
+const hydrateFallbackElement = <div className="min-h-dvh bg-cream" />
+
+// Every page except the loading screen is its own chunk, so the first download stays small.
 const router = createBrowserRouter([
   { path: '/', element: <BootRoute /> },
-  { path: '/styleguide', element: <StyleguidePage /> },
+  { path: '/welcome', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/landing/WelcomePage')).WelcomePage }) },
+  { path: '/explore', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/landing/ExplorePage')).ExplorePage }) },
+  { path: '/styleguide', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/styleguide/StyleguidePage')).StyleguidePage }) },
   { path: '*', element: <NotFound /> },
 ])
 

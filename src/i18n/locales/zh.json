@@ -51,5 +51,69 @@
       "鸟类是恐龙在今天仍然存活的后代。",
       "木星是太阳系中最大的行星。"
     ]
+  },
+  "welcome": {
+    "start": "开始你的冒险",
+    "login": "登录",
+    "signup": "创建账号",
+    "explore": "探索世界",
+    "offline": "无法连接服务器。请检查网络后重试。",
+    "subtitle": "在这个冒险世界里，你答对的每一道题都会让你变得更强。"
+  },
+  "explore": {
+    "title": "探索世界",
+    "intro": "十二个区域正等着你。绿港村最先开放，其他区域会随着 Eduventure 的成长陆续解锁。",
+    "opensIn": "将在第 {{phase}} 阶段开放",
+    "firstStop": "第一站"
+  },
+  "regions": {
+    "greenhaven": {
+      "name": "绿港村",
+      "blurb": "温馨的小村庄，每位冒险者的旅程从这里开始。"
+    },
+    "knowledge_forest": {
+      "name": "知识森林",
+      "blurb": "古老的树木低语着关于阅读与语言的谜题。"
+    },
+    "mathematics_mountains": {
+      "name": "数学山脉",
+      "blurb": "攀登由数字、规律和谜题组成的高峰。"
+    },
+    "science_island": {
+      "name": "科学实验岛",
+      "blurb": "冒泡的实验和好奇的生物在等着你。"
+    },
+    "language_kingdom": {
+      "name": "语言王国",
+      "blurb": "一座充满故事、词语和诗歌的皇城。"
+    },
+    "history_ruins": {
+      "name": "历史遗迹",
+      "blurb": "记得过去的残破殿堂。"
+    },
+    "technology_city": {
+      "name": "科技之城",
+      "blurb": "齿轮、电路和代码驱动着这座明亮的城市。"
+    },
+    "university_district": {
+      "name": "大学区",
+      "blurb": "为最高阶学者准备的宏伟图书馆。"
+    },
+    "monster_wilderness": {
+      "name": "怪物荒野",
+      "blurb": "更强大的怪物出没的荒野。"
+    },
+    "clan_territory": {
+      "name": "公会领地",
+      "blurb": "公会建造总部、携手合作的地方。"
+    },
+    "ancient_dungeon": {
+      "name": "远古地牢",
+      "blurb": "充满多阶段挑战的幽深殿堂。"
+    },
+    "world_boss_arena": {
+      "name": "世界首领竞技场",
+      "blurb": "所有人联手对抗巨型首领。"
+    }
   }
 }

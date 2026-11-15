@@ -1,4 +1,4 @@
-export { Button } from './Button'
+export { Button, buttonClasses } from './Button'
 export { Panel } from './Panel'
 export { Card } from './Card'
 export { ProgressBar } from './ProgressBar'

@@ -51,5 +51,69 @@
       "Burung ialah keturunan dinosaur yang masih hidup.",
       "Musytari ialah planet terbesar dalam sistem suria kita."
     ]
+  },
+  "welcome": {
+    "start": "Mulakan Pengembaraan",
+    "login": "Log Masuk",
+    "signup": "Cipta Akaun",
+    "explore": "Teroka Dunia",
+    "offline": "Tidak dapat menghubungi pelayan. Semak sambungan anda dan cuba lagi.",
+    "subtitle": "Dunia pengembaraan di mana setiap soalan yang anda jawab menjadikan anda lebih kuat."
+  },
+  "explore": {
+    "title": "Teroka Dunia",
+    "intro": "Dua belas wilayah sedang menanti. Kampung Greenhaven dibuka dahulu; yang lain akan dibuka apabila Eduventure berkembang.",
+    "opensIn": "Dibuka dalam Fasa {{phase}}",
+    "firstStop": "Destinasi pertama"
+  },
+  "regions": {
+    "greenhaven": {
+      "name": "Kampung Greenhaven",
+      "blurb": "Kampung yang selesa tempat setiap pengembara memulakan perjalanan."
+    },
+    "knowledge_forest": {
+      "name": "Hutan Ilmu",
+      "blurb": "Pokok-pokok purba membisikkan teka-teki tentang membaca dan bahasa."
+    },
+    "mathematics_mountains": {
+      "name": "Pergunungan Matematik",
+      "blurb": "Daki puncak nombor, corak dan teka-teki."
+    },
+    "science_island": {
+      "name": "Pulau Makmal Sains",
+      "blurb": "Eksperimen yang berbuih dan makhluk yang ingin tahu sedang menanti."
+    },
+    "language_kingdom": {
+      "name": "Kerajaan Bahasa",
+      "blurb": "Kota diraja yang penuh cerita, kata dan puisi."
+    },
+    "history_ruins": {
+      "name": "Runtuhan Sejarah",
+      "blurb": "Dewan purba yang menyimpan kenangan masa lalu."
+    },
+    "technology_city": {
+      "name": "Bandar Teknologi",
+      "blurb": "Gear, litar dan kod menggerakkan bandar yang terang ini."
+    },
+    "university_district": {
+      "name": "Daerah Universiti",
+      "blurb": "Perpustakaan agung untuk sarjana paling maju."
+    },
+    "monster_wilderness": {
+      "name": "Belantara Raksasa",
+      "blurb": "Tanah liar tempat raksasa yang lebih kuat berkeliaran."
+    },
+    "clan_territory": {
+      "name": "Wilayah Klan",
+      "blurb": "Tempat klan membina markas dan bekerjasama."
+    },
+    "ancient_dungeon": {
+      "name": "Kubu Bawah Tanah Purba",
+      "blurb": "Dewan dalam yang penuh cabaran berperingkat."
+    },
+    "world_boss_arena": {
+      "name": "Arena Bos Dunia",
+      "blurb": "Semua bergabung tenaga menentang bos gergasi."
+    }
   }
 }

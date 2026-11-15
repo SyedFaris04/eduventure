@@ -16,14 +16,13 @@ const sizes: Record<Size, string> = {
   lg: 'min-h-14 px-8 text-xl',
 }
 
+/** Shared so router links can look exactly like buttons. */
+export function buttonClasses(variant: Variant = 'primary', size: Size = 'md', extra = '') {
+  return `inline-flex items-center justify-center gap-2 rounded-2xl border-[3px] font-display font-semibold tracking-wide transition-transform duration-75 active:translate-y-[3px] disabled:pointer-events-none disabled:opacity-50 ${variants[variant]} ${sizes[size]} ${extra}`
+}
+
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant; size?: Size }
 
 export function Button({ variant = 'primary', size = 'md', className = '', type = 'button', ...rest }: Props) {
-  return (
-    <button
-      type={type}
-      className={`inline-flex items-center justify-center gap-2 rounded-2xl border-[3px] font-display font-semibold tracking-wide transition-transform duration-75 active:translate-y-[3px] disabled:pointer-events-none disabled:opacity-50 ${variants[variant]} ${sizes[size]} ${className}`}
-      {...rest}
-    />
-  )
+  return <button type={type} className={buttonClasses(variant, size, className)} {...rest} />
 }
