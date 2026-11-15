@@ -15,6 +15,8 @@
   },
   "loading": {
     "title": "Chargement de ton aventure…",
+    "artAlt": "Deux jeunes aventuriers, un chat et un gentil dinosaure se reposent sur une colline au-dessus d'un royaume fantastique de châteaux et d'îles flottantes.",
+    "tapToStart": "Touche pour commencer",
     "progressLabel": "Progression du chargement",
     "tipLabel": "Astuce",
     "factLabel": "Le savais-tu ?",

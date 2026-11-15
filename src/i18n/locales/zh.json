@@ -15,6 +15,8 @@
   },
   "loading": {
     "title": "正在加载你的冒险…",
+    "artAlt": "两位小冒险家、一只猫和一只友善的恐龙在山坡上休息，远处是城堡与浮空岛组成的奇幻王国。",
+    "tapToStart": "点击开始",
     "progressLabel": "加载进度",
     "tipLabel": "提示",
     "factLabel": "你知道吗？",

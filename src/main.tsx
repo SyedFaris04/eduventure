@@ -9,11 +9,18 @@ import '@fontsource/nunito/700.css'
 import './styles/index.css'
 import { App } from './app/App'
 import { Providers } from './app/providers'
+import { initI18n } from './i18n'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <Providers>
-      <App />
-    </Providers>
-  </StrictMode>,
-)
+// Languages load first (one small file) so the very first screen is already translated.
+// If that fails (offline), render anyway: English keys are better than a blank page.
+initI18n()
+  .catch((e) => console.error('i18n failed to load', e))
+  .finally(() =>
+    createRoot(document.getElementById('root')!).render(
+      <StrictMode>
+        <Providers>
+          <App />
+        </Providers>
+      </StrictMode>,
+    ),
+  )

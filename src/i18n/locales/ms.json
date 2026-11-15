@@ -15,6 +15,8 @@
   },
   "loading": {
     "title": "Memuatkan pengembaraan anda…",
+    "artAlt": "Dua pengembara muda, seekor kucing dan seekor dinosaur yang mesra berehat di atas bukit menghadap kerajaan fantasi yang penuh istana dan pulau terapung.",
+    "tapToStart": "Ketik untuk mula",
     "progressLabel": "Kemajuan memuatkan",
     "tipLabel": "Tip",
     "factLabel": "Tahukah anda?",

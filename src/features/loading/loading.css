@@ -1,0 +1,132 @@
+/* The art box is a size container so overlay text can scale with the art (cqh units). */
+.art-box {
+  container-type: size;
+  position: absolute;
+  aspect-ratio: 1672 / 941;
+}
+
+/* Landscape: fit the whole picture, centred; blurred copy fills the letterbox. */
+@media (orientation: landscape) {
+  .art-box {
+    left: 50%;
+    top: 50%;
+    width: min(100vw, calc(100dvh * 1672 / 941));
+    translate: -50% -50%;
+  }
+}
+
+/* Portrait: fill the height and slowly pan across the scene so every character gets screen time. */
+@media (orientation: portrait) {
+  .art-box {
+    top: 0;
+    left: 50%;
+    height: 100dvh;
+    translate: -45% 0;
+    animation: art-pan 28s ease-in-out infinite alternate;
+  }
+}
+@keyframes art-pan {
+  from { translate: -28% 0; }
+  to { translate: -72% 0; }
+}
+
+/* Parallax offset is applied to an inner layer so it composes with the pan. */
+.parallax {
+  position: absolute;
+  inset: 0;
+  transition: transform 300ms ease-out;
+}
+
+.leaf-fall {
+  animation: leaf-fall linear infinite;
+}
+@keyframes leaf-fall {
+  from { transform: translate(0, -8cqh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.9; }
+  90% { opacity: 0.9; }
+  to { transform: translate(-12cqw, 108cqh) rotate(320deg); opacity: 0; }
+}
+.leaf-sway {
+  animation: leaf-sway ease-in-out infinite alternate;
+}
+@keyframes leaf-sway {
+  from { transform: translateX(-10px) rotate(-25deg); }
+  to { transform: translateX(10px) rotate(25deg); }
+}
+
+/* Cut-out copies of characters: soft-edged so the copy blends into the original underneath. */
+.cutout {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  mask-image: radial-gradient(ellipse closest-side at 50% 50%, #000 78%, transparent 100%);
+}
+.idle-breathe { animation: breathe 4s ease-in-out infinite; }
+@keyframes breathe {
+  50% { transform: scale(1.012, 1.022); }
+}
+.idle-rock { transform-origin: 50% 20%; animation: rock 6s ease-in-out infinite; }
+@keyframes rock {
+  0%, 100% { transform: rotate(-1.2deg); }
+  50% { transform: rotate(1.2deg); }
+}
+
+.react-hop { animation: hop 600ms ease-out; }
+@keyframes hop {
+  30% { transform: scale(0.97, 1.06); }
+  60% { transform: scale(1.03, 0.99); }
+}
+.react-bob { animation: bob 700ms ease-in-out; }
+@keyframes bob {
+  25% { transform: rotate(-3deg) scale(1.02); }
+  75% { transform: rotate(3deg) scale(1.02); }
+}
+.react-wiggle { animation: wiggle 600ms ease-in-out; }
+@keyframes wiggle {
+  20%, 60% { transform: rotate(-4deg) scale(1.03); }
+  40%, 80% { transform: rotate(4deg) scale(1.03); }
+}
+.react-squish { animation: squish 550ms ease-out; }
+@keyframes squish {
+  30% { transform: scale(1.14, 1.02); }
+  60% { transform: scale(1.02, 1.12); }
+}
+.react-nod { transform-origin: 30% 90%; animation: nod 900ms ease-in-out; }
+@keyframes nod {
+  30% { transform: rotate(-2.5deg) scale(1.03); }
+  65% { transform: rotate(1deg) scale(1.02); }
+}
+
+.particle {
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  pointer-events: none;
+  animation: particle 1100ms ease-out forwards;
+}
+@keyframes particle {
+  from { transform: translate(-50%, 0) scale(0.4); opacity: 0; }
+  20% { opacity: 1; }
+  to { transform: translate(calc(-50% + var(--dx)), -18cqh) scale(1.1); opacity: 0; }
+}
+
+.portal-glow {
+  background: radial-gradient(closest-side, rgb(140 220 255 / 0.85), rgb(80 170 255 / 0.25) 60%, transparent);
+  mix-blend-mode: screen;
+  animation: glow 3.2s ease-in-out infinite;
+}
+@keyframes glow {
+  0%, 100% { opacity: 0.25; transform: scale(0.92); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+.fade-in { animation: fade-in 600ms ease-out both; }
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+/* Glow only, no transform: a moving target is harder to tap (and automated tests refuse to click it). */
+.pulse-soft { animation: pulse-soft 1.6s ease-in-out infinite; }
+@keyframes pulse-soft {
+  50% { filter: brightness(1.18); box-shadow: 0 0 0 4px rgb(247 200 67 / 0.45), 0 0 18px rgb(247 200 67 / 0.6); }
+}
