@@ -1,0 +1,61 @@
+@import 'tailwindcss';
+
+/* Palette sampled from the loading art and the isometric reference.
+   `static` emits every token as a CSS variable, even ones no utility class uses yet (inline styles, SVG, canvas). */
+@theme static {
+  --color-grass: #8bc34a;
+  --color-grass-dark: #5e8c31;
+  --color-path: #f2b872;
+  --color-path-dark: #d9894a;
+  --color-cream: #fff6e3;
+  --color-water: #9ed8f0;
+  --color-water-dark: #4fa3c7;
+  --color-wood: #8a5a3b;
+  --color-wood-dark: #5c3a24;
+  --color-ink: #3b2a1e;
+  --color-gold: #f7c843;
+  --color-danger: #e2574c;
+
+  --font-display: 'Fredoka', ui-rounded, 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+  html {
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    margin: 0;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-water-dark);
+    outline-offset: 2px;
+  }
+}
+
+/* Every decorative animation in the app respects this. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

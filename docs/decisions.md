@@ -1,0 +1,33 @@
+# Architecture decisions
+
+Short records of choices that are expensive to reverse. Newest at the bottom.
+
+## 1. Shared world, server-checked learning (2026-11-16)
+React for screens, Phaser 3 for the world, Supabase for all data. Rewards are computed by database functions; the browser can only request them. No separate game server. Upgrade path if verified movement ever matters: add a Colyseus server.
+
+## 2. Guest play (2026-11-16)
+"Start Your Adventure" uses Supabase anonymous sign-in. Progress is saved server-side; guests can upgrade to an email account. Guests are excluded from chat, leaderboards and friends.
+
+## 3. Three age bands from birth year (2026-11-16)
+`under13`, `teen`, `adult` (plus `unknown` for guests who have not given a year). Age is the youngest possible for the year (`currentYear - birthYear - 1`), so protections lean safe. Under-13 accounts use a guardian's email, generated names and preset-phrase chat. Enforced in the database, not only the UI.
+
+## 4. Answer keys never reach the browser before answering (2026-11-16)
+Answers live in a table clients cannot read; a database function marks an answer and returns the explanation.
+
+## 5. Questions are web UI, not canvas (2026-11-16)
+Battle questions render as React over the Phaser canvas so screen readers, translation and right-to-left layouts work.
+
+## 6. One character renderer (2026-11-16)
+`renderCharacterSvg` produces layered SVG used by the creator preview and, rasterised, by the game world.
+
+## 7. Grid logic, isometric drawing, Tiled maps (2026-11-16)
+Movement and collision on a plain grid; isometric projection only for drawing. Maps are Tiled JSON so new regions reuse one system.
+
+## 8. Tables and dependencies arrive with the phase that needs them (2026-11-16)
+Each phase adds its own migration. GSAP dropped: CSS and `motion` cover the animations. Zustand bridges React and Phaser.
+
+## 9. Seven interface languages from Phase 1 (2026-11-16)
+en, ms, es, ar, zh, fr, ja via i18next. English is the source; others are marked unreviewed until a native speaker checks them. Questions stay in their original language.
+
+## 10. Tailwind tokens are emitted statically (2026-11-16)
+`@theme static` so every palette colour exists as a CSS variable for inline styles, SVG and canvas, not only when a utility class uses it.
