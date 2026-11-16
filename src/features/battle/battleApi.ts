@@ -56,6 +56,38 @@ export async function answerQuestion(encounterId: string, answer: AnswerPayload)
   return data as AnswerResult
 }
 
+export type BossState = {
+  run_id: string
+  round: number
+  rounds: number
+  round_progress: number
+  per_round: number
+  hearts: number
+  status: 'active' | 'won' | 'lost' | 'fled'
+  question: PublicQuestion | null
+}
+export type BossResult = Pick<AnswerResult, 'correct' | 'correct_answer' | 'explanation' | 'wrong_reason' | 'missions_completed' | 'totals'> & {
+  reward: { xp: number; gold: number; already_today: boolean; leveled_up: boolean } | null
+  state: BossState
+}
+
+export async function startBoss(): Promise<BossState> {
+  const { data, error } = await supabase!.rpc('start_boss')
+  if (error) throw toBattleError(error.message)
+  return data as BossState
+}
+
+export async function answerBoss(runId: string, answer: AnswerPayload): Promise<BossResult> {
+  const { data, error } = await supabase!.rpc('answer_boss', { p_run: runId, p_answer: answer })
+  if (error) throw toBattleError(error.message)
+  return data as BossResult
+}
+
+export async function fleeBoss(runId: string): Promise<void> {
+  const { error } = await supabase!.rpc('flee_boss', { p_run: runId })
+  if (error) throw toBattleError(error.message)
+}
+
 export async function fleeEncounter(encounterId: string): Promise<void> {
   const { error } = await supabase!.rpc('flee_encounter', { p_encounter: encounterId })
   if (error) throw toBattleError(error.message)

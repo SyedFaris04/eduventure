@@ -23,6 +23,7 @@ export const GREENHAVEN: MapSource = {
     P: { tile: 'path', spawn: 'player' },
     E: { tile: 'path', npc: 'elder', blocks: true },
     S: { tile: 'path', npc: 'shopkeeper', blocks: true },
+    G: { tile: 'path', boss: 'guardian', blocks: true }, // Greenhaven Guardian, at the north end of the road
     '1': { tile: 'grass', zone: 'sproutling' },
     '2': { tile: 'grass', zone: 'pebblewing' },
     '3': { tile: 'flowers', zone: 'dinobud' },
@@ -32,7 +33,7 @@ export const GREENHAVEN: MapSource = {
     'TTT..T...TT...T.......TT.....T...TTT',
     'TT................................TT',
     'T...................T..............T',
-    'T...T......T.....=.......111111111.T',
+    'T...T......T.....G.......111111111.T',
     'T................=...T...11111111b.T',
     'T......T.....T...=.......11b111111.T',
     'T....,,,,........=.....T.111111111.T',

@@ -389,7 +389,8 @@
     "minimapShrink": "Shrink map",
     "joystick": "Movement pad",
     "talkTo": "Talk to {{name}}",
-    "battle": "Battle {{name}}"
+    "battle": "Battle {{name}}",
+    "challenge": "Challenge {{name}}"
   },
   "npc": {
     "elder": {
@@ -490,5 +491,28 @@
     "d_subject_5": "Answer 5 {{subject}} questions correctly",
     "w_correct_50": "Answer 50 questions correctly",
     "w_defeat_12": "Defeat 12 monsters"
+  },
+  "boss": {
+    "name": "Greenhaven Guardian",
+    "title": "Boss battle: Greenhaven Guardian",
+    "roundOf": "Round {{n}} of {{total}}",
+    "progress": "{{n}} of {{total}} correct this round",
+    "hearts": "{{n}} hearts left",
+    "rounds": {
+      "maths": "Maths",
+      "science": "Science",
+      "wisdom": "Wisdom",
+      "final": "Final"
+    },
+    "intro": {
+      "maths": "Round 1: the Guardian tests your numbers. Three correct answers clear the round.",
+      "science": "Round 2: science! Show the Guardian how the world works.",
+      "wisdom": "Round 3: words and wisdom.",
+      "final": "Final round: anything goes. Three more and the Guardian bows!"
+    },
+    "victory": "The Guardian bows!",
+    "victoryText": "You cleared all four rounds. Greenhaven is proud of you!",
+    "lostText": "The Guardian waits patiently for your return. Everything you earned is safe; read the explanations and try again.",
+    "alreadyToday": "You've already claimed today's Guardian reward. Come back tomorrow for another!"
   }
 }

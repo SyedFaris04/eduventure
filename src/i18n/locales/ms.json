@@ -389,7 +389,8 @@
     "minimapShrink": "Kecilkan peta",
     "joystick": "Pad pergerakan",
     "talkTo": "Bercakap dengan {{name}}",
-    "battle": "Lawan {{name}}"
+    "battle": "Lawan {{name}}",
+    "challenge": "Cabar {{name}}"
   },
   "npc": {
     "elder": {
@@ -490,5 +491,28 @@
     "d_subject_5": "Jawab 5 soalan {{subject}} dengan betul",
     "w_correct_50": "Jawab 50 soalan dengan betul",
     "w_defeat_12": "Kalahkan 12 raksasa"
+  },
+  "boss": {
+    "name": "Penjaga Greenhaven",
+    "title": "Pertarungan bos: Penjaga Greenhaven",
+    "roundOf": "Pusingan {{n}} daripada {{total}}",
+    "progress": "{{n}} daripada {{total}} betul dalam pusingan ini",
+    "hearts": "{{n}} nyawa lagi",
+    "rounds": {
+      "maths": "Matematik",
+      "science": "Sains",
+      "wisdom": "Hikmah",
+      "final": "Akhir"
+    },
+    "intro": {
+      "maths": "Pusingan 1: Penjaga menguji nombor anda. Tiga jawapan betul untuk lepas pusingan.",
+      "science": "Pusingan 2: sains! Tunjukkan kepada Penjaga cara dunia berfungsi.",
+      "wisdom": "Pusingan 3: kata-kata dan hikmah.",
+      "final": "Pusingan akhir: apa sahaja. Tiga lagi dan Penjaga akan tunduk!"
+    },
+    "victory": "Penjaga tunduk!",
+    "victoryText": "Anda melepasi keempat-empat pusingan. Greenhaven bangga dengan anda!",
+    "lostText": "Penjaga menunggu anda kembali dengan sabar. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
+    "alreadyToday": "Anda sudah menuntut ganjaran Penjaga hari ini. Kembali esok untuk ganjaran lagi!"
   }
 }

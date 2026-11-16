@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 import { renderCharacterSvg } from '../../features/character/renderCharacterSvg'
 import type { Appearance } from '../../features/character/appearance'
 import { makePropTextures } from '../art/tiles'
-import { renderMonsterSvg } from '../art/monsters'
+import { renderBossSvg, renderMonsterSvg } from '../art/monsters'
 import { NPCS } from '../npcs'
 
 /** Rasterises an SVG string into a Phaser texture (2× size; sprites are shown at 0.5 scale for crisp edges). */
@@ -30,6 +30,7 @@ export class BootScene extends Phaser.Scene {
       ...heroFrames,
       ...Object.entries(NPCS).map(([id, npc]) => addSvgTexture(this, `npc-${id}`, renderCharacterSvg(npc.appearance, { size: 96 }))),
       ...(['sproutling', 'pebblewing', 'dinobud'] as const).map((kind) => addSvgTexture(this, `monster-${kind}`, renderMonsterSvg(kind, 128))),
+      addSvgTexture(this, 'boss-guardian', renderBossSvg(200)),
     ]
     await Promise.all(jobs)
     this.scene.start('world')

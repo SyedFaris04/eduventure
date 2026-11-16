@@ -389,7 +389,8 @@
     "minimapShrink": "Réduire la carte",
     "joystick": "Manette de déplacement",
     "talkTo": "Parler à {{name}}",
-    "battle": "Affronter {{name}}"
+    "battle": "Affronter {{name}}",
+    "challenge": "Défier {{name}}"
   },
   "npc": {
     "elder": {
@@ -490,5 +491,28 @@
     "d_subject_5": "Réponds juste à 5 questions de {{subject}}",
     "w_correct_50": "Réponds juste à 50 questions",
     "w_defeat_12": "Bats 12 monstres"
+  },
+  "boss": {
+    "name": "Gardien de Greenhaven",
+    "title": "Combat de boss : Gardien de Greenhaven",
+    "roundOf": "Manche {{n}} sur {{total}}",
+    "progress": "{{n}} sur {{total}} justes dans cette manche",
+    "hearts": "Il reste {{n}} cœurs",
+    "rounds": {
+      "maths": "Maths",
+      "science": "Sciences",
+      "wisdom": "Sagesse",
+      "final": "Finale"
+    },
+    "intro": {
+      "maths": "Manche 1 : le Gardien teste tes calculs. Trois bonnes réponses pour passer la manche.",
+      "science": "Manche 2 : sciences ! Montre au Gardien comment fonctionne le monde.",
+      "wisdom": "Manche 3 : mots et sagesse.",
+      "final": "Manche finale : tout est permis. Encore trois et le Gardien s'incline !"
+    },
+    "victory": "Le Gardien s'incline !",
+    "victoryText": "Tu as réussi les quatre manches. Greenhaven est fier de toi !",
+    "lostText": "Le Gardien attend patiemment ton retour. Tout ce que tu as gagné est conservé ; relis les explications et réessaie.",
+    "alreadyToday": "Tu as déjà récupéré la récompense du Gardien aujourd'hui. Reviens demain pour une autre !"
   }
 }

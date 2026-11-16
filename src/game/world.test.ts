@@ -43,5 +43,8 @@ describe('Greenhaven map', () => {
       expect(map.monsterZones[zone].every((p) => !map.blocked(p.x, p.y))).toBe(true)
     }
     expect(map.npcs.map((n) => n.id).sort()).toEqual(['elder', 'shopkeeper'])
+    expect(map.bosses).toEqual([{ id: 'guardian', x: 17, y: 4 }])
+    // the Guardian can be reached on foot from the spawn (a free tile next to it)
+    expect(map.blocked(17, 5)).toBe(false)
   })
 })

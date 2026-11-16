@@ -50,6 +50,26 @@ const ART: Record<MonsterKind, string> = {
     <path d="M70 134 q -12 4 -10 14 M138 134 q 12 4 10 14" stroke="#d9894a" stroke-width="5" fill="none" stroke-linecap="round"/>`,
 }
 
+/** The Greenhaven Guardian: a gentle, mossy stone golem with a glowing rune. */
+const GUARDIAN = `
+  <ellipse cx="100" cy="186" rx="72" ry="11" fill="#000" opacity="0.18"/>
+  <rect x="58" y="150" width="30" height="34" rx="10" fill="#8f98a3" ${S}/>
+  <rect x="112" y="150" width="30" height="34" rx="10" fill="#8f98a3" ${S}/>
+  <path d="M26 118 C 14 104 18 82 34 82 C 46 82 52 96 50 112 L 46 150 C 36 156 24 148 26 118 Z" fill="#a3acb6" ${S}/>
+  <path d="M174 118 C 186 104 182 82 166 82 C 154 82 148 96 150 112 L 154 150 C 164 156 176 148 174 118 Z" fill="#a3acb6" ${S}/>
+  <path d="M44 74 C 44 40 70 22 100 22 C 130 22 156 40 156 74 L 152 154 C 130 166 70 166 48 154 Z" fill="#b6bec8" ${S}/>
+  <path d="M46 70 C 50 44 72 30 100 30 C 128 30 150 44 154 70 C 140 60 128 66 118 58 C 106 70 92 60 82 68 C 72 60 60 66 46 70 Z" fill="#7cb342" ${S}/>
+  <path d="M70 36 l-8 -16 14 6 Z M100 28 l0 -20 10 14 Z M130 36 l8 -16 -14 6 Z" fill="#5e9c35" ${S}/>
+  <circle cx="72" cy="128" r="6" fill="#8f98a3"/><circle cx="136" cy="136" r="5" fill="#8f98a3"/><circle cx="118" cy="148" r="4" fill="#8f98a3"/>
+  <path d="M100 104 l14 16 -14 16 -14 -16 Z" fill="#6cc4f0" stroke="#2f7fb0" stroke-width="3"/>
+  <circle cx="100" cy="120" r="5" fill="#e8f7ff"/>
+  ${eyes(82, 118, 84, 8)}
+  <path d="M90 96 Q100 102 110 96" stroke="#1f130b" stroke-width="4" fill="none" stroke-linecap="round"/>
+  ${blush(70, 130, 96)}`
+
+export const renderBossSvg = (size = 200) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="${size}" height="${size}">${GUARDIAN}</svg>`
+export const bossDataUri = (size?: number) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(renderBossSvg(size))}`
+
 /** Same approach as characters: one SVG string feeds both the world sprite and the battle portrait. */
 export function renderMonsterSvg(kind: MonsterKind, size = 200): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="${size}" height="${size}">${ART[kind]}</svg>`

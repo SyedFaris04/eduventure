@@ -389,7 +389,8 @@
     "minimapShrink": "缩小地图",
     "joystick": "移动摇杆",
     "talkTo": "与{{name}}交谈",
-    "battle": "挑战{{name}}"
+    "battle": "挑战{{name}}",
+    "challenge": "挑战{{name}}"
   },
   "npc": {
     "elder": {
@@ -490,5 +491,28 @@
     "d_subject_5": "答对 5 道{{subject}}题",
     "w_correct_50": "答对 50 道题",
     "w_defeat_12": "打败 12 只怪物"
+  },
+  "boss": {
+    "name": "绿港守护者",
+    "title": "首领战：绿港守护者",
+    "roundOf": "第 {{n}} 回合，共 {{total}} 回合",
+    "progress": "本回合答对 {{n}} / {{total}}",
+    "hearts": "剩余 {{n}} 颗心",
+    "rounds": {
+      "maths": "数学",
+      "science": "科学",
+      "wisdom": "智慧",
+      "final": "决战"
+    },
+    "intro": {
+      "maths": "第 1 回合：守护者考验你的数字能力。答对三题即可过关。",
+      "science": "第 2 回合：科学！让守护者看看世界是如何运转的。",
+      "wisdom": "第 3 回合：语言与智慧。",
+      "final": "最后一回合：什么都可能出现。再答对三题，守护者就会鞠躬！"
+    },
+    "victory": "守护者鞠躬了！",
+    "victoryText": "你通过了全部四个回合，绿港为你骄傲！",
+    "lostText": "守护者耐心地等你回来。你获得的一切都还在；读读讲解，再试一次。",
+    "alreadyToday": "今天的守护者奖励已经领取过了，明天再来吧！"
   }
 }

@@ -389,7 +389,8 @@
     "minimapShrink": "Reducir mapa",
     "joystick": "Control de movimiento",
     "talkTo": "Hablar con {{name}}",
-    "battle": "Luchar contra {{name}}"
+    "battle": "Luchar contra {{name}}",
+    "challenge": "Desafiar a {{name}}"
   },
   "npc": {
     "elder": {
@@ -490,5 +491,28 @@
     "d_subject_5": "Responde bien 5 preguntas de {{subject}}",
     "w_correct_50": "Responde bien 50 preguntas",
     "w_defeat_12": "Derrota a 12 monstruos"
+  },
+  "boss": {
+    "name": "Guardián de Greenhaven",
+    "title": "Batalla de jefe: Guardián de Greenhaven",
+    "roundOf": "Ronda {{n}} de {{total}}",
+    "progress": "{{n}} de {{total}} correctas en esta ronda",
+    "hearts": "Te quedan {{n}} corazones",
+    "rounds": {
+      "maths": "Matemáticas",
+      "science": "Ciencias",
+      "wisdom": "Sabiduría",
+      "final": "Final"
+    },
+    "intro": {
+      "maths": "Ronda 1: el Guardián pone a prueba tus números. Tres respuestas correctas superan la ronda.",
+      "science": "Ronda 2: ¡ciencias! Muéstrale al Guardián cómo funciona el mundo.",
+      "wisdom": "Ronda 3: palabras y sabiduría.",
+      "final": "Ronda final: vale todo. ¡Tres más y el Guardián se inclina!"
+    },
+    "victory": "¡El Guardián se inclina!",
+    "victoryText": "Superaste las cuatro rondas. ¡Greenhaven está orgulloso de ti!",
+    "lostText": "El Guardián espera pacientemente tu regreso. Todo lo que ganaste está a salvo; lee las explicaciones y vuelve a intentarlo.",
+    "alreadyToday": "Ya reclamaste hoy la recompensa del Guardián. ¡Vuelve mañana por otra!"
   }
 }

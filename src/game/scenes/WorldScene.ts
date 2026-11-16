@@ -73,6 +73,13 @@ export class WorldScene extends Phaser.Scene {
 
     this.spawnMonsters()
 
+    for (const boss of this.map.bosses) {
+      const at = this.toWorld({ x: boss.x + 0.5, y: boss.y + 0.5 })
+      this.add.image(at.x, at.y + 4, 'shadow').setScale(2.2, 1.6).setDepth(at.y - 1)
+      const sprite = this.add.image(at.x, at.y, `boss-${boss.id}`).setOrigin(0.5, 0.92).setScale(0.62).setDepth(at.y)
+      if (!reducedMotion()) this.tweens.add({ targets: sprite, scaleY: 0.64, duration: 1800, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' })
+    }
+
     this.pos = { x: this.map.spawn.x + 0.5, y: this.map.spawn.y + 0.5 }
     const start = this.toWorld(this.pos)
     this.heroShadow = this.add.image(start.x, start.y + 2, 'shadow')
@@ -96,10 +103,11 @@ export class WorldScene extends Phaser.Scene {
     this.lastInteractSeq = useGame.getState().interactSeq
     this.unsubscribe = useGame.subscribe((s, prev) => {
       // The key that closes a panel must not immediately reopen it on the game's side.
-      if ((prev.dialogue && !s.dialogue) || (prev.battle && !s.battle)) this.panelClosedAt = this.time.now
-      // The battle panel covers the world: stop rendering it to save battery and keep phones responsive.
-      if (!prev.battle && s.battle) this.game.loop.sleep()
-      if (prev.battle && !s.battle) this.game.loop.wake()
+      if ((prev.dialogue && !s.dialogue) || (prev.battle && !s.battle) || (prev.boss && !s.boss)) this.panelClosedAt = this.time.now
+      // Battle panels cover the world: stop rendering it to save battery and keep phones responsive.
+      const covered = (x: typeof s) => Boolean(x.battle || x.boss)
+      if (!covered(prev) && covered(s)) this.game.loop.sleep()
+      if (covered(prev) && !covered(s)) this.game.loop.wake()
       if (s.defeated.length) {
         for (const id of s.defeated) this.defeat(id)
         useGame.setState({ defeated: [] })
@@ -127,6 +135,7 @@ export class WorldScene extends Phaser.Scene {
     const prompt = useGame.getState().prompt
     if (prompt?.kind === 'npc') useGame.setState({ dialogue: { npc: prompt.id, page: 0 } })
     if (prompt?.kind === 'monster') useGame.setState({ battle: { monsterId: prompt.id, monster: prompt.monster } })
+    if (prompt?.kind === 'boss') useGame.setState({ boss: prompt.id })
   }
 
   private freeZoneTile(kind: MonsterKind): Point {
@@ -251,8 +260,15 @@ export class WorldScene extends Phaser.Scene {
   private updatePrompt() {
     const dist = (p: Point) => Math.hypot(p.x - this.pos.x, p.y - this.pos.y)
     const npc = this.map.npcs.find((n) => dist({ x: n.x + 0.5, y: n.y + 0.5 }) <= INTERACT_RANGE)
+    const boss = this.map.bosses.find((b) => dist({ x: b.x + 0.5, y: b.y + 0.5 }) <= INTERACT_RANGE)
     const monster = this.monsters.filter((m) => m.alive && dist(m.pos) <= INTERACT_RANGE).sort((a, b) => dist(a.pos) - dist(b.pos))[0]
-    const next: Prompt | null = npc ? { kind: 'npc', id: npc.id } : monster ? { kind: 'monster', id: monster.id, monster: monster.kind } : null
+    const next: Prompt | null = npc
+      ? { kind: 'npc', id: npc.id }
+      : boss
+        ? { kind: 'boss', id: boss.id }
+        : monster
+          ? { kind: 'monster', id: monster.id, monster: monster.kind }
+          : null
     const current = useGame.getState().prompt
     if (current?.id !== next?.id) useGame.setState({ prompt: next })
   }

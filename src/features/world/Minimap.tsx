@@ -73,6 +73,7 @@ export function Minimap() {
       ctx.restore()
     }
     for (const n of map.npcs) dot(n.x + 0.5, n.y + 0.5, '#4fa3c7', 3.5)
+    for (const b of map.bosses) dot(b.x + 0.5, b.y + 0.5, '#7e5bb5', 5)
     for (const m of monsters) dot(m.x, m.y, '#e2574c', 3)
     dot(player.x, player.y, '#f7c843', 4.5)
   }, [player, monsters, map, W, H])
