@@ -5,7 +5,7 @@ import { Coins, Flag, Gift, Sparkles, Star, Zap } from 'lucide-react'
 import { Button } from '../../components/ui'
 import { useGame } from '../../game/store'
 import type { MonsterKind } from '../../game/map'
-import { monsterDataUri } from '../../game/art/monsters'
+import { Snapshot } from '../../world3d/SnapshotImage'
 import { useSession } from '../authentication/useSession'
 import { playChime } from '../loading/sound'
 import { answerQuestion, BattleError, fleeEncounter, startEncounter, type AnswerPayload, type AnswerResult, type EncounterState } from './battleApi'
@@ -102,7 +102,7 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
     <div className="pointer-events-auto absolute inset-0 z-30 grid place-items-center overflow-y-auto bg-ink/45 p-3">
       <section role="dialog" aria-modal="true" aria-label={t('battle.title', { name: monsterName })} className="w-full max-w-xl rounded-3xl border-4 border-wood bg-cream shadow-[0_0_0_3px_var(--color-wood-dark),0_16px_40px_rgb(0_0_0/0.4)]">
         <header className="flex items-center gap-3 rounded-t-[20px] bg-gradient-to-b from-[#a6d672] to-grass p-3">
-          <img src={monsterDataUri(monster, 160)} alt="" className={`size-20 shrink-0 sm:size-24 ${result?.correct ? 'battle-hit' : 'hero-bob'}`} />
+          <Snapshot subject={{ kind: 'monster', monster }} px={160} alt="" className={`size-20 shrink-0 sm:size-24 ${result?.correct ? 'battle-hit' : 'hero-bob'}`} />
           <div className="min-w-0 flex-1 space-y-2">
             <HpBar label={t('battle.monsterHp', { name: monsterName })} name={monsterName} value={enc?.monster_hp ?? 0} max={enc?.monster_max_hp ?? 1} colour="from-[#ff8a80] to-danger" />
             <HpBar label={t('battle.playerHp')} name={t('battle.you')} value={enc?.player_hp ?? 100} max={100} colour="from-[#c5e1a5] to-grass-dark" />

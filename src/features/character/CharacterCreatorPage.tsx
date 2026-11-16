@@ -12,7 +12,7 @@ import { useSession } from '../authentication/useSession'
 import { useMyProfile } from '../onboarding/useReferenceData'
 import { APPEARANCE_OPTIONS, DEFAULT_APPEARANCE, randomAppearance, shopValues, type Appearance, type AppearancePart } from './appearance'
 import { useOwnedItems } from '../shop/useShop'
-import { characterDataUri } from './renderCharacterSvg'
+import { Snapshot } from '../../world3d/SnapshotImage'
 import { generateSafeName, nameSchema } from './safeName'
 import { saveCharacter, useMyCharacter } from './useCharacter'
 
@@ -171,7 +171,7 @@ export function CharacterCreatorPage() {
                           className={`relative flex w-[76px] flex-col items-center rounded-2xl border-[3px] bg-white/80 p-1 ${on ? 'border-grass-dark bg-grass/15 ring-2 ring-grass' : 'border-wood/30 hover:border-wood'}`}
                         >
                           {fromShop && <ShoppingBag size={14} className="absolute top-1 end-1 text-wood-dark" aria-label={t('character.fromShop')} />}
-                          <img alt="" src={characterDataUri({ ...appearance, [part]: value }, { size: 64 })} className="h-[78px] w-16" loading="lazy" />
+                          <Snapshot subject={{ kind: 'hero', appearance: { ...appearance, [part]: value } as Appearance }} px={64} alt="" className="w-16" />
                           <span className="line-clamp-1 text-[11px] font-bold text-wood-dark">{t(`character.opt.${value}`)}</span>
                         </button>
                       )
