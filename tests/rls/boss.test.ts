@@ -1,24 +1,10 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
-import bank from '../../content/questions/starter.json'
+import { rightAnswer as right, wrongAnswer as wrong } from './answers'
 
 const url = process.env.VITE_SUPABASE_URL
 const key = process.env.VITE_SUPABASE_PUBLISHABLE_KEY
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
-type Q = { id: string; type: string; subject: string; answer: unknown; options?: { id: string }[] }
-const byId = new Map((bank.questions as Q[]).map((q) => [q.id, q]))
-const right = (id: string) => {
-  const q = byId.get(id)!
-  if (q.type === 'mcq' || q.type === 'true_false') return { choice: q.answer }
-  if (q.type === 'numeric') return { value: String((q.answer as { value: number }).value) }
-  return { text: (q.answer as { accept: string[] }).accept[0] }
-}
-const wrong = (id: string) => {
-  const q = byId.get(id)!
-  if (q.type === 'mcq') return { choice: q.options!.find((o) => o.id !== q.answer)!.id }
-  if (q.type === 'true_false') return { choice: q.answer === 'true' ? 'false' : 'true' }
-  return q.type === 'numeric' ? { value: '-99999' } : { text: 'zzz' }
-}
 
 async function player() {
   const c = createClient(url!, key!, { auth: { persistSession: false, autoRefreshToken: false } })

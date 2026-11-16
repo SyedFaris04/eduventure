@@ -1,14 +1,11 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
-import bank from '../../content/questions/starter.json'
+import { byId, wrongAnswer, type Q } from './answers'
 
 const url = process.env.VITE_SUPABASE_URL
 const key = process.env.VITE_SUPABASE_PUBLISHABLE_KEY
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
-type Q = { id: string; type: string; answer: unknown; options?: { id: string }[]; topic: string; explanation: string }
-const byId = new Map((bank.questions as Q[]).map((q) => [q.id, q]))
-const wrong = (q: Q) =>
-  q.type === 'mcq' ? { choice: q.options!.find((o) => o.id !== q.answer)!.id } : q.type === 'true_false' ? { choice: q.answer === 'true' ? 'false' : 'true' } : q.type === 'numeric' ? { value: '-99999' } : { text: 'zzz' }
+const wrong = (q: Q) => wrongAnswer(q.id)
 
 describe.skipIf(!url || !key)('learning model (live project)', () => {
   let c: SupabaseClient

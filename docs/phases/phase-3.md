@@ -37,3 +37,28 @@
 - The owner can approve/reject/publish questions in `/admin`, with history, and a production setting serves only published questions.
 - At least 500 questions exist across the agreed distribution, each with source, licence, objective and explanations.
 - Weak topics measurably come up more often (test); missions and streak rewards are paid by the server only; the boss can be beaten once per day for its reward.
+
+## Build record (2026-11-16)
+
+### Rulings (decision — reason — cost if wrong)
+
+- Mastery is (correct + 1) / (attempts + 2) per topic, and questions are drawn by weighted random (weight 1.5 − mastery) — accuracy only, never speed; a smoothed rate keeps one lucky answer from hiding a weak topic — weights may need tuning once real players exist.
+- A repeat correct answer within 24 hours earns 0 XP, and answers sent faster than 1.5 s are refused — stops farming one easy question — very fast readers may see the "take your time" note.
+- Streaks allow one rest day per week, and days follow the player's own time zone — gentle on young players and fair across countries — none.
+- The boss has 4 rounds × 3 correct answers, 3 hearts, and pays 150 XP / 80 gold once per local day; losing costs nothing — matches "no punishment" — none.
+- New question types are marked by the same pure `is_correct()`; short answers ignore case, spacing and punctuation — one marking path for every type — accept lists must cover real spelling variants (reviewers can request changes).
+- An accept entry is dropped when normalising would make it match a wrong answer (e.g. "CO₂" normalises to "co") — avoids marking carbon monoxide correct — players typing the subscript form must use "CO2".
+- The in-app editor, image questions and `sync:questions` moved to later phases — the content files stay the single source (decision #19) — reviewers fix questions via "request changes" rather than editing in place.
+- Server tests read answer keys from every content file (`tests/rls/answers.ts`) — tests broke once the bank grew past the starter file — none.
+
+### Known limits
+
+- All 510 questions are in review; with `allow_draft_questions` on (dev only) they play with a Draft badge until approved.
+- Bahasa Melayu questions are written in Malay; all other questions are in English. Translation of questions is not planned before Phase 8.
+- Running the access-rule and end-to-end suites back to back can hit Supabase's guest sign-in limit (decision #20).
+
+### Results
+
+- `npm test` 87/87 · `npm run test:rls` 42 passed, 3 skipped (admin tests need `TEST_ADMIN_EMAIL`/`TEST_ADMIN_PASSWORD`) · `npm run build` OK · Supabase advisors: 0 errors (34 expected warnings: player-callable server functions, guest-play policies, leaked-password protection, which is on the Phase 8 list).
+- Question bank in the live project: 510 questions, 510 answer keys, 8 types, 25 subjects, all `in_review`.
+- Final review: self-review (owner did not ask for subagents).

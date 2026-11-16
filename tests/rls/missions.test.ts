@@ -1,18 +1,10 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
-import bank from '../../content/questions/starter.json'
+import { rightAnswer as right } from './answers'
 
 const url = process.env.VITE_SUPABASE_URL
 const key = process.env.VITE_SUPABASE_PUBLISHABLE_KEY
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
-type Q = { id: string; type: string; answer: unknown }
-const byId = new Map((bank.questions as Q[]).map((q) => [q.id, q]))
-const right = (id: string) => {
-  const q = byId.get(id)!
-  if (q.type === 'mcq' || q.type === 'true_false') return { choice: q.answer }
-  if (q.type === 'numeric') return { value: String((q.answer as { value: number }).value) }
-  return { text: (q.answer as { accept: string[] }).accept[0] }
-}
 type Mission = { id: string; template_id: string; period: string; progress: number; target: number; completed: boolean; claimed: boolean }
 
 describe.skipIf(!url || !key)('missions and streaks (live project)', () => {
