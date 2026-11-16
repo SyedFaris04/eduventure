@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import { Sparkles } from '@react-three/drei'
 import { MeshBasicMaterial, MeshStandardMaterial, type Mesh } from 'three'
 import type { GameMap } from '../game/map'
+import { THEMES } from './themes'
 import { windTime } from './wind'
 
 export const SEA_Y = -0.5
@@ -31,17 +32,45 @@ function waveMaterial(colour: string, amp: number) {
   return m
 }
 
+/** Connected patches of water tiles (bridges count as water underneath). Patches touching the map edge are part of the sea (a cove); others are ponds. */
+export function waterRegions(map: GameMap) {
+  const seen = new Set<string>()
+  const out: { x: number; z: number; w: number; d: number; sea: boolean; tiles: number }[] = []
+  map.cells.forEach((row, y0) =>
+    row.forEach((c, x0) => {
+      if (c.tile !== 'water' || seen.has(`${x0},${y0}`)) return
+      let x1 = x0, y1 = y0, xa = x0, ya = y0, tiles = 0, sea = false
+      const stack = [[x0, y0]]
+      seen.add(`${x0},${y0}`)
+      while (stack.length) {
+        const [x, y] = stack.pop()!
+        tiles++
+        xa = Math.min(xa, x); ya = Math.min(ya, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y)
+        if (x === 0 || y === 0 || x === map.width - 1 || y === map.height - 1) sea = true
+        for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+          const k = `${x + dx},${y + dy}`
+          // Water runs on under bridges, so a bridge never splits a pond in two.
+          if (['water', 'bridge'].includes(map.cells[y + dy]?.[x + dx]?.tile ?? '') && !seen.has(k)) {
+            seen.add(k)
+            stack.push([x + dx, y + dy])
+          }
+        }
+      }
+      out.push({ x: (xa + x1 + 1) / 2, z: (ya + y1 + 1) / 2, w: x1 - xa + 1, d: y1 - ya + 1, sea, tiles })
+    }),
+  )
+  return out
+}
+
 export function Water({ map, sparkles }: { map: GameMap; sparkles: boolean }) {
-  const sea = useMemo(() => waveMaterial('#4fb0dd', 0.06), [])
-  const pond = useMemo(() => waveMaterial('#6cc4f0', 0.025), [])
+  const look = THEMES[map.theme]
+  const sea = useMemo(() => waveMaterial(look.water, 0.06), [look])
+  const pond = useMemo(() => waveMaterial(look.pond, 0.025), [look])
   const foam = useMemo(() => new MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.5, depthWrite: false }), [])
   const foamRef = useRef<Mesh>(null)
 
-  const pondBox = useMemo(() => {
-    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity
-    map.cells.forEach((row, y) => row.forEach((c, x) => c.tile === 'water' && ((x0 = Math.min(x0, x)), (y0 = Math.min(y0, y)), (x1 = Math.max(x1, x + 1)), (y1 = Math.max(y1, y + 1)))))
-    return Number.isFinite(x0) ? { x: (x0 + x1) / 2, z: (y0 + y1) / 2, w: x1 - x0, d: y1 - y0 } : null
-  }, [map])
+  const regions = useMemo(() => waterRegions(map), [map])
+  const biggestPond = useMemo(() => regions.filter((r) => !r.sea).sort((a, b) => b.tiles - a.tiles)[0], [regions])
 
   useFrame(() => {
     // Foam breathes in and out around the shore.
@@ -60,14 +89,14 @@ export function Water({ map, sparkles }: { map: GameMap; sparkles: boolean }) {
       <mesh ref={foamRef} rotation={[-Math.PI / 2, 0, 0]} position={[cx, SEA_Y + 0.05, cz]} material={foam}>
         <ringGeometry args={[map.width * 0.705, map.width * 0.74, 4, 1, Math.PI / 4]} />
       </mesh>
-      {pondBox && (
-        <>
-          <mesh rotation={[-Math.PI / 2, 0, 0]} position={[pondBox.x, POND_Y, pondBox.z]} material={pond}>
-            <planeGeometry args={[pondBox.w, pondBox.d, 16, 16]} />
+      {regions
+        .filter((r) => !r.sea)
+        .map((r) => (
+          <mesh key={`${r.x},${r.z}`} rotation={[-Math.PI / 2, 0, 0]} position={[r.x, POND_Y, r.z]} material={pond}>
+            <planeGeometry args={[r.w, r.d, 16, 16]} />
           </mesh>
-          {sparkles && <Sparkles count={24} scale={[pondBox.w, 0.4, pondBox.d]} position={[pondBox.x, POND_Y + 0.25, pondBox.z]} size={4} speed={0.4} color="#ffffff" />}
-        </>
-      )}
+        ))}
+      {sparkles && biggestPond && <Sparkles count={24} scale={[biggestPond.w, 0.4, biggestPond.d]} position={[biggestPond.x, POND_Y + 0.25, biggestPond.z]} size={4} speed={0.4} color="#ffffff" />}
       {sparkles && <Sparkles count={60} scale={[map.width + 16, 0.5, map.height + 16]} position={[cx, SEA_Y + 0.3, cz]} size={5} speed={0.3} color="#ffffff" />}
     </group>
   )

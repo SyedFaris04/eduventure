@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Gauge, House } from 'lucide-react'
@@ -44,7 +45,9 @@ export function WorldPage() {
           <Gauge size={20} aria-hidden />
           <span className="hidden text-sm md:inline">{t(`world.qualityLevel.${quality.choice}`)}</span>
         </button>
-        <Minimap />
+        <Suspense fallback={null}>
+          <Minimap />
+        </Suspense>
         <Joystick />
         <InteractButton />
         <DialogueBox playerName={character.data?.name ?? ''} />

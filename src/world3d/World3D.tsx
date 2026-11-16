@@ -3,8 +3,8 @@ import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
 import { Stats, useGLTF } from '@react-three/drei'
 import { MeshBasicMaterial, RingGeometry, Vector3, type DirectionalLight, type Mesh, type PerspectiveCamera } from 'three'
 import type { Appearance } from '../features/character/appearance'
-import { parseMap } from '../game/map'
-import { GREENHAVEN } from '../game/maps/greenhaven'
+import { areaAt, type GameMap } from '../game/map'
+import { clearPlaceMaps } from '../game/placeMaps'
 import { WorldSim } from '../game/sim'
 import { useGame, worldPaused } from '../game/store'
 import { screenOf } from '../game/screen'
@@ -17,6 +17,8 @@ import { clearProps, preloadProps, Props } from './Props'
 import { createQualityMonitor } from './quality'
 import { qualityLevel, useQuality } from './qualityStore'
 import { Water } from './Water'
+import { Decor } from './Decor'
+import { THEMES } from './themes'
 import { windTime } from './wind'
 
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
@@ -24,6 +26,7 @@ const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce
 /** Called by the world's Retry button: forget failed downloads so they are fetched again. */
 export function clearWorldCache() {
   clearProps()
+  clearPlaceMaps()
   useGLTF.clear(RIG_URL)
 }
 
@@ -51,7 +54,8 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     const interact = () => {
       if (worldPaused() || performance.now() - panelClosedAt.current < 300) return
       const prompt = useGame.getState().prompt
-      if (prompt?.kind === 'npc') useGame.setState({ dialogue: { npc: prompt.id, page: 0 } })
+      // The boatman opens the list of places to sail to; other villagers talk.
+      if (prompt?.kind === 'npc') useGame.setState(prompt.id === 'boatman' ? { jetty: true } : { dialogue: { npc: prompt.id, page: 0 } })
       if (prompt?.kind === 'monster') useGame.setState({ battle: { monsterId: prompt.id, monster: prompt.monster } })
       if (prompt?.kind === 'boss') useGame.setState({ boss: prompt.id })
     }
@@ -60,7 +64,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     let seq = useGame.getState().interactSeq
     const unsub = useGame.subscribe((s, prev) => {
       // The key that closes a panel must not immediately reopen it.
-      if ((prev.dialogue && !s.dialogue) || (prev.battle && !s.battle) || (prev.boss && !s.boss)) panelClosedAt.current = performance.now()
+      if ((prev.dialogue && !s.dialogue) || (prev.battle && !s.battle) || (prev.boss && !s.boss) || (prev.jetty && !s.jetty)) panelClosedAt.current = performance.now()
       if (s.interactSeq !== seq) {
         seq = s.interactSeq
         interact()
@@ -138,7 +142,8 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     if (store.prompt?.id !== prompt?.id) useGame.setState({ prompt })
     if (now - lastEmit.current > 150) {
       lastEmit.current = now
-      useGame.setState({ player: { ...sim.hero.pos }, monsters: sim.monsters.filter((m) => m.alive).map((m) => ({ id: m.id, kind: m.kind, x: m.pos.x, y: m.pos.y })) })
+      const area = areaAt(sim.map, sim.hero.pos)
+      useGame.setState({ player: { ...sim.hero.pos }, monsters: sim.monsters.filter((m) => m.alive).map((m) => ({ id: m.id, kind: m.kind, x: m.pos.x, y: m.pos.y })), ...(area !== store.area ? { area } : {}) })
     }
 
     // Camera eases after the hero (instantly under reduced motion), frame-rate independent.
@@ -185,10 +190,10 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
   )
 }
 
-/** Greenhaven in 3D. Default export so it loads as its own chunk with three.js. */
-export default function World3D({ hero }: { hero: Appearance }) {
-  const map = useMemo(() => parseMap(GREENHAVEN), [])
-  const sim = useMemo(() => new WorldSim(map), [map])
+/** One place in 3D. Default export so it loads as its own chunk with three.js. */
+export default function World3D({ hero, map, atArrival = false }: { hero: Appearance; map: GameMap; atArrival?: boolean }) {
+  const sim = useMemo(() => new WorldSim(map, Math.random, { atArrival }), [map, atArrival])
+  const look = THEMES[map.theme]
   const covered = useGame((s) => Boolean(s.battle || s.boss))
   const level = useQuality(qualityLevel)
   const reduced = useMemo(reducedMotion, [])
@@ -204,12 +209,13 @@ export default function World3D({ hero }: { hero: Appearance }) {
       gl={{ antialias: true, powerPreference: 'high-performance' }}
       camera={{ fov: CAMERA.fov, near: 0.5, far: 150, position: [sim.hero.pos.x + start[0], start[1], sim.hero.pos.y + start[2]] }}
     >
-      <color attach="background" args={['#5fb3d9']} />
-      <fog attach="fog" args={['#5fb3d9', 34, 70]} />
+      <color attach="background" args={[look.sky]} />
+      <fog attach="fog" args={[look.sky, ...look.fog]} />
       <Game sim={sim} reduced={reduced} />
       <Ground map={map} />
       <Water map={map} sparkles={level === 'high' && !reduced} />
       <Props map={map} shadows={level === 'high'} />
+      <Decor map={map} fancy={level === 'high' && !reduced} />
       <Npcs sim={sim} reduced={reduced} />
       <Monsters sim={sim} reduced={reduced} />
       <Bosses sim={sim} reduced={reduced} />

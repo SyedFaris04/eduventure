@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { use, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { parseMap, type Cell } from '../../game/map'
-import { GREENHAVEN } from '../../game/maps/greenhaven'
+import type { Cell } from '../../game/map'
+import { placeMap } from '../../game/placeMaps'
+import { usePlace } from '../../game/placeStore'
 import { useGame } from '../../game/store'
 
 const COLOURS: Record<string, string> = {
@@ -17,13 +18,27 @@ const COLOURS: Record<string, string> = {
   fence: '#8a5a3b',
   well: '#a3a8ae',
   house: '#d9534f',
+  jetty: '#b98252',
+  snow: '#eef3f6',
+  stone: '#b8b2a6',
+  mud: '#8f6a48',
+  palm: '#4f9a3a',
+  kampung_house: '#d9534f',
+  stall: '#d94f3d',
+  fern: '#3f8f3a',
+  mangrove: '#3d7a3a',
+  mushroom: '#d9573f',
+  pine_snow: '#2f6b4a',
+  pillar: '#e2dccd',
+  sundial: '#bdb5a3',
+  abacus_gate: '#8a7a60',
 }
 const colourOf = (c: Cell) => COLOURS[c.prop ?? ''] ?? (c.blocks && !c.npc ? COLOURS.house : COLOURS[c.tile])
 
 /** Small isometric overview: terrain drawn once, player and villagers on top. Tap to enlarge. */
 export function Minimap() {
   const { t } = useTranslation()
-  const map = useMemo(() => parseMap(GREENHAVEN), [])
+  const map = use(placeMap(usePlace((s) => s.place)))
   const ref = useRef<HTMLCanvasElement>(null)
   const base = useRef<HTMLCanvasElement | null>(null)
   const [big, setBig] = useState(false)
