@@ -5,6 +5,7 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { loadPyodide, type PyodideInterface } from 'pyodide'
 import { contentRules, courseSource, type Course, type Step } from './lessonSchema'
 import { normCode, normOutput, replaceLine } from './codeText'
+import { formatArgs } from './runner/jsCore'
 
 const dir = new URL('../../../content/courses/', import.meta.url)
 const files = readdirSync(dir).filter((f) => f.endsWith('.json'))
@@ -13,7 +14,7 @@ const courses = files.map((f) => JSON.parse(readFileSync(new URL(f, dir), 'utf8'
 /** Runs JavaScript like the browser runner does: console.log lines joined with newlines; errors come back as text. */
 function runJs(code: string): { out: string; error: string | null } {
   const lines: string[] = []
-  const log = (...a: unknown[]) => lines.push(a.map((x) => (typeof x === 'string' ? x : JSON.stringify(x))).join(' '))
+  const log = (...a: unknown[]) => lines.push(formatArgs(a)) // exactly how the browser runner prints
   try {
     runInNewContext(code, { console: { log, error: log } }, { timeout: 2000 })
     return { out: lines.join('\n'), error: null }
