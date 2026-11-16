@@ -26,10 +26,11 @@ export function BattlePanel() {
 /** The player's level as the server last reported it, and the level they had when this panel opened. */
 export function usePlayerLevel() {
   const { session } = useSession()
-  const level = useProgression(session?.user.id).data?.level ?? 1
+  const data = useProgression(session?.user.id).data
+  const level = data?.level ?? 1
   const atStart = useRef<number | null>(null)
-  if (atStart.current === null) atStart.current = level
-  return { level, startLevel: atStart.current }
+  if (atStart.current === null && data) atStart.current = level
+  return { level, startLevel: atStart.current ?? level, loaded: Boolean(data) }
 }
 
 /** Shared after-answer refresh: HUD totals at once, missions and streak when the panel closes. */

@@ -1,9 +1,10 @@
 import { Group, Mesh, MeshStandardMaterial } from 'three'
-import type { MonsterKind } from '../../game/map'
+import type { BossId, MonsterKind } from '../../game/map'
 import { faceMaterial, geometry, material } from '../hero/materials'
 import type { Shape } from '../hero/parts'
 
-export const MONSTER_KINDS: MonsterKind[] = ['sproutling', 'pebblewing', 'dinobud']
+export const MONSTER_KINDS: MonsterKind[] = ['sproutling', 'pebblewing', 'dinobud', 'hornbill', 'tapir', 'pangolin', 'cubelet', 'hexowl', 'pisnake']
+export const BOSS_IDS: BossId[] = ['guardian', 'raja_rafflesia', 'abacus_titan']
 type V3 = [number, number, number]
 type Part = [shape: Shape, colour: string, at: V3, size: V3, rot?: V3]
 
@@ -11,8 +12,8 @@ const PI = Math.PI
 const eyes = (y: number, z: number, w = 0.5): Part => ['eyes:round', '', [0, y, z], [w, w * 0.42, 1]]
 const mouth = (y: number, z: number, w = 0.26): Part => ['mouth:smile', '', [0, y, z], [w, w * 0.5, 1]]
 
-/** Original Greenhaven monsters in the chunky KayKit style, one world unit ≈ one tile. Feet on y = 0, facing +z. */
-const DESIGNS: Record<MonsterKind | 'guardian', Part[]> = {
+/** Original monsters in the chunky KayKit style, one world unit ≈ one tile. Feet on y = 0, facing +z. A colour starting with * glows. */
+const DESIGNS: Record<MonsterKind | BossId, Part[]> = {
   // A leafy slime with a sprout on its head.
   sproutling: [
     ['sphere', '#9ccc65', [0, 0.32, 0], [0.82, 0.66, 0.78]],
@@ -44,6 +45,68 @@ const DESIGNS: Record<MonsterKind | 'guardian', Part[]> = {
     eyes(0.84, 0.42, 0.42),
     mouth(0.68, 0.41),
   ],
+  // Science Island — Kenyalang: a rhinoceros-hornbill chick with a big orange casque and a white tail band.
+  hornbill: [
+    ['sphere', '#2b2b2b', [0, 0.46, 0], [0.62, 0.6, 0.7]],
+    ['sphere', '#f4f1ea', [0, 0.4, 0.17], [0.42, 0.4, 0.34]],
+    ['box', '#2b2b2b', [0, 0.42, -0.42], [0.36, 0.08, 0.4], [0.4, 0, 0]],
+    ['box', '#f4f1ea', [0, 0.38, -0.52], [0.37, 0.09, 0.12], [0.4, 0, 0]],
+    ['sphere', '#2b2b2b', [0, 0.84, 0.14], [0.42, 0.42, 0.42]],
+    ['cone', '#f2c14e', [0, 0.8, 0.5], [0.17, 0.42, 0.17], [PI / 2, 0, 0]],
+    ['capsule', '#e8743a', [0, 0.98, 0.34], [0.14, 0.3, 0.16], [PI / 2, 0, 0]],
+    ...([1, -1] as const).map((s): Part => ['sphere', '#3a3a3a', [s * 0.33, 0.5, -0.04], [0.14, 0.34, 0.44], [0, 0, s * 0.4]]),
+    ...([1, -1] as const).map((s): Part => ['cylinder', '#f2c14e', [s * 0.12, 0.07, 0.02], [0.05, 0.14, 0.05]]),
+    eyes(0.9, 0.345, 0.34),
+  ],
+  // Science Island — a tapir calf: round and brown with cream stripes and a short trunk.
+  tapir: [
+    ['sphere', '#6b4a3a', [0, 0.42, 0], [0.62, 0.56, 0.86]],
+    ...([-0.22, 0, 0.2] as const).map((z): Part => ['sphere', '#f1e2c4', [0, 0.42, z], [0.64, 0.58, 0.07]]),
+    ['sphere', '#6b4a3a', [0, 0.58, 0.42], [0.44, 0.42, 0.44]],
+    ['cylinder', '#5a3d30', [0, 0.52, 0.66], [0.17, 0.16, 0.17], [PI / 2, 0, 0]],
+    ...([1, -1] as const).map((s): Part => ['sphere', '#5a3d30', [s * 0.15, 0.8, 0.36], [0.1, 0.14, 0.06]]),
+    ...([[0.18, 0.22], [-0.18, 0.22], [0.18, -0.22], [-0.18, -0.22]] as const).map(([x, z]): Part => ['cylinder', '#5a3d30', [x, 0.1, z], [0.12, 0.2, 0.12]]),
+    eyes(0.66, 0.635, 0.32),
+  ],
+  // Science Island — Tenggiling: a pangolin in overlapping scale plates.
+  pangolin: [
+    ['sphere', '#a9804f', [0, 0.32, 0], [0.6, 0.52, 0.82]],
+    ...([0, 1, 2, 3] as const).map((i): Part => ['dome', '#8a6238', [0, 0.36 + (i === 1 || i === 2 ? 0.06 : 0), -0.3 + i * 0.2], [0.64 - Math.abs(i - 1.5) * 0.08, 0.26, 0.28], [-0.25 + i * 0.15, 0, 0]]),
+    ['cone', '#c99a66', [0, 0.3, 0.5], [0.26, 0.36, 0.26], [PI / 2, 0, 0]],
+    ['cone', '#8a6238', [0, 0.16, -0.5], [0.24, 0.46, 0.2], [-PI / 2 - 0.2, 0, 0]],
+    ...([[0.2, 0.2], [-0.2, 0.2], [0.2, -0.2], [-0.2, -0.2]] as const).map(([x, z]): Part => ['sphere', '#6b4a2e', [x, 0.05, z], [0.12, 0.1, 0.14]]),
+    eyes(0.38, 0.56, 0.26),
+  ],
+  // Mathematics Mountains — Cubelet: a friendly die with little feet.
+  cubelet: [
+    ['rbox', '#fff6e3', [0, 0.44, 0], [0.62, 0.62, 0.62]],
+    ...([[-0.15, -0.15], [0, 0], [0.15, 0.15]] as const).map(([x, z]): Part => ['sphere', '#2b2b2b', [x, 0.755, z], [0.08, 0.03, 0.08]]),
+    ...([1, -1] as const).flatMap((s): Part[] => [['sphere', '#e2574c', [s * 0.312, 0.56, 0.12], [0.03, 0.08, 0.08]], ['sphere', '#e2574c', [s * 0.312, 0.32, -0.12], [0.03, 0.08, 0.08]]]),
+    ...([1, -1] as const).map((s): Part => ['capsule', '#f2c14e', [s * 0.16, 0.07, 0.05], [0.13, 0.12, 0.16]]),
+    eyes(0.52, 0.315, 0.4),
+    mouth(0.34, 0.315, 0.2),
+  ],
+  // Mathematics Mountains — Hexowl: a hexagonal owl in spectacles.
+  hexowl: [
+    ['hex', '#7e6bb3', [0, 0.46, 0], [0.64, 0.68, 0.64]],
+    ['hex', '#cfc3ec', [0, 0.4, 0.29], [0.4, 0.05, 0.46], [PI / 2, 0, 0]],
+    ...([1, -1] as const).map((s): Part => ['cone', '#5c4a8f', [s * 0.2, 0.88, 0], [0.1, 0.22, 0.1], [0, 0, -s * 0.3]]),
+    ...([1, -1] as const).map((s): Part => ['ring', '#2b2b2b', [s * 0.13, 0.64, 0.335], [0.26, 0.26, 0.26]]),
+    ['cone', '#f2c14e', [0, 0.54, 0.34], [0.08, 0.12, 0.08], [PI, 0, 0]],
+    ...([1, -1] as const).map((s): Part => ['hex', '#5c4a8f', [s * 0.35, 0.44, 0], [0.16, 0.38, 0.3], [0, 0, s * 0.2]]),
+    ...([1, -1] as const).map((s): Part => ['sphere', '#f2c14e', [s * 0.12, 0.06, 0.12], [0.12, 0.08, 0.14]]),
+    eyes(0.64, 0.325, 0.42),
+  ],
+  // Mathematics Mountains — Pi-thon: a snake curled into the shape of π.
+  pisnake: [
+    ['capsule', '#6fbf5f', [0, 0.82, 0], [0.2, 0.9, 0.2], [0, 0, PI / 2]],
+    ...([1, -1] as const).map((s): Part => ['capsule', '#6fbf5f', [s * 0.22, 0.38, 0], [0.2, 0.7, 0.2]]),
+    ['sphere', '#5aa34c', [-0.32, 0.06, 0.04], [0.2, 0.12, 0.2]],
+    ['sphere', '#6fbf5f', [0.52, 0.86, 0.04], [0.34, 0.3, 0.34]],
+    ...([-0.2, 0.05, 0.25] as const).map((x): Part => ['sphere', '#f2c14e', [x, 0.86, 0.09], [0.07, 0.07, 0.04]]),
+    ['box', '#e2574c', [0.52, 0.76, 0.22], [0.04, 0.02, 0.12]],
+    ['eyes:round', '', [0.52, 0.9, 0.215], [0.26, 0.11, 1]],
+  ],
   // The Greenhaven Guardian: a gentle, mossy stone golem with a glowing rune.
   guardian: [
     ['rbox', '#b6bec8', [0, 1.15, 0], [1.5, 1.5, 1.1]],
@@ -56,15 +119,49 @@ const DESIGNS: Record<MonsterKind | 'guardian', Part[]> = {
     eyes(1.42, 0.555, 0.62),
     mouth(1.22, 0.555, 0.3),
   ],
+  // Science Island boss — Raja Rafflesia: a giant red bloom with white spots and a glowing heart.
+  raja_rafflesia: [
+    ...([0, 1, 2] as const).map((i): Part => ['dome', '#3d7a3a', [Math.cos(i * 2.1) * 0.55, 0, Math.sin(i * 2.1) * 0.55], [0.9, 0.24, 0.5], [0, -i * 2.1, 0]]),
+    ['cylinder', '#4b8c40', [0, 0.65, 0], [0.34, 1.3, 0.34]],
+    ...([0, 1, 2, 3, 4] as const).map((i): Part => ['rbox', '#c0392b', [Math.cos((i * 2 * PI) / 5 + PI / 2) * 0.62, 1.32, Math.sin((i * 2 * PI) / 5 + PI / 2) * 0.62], [0.9, 0.14, 0.72], [0, -((i * 2 * PI) / 5 + PI / 2), -0.12]]),
+    ...([0, 1, 2, 3, 4] as const).map((i): Part => ['sphere', '#f4f1ea', [Math.cos((i * 2 * PI) / 5 + PI / 2 + 0.2) * 0.72, 1.4, Math.sin((i * 2 * PI) / 5 + PI / 2 + 0.2) * 0.72], [0.14, 0.04, 0.14]]),
+    ['cylinder', '#7a1f1a', [0, 1.5, 0], [0.82, 0.36, 0.82]],
+    ['sphere', '*#ffcf4d', [0, 1.7, 0], [0.48, 0.26, 0.48]],
+    ...([0, 1, 2, 3, 4, 5] as const).map((i): Part => ['cone', '#ffcf4d', [Math.cos(i * 1.05) * 0.14, 1.9, Math.sin(i * 1.05) * 0.14], [0.07, 0.36, 0.07]]),
+    ...([1, -1] as const).map((s): Part => ['box', '#3d7a3a', [s * 1.0, 1.05, 0.1], [0.9, 0.06, 0.32], [0, 0, s * 0.5]]),
+    eyes(1.5, 0.415, 0.5),
+    mouth(1.38, 0.415, 0.24),
+  ],
+  // Mathematics Mountains boss — the Abacus Titan: a stone golem with an abacus in its chest and rune eyes.
+  abacus_titan: [
+    ...([1, -1] as const).map((s): Part => ['rbox', '#8f897d', [s * 0.36, 0.32, 0], [0.44, 0.64, 0.52]]),
+    ['rbox', '#9a9488', [0, 1.25, 0], [1.4, 1.3, 0.9]],
+    ['rbox', '#a9a397', [0, 2.2, 0.02], [0.8, 0.62, 0.72]],
+    ...([1, -1] as const).map((s): Part => ['rbox', '#8f897d', [s * 0.96, 1.2, 0.04], [0.4, 1.0, 0.48], [0, 0, s * 0.1]]),
+    ['box', '#6b4a2e', [0, 1.3, 0.455], [1.0, 0.74, 0.06]],
+    ...([1.12, 1.3, 1.48] as const).flatMap((y, r): Part[] => [
+      ['cylinder', '#3b2a1c', [0, y, 0.5], [0.03, 0.88, 0.03], [0, 0, PI / 2]],
+      ...([0, 1, 2, 3] as const).map((i): Part => ['sphere', ['#e85a4f', '#f2c14e', '#4fa3d9', '#6fbf5f'][(i + r) % 4], [-0.3 + i * 0.2 + (r % 2) * 0.08, y, 0.5], [0.14, 0.12, 0.14]]),
+    ]),
+    ['octa', '*#6cc4f0', [0, 2.42, 0.38], [0.16, 0.2, 0.06]],
+    eyes(2.2, 0.385, 0.5),
+    mouth(2.02, 0.385, 0.24),
+  ],
 }
 
 const rune = new MeshStandardMaterial({ color: '#6cc4f0', emissive: '#3aa8e8', emissiveIntensity: 0.8, roughness: 0.4 })
+const glows = new Map<string, MeshStandardMaterial>()
+const glow = (c: string) => {
+  let m = glows.get(c)
+  if (!m) glows.set(c, (m = new MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: 0.85, roughness: 0.4 })))
+  return m
+}
 
-export function buildMonster(kind: MonsterKind | 'guardian'): Group {
+export function buildMonster(kind: MonsterKind | BossId): Group {
   const g = new Group()
   for (const [shape, colour, at, size, rot] of DESIGNS[kind]) {
     const face = shape.startsWith('eyes:') || shape.startsWith('mouth:')
-    const m = new Mesh(geometry(shape), face ? faceMaterial(shape as `eyes:${string}`) : kind === 'guardian' && shape === 'octa' ? rune : material(colour))
+    const m = new Mesh(geometry(shape), face ? faceMaterial(shape as `eyes:${string}`) : kind === 'guardian' && shape === 'octa' ? rune : colour.startsWith('*') ? glow(colour.slice(1)) : material(colour))
     m.position.set(...at)
     m.scale.set(...size)
     if (rot) m.rotation.set(...rot)

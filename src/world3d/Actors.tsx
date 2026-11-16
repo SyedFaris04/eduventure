@@ -145,9 +145,9 @@ function MonsterActor({ m, seed, reduced }: { m: SimMonster; seed: number; reduc
 }
 
 export function Bosses({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
-  const model = useMemo(() => buildMonster('guardian'), [])
-  const body = useRef<Group>(null)
   const boss = sim.map.bosses[0]
+  const model = useMemo(() => buildMonster(boss?.id ?? 'guardian'), [boss?.id])
+  const body = useRef<Group>(null)
   useFrame(() => {
     if (!body.current) return
     const m = monsterMotion('idle', reduced ? 0 : (performance.now() / 2400) % 1, 0.2)

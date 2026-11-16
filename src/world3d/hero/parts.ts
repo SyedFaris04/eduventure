@@ -13,7 +13,7 @@ export type BoneName =
   | 'upperleg.l' | 'upperleg.r' | 'lowerleg.l' | 'lowerleg.r' | 'foot.l' | 'foot.r'
 
 /** Unit shapes, each filling a 1 × 1 × 1 box centred on the origin (a dome sits on y = 0). `eyes:*` and `mouth:*` are drawn face planes. */
-export type Shape = 'rbox' | 'box' | 'sphere' | 'dome' | 'capsule' | 'cone' | 'cylinder' | 'flare' | 'ring' | 'arc' | 'octa' | `eyes:${string}` | `mouth:${string}`
+export type Shape = 'rbox' | 'box' | 'sphere' | 'dome' | 'capsule' | 'cone' | 'cylinder' | 'hex' | 'flare' | 'ring' | 'arc' | 'octa' | `eyes:${string}` | `mouth:${string}`
 type V3 = [number, number, number]
 export type PartSpec = { slot: AppearancePart | 'skin'; bone: BoneName; shape: Shape; colour: string; offset: V3; scale: V3; rotation?: V3 }
 

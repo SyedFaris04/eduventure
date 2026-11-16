@@ -441,6 +441,24 @@
     },
     "dinobud": {
       "name": "Dinokecil"
+    },
+    "hornbill": {
+      "name": "Kenyalang"
+    },
+    "tapir": {
+      "name": "Tapirling"
+    },
+    "pangolin": {
+      "name": "Tenggiling"
+    },
+    "cubelet": {
+      "name": "Kubelet"
+    },
+    "hexowl": {
+      "name": "Burung Heks"
+    },
+    "pisnake": {
+      "name": "Ular Pi"
     }
   },
   "battle": {
@@ -541,7 +559,10 @@
       "maths": "Matematik",
       "science": "Sains",
       "wisdom": "Hikmah",
-      "final": "Akhir"
+      "final": "Akhir",
+      "r1": "Pusingan 1",
+      "r2": "Pusingan 2",
+      "r3": "Pusingan 3"
     },
     "intro": {
       "maths": "Pusingan 1: Penjaga menguji nombor anda. Tiga jawapan betul untuk lepas pusingan.",
@@ -552,7 +573,8 @@
     "victory": "Penjaga tunduk!",
     "victoryText": "Anda melepasi keempat-empat pusingan. Greenhaven bangga dengan anda!",
     "lostText": "Penjaga menunggu anda kembali dengan sabar. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
-    "alreadyToday": "Anda sudah menuntut ganjaran Penjaga hari ini. Kembali esok untuk ganjaran lagi!"
+    "alreadyToday": "Anda sudah menuntut ganjaran Penjaga hari ini. Kembali esok untuk ganjaran lagi!",
+    "locked": "Capai tahap {{level}} untuk mencabar {{name}}."
   },
   "shop": {
     "title": "Kedai",
@@ -597,5 +619,35 @@
     "island_explorer": "Penjelajah Pulau",
     "scholar_of_the_seas": "Cendekiawan Lautan",
     "locked": "{{title}} (tahap {{level}})"
+  },
+  "bosses": {
+    "raja_rafflesia": {
+      "name": "Raja Rafflesia",
+      "title": "Pertarungan bos: Raja Rafflesia",
+      "intro": {
+        "r1": "Pusingan 1: Raja Rafflesia mekar! Tiga jawapan sains yang betul melepasi pusingan ini.",
+        "r2": "Pusingan 2: kelopak terbuka lebih luas. Soalan semakin sukar.",
+        "r3": "Pusingan 3: jantung yang bercahaya. Tunjukkan apa yang anda tahu!",
+        "final": "Pusingan akhir: sains bercampur semua. Tiga lagi dan bunga itu tunduk!"
+      },
+      "victory": "Raja Rafflesia tunduk!",
+      "victoryText": "Anda melepasi keempat-empat pusingan. Hutan Borneo bangga dengan anda!",
+      "lostText": "Raja Rafflesia menutup kelopaknya dan menunggu. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
+      "alreadyToday": "Anda sudah menuntut ganjaran Raja Rafflesia hari ini. Datang lagi esok!"
+    },
+    "abacus_titan": {
+      "name": "Titan Sempoa",
+      "title": "Pertarungan bos: Titan Sempoa",
+      "intro": {
+        "r1": "Pusingan 1: Titan Sempoa menggerakkan manik-maniknya. Tiga jawapan matematik yang betul melepasi pusingan ini.",
+        "r2": "Pusingan 2: manik bergerak lebih laju. Soalan semakin sukar.",
+        "r3": "Pusingan 3: kira-kira paling sukar sang Titan!",
+        "final": "Pusingan akhir: matematik bercampur semua. Tiga lagi dan Titan itu tunduk!"
+      },
+      "victory": "Titan Sempoa tunduk!",
+      "victoryText": "Anda melepasi keempat-empat pusingan. Gunung-ganang menyebut nama anda!",
+      "lostText": "Titan Sempoa menyusun semula maniknya dan menunggu. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
+      "alreadyToday": "Anda sudah menuntut ganjaran Titan Sempoa hari ini. Datang lagi esok!"
+    }
   }
 }

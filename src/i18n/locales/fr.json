@@ -441,6 +441,24 @@
     },
     "dinobud": {
       "name": "Dinobourgeon"
+    },
+    "hornbill": {
+      "name": "Kenyalang"
+    },
+    "tapir": {
+      "name": "Tapiron"
+    },
+    "pangolin": {
+      "name": "Tenggiling"
+    },
+    "cubelet": {
+      "name": "Cubelot"
+    },
+    "hexowl": {
+      "name": "Hexahibou"
+    },
+    "pisnake": {
+      "name": "Python Pi"
     }
   },
   "battle": {
@@ -541,7 +559,10 @@
       "maths": "Maths",
       "science": "Sciences",
       "wisdom": "Sagesse",
-      "final": "Finale"
+      "final": "Finale",
+      "r1": "Manche 1",
+      "r2": "Manche 2",
+      "r3": "Manche 3"
     },
     "intro": {
       "maths": "Manche 1 : le Gardien teste tes calculs. Trois bonnes réponses pour passer la manche.",
@@ -552,7 +573,8 @@
     "victory": "Le Gardien s'incline !",
     "victoryText": "Tu as réussi les quatre manches. Greenhaven est fier de toi !",
     "lostText": "Le Gardien attend patiemment ton retour. Tout ce que tu as gagné est conservé ; relis les explications et réessaie.",
-    "alreadyToday": "Tu as déjà récupéré la récompense du Gardien aujourd'hui. Reviens demain pour une autre !"
+    "alreadyToday": "Tu as déjà récupéré la récompense du Gardien aujourd'hui. Reviens demain pour une autre !",
+    "locked": "Atteins le niveau {{level}} pour défier {{name}}."
   },
   "shop": {
     "title": "Boutique",
@@ -597,5 +619,35 @@
     "island_explorer": "Explorateur des îles",
     "scholar_of_the_seas": "Savant des mers",
     "locked": "{{title}} (niveau {{level}})"
+  },
+  "bosses": {
+    "raja_rafflesia": {
+      "name": "Raja Rafflesia",
+      "title": "Combat de boss : Raja Rafflesia",
+      "intro": {
+        "r1": "Manche 1 : Raja Rafflesia fleurit ! Trois bonnes réponses de sciences pour passer la manche.",
+        "r2": "Manche 2 : les pétales s'ouvrent davantage. Les questions deviennent plus difficiles.",
+        "r3": "Manche 3 : le cœur lumineux. Montre ce que tu sais !",
+        "final": "Manche finale : les sciences mêlées à tout le reste. Encore trois et la fleur s'incline !"
+      },
+      "victory": "Raja Rafflesia s'incline !",
+      "victoryText": "Tu as passé les quatre manches. Hutan Borneo est fière de toi !",
+      "lostText": "Raja Rafflesia referme ses pétales et attend. Tout ce que tu as gagné est en sécurité ; lis les explications et réessaie.",
+      "alreadyToday": "Tu as déjà réclamé la récompense de Raja Rafflesia aujourd'hui. Reviens demain !"
+    },
+    "abacus_titan": {
+      "name": "Titan Boulier",
+      "title": "Combat de boss : Titan Boulier",
+      "intro": {
+        "r1": "Manche 1 : le Titan Boulier fait glisser ses perles. Trois bonnes réponses de maths pour passer la manche.",
+        "r2": "Manche 2 : les perles vont plus vite. Les questions deviennent plus difficiles.",
+        "r3": "Manche 3 : les calculs les plus durs du Titan !",
+        "final": "Manche finale : les maths mêlées à tout le reste. Encore trois et le Titan s'incline !"
+      },
+      "victory": "Le Titan Boulier s'incline !",
+      "victoryText": "Tu as passé les quatre manches. Les montagnes résonnent de ton nom !",
+      "lostText": "Le Titan Boulier remet ses perles en place et attend. Tout ce que tu as gagné est en sécurité ; lis les explications et réessaie.",
+      "alreadyToday": "Tu as déjà réclamé la récompense du Titan Boulier aujourd'hui. Reviens demain !"
+    }
   }
 }

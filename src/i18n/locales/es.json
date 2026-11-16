@@ -441,6 +441,24 @@
     },
     "dinobud": {
       "name": "Dinobrote"
+    },
+    "hornbill": {
+      "name": "Kenyalang"
+    },
+    "tapir": {
+      "name": "Tapirín"
+    },
+    "pangolin": {
+      "name": "Tenggiling"
+    },
+    "cubelet": {
+      "name": "Cubito"
+    },
+    "hexowl": {
+      "name": "Búho Hexágono"
+    },
+    "pisnake": {
+      "name": "Pitón Pi"
     }
   },
   "battle": {
@@ -541,7 +559,10 @@
       "maths": "Matemáticas",
       "science": "Ciencias",
       "wisdom": "Sabiduría",
-      "final": "Final"
+      "final": "Final",
+      "r1": "Ronda 1",
+      "r2": "Ronda 2",
+      "r3": "Ronda 3"
     },
     "intro": {
       "maths": "Ronda 1: el Guardián pone a prueba tus números. Tres respuestas correctas superan la ronda.",
@@ -552,7 +573,8 @@
     "victory": "¡El Guardián se inclina!",
     "victoryText": "Superaste las cuatro rondas. ¡Greenhaven está orgulloso de ti!",
     "lostText": "El Guardián espera pacientemente tu regreso. Todo lo que ganaste está a salvo; lee las explicaciones y vuelve a intentarlo.",
-    "alreadyToday": "Ya reclamaste hoy la recompensa del Guardián. ¡Vuelve mañana por otra!"
+    "alreadyToday": "Ya reclamaste hoy la recompensa del Guardián. ¡Vuelve mañana por otra!",
+    "locked": "Llega al nivel {{level}} para desafiar a {{name}}."
   },
   "shop": {
     "title": "Tienda",
@@ -597,5 +619,35 @@
     "island_explorer": "Explorador de Islas",
     "scholar_of_the_seas": "Sabio de los Mares",
     "locked": "{{title}} (nivel {{level}})"
+  },
+  "bosses": {
+    "raja_rafflesia": {
+      "name": "Raja Rafflesia",
+      "title": "Batalla de jefe: Raja Rafflesia",
+      "intro": {
+        "r1": "Ronda 1: ¡Raja Rafflesia florece! Tres respuestas correctas de ciencias superan la ronda.",
+        "r2": "Ronda 2: los pétalos se abren más. Las preguntas se vuelven más difíciles.",
+        "r3": "Ronda 3: el corazón brillante. ¡Demuestra lo que sabes!",
+        "final": "Ronda final: ciencias mezcladas con todo. ¡Tres más y la flor se inclina!"
+      },
+      "victory": "¡Raja Rafflesia se inclina!",
+      "victoryText": "Superaste las cuatro rondas. ¡Hutan Borneo está orgulloso de ti!",
+      "lostText": "Raja Rafflesia cierra sus pétalos y espera. Todo lo que ganaste está a salvo; lee las explicaciones e inténtalo de nuevo.",
+      "alreadyToday": "Ya reclamaste hoy la recompensa de Raja Rafflesia. ¡Vuelve mañana!"
+    },
+    "abacus_titan": {
+      "name": "Titán del Ábaco",
+      "title": "Batalla de jefe: Titán del Ábaco",
+      "intro": {
+        "r1": "Ronda 1: el Titán del Ábaco mueve sus cuentas. Tres respuestas correctas de matemáticas superan la ronda.",
+        "r2": "Ronda 2: las cuentas se mueven más rápido. Las preguntas se vuelven más difíciles.",
+        "r3": "Ronda 3: ¡las sumas más duras del Titán!",
+        "final": "Ronda final: matemáticas mezcladas con todo. ¡Tres más y el Titán se inclina!"
+      },
+      "victory": "¡El Titán del Ábaco se inclina!",
+      "victoryText": "Superaste las cuatro rondas. ¡Las montañas repiten tu nombre!",
+      "lostText": "El Titán del Ábaco reinicia sus cuentas y espera. Todo lo que ganaste está a salvo; lee las explicaciones e inténtalo de nuevo.",
+      "alreadyToday": "Ya reclamaste hoy la recompensa del Titán del Ábaco. ¡Vuelve mañana!"
+    }
   }
 }

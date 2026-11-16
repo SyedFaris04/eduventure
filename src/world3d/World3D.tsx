@@ -192,7 +192,13 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
 
 /** One place in 3D. Default export so it loads as its own chunk with three.js. */
 export default function World3D({ hero, map, atArrival = false }: { hero: Appearance; map: GameMap; atArrival?: boolean }) {
-  const sim = useMemo(() => new WorldSim(map, Math.random, { atArrival }), [map, atArrival])
+  const sim = useMemo(() => {
+    const s = new WorldSim(map, Math.random, { atArrival })
+    // Development only: /dev/world?at=x,y starts the hero on that tile (for screenshots).
+    const at = import.meta.env.DEV ? new URLSearchParams(location.search).get('at')?.split(',').map(Number) : undefined
+    if (at?.length === 2 && at.every(Number.isFinite)) s.hero.pos = { x: at[0] + 0.5, y: at[1] + 0.5 }
+    return s
+  }, [map, atArrival])
   const look = THEMES[map.theme]
   const covered = useGame((s) => Boolean(s.battle || s.boss))
   const level = useQuality(qualityLevel)

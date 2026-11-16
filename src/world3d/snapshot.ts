@@ -19,7 +19,7 @@ const loadRig = () =>
   (rig ??= new GLTFLoader().loadAsync(RIG_URL).then((g) => ({ scene: g.scene, clips: g.animations })))
 
 async function model(s: Subject): Promise<Object3D> {
-  if (s.kind !== 'hero') return buildMonster(s.kind === 'boss' ? 'guardian' : s.monster)
+  if (s.kind !== 'hero') return buildMonster(s.kind === 'boss' ? s.boss : s.monster)
   const { scene, clips } = await loadRig()
   const body = scene.clone(true)
   buildHero(s.appearance, body)

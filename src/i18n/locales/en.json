@@ -441,6 +441,24 @@
     },
     "dinobud": {
       "name": "Dinobud"
+    },
+    "hornbill": {
+      "name": "Kenyalang"
+    },
+    "tapir": {
+      "name": "Tapirling"
+    },
+    "pangolin": {
+      "name": "Tenggiling"
+    },
+    "cubelet": {
+      "name": "Cubelet"
+    },
+    "hexowl": {
+      "name": "Hexowl"
+    },
+    "pisnake": {
+      "name": "Pi-thon"
     }
   },
   "battle": {
@@ -541,7 +559,10 @@
       "maths": "Maths",
       "science": "Science",
       "wisdom": "Wisdom",
-      "final": "Final"
+      "final": "Final",
+      "r1": "Round 1",
+      "r2": "Round 2",
+      "r3": "Round 3"
     },
     "intro": {
       "maths": "Round 1: the Guardian tests your numbers. Three correct answers clear the round.",
@@ -552,7 +573,8 @@
     "victory": "The Guardian bows!",
     "victoryText": "You cleared all four rounds. Greenhaven is proud of you!",
     "lostText": "The Guardian waits patiently for your return. Everything you earned is safe; read the explanations and try again.",
-    "alreadyToday": "You've already claimed today's Guardian reward. Come back tomorrow for another!"
+    "alreadyToday": "You've already claimed today's Guardian reward. Come back tomorrow for another!",
+    "locked": "Reach level {{level}} to challenge {{name}}."
   },
   "shop": {
     "title": "Shop",
@@ -597,5 +619,35 @@
     "island_explorer": "Island Explorer",
     "scholar_of_the_seas": "Scholar of the Seas",
     "locked": "{{title}} (level {{level}})"
+  },
+  "bosses": {
+    "raja_rafflesia": {
+      "name": "Raja Rafflesia",
+      "title": "Boss battle: Raja Rafflesia",
+      "intro": {
+        "r1": "Round 1: Raja Rafflesia blooms! Three correct science answers clear the round.",
+        "r2": "Round 2: the petals open wider. The questions get harder.",
+        "r3": "Round 3: the glowing heart. Show what you know!",
+        "final": "Final round: science mixed with everything. Three more and the bloom bows!"
+      },
+      "victory": "Raja Rafflesia bows!",
+      "victoryText": "You cleared all four rounds. Hutan Borneo is proud of you!",
+      "lostText": "Raja Rafflesia closes her petals and waits. Everything you earned is safe; read the explanations and try again.",
+      "alreadyToday": "You've already claimed today's Raja Rafflesia reward. Come back tomorrow!"
+    },
+    "abacus_titan": {
+      "name": "Abacus Titan",
+      "title": "Boss battle: Abacus Titan",
+      "intro": {
+        "r1": "Round 1: the Abacus Titan slides its beads. Three correct maths answers clear the round.",
+        "r2": "Round 2: the beads move faster. The questions get harder.",
+        "r3": "Round 3: the Titan's toughest sums!",
+        "final": "Final round: maths mixed with everything. Three more and the Titan bows!"
+      },
+      "victory": "The Abacus Titan bows!",
+      "victoryText": "You cleared all four rounds. The mountains echo your name!",
+      "lostText": "The Abacus Titan resets its beads and waits. Everything you earned is safe; read the explanations and try again.",
+      "alreadyToday": "You've already claimed today's Abacus Titan reward. Come back tomorrow!"
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { Mesh } from 'three'
-import { buildMonster, MONSTER_KINDS } from './buildMonster'
+import { Box3, Mesh, Vector3 } from 'three'
+import { snapshotKey } from '../snapshotKey'
+import { BOSS_IDS, buildMonster, MONSTER_KINDS } from './buildMonster'
 import { monsterMotion, type MotionState } from './motion'
 
 const STATES: MotionState[] = ['idle', 'hop', 'hit', 'poof']
@@ -37,5 +38,43 @@ describe('buildMonster', () => {
       buildMonster(kind).traverse((o) => o instanceof Mesh && meshes++)
       expect(meshes, kind).toBeGreaterThanOrEqual(3)
     }
+  })
+})
+
+describe('island monsters and bosses', () => {
+  const size = (k: Parameters<typeof buildMonster>[0]) => {
+    const g = buildMonster(k)
+    g.updateMatrixWorld(true)
+    const b = new Box3().setFromObject(g)
+    return { h: b.getSize(new Vector3()).y, feet: b.min.y }
+  }
+
+  it('has all nine monsters and three bosses', () => {
+    expect([...MONSTER_KINDS].sort()).toEqual(['cubelet', 'dinobud', 'hexowl', 'hornbill', 'pangolin', 'pebblewing', 'pisnake', 'sproutling', 'tapir'])
+    expect([...BOSS_IDS].sort()).toEqual(['abacus_titan', 'guardian', 'raja_rafflesia'])
+  })
+
+  it('monsters stand on the ground at monster size', () => {
+    for (const k of MONSTER_KINDS) {
+      const { h, feet } = size(k)
+      expect(Math.abs(feet), `${k} feet`).toBeLessThanOrEqual(0.08)
+      expect(h, `${k} height`).toBeGreaterThanOrEqual(0.6)
+      expect(h, `${k} height`).toBeLessThanOrEqual(1.4)
+    }
+  })
+
+  it('bosses stand on the ground at boss size', () => {
+    for (const k of BOSS_IDS) {
+      const { h, feet } = size(k)
+      expect(Math.abs(feet), `${k} feet`).toBeLessThanOrEqual(0.08)
+      expect(h, `${k} height`).toBeGreaterThanOrEqual(1.8)
+      expect(h, `${k} height`).toBeLessThanOrEqual(3.2)
+    }
+  })
+
+  it('each boss has its own picture key', () => {
+    const keys = BOSS_IDS.map((boss) => snapshotKey({ kind: 'boss', boss }))
+    expect(new Set(keys).size).toBe(3)
+    expect(keys).toContain('boss:raja_rafflesia')
   })
 })

@@ -22,6 +22,7 @@ const makers: Record<Solid, () => BufferGeometry> = {
   capsule: () => new CapsuleGeometry(0.5, 1, 4, 12).scale(1, 0.5, 1),
   cone: () => new ConeGeometry(0.5, 1, 14),
   cylinder: () => new CylinderGeometry(0.5, 0.5, 1, 16),
+  hex: () => new CylinderGeometry(0.5, 0.5, 1, 6),
   flare: () => new CylinderGeometry(0.3, 0.5, 1, 16),
   ring: () => new TorusGeometry(0.44, 0.06, 8, 28),
   arc: () => new TorusGeometry(0.44, 0.06, 6, 18, Math.PI),
