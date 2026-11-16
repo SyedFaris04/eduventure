@@ -26,11 +26,13 @@ export function BattlePanel() {
 /** The player's level as the server last reported it, and the level they had when this panel opened. */
 export function usePlayerLevel() {
   const { session } = useSession()
-  const data = useProgression(session?.user.id).data
+  const progression = useProgression(session?.user.id)
+  const data = progression.data
   const level = data?.level ?? 1
   const atStart = useRef<number | null>(null)
   if (atStart.current === null && data) atStart.current = level
-  return { level, startLevel: atStart.current ?? level, loaded: Boolean(data) }
+  // A failed load counts as loaded (level 1), so panels never wait forever; the server still checks every gate.
+  return { level, startLevel: atStart.current ?? level, loaded: Boolean(data) || progression.isError }
 }
 
 /** Shared after-answer refresh: HUD totals at once, missions and streak when the panel closes. */

@@ -62,8 +62,7 @@ function Boss({ id }: { id: BossId }) {
   const [busy, setBusy] = useState(false)
   const shownAt = useRef(0)
   const { level, startLevel } = usePlayerLevel()
-  const name = t(bossText(id, 'name'))
-  const roundKeys = id === 'guardian' ? GUARDIAN_ROUNDS : ISLAND_ROUNDS
+
 
   useEffect(() => {
     let cancelled = false
@@ -81,6 +80,10 @@ function Boss({ id }: { id: BossId }) {
   }, [id])
 
   const finished = run && run.status !== 'active'
+  // An unfinished run of another boss resumes first, so show the boss the server actually returned.
+  const shown: BossId = run?.boss_id ?? id
+  const name = t(bossText(shown, 'name'))
+  const roundKeys = shown === 'guardian' ? GUARDIAN_ROUNDS : ISLAND_ROUNDS
 
   async function submit(answer: AnswerPayload) {
     if (!run || busy || result) return
@@ -133,9 +136,9 @@ function Boss({ id }: { id: BossId }) {
 
   return (
     <div className="pointer-events-auto absolute inset-0 z-30 grid place-items-center overflow-y-auto bg-ink/55 p-3">
-      <section role="dialog" aria-modal="true" aria-label={t(bossText(id, 'title'))} className="w-full max-w-xl rounded-3xl border-4 border-wood bg-cream shadow-[0_0_0_3px_var(--color-wood-dark),0_16px_40px_rgb(0_0_0/0.4)]">
+      <section role="dialog" aria-modal="true" aria-label={t(bossText(shown, 'title'))} className="w-full max-w-xl rounded-3xl border-4 border-wood bg-cream shadow-[0_0_0_3px_var(--color-wood-dark),0_16px_40px_rgb(0_0_0/0.4)]">
         <header className="flex items-center gap-3 rounded-t-[20px] bg-gradient-to-b from-[#8fa3c7] to-[#5e7aa6] p-3 text-cream">
-          <Snapshot subject={{ kind: 'boss', boss: id }} px={160} alt="" className={`size-20 shrink-0 sm:size-24 ${result?.correct ? 'battle-hit' : 'hero-bob'}`} />
+          <Snapshot subject={{ kind: 'boss', boss: shown }} px={160} alt="" className={`size-20 shrink-0 sm:size-24 ${result?.correct ? 'battle-hit' : 'hero-bob'}`} />
           <div className="min-w-0 flex-1 space-y-2">
             <p className="font-display text-lg font-bold">{name}</p>
             {run && (
@@ -173,7 +176,7 @@ function Boss({ id }: { id: BossId }) {
             </p>
           )}
           {!run && !error && <p className="font-display text-wood-dark">{t('common.loading')}</p>}
-          {run && !finished && !result && <p className="text-sm font-semibold text-wood-dark">{t(bossText(id, `intro.${roundKey}`))}</p>}
+          {run && !finished && !result && <p className="text-sm font-semibold text-wood-dark">{t(bossText(shown, `intro.${roundKey}`))}</p>}
 
           {run && !finished && !result && <HelperBar level={level} helpers={run.helpers} question={question} onFifty={() => void fifty()} busy={busy} />}
           {question && (!finished || result) && (
@@ -185,11 +188,11 @@ function Boss({ id }: { id: BossId }) {
 
           {finished && run && (
             <div className="space-y-3 text-center">
-              <p className="font-display text-3xl font-bold text-wood-dark">{run.status === 'won' ? t(bossText(id, 'victory')) : t('battle.lost')}</p>
-              <p>{run.status === 'won' ? t(bossText(id, 'victoryText')) : t(bossText(id, 'lostText'))}</p>
+              <p className="font-display text-3xl font-bold text-wood-dark">{run.status === 'won' ? t(bossText(shown, 'victory')) : t('battle.lost')}</p>
+              <p>{run.status === 'won' ? t(bossText(shown, 'victoryText')) : t(bossText(shown, 'lostText'))}</p>
               {result?.reward && (
                 <div className="flex flex-col items-center gap-2">
-                  {result.reward.already_today ? <p className="text-sm font-semibold">{t(bossText(id, 'alreadyToday'))}</p> : <Rewards xp={result.reward.xp} gold={result.reward.gold} />}
+                  {result.reward.already_today ? <p className="text-sm font-semibold">{t(bossText(shown, 'alreadyToday'))}</p> : <Rewards xp={result.reward.xp} gold={result.reward.gold} />}
                   {result.reward.leveled_up && <LevelUp level={result.totals.level} from={startLevel} />}
                 </div>
               )}
