@@ -46,7 +46,8 @@ async function clickGrid(page: Page, target: { x: number; y: number }) {
   const pt = await page.evaluate((p) => (window as unknown as { __world: { screenOf: (q: { x: number; y: number }) => { x: number; y: number } } }).__world.screenOf(p), target)
   const vp = page.viewportSize()!
   const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v))
-  await page.mouse.click(clamp(pt.x, 20, vp.width - 20), clamp(pt.y, 130, vp.height - 20))
+  // Far targets are clamped into the open middle of the screen, clear of the HUD, minimap and controls; each tap still walks toward them.
+  await page.mouse.click(clamp(pt.x, 60, vp.width - 230), clamp(pt.y, 150, vp.height - 230))
 }
 
 async function answerCorrectly(page: Page) {

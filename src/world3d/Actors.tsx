@@ -7,6 +7,7 @@ import { NPCS } from '../game/npcs'
 import type { SimMonster, WorldSim } from '../game/sim'
 import { useGame } from '../game/store'
 import { HeroModel, type OneShot } from './hero/HeroModel'
+import { useLatestReaction } from './hero/reaction'
 import { buildMonster } from './monsters/buildMonster'
 import { monsterMotion } from './monsters/motion'
 
@@ -27,10 +28,7 @@ export function Hero({ sim, appearance, reduced }: { sim: WorldSim; appearance: 
   const speed = useMemo(() => ({ get current() { return sim.hero.speed01 } }), [sim])
   const hitSeq = useGame((s) => s.hitSeq)
   const cheerSeq = useGame((s) => s.cheerSeq)
-  const [oneShot, setOneShot] = useState<OneShot | null>(null)
-  // A cheer after a win replaces a flinch from earlier in the same battle: only the last reaction plays.
-  useEffect(() => void (hitSeq && setOneShot({ action: 'hit', seq: hitSeq * 2 })), [hitSeq])
-  useEffect(() => void (cheerSeq && setOneShot({ action: 'cheer', seq: cheerSeq * 2 + 1 })), [cheerSeq])
+  const oneShot = useLatestReaction(hitSeq, cheerSeq)
 
   useFrame((_, dt) => {
     const g = ref.current
