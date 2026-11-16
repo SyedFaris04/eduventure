@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import type { Point } from './iso'
 import type { BossId, MonsterKind, NpcId } from './map'
+import type { PlaceId } from './places'
 
 export type Prompt = { kind: 'npc'; id: NpcId } | { kind: 'monster'; id: string; monster: MonsterKind } | { kind: 'boss'; id: BossId }
 
@@ -23,6 +24,12 @@ type GameState = {
   /** Bumped on a wrong answer / a won battle; the hero flinches or cheers once the panel closes. */
   hitSeq: number
   cheerSeq: number
+  /** The boatman's destination list is open. */
+  jetty: boolean
+  /** Sailing to another place (the boat ride is showing). */
+  travel: { to: PlaceId } | null
+  /** Name of the area the player is standing in, for the banner. */
+  area: string | null
 }
 
 export const useGame = create<GameState>(() => ({
@@ -37,15 +44,18 @@ export const useGame = create<GameState>(() => ({
   defeated: [],
   hitSeq: 0,
   cheerSeq: 0,
+  jetty: false,
+  travel: null,
+  area: null,
 }))
 
 // Development builds only: lets automated tests and debugging read the game state.
 if (import.meta.env.DEV) (window as unknown as { __game: typeof useGame }).__game = useGame
 
-/** True while a panel owns the input (dialogue, battle or boss): the world pauses movement. */
+/** True while a panel owns the input (dialogue, battle, boss or jetty): the world pauses movement. */
 export const worldPaused = () => {
   const s = useGame.getState()
-  return Boolean(s.dialogue || s.battle || s.boss)
+  return Boolean(s.dialogue || s.battle || s.boss || s.jetty)
 }
 
 /** Hero reaction after an answer: a flinch for a wrong one, a cheer for a win. */

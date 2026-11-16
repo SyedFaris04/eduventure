@@ -37,4 +37,22 @@ export const NPCS: Record<NpcId, { appearance: Appearance; pages: number }> = {
       backpack: 'satchel',
     },
   },
+  // Pak Hamid at the jetty: talking to him opens the list of places to sail to.
+  boatman: {
+    pages: 1,
+    appearance: {
+      body: 'c',
+      skin: '#9c6440',
+      hairStyle: 'short',
+      hairColour: '#2b1d14',
+      eyes: 'happy',
+      face: 'smile',
+      top: 'vest_blue',
+      bottom: 'trousers_dark',
+      shoes: 'sandals',
+      accessory: 'headband',
+      weapon: 'quill',
+      backpack: 'none',
+    },
+  },
 }
