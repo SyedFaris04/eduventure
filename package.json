@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:rls": "vitest run --config vitest.rls.config.ts",
+    "test:e2e": "playwright test",
     "gen:seed": "node scripts/gen-seed.mjs"
   },
   "dependencies": {

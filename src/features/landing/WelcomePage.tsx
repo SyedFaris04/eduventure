@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { CircleAlert, Compass, LogIn, Sparkles, UserPlus, WifiOff } from 'lucide-react'
 import { Button, buttonClasses } from '../../components/ui'
@@ -26,10 +26,8 @@ function canRender3D(): boolean {
 
 export function WelcomePage() {
   const { t } = useTranslation()
-  const location = useLocation()
   const navigate = useNavigate()
-  const { session } = useSession()
-  const offline = (location.state as { offline?: boolean } | null)?.offline === true
+  const { session, offline } = useSession()
   const [show3D] = useState(canRender3D)
   const [starting, setStarting] = useState(false)
   const [startError, setStartError] = useState<string | null>(null)
@@ -37,7 +35,7 @@ export function WelcomePage() {
   // Returning players keep their account; everyone else starts as a guest with nothing personal stored.
   async function start() {
     setStartError(null)
-    if (session) return navigate('/onboarding')
+    if (session) return navigate('/home') // the progress guard forwards to any unfinished setup step
     setStarting(true)
     try {
       await startGuest()

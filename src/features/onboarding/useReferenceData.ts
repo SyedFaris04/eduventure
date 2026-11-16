@@ -47,19 +47,22 @@ export function useMyProfile(userId: string | undefined) {
   })
 }
 
+/** Shared by the hook, the progress guard and the boot prefetch so all three read one cache entry. */
+export const academicQuery = (userId: string | undefined) => ({
+  queryKey: ['academic', userId],
+  enabled: Boolean(userId),
+  queryFn: async () => {
+    const { data, error } = await db()
+      .from('academic_profiles')
+      .select('level_id, country_code, curriculum_id, grade_id, language, subject_ids, goals, difficulty')
+      .maybeSingle()
+    if (error) throw error
+    return data as OnboardingValues | null
+  },
+})
+
 export function useMyAcademicProfile(userId: string | undefined) {
-  return useQuery({
-    queryKey: ['academic', userId],
-    enabled: Boolean(userId),
-    queryFn: async () => {
-      const { data, error } = await db()
-        .from('academic_profiles')
-        .select('level_id, country_code, curriculum_id, grade_id, language, subject_ids, goals, difficulty')
-        .maybeSingle()
-      if (error) throw error
-      return data as OnboardingValues | null
-    },
-  })
+  return useQuery(academicQuery(userId))
 }
 
 export async function saveAcademicProfile(userId: string, values: OnboardingValues) {

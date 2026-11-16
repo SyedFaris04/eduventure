@@ -352,5 +352,29 @@
       "book_bag": "Bolsa de libros",
       "scroll_case": "Portapergaminos"
     }
+  },
+  "home": {
+    "welcome": "¡Hola, {{name}}!",
+    "yourHero": "Tu héroe",
+    "editHero": "Editar héroe",
+    "progress": "Progreso",
+    "level": "Nivel",
+    "xp": "XP",
+    "gold": "Oro",
+    "learningProfile": "Perfil de aprendizaje",
+    "change": "Cambiar",
+    "subjects": "Asignaturas elegidas: {{count}}",
+    "enterWorld": "Entrar al mundo",
+    "opensPhase2": "El mundo se abre en la fase 2",
+    "signOut": "Cerrar sesión",
+    "guestTitle": "Guarda tu progreso",
+    "guestIntro": "Estás jugando como invitado. Añade un correo para volver desde cualquier dispositivo.",
+    "guestIntroU13": "Estás jugando como invitado. Pide a tu padre, madre o tutor que añada su correo para que puedas volver más tarde.",
+    "sendLink": "Enviar enlace",
+    "linkSent": "Revisa {{email}}: te enviamos un enlace para terminar de guardar tu héroe.",
+    "signOutGuestTitle": "¿Salir del modo invitado?",
+    "signOutGuestBody": "Un héroe invitado no se puede recuperar después de cerrar sesión. Guarda tu progreso primero si quieres conservarlo.",
+    "signOutAnyway": "Cerrar sesión igualmente",
+    "cancel": "Cancelar"
   }
 }

@@ -9,8 +9,8 @@ import { AuthMessageError, logIn } from './authActions'
 import { loginSchema, type LoginValues } from './schemas'
 import { useSession } from './useSession'
 
-// shortcut: goes to onboarding until the progress guard (Task 9) decides the next screen.
-const AFTER_LOGIN = '/onboarding'
+// The progress guard on /home forwards to onboarding or the character creator when setup is unfinished.
+const AFTER_LOGIN = '/home'
 
 export function LoginPage() {
   const { t } = useTranslation()

@@ -352,5 +352,29 @@
       "book_bag": "Book bag",
       "scroll_case": "Scroll case"
     }
+  },
+  "home": {
+    "welcome": "Welcome, {{name}}!",
+    "yourHero": "Your hero",
+    "editHero": "Edit hero",
+    "progress": "Progress",
+    "level": "Level",
+    "xp": "XP",
+    "gold": "Gold",
+    "learningProfile": "Learning profile",
+    "change": "Change",
+    "subjects": "Subjects chosen: {{count}}",
+    "enterWorld": "Enter the World",
+    "opensPhase2": "The world opens in Phase 2",
+    "signOut": "Sign out",
+    "guestTitle": "Save your progress",
+    "guestIntro": "You're playing as a guest. Add an email so you can come back on any device.",
+    "guestIntroU13": "You're playing as a guest. Ask a parent or guardian to add their email so you can come back later.",
+    "sendLink": "Send link",
+    "linkSent": "Check {{email}} for a link to finish saving your hero.",
+    "signOutGuestTitle": "Leave guest mode?",
+    "signOutGuestBody": "A guest hero can't be recovered after signing out. Save your progress first if you want to keep this hero.",
+    "signOutAnyway": "Sign out anyway",
+    "cancel": "Cancel"
   }
 }

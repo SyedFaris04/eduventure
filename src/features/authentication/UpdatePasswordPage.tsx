@@ -23,8 +23,7 @@ export function UpdatePasswordPage() {
     setFormError(null)
     try {
       await updatePassword(password)
-      // shortcut: onboarding until the progress guard (Task 9) picks the next screen.
-      navigate('/onboarding', { replace: true })
+      navigate('/home', { replace: true }) // the progress guard forwards to any unfinished setup step
     } catch (e) {
       setFormError(e instanceof AuthMessageError ? e.key : 'auth.errors.generic')
     }

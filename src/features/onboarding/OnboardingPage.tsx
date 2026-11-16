@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
-import { Navigate, useNavigate, useSearchParams } from 'react-router'
+import { useNavigate, useSearchParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import {
@@ -85,7 +85,7 @@ export function OnboardingPage({ mode = 'create' }: { mode?: 'create' | 'edit' }
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   const [params, setParams] = useSearchParams()
-  const { session, loading } = useSession()
+  const { session } = useSession()
   const userId = session?.user.id
   const ref = useReferenceData()
   const profile = useMyProfile(userId)
@@ -124,9 +124,7 @@ export function OnboardingPage({ mode = 'create' }: { mode?: 'create' | 'edit' }
     if (blocking && steps.indexOf(blocking) < index) setParams({ step: blocking }, { replace: true })
   }, [blocking, index, steps, setParams])
 
-  if (!loading && !session) return <Navigate to="/welcome" replace />
-
-  const set = (patch: Partial<OnboardingValues>) => setValues((v) => ({ ...v, ...patch }))
+  const set =(patch: Partial<OnboardingValues>) => setValues((v) => ({ ...v, ...patch }))
   const go = (step: Step) => {
     setError(null)
     setParams({ step })

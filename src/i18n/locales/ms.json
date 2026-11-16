@@ -352,5 +352,29 @@
       "book_bag": "Beg buku",
       "scroll_case": "Bekas skrol"
     }
+  },
+  "home": {
+    "welcome": "Selamat datang, {{name}}!",
+    "yourHero": "Wira anda",
+    "editHero": "Sunting wira",
+    "progress": "Kemajuan",
+    "level": "Tahap",
+    "xp": "XP",
+    "gold": "Emas",
+    "learningProfile": "Profil pembelajaran",
+    "change": "Tukar",
+    "subjects": "Mata pelajaran dipilih: {{count}}",
+    "enterWorld": "Masuk ke Dunia",
+    "opensPhase2": "Dunia dibuka dalam Fasa 2",
+    "signOut": "Log keluar",
+    "guestTitle": "Simpan kemajuan anda",
+    "guestIntro": "Anda bermain sebagai tetamu. Tambah e-mel supaya anda boleh kembali dari mana-mana peranti.",
+    "guestIntroU13": "Anda bermain sebagai tetamu. Minta ibu bapa atau penjaga menambah e-mel mereka supaya anda boleh kembali kemudian.",
+    "sendLink": "Hantar pautan",
+    "linkSent": "Semak {{email}} untuk pautan bagi menyimpan wira anda.",
+    "signOutGuestTitle": "Keluar daripada mod tetamu?",
+    "signOutGuestBody": "Wira tetamu tidak dapat dipulihkan selepas log keluar. Simpan kemajuan dahulu jika anda mahu mengekalkan wira ini.",
+    "signOutAnyway": "Log keluar juga",
+    "cancel": "Batal"
   }
 }

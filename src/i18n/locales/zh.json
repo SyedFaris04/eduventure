@@ -352,5 +352,29 @@
       "book_bag": "书包",
       "scroll_case": "卷轴筒"
     }
+  },
+  "home": {
+    "welcome": "欢迎，{{name}}！",
+    "yourHero": "你的英雄",
+    "editHero": "编辑英雄",
+    "progress": "进度",
+    "level": "等级",
+    "xp": "经验",
+    "gold": "金币",
+    "learningProfile": "学习档案",
+    "change": "修改",
+    "subjects": "已选科目：{{count}}",
+    "enterWorld": "进入世界",
+    "opensPhase2": "世界将在第 2 阶段开放",
+    "signOut": "退出登录",
+    "guestTitle": "保存你的进度",
+    "guestIntro": "你正在以游客身份游玩。添加邮箱后可以在任何设备上继续。",
+    "guestIntroU13": "你正在以游客身份游玩。请让家长或监护人添加他们的邮箱，方便你以后回来。",
+    "sendLink": "发送链接",
+    "linkSent": "请查看 {{email}}，用其中的链接完成保存。",
+    "signOutGuestTitle": "退出游客模式？",
+    "signOutGuestBody": "游客英雄在退出后无法找回。如果想保留这个英雄，请先保存进度。",
+    "signOutAnyway": "仍然退出",
+    "cancel": "取消"
   }
 }

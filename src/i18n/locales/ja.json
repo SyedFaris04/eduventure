@@ -352,5 +352,29 @@
       "book_bag": "本かばん",
       "scroll_case": "巻物ケース"
     }
+  },
+  "home": {
+    "welcome": "ようこそ、{{name}}！",
+    "yourHero": "あなたのヒーロー",
+    "editHero": "ヒーローを編集",
+    "progress": "進行状況",
+    "level": "レベル",
+    "xp": "XP",
+    "gold": "ゴールド",
+    "learningProfile": "学習プロフィール",
+    "change": "変更",
+    "subjects": "選んだ教科：{{count}}",
+    "enterWorld": "世界に入る",
+    "opensPhase2": "世界はフェーズ2で公開されます",
+    "signOut": "ログアウト",
+    "guestTitle": "進行状況を保存",
+    "guestIntro": "ゲストとしてプレイ中です。メールアドレスを追加すると、どの端末からでも続けられます。",
+    "guestIntroU13": "ゲストとしてプレイ中です。あとで戻ってこられるよう、保護者の方にメールアドレスを追加してもらってください。",
+    "sendLink": "リンクを送る",
+    "linkSent": "{{email}} を確認して、リンクからヒーローの保存を完了してください。",
+    "signOutGuestTitle": "ゲストモードを終了しますか？",
+    "signOutGuestBody": "ゲストのヒーローはログアウトすると復元できません。残したい場合は先に進行状況を保存してください。",
+    "signOutAnyway": "それでもログアウト",
+    "cancel": "キャンセル"
   }
 }

@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router'
 import { initI18n } from '../../i18n'
 import { WelcomePage } from './WelcomePage'
 import { REGIONS } from './regions'
+import { useSessionStore } from '../authentication/useSession'
 
 describe('WelcomePage', () => {
   beforeAll(async () => {
@@ -24,12 +25,14 @@ describe('WelcomePage', () => {
   })
 
   it('shows the offline notice when boot could not reach the server', () => {
+    useSessionStore.setState({ offline: true })
     render(
-      <MemoryRouter initialEntries={[{ pathname: '/welcome', state: { offline: true } }]}>
+      <MemoryRouter>
         <WelcomePage />
       </MemoryRouter>,
     )
     expect(screen.getByRole('alert')).toHaveTextContent("Can't reach the server")
+    useSessionStore.setState({ offline: false })
   })
 })
 

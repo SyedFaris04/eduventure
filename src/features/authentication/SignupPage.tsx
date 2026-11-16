@@ -34,7 +34,7 @@ export function SignupPage() {
     try {
       await signUp(v)
       // Projects with email confirmation off sign the player in straight away.
-      if (useSessionStore.getState().session) navigate('/onboarding', { replace: true })
+      if (useSessionStore.getState().session) navigate('/home', { replace: true })
       else setSentTo({ email: v.email, guardian: under13 })
     } catch (e) {
       setFormError(e instanceof AuthMessageError ? e.key : 'auth.errors.generic')

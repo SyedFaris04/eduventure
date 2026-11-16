@@ -352,5 +352,29 @@
       "book_bag": "Cartable",
       "scroll_case": "Étui à parchemins"
     }
+  },
+  "home": {
+    "welcome": "Bienvenue, {{name}} !",
+    "yourHero": "Ton héros",
+    "editHero": "Modifier le héros",
+    "progress": "Progression",
+    "level": "Niveau",
+    "xp": "XP",
+    "gold": "Or",
+    "learningProfile": "Profil d'apprentissage",
+    "change": "Modifier",
+    "subjects": "Matières choisies : {{count}}",
+    "enterWorld": "Entrer dans le monde",
+    "opensPhase2": "Le monde ouvre en phase 2",
+    "signOut": "Se déconnecter",
+    "guestTitle": "Sauvegarde ta progression",
+    "guestIntro": "Tu joues en invité. Ajoute un e-mail pour revenir depuis n'importe quel appareil.",
+    "guestIntroU13": "Tu joues en invité. Demande à un parent ou tuteur d'ajouter son e-mail pour pouvoir revenir plus tard.",
+    "sendLink": "Envoyer le lien",
+    "linkSent": "Vérifie {{email}} : un lien t'attend pour finir de sauvegarder ton héros.",
+    "signOutGuestTitle": "Quitter le mode invité ?",
+    "signOutGuestBody": "Un héros invité ne peut pas être récupéré après la déconnexion. Sauvegarde d'abord ta progression si tu veux le garder.",
+    "signOutAnyway": "Me déconnecter quand même",
+    "cancel": "Annuler"
   }
 }

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Navigate, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import { Dices, RefreshCw, RotateCcw, Save } from 'lucide-react'
@@ -28,7 +28,7 @@ export function CharacterCreatorPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const queryClient = useQueryClient()
-  const { session, loading } = useSession()
+  const { session } = useSession()
   const userId = session?.user.id
   const profile = useMyProfile(userId)
   const existing = useMyCharacter(userId)
@@ -56,8 +56,6 @@ export function CharacterCreatorPage() {
   }, [safeNamesOnly, name])
 
   const preview = useMemo(() => characterDataUri(appearance, { facing, size: 280 }), [appearance, facing])
-
-  if (!loading && !session) return <Navigate to="/welcome" replace />
 
   async function save() {
     setError(null)
