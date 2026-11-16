@@ -48,6 +48,14 @@
   }
 }
 
+/* Gentle idle bounce for character previews. */
+.hero-bob {
+  animation: hero-bob 3s ease-in-out infinite;
+}
+@keyframes hero-bob {
+  50% { transform: translateY(-5px); }
+}
+
 /* Every decorative animation in the app respects this. */
 @media (prefers-reduced-motion: reduce) {
   *,

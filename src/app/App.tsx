@@ -48,6 +48,7 @@ const router = createBrowserRouter([
       return { Component: () => <OnboardingPage mode="edit" /> }
     },
   },
+  { path: '/character', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/character/CharacterCreatorPage')).CharacterCreatorPage }) },
   { path: '/styleguide', hydrateFallbackElement, lazy: async () => ({ Component: (await import('../features/styleguide/StyleguidePage')).StyleguidePage }) },
   { path: '*', element: <NotFound /> },
 ])
