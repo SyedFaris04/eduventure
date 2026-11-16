@@ -56,7 +56,7 @@ test('first run: loading → guest → onboarding → character → home, still 
   await expect(page.getByRole('heading', { name: 'Welcome, Test Ranger!' })).toBeVisible()
   await expect(stat('Level')).toHaveText('1')
   await expect(stat('Gold')).toHaveText('0')
-  await expect(page.getByRole('button', { name: /Enter the World/ })).toBeDisabled()
+  await expect(page.getByRole('link', { name: /Enter the World/ })).toHaveAttribute('href', '/world')
 
   await page.reload()
   await expect(page.getByRole('heading', { name: 'Welcome, Test Ranger!' })).toBeVisible()

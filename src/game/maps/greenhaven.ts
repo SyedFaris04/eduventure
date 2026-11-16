@@ -1,0 +1,68 @@
+import type { MapSource } from '../map'
+
+/**
+ * Greenhaven Village, 36 × 36. Each character is one tile; edit freely, the tests check the shape.
+ * Columns run down-right on screen, rows run down-left (isometric).
+ */
+export const GREENHAVEN: MapSource = {
+  id: 'greenhaven',
+  legend: {
+    '.': { tile: 'grass' },
+    ',': { tile: 'flowers' },
+    '=': { tile: 'path' },
+    s: { tile: 'sand' },
+    '~': { tile: 'water', blocks: true },
+    '#': { tile: 'bridge' },
+    T: { tile: 'grass', prop: 'tree', blocks: true },
+    b: { tile: 'grass', prop: 'bush', blocks: true },
+    R: { tile: 'grass', prop: 'rock', blocks: true },
+    f: { tile: 'grass', prop: 'fence', blocks: true },
+    W: { tile: 'path', prop: 'well', blocks: true },
+    H: { tile: 'grass', prop: 'house', blocks: true }, // top-left of a 2 × 2 house
+    h: { tile: 'grass', blocks: true }, // rest of a house
+    P: { tile: 'path', spawn: 'player' },
+    E: { tile: 'path', npc: 'elder', blocks: true },
+    S: { tile: 'path', npc: 'shopkeeper', blocks: true },
+    '1': { tile: 'grass', zone: 'sproutling' },
+    '2': { tile: 'grass', zone: 'pebblewing' },
+    '3': { tile: 'flowers', zone: 'dinobud' },
+  },
+  rows: [
+    'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
+    'TTT..T...TT...T.......TT.....T...TTT',
+    'TT................................TT',
+    'T...................T..............T',
+    'T...T......T.....=.......111111111.T',
+    'T................=...T...11111111b.T',
+    'T......T.....T...=.......11b111111.T',
+    'T....,,,,........=.....T.111111111.T',
+    'T....,,,,........=.......1T1111111.T',
+    'TT...........Hh..=....Hh.111111b11.T',
+    'TT....T......hh..=....hh.111111111.T',
+    'T................=.......1111b1111.T',
+    'T........b.T.....========1111111T1TT',
+    'T..T........E....=.................T',
+    'T...........======.................T',
+    'TT...............=...Hh=...........T',
+    'T.........b......=...hhS...........T',
+    'T..sssssss....,=====,..............T',
+    'T..s~~~~~s.....=====.....b.........T',
+    'T..s~~~~~s.....==W==...............T',
+    'T..=#####======================...TT',
+    'T..s~~~~~s.....=====..............TT',
+    'T..s~~~~~s....,=====,..............T',
+    'T..s~~~~~sffff...=....,,2222222222.T',
+    'T..sssssss,,,,...P....,,222222R222.T',
+    'T.........,,,,...=....ff22R2222222.T',
+    'T.............b..=======2222222222.T',
+    'T..33333333333...=.....=2222222222.T',
+    'TT.333333333T=====......2222R22222.T',
+    'TT.33T33333333...=......22222222R2.T',
+    'T..33333333333...=......2222222222.T',
+    'T..333333T3333...=......2R22222222.T',
+    'T..3R333333333..........2222222R22.T',
+    'T.T3333T333R33....................TT',
+    'TTT...T.....T.......TT.....T.....T.T',
+    'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
+  ],
+}

@@ -117,14 +117,9 @@ export function HomePage() {
               </Link>
             </Panel>
 
-            <div className="flex flex-col items-center gap-1">
-              <Button size="lg" disabled className="w-full" aria-describedby="world-note">
-                <Globe2 size={22} aria-hidden /> {t('home.enterWorld')}
-              </Button>
-              <p id="world-note" className="rounded-full bg-cream/90 px-3 py-0.5 text-sm font-bold text-wood-dark">
-                {t('home.opensPhase2')}
-              </p>
-            </div>
+            <Link to="/world" className={buttonClasses('primary', 'lg', 'w-full')}>
+              <Globe2 size={22} aria-hidden /> {t('home.enterWorld')}
+            </Link>
 
             {isGuest && <GuestUpgrade under13={under13} />}
           </div>

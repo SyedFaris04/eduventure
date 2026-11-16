@@ -376,5 +376,46 @@
     "signOutGuestBody": "Un héros invité ne peut pas être récupéré après la déconnexion. Sauvegarde d'abord ta progression si tu veux le garder.",
     "signOutAnyway": "Me déconnecter quand même",
     "cancel": "Annuler"
+  },
+  "world": {
+    "canvasLabel": "Village de Greenhaven. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",
+    "home": "Retour à l'accueil",
+    "hud": "Ton héros",
+    "levelShort": "Niv. {{level}}",
+    "xpLabel": "{{into}} sur {{needed}} XP avant le niveau suivant",
+    "minimapEnlarge": "Agrandir la carte",
+    "minimapShrink": "Réduire la carte",
+    "joystick": "Manette de déplacement",
+    "talkTo": "Parler à {{name}}",
+    "battle": "Affronter {{name}}"
+  },
+  "npc": {
+    "elder": {
+      "name": "Ancien Rowan",
+      "pages": [
+        "Bienvenue à Greenhaven, {{name}} ! Je suis l'ancien Rowan et je veille sur ce village.",
+        "Des monstres amicaux vivent dans les prés qui nous entourent. Ils adorent tous une bonne question.",
+        "Approche-toi d'un monstre et appuie sur Interagir pour l'affronter. Chaque bonne réponse est une attaque, et chaque erreur est accompagnée d'une explication.",
+        "Les erreurs ne t'enlèvent jamais ce que tu as gagné. Apprends d'elles, deviens plus fort et viens me raconter tes aventures !"
+      ]
+    },
+    "shopkeeper": {
+      "name": "Nori",
+      "pages": [
+        "Salut, {{name}} ! Je suis Nori. Bientôt, ma boutique sera pleine de vêtements, d'équipement et de décorations pour les héros.",
+        "Elle n'est pas encore ouverte, mais continue à gagner de l'or en combat. Tu auras de quoi dépenser quand j'ouvrirai !"
+      ]
+    }
+  },
+  "monsters": {
+    "sproutling": {
+      "name": "Pousseron"
+    },
+    "pebblewing": {
+      "name": "Ailecaillou"
+    },
+    "dinobud": {
+      "name": "Dinobourgeon"
+    }
   }
 }

@@ -376,5 +376,46 @@
     "signOutGuestBody": "Wira tetamu tidak dapat dipulihkan selepas log keluar. Simpan kemajuan dahulu jika anda mahu mengekalkan wira ini.",
     "signOutAnyway": "Log keluar juga",
     "cancel": "Batal"
+  },
+  "world": {
+    "canvasLabel": "Kampung Greenhaven. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",
+    "home": "Kembali ke Laman Utama",
+    "hud": "Wira anda",
+    "levelShort": "Tahap {{level}}",
+    "xpLabel": "{{into}} daripada {{needed}} XP ke tahap seterusnya",
+    "minimapEnlarge": "Besarkan peta",
+    "minimapShrink": "Kecilkan peta",
+    "joystick": "Pad pergerakan",
+    "talkTo": "Bercakap dengan {{name}}",
+    "battle": "Lawan {{name}}"
+  },
+  "npc": {
+    "elder": {
+      "name": "Tok Rowan",
+      "pages": [
+        "Selamat datang ke Greenhaven, {{name}}! Saya Tok Rowan, penjaga kampung ini.",
+        "Raksasa yang peramah tinggal di padang sekeliling kita. Mereka semua suka soalan yang menarik.",
+        "Dekati raksasa dan tekan Interaksi untuk berlawan. Setiap jawapan betul ialah serangan, dan setiap jawapan salah disertakan penjelasan.",
+        "Kesilapan tidak akan mengambil apa yang telah anda peroleh. Belajarlah daripadanya, jadi lebih kuat, dan ceritakan pengembaraan anda kepada saya!"
+      ]
+    },
+    "shopkeeper": {
+      "name": "Nori",
+      "pages": [
+        "Hai, {{name}}! Saya Nori. Tidak lama lagi kedai saya akan penuh dengan pakaian, kelengkapan dan hiasan untuk wira.",
+        "Kedai belum dibuka, tetapi teruskan mengumpul emas dalam pertarungan. Anda akan ada banyak untuk dibelanjakan nanti!"
+      ]
+    }
+  },
+  "monsters": {
+    "sproutling": {
+      "name": "Tunas"
+    },
+    "pebblewing": {
+      "name": "Sayap Batu"
+    },
+    "dinobud": {
+      "name": "Dinokecil"
+    }
   }
 }

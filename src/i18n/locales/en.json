@@ -376,5 +376,46 @@
     "signOutGuestBody": "A guest hero can't be recovered after signing out. Save your progress first if you want to keep this hero.",
     "signOutAnyway": "Sign out anyway",
     "cancel": "Cancel"
+  },
+  "world": {
+    "canvasLabel": "Greenhaven Village. Move with W A S D or the arrow keys, tap to walk, press E to talk.",
+    "home": "Back to Home",
+    "hud": "Your hero",
+    "levelShort": "Lv {{level}}",
+    "xpLabel": "{{into}} of {{needed}} XP to the next level",
+    "minimapEnlarge": "Enlarge map",
+    "minimapShrink": "Shrink map",
+    "joystick": "Movement pad",
+    "talkTo": "Talk to {{name}}",
+    "battle": "Battle {{name}}"
+  },
+  "npc": {
+    "elder": {
+      "name": "Elder Rowan",
+      "pages": [
+        "Welcome to Greenhaven, {{name}}! I'm Elder Rowan, and I look after this village.",
+        "Friendly monsters live in the meadows around us. Every one of them loves a good question.",
+        "Walk up to a monster and press Interact to battle. Each correct answer is an attack, and every wrong answer comes with an explanation.",
+        "Mistakes never take away what you've earned. Learn from them, grow stronger, and come and tell me about your adventures!"
+      ]
+    },
+    "shopkeeper": {
+      "name": "Nori",
+      "pages": [
+        "Hi there, {{name}}! I'm Nori. Soon my shop will be full of clothes, gear and decorations for heroes.",
+        "It isn't open yet, but keep earning gold in battles. You'll have plenty to spend when I open my doors!"
+      ]
+    }
+  },
+  "monsters": {
+    "sproutling": {
+      "name": "Sproutling"
+    },
+    "pebblewing": {
+      "name": "Pebblewing"
+    },
+    "dinobud": {
+      "name": "Dinobud"
+    }
   }
 }

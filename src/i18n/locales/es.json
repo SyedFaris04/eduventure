@@ -376,5 +376,46 @@
     "signOutGuestBody": "Un héroe invitado no se puede recuperar después de cerrar sesión. Guarda tu progreso primero si quieres conservarlo.",
     "signOutAnyway": "Cerrar sesión igualmente",
     "cancel": "Cancelar"
+  },
+  "world": {
+    "canvasLabel": "Aldea Greenhaven. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",
+    "home": "Volver al inicio",
+    "hud": "Tu héroe",
+    "levelShort": "Nv {{level}}",
+    "xpLabel": "{{into}} de {{needed}} XP para el siguiente nivel",
+    "minimapEnlarge": "Ampliar mapa",
+    "minimapShrink": "Reducir mapa",
+    "joystick": "Control de movimiento",
+    "talkTo": "Hablar con {{name}}",
+    "battle": "Luchar contra {{name}}"
+  },
+  "npc": {
+    "elder": {
+      "name": "Anciano Rowan",
+      "pages": [
+        "¡Bienvenido a Greenhaven, {{name}}! Soy el anciano Rowan y cuido de esta aldea.",
+        "En los prados que nos rodean viven monstruos amistosos. A todos les encanta una buena pregunta.",
+        "Acércate a un monstruo y pulsa Interactuar para luchar. Cada respuesta correcta es un ataque, y cada respuesta incorrecta viene con una explicación.",
+        "Los errores nunca te quitan lo que has ganado. Aprende de ellos, hazte más fuerte y ven a contarme tus aventuras."
+      ]
+    },
+    "shopkeeper": {
+      "name": "Nori",
+      "pages": [
+        "¡Hola, {{name}}! Soy Nori. Pronto mi tienda estará llena de ropa, equipo y decoraciones para héroes.",
+        "Todavía no está abierta, pero sigue ganando oro en las batallas. ¡Tendrás mucho para gastar cuando abra!"
+      ]
+    }
+  },
+  "monsters": {
+    "sproutling": {
+      "name": "Brotín"
+    },
+    "pebblewing": {
+      "name": "Alapiedra"
+    },
+    "dinobud": {
+      "name": "Dinobrote"
+    }
   }
 }
