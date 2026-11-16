@@ -89,6 +89,7 @@ const router = createBrowserRouter([
   { path: '/character', ...page(async () => (await import('../features/character/CharacterCreatorPage')).CharacterCreatorPage, true) },
   { path: '/home', ...page(async () => (await import('../features/home/HomePage')).HomePage, true) },
   { path: '/world', ...page(async () => (await import('../features/world/WorldPage')).WorldPage, true) },
+  { path: '/library', ...page(async () => (await import('../features/library/LibraryPage')).LibraryPage, true) },
   { path: '/admin', ...page(async () => (await import('../features/admin/AdminPage')).AdminPage) },
   { path: '/styleguide', ...page(async () => (await import('../features/styleguide/StyleguidePage')).StyleguidePage) },
   { path: '*', element: <NotFound /> },

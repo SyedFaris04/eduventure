@@ -376,7 +376,8 @@
     "signOutGuestBody": "Wira tetamu tidak dapat dipulihkan selepas log keluar. Simpan kemajuan dahulu jika anda mahu mengekalkan wira ini.",
     "signOutAnyway": "Log keluar juga",
     "cancel": "Batal",
-    "admin": "Semak soalan"
+    "admin": "Semak soalan",
+    "library": "Perpustakaan Akademik"
   },
   "world": {
     "canvasLabel": "Kampung Greenhaven. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",
@@ -458,5 +459,17 @@
       "noQuestions": "Belum ada soalan untuk tahap anda.",
       "generic": "Ada sesuatu yang tidak kena. Sila cuba lagi."
     }
+  },
+  "library": {
+    "title": "Perpustakaan Akademik",
+    "topics": "Topik anda",
+    "score": "{{correct}} / {{attempts}} betul",
+    "masteryOf": "Penguasaan {{topic}}",
+    "empty": "Jawab soalan dalam pertarungan dan topik anda akan muncul di sini.",
+    "onlyMistakes": "Tunjukkan soalan yang saya salah sahaja",
+    "gotRight": "Anda betul kali terakhir",
+    "gotWrong": "Anda salah kali terakhir",
+    "tries": "{{n}} cubaan",
+    "nothingHere": "Belum ada apa-apa. Lawan raksasa untuk mengisi perpustakaan anda!"
   }
 }

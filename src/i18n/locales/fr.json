@@ -376,7 +376,8 @@
     "signOutGuestBody": "Un héros invité ne peut pas être récupéré après la déconnexion. Sauvegarde d'abord ta progression si tu veux le garder.",
     "signOutAnyway": "Me déconnecter quand même",
     "cancel": "Annuler",
-    "admin": "Relire les questions"
+    "admin": "Relire les questions",
+    "library": "Bibliothèque"
   },
   "world": {
     "canvasLabel": "Village de Greenhaven. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",
@@ -458,5 +459,17 @@
       "noQuestions": "Il n'y a pas encore de questions pour ton niveau.",
       "generic": "Un problème est survenu. Réessaie."
     }
+  },
+  "library": {
+    "title": "Bibliothèque",
+    "topics": "Tes sujets",
+    "score": "{{correct}} / {{attempts}} justes",
+    "masteryOf": "Maîtrise de {{topic}}",
+    "empty": "Réponds à des questions en combat et tes sujets apparaîtront ici.",
+    "onlyMistakes": "Afficher seulement mes erreurs",
+    "gotRight": "Juste la dernière fois",
+    "gotWrong": "Faux la dernière fois",
+    "tries": "{{n}} essais",
+    "nothingHere": "Rien pour l'instant. Affronte un monstre pour remplir ta bibliothèque !"
   }
 }

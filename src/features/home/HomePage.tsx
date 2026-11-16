@@ -123,6 +123,10 @@ export function HomePage() {
               <Globe2 size={22} aria-hidden /> {t('home.enterWorld')}
             </Link>
 
+            <Link to="/library" className={buttonClasses('secondary', 'md', 'w-full')}>
+              <BookOpen size={18} aria-hidden /> {t('home.library')}
+            </Link>
+
             {roles.data && roles.data.length > 0 && (
               <Link to="/admin" className={buttonClasses('secondary', 'md', 'w-full')}>
                 <ClipboardCheck size={18} aria-hidden /> {t('home.admin')}

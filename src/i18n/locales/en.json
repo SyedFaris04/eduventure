@@ -376,7 +376,8 @@
     "signOutGuestBody": "A guest hero can't be recovered after signing out. Save your progress first if you want to keep this hero.",
     "signOutAnyway": "Sign out anyway",
     "cancel": "Cancel",
-    "admin": "Review questions"
+    "admin": "Review questions",
+    "library": "Academic Library"
   },
   "world": {
     "canvasLabel": "Greenhaven Village. Move with W A S D or the arrow keys, tap to walk, press E to talk.",
@@ -458,5 +459,17 @@
       "noQuestions": "There are no questions for your level yet.",
       "generic": "Something went wrong. Please try again."
     }
+  },
+  "library": {
+    "title": "Academic Library",
+    "topics": "Your topics",
+    "score": "{{correct}} / {{attempts}} right",
+    "masteryOf": "Mastery of {{topic}}",
+    "empty": "Answer questions in battles and your topics will appear here.",
+    "onlyMistakes": "Show only questions I got wrong",
+    "gotRight": "You got this right last time",
+    "gotWrong": "You got this wrong last time",
+    "tries": "{{n}} tries",
+    "nothingHere": "Nothing to show yet. Battle a monster to fill your library!"
   }
 }

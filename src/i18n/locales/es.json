@@ -376,7 +376,8 @@
     "signOutGuestBody": "Un héroe invitado no se puede recuperar después de cerrar sesión. Guarda tu progreso primero si quieres conservarlo.",
     "signOutAnyway": "Cerrar sesión igualmente",
     "cancel": "Cancelar",
-    "admin": "Revisar preguntas"
+    "admin": "Revisar preguntas",
+    "library": "Biblioteca académica"
   },
   "world": {
     "canvasLabel": "Aldea Greenhaven. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",
@@ -458,5 +459,17 @@
       "noQuestions": "Todavía no hay preguntas para tu nivel.",
       "generic": "Algo salió mal. Inténtalo de nuevo."
     }
+  },
+  "library": {
+    "title": "Biblioteca académica",
+    "topics": "Tus temas",
+    "score": "{{correct}} / {{attempts}} bien",
+    "masteryOf": "Dominio de {{topic}}",
+    "empty": "Responde preguntas en las batallas y tus temas aparecerán aquí.",
+    "onlyMistakes": "Mostrar solo las preguntas que fallé",
+    "gotRight": "La acertaste la última vez",
+    "gotWrong": "La fallaste la última vez",
+    "tries": "{{n}} intentos",
+    "nothingHere": "Aún no hay nada. ¡Lucha contra un monstruo para llenar tu biblioteca!"
   }
 }

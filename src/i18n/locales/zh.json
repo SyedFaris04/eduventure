@@ -376,7 +376,8 @@
     "signOutGuestBody": "游客英雄在退出后无法找回。如果想保留这个英雄，请先保存进度。",
     "signOutAnyway": "仍然退出",
     "cancel": "取消",
-    "admin": "审核题目"
+    "admin": "审核题目",
+    "library": "学术图书馆"
   },
   "world": {
     "canvasLabel": "绿港村。用 W A S D 或方向键移动，点击行走，按 E 交谈。",
@@ -458,5 +459,17 @@
       "noQuestions": "你的阶段暂时还没有题目。",
       "generic": "出了点问题，请重试。"
     }
+  },
+  "library": {
+    "title": "学术图书馆",
+    "topics": "你的知识点",
+    "score": "答对 {{correct}} / {{attempts}}",
+    "masteryOf": "{{topic}} 掌握度",
+    "empty": "在战斗中答题后，你的知识点会显示在这里。",
+    "onlyMistakes": "只显示我答错的题",
+    "gotRight": "上次答对了",
+    "gotWrong": "上次答错了",
+    "tries": "{{n}} 次",
+    "nothingHere": "这里还没有内容。去打怪兽来充实你的图书馆吧！"
   }
 }

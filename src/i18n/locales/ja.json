@@ -376,7 +376,8 @@
     "signOutGuestBody": "ゲストのヒーローはログアウトすると復元できません。残したい場合は先に進行状況を保存してください。",
     "signOutAnyway": "それでもログアウト",
     "cancel": "キャンセル",
-    "admin": "問題を確認する"
+    "admin": "問題を確認する",
+    "library": "学習ライブラリー"
   },
   "world": {
     "canvasLabel": "グリーンヘイブン村。W A S D か矢印キーで移動、タップで歩く、E で話す。",
@@ -458,5 +459,17 @@
       "noQuestions": "あなたのレベルの問題はまだありません。",
       "generic": "問題が発生しました。もう一度お試しください。"
     }
+  },
+  "library": {
+    "title": "学習ライブラリー",
+    "topics": "あなたの単元",
+    "score": "{{attempts}} 問中 {{correct}} 問正解",
+    "masteryOf": "{{topic}} の習熟度",
+    "empty": "バトルで問題に答えると、ここに単元が表示されます。",
+    "onlyMistakes": "まちがえた問題だけ表示",
+    "gotRight": "前回は正解",
+    "gotWrong": "前回はまちがい",
+    "tries": "{{n}} 回",
+    "nothingHere": "まだ何もありません。モンスターとバトルしてライブラリーを増やそう！"
   }
 }
