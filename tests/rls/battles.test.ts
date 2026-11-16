@@ -118,8 +118,9 @@ describe.skipIf(!configured)('battles (live project)', () => {
   })
 
   it('keeps answer keys, the question bank and internal helpers out of reach', async () => {
-    expect((await a.from('question_keys').select('*')).error).not.toBeNull()
-    expect((await a.from('questions').select('*')).error).not.toBeNull()
+    // Reviewers can read these (Phase 3); for players the rows simply do not exist.
+    expect((await a.from('question_keys').select('*')).data ?? []).toEqual([])
+    expect((await a.from('questions').select('*')).data ?? []).toEqual([])
     expect((await a.rpc('pick_question', { p_user: (await a.auth.getUser()).data.user!.id })).error).not.toBeNull()
     expect((await a.from('player_wallets').update({ gold: 9999 }).eq('gold', 0).select()).data ?? []).toEqual([])
   })

@@ -35,13 +35,16 @@ for (const file of readdirSync(dir).filter((f) => f.endsWith('.json'))) {
 -- content-hash: ${hash}
 insert into public.questions (id, version, status, level_ids, subject_id, topic, subtopic, difficulty, bloom, type, prompt, options, unit, objective, alignment, source_name, license) values
 ${rows.join(',\n')}
+-- Review status is owned by the database (review_question); the file only sets it for new questions.
+-- A higher version means the content changed, so the question goes back for review.
 on conflict (id) do update set
-  version = excluded.version, status = excluded.status, level_ids = excluded.level_ids, subject_id = excluded.subject_id,
+  version = excluded.version, status = 'in_review', level_ids = excluded.level_ids, subject_id = excluded.subject_id,
   topic = excluded.topic, subtopic = excluded.subtopic, difficulty = excluded.difficulty, bloom = excluded.bloom, type = excluded.type,
   prompt = excluded.prompt, options = excluded.options, unit = excluded.unit, objective = excluded.objective, alignment = excluded.alignment,
   source_name = excluded.source_name, license = excluded.license
-where public.questions.version < excluded.version or public.questions.status <> excluded.status;
+where public.questions.version < excluded.version;
 
+-- Edit a question's answer or explanations only together with a version bump, so it is re-reviewed.
 insert into public.question_keys (question_id, answer, explanation, wrong, mistakes) values
 ${keys.join(',\n')}
 on conflict (question_id) do update set answer = excluded.answer, explanation = excluded.explanation, wrong = excluded.wrong, mistakes = excluded.mistakes;
