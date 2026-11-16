@@ -458,7 +458,8 @@
       "tooFast": "Tómate un momento para leer la pregunta y vuelve a intentarlo.",
       "noQuestions": "Todavía no hay preguntas para tu nivel.",
       "generic": "Algo salió mal. Inténtalo de nuevo."
-    }
+    },
+    "missionDone": "¡Misión completada: {{name}}! Reclámala en Inicio."
   },
   "library": {
     "title": "Biblioteca académica",
@@ -471,5 +472,23 @@
     "gotWrong": "La fallaste la última vez",
     "tries": "{{n}} intentos",
     "nothingHere": "Aún no hay nada. ¡Lucha contra un monstruo para llenar tu biblioteca!"
+  },
+  "missions": {
+    "title": "Misiones",
+    "daily": "Hoy",
+    "weekly": "Esta semana",
+    "claim": "Reclamar",
+    "claimed": "Reclamada",
+    "claimFailed": "No se pudo reclamar la recompensa. Inténtalo de nuevo.",
+    "anySubject": "cualquier asignatura",
+    "streak": "Racha de {{n}} días aprendiendo",
+    "streakNone": "Responde una pregunta hoy para empezar una racha",
+    "streakToday": "¡hecho por hoy!",
+    "restAvailable": "día de descanso disponible esta semana",
+    "d_correct_10": "Responde bien 10 preguntas",
+    "d_defeat_3": "Derrota a 3 monstruos",
+    "d_subject_5": "Responde bien 5 preguntas de {{subject}}",
+    "w_correct_50": "Responde bien 50 preguntas",
+    "w_defeat_12": "Derrota a 12 monstruos"
   }
 }

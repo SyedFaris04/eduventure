@@ -458,7 +458,8 @@
       "tooFast": "Luangkan masa membaca soalan, kemudian cuba lagi.",
       "noQuestions": "Belum ada soalan untuk tahap anda.",
       "generic": "Ada sesuatu yang tidak kena. Sila cuba lagi."
-    }
+    },
+    "missionDone": "Misi selesai: {{name}}! Tuntut di Laman Utama."
   },
   "library": {
     "title": "Perpustakaan Akademik",
@@ -471,5 +472,23 @@
     "gotWrong": "Anda salah kali terakhir",
     "tries": "{{n}} cubaan",
     "nothingHere": "Belum ada apa-apa. Lawan raksasa untuk mengisi perpustakaan anda!"
+  },
+  "missions": {
+    "title": "Misi",
+    "daily": "Hari ini",
+    "weekly": "Minggu ini",
+    "claim": "Tuntut",
+    "claimed": "Sudah dituntut",
+    "claimFailed": "Ganjaran tidak dapat dituntut. Sila cuba lagi.",
+    "anySubject": "mana-mana subjek",
+    "streak": "Rentetan belajar {{n}} hari",
+    "streakNone": "Jawab satu soalan hari ini untuk memulakan rentetan",
+    "streakToday": "selesai untuk hari ini!",
+    "restAvailable": "hari rehat tersedia minggu ini",
+    "d_correct_10": "Jawab 10 soalan dengan betul",
+    "d_defeat_3": "Kalahkan 3 raksasa",
+    "d_subject_5": "Jawab 5 soalan {{subject}} dengan betul",
+    "w_correct_50": "Jawab 50 soalan dengan betul",
+    "w_defeat_12": "Kalahkan 12 raksasa"
   }
 }

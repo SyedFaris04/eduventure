@@ -458,7 +458,8 @@
       "tooFast": "Take a moment to read the question, then try again.",
       "noQuestions": "There are no questions for your level yet.",
       "generic": "Something went wrong. Please try again."
-    }
+    },
+    "missionDone": "Mission complete: {{name}}! Claim it on Home."
   },
   "library": {
     "title": "Academic Library",
@@ -471,5 +472,23 @@
     "gotWrong": "You got this wrong last time",
     "tries": "{{n}} tries",
     "nothingHere": "Nothing to show yet. Battle a monster to fill your library!"
+  },
+  "missions": {
+    "title": "Missions",
+    "daily": "Today",
+    "weekly": "This week",
+    "claim": "Claim",
+    "claimed": "Claimed",
+    "claimFailed": "Couldn't claim that reward. Please try again.",
+    "anySubject": "any subject",
+    "streak": "{{n}}-day learning streak",
+    "streakNone": "Answer a question today to start a streak",
+    "streakToday": "done for today!",
+    "restAvailable": "rest day available this week",
+    "d_correct_10": "Answer 10 questions correctly",
+    "d_defeat_3": "Defeat 3 monsters",
+    "d_subject_5": "Answer 5 {{subject}} questions correctly",
+    "w_correct_50": "Answer 50 questions correctly",
+    "w_defeat_12": "Defeat 12 monsters"
   }
 }

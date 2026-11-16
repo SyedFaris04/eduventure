@@ -458,7 +458,8 @@
       "tooFast": "先花点时间读题，再试一次。",
       "noQuestions": "你的阶段暂时还没有题目。",
       "generic": "出了点问题，请重试。"
-    }
+    },
+    "missionDone": "任务完成：{{name}}！到主页领取奖励。"
   },
   "library": {
     "title": "学术图书馆",
@@ -471,5 +472,23 @@
     "gotWrong": "上次答错了",
     "tries": "{{n}} 次",
     "nothingHere": "这里还没有内容。去打怪兽来充实你的图书馆吧！"
+  },
+  "missions": {
+    "title": "任务",
+    "daily": "今天",
+    "weekly": "本周",
+    "claim": "领取",
+    "claimed": "已领取",
+    "claimFailed": "无法领取奖励，请重试。",
+    "anySubject": "任意科目",
+    "streak": "连续学习 {{n}} 天",
+    "streakNone": "今天答一道题即可开始连续学习",
+    "streakToday": "今天已完成！",
+    "restAvailable": "本周还有一天休息日",
+    "d_correct_10": "答对 10 道题",
+    "d_defeat_3": "打败 3 只怪物",
+    "d_subject_5": "答对 5 道{{subject}}题",
+    "w_correct_50": "答对 50 道题",
+    "w_defeat_12": "打败 12 只怪物"
   }
 }

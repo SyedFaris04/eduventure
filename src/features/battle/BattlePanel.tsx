@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
-import { Check, Coins, Flag, Sparkles, Star, X, Zap } from 'lucide-react'
+import { Check, Coins, Flag, Gift, Sparkles, Star, X, Zap } from 'lucide-react'
 import { Button } from '../../components/ui'
 import { useGame } from '../../game/store'
 import type { MonsterKind } from '../../game/map'
@@ -96,6 +96,8 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
   async function close(flee: boolean) {
     if (flee && enc?.status === 'active') await fleeEncounter(enc.encounter_id).catch(() => undefined)
     await queryClient.invalidateQueries({ queryKey: ['progression', session?.user.id] })
+    await queryClient.invalidateQueries({ queryKey: ['missions', session?.user.id] })
+    await queryClient.invalidateQueries({ queryKey: ['streak', session?.user.id] })
     useGame.setState({ battle: null })
   }
 
@@ -210,6 +212,11 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
               {result.wrong_reason && <p className="text-sm">{result.wrong_reason}</p>}
               <p className="text-sm">{result.explanation}</p>
               {result.correct && (result.farmed ? <p className="text-sm font-semibold text-wood-dark">{t('battle.farmed')}</p> : <Rewards xp={result.xp_gained - result.bonus.xp} gold={result.gold_gained - result.bonus.gold} />)}
+              {result.missions_completed?.map((id) => (
+                <p key={id} className="flex items-center gap-2 rounded-xl border-2 border-wood-dark bg-gold/60 px-3 py-1 text-sm font-bold">
+                  <Gift size={16} aria-hidden /> {t('battle.missionDone', { name: t(`missions.${id}`, { subject: t('missions.anySubject') }) })}
+                </p>
+              ))}
             </div>
           )}
 

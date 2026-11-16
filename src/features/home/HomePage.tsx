@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
 import { BookOpen, ClipboardCheck, Coins, Globe2, LogOut, Pencil, Sparkles, Star, Volume2, VolumeX } from 'lucide-react'
 import { useMyRoles } from '../admin/review'
+import { MissionsPanel } from '../missions/MissionsPanel'
 import { Button, buttonClasses, Field, Modal, Panel } from '../../components/ui'
 import { LanguagePicker } from '../../i18n/LanguagePicker'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
@@ -89,6 +90,18 @@ export function HomePage() {
             <Link to="/character" className={buttonClasses('secondary', 'md')}>
               <Pencil size={18} aria-hidden /> {t('home.editHero')}
             </Link>
+            {/* The main action sits right under the hero so it is always near the top. */}
+            <Link to="/world" className={buttonClasses('primary', 'lg', 'w-full')}>
+              <Globe2 size={22} aria-hidden /> {t('home.enterWorld')}
+            </Link>
+            <Link to="/library" className={buttonClasses('secondary', 'md', 'w-full')}>
+              <BookOpen size={18} aria-hidden /> {t('home.library')}
+            </Link>
+            {roles.data && roles.data.length > 0 && (
+              <Link to="/admin" className={buttonClasses('secondary', 'md', 'w-full')}>
+                <ClipboardCheck size={18} aria-hidden /> {t('home.admin')}
+              </Link>
+            )}
           </Panel>
 
           <div className="flex flex-col gap-5">
@@ -119,19 +132,7 @@ export function HomePage() {
               </Link>
             </Panel>
 
-            <Link to="/world" className={buttonClasses('primary', 'lg', 'w-full')}>
-              <Globe2 size={22} aria-hidden /> {t('home.enterWorld')}
-            </Link>
-
-            <Link to="/library" className={buttonClasses('secondary', 'md', 'w-full')}>
-              <BookOpen size={18} aria-hidden /> {t('home.library')}
-            </Link>
-
-            {roles.data && roles.data.length > 0 && (
-              <Link to="/admin" className={buttonClasses('secondary', 'md', 'w-full')}>
-                <ClipboardCheck size={18} aria-hidden /> {t('home.admin')}
-              </Link>
-            )}
+            {uid && <MissionsPanel uid={uid} />}
 
             {isGuest && <GuestUpgrade under13={under13} />}
           </div>

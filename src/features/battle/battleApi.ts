@@ -25,6 +25,7 @@ export type AnswerResult = {
   bonus: { xp: number; gold: number }
   totals: { xp: number; level: number; gold: number }
   leveled_up: boolean
+  missions_completed: string[]
   state: EncounterState
 }
 

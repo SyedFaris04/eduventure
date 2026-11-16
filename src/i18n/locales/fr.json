@@ -458,7 +458,8 @@
       "tooFast": "Prends le temps de lire la question, puis réessaie.",
       "noQuestions": "Il n'y a pas encore de questions pour ton niveau.",
       "generic": "Un problème est survenu. Réessaie."
-    }
+    },
+    "missionDone": "Mission accomplie : {{name}} ! Récupère-la sur l'accueil."
   },
   "library": {
     "title": "Bibliothèque",
@@ -471,5 +472,23 @@
     "gotWrong": "Faux la dernière fois",
     "tries": "{{n}} essais",
     "nothingHere": "Rien pour l'instant. Affronte un monstre pour remplir ta bibliothèque !"
+  },
+  "missions": {
+    "title": "Missions",
+    "daily": "Aujourd'hui",
+    "weekly": "Cette semaine",
+    "claim": "Récupérer",
+    "claimed": "Récupérée",
+    "claimFailed": "Impossible de récupérer la récompense. Réessaie.",
+    "anySubject": "n'importe quelle matière",
+    "streak": "Série de {{n}} jours d'apprentissage",
+    "streakNone": "Réponds à une question aujourd'hui pour lancer une série",
+    "streakToday": "fait pour aujourd'hui !",
+    "restAvailable": "jour de repos disponible cette semaine",
+    "d_correct_10": "Réponds juste à 10 questions",
+    "d_defeat_3": "Bats 3 monstres",
+    "d_subject_5": "Réponds juste à 5 questions de {{subject}}",
+    "w_correct_50": "Réponds juste à 50 questions",
+    "w_defeat_12": "Bats 12 monstres"
   }
 }
