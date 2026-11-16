@@ -64,12 +64,13 @@
     "title": "Explore the World",
     "intro": "Twelve regions are waiting. Greenhaven Village opens first; the others unlock as Eduventure grows.",
     "opensIn": "Opens in Phase {{phase}}",
-    "firstStop": "First stop"
+    "firstStop": "First stop",
+    "openNow": "Open now"
   },
   "regions": {
     "greenhaven": {
-      "name": "Greenhaven Village",
-      "blurb": "A cosy village where every adventurer's journey begins."
+      "name": "Greenhaven Kampung",
+      "blurb": "A cosy kampung by the sea where every journey begins, with a jetty to the islands."
     },
     "knowledge_forest": {
       "name": "Knowledge Forest",
@@ -80,8 +81,8 @@
       "blurb": "Climb peaks of numbers, patterns and puzzles."
     },
     "science_island": {
-      "name": "Science Laboratory Island",
-      "blurb": "Bubbling experiments and curious creatures await."
+      "name": "Science Island",
+      "blurb": "Hutan Borneo: rainforest, mangroves, a waterfall and curious creatures."
     },
     "language_kingdom": {
       "name": "Language Kingdom",
@@ -393,7 +394,7 @@
     "shop": "Shop"
   },
   "world": {
-    "canvasLabel": "Greenhaven Village. Move with W A S D or the arrow keys, tap to walk, press E to talk.",
+    "canvasLabel": "{{place}}. Move with W A S D or the arrow keys, tap to walk, press E to talk.",
     "home": "Back to Home",
     "hud": "Your hero",
     "levelShort": "Lv {{level}}",
@@ -430,6 +431,12 @@
         "Hi there, {{name}}! I'm Nori. Soon my shop will be full of clothes, gear and decorations for heroes.",
         "It isn't open yet, but keep earning gold in battles. You'll have plenty to spend when I open my doors!"
       ]
+    },
+    "boatman": {
+      "name": "Pak Hamid",
+      "pages": [
+        "Selamat datang! Talk to me whenever you want to sail to another island."
+      ]
     }
   },
   "monsters": {
@@ -441,6 +448,24 @@
     },
     "dinobud": {
       "name": "Dinobud"
+    },
+    "hornbill": {
+      "name": "Kenyalang"
+    },
+    "tapir": {
+      "name": "Tapirling"
+    },
+    "pangolin": {
+      "name": "Tenggiling"
+    },
+    "cubelet": {
+      "name": "Cubelet"
+    },
+    "hexowl": {
+      "name": "Hexowl"
+    },
+    "pisnake": {
+      "name": "Pi-thon"
     }
   },
   "battle": {
@@ -484,9 +509,22 @@
     "errors": {
       "tooFast": "Take a moment to read the question, then try again.",
       "noQuestions": "There are no questions for your level yet.",
-      "generic": "Something went wrong. Please try again."
+      "generic": "Something went wrong. Please try again.",
+      "bossLevel": "Reach level 5 to challenge this boss."
     },
-    "missionDone": "Mission complete: {{name}}! Claim it on Home."
+    "missionDone": "Mission complete: {{name}}! Claim it on Home.",
+    "secondChance": "Second Chance! No HP lost this time.",
+    "newUnlocks": "New unlock!",
+    "helpers": {
+      "secondReady": "Second Chance ready",
+      "secondUsed": "Second Chance used",
+      "secondLocked": "Second Chance · Level {{level}}",
+      "locked": "Unlocks at level {{level}}",
+      "levelShort": "Level {{level}}",
+      "fiftyUsed": "Already used this battle",
+      "fiftyNeedsOptions": "Needs a question with at least two wrong options",
+      "fiftyFailed": "50/50 can't be used on this question."
+    }
   },
   "library": {
     "title": "Academic Library",
@@ -528,7 +566,10 @@
       "maths": "Maths",
       "science": "Science",
       "wisdom": "Wisdom",
-      "final": "Final"
+      "final": "Final",
+      "r1": "Round 1",
+      "r2": "Round 2",
+      "r3": "Round 3"
     },
     "intro": {
       "maths": "Round 1: the Guardian tests your numbers. Three correct answers clear the round.",
@@ -539,7 +580,8 @@
     "victory": "The Guardian bows!",
     "victoryText": "You cleared all four rounds. Greenhaven is proud of you!",
     "lostText": "The Guardian waits patiently for your return. Everything you earned is safe; read the explanations and try again.",
-    "alreadyToday": "You've already claimed today's Guardian reward. Come back tomorrow for another!"
+    "alreadyToday": "You've already claimed today's Guardian reward. Come back tomorrow for another!",
+    "locked": "Reach level {{level}} to challenge {{name}}."
   },
   "shop": {
     "title": "Shop",
@@ -561,7 +603,71 @@
     "errors": {
       "gold": "Not enough gold yet. Win battles and beat the Guardian to earn more.",
       "owned": "You already own this item.",
-      "failed": "Something went wrong. Please try again."
+      "failed": "Something went wrong. Please try again.",
+      "level": "You need a higher level to buy this item."
+    },
+    "lockedLevel": "Level {{level}}"
+  },
+  "unlocks": {
+    "second_chance": "Second Chance: your first wrong answer in each battle costs nothing",
+    "kampung_hero": "Title: Kampung Hero",
+    "island_bosses": "Island bosses: Raja Rafflesia and the Abacus Titan",
+    "rare": "Rare items in the shop",
+    "swift_perahu": "Swift perahu: faster boat rides",
+    "fifty": "50/50: remove two wrong answers once per battle",
+    "epic": "Epic items in the shop",
+    "island_explorer": "Title: Island Explorer",
+    "scholar_of_the_seas": "Title: Scholar of the Seas"
+  },
+  "titles": {
+    "label": "Title",
+    "none": "No title",
+    "kampung_hero": "Kampung Hero",
+    "island_explorer": "Island Explorer",
+    "scholar_of_the_seas": "Scholar of the Seas",
+    "locked": "{{title}} (level {{level}})"
+  },
+  "bosses": {
+    "raja_rafflesia": {
+      "name": "Raja Rafflesia",
+      "title": "Boss battle: Raja Rafflesia",
+      "intro": {
+        "r1": "Round 1: Raja Rafflesia blooms! Three correct science answers clear the round.",
+        "r2": "Round 2: the petals open wider. The questions get harder.",
+        "r3": "Round 3: the glowing heart. Show what you know!",
+        "final": "Final round: science mixed with everything. Three more and the bloom bows!"
+      },
+      "victory": "Raja Rafflesia bows!",
+      "victoryText": "You cleared all four rounds. Hutan Borneo is proud of you!",
+      "lostText": "Raja Rafflesia closes her petals and waits. Everything you earned is safe; read the explanations and try again.",
+      "alreadyToday": "You've already claimed today's Raja Rafflesia reward. Come back tomorrow!"
+    },
+    "abacus_titan": {
+      "name": "Abacus Titan",
+      "title": "Boss battle: Abacus Titan",
+      "intro": {
+        "r1": "Round 1: the Abacus Titan slides its beads. Three correct maths answers clear the round.",
+        "r2": "Round 2: the beads move faster. The questions get harder.",
+        "r3": "Round 3: the Titan's toughest sums!",
+        "final": "Final round: maths mixed with everything. Three more and the Titan bows!"
+      },
+      "victory": "The Abacus Titan bows!",
+      "victoryText": "You cleared all four rounds. The mountains echo your name!",
+      "lostText": "The Abacus Titan resets its beads and waits. Everything you earned is safe; read the explanations and try again.",
+      "alreadyToday": "You've already claimed today's Abacus Titan reward. Come back tomorrow!"
     }
+  },
+  "jetty": {
+    "title": "Pak Hamid's jetty",
+    "greeting": "Selamat datang! Where shall we sail today?",
+    "here": "You are here",
+    "sail": "Sail",
+    "sailTo": "Sail to {{place}}",
+    "comingSoon": "Coming soon"
+  },
+  "ride": {
+    "sailingTo": "Sailing to {{place}}…",
+    "skip": "Skip",
+    "label": "Boat ride"
   }
 }

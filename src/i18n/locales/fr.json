@@ -64,12 +64,13 @@
     "title": "Explorer le monde",
     "intro": "Douze régions t'attendent. Le village de Greenhaven ouvre en premier ; les autres se débloqueront à mesure qu'Eduventure grandit.",
     "opensIn": "Ouverture en phase {{phase}}",
-    "firstStop": "Première étape"
+    "firstStop": "Première étape",
+    "openNow": "Ouvert"
   },
   "regions": {
     "greenhaven": {
-      "name": "Village de Greenhaven",
-      "blurb": "Un village douillet où commence le voyage de chaque aventurier."
+      "name": "Kampung Greenhaven",
+      "blurb": "Un kampung douillet au bord de la mer où commence chaque voyage, avec un ponton vers les îles."
     },
     "knowledge_forest": {
       "name": "Forêt du Savoir",
@@ -80,8 +81,8 @@
       "blurb": "Gravis des sommets de nombres, de motifs et d'énigmes."
     },
     "science_island": {
-      "name": "Île-Laboratoire des Sciences",
-      "blurb": "Des expériences bouillonnantes et des créatures curieuses t'attendent."
+      "name": "Île des Sciences",
+      "blurb": "Hutan Borneo : forêt tropicale, mangroves, une cascade et des créatures curieuses."
     },
     "language_kingdom": {
       "name": "Royaume des Langues",
@@ -393,7 +394,7 @@
     "shop": "Boutique"
   },
   "world": {
-    "canvasLabel": "Village de Greenhaven. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",
+    "canvasLabel": "{{place}}. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",
     "home": "Retour à l'accueil",
     "hud": "Ton héros",
     "levelShort": "Niv. {{level}}",
@@ -430,6 +431,12 @@
         "Salut, {{name}} ! Je suis Nori. Bientôt, ma boutique sera pleine de vêtements, d'équipement et de décorations pour les héros.",
         "Elle n'est pas encore ouverte, mais continue à gagner de l'or en combat. Tu auras de quoi dépenser quand j'ouvrirai !"
       ]
+    },
+    "boatman": {
+      "name": "Pak Hamid",
+      "pages": [
+        "Selamat datang ! Parle-moi quand tu veux naviguer vers une autre île."
+      ]
     }
   },
   "monsters": {
@@ -441,6 +448,24 @@
     },
     "dinobud": {
       "name": "Dinobourgeon"
+    },
+    "hornbill": {
+      "name": "Kenyalang"
+    },
+    "tapir": {
+      "name": "Tapiron"
+    },
+    "pangolin": {
+      "name": "Tenggiling"
+    },
+    "cubelet": {
+      "name": "Cubelot"
+    },
+    "hexowl": {
+      "name": "Hexahibou"
+    },
+    "pisnake": {
+      "name": "Python Pi"
     }
   },
   "battle": {
@@ -484,9 +509,22 @@
     "errors": {
       "tooFast": "Prends le temps de lire la question, puis réessaie.",
       "noQuestions": "Il n'y a pas encore de questions pour ton niveau.",
-      "generic": "Un problème est survenu. Réessaie."
+      "generic": "Un problème est survenu. Réessaie.",
+      "bossLevel": "Atteins le niveau 5 pour défier ce boss."
     },
-    "missionDone": "Mission accomplie : {{name}} ! Récupère-la sur l'accueil."
+    "missionDone": "Mission accomplie : {{name}} ! Récupère-la sur l'accueil.",
+    "secondChance": "Seconde chance ! Aucun PV perdu cette fois.",
+    "newUnlocks": "Nouveau déblocage !",
+    "helpers": {
+      "secondReady": "Seconde chance prête",
+      "secondUsed": "Seconde chance utilisée",
+      "secondLocked": "Seconde chance · Niveau {{level}}",
+      "locked": "Débloqué au niveau {{level}}",
+      "levelShort": "Niveau {{level}}",
+      "fiftyUsed": "Déjà utilisé pendant ce combat",
+      "fiftyNeedsOptions": "Il faut une question avec au moins deux mauvaises réponses",
+      "fiftyFailed": "Le 50/50 ne peut pas être utilisé sur cette question."
+    }
   },
   "library": {
     "title": "Bibliothèque",
@@ -528,7 +566,10 @@
       "maths": "Maths",
       "science": "Sciences",
       "wisdom": "Sagesse",
-      "final": "Finale"
+      "final": "Finale",
+      "r1": "Manche 1",
+      "r2": "Manche 2",
+      "r3": "Manche 3"
     },
     "intro": {
       "maths": "Manche 1 : le Gardien teste tes calculs. Trois bonnes réponses pour passer la manche.",
@@ -539,7 +580,8 @@
     "victory": "Le Gardien s'incline !",
     "victoryText": "Tu as réussi les quatre manches. Greenhaven est fier de toi !",
     "lostText": "Le Gardien attend patiemment ton retour. Tout ce que tu as gagné est conservé ; relis les explications et réessaie.",
-    "alreadyToday": "Tu as déjà récupéré la récompense du Gardien aujourd'hui. Reviens demain pour une autre !"
+    "alreadyToday": "Tu as déjà récupéré la récompense du Gardien aujourd'hui. Reviens demain pour une autre !",
+    "locked": "Atteins le niveau {{level}} pour défier {{name}}."
   },
   "shop": {
     "title": "Boutique",
@@ -561,7 +603,71 @@
     "errors": {
       "gold": "Pas encore assez d’or. Gagne des combats et bats le Gardien pour en gagner plus.",
       "owned": "Tu possèdes déjà cet objet.",
-      "failed": "Un problème est survenu. Réessaie."
+      "failed": "Un problème est survenu. Réessaie.",
+      "level": "Il te faut un niveau plus élevé pour acheter cet objet."
+    },
+    "lockedLevel": "Niveau {{level}}"
+  },
+  "unlocks": {
+    "second_chance": "Seconde chance : ta première erreur de chaque combat ne coûte rien",
+    "kampung_hero": "Titre : Héros du Kampung",
+    "island_bosses": "Boss des îles : Raja Rafflesia et le Titan Boulier",
+    "rare": "Objets rares dans la boutique",
+    "swift_perahu": "Perahu rapide : traversées en bateau plus courtes",
+    "fifty": "50/50 : retire deux mauvaises réponses une fois par combat",
+    "epic": "Objets épiques dans la boutique",
+    "island_explorer": "Titre : Explorateur des îles",
+    "scholar_of_the_seas": "Titre : Savant des mers"
+  },
+  "titles": {
+    "label": "Titre",
+    "none": "Aucun titre",
+    "kampung_hero": "Héros du Kampung",
+    "island_explorer": "Explorateur des îles",
+    "scholar_of_the_seas": "Savant des mers",
+    "locked": "{{title}} (niveau {{level}})"
+  },
+  "bosses": {
+    "raja_rafflesia": {
+      "name": "Raja Rafflesia",
+      "title": "Combat de boss : Raja Rafflesia",
+      "intro": {
+        "r1": "Manche 1 : Raja Rafflesia fleurit ! Trois bonnes réponses de sciences pour passer la manche.",
+        "r2": "Manche 2 : les pétales s'ouvrent davantage. Les questions deviennent plus difficiles.",
+        "r3": "Manche 3 : le cœur lumineux. Montre ce que tu sais !",
+        "final": "Manche finale : les sciences mêlées à tout le reste. Encore trois et la fleur s'incline !"
+      },
+      "victory": "Raja Rafflesia s'incline !",
+      "victoryText": "Tu as passé les quatre manches. Hutan Borneo est fière de toi !",
+      "lostText": "Raja Rafflesia referme ses pétales et attend. Tout ce que tu as gagné est en sécurité ; lis les explications et réessaie.",
+      "alreadyToday": "Tu as déjà réclamé la récompense de Raja Rafflesia aujourd'hui. Reviens demain !"
+    },
+    "abacus_titan": {
+      "name": "Titan Boulier",
+      "title": "Combat de boss : Titan Boulier",
+      "intro": {
+        "r1": "Manche 1 : le Titan Boulier fait glisser ses perles. Trois bonnes réponses de maths pour passer la manche.",
+        "r2": "Manche 2 : les perles vont plus vite. Les questions deviennent plus difficiles.",
+        "r3": "Manche 3 : les calculs les plus durs du Titan !",
+        "final": "Manche finale : les maths mêlées à tout le reste. Encore trois et le Titan s'incline !"
+      },
+      "victory": "Le Titan Boulier s'incline !",
+      "victoryText": "Tu as passé les quatre manches. Les montagnes résonnent de ton nom !",
+      "lostText": "Le Titan Boulier remet ses perles en place et attend. Tout ce que tu as gagné est en sécurité ; lis les explications et réessaie.",
+      "alreadyToday": "Tu as déjà réclamé la récompense du Titan Boulier aujourd'hui. Reviens demain !"
     }
+  },
+  "jetty": {
+    "title": "Le ponton de Pak Hamid",
+    "greeting": "Selamat datang ! Où naviguons-nous aujourd'hui ?",
+    "here": "Tu es ici",
+    "sail": "Naviguer",
+    "sailTo": "Naviguer vers {{place}}",
+    "comingSoon": "Bientôt"
+  },
+  "ride": {
+    "sailingTo": "En route vers {{place}}…",
+    "skip": "Passer",
+    "label": "Traversée en bateau"
   }
 }

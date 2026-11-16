@@ -10,7 +10,7 @@ describe('snapshotKey', () => {
   })
 
   it('tells monsters, the guardian and heroes apart', () => {
-    const keys = [snapshotKey({ kind: 'monster', monster: 'sproutling' }), snapshotKey({ kind: 'monster', monster: 'dinobud' }), snapshotKey({ kind: 'boss' }), snapshotKey({ kind: 'hero', appearance: DEFAULT_APPEARANCE })]
+    const keys = [snapshotKey({ kind: 'monster', monster: 'sproutling' }), snapshotKey({ kind: 'monster', monster: 'dinobud' }), snapshotKey({ kind: 'boss', boss: 'guardian' }), snapshotKey({ kind: 'hero', appearance: DEFAULT_APPEARANCE })]
     expect(new Set(keys).size).toBe(4)
   })
 })

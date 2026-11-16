@@ -1,15 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
-import { Coins, Flag, Gift, Sparkles, Star, Zap } from 'lucide-react'
+import { Coins, Flag, Gift, Sparkles, Star, Unlock, Zap } from 'lucide-react'
 import { Button } from '../../components/ui'
 import { reactToAnswer, useGame } from '../../game/store'
 import type { MonsterKind } from '../../game/map'
 import { Snapshot } from '../../world3d/SnapshotImage'
+import { newUnlocks } from '../../game/unlocks'
 import { useSession } from '../authentication/useSession'
+import { useProgression } from '../character/useCharacter'
 import { playChime } from '../loading/sound'
-import { answerQuestion, BattleError, fleeEncounter, startEncounter, type AnswerPayload, type AnswerResult, type EncounterState } from './battleApi'
+import { answerQuestion, askFifty, BattleError, fleeEncounter, startEncounter, type AnswerPayload, type AnswerResult, type EncounterState } from './battleApi'
 import type { PublicQuestion } from './questionSchema'
+import { HelperBar } from './HelperBar'
 import { QuestionCard } from './QuestionCard'
 
 export const MIN_READ_MS = 1600 // the server rejects answers sooner than 1.5 s after a question appears
@@ -18,6 +21,18 @@ export function BattlePanel() {
   const battle = useGame((s) => s.battle)
   if (!battle) return null
   return <Battle key={battle.monsterId} monsterId={battle.monsterId} kind={battle.monster} />
+}
+
+/** The player's level as the server last reported it, and the level they had when this panel opened. */
+export function usePlayerLevel() {
+  const { session } = useSession()
+  const progression = useProgression(session?.user.id)
+  const data = progression.data
+  const level = data?.level ?? 1
+  const atStart = useRef<number | null>(null)
+  if (atStart.current === null && data) atStart.current = level
+  // A failed load counts as loaded (level 1), so panels never wait forever; the server still checks every gate.
+  return { level, startLevel: atStart.current ?? level, loaded: Boolean(data) || progression.isError }
 }
 
 /** Shared after-answer refresh: HUD totals at once, missions and streak when the panel closes. */
@@ -41,6 +56,7 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
   const shownAt = useRef(0)
+  const { level, startLevel } = usePlayerLevel()
 
   useEffect(() => {
     let cancelled = false
@@ -86,6 +102,19 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
     }
   }
 
+  async function fifty() {
+    if (!enc || busy) return
+    setBusy(true)
+    try {
+      const r = await askFifty(enc.encounter_id)
+      setEnc({ ...enc, helpers: { ...enc.helpers, fifty_used: true, hidden: r.hidden } })
+    } catch (e) {
+      setError(e instanceof BattleError ? e.key : 'battle.errors.generic')
+    } finally {
+      setBusy(false)
+    }
+  }
+
   function next() {
     if (!result) return
     setQuestion(result.state.question)
@@ -123,15 +152,18 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
           )}
           {!enc && !error && <p className="font-display text-wood-dark">{t('common.loading')}</p>}
 
+          {enc && !finished && !result && <HelperBar level={level} helpers={enc.helpers} question={question} onFifty={() => void fifty()} busy={busy} />}
           {question && (!finished || result) && (
             <QuestionCard
               key={question.id}
               question={question}
+              hidden={result ? undefined : enc?.helpers.hidden}
               busy={busy}
               result={result}
               onSubmit={submit}
               badge={result && result.damage > 0 && <span className="rounded-full bg-danger px-2 text-sm text-white">{t('battle.damage', { n: result.damage })}</span>}
             >
+              {result?.second_chance && <p className="text-sm font-bold text-grass-dark">{t('battle.secondChance')}</p>}
               {result?.correct && (result.farmed ? <p className="text-sm font-semibold text-wood-dark">{t('battle.farmed')}</p> : <Rewards xp={result.xp_gained - result.bonus.xp} gold={result.gold_gained - result.bonus.gold} />)}
               <MissionNotes ids={result?.missions_completed} />
             </QuestionCard>
@@ -144,7 +176,7 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
               <div className="flex justify-center">
                 <Rewards xp={earned.xp} gold={earned.gold} />
               </div>
-              {earned.leveledTo > 0 && <LevelUp level={earned.leveledTo} />}
+              {earned.leveledTo > 0 && <LevelUp level={earned.leveledTo} from={startLevel} />}
             </div>
           )}
 
@@ -209,11 +241,26 @@ export function MissionNotes({ ids }: { ids?: string[] }) {
   )
 }
 
-export function LevelUp({ level }: { level: number }) {
+export function LevelUp({ level, from }: { level: number; from?: number }) {
   const { t } = useTranslation()
+  const unlocked = from !== undefined ? newUnlocks(from, level) : []
   return (
-    <p className="flex items-center justify-center gap-2 rounded-2xl border-[3px] border-wood-dark bg-gold p-2 font-display text-lg font-bold">
-      <Star className="fill-current" aria-hidden /> {t('battle.levelUp', { level })}
-    </p>
+    <div className="space-y-2">
+      <p className="flex items-center justify-center gap-2 rounded-2xl border-[3px] border-wood-dark bg-gold p-2 font-display text-lg font-bold">
+        <Star className="fill-current" aria-hidden /> {t('battle.levelUp', { level })}
+      </p>
+      {unlocked.length > 0 && (
+        <div className="rounded-2xl border-[3px] border-grass-dark bg-grass/20 p-2 text-start">
+          <p className="flex items-center gap-2 font-display font-bold">
+            <Unlock size={18} aria-hidden /> {t('battle.newUnlocks')}
+          </p>
+          <ul className="ms-7 list-disc text-sm font-semibold">
+            {unlocked.map((u) => (
+              <li key={u.key}>{t(`unlocks.${u.key}`)}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
   )
 }

@@ -22,4 +22,11 @@ We credit him anyway.
 
 ## Made for EDUVENTURE
 
-The hero's body parts, hair, clothes, weapons and shop items are built in code (`src/world3d/hero/`). So are the monsters, the Greenhaven Guardian, the ground, water, bushes, bridge, flowers and grass. They are original to this project.
+The hero's body parts, hair, clothes, weapons and shop items are built in code (`src/world3d/hero/`). So are the monsters, the bosses (Greenhaven Guardian, Raja Rafflesia, Abacus Titan), the ground, water, bushes, bridge, jetty, flowers and grass.
+
+The island scenery is code-built too (`src/world3d/props/codeProps.ts`):
+- palms, kampung houses, the pasar malam stall, ferns, mangroves and mushrooms;
+- snowy pines, pillars, sundials and the abacus gate;
+- the wau kite, the waterfall and the perahu in the boat ride.
+
+All of it is original to this project. No new art pack was added for the islands.

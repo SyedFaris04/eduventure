@@ -6,7 +6,7 @@ import { Snapshot } from '../../world3d/SnapshotImage'
 import type { MyCharacter } from '../character/useCharacter'
 
 /** Player card: compact strip on phones, card on larger screens. Values come from the server. */
-export function Hud({ character, xp, gold }: { character: MyCharacter; xp: number; gold: number }) {
+export function Hud({ character, xp, gold, title }: { character: MyCharacter; xp: number; gold: number; title?: string | null }) {
   const { t } = useTranslation()
   const p = levelProgress(xp)
   return (
@@ -22,6 +22,7 @@ export function Hud({ character, xp, gold }: { character: MyCharacter; xp: numbe
           <p className="truncate font-display font-semibold">{character.name}</p>
           <p className="shrink-0 rounded-full bg-wood px-2 text-xs font-bold text-cream">{t('world.levelShort', { level: p.level })}</p>
         </div>
+        {title && <p className="-mt-0.5 truncate text-[11px] font-bold text-path-dark">{t(`titles.${title}`)}</p>}
         <ProgressBar value={p.into / p.needed} label={t('world.xpLabel', { into: p.into, needed: p.needed })} className="mt-1 h-4!" />
         <div className="mt-0.5 flex justify-between text-xs font-bold text-wood-dark">
           <span>

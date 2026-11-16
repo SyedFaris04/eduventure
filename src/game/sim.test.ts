@@ -17,6 +17,17 @@ describe('WorldSim', () => {
     expect(sim.hero.pos).toEqual({ x: map.spawn.x + 0.5, y: map.spawn.y + 0.5 })
   })
 
+  it('arriving by boat starts on the arrival tile', () => {
+    const sim = new WorldSim(map, seeded(), { atArrival: true })
+    expect(sim.hero.pos).toEqual({ x: map.arrival.x + 0.5, y: map.arrival.y + 0.5 })
+  })
+
+  it('spawns as many monsters as the map asks for', () => {
+    const sim = new WorldSim(map, seeded())
+    const total = Object.values(map.monsterCounts).reduce((a, b) => a + (b ?? 0), 0)
+    expect(sim.monsters.length).toBe(total)
+  })
+
   it('stick up moves the hero toward grid (-1,-1) at full speed', () => {
     const sim = new WorldSim(map, seeded())
     const start = { ...sim.hero.pos }
@@ -61,7 +72,7 @@ describe('WorldSim', () => {
     expect(m.alive).toBe(false)
     run(sim, 0.1, undefined, 1000 + RESPAWN_MS + 1)
     expect(m.alive).toBe(true)
-    expect(map.monsterZones[m.kind].some((t) => t.x === Math.floor(m.pos.x) && t.y === Math.floor(m.pos.y))).toBe(true)
+    expect(map.monsterZones[m.kind]!.some((t) => t.x === Math.floor(m.pos.x) && t.y === Math.floor(m.pos.y))).toBe(true)
   })
 
   it('monsters stay inside their zone and hop between tiles', () => {
@@ -71,7 +82,7 @@ describe('WorldSim', () => {
     for (let i = 0; i < 600; i++) {
       sim.update(1 / 20, { x: 0, y: 0 }, (now += 50), false)
       hopped ||= sim.monsters.some((m) => m.hopT >= 0)
-      for (const m of sim.monsters) expect(map.monsterZones[m.kind].some((t) => t.x === Math.floor(m.pos.x) && t.y === Math.floor(m.pos.y)), m.id).toBe(true)
+      for (const m of sim.monsters) expect(map.monsterZones[m.kind]!.some((t) => t.x === Math.floor(m.pos.x) && t.y === Math.floor(m.pos.y)), m.id).toBe(true)
     }
     expect(hopped).toBe(true)
   })

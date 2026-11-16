@@ -1,9 +1,13 @@
-import { Component, lazy, Suspense, useState, type ReactNode } from 'react'
+import { Component, lazy, Suspense, use, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RefreshCw } from 'lucide-react'
 import { Button } from '../../components/ui'
 import type { Appearance } from '../character/appearance'
 import { hasWebGL } from '../../world3d/webgl'
+import { usePlace } from '../../game/placeStore'
+import { placeMap } from '../../game/placeMaps'
+import { useGame } from '../../game/store'
+import { Travel } from './Travel'
 
 // three.js and the models download only when the world opens.
 const World3D = lazy(() => import('../../world3d/World3D'))
@@ -22,10 +26,24 @@ function Notice({ children }: { children: ReactNode }) {
   return <div className="absolute inset-0 grid place-items-center p-6 text-center">{<div className="pointer-events-auto flex max-w-sm flex-col items-center gap-3 rounded-2xl border-[3px] border-wood bg-cream/95 p-5 font-semibold text-wood-dark">{children}</div>}</div>
 }
 
+/** The current place: its map downloads on demand (Suspense), then the 3D world shows it. */
+function PlaceWorld({ hero }: { hero: Appearance }) {
+  const travel = useGame((s) => s.travel)
+  return travel ? <Travel hero={hero} to={travel.to} /> : <CurrentPlace hero={hero} />
+}
+
+function CurrentPlace({ hero }: { hero: Appearance }) {
+  const place = usePlace((s) => s.place)
+  const arriving = usePlace((s) => s.arriving)
+  const map = use(placeMap(place))
+  return <World3D key={place} hero={hero} map={map} atArrival={arriving} />
+}
+
 /** The 3D world, or a clear message when this device can't show it or the download failed. */
 export function GameCanvas({ hero }: { hero: Appearance }) {
   const { t } = useTranslation()
   const [attempt, setAttempt] = useState(0)
+  const place = usePlace((s) => s.place)
   if (!hasWebGL())
     return (
       <Notice>
@@ -33,7 +51,7 @@ export function GameCanvas({ hero }: { hero: Appearance }) {
       </Notice>
     )
   return (
-    <div role="application" aria-label={t('world.canvasLabel')} className="absolute inset-0 touch-none">
+    <div role="application" aria-label={t('world.canvasLabel', { place: t(`regions.${place}.name`) })} className="absolute inset-0 touch-none">
       <Boundary
         key={attempt}
         fallback={
@@ -54,7 +72,7 @@ export function GameCanvas({ hero }: { hero: Appearance }) {
         }
       >
         <Suspense fallback={null}>
-          <World3D hero={hero} />
+          <PlaceWorld hero={hero} />
         </Suspense>
       </Boundary>
     </div>

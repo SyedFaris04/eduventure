@@ -1,10 +1,10 @@
 import { useLayoutEffect, useMemo, useRef } from 'react'
 import { BoxGeometry, Color, ConeGeometry, InstancedMesh, MeshStandardMaterial, Object3D, SphereGeometry } from 'three'
-import type { GameMap, TileKind } from '../game/map'
+import type { GameMap } from '../game/map'
+import { tileColour } from './themes'
 import { addWind } from './wind'
 
 export const GROUND_DEPTH = 0.6 // tiles are boxes from y −0.6 to 0; the pond sits at −0.15 and the sea at −0.5
-const TILE_COLOUR: Record<Exclude<TileKind, 'water' | 'bridge'>, string> = { grass: '#8bc34a', flowers: '#8bc34a', path: '#f2b872', sand: '#f3d9a4' }
 const PETALS = ['#f7a8c4', '#fff6e3', '#f7c843', '#c9b6f2']
 
 // Small stable hash so the world looks the same on every visit.
@@ -38,7 +38,7 @@ function Instances({ geometry, material, items, castShadow = false, receiveShado
   return <instancedMesh ref={ref} args={[geometry, material, items.length]} castShadow={castShadow} receiveShadow={receiveShadow} frustumCulled={false} />
 }
 
-/** Greenhaven's ground: chunky tiles with a little colour variety, cliffs around the island, the bridge, flowers and grass. */
+/** A place's ground: chunky tiles in the theme's colours, cliffs around the island, bridges, the jetty, flowers and grass. */
 export function Ground({ map }: { map: GameMap }) {
   const geo = useMemo(() => ({ tile: new BoxGeometry(1, GROUND_DEPTH, 1), petal: new SphereGeometry(0.07, 6, 4), tuft: new ConeGeometry(0.05, 0.22, 4), plank: new BoxGeometry(1, 0.08, 0.2) }), [])
   const mat = useMemo(
@@ -60,21 +60,38 @@ export function Ground({ map }: { map: GameMap }) {
     const tufts: Inst[] = []
     const planks: Inst[] = []
     const posts: Inst[] = []
+    const cliffs: Inst[] = []
+    const open = (x: number, y: number) => ['water', 'jetty'].includes(map.cells[y]?.[x]?.tile ?? '')
+    // Cliff faces along the island's edge, left open where water or the jetty meets the sea.
+    for (let x = 0; x < map.width; x++) {
+      if (!open(x, 0)) cliffs.push({ x: x + 0.5, y: -1.01, z: -0.08, sx: 1, sy: 2 / GROUND_DEPTH, sz: 0.15 })
+      if (!open(x, map.height - 1)) cliffs.push({ x: x + 0.5, y: -1.01, z: map.height + 0.08, sx: 1, sy: 2 / GROUND_DEPTH, sz: 0.15 })
+    }
+    for (let y = 0; y < map.height; y++) {
+      if (!open(0, y)) cliffs.push({ x: -0.08, y: -1.01, z: y + 0.5, sx: 0.15, sy: 2 / GROUND_DEPTH, sz: 1 })
+      if (!open(map.width - 1, y)) cliffs.push({ x: map.width + 0.08, y: -1.01, z: y + 0.5, sx: 0.15, sy: 2 / GROUND_DEPTH, sz: 1 })
+    }
     map.cells.forEach((row, y) =>
       row.forEach((cell, x) => {
         const cx = x + 0.5
         const cz = y + 0.5
         if (cell.tile === 'water') return
+        if (cell.tile === 'jetty') {
+          // Jetty boards run across the way you walk out to sea, on posts standing in the water.
+          for (let i = 0; i < 4; i++) planks.push({ x: cx, y: -0.04, z: y + 0.125 + i * 0.25, sx: 1.04 })
+          for (const side of [-1, 1]) posts.push({ x: cx + side * 0.47, y: -0.45, z: cz, sx: 0.12, sy: 1 / GROUND_DEPTH, sz: 0.12 })
+          return
+        }
         if (cell.tile === 'bridge') {
           // Planks lie across the way you walk (the bridge runs along the row), with a small gap between them.
           for (let i = 0; i < 4; i++) planks.push({ x: x + 0.125 + i * 0.25, y: -0.04, z: cz, ry: Math.PI / 2, sz: 1.12 })
           for (const side of [-1, 1]) posts.push({ x: cx, y: 0.1, z: cz + side * 0.56, sx: 0.09, sy: 0.4, sz: 0.09 }, { x: cx, y: 0.24, z: cz + side * 0.56, sx: 1, sy: 0.04 / GROUND_DEPTH, sz: 0.05 })
           return
         }
-        const base = new Color(TILE_COLOUR[cell.tile])
+        const base = new Color(tileColour(map.theme, cell.tile))
         const v = (hash(x, y) - 0.5) * 0.035
         base.offsetHSL(0, 0, v)
-        const top = cell.tile === 'path' ? -0.02 : 0 // paths sit a touch lower, like worn ground
+        const top = cell.tile === 'path' || cell.tile === 'mud' || cell.tile === 'stone' ? -0.02 : cell.tile === 'snow' ? 0.03 : 0 // paths sit a touch lower, like worn ground; snow a touch higher
         tiles.push({ x: cx, y: top - GROUND_DEPTH / 2, z: cz, colour: `#${base.getHexString()}` })
         if (cell.tile === 'flowers' || (cell.tile === 'grass' && hash(x, y, 5) > 0.93))
           for (let i = 0; i < (cell.tile === 'flowers' ? 4 : 1); i++)
@@ -83,7 +100,7 @@ export function Ground({ map }: { map: GameMap }) {
           for (let i = 0; i < 3; i++) tufts.push({ x: x + 0.2 + hash(x, y, i + 20) * 0.6, y: 0.1, z: y + 0.2 + hash(x, y, i + 30) * 0.6, ry: hash(x, y, i) * 3, sy: 0.7 + hash(x, y, i + 40) * 0.6 })
       }),
     )
-    return { tiles, petals, tufts, planks, posts }
+    return { tiles, petals, tufts, planks, posts, cliffs }
   }, [map])
 
   return (
@@ -97,16 +114,7 @@ export function Ground({ map }: { map: GameMap }) {
       <mesh position={[map.width / 2, -GROUND_DEPTH - 0.7, map.height / 2]} material={mat.cliffDark}>
         <boxGeometry args={[map.width, 1.4, map.height]} />
       </mesh>
-      {([
-        [map.width / 2, -0.12, map.width + 0.3, 0.15],
-        [map.width / 2, map.height + 0.12, map.width + 0.3, 0.15],
-        [-0.12, map.height / 2, 0.15, map.height],
-        [map.width + 0.12, map.height / 2, 0.15, map.height],
-      ] as const).map(([x, z, w, d], i) => (
-        <mesh key={i} position={[x, -1.01, z]} material={mat.cliff} receiveShadow>
-          <boxGeometry args={[w, 2, d]} />
-        </mesh>
-      ))}
+      <Instances geometry={geo.tile} material={mat.cliff} items={parts.cliffs} />
     </group>
   )
 }

@@ -64,12 +64,13 @@
     "title": "Teroka Dunia",
     "intro": "Dua belas wilayah sedang menanti. Kampung Greenhaven dibuka dahulu; yang lain akan dibuka apabila Eduventure berkembang.",
     "opensIn": "Dibuka dalam Fasa {{phase}}",
-    "firstStop": "Destinasi pertama"
+    "firstStop": "Destinasi pertama",
+    "openNow": "Dibuka sekarang"
   },
   "regions": {
     "greenhaven": {
       "name": "Kampung Greenhaven",
-      "blurb": "Kampung yang selesa tempat setiap pengembara memulakan perjalanan."
+      "blurb": "Kampung yang selesa di tepi laut, tempat setiap pengembaraan bermula, dengan jeti ke pulau-pulau."
     },
     "knowledge_forest": {
       "name": "Hutan Ilmu",
@@ -80,8 +81,8 @@
       "blurb": "Daki puncak nombor, corak dan teka-teki."
     },
     "science_island": {
-      "name": "Pulau Makmal Sains",
-      "blurb": "Eksperimen yang berbuih dan makhluk yang ingin tahu sedang menanti."
+      "name": "Pulau Sains",
+      "blurb": "Hutan Borneo: hutan hujan, bakau, air terjun dan makhluk yang ingin tahu."
     },
     "language_kingdom": {
       "name": "Kerajaan Bahasa",
@@ -393,7 +394,7 @@
     "shop": "Kedai"
   },
   "world": {
-    "canvasLabel": "Kampung Greenhaven. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",
+    "canvasLabel": "{{place}}. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",
     "home": "Kembali ke Laman Utama",
     "hud": "Wira anda",
     "levelShort": "Tahap {{level}}",
@@ -430,6 +431,12 @@
         "Hai, {{name}}! Saya Nori. Tidak lama lagi kedai saya akan penuh dengan pakaian, kelengkapan dan hiasan untuk wira.",
         "Kedai belum dibuka, tetapi teruskan mengumpul emas dalam pertarungan. Anda akan ada banyak untuk dibelanjakan nanti!"
       ]
+    },
+    "boatman": {
+      "name": "Pak Hamid",
+      "pages": [
+        "Selamat datang! Bercakaplah dengan saya bila-bila masa anda mahu belayar ke pulau lain."
+      ]
     }
   },
   "monsters": {
@@ -441,6 +448,24 @@
     },
     "dinobud": {
       "name": "Dinokecil"
+    },
+    "hornbill": {
+      "name": "Kenyalang"
+    },
+    "tapir": {
+      "name": "Tapirling"
+    },
+    "pangolin": {
+      "name": "Tenggiling"
+    },
+    "cubelet": {
+      "name": "Kubelet"
+    },
+    "hexowl": {
+      "name": "Burung Heks"
+    },
+    "pisnake": {
+      "name": "Ular Pi"
     }
   },
   "battle": {
@@ -484,9 +509,22 @@
     "errors": {
       "tooFast": "Luangkan masa membaca soalan, kemudian cuba lagi.",
       "noQuestions": "Belum ada soalan untuk tahap anda.",
-      "generic": "Ada sesuatu yang tidak kena. Sila cuba lagi."
+      "generic": "Ada sesuatu yang tidak kena. Sila cuba lagi.",
+      "bossLevel": "Capai tahap 5 untuk mencabar bos ini."
     },
-    "missionDone": "Misi selesai: {{name}}! Tuntut di Laman Utama."
+    "missionDone": "Misi selesai: {{name}}! Tuntut di Laman Utama.",
+    "secondChance": "Peluang Kedua! Tiada HP hilang kali ini.",
+    "newUnlocks": "Buka kunci baharu!",
+    "helpers": {
+      "secondReady": "Peluang Kedua sedia",
+      "secondUsed": "Peluang Kedua digunakan",
+      "secondLocked": "Peluang Kedua · Tahap {{level}}",
+      "locked": "Dibuka pada tahap {{level}}",
+      "levelShort": "Tahap {{level}}",
+      "fiftyUsed": "Sudah digunakan dalam pertarungan ini",
+      "fiftyNeedsOptions": "Perlukan soalan dengan sekurang-kurangnya dua pilihan salah",
+      "fiftyFailed": "50/50 tidak boleh digunakan untuk soalan ini."
+    }
   },
   "library": {
     "title": "Perpustakaan Akademik",
@@ -528,7 +566,10 @@
       "maths": "Matematik",
       "science": "Sains",
       "wisdom": "Hikmah",
-      "final": "Akhir"
+      "final": "Akhir",
+      "r1": "Pusingan 1",
+      "r2": "Pusingan 2",
+      "r3": "Pusingan 3"
     },
     "intro": {
       "maths": "Pusingan 1: Penjaga menguji nombor anda. Tiga jawapan betul untuk lepas pusingan.",
@@ -539,7 +580,8 @@
     "victory": "Penjaga tunduk!",
     "victoryText": "Anda melepasi keempat-empat pusingan. Greenhaven bangga dengan anda!",
     "lostText": "Penjaga menunggu anda kembali dengan sabar. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
-    "alreadyToday": "Anda sudah menuntut ganjaran Penjaga hari ini. Kembali esok untuk ganjaran lagi!"
+    "alreadyToday": "Anda sudah menuntut ganjaran Penjaga hari ini. Kembali esok untuk ganjaran lagi!",
+    "locked": "Capai tahap {{level}} untuk mencabar {{name}}."
   },
   "shop": {
     "title": "Kedai",
@@ -561,7 +603,71 @@
     "errors": {
       "gold": "Emas belum cukup. Menangi pertarungan dan kalahkan Penjaga untuk mendapat lebih banyak.",
       "owned": "Anda sudah memiliki barang ini.",
-      "failed": "Ada masalah. Sila cuba lagi."
+      "failed": "Ada masalah. Sila cuba lagi.",
+      "level": "Anda perlukan tahap lebih tinggi untuk membeli barang ini."
+    },
+    "lockedLevel": "Tahap {{level}}"
+  },
+  "unlocks": {
+    "second_chance": "Peluang Kedua: jawapan salah pertama dalam setiap pertarungan tidak menjejaskan apa-apa",
+    "kampung_hero": "Gelaran: Wira Kampung",
+    "island_bosses": "Bos pulau: Raja Rafflesia dan Titan Sempoa",
+    "rare": "Barang jarang di kedai",
+    "swift_perahu": "Perahu laju: perjalanan bot lebih cepat",
+    "fifty": "50/50: buang dua jawapan salah sekali setiap pertarungan",
+    "epic": "Barang epik di kedai",
+    "island_explorer": "Gelaran: Penjelajah Pulau",
+    "scholar_of_the_seas": "Gelaran: Cendekiawan Lautan"
+  },
+  "titles": {
+    "label": "Gelaran",
+    "none": "Tiada gelaran",
+    "kampung_hero": "Wira Kampung",
+    "island_explorer": "Penjelajah Pulau",
+    "scholar_of_the_seas": "Cendekiawan Lautan",
+    "locked": "{{title}} (tahap {{level}})"
+  },
+  "bosses": {
+    "raja_rafflesia": {
+      "name": "Raja Rafflesia",
+      "title": "Pertarungan bos: Raja Rafflesia",
+      "intro": {
+        "r1": "Pusingan 1: Raja Rafflesia mekar! Tiga jawapan sains yang betul melepasi pusingan ini.",
+        "r2": "Pusingan 2: kelopak terbuka lebih luas. Soalan semakin sukar.",
+        "r3": "Pusingan 3: jantung yang bercahaya. Tunjukkan apa yang anda tahu!",
+        "final": "Pusingan akhir: sains bercampur semua. Tiga lagi dan bunga itu tunduk!"
+      },
+      "victory": "Raja Rafflesia tunduk!",
+      "victoryText": "Anda melepasi keempat-empat pusingan. Hutan Borneo bangga dengan anda!",
+      "lostText": "Raja Rafflesia menutup kelopaknya dan menunggu. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
+      "alreadyToday": "Anda sudah menuntut ganjaran Raja Rafflesia hari ini. Datang lagi esok!"
+    },
+    "abacus_titan": {
+      "name": "Titan Sempoa",
+      "title": "Pertarungan bos: Titan Sempoa",
+      "intro": {
+        "r1": "Pusingan 1: Titan Sempoa menggerakkan manik-maniknya. Tiga jawapan matematik yang betul melepasi pusingan ini.",
+        "r2": "Pusingan 2: manik bergerak lebih laju. Soalan semakin sukar.",
+        "r3": "Pusingan 3: kira-kira paling sukar sang Titan!",
+        "final": "Pusingan akhir: matematik bercampur semua. Tiga lagi dan Titan itu tunduk!"
+      },
+      "victory": "Titan Sempoa tunduk!",
+      "victoryText": "Anda melepasi keempat-empat pusingan. Gunung-ganang menyebut nama anda!",
+      "lostText": "Titan Sempoa menyusun semula maniknya dan menunggu. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
+      "alreadyToday": "Anda sudah menuntut ganjaran Titan Sempoa hari ini. Datang lagi esok!"
     }
+  },
+  "jetty": {
+    "title": "Jeti Pak Hamid",
+    "greeting": "Selamat datang! Ke mana kita belayar hari ini?",
+    "here": "Anda di sini",
+    "sail": "Belayar",
+    "sailTo": "Belayar ke {{place}}",
+    "comingSoon": "Akan datang"
+  },
+  "ride": {
+    "sailingTo": "Belayar ke {{place}}…",
+    "skip": "Langkau",
+    "label": "Perjalanan bot"
   }
 }

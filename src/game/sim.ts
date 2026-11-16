@@ -3,7 +3,6 @@ import type { GameMap, MonsterKind } from './map'
 import { followPath, INTERACT_RANGE, screenDirToGrid, SPEED, step, tapGoal } from './movement'
 import type { Prompt } from './store'
 
-export const MONSTER_COUNT: Record<MonsterKind, number> = { sproutling: 4, pebblewing: 3, dinobud: 3 }
 export const RESPAWN_MS = 20_000
 const MONSTER_SPEED = 1.1 // tiles per second
 
@@ -22,7 +21,7 @@ export type SimMonster = {
 }
 
 /**
- * Greenhaven's game logic without any drawing: the hero's movement, wandering monsters, respawns and the
+ * One place's game logic without any drawing: the hero's movement, wandering monsters, respawns and the
  * interact prompt. The 3D scene reads this every frame; tests drive it directly.
  */
 export class WorldSim {
@@ -33,17 +32,19 @@ export class WorldSim {
   constructor(
     readonly map: GameMap,
     private rng: () => number = Math.random,
+    opts: { atArrival?: boolean } = {},
   ) {
-    this.hero = { pos: { x: map.spawn.x + 0.5, y: map.spawn.y + 0.5 }, dir: { x: 0, y: 0 }, speed01: 0, facing: 0 }
-    for (const kind of Object.keys(MONSTER_COUNT) as MonsterKind[])
-      for (let i = 0; i < MONSTER_COUNT[kind]; i++) {
+    const start = opts.atArrival ? map.arrival : map.spawn
+    this.hero = { pos: { x: start.x + 0.5, y: start.y + 0.5 }, dir: { x: 0, y: 0 }, speed01: 0, facing: 0 }
+    for (const [kind, count] of Object.entries(map.monsterCounts) as [MonsterKind, number][])
+      for (let i = 0; i < (map.monsterZones[kind]?.length ? count : 0); i++) {
         const t = this.freeZoneTile(kind)
         this.monsters.push({ id: `${kind}-${i}`, kind, pos: { x: t.x + 0.5, y: t.y + 0.5 }, alive: true, hopT: -1, facing: this.rng() * Math.PI * 2, respawnAt: 0, nextMove: 1500 + this.rng() * 3000 })
       }
   }
 
   private freeZoneTile(kind: MonsterKind): Point {
-    const tiles = this.map.monsterZones[kind]
+    const tiles = this.map.monsterZones[kind]!
     for (let i = 0; i < 20; i++) {
       const t = tiles[Math.floor(this.rng() * tiles.length)]
       if (!this.monsters.some((m) => m.alive && Math.floor(m.pos.x) === t.x && Math.floor(m.pos.y) === t.y)) return t
@@ -110,7 +111,7 @@ export class WorldSim {
     }
     if (!m.hop && !paused && now > m.nextMove) {
       m.nextMove = now + 2000 + this.rng() * 3500
-      const zone = this.map.monsterZones[m.kind]
+      const zone = this.map.monsterZones[m.kind]!
       const options = zone.filter((t) => Math.abs(t.x + 0.5 - m.pos.x) <= 1 && Math.abs(t.y + 0.5 - m.pos.y) <= 1 && !(t.x + 0.5 === m.pos.x && t.y + 0.5 === m.pos.y) && !this.map.blocked(t.x, t.y))
       const t = options[Math.floor(this.rng() * options.length)]
       if (t) {

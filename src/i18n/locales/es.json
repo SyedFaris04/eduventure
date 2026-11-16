@@ -64,12 +64,13 @@
     "title": "Explora el mundo",
     "intro": "Doce regiones te esperan. La aldea de Greenhaven abre primero; las demás se desbloquearán a medida que Eduventure crezca.",
     "opensIn": "Abre en la fase {{phase}}",
-    "firstStop": "Primera parada"
+    "firstStop": "Primera parada",
+    "openNow": "Abierto ahora"
   },
   "regions": {
     "greenhaven": {
-      "name": "Aldea Greenhaven",
-      "blurb": "Un pueblo acogedor donde comienza el viaje de todo aventurero."
+      "name": "Kampung Greenhaven",
+      "blurb": "Un acogedor kampung junto al mar donde empieza cada viaje, con un muelle hacia las islas."
     },
     "knowledge_forest": {
       "name": "Bosque del Saber",
@@ -80,8 +81,8 @@
       "blurb": "Escala cumbres de números, patrones y acertijos."
     },
     "science_island": {
-      "name": "Isla Laboratorio de Ciencias",
-      "blurb": "Te esperan experimentos burbujeantes y criaturas curiosas."
+      "name": "Isla de las Ciencias",
+      "blurb": "Hutan Borneo: selva, manglares, una cascada y criaturas curiosas."
     },
     "language_kingdom": {
       "name": "Reino de las Lenguas",
@@ -393,7 +394,7 @@
     "shop": "Tienda"
   },
   "world": {
-    "canvasLabel": "Aldea Greenhaven. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",
+    "canvasLabel": "{{place}}. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",
     "home": "Volver al inicio",
     "hud": "Tu héroe",
     "levelShort": "Nv {{level}}",
@@ -430,6 +431,12 @@
         "¡Hola, {{name}}! Soy Nori. Pronto mi tienda estará llena de ropa, equipo y decoraciones para héroes.",
         "Todavía no está abierta, pero sigue ganando oro en las batallas. ¡Tendrás mucho para gastar cuando abra!"
       ]
+    },
+    "boatman": {
+      "name": "Pak Hamid",
+      "pages": [
+        "¡Selamat datang! Habla conmigo cuando quieras navegar a otra isla."
+      ]
     }
   },
   "monsters": {
@@ -441,6 +448,24 @@
     },
     "dinobud": {
       "name": "Dinobrote"
+    },
+    "hornbill": {
+      "name": "Kenyalang"
+    },
+    "tapir": {
+      "name": "Tapirín"
+    },
+    "pangolin": {
+      "name": "Tenggiling"
+    },
+    "cubelet": {
+      "name": "Cubito"
+    },
+    "hexowl": {
+      "name": "Búho Hexágono"
+    },
+    "pisnake": {
+      "name": "Pitón Pi"
     }
   },
   "battle": {
@@ -484,9 +509,22 @@
     "errors": {
       "tooFast": "Tómate un momento para leer la pregunta y vuelve a intentarlo.",
       "noQuestions": "Todavía no hay preguntas para tu nivel.",
-      "generic": "Algo salió mal. Inténtalo de nuevo."
+      "generic": "Algo salió mal. Inténtalo de nuevo.",
+      "bossLevel": "Llega al nivel 5 para desafiar a este jefe."
     },
-    "missionDone": "¡Misión completada: {{name}}! Reclámala en Inicio."
+    "missionDone": "¡Misión completada: {{name}}! Reclámala en Inicio.",
+    "secondChance": "¡Segunda oportunidad! Esta vez no pierdes vida.",
+    "newUnlocks": "¡Nuevo desbloqueo!",
+    "helpers": {
+      "secondReady": "Segunda oportunidad lista",
+      "secondUsed": "Segunda oportunidad usada",
+      "secondLocked": "Segunda oportunidad · Nivel {{level}}",
+      "locked": "Se desbloquea en el nivel {{level}}",
+      "levelShort": "Nivel {{level}}",
+      "fiftyUsed": "Ya usado en esta batalla",
+      "fiftyNeedsOptions": "Necesita una pregunta con al menos dos opciones incorrectas",
+      "fiftyFailed": "El 50/50 no se puede usar en esta pregunta."
+    }
   },
   "library": {
     "title": "Biblioteca académica",
@@ -528,7 +566,10 @@
       "maths": "Matemáticas",
       "science": "Ciencias",
       "wisdom": "Sabiduría",
-      "final": "Final"
+      "final": "Final",
+      "r1": "Ronda 1",
+      "r2": "Ronda 2",
+      "r3": "Ronda 3"
     },
     "intro": {
       "maths": "Ronda 1: el Guardián pone a prueba tus números. Tres respuestas correctas superan la ronda.",
@@ -539,7 +580,8 @@
     "victory": "¡El Guardián se inclina!",
     "victoryText": "Superaste las cuatro rondas. ¡Greenhaven está orgulloso de ti!",
     "lostText": "El Guardián espera pacientemente tu regreso. Todo lo que ganaste está a salvo; lee las explicaciones y vuelve a intentarlo.",
-    "alreadyToday": "Ya reclamaste hoy la recompensa del Guardián. ¡Vuelve mañana por otra!"
+    "alreadyToday": "Ya reclamaste hoy la recompensa del Guardián. ¡Vuelve mañana por otra!",
+    "locked": "Llega al nivel {{level}} para desafiar a {{name}}."
   },
   "shop": {
     "title": "Tienda",
@@ -561,7 +603,71 @@
     "errors": {
       "gold": "Aún no tienes suficiente oro. Gana batallas y vence al Guardián para conseguir más.",
       "owned": "Ya tienes este objeto.",
-      "failed": "Algo salió mal. Inténtalo de nuevo."
+      "failed": "Algo salió mal. Inténtalo de nuevo.",
+      "level": "Necesitas un nivel más alto para comprar este objeto."
+    },
+    "lockedLevel": "Nivel {{level}}"
+  },
+  "unlocks": {
+    "second_chance": "Segunda oportunidad: tu primer error en cada batalla no cuesta nada",
+    "kampung_hero": "Título: Héroe del Kampung",
+    "island_bosses": "Jefes de isla: Raja Rafflesia y el Titán del Ábaco",
+    "rare": "Objetos raros en la tienda",
+    "swift_perahu": "Perahu veloz: viajes en barco más rápidos",
+    "fifty": "50/50: quita dos respuestas incorrectas una vez por batalla",
+    "epic": "Objetos épicos en la tienda",
+    "island_explorer": "Título: Exploradora de Islas",
+    "scholar_of_the_seas": "Título: Sabio de los Mares"
+  },
+  "titles": {
+    "label": "Título",
+    "none": "Sin título",
+    "kampung_hero": "Héroe del Kampung",
+    "island_explorer": "Explorador de Islas",
+    "scholar_of_the_seas": "Sabio de los Mares",
+    "locked": "{{title}} (nivel {{level}})"
+  },
+  "bosses": {
+    "raja_rafflesia": {
+      "name": "Raja Rafflesia",
+      "title": "Batalla de jefe: Raja Rafflesia",
+      "intro": {
+        "r1": "Ronda 1: ¡Raja Rafflesia florece! Tres respuestas correctas de ciencias superan la ronda.",
+        "r2": "Ronda 2: los pétalos se abren más. Las preguntas se vuelven más difíciles.",
+        "r3": "Ronda 3: el corazón brillante. ¡Demuestra lo que sabes!",
+        "final": "Ronda final: ciencias mezcladas con todo. ¡Tres más y la flor se inclina!"
+      },
+      "victory": "¡Raja Rafflesia se inclina!",
+      "victoryText": "Superaste las cuatro rondas. ¡Hutan Borneo está orgulloso de ti!",
+      "lostText": "Raja Rafflesia cierra sus pétalos y espera. Todo lo que ganaste está a salvo; lee las explicaciones e inténtalo de nuevo.",
+      "alreadyToday": "Ya reclamaste hoy la recompensa de Raja Rafflesia. ¡Vuelve mañana!"
+    },
+    "abacus_titan": {
+      "name": "Titán del Ábaco",
+      "title": "Batalla de jefe: Titán del Ábaco",
+      "intro": {
+        "r1": "Ronda 1: el Titán del Ábaco mueve sus cuentas. Tres respuestas correctas de matemáticas superan la ronda.",
+        "r2": "Ronda 2: las cuentas se mueven más rápido. Las preguntas se vuelven más difíciles.",
+        "r3": "Ronda 3: ¡las sumas más duras del Titán!",
+        "final": "Ronda final: matemáticas mezcladas con todo. ¡Tres más y el Titán se inclina!"
+      },
+      "victory": "¡El Titán del Ábaco se inclina!",
+      "victoryText": "Superaste las cuatro rondas. ¡Las montañas repiten tu nombre!",
+      "lostText": "El Titán del Ábaco reinicia sus cuentas y espera. Todo lo que ganaste está a salvo; lee las explicaciones e inténtalo de nuevo.",
+      "alreadyToday": "Ya reclamaste hoy la recompensa del Titán del Ábaco. ¡Vuelve mañana!"
     }
+  },
+  "jetty": {
+    "title": "El muelle de Pak Hamid",
+    "greeting": "¡Selamat datang! ¿Adónde navegamos hoy?",
+    "here": "Estás aquí",
+    "sail": "Zarpar",
+    "sailTo": "Zarpar hacia {{place}}",
+    "comingSoon": "Próximamente"
+  },
+  "ride": {
+    "sailingTo": "Navegando hacia {{place}}…",
+    "skip": "Saltar",
+    "label": "Viaje en barco"
   }
 }

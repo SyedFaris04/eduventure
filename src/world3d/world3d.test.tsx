@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { act, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { initI18n } from '../i18n'
 import { DEFAULT_APPEARANCE } from '../features/character/appearance'
@@ -36,12 +36,14 @@ describe('GameCanvas', () => {
   it('shows Retry when the world fails to load, and Retry loads it again', async () => {
     webgl.ok = true
     world.fail = true
-    render(<GameCanvas hero={DEFAULT_APPEARANCE} />)
-    expect(await screen.findByText("The world didn't load. Check your connection.")).toBeTruthy()
+    // The place's map downloads first (Suspense), so let React finish inside act.
+    await act(async () => void render(<GameCanvas hero={DEFAULT_APPEARANCE} />))
+    expect(await screen.findByText("The world didn't load. Check your connection.", undefined, { timeout: 5000 })).toBeTruthy() // the place's map loads first
+    expect(screen.getByRole('application', { name: /^Greenhaven Kampung\. Move with/ })).toBeTruthy() // names the current place
     const before = world.renders
     world.fail = false
-    await userEvent.click(screen.getByRole('button', { name: 'Try again' }))
-    expect(await screen.findByText('world ready')).toBeTruthy()
+    await act(async () => userEvent.click(screen.getByRole('button', { name: 'Try again' })))
+    expect(await screen.findByText('world ready', undefined, { timeout: 5000 })).toBeTruthy()
     expect(world.renders).toBeGreaterThan(before)
   })
 })

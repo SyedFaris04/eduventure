@@ -64,12 +64,13 @@
     "title": "探索世界",
     "intro": "十二个区域正等着你。绿港村最先开放，其他区域会随着 Eduventure 的成长陆续解锁。",
     "opensIn": "将在第 {{phase}} 阶段开放",
-    "firstStop": "第一站"
+    "firstStop": "第一站",
+    "openNow": "现已开放"
   },
   "regions": {
     "greenhaven": {
-      "name": "绿港村",
-      "blurb": "温馨的小村庄，每位冒险者的旅程从这里开始。"
+      "name": "绿港甘榜",
+      "blurb": "海边温馨的甘榜，每段旅程从这里开始，码头通往各个岛屿。"
     },
     "knowledge_forest": {
       "name": "知识森林",
@@ -80,8 +81,8 @@
       "blurb": "攀登由数字、规律和谜题组成的高峰。"
     },
     "science_island": {
-      "name": "科学实验岛",
-      "blurb": "冒泡的实验和好奇的生物在等着你。"
+      "name": "科学岛",
+      "blurb": "婆罗洲雨林：热带雨林、红树林、瀑布和好奇的小生物。"
     },
     "language_kingdom": {
       "name": "语言王国",
@@ -393,7 +394,7 @@
     "shop": "商店"
   },
   "world": {
-    "canvasLabel": "绿港村。用 W A S D 或方向键移动，点击行走，按 E 交谈。",
+    "canvasLabel": "{{place}}。用 W A S D 或方向键移动，点击行走，按 E 交谈。",
     "home": "返回主页",
     "hud": "你的英雄",
     "levelShort": "{{level}} 级",
@@ -430,6 +431,12 @@
         "你好，{{name}}！我是诺莉。我的商店很快就会摆满英雄的服装、装备和装饰品。",
         "商店还没开张，不过继续在战斗中赚取金币吧。等我开门的时候，你就有很多可以花啦！"
       ]
+    },
+    "boatman": {
+      "name": "哈米德大叔",
+      "pages": [
+        "欢迎！想去别的岛屿时，随时来找我。"
+      ]
     }
   },
   "monsters": {
@@ -441,6 +448,24 @@
     },
     "dinobud": {
       "name": "小恐龙"
+    },
+    "hornbill": {
+      "name": "犀鸟宝宝"
+    },
+    "tapir": {
+      "name": "小貘"
+    },
+    "pangolin": {
+      "name": "穿山甲"
+    },
+    "cubelet": {
+      "name": "骰子仔"
+    },
+    "hexowl": {
+      "name": "六角猫头鹰"
+    },
+    "pisnake": {
+      "name": "派蛇"
     }
   },
   "battle": {
@@ -484,9 +509,22 @@
     "errors": {
       "tooFast": "先花点时间读题，再试一次。",
       "noQuestions": "你的阶段暂时还没有题目。",
-      "generic": "出了点问题，请重试。"
+      "generic": "出了点问题，请重试。",
+      "bossLevel": "达到 5 级才能挑战这个首领。"
     },
-    "missionDone": "任务完成：{{name}}！到主页领取奖励。"
+    "missionDone": "任务完成：{{name}}！到主页领取奖励。",
+    "secondChance": "第二次机会！这次没有损失生命值。",
+    "newUnlocks": "新解锁！",
+    "helpers": {
+      "secondReady": "第二次机会已就绪",
+      "secondUsed": "第二次机会已使用",
+      "secondLocked": "第二次机会 · {{level}} 级",
+      "locked": "{{level}} 级解锁",
+      "levelShort": "{{level}} 级",
+      "fiftyUsed": "本场战斗已使用",
+      "fiftyNeedsOptions": "需要至少有两个错误选项的题目",
+      "fiftyFailed": "这道题不能使用 50/50。"
+    }
   },
   "library": {
     "title": "学术图书馆",
@@ -528,7 +566,10 @@
       "maths": "数学",
       "science": "科学",
       "wisdom": "智慧",
-      "final": "决战"
+      "final": "决战",
+      "r1": "第 1 轮",
+      "r2": "第 2 轮",
+      "r3": "第 3 轮"
     },
     "intro": {
       "maths": "第 1 回合：守护者考验你的数字能力。答对三题即可过关。",
@@ -539,7 +580,8 @@
     "victory": "守护者鞠躬了！",
     "victoryText": "你通过了全部四个回合，绿港为你骄傲！",
     "lostText": "守护者耐心地等你回来。你获得的一切都还在；读读讲解，再试一次。",
-    "alreadyToday": "今天的守护者奖励已经领取过了，明天再来吧！"
+    "alreadyToday": "今天的守护者奖励已经领取过了，明天再来吧！",
+    "locked": "达到 {{level}} 级才能挑战{{name}}。"
   },
   "shop": {
     "title": "商店",
@@ -561,7 +603,71 @@
     "errors": {
       "gold": "金币还不够。赢得战斗、打败守护者就能赚到更多。",
       "owned": "你已经拥有这件物品。",
-      "failed": "出了点问题，请再试一次。"
+      "failed": "出了点问题，请再试一次。",
+      "level": "你需要更高的等级才能购买此物品。"
+    },
+    "lockedLevel": "{{level}} 级"
+  },
+  "unlocks": {
+    "second_chance": "第二次机会：每场战斗的第一次答错没有惩罚",
+    "kampung_hero": "称号：甘榜英雄",
+    "island_bosses": "岛屿首领：大王花之王和算盘泰坦",
+    "rare": "商店里的稀有物品",
+    "swift_perahu": "快速渔船：乘船更快",
+    "fifty": "50/50：每场战斗可去掉两个错误答案一次",
+    "epic": "商店里的史诗物品",
+    "island_explorer": "称号：岛屿探险家",
+    "scholar_of_the_seas": "称号：海洋学者"
+  },
+  "titles": {
+    "label": "称号",
+    "none": "无称号",
+    "kampung_hero": "甘榜英雄",
+    "island_explorer": "岛屿探险家",
+    "scholar_of_the_seas": "海洋学者",
+    "locked": "{{title}}（{{level}} 级）"
+  },
+  "bosses": {
+    "raja_rafflesia": {
+      "name": "大王花之王",
+      "title": "首领战：大王花之王",
+      "intro": {
+        "r1": "第 1 轮：大王花之王绽放了！答对三道科学题即可通过本轮。",
+        "r2": "第 2 轮：花瓣张得更开，题目变得更难。",
+        "r3": "第 3 轮：发光的花心。展示你的知识！",
+        "final": "最后一轮：科学和各种知识混合。再答对三题，大王花就会低头！"
+      },
+      "victory": "大王花之王低头了！",
+      "victoryText": "你通过了全部四轮。婆罗洲雨林为你骄傲！",
+      "lostText": "大王花之王合上花瓣，耐心等待。你获得的一切都已保存；读一读解析，再试一次。",
+      "alreadyToday": "你今天已经领取过大王花之王的奖励了。明天再来吧！"
+    },
+    "abacus_titan": {
+      "name": "算盘泰坦",
+      "title": "首领战：算盘泰坦",
+      "intro": {
+        "r1": "第 1 轮：算盘泰坦拨动算珠。答对三道数学题即可通过本轮。",
+        "r2": "第 2 轮：算珠拨得更快，题目变得更难。",
+        "r3": "第 3 轮：泰坦最难的算题！",
+        "final": "最后一轮：数学和各种知识混合。再答对三题，泰坦就会低头！"
+      },
+      "victory": "算盘泰坦低头了！",
+      "victoryText": "你通过了全部四轮。群山回响着你的名字！",
+      "lostText": "算盘泰坦把算珠归位，耐心等待。你获得的一切都已保存；读一读解析，再试一次。",
+      "alreadyToday": "你今天已经领取过算盘泰坦的奖励了。明天再来吧！"
     }
+  },
+  "jetty": {
+    "title": "哈米德大叔的码头",
+    "greeting": "欢迎！今天我们航行去哪里？",
+    "here": "你在这里",
+    "sail": "启航",
+    "sailTo": "启航前往{{place}}",
+    "comingSoon": "即将开放"
+  },
+  "ride": {
+    "sailingTo": "正在航行前往{{place}}……",
+    "skip": "跳过",
+    "label": "乘船"
   }
 }

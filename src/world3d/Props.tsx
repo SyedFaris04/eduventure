@@ -3,6 +3,7 @@ import { useGLTF } from '@react-three/drei'
 import { Box3, InstancedMesh, Matrix4, Mesh, MeshStandardMaterial, Quaternion, SphereGeometry, Vector3, type Material, type BufferGeometry } from 'three'
 import type { GameMap, PropKind } from '../game/map'
 import { addWind } from './wind'
+import { buildCodeProp, isCodeProp, type CodePropKind } from './props/codeProps'
 
 const URL = (n: string) => `/assets/models/${n}.glb`
 export const PROP_MODELS = ['tree_a', 'tree_b', 'rock_a', 'rock_b', 'rock_c', 'house_a', 'house_b', 'well', 'fence'] as const
@@ -16,6 +17,20 @@ const hash = (x: number, y: number, k = 0) => {
 }
 
 type Placement = { model: Model; x: number; z: number; ry: number; s: number }
+type CodePlacement = { kind: CodePropKind; x: number; z: number; ry: number; s: number }
+
+/** Props that turn freely (plants); buildings and monuments keep their fronts toward the camera side. */
+const SPIN: Partial<Record<CodePropKind, boolean>> = { palm: true, fern: true, mangrove: true, mushroom: true, pine_snow: true }
+
+function codePlacements(map: GameMap): CodePlacement[] {
+  return map.props.flatMap((p) => {
+    if (!isCodeProp(p.kind)) return []
+    const h = hash(p.x, p.y)
+    // Kampung houses cover 2 × 2 tiles from their top-left cell.
+    const big = p.kind === 'kampung_house'
+    return [{ kind: p.kind, x: p.x + (big ? 1 : 0.5), z: p.y + (big ? 1 : 0.5), ry: SPIN[p.kind] ? h * 6.283 : 0, s: SPIN[p.kind] ? 0.85 + hash(p.x, p.y, 1) * 0.3 : 1 }]
+  })
+}
 
 function placements(map: GameMap): Placement[] {
   const out: Placement[] = []
@@ -62,6 +77,28 @@ function useModelParts(model: Model) {
   }, [scene, model])
 }
 
+/** Each mesh of a code-built prop with its transform inside the prop, like useModelParts for a model. */
+function useCodeParts(kind: CodePropKind) {
+  return useMemo(() => {
+    const g = buildCodeProp(kind)
+    g.updateMatrixWorld(true)
+    const parts: { geometry: BufferGeometry; material: Material; local: Matrix4 }[] = []
+    g.traverse((o) => o instanceof Mesh && parts.push({ geometry: o.geometry, material: o.material as Material, local: o.matrixWorld.clone() }))
+    return parts
+  }, [kind])
+}
+
+function CodeInstances({ kind, items, shadows }: { kind: CodePropKind; items: CodePlacement[]; shadows: boolean }) {
+  const parts = useCodeParts(kind)
+  return (
+    <>
+      {parts.map((p, i) => (
+        <PartInstances key={i} part={p} items={items} shadows={shadows} />
+      ))}
+    </>
+  )
+}
+
 function ModelInstances({ model, items, shadows }: { model: Model; items: Placement[]; shadows: boolean }) {
   const parts = useModelParts(model)
   return (
@@ -73,7 +110,7 @@ function ModelInstances({ model, items, shadows }: { model: Model; items: Placem
   )
 }
 
-function PartInstances({ part, items, shadows }: { part: { geometry: BufferGeometry; material: Material; local: Matrix4 }; items: Placement[]; shadows: boolean }) {
+function PartInstances({ part, items, shadows }: { part: { geometry: BufferGeometry; material: Material; local: Matrix4 }; items: { x: number; z: number; ry: number; s: number }[]; shadows: boolean }) {
   const ref = useRef<InstancedMesh>(null)
   useLayoutEffect(() => {
     const m = ref.current
@@ -115,10 +152,18 @@ export function Props({ map, shadows }: { map: GameMap; shadows: boolean }) {
     for (const p of placements(map)) groups.set(p.model, [...(groups.get(p.model) ?? []), p])
     return [...groups]
   }, [map])
+  const byCode = useMemo(() => {
+    const groups = new Map<CodePropKind, CodePlacement[]>()
+    for (const p of codePlacements(map)) groups.set(p.kind, [...(groups.get(p.kind) ?? []), p])
+    return [...groups]
+  }, [map])
   return (
     <group>
       {byModel.map(([model, items]) => (
         <ModelInstances key={model} model={model} items={items} shadows={shadows} />
+      ))}
+      {byCode.map(([kind, items]) => (
+        <CodeInstances key={kind} kind={kind} items={items} shadows={shadows} />
       ))}
       <Bushes map={map} />
     </group>

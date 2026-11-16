@@ -67,3 +67,9 @@ The HUD, Home, Shop, dialogue, battle panels and creator thumbnails show snapsho
 
 ## 10. Tailwind tokens are emitted statically (2026-11-16)
 `@theme static` so every palette colour exists as a CSS variable for inline styles, SVG and canvas, not only when a utility class uses it.
+
+## 23. A battle's island comes from the monster, never from the client (2026-11-17)
+Each monster row has an `island_id`, and `public.islands` lists each island's subjects. `pick_question` reads the island through the monster: a client that pretends to be somewhere else gains nothing, because it can only name a monster, and the monster fixes the subjects. Island monsters fall back to the player's own subjects, then to any subject, so a battle starts whenever a Greenhaven battle would. Island bosses work the same way through `boss_island()`. Places are separate maps loaded one at a time, joined by a boat-ride scene (the user chose this over one big sea, which would be heavy on phones).
+
+## 24. Level rewards come from one server list; the client keeps a checked copy (2026-11-17)
+`public.level_unlocks` holds every level reward: helpers, island bosses, shop tiers, the boat and titles. Every gate is checked in a database function: `start_boss`, `buy_item`, `use_fifty`, `answer_question`, `answer_boss` and `set_title`. `src/game/unlocks.ts` is a copy used only for display (padlocks, "Level N", the "New unlock!" card). `tests/rls/unlocks.test.ts` fails if the two lists drift apart. Items bought before a gate existed stay owned and wearable; only new purchases are gated.

@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { APPEARANCE_OPTIONS, DEFAULT_APPEARANCE, PART_ORDER, shopValues, type Appearance, type AppearancePart } from '../../features/character/appearance'
 import { HeroModel } from './HeroModel'
 import { Snapshot } from '../SnapshotImage'
+import { BOSS_IDS, MONSTER_KINDS } from '../monsters/buildMonster'
 
 /** Development-only contact sheet (/dev/hero?part=top&turn=0.6): every value of one part side by side, for checking the 3D parts by eye. */
 export default function HeroLab() {
@@ -11,10 +12,12 @@ export default function HeroLab() {
     return (
       <main style={{ display: 'flex', flexWrap: 'wrap', gap: 12, padding: 12, background: '#cfe9f7', minHeight: '100vh' }}>
         <Snapshot subject={{ kind: 'hero', appearance: DEFAULT_APPEARANCE }} px={160} alt="hero" className="w-[160px]" />
-        {(['sproutling', 'pebblewing', 'dinobud'] as const).map((m) => (
+        {MONSTER_KINDS.map((m) => (
           <Snapshot key={m} subject={{ kind: 'monster', monster: m }} px={160} alt={m} className="w-[160px] bg-white/40" />
         ))}
-        <Snapshot subject={{ kind: 'boss' }} px={160} alt="boss" className="w-[160px] bg-white/40" />
+        {BOSS_IDS.map((b) => (
+          <Snapshot key={b} subject={{ kind: 'boss', boss: b }} px={160} alt={b} className="w-[160px] bg-white/40" />
+        ))}
       </main>
     )
   const part = (PART_ORDER.includes(q.get('part') as AppearancePart) ? q.get('part') : 'top') as AppearancePart
