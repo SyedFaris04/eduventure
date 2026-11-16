@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
-import { ArrowLeft, Check, Coins, ShoppingBag, Shirt } from 'lucide-react'
+import { ArrowLeft, Check, Coins, Lock, ShoppingBag, Shirt } from 'lucide-react'
 import { Button, buttonClasses, Panel } from '../../components/ui'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
 import { FormMessage } from '../authentication/AuthLayout'
@@ -10,6 +10,7 @@ import { useSession } from '../authentication/useSession'
 import { Snapshot } from '../../world3d/SnapshotImage'
 import type { Appearance } from '../character/appearance'
 import { saveCharacter, useMyCharacter, useProgression } from '../character/useCharacter'
+import { isUnlocked, unlockLevel } from '../../game/unlocks'
 import { CATALOGUE, type Rarity, type ShopItem } from './catalogue'
 import { buyItem, ownedItemsKey, useOwnedItems } from './useShop'
 
@@ -42,7 +43,7 @@ export function ShopPage() {
       setMessage({ kind: 'success', text: t('shop.bought', { item: t(`character.opt.${item.id}`) }) })
     } catch (e) {
       const m = (e as { message?: string }).message ?? ''
-      setMessage({ kind: 'error', text: t(/not enough gold/i.test(m) ? 'shop.errors.gold' : /already own/i.test(m) ? 'shop.errors.owned' : 'shop.errors.failed') })
+      setMessage({ kind: 'error', text: t(/not enough gold/i.test(m) ? 'shop.errors.gold' : /already own/i.test(m) ? 'shop.errors.owned' : /reach level/i.test(m) ? 'shop.errors.level' : 'shop.errors.failed') })
     } finally {
       setBusy(null)
     }
@@ -87,6 +88,7 @@ export function ShopPage() {
               const mine = owned.data?.has(item.id) ?? false
               const wearing = look?.[item.slot] === item.id
               const short = item.price - gold
+              const lockedAt = isUnlocked(progression.data?.level ?? 1, 'shop_tier', item.rarity) ? null : unlockLevel('shop_tier', item.rarity)
               const name = t(`character.opt.${item.id}`)
               return (
                 <li key={item.id} className="flex flex-col items-center gap-2 rounded-2xl border-[3px] border-wood/40 bg-white/85 p-3" data-testid={`item-${item.id}`}>
@@ -106,6 +108,10 @@ export function ShopPage() {
                     <Button variant="secondary" onClick={() => wear(item)} disabled={busy !== null} aria-label={t('shop.wearItem', { item: name })}>
                       <Shirt size={18} aria-hidden /> {t('shop.wear')}
                     </Button>
+                  ) : lockedAt ? (
+                    <p className="flex min-h-11 items-center gap-1 font-bold text-wood-dark/80" data-locked>
+                      <Lock size={18} aria-hidden /> {t('shop.lockedLevel', { level: lockedAt })}
+                    </p>
                   ) : (
                     <>
                       <Button onClick={() => buy(item)} disabled={busy !== null || short > 0} aria-label={t('shop.buyItem', { item: name })}>

@@ -484,9 +484,22 @@
     "errors": {
       "tooFast": "Tómate un momento para leer la pregunta y vuelve a intentarlo.",
       "noQuestions": "Todavía no hay preguntas para tu nivel.",
-      "generic": "Algo salió mal. Inténtalo de nuevo."
+      "generic": "Algo salió mal. Inténtalo de nuevo.",
+      "bossLevel": "Llega al nivel 5 para desafiar a este jefe."
     },
-    "missionDone": "¡Misión completada: {{name}}! Reclámala en Inicio."
+    "missionDone": "¡Misión completada: {{name}}! Reclámala en Inicio.",
+    "secondChance": "¡Segunda oportunidad! Esta vez no pierdes vida.",
+    "newUnlocks": "¡Nuevo desbloqueo!",
+    "helpers": {
+      "secondReady": "Segunda oportunidad lista",
+      "secondUsed": "Segunda oportunidad usada",
+      "secondLocked": "Segunda oportunidad · Nivel {{level}}",
+      "locked": "Se desbloquea en el nivel {{level}}",
+      "levelShort": "Nivel {{level}}",
+      "fiftyUsed": "Ya usado en esta batalla",
+      "fiftyNeedsOptions": "Necesita una pregunta con al menos dos opciones incorrectas",
+      "fiftyFailed": "El 50/50 no se puede usar en esta pregunta."
+    }
   },
   "library": {
     "title": "Biblioteca académica",
@@ -561,7 +574,28 @@
     "errors": {
       "gold": "Aún no tienes suficiente oro. Gana batallas y vence al Guardián para conseguir más.",
       "owned": "Ya tienes este objeto.",
-      "failed": "Algo salió mal. Inténtalo de nuevo."
-    }
+      "failed": "Algo salió mal. Inténtalo de nuevo.",
+      "level": "Necesitas un nivel más alto para comprar este objeto."
+    },
+    "lockedLevel": "Nivel {{level}}"
+  },
+  "unlocks": {
+    "second_chance": "Segunda oportunidad: tu primer error en cada batalla no cuesta nada",
+    "kampung_hero": "Título: Héroe del Kampung",
+    "island_bosses": "Jefes de isla: Raja Rafflesia y el Titán del Ábaco",
+    "rare": "Objetos raros en la tienda",
+    "swift_perahu": "Perahu veloz: viajes en barco más rápidos",
+    "fifty": "50/50: quita dos respuestas incorrectas una vez por batalla",
+    "epic": "Objetos épicos en la tienda",
+    "island_explorer": "Título: Exploradora de Islas",
+    "scholar_of_the_seas": "Título: Sabio de los Mares"
+  },
+  "titles": {
+    "label": "Título",
+    "none": "Sin título",
+    "kampung_hero": "Héroe del Kampung",
+    "island_explorer": "Explorador de Islas",
+    "scholar_of_the_seas": "Sabio de los Mares",
+    "locked": "{{title}} (nivel {{level}})"
   }
 }

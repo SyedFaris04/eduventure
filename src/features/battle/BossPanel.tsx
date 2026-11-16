@@ -5,10 +5,11 @@ import { Button } from '../../components/ui'
 import { useGame, reactToAnswer } from '../../game/store'
 import { Snapshot } from '../../world3d/SnapshotImage'
 import { playChime } from '../loading/sound'
-import { answerBoss, BattleError, fleeBoss, startBoss, type AnswerPayload, type BossResult, type BossState } from './battleApi'
+import { answerBoss, askBossFifty, BattleError, fleeBoss, startBoss, type AnswerPayload, type BossResult, type BossState } from './battleApi'
 import type { PublicQuestion } from './questionSchema'
 import { QuestionCard } from './QuestionCard'
-import { LevelUp, MIN_READ_MS, MissionNotes, Rewards, useProgressRefresh } from './BattlePanel'
+import { LevelUp, MIN_READ_MS, MissionNotes, Rewards, usePlayerLevel, useProgressRefresh } from './BattlePanel'
+import { HelperBar } from './HelperBar'
 
 const ROUND_KEYS = ['maths', 'science', 'wisdom', 'final'] as const
 
@@ -26,6 +27,7 @@ function Boss() {
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
   const shownAt = useRef(0)
+  const { level, startLevel } = usePlayerLevel()
   const name = t('boss.name')
 
   useEffect(() => {
@@ -59,6 +61,19 @@ function Boss() {
       playChime(r.correct ? 'tap' : 'pop')
       reactToAnswer(r.correct, r.state.status === 'won')
       if (r.state.status === 'won') playChime('done')
+    } catch (e) {
+      setError(e instanceof BattleError ? e.key : 'battle.errors.generic')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function fifty() {
+    if (!run || busy) return
+    setBusy(true)
+    try {
+      const r = await askBossFifty(run.run_id)
+      setRun({ ...run, helpers: { ...run.helpers, fifty_used: true, hidden: r.hidden } })
     } catch (e) {
       setError(e instanceof BattleError ? e.key : 'battle.errors.generic')
     } finally {
@@ -125,8 +140,10 @@ function Boss() {
           {!run && !error && <p className="font-display text-wood-dark">{t('common.loading')}</p>}
           {run && !finished && !result && <p className="text-sm font-semibold text-wood-dark">{t(`boss.intro.${roundKey}`)}</p>}
 
+          {run && !finished && !result && <HelperBar level={level} helpers={run.helpers} question={question} onFifty={() => void fifty()} busy={busy} />}
           {question && (!finished || result) && (
-            <QuestionCard key={question.id} question={question} busy={busy} result={result} onSubmit={submit}>
+            <QuestionCard key={question.id} question={question} hidden={result ? undefined : run?.helpers.hidden} busy={busy} result={result} onSubmit={submit}>
+              {result?.second_chance && <p className="text-sm font-bold text-grass-dark">{t('battle.secondChance')}</p>}
               <MissionNotes ids={result?.missions_completed} />
             </QuestionCard>
           )}
@@ -138,7 +155,7 @@ function Boss() {
               {result?.reward && (
                 <div className="flex flex-col items-center gap-2">
                   {result.reward.already_today ? <p className="text-sm font-semibold">{t('boss.alreadyToday')}</p> : <Rewards xp={result.reward.xp} gold={result.reward.gold} />}
-                  {result.reward.leveled_up && <LevelUp level={result.totals.level} />}
+                  {result.reward.leveled_up && <LevelUp level={result.totals.level} from={startLevel} />}
                 </div>
               )}
             </div>

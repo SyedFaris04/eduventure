@@ -484,9 +484,22 @@
     "errors": {
       "tooFast": "Prends le temps de lire la question, puis réessaie.",
       "noQuestions": "Il n'y a pas encore de questions pour ton niveau.",
-      "generic": "Un problème est survenu. Réessaie."
+      "generic": "Un problème est survenu. Réessaie.",
+      "bossLevel": "Atteins le niveau 5 pour défier ce boss."
     },
-    "missionDone": "Mission accomplie : {{name}} ! Récupère-la sur l'accueil."
+    "missionDone": "Mission accomplie : {{name}} ! Récupère-la sur l'accueil.",
+    "secondChance": "Seconde chance ! Aucun PV perdu cette fois.",
+    "newUnlocks": "Nouveau déblocage !",
+    "helpers": {
+      "secondReady": "Seconde chance prête",
+      "secondUsed": "Seconde chance utilisée",
+      "secondLocked": "Seconde chance · Niveau {{level}}",
+      "locked": "Débloqué au niveau {{level}}",
+      "levelShort": "Niveau {{level}}",
+      "fiftyUsed": "Déjà utilisé pendant ce combat",
+      "fiftyNeedsOptions": "Il faut une question avec au moins deux mauvaises réponses",
+      "fiftyFailed": "Le 50/50 ne peut pas être utilisé sur cette question."
+    }
   },
   "library": {
     "title": "Bibliothèque",
@@ -561,7 +574,28 @@
     "errors": {
       "gold": "Pas encore assez d’or. Gagne des combats et bats le Gardien pour en gagner plus.",
       "owned": "Tu possèdes déjà cet objet.",
-      "failed": "Un problème est survenu. Réessaie."
-    }
+      "failed": "Un problème est survenu. Réessaie.",
+      "level": "Il te faut un niveau plus élevé pour acheter cet objet."
+    },
+    "lockedLevel": "Niveau {{level}}"
+  },
+  "unlocks": {
+    "second_chance": "Seconde chance : ta première erreur de chaque combat ne coûte rien",
+    "kampung_hero": "Titre : Héros du Kampung",
+    "island_bosses": "Boss des îles : Raja Rafflesia et le Titan Boulier",
+    "rare": "Objets rares dans la boutique",
+    "swift_perahu": "Perahu rapide : traversées en bateau plus courtes",
+    "fifty": "50/50 : retire deux mauvaises réponses une fois par combat",
+    "epic": "Objets épiques dans la boutique",
+    "island_explorer": "Titre : Explorateur des îles",
+    "scholar_of_the_seas": "Titre : Savant des mers"
+  },
+  "titles": {
+    "label": "Titre",
+    "none": "Aucun titre",
+    "kampung_hero": "Héros du Kampung",
+    "island_explorer": "Explorateur des îles",
+    "scholar_of_the_seas": "Savant des mers",
+    "locked": "{{title}} (niveau {{level}})"
   }
 }

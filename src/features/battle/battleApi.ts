@@ -2,6 +2,9 @@ import { supabase } from '../../services/supabase'
 import type { BossId, MonsterKind } from '../../game/map'
 import type { PublicQuestion } from './questionSchema'
 
+/** Battle helpers as the server reports them (the server decides everything). */
+export type Helpers = { second_chance_left: boolean; fifty_used: boolean; hidden: string[] }
+
 export type EncounterState = {
   encounter_id: string
   monster_id: MonsterKind
@@ -10,6 +13,7 @@ export type EncounterState = {
   player_hp: number
   combo: number
   status: 'active' | 'won' | 'lost' | 'fled'
+  helpers: Helpers
   question: PublicQuestion | null
 }
 
@@ -25,6 +29,7 @@ export type AnswerResult = {
   bonus: { xp: number; gold: number }
   totals: { xp: number; level: number; gold: number }
   leveled_up: boolean
+  second_chance: boolean
   missions_completed: string[]
   state: EncounterState
 }
@@ -42,7 +47,13 @@ const toBattleError = (message: string | undefined) => {
   return mapBattleError(message)
 }
 const mapBattleError = (message: string | undefined) =>
-  new BattleError(/too fast/i.test(message ?? '') ? 'battle.errors.tooFast' : /no questions/i.test(message ?? '') ? 'battle.errors.noQuestions' : 'battle.errors.generic')
+  new BattleError(
+    /too fast/i.test(message ?? '') ? 'battle.errors.tooFast'
+    : /no questions/i.test(message ?? '') ? 'battle.errors.noQuestions'
+    : /reach level \d+ to challenge/i.test(message ?? '') ? 'battle.errors.bossLevel'
+    : /50\/50/i.test(message ?? '') ? 'battle.helpers.fiftyFailed'
+    : 'battle.errors.generic',
+  )
 
 export async function startEncounter(monster: MonsterKind): Promise<EncounterState> {
   const { data, error } = await supabase!.rpc('start_encounter', { p_monster: monster })
@@ -65,9 +76,10 @@ export type BossState = {
   per_round: number
   hearts: number
   status: 'active' | 'won' | 'lost' | 'fled'
+  helpers: Helpers
   question: PublicQuestion | null
 }
-export type BossResult = Pick<AnswerResult, 'correct' | 'correct_answer' | 'explanation' | 'wrong_reason' | 'missions_completed' | 'totals'> & {
+export type BossResult = Pick<AnswerResult, 'correct' | 'correct_answer' | 'explanation' | 'wrong_reason' | 'missions_completed' | 'totals' | 'second_chance'> & {
   reward: { xp: number; gold: number; already_today: boolean; leveled_up: boolean } | null
   state: BossState
 }
@@ -92,4 +104,17 @@ export async function fleeBoss(runId: string): Promise<void> {
 export async function fleeEncounter(encounterId: string): Promise<void> {
   const { error } = await supabase!.rpc('flee_encounter', { p_encounter: encounterId })
   if (error) throw toBattleError(error.message)
+}
+
+/** 50/50: the server hides two wrong options of the current question (level 8, once per battle). */
+export async function askFifty(encounterId: string): Promise<{ hidden: string[] }> {
+  const { data, error } = await supabase!.rpc('use_fifty', { p_encounter: encounterId })
+  if (error) throw toBattleError(error.message)
+  return data as { hidden: string[] }
+}
+
+export async function askBossFifty(runId: string): Promise<{ hidden: string[] }> {
+  const { data, error } = await supabase!.rpc('use_boss_fifty', { p_run: runId })
+  if (error) throw toBattleError(error.message)
+  return data as { hidden: string[] }
 }

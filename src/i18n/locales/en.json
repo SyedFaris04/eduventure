@@ -484,9 +484,22 @@
     "errors": {
       "tooFast": "Take a moment to read the question, then try again.",
       "noQuestions": "There are no questions for your level yet.",
-      "generic": "Something went wrong. Please try again."
+      "generic": "Something went wrong. Please try again.",
+      "bossLevel": "Reach level 5 to challenge this boss."
     },
-    "missionDone": "Mission complete: {{name}}! Claim it on Home."
+    "missionDone": "Mission complete: {{name}}! Claim it on Home.",
+    "secondChance": "Second Chance! No HP lost this time.",
+    "newUnlocks": "New unlock!",
+    "helpers": {
+      "secondReady": "Second Chance ready",
+      "secondUsed": "Second Chance used",
+      "secondLocked": "Second Chance · Level {{level}}",
+      "locked": "Unlocks at level {{level}}",
+      "levelShort": "Level {{level}}",
+      "fiftyUsed": "Already used this battle",
+      "fiftyNeedsOptions": "Needs a question with at least two wrong options",
+      "fiftyFailed": "50/50 can't be used on this question."
+    }
   },
   "library": {
     "title": "Academic Library",
@@ -561,7 +574,28 @@
     "errors": {
       "gold": "Not enough gold yet. Win battles and beat the Guardian to earn more.",
       "owned": "You already own this item.",
-      "failed": "Something went wrong. Please try again."
-    }
+      "failed": "Something went wrong. Please try again.",
+      "level": "You need a higher level to buy this item."
+    },
+    "lockedLevel": "Level {{level}}"
+  },
+  "unlocks": {
+    "second_chance": "Second Chance: your first wrong answer in each battle costs nothing",
+    "kampung_hero": "Title: Kampung Hero",
+    "island_bosses": "Island bosses: Raja Rafflesia and the Abacus Titan",
+    "rare": "Rare items in the shop",
+    "swift_perahu": "Swift perahu: faster boat rides",
+    "fifty": "50/50: remove two wrong answers once per battle",
+    "epic": "Epic items in the shop",
+    "island_explorer": "Title: Island Explorer",
+    "scholar_of_the_seas": "Title: Scholar of the Seas"
+  },
+  "titles": {
+    "label": "Title",
+    "none": "No title",
+    "kampung_hero": "Kampung Hero",
+    "island_explorer": "Island Explorer",
+    "scholar_of_the_seas": "Scholar of the Seas",
+    "locked": "{{title}} (level {{level}})"
   }
 }

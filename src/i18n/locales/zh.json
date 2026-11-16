@@ -484,9 +484,22 @@
     "errors": {
       "tooFast": "先花点时间读题，再试一次。",
       "noQuestions": "你的阶段暂时还没有题目。",
-      "generic": "出了点问题，请重试。"
+      "generic": "出了点问题，请重试。",
+      "bossLevel": "达到 5 级才能挑战这个首领。"
     },
-    "missionDone": "任务完成：{{name}}！到主页领取奖励。"
+    "missionDone": "任务完成：{{name}}！到主页领取奖励。",
+    "secondChance": "第二次机会！这次没有损失生命值。",
+    "newUnlocks": "新解锁！",
+    "helpers": {
+      "secondReady": "第二次机会已就绪",
+      "secondUsed": "第二次机会已使用",
+      "secondLocked": "第二次机会 · {{level}} 级",
+      "locked": "{{level}} 级解锁",
+      "levelShort": "{{level}} 级",
+      "fiftyUsed": "本场战斗已使用",
+      "fiftyNeedsOptions": "需要至少有两个错误选项的题目",
+      "fiftyFailed": "这道题不能使用 50/50。"
+    }
   },
   "library": {
     "title": "学术图书馆",
@@ -561,7 +574,28 @@
     "errors": {
       "gold": "金币还不够。赢得战斗、打败守护者就能赚到更多。",
       "owned": "你已经拥有这件物品。",
-      "failed": "出了点问题，请再试一次。"
-    }
+      "failed": "出了点问题，请再试一次。",
+      "level": "你需要更高的等级才能购买此物品。"
+    },
+    "lockedLevel": "{{level}} 级"
+  },
+  "unlocks": {
+    "second_chance": "第二次机会：每场战斗的第一次答错没有惩罚",
+    "kampung_hero": "称号：甘榜英雄",
+    "island_bosses": "岛屿首领：大王花之王和算盘泰坦",
+    "rare": "商店里的稀有物品",
+    "swift_perahu": "快速渔船：乘船更快",
+    "fifty": "50/50：每场战斗可去掉两个错误答案一次",
+    "epic": "商店里的史诗物品",
+    "island_explorer": "称号：岛屿探险家",
+    "scholar_of_the_seas": "称号：海洋学者"
+  },
+  "titles": {
+    "label": "称号",
+    "none": "无称号",
+    "kampung_hero": "甘榜英雄",
+    "island_explorer": "岛屿探险家",
+    "scholar_of_the_seas": "海洋学者",
+    "locked": "{{title}}（{{level}} 级）"
   }
 }

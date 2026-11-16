@@ -28,7 +28,7 @@ export function formatAnswer(question: Pick<PublicQuestion, 'type' | 'options' |
  * One question with its answer controls and, once marked, the feedback. Shared by monster battles and
  * the boss. Remount it (key = question id) for each new question.
  */
-export function QuestionCard({ question, busy, result, onSubmit, badge, children }: { question: PublicQuestion; busy: boolean; result: Marked | null; onSubmit: (a: AnswerPayload) => void; badge?: ReactNode; children?: ReactNode }) {
+export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, children }: { question: PublicQuestion; hidden?: string[]; busy: boolean; result: Marked | null; onSubmit: (a: AnswerPayload) => void; badge?: ReactNode; children?: ReactNode }) {
   const { t } = useTranslation()
   const [chosen, setChosen] = useState<AnswerPayload | null>(null)
   const [text, setText] = useState('')
@@ -77,7 +77,8 @@ export function QuestionCard({ question, busy, result, onSubmit, badge, children
 
       {(question.type === 'mcq' || question.type === 'true_false') && (
         <div className="grid gap-2 sm:grid-cols-2">
-          {(question.type === 'mcq' ? optionList : [{ id: 'true', text: t('battle.true') }, { id: 'false', text: t('battle.false') }]).map((o, i) => (
+          {(question.type === 'mcq' ? optionList : [{ id: 'true', text: t('battle.true') }, { id: 'false', text: t('battle.false') }]).map((o, i) =>
+            hidden?.includes(o.id) ? null : (
             <button
               key={o.id}
               ref={i === 0 ? (el) => void (first.current = el) : undefined}
@@ -97,6 +98,7 @@ export function QuestionCard({ question, busy, result, onSubmit, badge, children
         <div className="space-y-2">
           <div className="grid gap-2 sm:grid-cols-2">
             {optionList.map((o, i) => {
+              if (hidden?.includes(o.id)) return null
               const on = picked.includes(o.id)
               return (
                 <button

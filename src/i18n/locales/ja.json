@@ -484,9 +484,22 @@
     "errors": {
       "tooFast": "問題をよく読んでから、もう一度答えてね。",
       "noQuestions": "あなたのレベルの問題はまだありません。",
-      "generic": "問題が発生しました。もう一度お試しください。"
+      "generic": "問題が発生しました。もう一度お試しください。",
+      "bossLevel": "このボスに挑むにはレベル5が必要です。"
     },
-    "missionDone": "ミッション達成：{{name}}！ホームで受け取ろう。"
+    "missionDone": "ミッション達成：{{name}}！ホームで受け取ろう。",
+    "secondChance": "セカンドチャンス！今回はHPが減りません。",
+    "newUnlocks": "新しいアンロック！",
+    "helpers": {
+      "secondReady": "セカンドチャンス準備OK",
+      "secondUsed": "セカンドチャンス使用済み",
+      "secondLocked": "セカンドチャンス · レベル{{level}}",
+      "locked": "レベル{{level}}で解放",
+      "levelShort": "レベル{{level}}",
+      "fiftyUsed": "このバトルでは使用済み",
+      "fiftyNeedsOptions": "まちがいの選択肢が2つ以上ある問題で使えます",
+      "fiftyFailed": "この問題では50/50を使えません。"
+    }
   },
   "library": {
     "title": "学習ライブラリー",
@@ -561,7 +574,28 @@
     "errors": {
       "gold": "ゴールドがまだ足りません。バトルに勝ってガーディアンを倒すと増えます。",
       "owned": "このアイテムはもう持っています。",
-      "failed": "うまくいきませんでした。もう一度試してください。"
-    }
+      "failed": "うまくいきませんでした。もう一度試してください。",
+      "level": "このアイテムを買うにはもっと高いレベルが必要です。"
+    },
+    "lockedLevel": "レベル{{level}}"
+  },
+  "unlocks": {
+    "second_chance": "セカンドチャンス：各バトルで最初のまちがいはノーダメージ",
+    "kampung_hero": "称号：カンポンのヒーロー",
+    "island_bosses": "島のボス：ラジャ・ラフレシアとそろばんタイタン",
+    "rare": "ショップのレアアイテム",
+    "swift_perahu": "はやいプラフ：船旅が速くなる",
+    "fifty": "50/50：バトルごとに1回、まちがいの答えを2つ消す",
+    "epic": "ショップのエピックアイテム",
+    "island_explorer": "称号：島の探検家",
+    "scholar_of_the_seas": "称号：海の学者"
+  },
+  "titles": {
+    "label": "称号",
+    "none": "称号なし",
+    "kampung_hero": "カンポンのヒーロー",
+    "island_explorer": "島の探検家",
+    "scholar_of_the_seas": "海の学者",
+    "locked": "{{title}}（レベル{{level}}）"
   }
 }

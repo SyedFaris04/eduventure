@@ -7,6 +7,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { BookOpen, ClipboardCheck, Coins, Globe2, LogOut, Pencil, ShoppingBag, Sparkles, Star, Volume2, VolumeX } from 'lucide-react'
 import { useMyRoles } from '../admin/review'
 import { MissionsPanel } from '../missions/MissionsPanel'
+import { TitlePicker, useMyTitle } from '../character/TitlePicker'
 import { Button, buttonClasses, Field, Modal, Panel } from '../../components/ui'
 import { LanguagePicker } from '../../i18n/LanguagePicker'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
@@ -28,6 +29,7 @@ export function HomePage() {
   const uid = session?.user.id
   const character = useMyCharacter(uid)
   const progression = useProgression(uid)
+  const title = useMyTitle(uid)
   const academic = useMyAcademicProfile(uid)
   const profile = useMyProfile(uid)
   const ref = useReferenceData()
@@ -83,6 +85,7 @@ export function HomePage() {
               <Snapshot subject={{ kind: 'hero', appearance: character.data.appearance }} px={220} alt={t('character.previewAlt', { name: character.data.name })} className="hero-bob w-[min(60vw,200px)]" />
             )}
             <p className="font-display text-2xl font-semibold">{character.data?.name}</p>
+            {uid && progression.data && <TitlePicker uid={uid} level={progression.data.level} current={title.data ?? null} />}
             <Link to="/character" className={buttonClasses('secondary', 'md')}>
               <Pencil size={18} aria-hidden /> {t('home.editHero')}
             </Link>
