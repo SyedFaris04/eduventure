@@ -55,7 +55,7 @@ The owner asked for coding courses (Python, Java and others) with a simple in-ga
    - Lessons enter "in review", and the owner approves them in `/admin` before they count in production (the existing `allow_draft_questions` flag decides).
 7. **Questions for the island:** about **60 new code-reading questions** (subject `programming`):
    - Python and JavaScript, beginner to intermediate;
-   - tagged `upper_primary`/`lower_secondary`/`upper_secondary`/`pre_university` as fitting;
+   - tagged `primary`/`lower_secondary`/`upper_secondary`/`pre_university` as fitting (existing level ids);
    - the same format and review path as the existing bank.
 
 ## Non-goals (this project)
