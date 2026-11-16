@@ -375,7 +375,8 @@
     "signOutGuestTitle": "¿Salir del modo invitado?",
     "signOutGuestBody": "Un héroe invitado no se puede recuperar después de cerrar sesión. Guarda tu progreso primero si quieres conservarlo.",
     "signOutAnyway": "Cerrar sesión igualmente",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "admin": "Revisar preguntas"
   },
   "world": {
     "canvasLabel": "Aldea Greenhaven. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",

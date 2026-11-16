@@ -375,7 +375,8 @@
     "signOutGuestTitle": "Keluar daripada mod tetamu?",
     "signOutGuestBody": "Wira tetamu tidak dapat dipulihkan selepas log keluar. Simpan kemajuan dahulu jika anda mahu mengekalkan wira ini.",
     "signOutAnyway": "Log keluar juga",
-    "cancel": "Batal"
+    "cancel": "Batal",
+    "admin": "Semak soalan"
   },
   "world": {
     "canvasLabel": "Kampung Greenhaven. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",

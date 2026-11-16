@@ -375,7 +375,8 @@
     "signOutGuestTitle": "Quitter le mode invité ?",
     "signOutGuestBody": "Un héros invité ne peut pas être récupéré après la déconnexion. Sauvegarde d'abord ta progression si tu veux le garder.",
     "signOutAnyway": "Me déconnecter quand même",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "admin": "Relire les questions"
   },
   "world": {
     "canvasLabel": "Village de Greenhaven. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",

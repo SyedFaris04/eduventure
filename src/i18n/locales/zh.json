@@ -375,7 +375,8 @@
     "signOutGuestTitle": "退出游客模式？",
     "signOutGuestBody": "游客英雄在退出后无法找回。如果想保留这个英雄，请先保存进度。",
     "signOutAnyway": "仍然退出",
-    "cancel": "取消"
+    "cancel": "取消",
+    "admin": "审核题目"
   },
   "world": {
     "canvasLabel": "绿港村。用 W A S D 或方向键移动，点击行走，按 E 交谈。",

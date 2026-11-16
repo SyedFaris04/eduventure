@@ -375,7 +375,8 @@
     "signOutGuestTitle": "ゲストモードを終了しますか？",
     "signOutGuestBody": "ゲストのヒーローはログアウトすると復元できません。残したい場合は先に進行状況を保存してください。",
     "signOutAnyway": "それでもログアウト",
-    "cancel": "キャンセル"
+    "cancel": "キャンセル",
+    "admin": "問題を確認する"
   },
   "world": {
     "canvasLabel": "グリーンヘイブン村。W A S D か矢印キーで移動、タップで歩く、E で話す。",
