@@ -143,7 +143,7 @@ Today there is one map (Greenhaven, 36 × 36). Monsters ask questions from the s
 | 15 | Title "Scholar of the Seas" | display only |
 
 - **Already-owned items are kept.** The rarity gate only stops new purchases. The shop shows locked items with a padlock and "Level N".
-- **Helper buttons** sit in the battle panel. Locked helpers show their unlock level, and a used helper greys out. 50/50 is disabled on non-choice questions, with a tooltip saying why.
+- **The 50/50 button** sits in both battle panels. Below level 8 it shows "Level 8"; it greys out once used, and is disabled with a reason on questions with fewer than 2 wrong options. Second Chance has no button: a small badge shows whether it is still available this battle.
 - **Pet (level 2) and personal island (level 10)** rows are added when those Phase 4 slices are built, not now.
 - **Titles** show under the player's name on the HUD and Home. Players pick one from the titles they have unlocked. The pick is a profile column, written through a function that checks the level.
 
