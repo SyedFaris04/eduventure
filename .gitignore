@@ -13,3 +13,5 @@ docs/reference/
 supabase/.temp/
 supabase/.branches/
 *.tsbuildinfo
+.superpowers/
+.cache/
