@@ -22,9 +22,12 @@ export class BootScene extends Phaser.Scene {
   async create() {
     makePropTextures(this)
     const hero = this.registry.get('hero') as Appearance
+    // Walk cycle frames: hero-<facing>-<step> with step 1 (left leg up), 0 (standing), -1 (right leg up).
+    const heroFrames = (['front', 'back'] as const).flatMap((facing) =>
+      ([1, 0, -1] as const).map((step) => addSvgTexture(this, `hero-${facing}-${step}`, renderCharacterSvg(hero, { size: 96, facing, step }))),
+    )
     const jobs: Promise<void>[] = [
-      addSvgTexture(this, 'hero-front', renderCharacterSvg(hero, { size: 96 })),
-      addSvgTexture(this, 'hero-back', renderCharacterSvg(hero, { size: 96, facing: 'back' })),
+      ...heroFrames,
       ...Object.entries(NPCS).map(([id, npc]) => addSvgTexture(this, `npc-${id}`, renderCharacterSvg(npc.appearance, { size: 96 }))),
       ...(['sproutling', 'pebblewing', 'dinobud'] as const).map((kind) => addSvgTexture(this, `monster-${kind}`, renderMonsterSvg(kind, 128))),
     ]

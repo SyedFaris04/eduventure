@@ -10,6 +10,7 @@ const CHAR_SCALE = 0.5
 const MONSTER_COUNT: Record<MonsterKind, number> = { sproutling: 4, pebblewing: 3, dinobud: 3 }
 const MONSTER_SCALE: Record<MonsterKind, number> = { sproutling: 0.42, pebblewing: 0.42, dinobud: 0.55 }
 const RESPAWN_MS = 20_000
+const WALK_CYCLE = [1, 0, -1, 0] as const
 
 type Monster = { id: string; kind: MonsterKind; pos: Point; target?: Point; sprite: Phaser.GameObjects.Image; shadow: Phaser.GameObjects.Image; alive: boolean; nextMove: number }
 // Image origin (x, y as fractions) per prop so the base sits on its tile.
@@ -36,6 +37,7 @@ export class WorldScene extends Phaser.Scene {
   private lastEmit = 0
   private lastInteractSeq = 0
   private panelClosedAt = -Infinity
+  private facing: 'front' | 'back' = 'front'
   private monsters: Monster[] = []
   private unsubscribe?: () => void
 
@@ -74,7 +76,7 @@ export class WorldScene extends Phaser.Scene {
     this.pos = { x: this.map.spawn.x + 0.5, y: this.map.spawn.y + 0.5 }
     const start = this.toWorld(this.pos)
     this.heroShadow = this.add.image(start.x, start.y + 2, 'shadow')
-    this.hero = this.add.image(start.x, start.y, 'hero-front').setOrigin(0.5, 0.95).setScale(CHAR_SCALE)
+    this.hero = this.add.image(start.x, start.y, 'hero-front-0').setOrigin(0.5, 0.95).setScale(CHAR_SCALE)
 
     const cam = this.cameras.main
     cam.setBounds(0, 0, this.L.width, this.L.height)
@@ -219,7 +221,7 @@ export class WorldScene extends Phaser.Scene {
         this.pos = next
         const screenDx = dir.x - dir.y
         const screenDy = dir.x + dir.y
-        this.hero.setTexture(screenDy < -0.2 ? 'hero-back' : 'hero-front')
+        this.facing = screenDy < -0.2 ? 'back' : 'front'
         if (Math.abs(screenDx) > 0.2) this.hero.setFlipX(screenDx < 0)
       }
     }
@@ -238,7 +240,10 @@ export class WorldScene extends Phaser.Scene {
 
   private placeHero(walkTime: number) {
     const at = this.toWorld(this.pos)
-    const bob = walkTime && !reducedMotion() ? Math.abs(Math.sin(walkTime * 14)) * 3 : 0
+    // Walk cycle at 8 frames a second: left step, stand, right step, stand. A small bob on each step.
+    const frame = walkTime ? WALK_CYCLE[Math.floor(walkTime * 8) % WALK_CYCLE.length] : 0
+    this.hero.setTexture(`hero-${this.facing}-${frame}`)
+    const bob = walkTime && !reducedMotion() ? Math.abs(Math.sin(walkTime * Math.PI * 4)) * 2 : 0
     this.hero.setPosition(at.x, at.y - bob).setDepth(at.y)
     this.heroShadow.setPosition(at.x, at.y + 2).setDepth(at.y - 1)
   }

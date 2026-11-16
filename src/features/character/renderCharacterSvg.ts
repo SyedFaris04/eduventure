@@ -18,16 +18,34 @@ function shade(hex: string, amount: number): string {
   return `#${ch.map((c) => c.toString(16).padStart(2, '0')).join('')}`
 }
 
-type Geo = { left: number; right: number; w: number }
+/** Walk cycle moment: 0 = standing, 1 = left leg lifted, −1 = right leg lifted. */
+export type Step = -1 | 0 | 1
+type Geo = { left: number; right: number; w: number; step: Step }
 const TORSO_WIDTH = { a: 56, b: 66, c: 50 } as const
 const SHOULDER_Y = 154
+const ARM_LENGTH = 46
+// A bouncy chibi march: exaggerated so the step still reads when the sprite is ~70 px tall in the world.
+const LIFT = 15 // how far a stepping foot leaves the ground
+const SWING = 20 // arm swing in degrees
 
-const arm = (g: Geo, side: 'l' | 'r', fill: string, length = 46) => {
-  const x = side === 'l' ? g.left - 16 : g.right
-  const angle = side === 'l' ? 8 : -8
-  return `<rect x="${x}" y="${SHOULDER_Y}" width="16" height="${length}" rx="8" fill="${fill}" ${S} transform="rotate(${angle} ${x + 8} ${SHOULDER_Y})"/>`
+const lift = (g: Geo, side: 'l' | 'r') => ((side === 'l' ? g.step === 1 : g.step === -1) ? LIFT : 0)
+// Arms swing opposite to the legs: when the left leg lifts, the arms rotate the other way.
+const armAngle = (g: Geo, side: 'l' | 'r') => (side === 'l' ? 8 : -8) - SWING * g.step
+const armX = (g: Geo, side: 'l' | 'r') => (side === 'l' ? g.left - 16 : g.right)
+
+const arm = (g: Geo, side: 'l' | 'r', fill: string, length = ARM_LENGTH) => {
+  const x = armX(g, side)
+  return `<rect x="${x}" y="${SHOULDER_Y}" width="16" height="${length}" rx="8" fill="${fill}" ${S} transform="rotate(${armAngle(g, side)} ${x + 8} ${SHOULDER_Y})"/>`
 }
-const hand = (g: Geo, side: 'l' | 'r') => (side === 'l' ? { x: g.left - 14, y: 200 } : { x: g.right + 14, y: 200 })
+/** End of the arm after rotation, where the hand (and any held weapon) goes. */
+const hand = (g: Geo, side: 'l' | 'r') => {
+  const a = (armAngle(g, side) * Math.PI) / 180
+  const r = (n: number) => Math.round(n * 10) / 10
+  return { x: r(armX(g, side) + 8 - ARM_LENGTH * Math.sin(a)), y: r(SHOULDER_Y + ARM_LENGTH * Math.cos(a)) }
+}
+/** Left and right leg columns (x of the leg's left edge). */
+const LEGS = { l: 78, r: 104 } as const
+const FEET = { l: 87, r: 113 } as const
 
 function backpack(a: Appearance, g: Geo): string {
   switch (a.backpack) {
@@ -48,8 +66,7 @@ function body(a: Appearance, g: Geo): string {
   const s = a.skin
   return [
     `<rect x="91" y="136" width="18" height="20" fill="${shade(s, -0.12)}" ${S}/>`,
-    `<rect x="78" y="196" width="18" height="42" rx="6" fill="${s}" ${S}/>`,
-    `<rect x="104" y="196" width="18" height="42" rx="6" fill="${s}" ${S}/>`,
+    ...(['l', 'r'] as const).map((side) => `<rect x="${LEGS[side]}" y="196" width="18" height="${42 - lift(g, side)}" rx="6" fill="${s}" ${S}/>`),
     `<rect x="${g.left}" y="148" width="${g.w}" height="58" rx="20" fill="${s}" ${S}/>`,
     arm(g, 'l', s),
     arm(g, 'r', s),
@@ -57,30 +74,44 @@ function body(a: Appearance, g: Geo): string {
   ].join('')
 }
 
-function bottom(a: Appearance): string {
+/** Trousers, shorts and leggings: one leg piece per side (so each can step) under a shared waistband. */
+function legwear(g: Geo, fill: string, length: number, width = 22) {
+  const legs = (['l', 'r'] as const)
+    .map((side) => {
+      const x = side === 'l' ? LEGS.l - 1 : LEGS.r - 3
+      const h = Math.max(8, length - lift(g, side) * (length > 30 ? 1 : 0.5))
+      return `<rect x="${x}" y="198" width="${width}" height="${h}" rx="6" fill="${fill}" ${S}/>`
+    })
+    .join('')
+  return legs + `<rect x="76" y="193" width="48" height="13" rx="6" fill="${fill}" ${S}/>`
+}
+
+function bottom(a: Appearance, g: Geo): string {
   switch (a.bottom) {
     case 'shorts_brown':
-      return `<rect x="76" y="194" width="48" height="26" rx="7" fill="#8a5a3b" ${S}/><path d="M100 204 v16" ${S}/>`
+      return legwear(g, '#8a5a3b', 22)
     case 'skirt_red':
       return `<path d="M76 192 H124 L132 226 Q100 234 68 226 Z" fill="#d9534f" ${S}/><path d="M86 206 l-4 18 M114 206 l4 18" stroke="#b03e3a" stroke-width="2"/>`
     case 'leggings_blue':
-      return `<rect x="77" y="194" width="46" height="44" rx="6" fill="#4f7fc7" ${S}/><path d="M100 202 v36" ${S}/>`
+      return legwear(g, '#4f7fc7', 40, 20)
     default:
-      return `<rect x="76" y="194" width="48" height="44" rx="6" fill="#3d3b52" ${S}/><path d="M100 204 v34" ${S}/>`
+      return legwear(g, '#3d3b52', 40)
   }
 }
 
-function shoes(a: Appearance): string {
-  const feet = [87, 113]
+function shoes(a: Appearance, g: Geo): string {
+  const feet = (['l', 'r'] as const).map((side) => ({ x: FEET[side], up: lift(g, side) }))
   switch (a.shoes) {
     case 'sneakers_red':
-      return feet.map((x) => `<ellipse cx="${x}" cy="242" rx="14" ry="8" fill="#e2574c" ${S}/><path d="M${x - 12} 245 h24" stroke="#fff" stroke-width="3"/>`).join('')
+      return feet.map(({ x, up }) => `<ellipse cx="${x}" cy="${242 - up}" rx="14" ry="8" fill="#e2574c" ${S}/><path d="M${x - 12} ${245 - up} h24" stroke="#fff" stroke-width="3"/>`).join('')
     case 'sandals':
-      return feet.map((x) => `<ellipse cx="${x}" cy="245" rx="13" ry="5" fill="#c0874f" ${S}/><path d="M${x - 8} 238 q8 6 16 0" stroke="#8a5a3b" stroke-width="3" fill="none"/>`).join('')
+      return feet.map(({ x, up }) => `<ellipse cx="${x}" cy="${245 - up}" rx="13" ry="5" fill="#c0874f" ${S}/><path d="M${x - 8} ${238 - up} q8 6 16 0" stroke="#8a5a3b" stroke-width="3" fill="none"/>`).join('')
     case 'boots_black':
-      return feet.map((x) => `<rect x="${x - 10}" y="226" width="20" height="16" rx="4" fill="#2e2a3a" ${S}/><ellipse cx="${x}" cy="242" rx="14" ry="7" fill="#2e2a3a" ${S}/>`).join('')
+      return feet.map(({ x, up }) => `<rect x="${x - 10}" y="${226 - up}" width="20" height="16" rx="4" fill="#2e2a3a" ${S}/><ellipse cx="${x}" cy="${242 - up}" rx="14" ry="7" fill="#2e2a3a" ${S}/>`).join('')
     default:
-      return feet.map((x) => `<rect x="${x - 10}" y="226" width="20" height="16" rx="4" fill="#6b4226" ${S}/><ellipse cx="${x}" cy="242" rx="14" ry="7" fill="#6b4226" ${S}/><path d="M${x - 10} 230 h20" stroke="#4a2c18" stroke-width="2"/>`).join('')
+      return feet
+        .map(({ x, up }) => `<rect x="${x - 10}" y="${226 - up}" width="20" height="16" rx="4" fill="#6b4226" ${S}/><ellipse cx="${x}" cy="${242 - up}" rx="14" ry="7" fill="#6b4226" ${S}/><path d="M${x - 10} ${230 - up} h20" stroke="#4a2c18" stroke-width="2"/>`)
+        .join('')
   }
 }
 
@@ -250,17 +281,17 @@ function weapon(a: Appearance, g: Geo): string {
   }
 }
 
-export function renderCharacterSvg(input: Appearance, opts: { facing?: 'front' | 'back'; size?: number } = {}): string {
+export function renderCharacterSvg(input: Appearance, opts: { facing?: 'front' | 'back'; size?: number; step?: Step } = {}): string {
   const a = sanitizeAppearance(input)
   const facing = opts.facing ?? 'front'
   const size = opts.size ?? 200
   const w = TORSO_WIDTH[a.body]
-  const g: Geo = { w, left: 100 - w / 2, right: 100 + w / 2 }
+  const g: Geo = { w, left: 100 - w / 2, right: 100 + w / 2, step: opts.step ?? 0 }
   const parts: Record<Layer, string> = {
     backpack: backpack(a, g),
     body: body(a, g),
-    bottom: bottom(a),
-    shoes: shoes(a),
+    bottom: bottom(a, g),
+    shoes: shoes(a, g),
     top: top(a, g),
     head: head(a),
     face: facing === 'front' ? face(a) : '',
