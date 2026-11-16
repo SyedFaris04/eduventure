@@ -403,7 +403,16 @@
     "joystick": "Control de movimiento",
     "talkTo": "Hablar con {{name}}",
     "battle": "Luchar contra {{name}}",
-    "challenge": "Desafiar a {{name}}"
+    "challenge": "Desafiar a {{name}}",
+    "noWebgl": "Tu dispositivo no puede mostrar el mundo 3D. Prueba con otro navegador o dispositivo.",
+    "loadFailed": "El mundo no se ha cargado. Revisa tu conexión.",
+    "retry": "Reintentar",
+    "quality": "Gráficos: {{level}}",
+    "qualityLevel": {
+      "auto": "Auto",
+      "high": "Altos",
+      "low": "Bajos"
+    }
   },
   "npc": {
     "elder": {

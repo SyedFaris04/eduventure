@@ -20,6 +20,9 @@ type GameState = {
   monsters: { id: string; kind: MonsterKind; x: number; y: number }[]
   /** Set by the battle panel when a defeated monster's sprite should be removed. */
   defeated: string[]
+  /** Bumped on a wrong answer / a won battle; the hero flinches or cheers once the panel closes. */
+  hitSeq: number
+  cheerSeq: number
 }
 
 export const useGame = create<GameState>(() => ({
@@ -32,6 +35,8 @@ export const useGame = create<GameState>(() => ({
   player: { x: 0, y: 0 },
   monsters: [],
   defeated: [],
+  hitSeq: 0,
+  cheerSeq: 0,
 }))
 
 // Development builds only: lets automated tests and debugging read the game state.
@@ -42,5 +47,9 @@ export const worldPaused = () => {
   const s = useGame.getState()
   return Boolean(s.dialogue || s.battle || s.boss)
 }
+
+/** Hero reaction after an answer: a flinch for a wrong one, a cheer for a win. */
+export const reactToAnswer = (correct: boolean, won: boolean) =>
+  useGame.setState((s) => ({ hitSeq: s.hitSeq + (correct ? 0 : 1), cheerSeq: s.cheerSeq + (won ? 1 : 0) }))
 
 export const pressInteract = () => useGame.setState((s) => ({ interactSeq: s.interactSeq + 1 }))

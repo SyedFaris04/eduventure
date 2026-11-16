@@ -16,7 +16,7 @@ import { ageBandFromBirthYear } from '../authentication/ageBand'
 import { emailOnlySchema, type EmailOnlyValues } from '../authentication/schemas'
 import { useSession } from '../authentication/useSession'
 import { useMyAcademicProfile, useMyProfile, useReferenceData } from '../onboarding/useReferenceData'
-import { characterDataUri } from '../character/renderCharacterSvg'
+import { Snapshot } from '../../world3d/SnapshotImage'
 import { useMyCharacter, useProgression } from '../character/useCharacter'
 import { getSoundEnabled, playChime, setSoundEnabled } from '../loading/sound'
 
@@ -80,11 +80,7 @@ export function HomePage() {
         <div className="grid gap-5 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
           <Panel title={t('home.yourHero')} className="flex flex-col items-center gap-3 md:self-start">
             {character.data && (
-              <img
-                src={characterDataUri(character.data.appearance, { size: 220 })}
-                alt={t('character.previewAlt', { name: character.data.name })}
-                className="hero-bob w-[min(60vw,200px)]"
-              />
+              <Snapshot subject={{ kind: 'hero', appearance: character.data.appearance }} px={220} alt={t('character.previewAlt', { name: character.data.name })} className="hero-bob w-[min(60vw,200px)]" />
             )}
             <p className="font-display text-2xl font-semibold">{character.data?.name}</p>
             <Link to="/character" className={buttonClasses('secondary', 'md')}>

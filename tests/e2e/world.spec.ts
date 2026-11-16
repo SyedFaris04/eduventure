@@ -41,15 +41,13 @@ async function enterWorld(page: Page) {
   await page.waitForFunction(() => ((window as unknown as { __game?: { getState: () => GameState } }).__game?.getState().player.x ?? 0) > 0, null, { timeout: 30_000 })
 }
 
-/** Clicks the map at a grid point, assuming the camera is centred on the hero. */
+/** Clicks the map at a grid point, wherever the 3D camera currently shows it. */
 async function clickGrid(page: Page, target: { x: number; y: number }) {
-  const s = await state(page)
+  const pt = await page.evaluate((p) => (window as unknown as { __world: { screenOf: (q: { x: number; y: number }) => { x: number; y: number } } }).__world.screenOf(p), target)
   const vp = page.viewportSize()!
-  const zoom = vp.width >= 900 ? 1.25 : 1
-  const dx = (target.x - target.y - (s.player.x - s.player.y)) * 32 * zoom
-  const dy = (target.x + target.y - (s.player.x + s.player.y)) * 16 * zoom
   const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v))
-  await page.mouse.click(clamp(vp.width / 2 + dx, 20, vp.width - 20), clamp(vp.height / 2 + dy, 130, vp.height - 20))
+  // Far targets are clamped into the open middle of the screen, clear of the HUD, minimap and controls; each tap still walks toward them.
+  await page.mouse.click(clamp(pt.x, 60, vp.width - 230), clamp(pt.y, 150, vp.height - 230))
 }
 
 async function answerCorrectly(page: Page) {
@@ -159,6 +157,11 @@ test.describe('360 × 740 phone', () => {
     test.setTimeout(180_000)
     await newPlayer(page)
     await enterWorld(page)
+    // Turning the phone and back must leave the layout intact.
+    await page.setViewportSize({ width: 740, height: 360 })
+    await page.waitForTimeout(400)
+    await page.setViewportSize({ width: 360, height: 740 })
+    await page.waitForTimeout(400)
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(360)
     const hud = (await page.getByRole('region', { name: 'Your hero' }).boundingBox())!
     const map = (await page.getByRole('button', { name: /Enlarge map/ }).boundingBox())!

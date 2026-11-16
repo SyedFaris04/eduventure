@@ -403,7 +403,16 @@
     "joystick": "Manette de déplacement",
     "talkTo": "Parler à {{name}}",
     "battle": "Affronter {{name}}",
-    "challenge": "Défier {{name}}"
+    "challenge": "Défier {{name}}",
+    "noWebgl": "Ton appareil ne peut pas afficher le monde en 3D. Essaie un autre navigateur ou appareil.",
+    "loadFailed": "Le monde ne s'est pas chargé. Vérifie ta connexion.",
+    "retry": "Réessayer",
+    "quality": "Graphismes : {{level}}",
+    "qualityLevel": {
+      "auto": "Auto",
+      "high": "Élevés",
+      "low": "Faibles"
+    }
   },
   "npc": {
     "elder": {

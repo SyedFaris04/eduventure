@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
@@ -12,7 +12,8 @@ import { useSession } from '../authentication/useSession'
 import { useMyProfile } from '../onboarding/useReferenceData'
 import { APPEARANCE_OPTIONS, DEFAULT_APPEARANCE, randomAppearance, shopValues, type Appearance, type AppearancePart } from './appearance'
 import { useOwnedItems } from '../shop/useShop'
-import { characterDataUri } from './renderCharacterSvg'
+import { Snapshot } from '../../world3d/SnapshotImage'
+import { HeroPreviewSlot } from '../../world3d/hero/HeroPreviewSlot'
 import { generateSafeName, nameSchema } from './safeName'
 import { saveCharacter, useMyCharacter } from './useCharacter'
 
@@ -57,7 +58,6 @@ export function CharacterCreatorPage() {
     if (safeNamesOnly && !name) setName(generateSafeName())
   }, [safeNamesOnly, name])
 
-  const preview = useMemo(() => characterDataUri(appearance, { facing, size: 280 }), [appearance, facing])
 
   async function save() {
     setError(null)
@@ -105,7 +105,7 @@ export function CharacterCreatorPage() {
             <div className="relative grid w-full max-w-xs place-items-center pt-2">
               <div aria-hidden className="absolute bottom-3 h-10 w-52 rounded-[50%] bg-grass-dark/70 shadow-[0_6px_0_#4a7a2a]" />
               <div aria-hidden className="absolute bottom-6 h-8 w-44 rounded-[50%] bg-grass" />
-              <img src={preview} alt={t('character.previewAlt', { name: name || '…' })} className="hero-bob relative w-[min(70vw,240px)] drop-shadow-[0_6px_6px_rgb(0_0_0/0.15)]" />
+              <HeroPreviewSlot appearance={appearance} facing={facing} label={t('character.previewAlt', { name: name || '…' })} className="relative aspect-[3/4] w-[min(70vw,240px)]" />
             </div>
             <p className="rounded-full bg-cream px-4 py-1 font-display text-lg font-semibold text-wood-dark shadow-[0_3px_0_var(--color-wood)]">{name || '…'}</p>
             <div className="flex flex-wrap justify-center gap-2">
@@ -166,7 +166,7 @@ export function CharacterCreatorPage() {
                           className={`relative flex w-[76px] flex-col items-center rounded-2xl border-[3px] bg-white/80 p-1 ${on ? 'border-grass-dark bg-grass/15 ring-2 ring-grass' : 'border-wood/30 hover:border-wood'}`}
                         >
                           {fromShop && <ShoppingBag size={14} className="absolute top-1 end-1 text-wood-dark" aria-label={t('character.fromShop')} />}
-                          <img alt="" src={characterDataUri({ ...appearance, [part]: value }, { size: 64 })} className="h-[78px] w-16" loading="lazy" />
+                          <Snapshot subject={{ kind: 'hero', appearance: { ...appearance, [part]: value } as Appearance }} px={64} alt="" className="w-16" />
                           <span className="line-clamp-1 text-[11px] font-bold text-wood-dark">{t(`character.opt.${value}`)}</span>
                         </button>
                       )

@@ -59,5 +59,11 @@ Avoids accidental battles for young players. The canvas renders at device pixel 
 ## 20. Test runs share Supabase's guest sign-in limit (2026-11-16)
 The access-rule tests and the end-to-end tests both create anonymous users, and Supabase rate-limits anonymous sign-ins per IP per hour. Running both suites back to back can make the second fail with the app's "Too many tries" message; wait for the limit to reset (or raise it under Authentication → Rate Limits in the dev project only).
 
+## 21. The world is drawn in 3D with React Three Fiber and KayKit art (2026-11-16)
+The owner asked for a Clash of Clans / Clash Royale feel: real 3D, chunky chibi shapes, clear animation. The Phaser 2D world is replaced by a React Three Fiber scene (three.js was already installed for the landing page). The game logic moved unchanged into `src/game/sim.ts` (WorldSim), so movement, battles, rewards and every server rule stay the same. Art: CC0 KayKit packs (animation rig, trees, rocks, houses, well, fences) plus code-built hero parts and monsters in the same style. Free AI 3D generators were rejected as the main source: Meshy's free tier needs credit, Tripo's free tier appears to be non-commercial, and their models have no skeleton and drift in style. Babylon.js was rejected because it would add a second engine. Pre-rendered sprites were rejected because they aren't real 3D.
+
+## 22. Still pictures are 3D snapshots (2026-11-16)
+The HUD, Home, Shop, dialogue, battle panels and creator thumbnails show snapshots: one hidden WebGL renderer draws the same 3D hero or monster once and caches the picture. This keeps the Phase 1 rule that the creator, the menus and the world can never show a different hero. three.js loads only when a picture is first needed, so the first download stays small. Without WebGL, these pictures stay as empty boxes with the same labels.
+
 ## 10. Tailwind tokens are emitted statically (2026-11-16)
 `@theme static` so every palette colour exists as a CSS variable for inline styles, SVG and canvas, not only when a utility class uses it.

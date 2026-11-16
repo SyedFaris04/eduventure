@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { ChevronRight, X } from 'lucide-react'
 import { useGame } from '../../game/store'
 import { NPCS } from '../../game/npcs'
-import { characterDataUri } from '../character/renderCharacterSvg'
+import { Snapshot } from '../../world3d/SnapshotImage'
 
 /** Paged NPC dialogue. Enter / Space / E advance, Escape closes; the world is paused while open. */
 export function DialogueBox({ playerName }: { playerName: string }) {
@@ -34,7 +34,7 @@ export function DialogueBox({ playerName }: { playerName: string }) {
         aria-label={t(`npc.${dialogue.npc}.name`)}
         className="relative flex gap-3 rounded-3xl border-4 border-wood bg-cream p-4 shadow-[0_0_0_3px_var(--color-wood-dark),0_10px_24px_rgb(0_0_0/0.3)]"
       >
-        <img src={characterDataUri(npc.appearance, { size: 96 })} alt="" className="-mt-12 w-20 shrink-0 self-start sm:w-24" />
+        <Snapshot subject={{ kind: 'hero', appearance: npc.appearance }} px={96} alt="" className="-mt-12 w-20 shrink-0 self-start sm:w-24" />
         <div className="flex min-w-0 flex-1 flex-col gap-2">
           <p className="font-display text-lg font-semibold text-wood-dark">{t(`npc.${dialogue.npc}.name`)}</p>
           <p aria-live="polite" className="text-base leading-snug">

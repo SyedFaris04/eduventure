@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Coins } from 'lucide-react'
 import { ProgressBar } from '../../components/ui'
 import { levelProgress } from '../../game/levels'
-import { characterDataUri } from '../character/renderCharacterSvg'
+import { Snapshot } from '../../world3d/SnapshotImage'
 import type { MyCharacter } from '../character/useCharacter'
 
 /** Player card: compact strip on phones, card on larger screens. Values come from the server. */
@@ -15,7 +15,7 @@ export function Hud({ character, xp, gold }: { character: MyCharacter; xp: numbe
       className="pointer-events-auto absolute start-3 top-3 z-10 flex w-[min(calc(100vw-5.5rem),20rem)] items-center gap-3 rounded-2xl border-[3px] border-wood bg-cream/95 p-2 shadow-[0_4px_0_var(--color-wood-dark)]"
     >
       <div className="size-12 shrink-0 overflow-hidden rounded-xl border-2 border-wood/50 bg-water/40 sm:size-14">
-        <img src={characterDataUri(character.appearance, { size: 72 })} alt="" className="-mt-1 w-full" />
+        <Snapshot subject={{ kind: 'hero', appearance: character.appearance }} px={72} alt="" className="-mt-1 w-full" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-baseline justify-between gap-2">
@@ -27,7 +27,7 @@ export function Hud({ character, xp, gold }: { character: MyCharacter; xp: numbe
           <span>
             {p.into} / {p.needed} XP
           </span>
-          <span className="flex items-center gap-1">
+          <span data-hud-gold className="flex items-center gap-1">
             <Coins size={14} className="text-path-dark" aria-hidden /> {gold}
           </span>
         </div>

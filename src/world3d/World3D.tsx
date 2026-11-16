@@ -1,0 +1,220 @@
+import { useEffect, useMemo, useRef } from 'react'
+import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
+import { Stats, useGLTF } from '@react-three/drei'
+import { MeshBasicMaterial, RingGeometry, Vector3, type DirectionalLight, type Mesh, type PerspectiveCamera } from 'three'
+import type { Appearance } from '../features/character/appearance'
+import { parseMap } from '../game/map'
+import { GREENHAVEN } from '../game/maps/greenhaven'
+import { WorldSim } from '../game/sim'
+import { useGame, worldPaused } from '../game/store'
+import { screenOf } from '../game/screen'
+import { Bosses, Hero, Monsters, Npcs } from './Actors'
+import { Ground } from './Ground'
+import { RIG_URL } from './hero/useRig'
+import { listenKeys } from './input'
+import { CAMERA, cameraOffset, worldToGrid } from './projection'
+import { clearProps, preloadProps, Props } from './Props'
+import { createQualityMonitor } from './quality'
+import { qualityLevel, useQuality } from './qualityStore'
+import { Water } from './Water'
+import { windTime } from './wind'
+
+const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
+
+/** Called by the world's Retry button: forget failed downloads so they are fetched again. */
+export function clearWorldCache() {
+  clearProps()
+  useGLTF.clear(RIG_URL)
+}
+
+const ringGeo = new RingGeometry(0.28, 0.4, 28).rotateX(-Math.PI / 2)
+const ringMat = new MeshBasicMaterial({ color: '#fff6e3', transparent: true, depthWrite: false })
+
+/** Runs the game each frame: input → WorldSim → store, camera follow, interact, the tap ring and auto quality. */
+function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
+  const camera = useThree((s) => s.camera) as PerspectiveCamera
+  const gl = useThree((s) => s.gl)
+  const setDpr = useThree((s) => s.setDpr)
+  const sun = useRef<DirectionalLight>(null)
+  const ring = useRef<Mesh>(null)
+  const ringAt = useRef(-1)
+  const target = useRef(new Vector3(sim.hero.pos.x, 0, sim.hero.pos.y))
+  const distance = useRef<number>(CAMERA.distance)
+  const lastEmit = useRef(0)
+  const panelClosedAt = useRef(-Infinity)
+  const monitor = useMemo(() => createQualityMonitor(), [])
+  const level = useQuality(qualityLevel)
+
+  useEffect(() => setDpr(level === 'low' ? Math.min(1.5, window.devicePixelRatio) : Math.min(2, window.devicePixelRatio)), [level, setDpr])
+
+  useEffect(() => {
+    const interact = () => {
+      if (worldPaused() || performance.now() - panelClosedAt.current < 300) return
+      const prompt = useGame.getState().prompt
+      if (prompt?.kind === 'npc') useGame.setState({ dialogue: { npc: prompt.id, page: 0 } })
+      if (prompt?.kind === 'monster') useGame.setState({ battle: { monsterId: prompt.id, monster: prompt.monster } })
+      if (prompt?.kind === 'boss') useGame.setState({ boss: prompt.id })
+    }
+    const keys = listenKeys(interact)
+    keysRef.current = keys
+    let seq = useGame.getState().interactSeq
+    const unsub = useGame.subscribe((s, prev) => {
+      // The key that closes a panel must not immediately reopen it.
+      if ((prev.dialogue && !s.dialogue) || (prev.battle && !s.battle) || (prev.boss && !s.boss)) panelClosedAt.current = performance.now()
+      if (s.interactSeq !== seq) {
+        seq = s.interactSeq
+        interact()
+      }
+    })
+    // Wheel and two-finger pinch zoom within the Clash-style limits.
+    const el = gl.domElement
+    const clampD = (d: number) => Math.min(CAMERA.maxDistance, Math.max(CAMERA.minDistance, d))
+    const wheel = (e: WheelEvent) => {
+      e.preventDefault()
+      distance.current = clampD(distance.current + e.deltaY * 0.01)
+    }
+    const touches = new Map<number, { x: number; y: number }>()
+    let pinch = 0
+    const spread = () => {
+      const [a, b] = [...touches.values()]
+      return a && b ? Math.hypot(a.x - b.x, a.y - b.y) : 0
+    }
+    const down = (e: PointerEvent) => {
+      touches.set(e.pointerId, { x: e.clientX, y: e.clientY })
+      if (touches.size === 2) pinch = spread()
+    }
+    const move = (e: PointerEvent) => {
+      if (!touches.has(e.pointerId)) return
+      touches.set(e.pointerId, { x: e.clientX, y: e.clientY })
+      if (touches.size === 2 && pinch) {
+        const now = spread()
+        distance.current = clampD(distance.current * (pinch / now))
+        pinch = now
+      }
+    }
+    const up = (e: PointerEvent) => {
+      touches.delete(e.pointerId)
+      pinch = 0
+    }
+    el.addEventListener('wheel', wheel, { passive: false })
+    el.addEventListener('pointerdown', down)
+    el.addEventListener('pointermove', move)
+    window.addEventListener('pointerup', up)
+    window.addEventListener('pointercancel', up)
+
+    screenOf.current = (p) => {
+      const v = new Vector3(p.x, 0, p.y).project(camera)
+      const r = el.getBoundingClientRect()
+      return { x: r.left + ((v.x + 1) / 2) * r.width, y: r.top + ((1 - v.y) / 2) * r.height }
+    }
+    // Development builds: lets automated tests click a grid point on the real canvas.
+    if (import.meta.env.DEV) (window as unknown as { __world: unknown }).__world = { screenOf: screenOf.current }
+    return () => {
+      screenOf.current = null
+      keys.stop()
+      unsub()
+      el.removeEventListener('wheel', wheel)
+      el.removeEventListener('pointerdown', down)
+      el.removeEventListener('pointermove', move)
+      window.removeEventListener('pointerup', up)
+      window.removeEventListener('pointercancel', up)
+    }
+  }, [camera, gl])
+  const keysRef = useRef<ReturnType<typeof listenKeys> | null>(null)
+
+  useFrame((state, delta) => {
+    const dt = Math.min(delta, 0.05)
+    const now = performance.now()
+    windTime.value = reduced ? 0 : state.clock.elapsedTime
+    const store = useGame.getState()
+    if (store.defeated.length) {
+      for (const id of store.defeated) sim.defeat(id, now)
+      useGame.setState({ defeated: [] })
+    }
+    const keys = keysRef.current?.read() ?? { x: 0, y: 0 }
+    sim.update(dt, keys.x || keys.y ? keys : store.stick, now, worldPaused())
+
+    const prompt = sim.prompt()
+    if (store.prompt?.id !== prompt?.id) useGame.setState({ prompt })
+    if (now - lastEmit.current > 150) {
+      lastEmit.current = now
+      useGame.setState({ player: { ...sim.hero.pos }, monsters: sim.monsters.filter((m) => m.alive).map((m) => ({ id: m.id, kind: m.kind, x: m.pos.x, y: m.pos.y })) })
+    }
+
+    // Camera eases after the hero (instantly under reduced motion), frame-rate independent.
+    const goal = new Vector3(sim.hero.pos.x, 0, sim.hero.pos.y)
+    target.current.lerp(goal, reduced ? 1 : 1 - Math.pow(1 - 0.12, dt * 60))
+    const [ox, oy, oz] = cameraOffset(distance.current)
+    camera.position.set(target.current.x + ox, oy, target.current.z + oz)
+    camera.lookAt(target.current)
+    if (sun.current) {
+      // Light from the upper left of the screen (−x), so shadows fall toward the viewer and stay visible.
+      sun.current.position.set(target.current.x - 9, 15, target.current.z + 5)
+      sun.current.target.position.copy(target.current)
+      sun.current.target.updateMatrixWorld()
+    }
+
+    if (ring.current) {
+      const t = (now - ringAt.current) / 600
+      ring.current.visible = ringAt.current > 0 && t < 1
+      ring.current.scale.setScalar(reduced ? 1 : 0.6 + t * 0.6)
+      ringMat.opacity = 0.9 * (1 - t)
+    }
+
+    if (useQuality.getState().choice === 'auto' && useQuality.getState().auto === 'high' && monitor.sample(delta * 1000) === 'low') useQuality.setState({ auto: 'low' })
+  })
+
+  const tap = (e: ThreeEvent<PointerEvent>) => {
+    if (!e.nativeEvent.isPrimary || worldPaused()) return
+    const g = worldToGrid(e.point.x, e.point.z)
+    sim.tap(g)
+    ringAt.current = performance.now()
+    ring.current?.position.set(Math.floor(g.x) + 0.5, 0.02, Math.floor(g.y) + 0.5)
+  }
+
+  return (
+    <>
+      <hemisphereLight args={['#bfe6ff', '#8bc34a', 1.15]} />
+      <directionalLight ref={sun} color="#fff1d6" intensity={2.4} castShadow={level === 'high'} shadow-mapSize={[2048, 2048]} shadow-camera-left={-16} shadow-camera-right={16} shadow-camera-top={16} shadow-camera-bottom={-16} shadow-camera-far={50} shadow-bias={-0.0006} />
+      {/* The tap target: an invisible floor over the whole island. */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[sim.map.width / 2, 0.001, sim.map.height / 2]} onPointerDown={tap} visible={false}>
+        <planeGeometry args={[sim.map.width, sim.map.height]} />
+      </mesh>
+      <mesh ref={ring} geometry={ringGeo} material={ringMat} visible={false} />
+    </>
+  )
+}
+
+/** Greenhaven in 3D. Default export so it loads as its own chunk with three.js. */
+export default function World3D({ hero }: { hero: Appearance }) {
+  const map = useMemo(() => parseMap(GREENHAVEN), [])
+  const sim = useMemo(() => new WorldSim(map), [map])
+  const covered = useGame((s) => Boolean(s.battle || s.boss))
+  const level = useQuality(qualityLevel)
+  const reduced = useMemo(reducedMotion, [])
+  useEffect(preloadProps, [])
+  const start = cameraOffset(CAMERA.distance)
+
+  return (
+    <Canvas
+      // Battle panels cover the world: stop drawing it to save battery and keep phones responsive.
+      frameloop={covered ? 'never' : 'always'}
+      shadows
+      dpr={[1, 2]}
+      gl={{ antialias: true, powerPreference: 'high-performance' }}
+      camera={{ fov: CAMERA.fov, near: 0.5, far: 150, position: [sim.hero.pos.x + start[0], start[1], sim.hero.pos.y + start[2]] }}
+    >
+      <color attach="background" args={['#5fb3d9']} />
+      <fog attach="fog" args={['#5fb3d9', 34, 70]} />
+      <Game sim={sim} reduced={reduced} />
+      <Ground map={map} />
+      <Water map={map} sparkles={level === 'high' && !reduced} />
+      <Props map={map} shadows={level === 'high'} />
+      <Npcs sim={sim} reduced={reduced} />
+      <Monsters sim={sim} reduced={reduced} />
+      <Bosses sim={sim} reduced={reduced} />
+      <Hero sim={sim} appearance={hero} reduced={reduced} />
+      {import.meta.env.DEV && location.search.includes('fps') && <Stats />}
+    </Canvas>
+  )
+}

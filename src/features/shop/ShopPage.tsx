@@ -7,7 +7,7 @@ import { Button, buttonClasses, Panel } from '../../components/ui'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
 import { FormMessage } from '../authentication/AuthLayout'
 import { useSession } from '../authentication/useSession'
-import { characterDataUri } from '../character/renderCharacterSvg'
+import { Snapshot } from '../../world3d/SnapshotImage'
 import type { Appearance } from '../character/appearance'
 import { saveCharacter, useMyCharacter, useProgression } from '../character/useCharacter'
 import { CATALOGUE, type Rarity, type ShopItem } from './catalogue'
@@ -96,7 +96,7 @@ export function ShopPage() {
                       <Coins size={16} className="text-gold" aria-hidden /> {item.price}
                     </span>
                   </div>
-                  {look && <img alt={t('shop.previewAlt', { item: name })} src={characterDataUri({ ...look, [item.slot]: item.id } as Appearance, { size: 120 })} className="h-[170px] w-[120px]" loading="lazy" />}
+                  {look && <Snapshot subject={{ kind: 'hero', appearance: { ...look, [item.slot]: item.id } as Appearance }} px={120} alt={t('shop.previewAlt', { item: name })} className="w-[120px]" />}
                   <p className="font-display text-lg font-semibold">{name}</p>
                   {wearing ? (
                     <p className="flex min-h-11 items-center gap-1 font-bold text-grass-dark">
