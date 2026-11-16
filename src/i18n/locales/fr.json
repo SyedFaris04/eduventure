@@ -394,7 +394,7 @@
     "shop": "Boutique"
   },
   "world": {
-    "canvasLabel": "Village de Greenhaven. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",
+    "canvasLabel": "{{place}}. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",
     "home": "Retour à l'accueil",
     "hud": "Ton héros",
     "levelShort": "Niv. {{level}}",

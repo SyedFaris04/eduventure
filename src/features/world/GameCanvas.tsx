@@ -43,6 +43,7 @@ function CurrentPlace({ hero }: { hero: Appearance }) {
 export function GameCanvas({ hero }: { hero: Appearance }) {
   const { t } = useTranslation()
   const [attempt, setAttempt] = useState(0)
+  const place = usePlace((s) => s.place)
   if (!hasWebGL())
     return (
       <Notice>
@@ -50,7 +51,7 @@ export function GameCanvas({ hero }: { hero: Appearance }) {
       </Notice>
     )
   return (
-    <div role="application" aria-label={t('world.canvasLabel')} className="absolute inset-0 touch-none">
+    <div role="application" aria-label={t('world.canvasLabel', { place: t(`regions.${place}.name`) })} className="absolute inset-0 touch-none">
       <Boundary
         key={attempt}
         fallback={

@@ -35,7 +35,7 @@ async function sail(page: Page, button: RegExp, to: string) {
 }
 
 test('sail to Science Island and fight', async ({ page }) => {
-  test.setTimeout(300_000)
+  test.setTimeout(480_000) // two boat rides and long walks on software rendering
   await newPlayer(page)
   await enterWorld(page)
   expect(await place(page)).toBe('greenhaven')

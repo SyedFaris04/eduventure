@@ -394,7 +394,7 @@
     "shop": "商店"
   },
   "world": {
-    "canvasLabel": "绿港村。用 W A S D 或方向键移动，点击行走，按 E 交谈。",
+    "canvasLabel": "{{place}}。用 W A S D 或方向键移动，点击行走，按 E 交谈。",
     "home": "返回主页",
     "hud": "你的英雄",
     "levelShort": "{{level}} 级",

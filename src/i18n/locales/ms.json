@@ -394,7 +394,7 @@
     "shop": "Kedai"
   },
   "world": {
-    "canvasLabel": "Kampung Greenhaven. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",
+    "canvasLabel": "{{place}}. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",
     "home": "Kembali ke Laman Utama",
     "hud": "Wira anda",
     "levelShort": "Tahap {{level}}",

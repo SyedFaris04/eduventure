@@ -394,7 +394,7 @@
     "shop": "Tienda"
   },
   "world": {
-    "canvasLabel": "Aldea Greenhaven. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",
+    "canvasLabel": "{{place}}. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",
     "home": "Volver al inicio",
     "hud": "Tu héroe",
     "levelShort": "Nv {{level}}",

@@ -394,7 +394,7 @@
     "shop": "ショップ"
   },
   "world": {
-    "canvasLabel": "グリーンヘイブン村。W A S D か矢印キーで移動、タップで歩く、E で話す。",
+    "canvasLabel": "{{place}}。W A S D か矢印キーで移動、タップで歩く、E で話す。",
     "home": "ホームに戻る",
     "hud": "あなたのヒーロー",
     "levelShort": "Lv {{level}}",

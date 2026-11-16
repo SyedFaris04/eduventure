@@ -39,6 +39,7 @@ describe('GameCanvas', () => {
     // The place's map downloads first (Suspense), so let React finish inside act.
     await act(async () => void render(<GameCanvas hero={DEFAULT_APPEARANCE} />))
     expect(await screen.findByText("The world didn't load. Check your connection.", undefined, { timeout: 5000 })).toBeTruthy() // the place's map loads first
+    expect(screen.getByRole('application', { name: /^Greenhaven Kampung\. Move with/ })).toBeTruthy() // names the current place
     const before = world.renders
     world.fail = false
     await act(async () => userEvent.click(screen.getByRole('button', { name: 'Try again' })))

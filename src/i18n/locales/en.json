@@ -394,7 +394,7 @@
     "shop": "Shop"
   },
   "world": {
-    "canvasLabel": "Greenhaven Village. Move with W A S D or the arrow keys, tap to walk, press E to talk.",
+    "canvasLabel": "{{place}}. Move with W A S D or the arrow keys, tap to walk, press E to talk.",
     "home": "Back to Home",
     "hud": "Your hero",
     "levelShort": "Lv {{level}}",
