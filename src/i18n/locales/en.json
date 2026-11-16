@@ -64,12 +64,13 @@
     "title": "Explore the World",
     "intro": "Twelve regions are waiting. Greenhaven Village opens first; the others unlock as Eduventure grows.",
     "opensIn": "Opens in Phase {{phase}}",
-    "firstStop": "First stop"
+    "firstStop": "First stop",
+    "openNow": "Open now"
   },
   "regions": {
     "greenhaven": {
-      "name": "Greenhaven Village",
-      "blurb": "A cosy village where every adventurer's journey begins."
+      "name": "Greenhaven Kampung",
+      "blurb": "A cosy kampung by the sea where every journey begins, with a jetty to the islands."
     },
     "knowledge_forest": {
       "name": "Knowledge Forest",
@@ -80,8 +81,8 @@
       "blurb": "Climb peaks of numbers, patterns and puzzles."
     },
     "science_island": {
-      "name": "Science Laboratory Island",
-      "blurb": "Bubbling experiments and curious creatures await."
+      "name": "Science Island",
+      "blurb": "Hutan Borneo: rainforest, mangroves, a waterfall and curious creatures."
     },
     "language_kingdom": {
       "name": "Language Kingdom",
@@ -430,6 +431,12 @@
         "Hi there, {{name}}! I'm Nori. Soon my shop will be full of clothes, gear and decorations for heroes.",
         "It isn't open yet, but keep earning gold in battles. You'll have plenty to spend when I open my doors!"
       ]
+    },
+    "boatman": {
+      "name": "Pak Hamid",
+      "pages": [
+        "Selamat datang! Talk to me whenever you want to sail to another island."
+      ]
     }
   },
   "monsters": {
@@ -649,5 +656,18 @@
       "lostText": "The Abacus Titan resets its beads and waits. Everything you earned is safe; read the explanations and try again.",
       "alreadyToday": "You've already claimed today's Abacus Titan reward. Come back tomorrow!"
     }
+  },
+  "jetty": {
+    "title": "Pak Hamid's jetty",
+    "greeting": "Selamat datang! Where shall we sail today?",
+    "here": "You are here",
+    "sail": "Sail",
+    "sailTo": "Sail to {{place}}",
+    "comingSoon": "Coming soon"
+  },
+  "ride": {
+    "sailingTo": "Sailing to {{place}}…",
+    "skip": "Skip",
+    "label": "Boat ride"
   }
 }

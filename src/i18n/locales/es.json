@@ -64,12 +64,13 @@
     "title": "Explora el mundo",
     "intro": "Doce regiones te esperan. La aldea de Greenhaven abre primero; las demás se desbloquearán a medida que Eduventure crezca.",
     "opensIn": "Abre en la fase {{phase}}",
-    "firstStop": "Primera parada"
+    "firstStop": "Primera parada",
+    "openNow": "Abierto ahora"
   },
   "regions": {
     "greenhaven": {
-      "name": "Aldea Greenhaven",
-      "blurb": "Un pueblo acogedor donde comienza el viaje de todo aventurero."
+      "name": "Kampung Greenhaven",
+      "blurb": "Un acogedor kampung junto al mar donde empieza cada viaje, con un muelle hacia las islas."
     },
     "knowledge_forest": {
       "name": "Bosque del Saber",
@@ -80,8 +81,8 @@
       "blurb": "Escala cumbres de números, patrones y acertijos."
     },
     "science_island": {
-      "name": "Isla Laboratorio de Ciencias",
-      "blurb": "Te esperan experimentos burbujeantes y criaturas curiosas."
+      "name": "Isla de las Ciencias",
+      "blurb": "Hutan Borneo: selva, manglares, una cascada y criaturas curiosas."
     },
     "language_kingdom": {
       "name": "Reino de las Lenguas",
@@ -430,6 +431,12 @@
         "¡Hola, {{name}}! Soy Nori. Pronto mi tienda estará llena de ropa, equipo y decoraciones para héroes.",
         "Todavía no está abierta, pero sigue ganando oro en las batallas. ¡Tendrás mucho para gastar cuando abra!"
       ]
+    },
+    "boatman": {
+      "name": "Pak Hamid",
+      "pages": [
+        "¡Selamat datang! Habla conmigo cuando quieras navegar a otra isla."
+      ]
     }
   },
   "monsters": {
@@ -649,5 +656,18 @@
       "lostText": "El Titán del Ábaco reinicia sus cuentas y espera. Todo lo que ganaste está a salvo; lee las explicaciones e inténtalo de nuevo.",
       "alreadyToday": "Ya reclamaste hoy la recompensa del Titán del Ábaco. ¡Vuelve mañana!"
     }
+  },
+  "jetty": {
+    "title": "El muelle de Pak Hamid",
+    "greeting": "¡Selamat datang! ¿Adónde navegamos hoy?",
+    "here": "Estás aquí",
+    "sail": "Zarpar",
+    "sailTo": "Zarpar hacia {{place}}",
+    "comingSoon": "Próximamente"
+  },
+  "ride": {
+    "sailingTo": "Navegando hacia {{place}}…",
+    "skip": "Saltar",
+    "label": "Viaje en barco"
   }
 }

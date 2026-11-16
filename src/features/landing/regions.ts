@@ -1,9 +1,9 @@
 /** The 12 world regions from the brief, in brief order. `phase` is the roadmap phase that opens it. */
 export const REGIONS = [
-  { id: 'greenhaven', phase: 2, colour: '#8bc34a' },
+  { id: 'greenhaven', phase: 2, colour: '#8bc34a', open: true },
   { id: 'knowledge_forest', phase: 9, colour: '#4f9a5a' },
-  { id: 'mathematics_mountains', phase: 9, colour: '#8fa3c7' },
-  { id: 'science_island', phase: 9, colour: '#4fa3c7' },
+  { id: 'mathematics_mountains', phase: 9, colour: '#8fa3c7', open: true },
+  { id: 'science_island', phase: 9, colour: '#4fa3c7', open: true },
   { id: 'language_kingdom', phase: 9, colour: '#c77fb0' },
   { id: 'history_ruins', phase: 9, colour: '#c9a46b' },
   { id: 'technology_city', phase: 9, colour: '#6b8fd6' },

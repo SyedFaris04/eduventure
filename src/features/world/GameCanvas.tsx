@@ -6,6 +6,8 @@ import type { Appearance } from '../character/appearance'
 import { hasWebGL } from '../../world3d/webgl'
 import { usePlace } from '../../game/placeStore'
 import { placeMap } from '../../game/placeMaps'
+import { useGame } from '../../game/store'
+import { Travel } from './Travel'
 
 // three.js and the models download only when the world opens.
 const World3D = lazy(() => import('../../world3d/World3D'))
@@ -26,6 +28,11 @@ function Notice({ children }: { children: ReactNode }) {
 
 /** The current place: its map downloads on demand (Suspense), then the 3D world shows it. */
 function PlaceWorld({ hero }: { hero: Appearance }) {
+  const travel = useGame((s) => s.travel)
+  return travel ? <Travel hero={hero} to={travel.to} /> : <CurrentPlace hero={hero} />
+}
+
+function CurrentPlace({ hero }: { hero: Appearance }) {
   const place = usePlace((s) => s.place)
   const arriving = usePlace((s) => s.arriving)
   const map = use(placeMap(place))

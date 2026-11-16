@@ -64,12 +64,13 @@
     "title": "Teroka Dunia",
     "intro": "Dua belas wilayah sedang menanti. Kampung Greenhaven dibuka dahulu; yang lain akan dibuka apabila Eduventure berkembang.",
     "opensIn": "Dibuka dalam Fasa {{phase}}",
-    "firstStop": "Destinasi pertama"
+    "firstStop": "Destinasi pertama",
+    "openNow": "Dibuka sekarang"
   },
   "regions": {
     "greenhaven": {
       "name": "Kampung Greenhaven",
-      "blurb": "Kampung yang selesa tempat setiap pengembara memulakan perjalanan."
+      "blurb": "Kampung yang selesa di tepi laut, tempat setiap pengembaraan bermula, dengan jeti ke pulau-pulau."
     },
     "knowledge_forest": {
       "name": "Hutan Ilmu",
@@ -80,8 +81,8 @@
       "blurb": "Daki puncak nombor, corak dan teka-teki."
     },
     "science_island": {
-      "name": "Pulau Makmal Sains",
-      "blurb": "Eksperimen yang berbuih dan makhluk yang ingin tahu sedang menanti."
+      "name": "Pulau Sains",
+      "blurb": "Hutan Borneo: hutan hujan, bakau, air terjun dan makhluk yang ingin tahu."
     },
     "language_kingdom": {
       "name": "Kerajaan Bahasa",
@@ -430,6 +431,12 @@
         "Hai, {{name}}! Saya Nori. Tidak lama lagi kedai saya akan penuh dengan pakaian, kelengkapan dan hiasan untuk wira.",
         "Kedai belum dibuka, tetapi teruskan mengumpul emas dalam pertarungan. Anda akan ada banyak untuk dibelanjakan nanti!"
       ]
+    },
+    "boatman": {
+      "name": "Pak Hamid",
+      "pages": [
+        "Selamat datang! Bercakaplah dengan saya bila-bila masa anda mahu belayar ke pulau lain."
+      ]
     }
   },
   "monsters": {
@@ -649,5 +656,18 @@
       "lostText": "Titan Sempoa menyusun semula maniknya dan menunggu. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
       "alreadyToday": "Anda sudah menuntut ganjaran Titan Sempoa hari ini. Datang lagi esok!"
     }
+  },
+  "jetty": {
+    "title": "Jeti Pak Hamid",
+    "greeting": "Selamat datang! Ke mana kita belayar hari ini?",
+    "here": "Anda di sini",
+    "sail": "Belayar",
+    "sailTo": "Belayar ke {{place}}",
+    "comingSoon": "Akan datang"
+  },
+  "ride": {
+    "sailingTo": "Belayar ke {{place}}…",
+    "skip": "Langkau",
+    "label": "Perjalanan bot"
   }
 }

@@ -12,6 +12,8 @@ import { Minimap } from './Minimap'
 import { InteractButton, Joystick } from './TouchControls'
 import { DialogueBox } from './DialogueBox'
 import { CoinBurst } from './CoinBurst'
+import { JettyPanel } from './JettyPanel'
+import { AreaBanner } from './AreaBanner'
 import { BattlePanel } from '../battle/BattlePanel'
 import { BossPanel } from '../battle/BossPanel'
 import { NEXT_CHOICE, useQuality } from '../../world3d/qualityStore'
@@ -51,6 +53,8 @@ export function WorldPage() {
         <Joystick />
         <InteractButton />
         <DialogueBox playerName={character.data?.name ?? ''} />
+        <AreaBanner />
+        <JettyPanel />
         <BattlePanel />
         <BossPanel />
         <CoinBurst />

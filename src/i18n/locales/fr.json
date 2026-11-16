@@ -64,12 +64,13 @@
     "title": "Explorer le monde",
     "intro": "Douze régions t'attendent. Le village de Greenhaven ouvre en premier ; les autres se débloqueront à mesure qu'Eduventure grandit.",
     "opensIn": "Ouverture en phase {{phase}}",
-    "firstStop": "Première étape"
+    "firstStop": "Première étape",
+    "openNow": "Ouvert"
   },
   "regions": {
     "greenhaven": {
-      "name": "Village de Greenhaven",
-      "blurb": "Un village douillet où commence le voyage de chaque aventurier."
+      "name": "Kampung Greenhaven",
+      "blurb": "Un kampung douillet au bord de la mer où commence chaque voyage, avec un ponton vers les îles."
     },
     "knowledge_forest": {
       "name": "Forêt du Savoir",
@@ -80,8 +81,8 @@
       "blurb": "Gravis des sommets de nombres, de motifs et d'énigmes."
     },
     "science_island": {
-      "name": "Île-Laboratoire des Sciences",
-      "blurb": "Des expériences bouillonnantes et des créatures curieuses t'attendent."
+      "name": "Île des Sciences",
+      "blurb": "Hutan Borneo : forêt tropicale, mangroves, une cascade et des créatures curieuses."
     },
     "language_kingdom": {
       "name": "Royaume des Langues",
@@ -430,6 +431,12 @@
         "Salut, {{name}} ! Je suis Nori. Bientôt, ma boutique sera pleine de vêtements, d'équipement et de décorations pour les héros.",
         "Elle n'est pas encore ouverte, mais continue à gagner de l'or en combat. Tu auras de quoi dépenser quand j'ouvrirai !"
       ]
+    },
+    "boatman": {
+      "name": "Pak Hamid",
+      "pages": [
+        "Selamat datang ! Parle-moi quand tu veux naviguer vers une autre île."
+      ]
     }
   },
   "monsters": {
@@ -649,5 +656,18 @@
       "lostText": "Le Titan Boulier remet ses perles en place et attend. Tout ce que tu as gagné est en sécurité ; lis les explications et réessaie.",
       "alreadyToday": "Tu as déjà réclamé la récompense du Titan Boulier aujourd'hui. Reviens demain !"
     }
+  },
+  "jetty": {
+    "title": "Le ponton de Pak Hamid",
+    "greeting": "Selamat datang ! Où naviguons-nous aujourd'hui ?",
+    "here": "Tu es ici",
+    "sail": "Naviguer",
+    "sailTo": "Naviguer vers {{place}}",
+    "comingSoon": "Bientôt"
+  },
+  "ride": {
+    "sailingTo": "En route vers {{place}}…",
+    "skip": "Passer",
+    "label": "Traversée en bateau"
   }
 }

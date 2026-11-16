@@ -10,7 +10,7 @@ export const SEA_Y = -0.5
 export const POND_Y = -0.15
 
 /** Gentle rolling waves in the vertex shader; the shared wind clock drives them. */
-function waveMaterial(colour: string, amp: number) {
+export function waveMaterial(colour: string, amp: number) {
   const m = new MeshStandardMaterial({ color: colour, roughness: 0.2, metalness: 0.05, transparent: true, opacity: 0.93 })
   m.onBeforeCompile = (shader) => {
     shader.uniforms.uWindTime = windTime

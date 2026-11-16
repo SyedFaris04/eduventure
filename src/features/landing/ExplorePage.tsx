@@ -76,9 +76,11 @@ export function ExplorePage() {
                 <div className="p-4">
                   <h2 className="text-xl font-semibold text-wood-dark">{t(`regions.${r.id}.name`)}</h2>
                   <p className="mt-1 text-sm text-ink/80">{t(`regions.${r.id}.blurb`)}</p>
-                  <p className="mt-3 inline-block rounded-full border-2 border-wood/50 px-3 py-0.5 text-xs font-bold text-wood-dark">
-                    {t('explore.opensIn', { phase: r.phase })}
-                  </p>
+                  {'open' in r ? (
+                    <p className="mt-3 inline-block rounded-full border-2 border-grass-dark bg-grass/30 px-3 py-0.5 text-xs font-bold text-ink">{t('explore.openNow')}</p>
+                  ) : (
+                    <p className="mt-3 inline-block rounded-full border-2 border-wood/50 px-3 py-0.5 text-xs font-bold text-wood-dark">{t('explore.opensIn', { phase: r.phase })}</p>
+                  )}
                 </div>
               </li>
             )
