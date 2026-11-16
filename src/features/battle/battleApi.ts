@@ -15,7 +15,7 @@ export type EncounterState = {
 
 export type AnswerResult = {
   correct: boolean
-  correct_answer: string | { value: number; tolerance: number; unit?: string } | { accept: string[] }
+  correct_answer: string | string[] | Record<string, string> | { value: number; tolerance: number; unit?: string } | { accept: string[] }
   explanation: string
   wrong_reason: string | null
   damage: number
@@ -25,10 +25,11 @@ export type AnswerResult = {
   bonus: { xp: number; gold: number }
   totals: { xp: number; level: number; gold: number }
   leveled_up: boolean
+  missions_completed: string[]
   state: EncounterState
 }
 
-export type AnswerPayload = { choice: string } | { value: string } | { text: string }
+export type AnswerPayload = { choice: string } | { value: string } | { text: string } | { choices: string[] } | { order: string[] } | { pairs: Record<string, string> }
 
 /** Turns database errors into i18n keys for the battle panel. */
 export class BattleError extends Error {
@@ -53,6 +54,38 @@ export async function answerQuestion(encounterId: string, answer: AnswerPayload)
   const { data, error } = await supabase!.rpc('answer_question', { p_encounter: encounterId, p_answer: answer })
   if (error) throw toBattleError(error.message)
   return data as AnswerResult
+}
+
+export type BossState = {
+  run_id: string
+  round: number
+  rounds: number
+  round_progress: number
+  per_round: number
+  hearts: number
+  status: 'active' | 'won' | 'lost' | 'fled'
+  question: PublicQuestion | null
+}
+export type BossResult = Pick<AnswerResult, 'correct' | 'correct_answer' | 'explanation' | 'wrong_reason' | 'missions_completed' | 'totals'> & {
+  reward: { xp: number; gold: number; already_today: boolean; leveled_up: boolean } | null
+  state: BossState
+}
+
+export async function startBoss(): Promise<BossState> {
+  const { data, error } = await supabase!.rpc('start_boss')
+  if (error) throw toBattleError(error.message)
+  return data as BossState
+}
+
+export async function answerBoss(runId: string, answer: AnswerPayload): Promise<BossResult> {
+  const { data, error } = await supabase!.rpc('answer_boss', { p_run: runId, p_answer: answer })
+  if (error) throw toBattleError(error.message)
+  return data as BossResult
+}
+
+export async function fleeBoss(runId: string): Promise<void> {
+  const { error } = await supabase!.rpc('flee_boss', { p_run: runId })
+  if (error) throw toBattleError(error.message)
 }
 
 export async function fleeEncounter(encounterId: string): Promise<void> {

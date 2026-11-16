@@ -98,6 +98,8 @@ Known limit of the chosen approach: other players' positions are display-only (n
 - **Done when:** on desktop and on your phone you can walk around, talk to an NPC, beat three monster types, level up, and still have your progress after a reload. Sending fake answers or writing to the wallet directly earns nothing.
 
 ### Phase 3 — Education
+**Status (2026-11-16): built and merged.** 510 questions (150 primary, 200 secondary, 150 pre-university/university, 10 all-level) across 8 question types and 25 subjects, all in review for the owner in `/admin`. Review workflow with history, adaptive practice, missions and streaks, Academic Library and the Greenhaven Guardian boss. The in-app question editor, image questions and status export were moved to later phases (decision #19). Task list and build record: `docs/phases/phase-3.md`.
+
 - Full education tables: topics, learning objectives, courses, sources and licences, reviews, mastery, versions, audit history.
 - Question files in the repo, checked automatically (format, duplicates, exactly one right answer, an explanation for every wrong option, numeric answers recomputed), then imported.
 - 500 questions: 150 primary, 200 secondary, 150 pre-university and university, tagged by ISCED level and mapped to KSSR / KSSM topics.

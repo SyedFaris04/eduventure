@@ -23,6 +23,29 @@ describe('renderCharacterSvg', () => {
     }
   })
 
+  it('standing pose (step 0) is the default drawing', () => {
+    expect(renderCharacterSvg(DEFAULT_APPEARANCE, { step: 0 })).toBe(renderCharacterSvg(DEFAULT_APPEARANCE))
+  })
+
+  it('walking steps move legs, shoes and arms but never the head, face or hair', () => {
+    const stand = renderCharacterSvg(DEFAULT_APPEARANCE)
+    for (const step of [-1, 1] as const) {
+      const walk = renderCharacterSvg(DEFAULT_APPEARANCE, { step })
+      for (const layer of ['body', 'bottom', 'shoes']) expect(layerMarkup(walk, layer), `${layer} step ${step}`).not.toEqual(layerMarkup(stand, layer))
+      for (const layer of ['head', 'face', 'eyes', 'hair']) expect(layerMarkup(walk, layer), `${layer} step ${step}`).toEqual(layerMarkup(stand, layer))
+    }
+    // the two steps are mirror moments, not the same frame
+    expect(renderCharacterSvg(DEFAULT_APPEARANCE, { step: 1 })).not.toEqual(renderCharacterSvg(DEFAULT_APPEARANCE, { step: -1 }))
+  })
+
+  it('every bottom has two separate legs so they can move', () => {
+    for (const bottom of APPEARANCE_OPTIONS.bottom.filter((b) => b !== 'skirt_red')) {
+      const a = layerMarkup(renderCharacterSvg({ ...DEFAULT_APPEARANCE, bottom }), 'bottom')!
+      const b = layerMarkup(renderCharacterSvg({ ...DEFAULT_APPEARANCE, bottom }, { step: 1 }), 'bottom')!
+      expect(a, bottom).not.toEqual(b)
+    }
+  })
+
   it('renders every option of every part without throwing', () => {
     for (const [part, options] of Object.entries(APPEARANCE_OPTIONS)) {
       for (const value of options) {

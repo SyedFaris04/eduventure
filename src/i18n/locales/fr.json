@@ -375,7 +375,9 @@
     "signOutGuestTitle": "Quitter le mode invité ?",
     "signOutGuestBody": "Un héros invité ne peut pas être récupéré après la déconnexion. Sauvegarde d'abord ta progression si tu veux le garder.",
     "signOutAnyway": "Me déconnecter quand même",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "admin": "Relire les questions",
+    "library": "Bibliothèque"
   },
   "world": {
     "canvasLabel": "Village de Greenhaven. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",
@@ -387,7 +389,8 @@
     "minimapShrink": "Réduire la carte",
     "joystick": "Manette de déplacement",
     "talkTo": "Parler à {{name}}",
-    "battle": "Affronter {{name}}"
+    "battle": "Affronter {{name}}",
+    "challenge": "Défier {{name}}"
   },
   "npc": {
     "elder": {
@@ -430,6 +433,10 @@
     "false": "Faux",
     "yourAnswer": "Ta réponse",
     "submit": "Répondre",
+    "selectAll": "Sélectionne toutes les bonnes réponses.",
+    "moveUp": "Monter {{item}}",
+    "moveDown": "Descendre {{item}}",
+    "choose": "Choisis…",
     "checking": "Vérification…",
     "correct": "Bravo !",
     "wrong": "Pas tout à fait",
@@ -456,6 +463,60 @@
       "tooFast": "Prends le temps de lire la question, puis réessaie.",
       "noQuestions": "Il n'y a pas encore de questions pour ton niveau.",
       "generic": "Un problème est survenu. Réessaie."
-    }
+    },
+    "missionDone": "Mission accomplie : {{name}} ! Récupère-la sur l'accueil."
+  },
+  "library": {
+    "title": "Bibliothèque",
+    "topics": "Tes sujets",
+    "score": "{{correct}} / {{attempts}} justes",
+    "masteryOf": "Maîtrise de {{topic}}",
+    "empty": "Réponds à des questions en combat et tes sujets apparaîtront ici.",
+    "onlyMistakes": "Afficher seulement mes erreurs",
+    "gotRight": "Juste la dernière fois",
+    "gotWrong": "Faux la dernière fois",
+    "tries": "{{n}} essais",
+    "nothingHere": "Rien pour l'instant. Affronte un monstre pour remplir ta bibliothèque !"
+  },
+  "missions": {
+    "title": "Missions",
+    "daily": "Aujourd'hui",
+    "weekly": "Cette semaine",
+    "claim": "Récupérer",
+    "claimed": "Récupérée",
+    "claimFailed": "Impossible de récupérer la récompense. Réessaie.",
+    "anySubject": "n'importe quelle matière",
+    "streak": "Série de {{n}} jours d'apprentissage",
+    "streakNone": "Réponds à une question aujourd'hui pour lancer une série",
+    "streakToday": "fait pour aujourd'hui !",
+    "restAvailable": "jour de repos disponible cette semaine",
+    "d_correct_10": "Réponds juste à 10 questions",
+    "d_defeat_3": "Bats 3 monstres",
+    "d_subject_5": "Réponds juste à 5 questions de {{subject}}",
+    "w_correct_50": "Réponds juste à 50 questions",
+    "w_defeat_12": "Bats 12 monstres"
+  },
+  "boss": {
+    "name": "Gardien de Greenhaven",
+    "title": "Combat de boss : Gardien de Greenhaven",
+    "roundOf": "Manche {{n}} sur {{total}}",
+    "progress": "{{n}} sur {{total}} justes dans cette manche",
+    "hearts": "Il reste {{n}} cœurs",
+    "rounds": {
+      "maths": "Maths",
+      "science": "Sciences",
+      "wisdom": "Sagesse",
+      "final": "Finale"
+    },
+    "intro": {
+      "maths": "Manche 1 : le Gardien teste tes calculs. Trois bonnes réponses pour passer la manche.",
+      "science": "Manche 2 : sciences ! Montre au Gardien comment fonctionne le monde.",
+      "wisdom": "Manche 3 : mots et sagesse.",
+      "final": "Manche finale : tout est permis. Encore trois et le Gardien s'incline !"
+    },
+    "victory": "Le Gardien s'incline !",
+    "victoryText": "Tu as réussi les quatre manches. Greenhaven est fier de toi !",
+    "lostText": "Le Gardien attend patiemment ton retour. Tout ce que tu as gagné est conservé ; relis les explications et réessaie.",
+    "alreadyToday": "Tu as déjà récupéré la récompense du Gardien aujourd'hui. Reviens demain pour une autre !"
   }
 }

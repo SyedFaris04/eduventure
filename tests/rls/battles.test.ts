@@ -1,30 +1,12 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
-import bank from '../../content/questions/starter.json'
+import { rightAnswer, wrongAnswer } from './answers'
 
 const url = process.env.VITE_SUPABASE_URL
 const key = process.env.VITE_SUPABASE_PUBLISHABLE_KEY
 const configured = Boolean(url && key)
 const newClient = () => createClient(url!, key!, { auth: { persistSession: false, autoRefreshToken: false } })
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
-
-type Q = { id: string; type: string; answer: unknown; options?: { id: string }[] }
-const byId = new Map((bank.questions as Q[]).map((q) => [q.id, q]))
-
-/** Builds the answer payload from the content file (the test plays the role of a student who knows). */
-function rightAnswer(qid: string) {
-  const q = byId.get(qid)!
-  if (q.type === 'mcq' || q.type === 'true_false') return { choice: q.answer }
-  if (q.type === 'numeric') return { value: String((q.answer as { value: number }).value) }
-  return { text: (q.answer as { accept: string[] }).accept[0] }
-}
-function wrongAnswer(qid: string) {
-  const q = byId.get(qid)!
-  if (q.type === 'mcq') return { choice: q.options!.find((o) => o.id !== q.answer)!.id }
-  if (q.type === 'true_false') return { choice: q.answer === 'true' ? 'false' : 'true' }
-  if (q.type === 'numeric') return { value: String((q.answer as { value: number }).value + 1000) }
-  return { text: 'definitely not this' }
-}
 
 async function player(level: string, subjects: string[], curriculum = 'international', grade: string | null = null) {
   const c = newClient()
@@ -118,8 +100,9 @@ describe.skipIf(!configured)('battles (live project)', () => {
   })
 
   it('keeps answer keys, the question bank and internal helpers out of reach', async () => {
-    expect((await a.from('question_keys').select('*')).error).not.toBeNull()
-    expect((await a.from('questions').select('*')).error).not.toBeNull()
+    // Reviewers can read these (Phase 3); for players the rows simply do not exist.
+    expect((await a.from('question_keys').select('*')).data ?? []).toEqual([])
+    expect((await a.from('questions').select('*')).data ?? []).toEqual([])
     expect((await a.rpc('pick_question', { p_user: (await a.auth.getUser()).data.user!.id })).error).not.toBeNull()
     expect((await a.from('player_wallets').update({ gold: 9999 }).eq('gold', 0).select()).data ?? []).toEqual([])
   })

@@ -53,5 +53,11 @@ Projection, map parsing, movement, collision, pathfinding and the level curve ar
 ## 18. Battles start only from Interact, not by bumping into monsters (2026-11-16)
 Avoids accidental battles for young players. The canvas renders at device pixel ratio (max 2) and pauses while the battle panel is open, to keep ordinary phones responsive.
 
+## 19. Question files are the only authoring path until Phase 9 (2026-11-16)
+`content/questions/*.json` is the single source of question content: validated by tests, imported by generated migrations. Reviewers only change status in `/admin`; a fix is a file edit with a version bump, which sends the question back to review. The in-app question editor moves to Phase 9 (educator tools), and `sync:questions` (exporting review status back to the files) moves to Phase 8, where it must come with a guard so a file can never mark a question published without a review record. Image questions (Supabase Storage) move to Phase 8 with the asset pipeline.
+
+## 20. Test runs share Supabase's guest sign-in limit (2026-11-16)
+The access-rule tests and the end-to-end tests both create anonymous users, and Supabase rate-limits anonymous sign-ins per IP per hour. Running both suites back to back can make the second fail with the app's "Too many tries" message; wait for the limit to reset (or raise it under Authentication → Rate Limits in the dev project only).
+
 ## 10. Tailwind tokens are emitted statically (2026-11-16)
 `@theme static` so every palette colour exists as a CSS variable for inline styles, SVG and canvas, not only when a utility class uses it.

@@ -375,7 +375,9 @@
     "signOutGuestTitle": "退出游客模式？",
     "signOutGuestBody": "游客英雄在退出后无法找回。如果想保留这个英雄，请先保存进度。",
     "signOutAnyway": "仍然退出",
-    "cancel": "取消"
+    "cancel": "取消",
+    "admin": "审核题目",
+    "library": "学术图书馆"
   },
   "world": {
     "canvasLabel": "绿港村。用 W A S D 或方向键移动，点击行走，按 E 交谈。",
@@ -387,7 +389,8 @@
     "minimapShrink": "缩小地图",
     "joystick": "移动摇杆",
     "talkTo": "与{{name}}交谈",
-    "battle": "挑战{{name}}"
+    "battle": "挑战{{name}}",
+    "challenge": "挑战{{name}}"
   },
   "npc": {
     "elder": {
@@ -430,6 +433,10 @@
     "false": "错",
     "yourAnswer": "你的答案",
     "submit": "作答",
+    "selectAll": "选出所有正确答案。",
+    "moveUp": "将{{item}}上移",
+    "moveDown": "将{{item}}下移",
+    "choose": "请选择…",
     "checking": "批改中…",
     "correct": "答对了！",
     "wrong": "还差一点",
@@ -456,6 +463,60 @@
       "tooFast": "先花点时间读题，再试一次。",
       "noQuestions": "你的阶段暂时还没有题目。",
       "generic": "出了点问题，请重试。"
-    }
+    },
+    "missionDone": "任务完成：{{name}}！到主页领取奖励。"
+  },
+  "library": {
+    "title": "学术图书馆",
+    "topics": "你的知识点",
+    "score": "答对 {{correct}} / {{attempts}}",
+    "masteryOf": "{{topic}} 掌握度",
+    "empty": "在战斗中答题后，你的知识点会显示在这里。",
+    "onlyMistakes": "只显示我答错的题",
+    "gotRight": "上次答对了",
+    "gotWrong": "上次答错了",
+    "tries": "{{n}} 次",
+    "nothingHere": "这里还没有内容。去打怪兽来充实你的图书馆吧！"
+  },
+  "missions": {
+    "title": "任务",
+    "daily": "今天",
+    "weekly": "本周",
+    "claim": "领取",
+    "claimed": "已领取",
+    "claimFailed": "无法领取奖励，请重试。",
+    "anySubject": "任意科目",
+    "streak": "连续学习 {{n}} 天",
+    "streakNone": "今天答一道题即可开始连续学习",
+    "streakToday": "今天已完成！",
+    "restAvailable": "本周还有一天休息日",
+    "d_correct_10": "答对 10 道题",
+    "d_defeat_3": "打败 3 只怪物",
+    "d_subject_5": "答对 5 道{{subject}}题",
+    "w_correct_50": "答对 50 道题",
+    "w_defeat_12": "打败 12 只怪物"
+  },
+  "boss": {
+    "name": "绿港守护者",
+    "title": "首领战：绿港守护者",
+    "roundOf": "第 {{n}} 回合，共 {{total}} 回合",
+    "progress": "本回合答对 {{n}} / {{total}}",
+    "hearts": "剩余 {{n}} 颗心",
+    "rounds": {
+      "maths": "数学",
+      "science": "科学",
+      "wisdom": "智慧",
+      "final": "决战"
+    },
+    "intro": {
+      "maths": "第 1 回合：守护者考验你的数字能力。答对三题即可过关。",
+      "science": "第 2 回合：科学！让守护者看看世界是如何运转的。",
+      "wisdom": "第 3 回合：语言与智慧。",
+      "final": "最后一回合：什么都可能出现。再答对三题，守护者就会鞠躬！"
+    },
+    "victory": "守护者鞠躬了！",
+    "victoryText": "你通过了全部四个回合，绿港为你骄傲！",
+    "lostText": "守护者耐心地等你回来。你获得的一切都还在；读读讲解，再试一次。",
+    "alreadyToday": "今天的守护者奖励已经领取过了，明天再来吧！"
   }
 }

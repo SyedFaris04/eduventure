@@ -1,9 +1,13 @@
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
 
-// The test reads answers from the content file, like a student who knows them. The app never ships this file.
-type Q = { prompt: string; type: string; answer: unknown; options?: { id: string; text: string }[] }
-const bank = (JSON.parse(readFileSync(new URL('../../content/questions/starter.json', import.meta.url), 'utf8')) as { questions: Q[] }).questions
+// The test reads answers from the content files, like a student who knows them. The app never ships these files.
+type Opt = { id: string; text: string }
+type Q = { prompt: string; type: string; answer: unknown; options?: Opt[] | { left: Opt[]; right: Opt[] } }
+const dir = new URL('../../content/questions/', import.meta.url)
+const bank = readdirSync(dir)
+  .filter((f) => f.endsWith('.json'))
+  .flatMap((f) => (JSON.parse(readFileSync(new URL(f, dir), 'utf8')) as { questions: Q[] }).questions)
 
 type GameState = { prompt: { kind: string } | null; player: { x: number; y: number }; monsters: { kind: string; x: number; y: number }[] }
 const state = (page: Page) => page.evaluate(() => (window as unknown as { __game: { getState: () => GameState } }).__game.getState())
@@ -50,10 +54,33 @@ async function clickGrid(page: Page, target: { x: number; y: number }) {
 
 async function answerCorrectly(page: Page) {
   const prompt = await page.locator('section[role=dialog] p.text-xl').innerText()
-  const q = bank.find((x) => x.prompt === prompt)!
-  if (q.type === 'mcq') await page.getByRole('button', { name: q.options!.find((o) => o.id === q.answer)!.text, exact: false }).first().click()
+  const q = bank.find((x) => x.prompt === prompt)
+  if (!q) throw new Error(`question not found in content/questions: ${prompt}`)
+  const dialog = page.locator('section[role=dialog]')
+  const list = (q.options ?? []) as Opt[]
+  const submit = () => dialog.getByRole('button', { name: 'Answer', exact: true }).click()
+  if (q.type === 'mcq') await page.getByRole('button', { name: list.find((o) => o.id === q.answer)!.text, exact: false }).first().click()
   else if (q.type === 'true_false') await page.getByRole('button', { name: q.answer === 'true' ? /True/ : /False/ }).click()
-  else {
+  else if (q.type === 'multi_select') {
+    for (const id of q.answer as string[]) await dialog.getByRole('button', { name: list.find((o) => o.id === id)!.text, exact: true }).click()
+    await submit()
+  } else if (q.type === 'ordering') {
+    // Bubble each item up into place using the "Move … up" buttons.
+    const target = (q.answer as string[]).map((id) => list.find((o) => o.id === id)!.text)
+    const current = list.map((o) => o.text)
+    for (let i = 0; i < target.length; i++) {
+      for (let j = current.indexOf(target[i]); j > i; j--) {
+        await dialog.getByRole('button', { name: `Move ${target[i]} up`, exact: true }).click()
+        ;[current[j - 1], current[j]] = [current[j], current[j - 1]]
+      }
+    }
+    await submit()
+  } else if (q.type === 'matching') {
+    const { left } = q.options as { left: Opt[] }
+    const pairs = q.answer as Record<string, string>
+    for (const [i, l] of left.entries()) await dialog.locator('select').nth(i).selectOption(pairs[l.id])
+    await submit()
+  } else {
     const a = q.answer as { value?: number; accept?: string[] }
     await page.getByLabel('Your answer').fill(q.type === 'numeric' ? String(a.value) : a.accept![0])
     await page.getByRole('button', { name: 'Answer', exact: true }).click()

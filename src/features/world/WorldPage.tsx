@@ -10,6 +10,7 @@ import { Minimap } from './Minimap'
 import { InteractButton, Joystick } from './TouchControls'
 import { DialogueBox } from './DialogueBox'
 import { BattlePanel } from '../battle/BattlePanel'
+import { BossPanel } from '../battle/BossPanel'
 
 export function WorldPage() {
   const { t } = useTranslation()
@@ -32,6 +33,7 @@ export function WorldPage() {
         <InteractButton />
         <DialogueBox playerName={character.data?.name ?? ''} />
         <BattlePanel />
+        <BossPanel />
       </div>
     </main>
   )

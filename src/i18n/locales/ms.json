@@ -375,7 +375,9 @@
     "signOutGuestTitle": "Keluar daripada mod tetamu?",
     "signOutGuestBody": "Wira tetamu tidak dapat dipulihkan selepas log keluar. Simpan kemajuan dahulu jika anda mahu mengekalkan wira ini.",
     "signOutAnyway": "Log keluar juga",
-    "cancel": "Batal"
+    "cancel": "Batal",
+    "admin": "Semak soalan",
+    "library": "Perpustakaan Akademik"
   },
   "world": {
     "canvasLabel": "Kampung Greenhaven. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",
@@ -387,7 +389,8 @@
     "minimapShrink": "Kecilkan peta",
     "joystick": "Pad pergerakan",
     "talkTo": "Bercakap dengan {{name}}",
-    "battle": "Lawan {{name}}"
+    "battle": "Lawan {{name}}",
+    "challenge": "Cabar {{name}}"
   },
   "npc": {
     "elder": {
@@ -430,6 +433,10 @@
     "false": "Salah",
     "yourAnswer": "Jawapan anda",
     "submit": "Jawab",
+    "selectAll": "Pilih semua jawapan yang betul.",
+    "moveUp": "Alihkan {{item}} ke atas",
+    "moveDown": "Alihkan {{item}} ke bawah",
+    "choose": "Pilih…",
     "checking": "Menyemak…",
     "correct": "Betul!",
     "wrong": "Belum tepat",
@@ -456,6 +463,60 @@
       "tooFast": "Luangkan masa membaca soalan, kemudian cuba lagi.",
       "noQuestions": "Belum ada soalan untuk tahap anda.",
       "generic": "Ada sesuatu yang tidak kena. Sila cuba lagi."
-    }
+    },
+    "missionDone": "Misi selesai: {{name}}! Tuntut di Laman Utama."
+  },
+  "library": {
+    "title": "Perpustakaan Akademik",
+    "topics": "Topik anda",
+    "score": "{{correct}} / {{attempts}} betul",
+    "masteryOf": "Penguasaan {{topic}}",
+    "empty": "Jawab soalan dalam pertarungan dan topik anda akan muncul di sini.",
+    "onlyMistakes": "Tunjukkan soalan yang saya salah sahaja",
+    "gotRight": "Anda betul kali terakhir",
+    "gotWrong": "Anda salah kali terakhir",
+    "tries": "{{n}} cubaan",
+    "nothingHere": "Belum ada apa-apa. Lawan raksasa untuk mengisi perpustakaan anda!"
+  },
+  "missions": {
+    "title": "Misi",
+    "daily": "Hari ini",
+    "weekly": "Minggu ini",
+    "claim": "Tuntut",
+    "claimed": "Sudah dituntut",
+    "claimFailed": "Ganjaran tidak dapat dituntut. Sila cuba lagi.",
+    "anySubject": "mana-mana subjek",
+    "streak": "Rentetan belajar {{n}} hari",
+    "streakNone": "Jawab satu soalan hari ini untuk memulakan rentetan",
+    "streakToday": "selesai untuk hari ini!",
+    "restAvailable": "hari rehat tersedia minggu ini",
+    "d_correct_10": "Jawab 10 soalan dengan betul",
+    "d_defeat_3": "Kalahkan 3 raksasa",
+    "d_subject_5": "Jawab 5 soalan {{subject}} dengan betul",
+    "w_correct_50": "Jawab 50 soalan dengan betul",
+    "w_defeat_12": "Kalahkan 12 raksasa"
+  },
+  "boss": {
+    "name": "Penjaga Greenhaven",
+    "title": "Pertarungan bos: Penjaga Greenhaven",
+    "roundOf": "Pusingan {{n}} daripada {{total}}",
+    "progress": "{{n}} daripada {{total}} betul dalam pusingan ini",
+    "hearts": "{{n}} nyawa lagi",
+    "rounds": {
+      "maths": "Matematik",
+      "science": "Sains",
+      "wisdom": "Hikmah",
+      "final": "Akhir"
+    },
+    "intro": {
+      "maths": "Pusingan 1: Penjaga menguji nombor anda. Tiga jawapan betul untuk lepas pusingan.",
+      "science": "Pusingan 2: sains! Tunjukkan kepada Penjaga cara dunia berfungsi.",
+      "wisdom": "Pusingan 3: kata-kata dan hikmah.",
+      "final": "Pusingan akhir: apa sahaja. Tiga lagi dan Penjaga akan tunduk!"
+    },
+    "victory": "Penjaga tunduk!",
+    "victoryText": "Anda melepasi keempat-empat pusingan. Greenhaven bangga dengan anda!",
+    "lostText": "Penjaga menunggu anda kembali dengan sabar. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
+    "alreadyToday": "Anda sudah menuntut ganjaran Penjaga hari ini. Kembali esok untuk ganjaran lagi!"
   }
 }

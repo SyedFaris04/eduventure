@@ -375,7 +375,9 @@
     "signOutGuestTitle": "ゲストモードを終了しますか？",
     "signOutGuestBody": "ゲストのヒーローはログアウトすると復元できません。残したい場合は先に進行状況を保存してください。",
     "signOutAnyway": "それでもログアウト",
-    "cancel": "キャンセル"
+    "cancel": "キャンセル",
+    "admin": "問題を確認する",
+    "library": "学習ライブラリー"
   },
   "world": {
     "canvasLabel": "グリーンヘイブン村。W A S D か矢印キーで移動、タップで歩く、E で話す。",
@@ -387,7 +389,8 @@
     "minimapShrink": "地図を小さくする",
     "joystick": "移動パッド",
     "talkTo": "{{name}}と話す",
-    "battle": "{{name}}とバトル"
+    "battle": "{{name}}とバトル",
+    "challenge": "{{name}}に挑む"
   },
   "npc": {
     "elder": {
@@ -430,6 +433,10 @@
     "false": "まちがい",
     "yourAnswer": "あなたの答え",
     "submit": "答える",
+    "selectAll": "正しい答えをすべて選んでください。",
+    "moveUp": "{{item}}を上へ",
+    "moveDown": "{{item}}を下へ",
+    "choose": "選んでください…",
     "checking": "確認中…",
     "correct": "正解！",
     "wrong": "おしい！",
@@ -456,6 +463,60 @@
       "tooFast": "問題をよく読んでから、もう一度答えてね。",
       "noQuestions": "あなたのレベルの問題はまだありません。",
       "generic": "問題が発生しました。もう一度お試しください。"
-    }
+    },
+    "missionDone": "ミッション達成：{{name}}！ホームで受け取ろう。"
+  },
+  "library": {
+    "title": "学習ライブラリー",
+    "topics": "あなたの単元",
+    "score": "{{attempts}} 問中 {{correct}} 問正解",
+    "masteryOf": "{{topic}} の習熟度",
+    "empty": "バトルで問題に答えると、ここに単元が表示されます。",
+    "onlyMistakes": "まちがえた問題だけ表示",
+    "gotRight": "前回は正解",
+    "gotWrong": "前回はまちがい",
+    "tries": "{{n}} 回",
+    "nothingHere": "まだ何もありません。モンスターとバトルしてライブラリーを増やそう！"
+  },
+  "missions": {
+    "title": "ミッション",
+    "daily": "今日",
+    "weekly": "今週",
+    "claim": "受け取る",
+    "claimed": "受け取り済み",
+    "claimFailed": "報酬を受け取れませんでした。もう一度お試しください。",
+    "anySubject": "どの教科でも",
+    "streak": "{{n}} 日連続で学習中",
+    "streakNone": "今日1問答えると連続記録がはじまります",
+    "streakToday": "今日はクリア！",
+    "restAvailable": "今週はお休みの日が使えます",
+    "d_correct_10": "10問正解する",
+    "d_defeat_3": "モンスターを3体たおす",
+    "d_subject_5": "{{subject}}の問題に5問正解する",
+    "w_correct_50": "50問正解する",
+    "w_defeat_12": "モンスターを12体たおす"
+  },
+  "boss": {
+    "name": "グリーンヘイブンの守り神",
+    "title": "ボスバトル：グリーンヘイブンの守り神",
+    "roundOf": "ラウンド {{n}} / {{total}}",
+    "progress": "このラウンドの正解 {{n}} / {{total}}",
+    "hearts": "残りハート {{n}}",
+    "rounds": {
+      "maths": "算数・数学",
+      "science": "理科",
+      "wisdom": "ことばと知恵",
+      "final": "決勝"
+    },
+    "intro": {
+      "maths": "ラウンド1：守り神が数の力をためすぞ。3問正解でクリア。",
+      "science": "ラウンド2：理科！世界のしくみを守り神に見せよう。",
+      "wisdom": "ラウンド3：ことばと知恵。",
+      "final": "最終ラウンド：何でも出るよ。あと3問で守り神がおじぎする！"
+    },
+    "victory": "守り神がおじぎした！",
+    "victoryText": "4つのラウンドをすべてクリア。グリーンヘイブンのほこりだ！",
+    "lostText": "守り神はあなたの帰りを気長に待っています。手に入れたものはそのまま。解説を読んで、もう一度挑戦しよう。",
+    "alreadyToday": "今日の守り神の報酬はもう受け取りました。また明日来てね！"
   }
 }

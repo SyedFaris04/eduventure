@@ -10,6 +10,7 @@ const CHAR_SCALE = 0.5
 const MONSTER_COUNT: Record<MonsterKind, number> = { sproutling: 4, pebblewing: 3, dinobud: 3 }
 const MONSTER_SCALE: Record<MonsterKind, number> = { sproutling: 0.42, pebblewing: 0.42, dinobud: 0.55 }
 const RESPAWN_MS = 20_000
+const WALK_CYCLE = [1, 0, -1, 0] as const
 
 type Monster = { id: string; kind: MonsterKind; pos: Point; target?: Point; sprite: Phaser.GameObjects.Image; shadow: Phaser.GameObjects.Image; alive: boolean; nextMove: number }
 // Image origin (x, y as fractions) per prop so the base sits on its tile.
@@ -36,6 +37,7 @@ export class WorldScene extends Phaser.Scene {
   private lastEmit = 0
   private lastInteractSeq = 0
   private panelClosedAt = -Infinity
+  private facing: 'front' | 'back' = 'front'
   private monsters: Monster[] = []
   private unsubscribe?: () => void
 
@@ -71,10 +73,17 @@ export class WorldScene extends Phaser.Scene {
 
     this.spawnMonsters()
 
+    for (const boss of this.map.bosses) {
+      const at = this.toWorld({ x: boss.x + 0.5, y: boss.y + 0.5 })
+      this.add.image(at.x, at.y + 4, 'shadow').setScale(2.2, 1.6).setDepth(at.y - 1)
+      const sprite = this.add.image(at.x, at.y, `boss-${boss.id}`).setOrigin(0.5, 0.92).setScale(0.62).setDepth(at.y)
+      if (!reducedMotion()) this.tweens.add({ targets: sprite, scaleY: 0.64, duration: 1800, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' })
+    }
+
     this.pos = { x: this.map.spawn.x + 0.5, y: this.map.spawn.y + 0.5 }
     const start = this.toWorld(this.pos)
     this.heroShadow = this.add.image(start.x, start.y + 2, 'shadow')
-    this.hero = this.add.image(start.x, start.y, 'hero-front').setOrigin(0.5, 0.95).setScale(CHAR_SCALE)
+    this.hero = this.add.image(start.x, start.y, 'hero-front-0').setOrigin(0.5, 0.95).setScale(CHAR_SCALE)
 
     const cam = this.cameras.main
     cam.setBounds(0, 0, this.L.width, this.L.height)
@@ -94,10 +103,11 @@ export class WorldScene extends Phaser.Scene {
     this.lastInteractSeq = useGame.getState().interactSeq
     this.unsubscribe = useGame.subscribe((s, prev) => {
       // The key that closes a panel must not immediately reopen it on the game's side.
-      if ((prev.dialogue && !s.dialogue) || (prev.battle && !s.battle)) this.panelClosedAt = this.time.now
-      // The battle panel covers the world: stop rendering it to save battery and keep phones responsive.
-      if (!prev.battle && s.battle) this.game.loop.sleep()
-      if (prev.battle && !s.battle) this.game.loop.wake()
+      if ((prev.dialogue && !s.dialogue) || (prev.battle && !s.battle) || (prev.boss && !s.boss)) this.panelClosedAt = this.time.now
+      // Battle panels cover the world: stop rendering it to save battery and keep phones responsive.
+      const covered = (x: typeof s) => Boolean(x.battle || x.boss)
+      if (!covered(prev) && covered(s)) this.game.loop.sleep()
+      if (covered(prev) && !covered(s)) this.game.loop.wake()
       if (s.defeated.length) {
         for (const id of s.defeated) this.defeat(id)
         useGame.setState({ defeated: [] })
@@ -125,6 +135,7 @@ export class WorldScene extends Phaser.Scene {
     const prompt = useGame.getState().prompt
     if (prompt?.kind === 'npc') useGame.setState({ dialogue: { npc: prompt.id, page: 0 } })
     if (prompt?.kind === 'monster') useGame.setState({ battle: { monsterId: prompt.id, monster: prompt.monster } })
+    if (prompt?.kind === 'boss') useGame.setState({ boss: prompt.id })
   }
 
   private freeZoneTile(kind: MonsterKind): Point {
@@ -219,7 +230,7 @@ export class WorldScene extends Phaser.Scene {
         this.pos = next
         const screenDx = dir.x - dir.y
         const screenDy = dir.x + dir.y
-        this.hero.setTexture(screenDy < -0.2 ? 'hero-back' : 'hero-front')
+        this.facing = screenDy < -0.2 ? 'back' : 'front'
         if (Math.abs(screenDx) > 0.2) this.hero.setFlipX(screenDx < 0)
       }
     }
@@ -238,7 +249,10 @@ export class WorldScene extends Phaser.Scene {
 
   private placeHero(walkTime: number) {
     const at = this.toWorld(this.pos)
-    const bob = walkTime && !reducedMotion() ? Math.abs(Math.sin(walkTime * 14)) * 3 : 0
+    // Walk cycle at 8 frames a second: left step, stand, right step, stand. A small bob on each step.
+    const frame = walkTime ? WALK_CYCLE[Math.floor(walkTime * 8) % WALK_CYCLE.length] : 0
+    this.hero.setTexture(`hero-${this.facing}-${frame}`)
+    const bob = walkTime && !reducedMotion() ? Math.abs(Math.sin(walkTime * Math.PI * 4)) * 2 : 0
     this.hero.setPosition(at.x, at.y - bob).setDepth(at.y)
     this.heroShadow.setPosition(at.x, at.y + 2).setDepth(at.y - 1)
   }
@@ -246,8 +260,15 @@ export class WorldScene extends Phaser.Scene {
   private updatePrompt() {
     const dist = (p: Point) => Math.hypot(p.x - this.pos.x, p.y - this.pos.y)
     const npc = this.map.npcs.find((n) => dist({ x: n.x + 0.5, y: n.y + 0.5 }) <= INTERACT_RANGE)
+    const boss = this.map.bosses.find((b) => dist({ x: b.x + 0.5, y: b.y + 0.5 }) <= INTERACT_RANGE)
     const monster = this.monsters.filter((m) => m.alive && dist(m.pos) <= INTERACT_RANGE).sort((a, b) => dist(a.pos) - dist(b.pos))[0]
-    const next: Prompt | null = npc ? { kind: 'npc', id: npc.id } : monster ? { kind: 'monster', id: monster.id, monster: monster.kind } : null
+    const next: Prompt | null = npc
+      ? { kind: 'npc', id: npc.id }
+      : boss
+        ? { kind: 'boss', id: boss.id }
+        : monster
+          ? { kind: 'monster', id: monster.id, monster: monster.kind }
+          : null
     const current = useGame.getState().prompt
     if (current?.id !== next?.id) useGame.setState({ prompt: next })
   }

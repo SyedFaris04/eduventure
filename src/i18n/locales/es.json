@@ -375,7 +375,9 @@
     "signOutGuestTitle": "¿Salir del modo invitado?",
     "signOutGuestBody": "Un héroe invitado no se puede recuperar después de cerrar sesión. Guarda tu progreso primero si quieres conservarlo.",
     "signOutAnyway": "Cerrar sesión igualmente",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "admin": "Revisar preguntas",
+    "library": "Biblioteca académica"
   },
   "world": {
     "canvasLabel": "Aldea Greenhaven. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",
@@ -387,7 +389,8 @@
     "minimapShrink": "Reducir mapa",
     "joystick": "Control de movimiento",
     "talkTo": "Hablar con {{name}}",
-    "battle": "Luchar contra {{name}}"
+    "battle": "Luchar contra {{name}}",
+    "challenge": "Desafiar a {{name}}"
   },
   "npc": {
     "elder": {
@@ -430,6 +433,10 @@
     "false": "Falso",
     "yourAnswer": "Tu respuesta",
     "submit": "Responder",
+    "selectAll": "Selecciona todas las respuestas correctas.",
+    "moveUp": "Subir {{item}}",
+    "moveDown": "Bajar {{item}}",
+    "choose": "Elige…",
     "checking": "Comprobando…",
     "correct": "¡Correcto!",
     "wrong": "No del todo",
@@ -456,6 +463,60 @@
       "tooFast": "Tómate un momento para leer la pregunta y vuelve a intentarlo.",
       "noQuestions": "Todavía no hay preguntas para tu nivel.",
       "generic": "Algo salió mal. Inténtalo de nuevo."
-    }
+    },
+    "missionDone": "¡Misión completada: {{name}}! Reclámala en Inicio."
+  },
+  "library": {
+    "title": "Biblioteca académica",
+    "topics": "Tus temas",
+    "score": "{{correct}} / {{attempts}} bien",
+    "masteryOf": "Dominio de {{topic}}",
+    "empty": "Responde preguntas en las batallas y tus temas aparecerán aquí.",
+    "onlyMistakes": "Mostrar solo las preguntas que fallé",
+    "gotRight": "La acertaste la última vez",
+    "gotWrong": "La fallaste la última vez",
+    "tries": "{{n}} intentos",
+    "nothingHere": "Aún no hay nada. ¡Lucha contra un monstruo para llenar tu biblioteca!"
+  },
+  "missions": {
+    "title": "Misiones",
+    "daily": "Hoy",
+    "weekly": "Esta semana",
+    "claim": "Reclamar",
+    "claimed": "Reclamada",
+    "claimFailed": "No se pudo reclamar la recompensa. Inténtalo de nuevo.",
+    "anySubject": "cualquier asignatura",
+    "streak": "Racha de {{n}} días aprendiendo",
+    "streakNone": "Responde una pregunta hoy para empezar una racha",
+    "streakToday": "¡hecho por hoy!",
+    "restAvailable": "día de descanso disponible esta semana",
+    "d_correct_10": "Responde bien 10 preguntas",
+    "d_defeat_3": "Derrota a 3 monstruos",
+    "d_subject_5": "Responde bien 5 preguntas de {{subject}}",
+    "w_correct_50": "Responde bien 50 preguntas",
+    "w_defeat_12": "Derrota a 12 monstruos"
+  },
+  "boss": {
+    "name": "Guardián de Greenhaven",
+    "title": "Batalla de jefe: Guardián de Greenhaven",
+    "roundOf": "Ronda {{n}} de {{total}}",
+    "progress": "{{n}} de {{total}} correctas en esta ronda",
+    "hearts": "Te quedan {{n}} corazones",
+    "rounds": {
+      "maths": "Matemáticas",
+      "science": "Ciencias",
+      "wisdom": "Sabiduría",
+      "final": "Final"
+    },
+    "intro": {
+      "maths": "Ronda 1: el Guardián pone a prueba tus números. Tres respuestas correctas superan la ronda.",
+      "science": "Ronda 2: ¡ciencias! Muéstrale al Guardián cómo funciona el mundo.",
+      "wisdom": "Ronda 3: palabras y sabiduría.",
+      "final": "Ronda final: vale todo. ¡Tres más y el Guardián se inclina!"
+    },
+    "victory": "¡El Guardián se inclina!",
+    "victoryText": "Superaste las cuatro rondas. ¡Greenhaven está orgulloso de ti!",
+    "lostText": "El Guardián espera pacientemente tu regreso. Todo lo que ganaste está a salvo; lee las explicaciones y vuelve a intentarlo.",
+    "alreadyToday": "Ya reclamaste hoy la recompensa del Guardián. ¡Vuelve mañana por otra!"
   }
 }
