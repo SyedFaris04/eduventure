@@ -9,6 +9,7 @@ import { Hud } from './Hud'
 import { Minimap } from './Minimap'
 import { InteractButton, Joystick } from './TouchControls'
 import { DialogueBox } from './DialogueBox'
+import { CoinBurst } from './CoinBurst'
 import { BattlePanel } from '../battle/BattlePanel'
 import { BossPanel } from '../battle/BossPanel'
 import { NEXT_CHOICE, useQuality } from '../../world3d/qualityStore'
@@ -47,6 +48,7 @@ export function WorldPage() {
         <DialogueBox playerName={character.data?.name ?? ''} />
         <BattlePanel />
         <BossPanel />
+        <CoinBurst />
       </div>
     </main>
   )

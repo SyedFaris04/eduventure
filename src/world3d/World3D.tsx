@@ -7,6 +7,7 @@ import { parseMap } from '../game/map'
 import { GREENHAVEN } from '../game/maps/greenhaven'
 import { WorldSim } from '../game/sim'
 import { useGame, worldPaused } from '../game/store'
+import { screenOf } from '../game/screen'
 import { Bosses, Hero, Monsters, Npcs } from './Actors'
 import { Ground } from './Ground'
 import { RIG_URL } from './hero/useRig'
@@ -101,17 +102,15 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     window.addEventListener('pointerup', up)
     window.addEventListener('pointercancel', up)
 
-    if (import.meta.env.DEV) {
-      // Lets automated tests click a grid point on the real canvas.
-      ;(window as unknown as { __world: unknown }).__world = {
-        screenOf: (p: { x: number; y: number }) => {
-          const v = new Vector3(p.x, 0, p.y).project(camera)
-          const r = el.getBoundingClientRect()
-          return { x: r.left + ((v.x + 1) / 2) * r.width, y: r.top + ((1 - v.y) / 2) * r.height }
-        },
-      }
+    screenOf.current = (p) => {
+      const v = new Vector3(p.x, 0, p.y).project(camera)
+      const r = el.getBoundingClientRect()
+      return { x: r.left + ((v.x + 1) / 2) * r.width, y: r.top + ((1 - v.y) / 2) * r.height }
     }
+    // Development builds: lets automated tests click a grid point on the real canvas.
+    if (import.meta.env.DEV) (window as unknown as { __world: unknown }).__world = { screenOf: screenOf.current }
     return () => {
+      screenOf.current = null
       keys.stop()
       unsub()
       el.removeEventListener('wheel', wheel)

@@ -1,57 +1,54 @@
-# Art spec — replacing the code-drawn art
+# Art spec: replacing the 3D art
 
-Everything in Greenhaven is currently drawn in code so the game is playable now. Each piece below can be swapped for a hand-made image without touching game logic: the game looks textures up by **key**, so a PNG loaded under the same key replaces the drawing. Send the files and the code change is a few lines in `src/game/scenes/BootScene.ts`.
+Greenhaven is drawn in 3D (three.js through React Three Fiber). Two kinds of art make it up:
+
+- **Downloaded models.** These are KayKit packs by Kay Lousberg (CC0): the animation rig, trees, rocks, houses, the well and fences. They live in `public/assets/models/*.glb`, and every source is listed in `docs/art-credits.md`.
+- **Code-built shapes.** These are made from simple rounded shapes in code:
+  - the hero's body parts, hair, clothes, weapons, backpacks and all shop items (`src/world3d/hero/parts.ts`);
+  - the monsters and the Guardian (`src/world3d/monsters/buildMonster.ts`);
+  - the ground, water, bushes, bridge, flowers and grass.
+
+Any of it can be swapped for hand-made models without touching the game logic.
 
 ## General rules
 
-- **Format:** PNG with transparency (WebP also fine). sRGB.
-- **Resolution:** draw at **2×** the sizes below; the game shows them at half size so they stay sharp on phones.
-- **Style:** match `docs/reference/isometric-style.jpg` and the loading art: soft dark-brown outlines (#3b2a1e), two-tone shading, pastel palette (grass #8bc34a, path #f2b872, water #7ccbe8, wood #8a5a3b, cream #fff6e3).
-- **Light:** from the top-left. Shadows fall down-right.
+- **Format:** glTF binary (`.glb`), Y up, 1 unit = 1 tile, feet or base on y = 0, facing +z.
+- **Size:** keep the whole `public/assets/models/` folder at 6 MB or less (a test checks this). Aim for about 2,000 triangles per prop and 5,000 per character.
+- **Style:**
+  - chunky and toy-like, with big heads (the head is about 40% of a character's height);
+  - flat bright colours or a small gradient texture (like KayKit);
+  - no realistic textures;
+  - match `docs/reference/isometric-style.jpg`.
+- **Light:** the sun comes from the upper left of the screen. Don't bake shadows into textures.
 - **Original work only.** Nothing traced or copied from other games.
+- Add every new file to `docs/art-credits.md` with its source and licence.
 
-## Ground tiles (isometric 2:1)
+## Props
 
-| Key | Size at 1× | Notes |
+Props are scaled at load time to fit their footprint (`FIT` in `src/world3d/Props.tsx`), so exact model sizes don't matter. To replace one, overwrite its file in `public/assets/models/`:
+
+| File | Footprint | Notes |
 |---|---|---|
-| grass (3 variants) | 64 × 32 diamond | Small tufts, no hard grid lines |
-| flowers | 64 × 32 | Grass with a few pink/white/yellow flowers |
-| path | 64 × 32 | Warm orange-beige with pebbles |
-| sand | 64 × 32 | Pale sand, a few specks |
-| water (2 shades) | 64 × 32 | Sits 6 px lower than land |
-| bridge | 64 × 32 | Planks running along the bridge |
-| cliff-left / cliff-right | 64 × 50 | Earth side faces under land tiles next to water or the map edge |
-
-## Props (origin = point that sits on the tile)
-
-| Key | Size at 1× | Origin |
-|---|---|---|
-| tree | 84 × 108 | bottom-centre of the trunk shadow |
-| bush | 60 × 46 | bottom-centre |
-| rock | 56 × 44 | bottom-centre |
-| fence | 64 × 48 | runs along the map's x direction (down-right on screen) |
-| well | 64 × 80 | bottom-centre |
-| house | 140 × 168 | covers 2 × 2 tiles; origin at the front corner of the footprint |
-| shadow | 44 × 14 | soft ellipse under characters |
+| `tree_a.glb`, `tree_b.glb` | 1 tile | They sway in the wind: the higher a vertex, the more it moves |
+| `rock_a/b/c.glb` | 0.8 tile | |
+| `house_a.glb`, `house_b.glb` | 2 × 2 tiles | |
+| `well.glb` | 1 tile | |
+| `fence.glb` | 1 tile long | Its long side is turned along the row automatically |
 
 ## Characters
 
-Characters are built from layers so equipment can change without redrawing the hero (`src/features/character/renderCharacterSvg.ts`). A replacement set needs **one transparent image per option per layer**, all on the same 200 × 284 canvas, front and back views:
+The hero and the villagers share one skeleton, `rig.glb` (the KayKit humanoid rig). It holds the clips Idle, Walking_A, Running_A, Cheer, Hit_A, Interact, 1H_Melee_Attack_Chop and Jump_Full_Short.
 
-`backpack, body, bottom, shoes, top, head, face, eyes, hair, accessory, weapon` (back view: no face or eyes).
+Clothes and hair are separate parts attached to bones, so every appearance option still works. A replacement character needs:
 
-Option ids are listed in `src/features/character/appearance.ts`. Skin and hair colours are applied in code, so body/head/hair layers should be drawn in neutral grey with a separate outline layer, or supplied per colour.
+- the same bone names;
+- each option as a separate mesh named after its option id (for example `scarf_red`, `wizard_hat`);
+- a few lines in `parts.ts` mapping each id to its mesh.
 
 ## Monsters
 
-| Key | Size at 1× | Notes |
-|---|---|---|
-| monster-sproutling | 200 × 200 | leafy slime with a sprout; friendly |
-| monster-pebblewing | 200 × 200 | round pebble bird |
-| monster-dinobud | 200 × 200 | chubby baby dinosaur |
-
-Facing left-down (the game mirrors it for the other direction). An optional 3–4 frame idle loop is welcome.
+Monsters are code-built and animated in code: idle breathing, hopping, a squash when hit and a poof on defeat. A hand-made replacement only needs to be a static model per monster (`sproutling`, `pebblewing`, `dinobud`, `guardian`) facing +z with its feet on y = 0. The code keeps animating it.
 
 ## Loading screen
 
-A version of `public/assets/loading/eduventure-loading.png` **without** the painted progress bar, percentage, tip strip, sound button, and the "Play Globally / Learn Anywhere / Make Friends" badges would let the live versions sit cleanly and be translated.
+This is unchanged: `public/assets/loading/eduventure-loading.png`.

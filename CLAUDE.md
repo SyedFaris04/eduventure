@@ -1,6 +1,6 @@
 # EDUVENTURE
 
-Educational multiplayer RPG for primary-school to university learners. Web (React + Phaser 3) first, Android via Capacitor later, Supabase backend.
+Educational multiplayer RPG for primary-school to university learners. Web (React + a 3D world in React Three Fiber) first, Android and iOS via Capacitor later, Supabase backend.
 
 - Roadmap and phase order: `docs/ROADMAP.md`. Current phase task list: `docs/phases/phase-N.md`.
 - Architecture decisions: `docs/decisions.md`. Add an entry when a decision is hard to reverse.

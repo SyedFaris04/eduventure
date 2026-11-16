@@ -27,7 +27,7 @@ export function Hud({ character, xp, gold }: { character: MyCharacter; xp: numbe
           <span>
             {p.into} / {p.needed} XP
           </span>
-          <span className="flex items-center gap-1">
+          <span data-hud-gold className="flex items-center gap-1">
             <Coins size={14} className="text-path-dark" aria-hidden /> {gold}
           </span>
         </div>

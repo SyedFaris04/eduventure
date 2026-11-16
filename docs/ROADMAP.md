@@ -70,7 +70,7 @@ Known limit of the chosen approach: other players' positions are display-only (n
 | 4. Customization | Inventory, shop, equipment, pets, personal island, skill tree | L | Replacement art as you make it |
 | 5. Multiplayer and safety | See other players, friends, chat with age rules, moderation, clans | XL | Legal review before public launch |
 | 6. Competitive | Leaderboards, tournaments, world boss, clan wars, events, achievements | L | |
-| 7. Android | Capacitor app, debug APK on a real phone | M | Android Studio, a phone |
+| 7. Android and iOS | Capacitor app, debug APK on a real phone, iOS build | M | Android Studio and a phone; for iOS a Mac (or a cloud Mac build service) and an Apple developer account |
 | 8. Polish | Sound, performance, accessibility, security review, deployment guide | L | Translation review |
 | 9. Schools and expansion | Classes, assignments, institution views, more regions, trading | ongoing | |
 
@@ -108,6 +108,9 @@ Known limit of the chosen approach: other players' positions are display-only (n
 - Adaptive practice from topic mastery (accuracy and repetition, not speed), daily and weekly missions, streaks with rest days, the Academic Library, a region boss with multi-subject rounds.
 - **Done when:** all 500 pass the checks and carry a source; only published questions are served in production; weak topics come up more often; missions pay out from the server.
 
+### 3D world (between Phases 4 and 5) — built and merged
+The owner asked for a Clash-style 3D world before the rest of Phase 4. Spec: `docs/superpowers/specs/2026-11-16-3d-world-design.md`; plan: `docs/superpowers/plans/2026-11-16-3d-world.md`. Greenhaven is now real 3D with a fixed 52° camera, smooth blended hero animation, moving water, swaying trees and grass, hopping monsters, coins that fly to the gold counter, and one 3D hero used everywhere. Next projects in the same request, each with its own design: subject islands, the Coding island (Python and JavaScript in the browser, then Java on a server), and the Languages island.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Pet, island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 
@@ -128,7 +131,8 @@ Known limit of the chosen approach: other players' positions are display-only (n
 - Tournaments, world boss with shared health, clan wars, seasonal event framework, achievements and titles, pet evolutions.
 - **Done when:** two players damage the same world boss; farming the same question repeatedly stops paying.
 
-### Phase 7 — Android
+### Phase 7 — Android and iOS
+- The same Capacitor project builds both. Google Play costs $25 once; the App Store costs $99 a year and needs a Mac or a cloud Mac build service. Both stores have extra rules for apps used by children under 13.
 - Capacitor project, safe areas, back button, full screen, icons, splash, offline and reconnect handling.
 - Written steps for debug and release APKs.
 - **Done when:** a debug APK is built on your PC and played on a real phone. I will not report an APK as built unless that happened.
