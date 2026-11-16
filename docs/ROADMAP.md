@@ -109,6 +109,8 @@ Known limit of the chosen approach: other players' positions are display-only (n
 - **Done when:** all 500 pass the checks and carry a source; only published questions are served in production; weak topics come up more often; missions pay out from the server.
 
 ### Phase 4 — Customization
+**Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Pet, island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
+
 - Item catalogue with rarities, inventory, shop (atomic purchase on the server), equip and unequip with layered rendering.
 - Knowledge pet that grows with learning milestones; skill tree unlocked by subject mastery.
 - Personal island (this is the "personal base" and "personal island" as one feature): five upgrade tiers, drag, rotate and remove furniture, placement checked on the server.

@@ -350,8 +350,20 @@
       "satchel": "Beg galas sisi",
       "explorer": "Beg penjelajah",
       "book_bag": "Beg buku",
-      "scroll_case": "Bekas skrol"
-    }
+      "scroll_case": "Bekas skrol",
+      "leaf_crown": "Mahkota Daun",
+      "scholar_coat": "Kot Cendekiawan",
+      "owl_pack": "Beg Burung Hantu",
+      "wizard_hat": "Topi Ahli Sihir",
+      "knight_tabard": "Jubah Kesatria",
+      "crystal_wand": "Tongkat Kristal",
+      "steel_sword": "Pedang Keluli",
+      "winged_boots": "But Bersayap",
+      "star_cloak": "Jubah Bintang",
+      "golden_crown": "Mahkota Emas",
+      "golden_quill": "Pena Bulu Emas"
+    },
+    "fromShop": "Dari kedai"
   },
   "home": {
     "welcome": "Selamat datang, {{name}}!",
@@ -377,7 +389,8 @@
     "signOutAnyway": "Log keluar juga",
     "cancel": "Batal",
     "admin": "Semak soalan",
-    "library": "Perpustakaan Akademik"
+    "library": "Perpustakaan Akademik",
+    "shop": "Kedai"
   },
   "world": {
     "canvasLabel": "Kampung Greenhaven. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",
@@ -518,5 +531,28 @@
     "victoryText": "Anda melepasi keempat-empat pusingan. Greenhaven bangga dengan anda!",
     "lostText": "Penjaga menunggu anda kembali dengan sabar. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
     "alreadyToday": "Anda sudah menuntut ganjaran Penjaga hari ini. Kembali esok untuk ganjaran lagi!"
+  },
+  "shop": {
+    "title": "Kedai",
+    "intro": "Belanjakan emas yang anda peroleh dengan belajar. Setiap barang terus dipakai oleh wira anda, dan dunia juga dapat melihatnya.",
+    "yourGold": "{{n}} emas",
+    "rarity": {
+      "common": "Biasa",
+      "rare": "Jarang",
+      "epic": "Epik"
+    },
+    "buy": "Beli",
+    "buyItem": "Beli {{item}}",
+    "wear": "Pakai",
+    "wearItem": "Pakai {{item}}",
+    "wearing": "Sedang dipakai",
+    "needMore": "Perlu {{n}} emas lagi",
+    "previewAlt": "Wira anda memakai {{item}}",
+    "bought": "Anda telah membeli {{item}}! Tekan Pakai untuk memakainya.",
+    "errors": {
+      "gold": "Emas belum cukup. Menangi pertarungan dan kalahkan Penjaga untuk mendapat lebih banyak.",
+      "owned": "Anda sudah memiliki barang ini.",
+      "failed": "Ada masalah. Sila cuba lagi."
+    }
   }
 }

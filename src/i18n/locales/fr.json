@@ -350,8 +350,20 @@
       "satchel": "Besace",
       "explorer": "Sac d'explorateur",
       "book_bag": "Cartable",
-      "scroll_case": "Étui à parchemins"
-    }
+      "scroll_case": "Étui à parchemins",
+      "leaf_crown": "Couronne de Feuilles",
+      "scholar_coat": "Manteau d’Érudit",
+      "owl_pack": "Sac Hibou",
+      "wizard_hat": "Chapeau de Magicien",
+      "knight_tabard": "Tabard de Chevalier",
+      "crystal_wand": "Baguette de Cristal",
+      "steel_sword": "Épée d’Acier",
+      "winged_boots": "Bottes Ailées",
+      "star_cloak": "Cape Étoilée",
+      "golden_crown": "Couronne Dorée",
+      "golden_quill": "Plume Dorée"
+    },
+    "fromShop": "De la boutique"
   },
   "home": {
     "welcome": "Bienvenue, {{name}} !",
@@ -377,7 +389,8 @@
     "signOutAnyway": "Me déconnecter quand même",
     "cancel": "Annuler",
     "admin": "Relire les questions",
-    "library": "Bibliothèque"
+    "library": "Bibliothèque",
+    "shop": "Boutique"
   },
   "world": {
     "canvasLabel": "Village de Greenhaven. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",
@@ -518,5 +531,28 @@
     "victoryText": "Tu as réussi les quatre manches. Greenhaven est fier de toi !",
     "lostText": "Le Gardien attend patiemment ton retour. Tout ce que tu as gagné est conservé ; relis les explications et réessaie.",
     "alreadyToday": "Tu as déjà récupéré la récompense du Gardien aujourd'hui. Reviens demain pour une autre !"
+  },
+  "shop": {
+    "title": "Boutique",
+    "intro": "Dépense l’or que tu gagnes en apprenant. Chaque objet apparaît tout de suite sur ton héros, et le monde le voit aussi.",
+    "yourGold": "{{n}} or",
+    "rarity": {
+      "common": "Commun",
+      "rare": "Rare",
+      "epic": "Épique"
+    },
+    "buy": "Acheter",
+    "buyItem": "Acheter {{item}}",
+    "wear": "Porter",
+    "wearItem": "Porter {{item}}",
+    "wearing": "Porté",
+    "needMore": "Il manque {{n}} or",
+    "previewAlt": "Ton héros avec {{item}}",
+    "bought": "Tu as acheté {{item}} ! Appuie sur Porter pour le mettre.",
+    "errors": {
+      "gold": "Pas encore assez d’or. Gagne des combats et bats le Gardien pour en gagner plus.",
+      "owned": "Tu possèdes déjà cet objet.",
+      "failed": "Un problème est survenu. Réessaie."
+    }
   }
 }

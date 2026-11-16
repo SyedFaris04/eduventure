@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
-import { BookOpen, ClipboardCheck, Coins, Globe2, LogOut, Pencil, Sparkles, Star, Volume2, VolumeX } from 'lucide-react'
+import { BookOpen, ClipboardCheck, Coins, Globe2, LogOut, Pencil, ShoppingBag, Sparkles, Star, Volume2, VolumeX } from 'lucide-react'
 import { useMyRoles } from '../admin/review'
 import { MissionsPanel } from '../missions/MissionsPanel'
 import { Button, buttonClasses, Field, Modal, Panel } from '../../components/ui'
@@ -94,9 +94,14 @@ export function HomePage() {
             <Link to="/world" className={buttonClasses('primary', 'lg', 'w-full')}>
               <Globe2 size={22} aria-hidden /> {t('home.enterWorld')}
             </Link>
-            <Link to="/library" className={buttonClasses('secondary', 'md', 'w-full')}>
-              <BookOpen size={18} aria-hidden /> {t('home.library')}
-            </Link>
+            <div className="grid w-full grid-cols-2 gap-2">
+              <Link to="/library" className={buttonClasses('secondary', 'md', 'w-full')}>
+                <BookOpen size={18} aria-hidden /> {t('home.library')}
+              </Link>
+              <Link to="/shop" className={buttonClasses('secondary', 'md', 'w-full')}>
+                <ShoppingBag size={18} aria-hidden /> {t('home.shop')}
+              </Link>
+            </div>
             {roles.data && roles.data.length > 0 && (
               <Link to="/admin" className={buttonClasses('secondary', 'md', 'w-full')}>
                 <ClipboardCheck size={18} aria-hidden /> {t('home.admin')}

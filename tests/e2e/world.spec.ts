@@ -139,6 +139,17 @@ test('walk, talk to the Elder, win a battle; Home shows the server totals after 
   await page.reload()
   await expect(stat('XP')).toHaveText(String(xp))
   await expect(stat('Gold')).toHaveText(String(gold))
+
+  // The shop shows the same gold, and an item you cannot afford says how much more you need.
+  await page.getByRole('link', { name: 'Shop', exact: true }).click()
+  await expect(page).toHaveURL(/\/shop$/)
+  await expect(page.getByText(`${gold} gold`, { exact: true })).toBeVisible()
+  const crown = page.getByTestId('item-leaf_crown')
+  await expect(crown.getByRole('img', { name: /wearing the Leaf Crown/ })).toBeVisible()
+  if (gold < 80) {
+    await expect(crown.getByRole('button', { name: 'Buy Leaf Crown' })).toBeDisabled()
+    await expect(crown).toContainText(`${80 - gold} more gold needed`)
+  }
 })
 
 test.describe('360 × 740 phone', () => {

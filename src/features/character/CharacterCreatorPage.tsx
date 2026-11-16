@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
-import { Dices, RefreshCw, RotateCcw, Save } from 'lucide-react'
+import { Dices, RefreshCw, RotateCcw, Save, ShoppingBag } from 'lucide-react'
 import { Button, Field, Panel } from '../../components/ui'
 import { LanguagePicker } from '../../i18n/LanguagePicker'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
@@ -10,7 +10,8 @@ import { FormMessage } from '../authentication/AuthLayout'
 import { ageBandFromBirthYear } from '../authentication/ageBand'
 import { useSession } from '../authentication/useSession'
 import { useMyProfile } from '../onboarding/useReferenceData'
-import { APPEARANCE_OPTIONS, DEFAULT_APPEARANCE, randomAppearance, type Appearance, type AppearancePart } from './appearance'
+import { APPEARANCE_OPTIONS, DEFAULT_APPEARANCE, randomAppearance, shopValues, type Appearance, type AppearancePart } from './appearance'
+import { useOwnedItems } from '../shop/useShop'
 import { characterDataUri } from './renderCharacterSvg'
 import { generateSafeName, nameSchema } from './safeName'
 import { saveCharacter, useMyCharacter } from './useCharacter'
@@ -32,6 +33,7 @@ export function CharacterCreatorPage() {
   const userId = session?.user.id
   const profile = useMyProfile(userId)
   const existing = useMyCharacter(userId)
+  const owned = useOwnedItems(userId)
 
   const [appearance, setAppearance] = useState<Appearance>(DEFAULT_APPEARANCE)
   const [name, setName] = useState('')
@@ -139,8 +141,9 @@ export function CharacterCreatorPage() {
                 <fieldset key={part} className="flex flex-col gap-2">
                   <legend className="mb-2 font-display text-lg font-semibold">{t(`character.parts.${part}`)}</legend>
                   <div className="flex flex-wrap gap-2">
-                    {(APPEARANCE_OPTIONS[part] as readonly string[]).map((value, i) => {
+                    {[...(APPEARANCE_OPTIONS[part] as readonly string[]), ...shopValues(part).filter((v) => owned.data?.has(v))].map((value, i) => {
                       const on = appearance[part] === value
+                      const fromShop = !(APPEARANCE_OPTIONS[part] as readonly string[]).includes(value)
                       const choose = () => setAppearance((a) => ({ ...a, [part]: value }))
                       return COLOUR_PARTS.includes(part) ? (
                         <button
@@ -160,8 +163,9 @@ export function CharacterCreatorPage() {
                           aria-label={t(`character.opt.${value}`)}
                           title={t(`character.opt.${value}`)}
                           onClick={choose}
-                          className={`flex w-[76px] flex-col items-center rounded-2xl border-[3px] bg-white/80 p-1 ${on ? 'border-grass-dark bg-grass/15 ring-2 ring-grass' : 'border-wood/30 hover:border-wood'}`}
+                          className={`relative flex w-[76px] flex-col items-center rounded-2xl border-[3px] bg-white/80 p-1 ${on ? 'border-grass-dark bg-grass/15 ring-2 ring-grass' : 'border-wood/30 hover:border-wood'}`}
                         >
+                          {fromShop && <ShoppingBag size={14} className="absolute top-1 end-1 text-wood-dark" aria-label={t('character.fromShop')} />}
                           <img alt="" src={characterDataUri({ ...appearance, [part]: value }, { size: 64 })} className="h-[78px] w-16" loading="lazy" />
                           <span className="line-clamp-1 text-[11px] font-bold text-wood-dark">{t(`character.opt.${value}`)}</span>
                         </button>

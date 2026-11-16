@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { renderCharacterSvg, LAYERS } from './renderCharacterSvg'
-import { APPEARANCE_OPTIONS, DEFAULT_APPEARANCE, randomAppearance, sanitizeAppearance } from './appearance'
+import { APPEARANCE_OPTIONS, DEFAULT_APPEARANCE, randomAppearance, sanitizeAppearance, type Appearance } from './appearance'
+import { CATALOGUE } from '../shop/catalogue'
 import { generateSafeName, nameSchema } from './safeName'
 import nameParts from './nameParts.json'
 
@@ -51,6 +52,17 @@ describe('renderCharacterSvg', () => {
       for (const value of options) {
         expect(() => renderCharacterSvg({ ...DEFAULT_APPEARANCE, [part]: value })).not.toThrow()
       }
+    }
+  })
+
+  it('every shop item has its own drawing in its slot, unlike any free option or other item', () => {
+    for (const item of CATALOGUE) {
+      const drawn = (value: string) => layerMarkup(renderCharacterSvg({ ...DEFAULT_APPEARANCE, [item.slot]: value } as Appearance), item.slot)
+      const mine = drawn(item.id)
+      const others = [...APPEARANCE_OPTIONS[item.slot], ...CATALOGUE.filter((o) => o.slot === item.slot && o.id !== item.id).map((o) => o.id)]
+      for (const other of others) expect(mine, `${item.id} vs ${other}`).not.toEqual(drawn(other))
+      // and it keeps working while walking
+      expect(() => renderCharacterSvg({ ...DEFAULT_APPEARANCE, [item.slot]: item.id } as Appearance, { step: 1 })).not.toThrow()
     }
   })
 
