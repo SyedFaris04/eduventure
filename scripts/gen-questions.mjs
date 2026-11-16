@@ -23,7 +23,7 @@ for (const file of readdirSync(dir).filter((f) => f.endsWith('.json'))) {
   }
   const { _meta, questions } = JSON.parse(raw)
   const rows = questions.map((x) => {
-    const options = x.type === 'mcq' ? x.options : null
+    const options = ['mcq', 'multi_select', 'ordering', 'matching'].includes(x.type) ? x.options : null
     return `  (${[q(x.id), x.version, q(x.status), arr(x.level_ids), q(x.subject), q(x.topic), q(x.subtopic), x.difficulty, q(x.bloom), q(x.type), q(x.prompt), j(options), q(x.answer?.unit ?? null), q(x.objective), q(x.alignment), q(_meta.author), q(_meta.license)].join(', ')})`
   })
   const keys = questions.map((x) => `  (${[q(x.id), j(x.answer), q(x.explanation), j(x.wrong ?? null), j(x.mistakes ?? null)].join(', ')})`)

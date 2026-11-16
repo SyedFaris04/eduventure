@@ -7,6 +7,8 @@ import { buttonClasses, Panel, ProgressBar } from '../../components/ui'
 import { supabase } from '../../services/supabase'
 import { useSession } from '../authentication/useSession'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
+import { formatAnswer } from '../battle/QuestionCard'
+import type { PublicQuestion } from '../battle/questionSchema'
 
 type Entry = {
   id: string
@@ -14,9 +16,9 @@ type Entry = {
   topic: string
   type: string
   prompt: string
-  options: { id: string; text: string }[] | null
+  options: PublicQuestion['options']
   unit: string | null
-  answer: string | { value: number; unit?: string } | { accept: string[] }
+  answer: unknown
   explanation: string
   last_correct: boolean
   attempts: number
@@ -51,12 +53,7 @@ export function LibraryPage() {
 
   const entries = useMemo(() => (library.data ?? []).filter((e) => (!onlyMistakes || !e.last_correct) && (!topic || e.topic === topic)), [library.data, onlyMistakes, topic])
 
-  const answerText = (e: Entry) => {
-    const a = e.answer
-    if (typeof a === 'string') return e.type === 'true_false' ? t(`battle.${a}`) : (e.options?.find((o) => o.id === a)?.text ?? a)
-    if ('value' in a) return `${a.value}${e.unit ? ` ${e.unit}` : ''}`
-    return a.accept[0]
-  }
+  const answerText = (e: Entry) => formatAnswer({ type: e.type as PublicQuestion['type'], options: e.options, unit: e.unit }, e.answer, t)
 
   return (
     <main className="relative min-h-dvh">

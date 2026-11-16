@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const QUESTION_TYPES = ['mcq', 'true_false', 'numeric', 'fill_blank'] as const
+export const QUESTION_TYPES = ['mcq', 'true_false', 'numeric', 'fill_blank', 'multi_select', 'ordering', 'matching', 'short_answer'] as const
 export const BLOOM = ['remember', 'understand', 'apply', 'analyze', 'evaluate', 'create'] as const
 export const STATUSES = ['draft', 'in_review', 'approved', 'published', 'rejected'] as const
 const LEVELS = ['early_childhood', 'primary', 'lower_secondary', 'upper_secondary', 'pre_university', 'diploma', 'undergraduate', 'postgraduate', 'doctoral', 'vocational', 'lifelong'] as const
@@ -44,6 +44,26 @@ export const questionSource = z.discriminatedUnion('type', [
     type: z.literal('fill_blank'),
     answer: z.object({ accept: z.array(z.string().min(1)).min(1) }),
   }),
+  base.extend({
+    type: z.literal('multi_select'),
+    options: z.array(option).min(3).max(6),
+    answer: z.array(z.string()),
+    wrong: z.record(z.string(), z.string().min(5)),
+  }),
+  base.extend({
+    type: z.literal('ordering'),
+    options: z.array(option).min(3).max(6), // shown in this (shuffled) order
+    answer: z.array(z.string()), // correct order of option ids
+  }),
+  base.extend({
+    type: z.literal('matching'),
+    options: z.object({ left: z.array(option).min(2).max(6), right: z.array(z.object({ id: z.string().regex(/^[a-z]$/), text: z.string().min(1) })).min(2).max(6) }),
+    answer: z.record(z.string(), z.string()), // left id -> right id
+  }),
+  base.extend({
+    type: z.literal('short_answer'),
+    answer: z.object({ accept: z.array(z.string().min(1)).min(1) }),
+  }),
 ])
 export type QuestionSource = z.infer<typeof questionSource>
 
@@ -52,7 +72,7 @@ export type PublicQuestion = {
   id: string
   type: (typeof QUESTION_TYPES)[number]
   prompt: string
-  options: { id: string; text: string }[] | null
+  options: { id: string; text: string }[] | { left: { id: string; text: string }[]; right: { id: string; text: string }[] } | null
   unit: string | null
   difficulty: number
   subject: string
@@ -76,6 +96,25 @@ export function questionProblems(q: QuestionSource): string[] {
     if (!q.wrong[other]) p.push(`no explanation for choosing ${other}`)
   }
   if (q.type === 'numeric' && q.mistakes?.some((m) => Math.abs(m.value - q.answer.value) <= q.answer.tolerance)) p.push('a listed mistake equals the answer')
+  if (q.type === 'multi_select') {
+    const ids = q.options.map((o) => o.id)
+    if (q.answer.length < 2) p.push('multiple-select needs at least two right options')
+    if (q.answer.some((a) => !ids.includes(a))) p.push('answer is not one of the options')
+    if (q.answer.length >= ids.length) p.push('multiple-select needs at least one wrong option')
+    for (const id of ids) if (!q.answer.includes(id) && !q.wrong[id]) p.push(`no explanation for wrong option ${id}`)
+  }
+  if (q.type === 'ordering') {
+    const ids = q.options.map((o) => o.id)
+    if (q.answer.length !== ids.length || new Set(q.answer).size !== ids.length || q.answer.some((a) => !ids.includes(a))) p.push('ordering answer must list every item once')
+    if (q.answer.every((a, i) => a === ids[i])) p.push('ordering items are already shown in the right order')
+  }
+  if (q.type === 'matching') {
+    const left = q.options.left.map((o) => o.id)
+    const right = q.options.right.map((o) => o.id)
+    if (left.some((l) => !q.answer[l])) p.push('matching must pair every left item')
+    if (Object.values(q.answer).some((r) => !right.includes(r))) p.push('matching uses an unknown right item')
+    if (new Set(Object.values(q.answer)).size !== Object.values(q.answer).length) p.push('matching uses a right item twice')
+  }
   if (q.type === 'fill_blank' && !q.prompt.includes('___')) p.push('fill-in-the-blank prompt has no ___')
   if (q.type === 'fill_blank' && q.answer.accept.some((a) => q.prompt.toLowerCase().includes(a.toLowerCase()))) p.push('the answer appears in the prompt')
   return p

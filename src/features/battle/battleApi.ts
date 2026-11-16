@@ -15,7 +15,7 @@ export type EncounterState = {
 
 export type AnswerResult = {
   correct: boolean
-  correct_answer: string | { value: number; tolerance: number; unit?: string } | { accept: string[] }
+  correct_answer: string | string[] | Record<string, string> | { value: number; tolerance: number; unit?: string } | { accept: string[] }
   explanation: string
   wrong_reason: string | null
   damage: number
@@ -29,7 +29,7 @@ export type AnswerResult = {
   state: EncounterState
 }
 
-export type AnswerPayload = { choice: string } | { value: string } | { text: string }
+export type AnswerPayload = { choice: string } | { value: string } | { text: string } | { choices: string[] } | { order: string[] } | { pairs: Record<string, string> }
 
 /** Turns database errors into i18n keys for the battle panel. */
 export class BattleError extends Error {

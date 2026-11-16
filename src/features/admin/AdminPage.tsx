@@ -4,6 +4,8 @@ import { useQueryClient } from '@tanstack/react-query'
 import { AlertTriangle, ArrowLeft, CheckCheck, Search, X } from 'lucide-react'
 import { Button, buttonClasses, Panel } from '../../components/ui'
 import { useSession } from '../authentication/useSession'
+import { formatAnswer } from '../battle/QuestionCard'
+import type { PublicQuestion } from '../battle/questionSchema'
 import { allowedActions, bulkReview, findDuplicates, reviewQuestion, useHistory, useMyRoles, useQuestionBank, type Action, type AdminQuestion, type Status } from './review'
 
 // Admin area: English-only for now (decision #19); translated before outside educators are invited.
@@ -256,7 +258,10 @@ function Detail({ q, isAdmin, onClose, onChanged }: { q: AdminQuestion; isAdmin:
         </p>
 
         <section className="mt-4 space-y-1 text-sm">
-          {q.options?.map((o) => (
+          {['multi_select', 'ordering', 'matching', 'short_answer'].includes(q.type) && (
+            <p className="font-bold text-grass-dark">Answer: {formatAnswer({ type: q.type as PublicQuestion['type'], options: q.options as PublicQuestion['options'], unit: q.unit }, answer, (k) => k)}</p>
+          )}
+          {q.type === 'mcq' && Array.isArray(q.options) && q.options.map((o) => (
             <p key={o.id} className={o.id === answer ? 'font-bold text-grass-dark' : ''}>
               {o.id.toUpperCase()}. {o.text} {o.id === answer ? '✓' : <span className="font-normal text-ink/70">— {q.key?.wrong?.[o.id]}</span>}
             </p>
