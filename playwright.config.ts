@@ -10,7 +10,12 @@ export default defineConfig({
   reporter: [['list']],
   use: { trace: 'retain-on-failure' },
   projects: [
-    { name: 'online', testMatch: 'first-run.spec.ts', use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:5173' } },
+    {
+      name: 'online',
+      testMatch: ['first-run.spec.ts', 'world.spec.ts'],
+      // Software WebGL so the Phaser world renders in headless runs.
+      use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:5173', launchOptions: { args: ['--use-gl=angle', '--use-angle=swiftshader'] } },
+    },
     { name: 'offline', testMatch: 'offline.spec.ts', use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:5174' } },
   ],
   webServer: [

@@ -417,5 +417,45 @@
     "dinobud": {
       "name": "Dinobourgeon"
     }
+  },
+  "battle": {
+    "title": "Combat contre {{name}}",
+    "you": "Toi",
+    "monsterHp": "Santé de {{name}}",
+    "playerHp": "Ta santé",
+    "combo": "Combo ×{{n}}",
+    "difficulty": "Difficulté {{n}} sur 5",
+    "draft": "Question brouillon · en relecture",
+    "true": "Vrai",
+    "false": "Faux",
+    "yourAnswer": "Ta réponse",
+    "submit": "Répondre",
+    "checking": "Vérification…",
+    "correct": "Bravo !",
+    "wrong": "Pas tout à fait",
+    "damage": "−{{n}} PV",
+    "correctAnswerIs": "La réponse est {{answer}}.",
+    "farmed": "Tu as répondu à celle-ci récemment, elle ne rapporte donc ni XP ni or cette fois. Les nouvelles questions, si !",
+    "xp": "+{{n}} XP",
+    "gold": "+{{n}} or",
+    "continue": "Continuer",
+    "flee": "Fuir",
+    "backToVillage": "Retour au village",
+    "victory": "Victoire !",
+    "victoryText": "Tu as vaincu {{name}} ! Voici ce que tu as gagné dans ce combat :",
+    "lost": "C'est l'heure de se reposer",
+    "lostText": "{{name}} gagne cette manche, mais tout ce que tu as gagné est conservé. Relis les explications et réessaie !",
+    "levelUp": "Niveau supérieur ! Tu es maintenant niveau {{level}}.",
+    "subject": {
+      "mathematics": "Mathématiques",
+      "science": "Sciences",
+      "english": "Anglais",
+      "general_knowledge": "Culture générale"
+    },
+    "errors": {
+      "tooFast": "Prends le temps de lire la question, puis réessaie.",
+      "noQuestions": "Il n'y a pas encore de questions pour ton niveau.",
+      "generic": "Un problème est survenu. Réessaie."
+    }
   }
 }

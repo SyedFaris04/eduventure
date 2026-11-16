@@ -1,12 +1,17 @@
 import Phaser from 'phaser'
 import { gridToScreen, screenToGrid, type Point } from '../iso'
-import { parseMap, type GameMap, type PropKind } from '../map'
+import { parseMap, type GameMap, type MonsterKind, type PropKind } from '../map'
 import { GREENHAVEN } from '../maps/greenhaven'
 import { followPath, INTERACT_RANGE, screenDirToGrid, step, tapGoal } from '../movement'
 import { layoutFor, paintGround, type WorldLayout } from '../art/tiles'
-import { useGame, worldPaused } from '../store'
+import { useGame, worldPaused, type Prompt } from '../store'
 
 const CHAR_SCALE = 0.5
+const MONSTER_COUNT: Record<MonsterKind, number> = { sproutling: 4, pebblewing: 3, dinobud: 3 }
+const MONSTER_SCALE: Record<MonsterKind, number> = { sproutling: 0.42, pebblewing: 0.42, dinobud: 0.55 }
+const RESPAWN_MS = 20_000
+
+type Monster = { id: string; kind: MonsterKind; pos: Point; target?: Point; sprite: Phaser.GameObjects.Image; shadow: Phaser.GameObjects.Image; alive: boolean; nextMove: number }
 // Image origin (x, y as fractions) per prop so the base sits on its tile.
 const PROP_ORIGIN: Record<PropKind, [number, number]> = {
   tree: [0.5, 0.92],
@@ -31,6 +36,7 @@ export class WorldScene extends Phaser.Scene {
   private lastEmit = 0
   private lastInteractSeq = 0
   private panelClosedAt = -Infinity
+  private monsters: Monster[] = []
   private unsubscribe?: () => void
 
   constructor() {
@@ -63,6 +69,8 @@ export class WorldScene extends Phaser.Scene {
       if (!reducedMotion()) this.tweens.add({ targets: sprite, scaleY: CHAR_SCALE * 1.02, duration: 1600, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' })
     }
 
+    this.spawnMonsters()
+
     this.pos = { x: this.map.spawn.x + 0.5, y: this.map.spawn.y + 0.5 }
     const start = this.toWorld(this.pos)
     this.heroShadow = this.add.image(start.x, start.y + 2, 'shadow')
@@ -87,6 +95,13 @@ export class WorldScene extends Phaser.Scene {
     this.unsubscribe = useGame.subscribe((s, prev) => {
       // The key that closes a panel must not immediately reopen it on the game's side.
       if ((prev.dialogue && !s.dialogue) || (prev.battle && !s.battle)) this.panelClosedAt = this.time.now
+      // The battle panel covers the world: stop rendering it to save battery and keep phones responsive.
+      if (!prev.battle && s.battle) this.game.loop.sleep()
+      if (prev.battle && !s.battle) this.game.loop.wake()
+      if (s.defeated.length) {
+        for (const id of s.defeated) this.defeat(id)
+        useGame.setState({ defeated: [] })
+      }
       if (s.interactSeq !== this.lastInteractSeq) {
         this.lastInteractSeq = s.interactSeq
         this.interact()
@@ -109,6 +124,68 @@ export class WorldScene extends Phaser.Scene {
     if (worldPaused() || this.time.now - this.panelClosedAt < 300) return
     const prompt = useGame.getState().prompt
     if (prompt?.kind === 'npc') useGame.setState({ dialogue: { npc: prompt.id, page: 0 } })
+    if (prompt?.kind === 'monster') useGame.setState({ battle: { monsterId: prompt.id, monster: prompt.monster } })
+  }
+
+  private freeZoneTile(kind: MonsterKind): Point {
+    const tiles = this.map.monsterZones[kind]
+    for (let i = 0; i < 20; i++) {
+      const t = tiles[Math.floor(Math.random() * tiles.length)]
+      if (!this.monsters.some((m) => m.alive && Math.floor(m.pos.x) === t.x && Math.floor(m.pos.y) === t.y)) return t
+    }
+    return tiles[0]
+  }
+
+  private spawnMonsters() {
+    for (const kind of Object.keys(MONSTER_COUNT) as MonsterKind[])
+      for (let i = 0; i < MONSTER_COUNT[kind]; i++) {
+        const t = this.freeZoneTile(kind)
+        const pos = { x: t.x + 0.5, y: t.y + 0.5 }
+        const at = this.toWorld(pos)
+        const shadow = this.add.image(at.x, at.y + 2, 'shadow').setScale(1.1)
+        const sprite = this.add.image(at.x, at.y, `monster-${kind}`).setOrigin(0.5, 0.92).setScale(MONSTER_SCALE[kind])
+        if (!reducedMotion()) this.tweens.add({ targets: sprite, scaleY: MONSTER_SCALE[kind] * 1.05, duration: 700 + i * 90, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' })
+        this.monsters.push({ id: `${kind}-${i}`, kind, pos, sprite, shadow, alive: true, nextMove: this.time.now + 1500 + Math.random() * 3000 })
+      }
+  }
+
+  /** Defeated monsters vanish and a fresh one appears elsewhere in their zone a little later. */
+  private defeat(id: string) {
+    const m = this.monsters.find((x) => x.id === id)
+    if (!m || !m.alive) return
+    m.alive = false
+    this.tweens.add({ targets: [m.sprite, m.shadow], alpha: 0, duration: 400 })
+    this.time.delayedCall(RESPAWN_MS, () => {
+      const t = this.freeZoneTile(m.kind)
+      m.pos = { x: t.x + 0.5, y: t.y + 0.5 }
+      m.alive = true
+      this.tweens.add({ targets: [m.sprite, m.shadow], alpha: 1, duration: 600 })
+    })
+  }
+
+  /** Each monster drifts to a neighbouring tile of its zone every few seconds. */
+  private wander(dt: number) {
+    for (const m of this.monsters) {
+      if (m.alive && !worldPaused() && this.time.now > m.nextMove) {
+        m.nextMove = this.time.now + 2000 + Math.random() * 3500
+        const zone = this.map.monsterZones[m.kind]
+        const options = zone.filter((t) => Math.abs(t.x + 0.5 - m.pos.x) <= 1 && Math.abs(t.y + 0.5 - m.pos.y) <= 1 && !this.map.blocked(t.x, t.y))
+        const t = options[Math.floor(Math.random() * options.length)]
+        if (t) m.target = { x: t.x + 0.5, y: t.y + 0.5 }
+      }
+      const target = m.target
+      if (target) {
+        const v = { x: target.x - m.pos.x, y: target.y - m.pos.y }
+        const d = Math.hypot(v.x, v.y)
+        const stepLen = Math.min(d, 1.1 * dt)
+        if (d < 0.02) m.target = undefined
+        else m.pos = { x: m.pos.x + (v.x / d) * stepLen, y: m.pos.y + (v.y / d) * stepLen }
+        if (Math.abs(v.x - v.y) > 0.05) m.sprite.setFlipX(v.x - v.y < 0)
+      }
+      const at = this.toWorld(m.pos)
+      m.sprite.setPosition(at.x, at.y).setDepth(at.y)
+      m.shadow.setPosition(at.x, at.y + 2).setDepth(at.y - 1)
+    }
   }
 
   private readInput(): Point {
@@ -148,10 +225,14 @@ export class WorldScene extends Phaser.Scene {
     }
     this.walkTime = moved ? this.walkTime + dt : 0
     this.placeHero(this.walkTime)
+    this.wander(dt)
     this.updatePrompt()
     if (_time - this.lastEmit > 150) {
       this.lastEmit = _time
-      useGame.setState({ player: { x: this.pos.x, y: this.pos.y } })
+      useGame.setState({
+        player: { x: this.pos.x, y: this.pos.y },
+        monsters: this.monsters.filter((m) => m.alive).map((m) => ({ id: m.id, kind: m.kind, x: m.pos.x, y: m.pos.y })),
+      })
     }
   }
 
@@ -163,9 +244,11 @@ export class WorldScene extends Phaser.Scene {
   }
 
   private updatePrompt() {
-    const near = this.map.npcs.find((n) => Math.hypot(n.x + 0.5 - this.pos.x, n.y + 0.5 - this.pos.y) <= INTERACT_RANGE)
+    const dist = (p: Point) => Math.hypot(p.x - this.pos.x, p.y - this.pos.y)
+    const npc = this.map.npcs.find((n) => dist({ x: n.x + 0.5, y: n.y + 0.5 }) <= INTERACT_RANGE)
+    const monster = this.monsters.filter((m) => m.alive && dist(m.pos) <= INTERACT_RANGE).sort((a, b) => dist(a.pos) - dist(b.pos))[0]
+    const next: Prompt | null = npc ? { kind: 'npc', id: npc.id } : monster ? { kind: 'monster', id: monster.id, monster: monster.kind } : null
     const current = useGame.getState().prompt
-    const next = near ? ({ kind: 'npc', id: near.id } as const) : null
     if (current?.id !== next?.id) useGame.setState({ prompt: next })
   }
 }

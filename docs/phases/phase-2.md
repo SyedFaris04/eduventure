@@ -98,3 +98,34 @@ docs/art-spec.md
 
 ### Task 7: Phase check
 - `npm test`, `npm run test:rls`, `npm run test:e2e`, `npm run build`, Supabase advisors. `docs/art-spec.md` (sizes and formats for replacement art). Report; merge and push per `CLAUDE.md`.
+
+---
+
+## Build record (2026-11-16)
+
+### Rulings (decision — reason — cost if wrong)
+
+- Phaser 3.90 instead of 4.2 — the brief names Phaser 3 and 3.90 is mature — upgrade later touches only `src/game/scenes`.
+- Map written as ASCII rows in TypeScript instead of Tiled JSON — editable without an editor and covered by tests — a Tiled importer can be added when real art arrives.
+- Tapping an NPC walks to a side-by-side tile, and the talk range is 1.5 tiles — a diagonal neighbour (1.41 tiles) was out of the original 1.3 range — none.
+- Phaser does not capture keys — capturing Enter/Space/WASD blocked dialogue buttons and answer fields — none.
+- Interact ignores presses for 300 ms after a panel closes — the closing key otherwise reopened the dialogue — none.
+- Canvas renders at device pixel ratio (max 2) — art looked soft on phones — slightly more GPU work on high-DPI screens.
+- Battles start only from Interact — avoids accidental battles for young players — none.
+- Rendering pauses while the battle panel is open, and the panel has no backdrop blur — blur over a live canvas stalled rendering — none.
+- `start_encounter` returns the existing battle when two starts race — seen once in the browser under React dev double-effects; not reproducible from tests — none.
+- HUD updates from each answer's server totals — players see XP rise during the battle — none.
+- No asset manifest yet: textures are looked up by fixed keys and `docs/art-spec.md` lists them — a manifest has nothing to point at until real art exists — small loader change later.
+- Energy is not shown or used yet — no mechanic consumes it in Phase 2; showing a fake bar would break the "no fake numbers" rule — added with missions in Phase 3.
+- `/dev/questions` is English-only and development-only — internal review tool; it contains answer keys, and the production build was checked to contain none — none.
+
+### Known limits
+
+- In headless test browsers the world renders slowly (software WebGL), so world tests wait on game state rather than fixed delays.
+- Starter questions are English only and unverified until the owner approves them.
+- Generated question migrations sort after the newest migration on disk; content changes need `npm run gen:questions` then `db push`.
+
+### Results
+
+- `npm test` 73/73 · `npm run test:rls` 21/21 (live project) · `npm run test:e2e` 8/8 · `npm run build` OK (entry 77 KB gzip; Phaser 324 KB gzip loaded only on /world) · Supabase advisors: 0 errors.
+- Final review: self-review (owner did not ask for subagents).

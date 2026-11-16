@@ -417,5 +417,45 @@
     "dinobud": {
       "name": "ディノボ"
     }
+  },
+  "battle": {
+    "title": "{{name}}とバトル",
+    "you": "あなた",
+    "monsterHp": "{{name}}の体力",
+    "playerHp": "あなたの体力",
+    "combo": "コンボ ×{{n}}",
+    "difficulty": "難しさ {{n}} / 5",
+    "draft": "下書きの問題 · 確認中",
+    "true": "正しい",
+    "false": "まちがい",
+    "yourAnswer": "あなたの答え",
+    "submit": "答える",
+    "checking": "確認中…",
+    "correct": "正解！",
+    "wrong": "おしい！",
+    "damage": "−{{n}} HP",
+    "correctAnswerIs": "答えは {{answer}} です。",
+    "farmed": "この問題は最近答えたので、今回は XP とゴールドはありません。新しい問題ならもらえます！",
+    "xp": "+{{n}} XP",
+    "gold": "+{{n}} ゴールド",
+    "continue": "つづける",
+    "flee": "にげる",
+    "backToVillage": "村に戻る",
+    "victory": "勝利！",
+    "victoryText": "{{name}}をたおした！このバトルで手に入れたもの：",
+    "lost": "ひと休みしよう",
+    "lostText": "このラウンドは{{name}}の勝ち。でも手に入れたものはそのままです。解説を読んでもう一度挑戦しよう！",
+    "levelUp": "レベルアップ！レベル {{level}} になりました。",
+    "subject": {
+      "mathematics": "数学",
+      "science": "理科",
+      "english": "英語",
+      "general_knowledge": "一般常識"
+    },
+    "errors": {
+      "tooFast": "問題をよく読んでから、もう一度答えてね。",
+      "noQuestions": "あなたのレベルの問題はまだありません。",
+      "generic": "問題が発生しました。もう一度お試しください。"
+    }
   }
 }

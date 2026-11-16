@@ -56,6 +56,15 @@
   50% { transform: translateY(-5px); }
 }
 
+/* Monster recoil when a correct answer lands. */
+.battle-hit {
+  animation: battle-hit 450ms ease-out;
+}
+@keyframes battle-hit {
+  20% { transform: translateX(-6px) rotate(-6deg); filter: brightness(1.6); }
+  50% { transform: translateX(5px) rotate(4deg); }
+}
+
 /* Every decorative animation in the app respects this. */
 @media (prefers-reduced-motion: reduce) {
   *,

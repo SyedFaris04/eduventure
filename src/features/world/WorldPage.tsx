@@ -9,6 +9,7 @@ import { Hud } from './Hud'
 import { Minimap } from './Minimap'
 import { InteractButton, Joystick } from './TouchControls'
 import { DialogueBox } from './DialogueBox'
+import { BattlePanel } from '../battle/BattlePanel'
 
 export function WorldPage() {
   const { t } = useTranslation()
@@ -30,6 +31,7 @@ export function WorldPage() {
         <Joystick />
         <InteractButton />
         <DialogueBox playerName={character.data?.name ?? ''} />
+        <BattlePanel />
       </div>
     </main>
   )

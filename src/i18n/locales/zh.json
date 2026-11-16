@@ -417,5 +417,45 @@
     "dinobud": {
       "name": "小恐龙"
     }
+  },
+  "battle": {
+    "title": "与{{name}}战斗",
+    "you": "你",
+    "monsterHp": "{{name}}的生命值",
+    "playerHp": "你的生命值",
+    "combo": "连击 ×{{n}}",
+    "difficulty": "难度 {{n}} / 5",
+    "draft": "草稿题 · 审核中",
+    "true": "对",
+    "false": "错",
+    "yourAnswer": "你的答案",
+    "submit": "作答",
+    "checking": "批改中…",
+    "correct": "答对了！",
+    "wrong": "还差一点",
+    "damage": "−{{n}} 生命",
+    "correctAnswerIs": "正确答案是 {{answer}}。",
+    "farmed": "你最近答过这道题，所以这次没有经验和金币。新题目会有奖励！",
+    "xp": "+{{n}} 经验",
+    "gold": "+{{n}} 金币",
+    "continue": "继续",
+    "flee": "逃跑",
+    "backToVillage": "回到村子",
+    "victory": "胜利！",
+    "victoryText": "你打败了{{name}}！这是你在这场战斗中的收获：",
+    "lost": "休息一下吧",
+    "lostText": "这一回合{{name}}赢了，但你获得的一切都还在。读读讲解，再试一次！",
+    "levelUp": "升级了！你现在是 {{level}} 级。",
+    "subject": {
+      "mathematics": "数学",
+      "science": "科学",
+      "english": "英语",
+      "general_knowledge": "常识"
+    },
+    "errors": {
+      "tooFast": "先花点时间读题，再试一次。",
+      "noQuestions": "你的阶段暂时还没有题目。",
+      "generic": "出了点问题，请重试。"
+    }
   }
 }

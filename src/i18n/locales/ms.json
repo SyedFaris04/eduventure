@@ -417,5 +417,45 @@
     "dinobud": {
       "name": "Dinokecil"
     }
+  },
+  "battle": {
+    "title": "Berlawan dengan {{name}}",
+    "you": "Anda",
+    "monsterHp": "Nyawa {{name}}",
+    "playerHp": "Nyawa anda",
+    "combo": "Kombo ×{{n}}",
+    "difficulty": "Kesukaran {{n}} daripada 5",
+    "draft": "Soalan draf · sedang disemak",
+    "true": "Betul",
+    "false": "Salah",
+    "yourAnswer": "Jawapan anda",
+    "submit": "Jawab",
+    "checking": "Menyemak…",
+    "correct": "Betul!",
+    "wrong": "Belum tepat",
+    "damage": "−{{n}} HP",
+    "correctAnswerIs": "Jawapannya ialah {{answer}}.",
+    "farmed": "Anda baru sahaja menjawab soalan ini, jadi kali ini tiada XP atau emas. Soalan baharu akan memberi ganjaran!",
+    "xp": "+{{n}} XP",
+    "gold": "+{{n}} emas",
+    "continue": "Teruskan",
+    "flee": "Larikan diri",
+    "backToVillage": "Kembali ke kampung",
+    "victory": "Menang!",
+    "victoryText": "Anda telah mengalahkan {{name}}! Inilah yang anda peroleh dalam pertarungan ini:",
+    "lost": "Masa untuk berehat",
+    "lostText": "{{name}} menang pusingan ini, tetapi semua yang anda peroleh selamat. Baca penjelasan dan cuba lagi!",
+    "levelUp": "Naik tahap! Anda kini di tahap {{level}}.",
+    "subject": {
+      "mathematics": "Matematik",
+      "science": "Sains",
+      "english": "Bahasa Inggeris",
+      "general_knowledge": "Pengetahuan am"
+    },
+    "errors": {
+      "tooFast": "Luangkan masa membaca soalan, kemudian cuba lagi.",
+      "noQuestions": "Belum ada soalan untuk tahap anda.",
+      "generic": "Ada sesuatu yang tidak kena. Sila cuba lagi."
+    }
   }
 }

@@ -88,6 +88,8 @@ Known limit of the chosen approach: other players' positions are display-only (n
 **Status (2026-11-16): built, awaiting owner sign-off.** Branch `phase-1`. Automated: 48 unit tests, 11 access-rule tests against the live project, 6 end-to-end tests, production build, Supabase advisors 0 errors. Still to check by the owner: real sign-up / password-reset emails (needs Site URL + redirect URLs in the Supabase dashboard) and a run on a real phone. Task list and rulings: `docs/phases/phase-1.md`.
 
 ### Phase 2 — Playable game
+
+**Status (2026-11-16): built and merged.** 73 unit, 21 access-rule (live project) and 8 end-to-end tests pass; Supabase advisors 0 errors. Owner to do: review the 70 starter questions at `/dev/questions` (dev server) and play on a real phone. Task list and build record: `docs/phases/phase-2.md`. Art replacement guide: `docs/art-spec.md`.
 - Phaser 3 world: Greenhaven Village map, grid movement (WASD, arrows, virtual joystick, tap), collision, camera follow, interact button, NPC dialogue, minimap.
 - Code-drawn art set: grass, path and water tiles, plants, 3 monster types, NPCs, all loaded through an asset manifest. `docs/art-spec.md` tells you the size and format for each replacement file.
 - Battles: meeting a monster starts a server-side encounter; each answer goes to the database, which works out damage, combo, XP and gold. A wrong answer shows the explanation and costs little.

@@ -417,5 +417,45 @@
     "dinobud": {
       "name": "Dinobud"
     }
+  },
+  "battle": {
+    "title": "Battle with {{name}}",
+    "you": "You",
+    "monsterHp": "{{name}}'s health",
+    "playerHp": "Your health",
+    "combo": "Combo ×{{n}}",
+    "difficulty": "Difficulty {{n}} of 5",
+    "draft": "Draft question · being reviewed",
+    "true": "True",
+    "false": "False",
+    "yourAnswer": "Your answer",
+    "submit": "Answer",
+    "checking": "Checking…",
+    "correct": "Correct!",
+    "wrong": "Not quite",
+    "damage": "−{{n}} HP",
+    "correctAnswerIs": "The answer is {{answer}}.",
+    "farmed": "You answered this one recently, so it gives no XP or gold this time. New questions will!",
+    "xp": "+{{n}} XP",
+    "gold": "+{{n}} gold",
+    "continue": "Continue",
+    "flee": "Run away",
+    "backToVillage": "Back to the village",
+    "victory": "Victory!",
+    "victoryText": "You defeated {{name}}! Here's what you earned in this battle:",
+    "lost": "Time for a rest",
+    "lostText": "{{name}} wins this round, but everything you earned is safe. Read the explanations and try again!",
+    "levelUp": "Level up! You are now level {{level}}.",
+    "subject": {
+      "mathematics": "Mathematics",
+      "science": "Science",
+      "english": "English",
+      "general_knowledge": "General knowledge"
+    },
+    "errors": {
+      "tooFast": "Take a moment to read the question, then try again.",
+      "noQuestions": "There are no questions for your level yet.",
+      "generic": "Something went wrong. Please try again."
+    }
   }
 }

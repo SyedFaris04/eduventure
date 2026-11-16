@@ -90,6 +90,8 @@ const router = createBrowserRouter([
   { path: '/home', ...page(async () => (await import('../features/home/HomePage')).HomePage, true) },
   { path: '/world', ...page(async () => (await import('../features/world/WorldPage')).WorldPage, true) },
   { path: '/styleguide', ...page(async () => (await import('../features/styleguide/StyleguidePage')).StyleguidePage) },
+  // Development builds only: this page contains answer keys, so it must never ship.
+  ...(import.meta.env.DEV ? [{ path: '/dev/questions', ...page(async () => (await import('../features/dev/QuestionReviewPage')).QuestionReviewPage) }] : []),
   { path: '*', element: <NotFound /> },
 ])
 

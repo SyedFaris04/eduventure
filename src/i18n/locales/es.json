@@ -417,5 +417,45 @@
     "dinobud": {
       "name": "Dinobrote"
     }
+  },
+  "battle": {
+    "title": "Batalla contra {{name}}",
+    "you": "Tú",
+    "monsterHp": "Salud de {{name}}",
+    "playerHp": "Tu salud",
+    "combo": "Combo ×{{n}}",
+    "difficulty": "Dificultad {{n}} de 5",
+    "draft": "Pregunta en borrador · en revisión",
+    "true": "Verdadero",
+    "false": "Falso",
+    "yourAnswer": "Tu respuesta",
+    "submit": "Responder",
+    "checking": "Comprobando…",
+    "correct": "¡Correcto!",
+    "wrong": "No del todo",
+    "damage": "−{{n}} PS",
+    "correctAnswerIs": "La respuesta es {{answer}}.",
+    "farmed": "Respondiste esta hace poco, así que esta vez no da XP ni oro. ¡Las preguntas nuevas sí!",
+    "xp": "+{{n}} XP",
+    "gold": "+{{n}} de oro",
+    "continue": "Continuar",
+    "flee": "Huir",
+    "backToVillage": "Volver a la aldea",
+    "victory": "¡Victoria!",
+    "victoryText": "¡Derrotaste a {{name}}! Esto es lo que ganaste en esta batalla:",
+    "lost": "Hora de descansar",
+    "lostText": "{{name}} gana esta ronda, pero todo lo que ganaste está a salvo. ¡Lee las explicaciones y vuelve a intentarlo!",
+    "levelUp": "¡Subes de nivel! Ahora eres nivel {{level}}.",
+    "subject": {
+      "mathematics": "Matemáticas",
+      "science": "Ciencias",
+      "english": "Inglés",
+      "general_knowledge": "Cultura general"
+    },
+    "errors": {
+      "tooFast": "Tómate un momento para leer la pregunta y vuelve a intentarlo.",
+      "noQuestions": "Todavía no hay preguntas para tu nivel.",
+      "generic": "Algo salió mal. Inténtalo de nuevo."
+    }
   }
 }

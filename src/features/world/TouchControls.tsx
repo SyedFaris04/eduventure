@@ -46,7 +46,7 @@ export function Joystick() {
       onPointerMove={(e) => e.buttons && move(e)}
       onPointerUp={end}
       onPointerCancel={end}
-      className="pointer-events-auto absolute start-5 bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-10 grid size-32 touch-none place-items-center rounded-full border-[3px] border-wood/70 bg-cream/40 backdrop-blur-sm"
+      className="pointer-events-auto absolute start-5 bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-10 grid size-32 touch-none place-items-center rounded-full border-[3px] border-wood/70 bg-cream/45"
     >
       <div
         className="size-14 rounded-full border-[3px] border-wood-dark bg-gradient-to-b from-cream to-path shadow-[0_3px_0_var(--color-wood-dark)]"

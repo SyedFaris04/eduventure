@@ -41,5 +41,17 @@ The Supabase CLI does not re-run an already-applied seed, and raw SQL on product
 ## 14. Guest play needs CAPTCHA before public launch (2026-11-16)
 Anonymous sign-in is rate-limited per IP by Supabase but otherwise open. Before any public launch, enable Supabase CAPTCHA (hCaptcha or Turnstile) for sign-ups and guest starts.
 
+## 15. Draft questions only in the development project (2026-11-16)
+`app_settings.allow_draft_questions` is true in this development project so battles can use questions still in review (shown with a Draft badge). **A production project must set it to false** (Phase 8 launch checklist). Answer keys live in `question_keys`, which clients can never read.
+
+## 16. Phaser 3.90, not Phaser 4 (2026-11-16)
+The brief specifies Phaser 3; 3.90 is its mature final release. Phaser 4 is the upgrade path; game logic is kept in plain TypeScript (`src/game/*.ts`) so only the scenes would change.
+
+## 17. World logic is plain TypeScript; Phaser only draws (2026-11-16)
+Projection, map parsing, movement, collision, pathfinding and the level curve are pure functions with unit tests. React overlays (HUD, dialogue, battle) talk to Phaser through one Zustand store (`src/game/store.ts`).
+
+## 18. Battles start only from Interact, not by bumping into monsters (2026-11-16)
+Avoids accidental battles for young players. The canvas renders at device pixel ratio (max 2) and pauses while the battle panel is open, to keep ordinary phones responsive.
+
 ## 10. Tailwind tokens are emitted statically (2026-11-16)
 `@theme static` so every palette colour exists as a CSS variable for inline styles, SVG and canvas, not only when a utility class uses it.

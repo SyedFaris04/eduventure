@@ -64,6 +64,13 @@ describe.skipIf(!configured)('battles (live project)', () => {
     expect(again.data.monster_id).toBe('sproutling')
   })
 
+  it('two simultaneous starts (a double tap) both get the same battle', async () => {
+    const c = await player('primary', ['english'])
+    const results = await Promise.all(Array.from({ length: 6 }, () => c.rpc('start_encounter', { p_monster: 'pebblewing' })))
+    expect(results.map((r) => r.error?.message ?? null)).toEqual(Array(6).fill(null))
+    expect(new Set(results.map((r) => r.data.encounter_id)).size).toBe(1)
+  })
+
   it('rejects an answer sent too quickly after the question appears', async () => {
     const { data: s } = await b.rpc('start_encounter', { p_monster: 'sproutling' })
     const { error } = await b.rpc('answer_question', { p_encounter: s.encounter_id, p_answer: rightAnswer(s.question.id) })
