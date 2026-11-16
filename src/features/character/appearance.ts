@@ -1,4 +1,6 @@
-/** Every customizable part and its allowed values. Values are short ids or lowercase hex (the database checks this shape). */
+import { CATALOGUE } from '../shop/catalogue'
+
+/** Every customizable part and its free values. Values are short ids or lowercase hex (the database checks this shape). */
 export const APPEARANCE_OPTIONS = {
   body: ['a', 'b', 'c'],
   skin: ['#ffe0c4', '#f7d0ae', '#eab894', '#d9a074', '#c08356', '#9c6440', '#7b4a2e', '#5a3521'],
@@ -16,9 +18,14 @@ export const APPEARANCE_OPTIONS = {
 
 type Options = typeof APPEARANCE_OPTIONS
 export type AppearancePart = keyof Options
-export type Appearance = { [K in AppearancePart]: Options[K][number] }
+type ShopValue<K> = Extract<(typeof CATALOGUE)[number], { slot: K }>['id']
+/** A slot holds a free value or a shop item for that slot (the database checks the player owns it). */
+export type Appearance = { [K in AppearancePart]: Options[K][number] | ShopValue<K> }
 
 export const PART_ORDER = Object.keys(APPEARANCE_OPTIONS) as AppearancePart[]
+
+/** Shop item ids that can be worn in a slot. */
+export const shopValues = (part: AppearancePart): string[] => CATALOGUE.filter((i) => i.slot === part).map((i) => i.id)
 
 export const DEFAULT_APPEARANCE: Appearance = {
   body: 'a',
@@ -46,7 +53,8 @@ export function sanitizeAppearance(input: Partial<Record<string, unknown>> | nul
   return Object.fromEntries(
     PART_ORDER.map((part) => {
       const value = input?.[part]
-      return [part, (APPEARANCE_OPTIONS[part] as readonly unknown[]).includes(value) ? value : DEFAULT_APPEARANCE[part]]
+      const allowed = [...(APPEARANCE_OPTIONS[part] as readonly unknown[]), ...shopValues(part)]
+      return [part, allowed.includes(value) ? value : DEFAULT_APPEARANCE[part]]
     }),
   ) as Appearance
 }
