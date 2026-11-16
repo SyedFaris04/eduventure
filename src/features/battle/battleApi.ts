@@ -1,5 +1,5 @@
 import { supabase } from '../../services/supabase'
-import type { MonsterKind } from '../../game/map'
+import type { BossId, MonsterKind } from '../../game/map'
 import type { PublicQuestion } from './questionSchema'
 
 export type EncounterState = {
@@ -58,6 +58,7 @@ export async function answerQuestion(encounterId: string, answer: AnswerPayload)
 
 export type BossState = {
   run_id: string
+  boss_id: BossId
   round: number
   rounds: number
   round_progress: number
@@ -71,8 +72,8 @@ export type BossResult = Pick<AnswerResult, 'correct' | 'correct_answer' | 'expl
   state: BossState
 }
 
-export async function startBoss(): Promise<BossState> {
-  const { data, error } = await supabase!.rpc('start_boss')
+export async function startBoss(boss: BossId = 'guardian'): Promise<BossState> {
+  const { data, error } = await supabase!.rpc('start_boss', { p_boss: boss })
   if (error) throw toBattleError(error.message)
   return data as BossState
 }
