@@ -42,6 +42,16 @@ describe('i18n', () => {
     }
   })
 
+  it('every literal t("…") key used in the source exists in English', () => {
+    const sources = import.meta.glob<string>('../**/*.tsx', { eager: true, query: '?raw', import: 'default' })
+    const en = new Set(keyPaths(locales['./locales/en.json']))
+    // Keys with a defaultValue or built at run time (template strings) are not literal and are skipped.
+    const missing = Object.entries(sources).flatMap(([file, code]) =>
+      [...code.matchAll(/\bt\(\s*'([a-zA-Z][\w.]*)'\s*[,)]/g)].map((m) => m[1]).filter((k) => !en.has(k) && ![...en].some((p) => p.startsWith(`${k}.`))).map((k) => `${file}: ${k}`),
+    )
+    expect(missing).toEqual([])
+  })
+
   it('has at least 8 tips and 12 facts in English', () => {
     const en = locales['./locales/en.json'] as { loading: { tips: string[]; facts: string[] } }
     expect(en.loading.tips.length).toBeGreaterThanOrEqual(8)

@@ -50,6 +50,7 @@
 - An accept entry is dropped when normalising would make it match a wrong answer (e.g. "CO₂" normalises to "co") — avoids marking carbon monoxide correct — players typing the subscript form must use "CO2".
 - The in-app editor, image questions and `sync:questions` moved to later phases — the content files stay the single source (decision #19) — reviewers fix questions via "request changes" rather than editing in place.
 - Server tests read answer keys from every content file (`tests/rls/answers.ts`) — tests broke once the bank grew past the starter file — none.
+- The world end-to-end test answers all 8 types through the real battle UI; a new unit test checks every literal `t('…')` key exists in English — it caught four labels for the new types that were missing in all 7 languages — the new labels in languages other than English are drafts awaiting native-speaker review.
 
 ### Known limits
 
@@ -59,6 +60,6 @@
 
 ### Results
 
-- `npm test` 87/87 · `npm run test:rls` 42 passed, 3 skipped (admin tests need `TEST_ADMIN_EMAIL`/`TEST_ADMIN_PASSWORD`) · `npm run build` OK · Supabase advisors: 0 errors (34 expected warnings: player-callable server functions, guest-play policies, leaked-password protection, which is on the Phase 8 list).
+- `npm test` 88/88 · `npm run test:rls` 42 passed, 3 skipped (admin tests need `TEST_ADMIN_EMAIL`/`TEST_ADMIN_PASSWORD`) · `npm run test:e2e` 8/8 · `npm run build` OK · Supabase advisors: 0 errors (34 expected warnings: player-callable server functions, guest-play policies, leaked-password protection, which is on the Phase 8 list).
 - Question bank in the live project: 510 questions, 510 answer keys, 8 types, 25 subjects, all `in_review`.
 - Final review: self-review (owner did not ask for subagents).
