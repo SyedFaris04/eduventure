@@ -12,7 +12,8 @@
     "test:e2e": "playwright test",
     "gen:seed": "node scripts/gen-seed.mjs",
     "gen:questions": "node scripts/gen-questions.mjs",
-    "fetch:models": "node scripts/fetch-models.mjs"
+    "fetch:models": "node scripts/fetch-models.mjs",
+    "gen:lessons": "node scripts/gen-lessons.mjs"
   },
   "dependencies": {
     "@fontsource/fredoka": "^5.3.0",
