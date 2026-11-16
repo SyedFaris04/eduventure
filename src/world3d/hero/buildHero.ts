@@ -1,4 +1,4 @@
-import { Mesh, type Object3D } from 'three'
+import { Mesh, PropertyBinding, type Object3D } from 'three'
 import type { Appearance } from '../../features/character/appearance'
 import { heroParts } from './parts'
 import { faceMaterial, geometry, material } from './materials'
@@ -10,7 +10,8 @@ import { faceMaterial, geometry, material } from './materials'
 export function buildHero(appearance: Appearance, rig: Object3D): { group: Object3D; dispose(): void } {
   const meshes: Mesh[] = []
   for (const spec of heroParts(appearance)) {
-    const bone = rig.getObjectByName(spec.bone)
+    // three.js strips dots from node names when loading (hand.l → handl).
+    const bone = rig.getObjectByName(PropertyBinding.sanitizeNodeName(spec.bone))
     if (!bone) throw new Error(`rig is missing bone ${spec.bone}`)
     const face = spec.shape.startsWith('eyes:') || spec.shape.startsWith('mouth:')
     const mesh = new Mesh(geometry(spec.shape), face ? faceMaterial(spec.shape as `eyes:${string}`) : material(spec.colour))

@@ -1,3 +1,4 @@
+import { Euler, Quaternion, Vector3 } from 'three'
 import { sanitizeAppearance, type Appearance, type AppearancePart } from '../../features/character/appearance'
 
 /**
@@ -135,7 +136,9 @@ function shoes(a: Appearance): PartSpec[] {
 function hair(a: Appearance): PartSpec[] {
   const c = a.hairColour
   const h = (shape: Shape, offset: V3, scale: V3, rotation?: V3) => p('hairStyle', 'head', shape, c, offset, scale, rotation)
-  const cap = [h('dome', [0, 0.5, -0.03], [1.08, 0.56, 1]), h('rbox', [0, 0.84, 0.4], [0.94, 0.18, 0.14])]
+  // A shell a little bigger than the head, set back so the face stays clear, plus a fringe over the forehead.
+  const shell = (scale: V3 = [1.08, 0.56, 1]) => h('rbox', [0, 0.7, -0.06], scale)
+  const cap = [shell(), h('rbox', [0, 0.85, 0.4], [0.98, 0.2, 0.16])]
   switch (a.hairStyle) {
     case 'spiky':
       return [...cap, ...([[-0.32, 0.5], [-0.1, 0.15], [0.14, -0.15], [0.34, -0.5]] as const).map(([x, r]) => h('cone', [x, 1.08, 0.05], [0.24, 0.36, 0.24], [0.2, 0, r]))]
@@ -148,16 +151,16 @@ function hair(a: Appearance): PartSpec[] {
     case 'buns':
       return [...cap, ...SIDES.map((side) => h('sphere', [sx(side) * 0.36, 1.02, -0.06], [0.38, 0.38, 0.38]))]
     case 'curly':
-      return [h('dome', [0, 0.5, -0.03], [1.08, 0.56, 1]), ...[-0.45, -0.3, -0.1, 0.1, 0.3, 0.45].flatMap((x, i) => [h('sphere', [x, 0.9 - Math.abs(x) * 0.4, 0.38], [0.3, 0.3, 0.3]), h('sphere', [x * 0.9, 1.02 - (i % 2) * 0.06, -0.1], [0.34, 0.34, 0.34])])]
+      return [shell(), ...[-0.45, -0.3, -0.1, 0.1, 0.3, 0.45].flatMap((x, i) => [h('sphere', [x, 0.9 - Math.abs(x) * 0.4, 0.38], [0.3, 0.3, 0.3]), h('sphere', [x * 0.9, 1.02 - (i % 2) * 0.06, -0.1], [0.34, 0.34, 0.34])])]
     case 'afro':
       return [h('sphere', [0, 0.74, -0.06], [1.46, 1.22, 1.34])]
     case 'braid':
       return [...cap, ...[0.36, 0.18, 0, -0.18].map((y) => h('sphere', [0.52, y, -0.12], [0.2, 0.22, 0.2])), p('hairStyle', 'head', 'sphere', '#e2574c', [0.52, -0.31, -0.12], [0.1, 0.1, 0.1])]
     case 'buzz':
-      return [h('dome', [0, 0.52, -0.02], [1.04, 0.47, 0.94])]
+      return [h('rbox', [0, 0.76, -0.04], [1.04, 0.42, 0.96])]
     case 'hijab':
       return [
-        h('dome', [0, 0.52, -0.04], [1.16, 0.58, 1.06]),
+        h('rbox', [0, 0.68, -0.07], [1.16, 0.66, 1.04]),
         h('rbox', [0, 0.42, -0.26], [1.14, 1.02, 0.5]),
         ...SIDES.map((side) => h('rbox', [sx(side) * 0.54, 0.4, 0.06], [0.1, 0.96, 0.84])),
         h('rbox', [0, 0.88, 0.42], [1.04, 0.16, 0.12]),
@@ -172,15 +175,15 @@ function accessory(a: Appearance): PartSpec[] {
   const x = (shape: Shape, colour: string, offset: V3, scale: V3, rotation?: V3) => p('accessory', 'head', shape, colour, offset, scale, rotation)
   switch (a.accessory) {
     case 'flower':
-      return [...[0, 72, 144, 216, 288].map((d) => x('sphere', '#f7a8c4', [0.34 + 0.07 * Math.cos((d * PI) / 180), 0.96 + 0.07 * Math.sin((d * PI) / 180), 0.22], [0.1, 0.1, 0.06])), x('sphere', GOLD, [0.34, 0.96, 0.25], [0.07, 0.07, 0.05])]
+      return [...[0, 72, 144, 216, 288].map((d) => x('sphere', '#f7a8c4', [0.38 + 0.09 * Math.cos((d * PI) / 180), 0.92 + 0.09 * Math.sin((d * PI) / 180), 0.4], [0.13, 0.13, 0.07])), x('sphere', GOLD, [0.38, 0.92, 0.44], [0.09, 0.09, 0.06])]
     case 'glasses':
       return [...SIDES.map((side) => x('ring', INK, [sx(side) * 0.2, 0.5, 0.49], [0.24, 0.24, 0.2])), x('box', INK, [0, 0.52, 0.49], [0.14, 0.025, 0.02])]
     case 'grad_cap':
       return [x('cylinder', INK, [0, 0.98, 0], [0.7, 0.12, 0.7]), x('box', '#3a3550', [0, 1.06, 0], [0.96, 0.05, 0.96], [0, PI / 4, 0]), x('sphere', GOLD, [0.36, 0.9, 0.3], [0.08, 0.08, 0.08])]
     case 'headband':
-      return [x('ring', '#e2574c', [0, 0.72, 0.01], [1.07, 0.96, 0.42], [PI / 2, 0, 0])]
+      return [x('ring', '#e2574c', [0, 0.74, -0.03], [1.2, 1.1, 0.5], [PI / 2, 0, 0])]
     case 'star_clip':
-      return [x('octa', GOLD, [-0.3, 0.86, 0.42], [0.16, 0.16, 0.06])]
+      return [x('octa', GOLD, [-0.36, 0.78, 0.47], [0.18, 0.18, 0.07])]
     case 'leaf_crown':
       return [x('ring', '#5e8c31', [0, 0.92, 0], [1, 0.92, 0.26], [PI / 2, 0, 0]), ...[-0.4, -0.24, -0.08, 0.08, 0.24, 0.4].map((lx) => x('sphere', '#7cc04a', [lx, 1.02, 0.4 - Math.abs(lx) * 0.5], [0.1, 0.2, 0.05], [0, 0, -lx]))]
     case 'wizard_hat':
@@ -192,15 +195,26 @@ function accessory(a: Appearance): PartSpec[] {
   }
 }
 
-/** Held in the right hand; KayKit weapons point along the hand slot's +y and are turned half a turn. */
+/**
+ * Held in the right hand. The hand slot's +y points forward in the idle pose and its −x points up, so blades are
+ * tilted 45° up from forward; the staff stands upright and the bow is held vertically by its middle.
+ */
 function weapon(a: Appearance): PartSpec[] {
-  const turn: V3 = [0, PI, 0]
-  const w = (shape: Shape, colour: string, offset: V3, scale: V3, rotation: V3 = turn) => p('weapon', 'handslot.r', shape, colour, offset, scale, rotation)
+  const turn: V3 = [0, PI, -PI / 4]
+  const upright: V3 = [0, PI, -PI / 2]
+  // Offsets and shapes are given in the weapon's own frame, then the whole weapon is turned by `frame` as one piece.
+  const w = (shape: Shape, colour: string, offset: V3, scale: V3, frame: V3 = turn, own: V3 = [0, 0, 0]) => {
+    const q = new Quaternion().setFromEuler(new Euler(...frame))
+    const at = new Vector3(...offset).applyQuaternion(q)
+    const rot = new Euler().setFromQuaternion(q.multiply(new Quaternion().setFromEuler(new Euler(...own))))
+    const r3 = (n: number) => Math.round(n * 1000) / 1000
+    return p('weapon', 'handslot.r', shape, colour, [r3(at.x), r3(at.y), r3(at.z)], scale, [r3(rot.x), r3(rot.y), r3(rot.z)])
+  }
   switch (a.weapon) {
     case 'short_bow':
-      return [w('arc', '#a0612f', [0, 0.1, 0], [0.8, 0.8, 0.5], [0, PI, -PI / 2]), w('cylinder', '#f4f1ea', [0, 0.1, 0], [0.015, 0.8, 0.015])]
+      return [w('arc', '#a0612f', [0, -0.35, 0], [0.8, 0.8, 0.5], [0, 0, 0]), w('cylinder', '#f4f1ea', [0, -0.35, 0], [0.015, 0.7, 0.015], [0, 0, 0], [0, 0, PI / 2])]
     case 'apprentice_staff':
-      return [w('cylinder', '#8a5a3b', [0, 0.3, 0], [0.07, 1.3, 0.07]), w('sphere', '#6cc4f0', [0, 1.0, 0], [0.2, 0.2, 0.2])]
+      return [w('cylinder', '#8a5a3b', [0, 0.3, 0], [0.07, 1.3, 0.07], upright), w('sphere', '#6cc4f0', [0, 0.98, 0], [0.2, 0.2, 0.2], upright)]
     case 'quill':
       return [w('cone', '#f4f1ea', [0, 0.34, 0], [0.14, 0.6, 0.04]), w('cylinder', INK, [0, 0.02, 0], [0.03, 0.1, 0.03])]
     case 'golden_quill':

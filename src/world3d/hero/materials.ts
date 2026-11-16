@@ -15,7 +15,7 @@ export function material(colour: string): MeshStandardMaterial {
 
 type Solid = Exclude<Shape, `eyes:${string}` | `mouth:${string}`>
 const makers: Record<Solid, () => BufferGeometry> = {
-  rbox: () => new RoundedBoxGeometry(1, 1, 1, 2, 0.16),
+  rbox: () => new RoundedBoxGeometry(1, 1, 1, 3, 0.28),
   box: () => new BoxGeometry(1, 1, 1),
   sphere: () => new SphereGeometry(0.5, 18, 12),
   dome: () => new SphereGeometry(0.5, 18, 8, 0, Math.PI * 2, 0, Math.PI / 2).scale(1, 2, 1), // base on y = 0, top at 1

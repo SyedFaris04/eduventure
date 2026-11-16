@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { Bone, Group, Mesh } from 'three'
+import { Bone, Group, Mesh, PropertyBinding } from 'three'
 import { APPEARANCE_OPTIONS, DEFAULT_APPEARANCE, PART_ORDER, shopValues, type Appearance } from '../../features/character/appearance'
 import { BONES, heroParts } from './parts'
 import { buildHero } from './buildHero'
@@ -10,7 +10,7 @@ function fakeRig(skip?: string) {
   for (const name of BONES) {
     if (name === skip) continue
     const b = new Bone()
-    b.name = name
+    b.name = PropertyBinding.sanitizeNodeName(name) // as GLTFLoader names them
     b.position.set(0, 0.1, 0)
     rig.add(b)
   }
@@ -54,7 +54,7 @@ describe('buildHero', () => {
     const rig = fakeRig()
     buildHero(DEFAULT_APPEARANCE, rig)
     for (const spec of heroParts(DEFAULT_APPEARANCE)) {
-      const bone = rig.getObjectByName(spec.bone)!
+      const bone = rig.getObjectByName(PropertyBinding.sanitizeNodeName(spec.bone))!
       expect(bone.children.some((c) => c instanceof Mesh && c.userData.slot === spec.slot), `${spec.slot} on ${spec.bone}`).toBe(true)
     }
   })

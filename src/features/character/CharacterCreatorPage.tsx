@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
@@ -15,6 +15,8 @@ import { useOwnedItems } from '../shop/useShop'
 import { characterDataUri } from './renderCharacterSvg'
 import { generateSafeName, nameSchema } from './safeName'
 import { saveCharacter, useMyCharacter } from './useCharacter'
+
+const HeroPreview = lazy(() => import('../../world3d/hero/HeroPreview'))
 
 const TABS: { id: string; parts: AppearancePart[] }[] = [
   { id: 'body', parts: ['body', 'skin'] },
@@ -57,7 +59,6 @@ export function CharacterCreatorPage() {
     if (safeNamesOnly && !name) setName(generateSafeName())
   }, [safeNamesOnly, name])
 
-  const preview = useMemo(() => characterDataUri(appearance, { facing, size: 280 }), [appearance, facing])
 
   async function save() {
     setError(null)
@@ -105,7 +106,11 @@ export function CharacterCreatorPage() {
             <div className="relative grid w-full max-w-xs place-items-center pt-2">
               <div aria-hidden className="absolute bottom-3 h-10 w-52 rounded-[50%] bg-grass-dark/70 shadow-[0_6px_0_#4a7a2a]" />
               <div aria-hidden className="absolute bottom-6 h-8 w-44 rounded-[50%] bg-grass" />
-              <img src={preview} alt={t('character.previewAlt', { name: name || '…' })} className="hero-bob relative w-[min(70vw,240px)] drop-shadow-[0_6px_6px_rgb(0_0_0/0.15)]" />
+              <div role="img" aria-label={t('character.previewAlt', { name: name || '…' })} className="relative aspect-[3/4] w-[min(70vw,240px)]">
+                <Suspense fallback={null}>
+                  <HeroPreview appearance={appearance} facing={facing} />
+                </Suspense>
+              </div>
             </div>
             <p className="rounded-full bg-cream px-4 py-1 font-display text-lg font-semibold text-wood-dark shadow-[0_3px_0_var(--color-wood)]">{name || '…'}</p>
             <div className="flex flex-wrap justify-center gap-2">

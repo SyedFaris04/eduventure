@@ -93,6 +93,7 @@ const router = createBrowserRouter([
   { path: '/shop', ...page(async () => (await import('../features/shop/ShopPage')).ShopPage, true) },
   { path: '/admin', ...page(async () => (await import('../features/admin/AdminPage')).AdminPage) },
   { path: '/styleguide', ...page(async () => (await import('../features/styleguide/StyleguidePage')).StyleguidePage) },
+  ...(import.meta.env.DEV ? [{ path: '/dev/hero', ...page(async () => (await import('../world3d/hero/HeroLab')).default) }] : []),
   { path: '*', element: <NotFound /> },
 ])
 
