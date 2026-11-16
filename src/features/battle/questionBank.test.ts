@@ -42,6 +42,15 @@ describe('question bank', () => {
     expect(parsed.filter((q) => q.level_ids.length === 11).length).toBe(10)
   })
 
+  it('meets the Phase 3 bank size: 150 primary, 200 secondary, 150 pre-university and university', () => {
+    const parsed = questions.map((q) => questionSource.parse(q))
+    const tagged = (levels: string[]) => parsed.filter((q) => q.level_ids.length < 11 && q.level_ids.some((l) => levels.includes(l))).length
+    expect(tagged(['primary'])).toBeGreaterThanOrEqual(150)
+    expect(tagged(['lower_secondary', 'upper_secondary'])).toBeGreaterThanOrEqual(200)
+    expect(tagged(['pre_university', 'diploma', 'undergraduate'])).toBeGreaterThanOrEqual(150)
+    expect(parsed.length).toBeGreaterThanOrEqual(500)
+  })
+
   it('the rules really catch broken questions', () => {
     const good = questionSource.parse(starter.questions[0]) as Extract<ReturnType<typeof questionSource.parse>, { type: 'mcq' }>
     expect(questionProblems({ ...good, answer: 'z' })).toContain('answer is not one of the options')
