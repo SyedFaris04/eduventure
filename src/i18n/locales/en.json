@@ -350,8 +350,20 @@
       "satchel": "Satchel",
       "explorer": "Explorer pack",
       "book_bag": "Book bag",
-      "scroll_case": "Scroll case"
-    }
+      "scroll_case": "Scroll case",
+      "leaf_crown": "Leaf Crown",
+      "scholar_coat": "Scholar Coat",
+      "owl_pack": "Owl Pack",
+      "wizard_hat": "Wizard Hat",
+      "knight_tabard": "Knight Tabard",
+      "crystal_wand": "Crystal Wand",
+      "steel_sword": "Steel Sword",
+      "winged_boots": "Winged Boots",
+      "star_cloak": "Star Cloak",
+      "golden_crown": "Golden Crown",
+      "golden_quill": "Golden Quill"
+    },
+    "fromShop": "From the shop"
   },
   "home": {
     "welcome": "Welcome, {{name}}!",
@@ -377,7 +389,8 @@
     "signOutAnyway": "Sign out anyway",
     "cancel": "Cancel",
     "admin": "Review questions",
-    "library": "Academic Library"
+    "library": "Academic Library",
+    "shop": "Shop"
   },
   "world": {
     "canvasLabel": "Greenhaven Village. Move with W A S D or the arrow keys, tap to walk, press E to talk.",
@@ -518,5 +531,28 @@
     "victoryText": "You cleared all four rounds. Greenhaven is proud of you!",
     "lostText": "The Guardian waits patiently for your return. Everything you earned is safe; read the explanations and try again.",
     "alreadyToday": "You've already claimed today's Guardian reward. Come back tomorrow for another!"
+  },
+  "shop": {
+    "title": "Shop",
+    "intro": "Spend the gold you earn by learning. Every item shows on your hero right away, and the world sees it too.",
+    "yourGold": "{{n}} gold",
+    "rarity": {
+      "common": "Common",
+      "rare": "Rare",
+      "epic": "Epic"
+    },
+    "buy": "Buy",
+    "buyItem": "Buy {{item}}",
+    "wear": "Wear",
+    "wearItem": "Wear {{item}}",
+    "wearing": "Wearing",
+    "needMore": "{{n}} more gold needed",
+    "previewAlt": "Your hero wearing the {{item}}",
+    "bought": "You bought the {{item}}! Tap Wear to put it on.",
+    "errors": {
+      "gold": "Not enough gold yet. Win battles and beat the Guardian to earn more.",
+      "owned": "You already own this item.",
+      "failed": "Something went wrong. Please try again."
+    }
   }
 }

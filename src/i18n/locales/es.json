@@ -350,8 +350,20 @@
       "satchel": "Bandolera",
       "explorer": "Mochila de explorador",
       "book_bag": "Bolsa de libros",
-      "scroll_case": "Portapergaminos"
-    }
+      "scroll_case": "Portapergaminos",
+      "leaf_crown": "Corona de Hojas",
+      "scholar_coat": "Abrigo de Erudito",
+      "owl_pack": "Mochila Búho",
+      "wizard_hat": "Sombrero de Mago",
+      "knight_tabard": "Sobreveste de Caballero",
+      "crystal_wand": "Varita de Cristal",
+      "steel_sword": "Espada de Acero",
+      "winged_boots": "Botas Aladas",
+      "star_cloak": "Capa Estelar",
+      "golden_crown": "Corona Dorada",
+      "golden_quill": "Pluma Dorada"
+    },
+    "fromShop": "De la tienda"
   },
   "home": {
     "welcome": "¡Hola, {{name}}!",
@@ -377,7 +389,8 @@
     "signOutAnyway": "Cerrar sesión igualmente",
     "cancel": "Cancelar",
     "admin": "Revisar preguntas",
-    "library": "Biblioteca académica"
+    "library": "Biblioteca académica",
+    "shop": "Tienda"
   },
   "world": {
     "canvasLabel": "Aldea Greenhaven. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",
@@ -518,5 +531,28 @@
     "victoryText": "Superaste las cuatro rondas. ¡Greenhaven está orgulloso de ti!",
     "lostText": "El Guardián espera pacientemente tu regreso. Todo lo que ganaste está a salvo; lee las explicaciones y vuelve a intentarlo.",
     "alreadyToday": "Ya reclamaste hoy la recompensa del Guardián. ¡Vuelve mañana por otra!"
+  },
+  "shop": {
+    "title": "Tienda",
+    "intro": "Gasta el oro que ganas aprendiendo. Cada objeto aparece en tu héroe al instante, y el mundo también lo ve.",
+    "yourGold": "{{n}} de oro",
+    "rarity": {
+      "common": "Común",
+      "rare": "Raro",
+      "epic": "Épico"
+    },
+    "buy": "Comprar",
+    "buyItem": "Comprar {{item}}",
+    "wear": "Ponerse",
+    "wearItem": "Ponerse {{item}}",
+    "wearing": "Puesto",
+    "needMore": "Faltan {{n}} de oro",
+    "previewAlt": "Tu héroe con {{item}}",
+    "bought": "¡Compraste {{item}}! Pulsa Ponerse para usarlo.",
+    "errors": {
+      "gold": "Aún no tienes suficiente oro. Gana batallas y vence al Guardián para conseguir más.",
+      "owned": "Ya tienes este objeto.",
+      "failed": "Algo salió mal. Inténtalo de nuevo."
+    }
   }
 }

@@ -350,8 +350,20 @@
       "satchel": "挎包",
       "explorer": "探险背包",
       "book_bag": "书包",
-      "scroll_case": "卷轴筒"
-    }
+      "scroll_case": "卷轴筒",
+      "leaf_crown": "树叶王冠",
+      "scholar_coat": "学者外套",
+      "owl_pack": "猫头鹰背包",
+      "wizard_hat": "巫师帽",
+      "knight_tabard": "骑士战袍",
+      "crystal_wand": "水晶魔杖",
+      "steel_sword": "钢铁之剑",
+      "winged_boots": "飞翼靴",
+      "star_cloak": "星辰斗篷",
+      "golden_crown": "黄金王冠",
+      "golden_quill": "黄金羽毛笔"
+    },
+    "fromShop": "来自商店"
   },
   "home": {
     "welcome": "欢迎，{{name}}！",
@@ -377,7 +389,8 @@
     "signOutAnyway": "仍然退出",
     "cancel": "取消",
     "admin": "审核题目",
-    "library": "学术图书馆"
+    "library": "学术图书馆",
+    "shop": "商店"
   },
   "world": {
     "canvasLabel": "绿港村。用 W A S D 或方向键移动，点击行走，按 E 交谈。",
@@ -518,5 +531,28 @@
     "victoryText": "你通过了全部四个回合，绿港为你骄傲！",
     "lostText": "守护者耐心地等你回来。你获得的一切都还在；读读讲解，再试一次。",
     "alreadyToday": "今天的守护者奖励已经领取过了，明天再来吧！"
+  },
+  "shop": {
+    "title": "商店",
+    "intro": "用学习赚来的金币购物。每件物品会立刻穿在你的英雄身上，世界上的其他人也能看到。",
+    "yourGold": "{{n}} 金币",
+    "rarity": {
+      "common": "普通",
+      "rare": "稀有",
+      "epic": "史诗"
+    },
+    "buy": "购买",
+    "buyItem": "购买{{item}}",
+    "wear": "穿戴",
+    "wearItem": "穿戴{{item}}",
+    "wearing": "已穿戴",
+    "needMore": "还需要 {{n}} 金币",
+    "previewAlt": "你的英雄穿戴着{{item}}",
+    "bought": "你买到了{{item}}！点击“穿戴”就能穿上。",
+    "errors": {
+      "gold": "金币还不够。赢得战斗、打败守护者就能赚到更多。",
+      "owned": "你已经拥有这件物品。",
+      "failed": "出了点问题，请再试一次。"
+    }
   }
 }

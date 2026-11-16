@@ -90,6 +90,7 @@ const router = createBrowserRouter([
   { path: '/home', ...page(async () => (await import('../features/home/HomePage')).HomePage, true) },
   { path: '/world', ...page(async () => (await import('../features/world/WorldPage')).WorldPage, true) },
   { path: '/library', ...page(async () => (await import('../features/library/LibraryPage')).LibraryPage, true) },
+  { path: '/shop', ...page(async () => (await import('../features/shop/ShopPage')).ShopPage, true) },
   { path: '/admin', ...page(async () => (await import('../features/admin/AdminPage')).AdminPage) },
   { path: '/styleguide', ...page(async () => (await import('../features/styleguide/StyleguidePage')).StyleguidePage) },
   { path: '*', element: <NotFound /> },

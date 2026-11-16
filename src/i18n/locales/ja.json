@@ -350,8 +350,20 @@
       "satchel": "ショルダーバッグ",
       "explorer": "探検家リュック",
       "book_bag": "本かばん",
-      "scroll_case": "巻物ケース"
-    }
+      "scroll_case": "巻物ケース",
+      "leaf_crown": "葉っぱの冠",
+      "scholar_coat": "学者のコート",
+      "owl_pack": "フクロウのリュック",
+      "wizard_hat": "魔法使いの帽子",
+      "knight_tabard": "騎士のタバード",
+      "crystal_wand": "クリスタルの杖",
+      "steel_sword": "鋼の剣",
+      "winged_boots": "翼のブーツ",
+      "star_cloak": "星のマント",
+      "golden_crown": "黄金の王冠",
+      "golden_quill": "黄金の羽ペン"
+    },
+    "fromShop": "ショップのアイテム"
   },
   "home": {
     "welcome": "ようこそ、{{name}}！",
@@ -377,7 +389,8 @@
     "signOutAnyway": "それでもログアウト",
     "cancel": "キャンセル",
     "admin": "問題を確認する",
-    "library": "学習ライブラリー"
+    "library": "学習ライブラリー",
+    "shop": "ショップ"
   },
   "world": {
     "canvasLabel": "グリーンヘイブン村。W A S D か矢印キーで移動、タップで歩く、E で話す。",
@@ -518,5 +531,28 @@
     "victoryText": "4つのラウンドをすべてクリア。グリーンヘイブンのほこりだ！",
     "lostText": "守り神はあなたの帰りを気長に待っています。手に入れたものはそのまま。解説を読んで、もう一度挑戦しよう。",
     "alreadyToday": "今日の守り神の報酬はもう受け取りました。また明日来てね！"
+  },
+  "shop": {
+    "title": "ショップ",
+    "intro": "学んで手に入れたゴールドで買い物しよう。アイテムはすぐにヒーローに反映され、世界のみんなにも見えます。",
+    "yourGold": "{{n}} ゴールド",
+    "rarity": {
+      "common": "コモン",
+      "rare": "レア",
+      "epic": "エピック"
+    },
+    "buy": "買う",
+    "buyItem": "{{item}}を買う",
+    "wear": "装備",
+    "wearItem": "{{item}}を装備",
+    "wearing": "装備中",
+    "needMore": "あと {{n}} ゴールド必要",
+    "previewAlt": "{{item}}を装備したヒーロー",
+    "bought": "{{item}}を買いました！「装備」を押すと身につけられます。",
+    "errors": {
+      "gold": "ゴールドがまだ足りません。バトルに勝ってガーディアンを倒すと増えます。",
+      "owned": "このアイテムはもう持っています。",
+      "failed": "うまくいきませんでした。もう一度試してください。"
+    }
   }
 }

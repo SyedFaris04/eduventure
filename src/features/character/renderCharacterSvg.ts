@@ -57,6 +57,15 @@ function backpack(a: Appearance, g: Geo): string {
       return `<rect x="${g.right + 2}" y="136" width="8" height="18" fill="#d9534f" ${S}/><rect x="${g.right + 12}" y="132" width="9" height="22" fill="#f7c843" ${S}/><rect x="${g.right - 6}" y="148" width="36" height="46" rx="8" fill="#4f7fc7" ${S}/>`
     case 'scroll_case':
       return `<g transform="rotate(-35 100 172)"><rect x="92" y="104" width="16" height="136" rx="8" fill="#c0874f" ${S}/><rect x="90" y="104" width="20" height="12" rx="4" fill="#8a5a3b" ${S}/></g>`
+    case 'owl_pack': {
+      const x = g.left - 16 // owl peeks out from behind the left shoulder
+      return (
+        `<path d="M${x - 20} 142 L${x - 14} 128 L${x - 6} 140 Z M${x + 6} 140 L${x + 14} 128 L${x + 20} 142 Z" fill="#8a5a3b" ${S}/>` +
+        `<ellipse cx="${x}" cy="172" rx="24" ry="32" fill="#a87048" ${S}/><ellipse cx="${x}" cy="184" rx="14" ry="16" fill="#e8c9a0" ${S}/>` +
+        [-9, 9].map((d) => `<circle cx="${x + d}" cy="156" r="9" fill="#fff" ${S}/><circle cx="${x + d}" cy="157" r="4" fill="${FEATURE}"/>`).join('') +
+        `<path d="M${x - 4} 164 L${x} 171 L${x + 4} 164 Z" fill="#f7c843" ${S}/>`
+      )
+    }
     default:
       return ''
   }
@@ -108,6 +117,17 @@ function shoes(a: Appearance, g: Geo): string {
       return feet.map(({ x, up }) => `<ellipse cx="${x}" cy="${245 - up}" rx="13" ry="5" fill="#c0874f" ${S}/><path d="M${x - 8} ${238 - up} q8 6 16 0" stroke="#8a5a3b" stroke-width="3" fill="none"/>`).join('')
     case 'boots_black':
       return feet.map(({ x, up }) => `<rect x="${x - 10}" y="${226 - up}" width="20" height="16" rx="4" fill="#2e2a3a" ${S}/><ellipse cx="${x}" cy="${242 - up}" rx="14" ry="7" fill="#2e2a3a" ${S}/>`).join('')
+    case 'winged_boots':
+      return feet
+        .map(({ x, up }, i) => {
+          const out = i === 0 ? -1 : 1 // each wing points away from the body
+          const wx = x + out * 10
+          return (
+            `<path d="M${wx} ${230 - up} q${out * 14} -12 ${out * 18} -4 q${out * -4} 3 ${out * -8} 4 q${out * 6} 2 ${out * 6} 6 q${out * -8} 1 ${out * -16} -2 Z" fill="#fff" ${S}/>` +
+            `<rect x="${x - 10}" y="${226 - up}" width="20" height="16" rx="4" fill="#6cc4f0" ${S}/><ellipse cx="${x}" cy="${242 - up}" rx="14" ry="7" fill="#4f7fc7" ${S}/>`
+          )
+        })
+        .join('')
     default:
       return feet
         .map(({ x, up }) => `<rect x="${x - 10}" y="${226 - up}" width="20" height="16" rx="4" fill="#6b4226" ${S}/><ellipse cx="${x}" cy="${242 - up}" rx="14" ry="7" fill="#6b4226" ${S}/><path d="M${x - 10} ${230 - up} h20" stroke="#4a2c18" stroke-width="2"/>`)
@@ -145,6 +165,30 @@ function top(a: Appearance, g: Geo): string {
         `<path d="M${g.left} 184 L${g.left - 12} 226 Q100 236 ${g.right + 12} 226 L${g.right} 184 Z" fill="#e88fb4" ${S}/>` +
         shirt('#e88fb4', 192) +
         `<path d="M${g.left - 6} 214 Q100 224 ${g.right + 6} 214" stroke="#fff6e3" stroke-width="3" fill="none"/>`
+      )
+    case 'scholar_coat':
+      return (
+        `<path d="M${g.left - 1} 166 Q${g.left - 1} 146 ${g.left + 18} 146 H${g.right - 18} Q${g.right + 1} 146 ${g.right + 1} 166 L${g.right + 3} 212 H${g.left - 3} Z" fill="#3d5a80" ${S}/>` +
+        arm(g, 'l', '#3d5a80', 28) +
+        arm(g, 'r', '#3d5a80', 28) +
+        `<path d="M88 148 L100 172 L112 148 Z" fill="#f6f1e4" ${S}/><path d="M100 172 V210" stroke="${INK}" stroke-width="2"/>` +
+        [182, 196].map((y) => `<circle cx="106" cy="${y}" r="3" fill="#f7c843" stroke="${INK}" stroke-width="1.5"/>`).join('')
+      )
+    case 'knight_tabard':
+      return (
+        shirt('#9aa3b0', 204) +
+        `<path d="M${g.left + 4} 160 h${g.w - 8} M${g.left + 2} 176 h${g.w - 4} M${g.left + 2} 192 h${g.w - 4}" stroke="#7d8694" stroke-width="2"/>` +
+        `<path d="M84 148 H116 V214 L100 224 L84 214 Z" fill="#d9534f" ${S}/><path d="M100 164 V196 M88 178 H112" stroke="#f7c843" stroke-width="5" stroke-linecap="round"/>`
+      )
+    case 'star_cloak':
+      return (
+        `<path d="M${g.left - 1} 166 Q${g.left - 1} 146 ${g.left + 18} 146 H${g.right - 18} Q${g.right + 1} 146 ${g.right + 1} 166 L${g.right + 12} 230 H${g.left - 12} Z" fill="#283a6b" ${S}/>` +
+        arm(g, 'l', '#283a6b', 32) +
+        arm(g, 'r', '#283a6b', 32) +
+        [[84, 176, 4], [114, 192, 3], [92, 210, 3], [116, 214, 4], [100, 194, 2.5]]
+          .map(([x, y, r]) => `<path d="M${x} ${y - r * 2} L${x + r / 2} ${y - r / 2} L${x + r * 2} ${y} L${x + r / 2} ${y + r / 2} L${x} ${y + r * 2} L${x - r / 2} ${y + r / 2} L${x - r * 2} ${y} L${x - r / 2} ${y - r / 2} Z" fill="#f7c843"/>`)
+          .join('') +
+        `<circle cx="100" cy="152" r="7" fill="#f7c843" ${S}/><circle cx="100" cy="152" r="3" fill="#6cc4f0"/>`
       )
     default: // scarf_red: explorer shirt with a red scarf, like the hero of the loading art
       return (
@@ -260,6 +304,25 @@ function accessory(a: Appearance): string {
       return `<path d="M47 76 Q100 40 153 76" stroke="${INK}" stroke-width="12" fill="none" stroke-linecap="round"/><path d="M47 76 Q100 40 153 76" stroke="#e2574c" stroke-width="7" fill="none" stroke-linecap="round"/>`
     case 'star_clip':
       return `<path d="M62 52 l4 9 10 1 -7 7 2 10 -9 -5 -9 5 2 -10 -7 -7 10 -1 Z" fill="#f7c843" ${S}/>`
+    case 'leaf_crown': {
+      const leaves = [[56, 66, -40], [72, 54, -25], [88, 47, -10], [112, 47, 10], [128, 54, 25], [144, 66, 40]]
+      return (
+        `<path d="M48 74 Q100 34 152 74" stroke="${INK}" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M48 74 Q100 34 152 74" stroke="#5e8c31" stroke-width="5" fill="none" stroke-linecap="round"/>` +
+        leaves.map(([x, y, r]) => `<ellipse cx="${x}" cy="${y - 4}" rx="5" ry="9" fill="#7cc04a" stroke="${INK}" stroke-width="2" transform="rotate(${r} ${x} ${y})"/>`).join('')
+      )
+    }
+    case 'wizard_hat':
+      return (
+        `<path d="M58 58 L84 50 L98 -12 Q102 -18 106 -10 L118 50 L142 58 Z" fill="#5a4fb5" ${S}/>` +
+        `<ellipse cx="100" cy="60" rx="58" ry="11" fill="#4a3f9a" ${S}/><path d="M80 44 Q100 50 120 44" stroke="#f7c843" stroke-width="5" fill="none"/>` +
+        `<path d="M100 14 l3 6 7 1 -5 5 1 7 -6 -3 -6 3 1 -7 -5 -5 7 -1 Z" fill="#f7c843" stroke="${INK}" stroke-width="1.5"/>`
+      )
+    case 'golden_crown':
+      return (
+        `<path d="M64 54 L60 20 L80 36 L100 10 L120 36 L140 20 L136 54 Z" fill="#f7c843" ${S}/><rect x="62" y="46" width="76" height="12" rx="4" fill="#e0a92e" ${S}/>` +
+        `<circle cx="100" cy="52" r="4.5" fill="#d9534f" stroke="${INK}" stroke-width="1.5"/><circle cx="78" cy="52" r="3.5" fill="#6cc4f0" stroke="${INK}" stroke-width="1.5"/><circle cx="122" cy="52" r="3.5" fill="#6cc4f0" stroke="${INK}" stroke-width="1.5"/>` +
+        [[60, 20], [100, 10], [140, 20]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4" fill="#fff6e3" ${S}/>`).join('')
+      )
     default:
       return ''
   }
@@ -275,6 +338,23 @@ function weapon(a: Appearance, g: Geo): string {
       return `<g transform="rotate(8 ${h.x} ${h.y})"><rect x="${h.x - 4}" y="${h.y - 106}" width="8" height="150" rx="4" fill="#8a5a3b" ${S}/><circle cx="${h.x}" cy="${h.y - 112}" r="12" fill="#6cc4f0" ${S}/><circle cx="${h.x + 4}" cy="${h.y - 116}" r="3.5" fill="#fff"/></g>` + grip
     case 'quill':
       return `<g transform="translate(${h.x} ${h.y}) rotate(18)"><path d="M0 8 Q-20 -40 0 -92 Q20 -40 0 8 Z" fill="#f4f1ea" ${S}/><path d="M0 4 V-84" stroke="#c9bfa8" stroke-width="2"/><path d="M-3 8 L0 22 L3 8" fill="${INK}"/></g>` + grip
+    case 'golden_quill':
+      return (
+        `<g transform="translate(${h.x} ${h.y}) rotate(18)"><path d="M0 8 Q-22 -42 0 -98 Q22 -42 0 8 Z" fill="#f7c843" ${S}/><path d="M0 4 V-90" stroke="#e0a92e" stroke-width="2.5"/><path d="M-3 8 L0 22 L3 8" fill="${INK}"/>` +
+        `<path d="M16 -70 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 Z M-18 -40 l1.5 4 4 1.5 -4 1.5 -1.5 4 -1.5 -4 -4 -1.5 4 -1.5 Z" fill="#fff6e3"/></g>` +
+        grip
+      )
+    case 'crystal_wand':
+      return (
+        `<g transform="translate(${h.x} ${h.y}) rotate(14)"><rect x="-4" y="-66" width="8" height="74" rx="4" fill="#f4f1ea" ${S}/><path d="M0 -96 L12 -78 L0 -62 L-12 -78 Z" fill="#e88fb4" ${S}/><path d="M0 -92 L5 -78 L0 -68" stroke="#fff" stroke-width="2" fill="none"/></g>` +
+        grip
+      )
+    case 'steel_sword':
+      return (
+        `<g transform="translate(${h.x} ${h.y}) rotate(22)"><path d="M-6 -10 V-86 L0 -100 L6 -86 V-10 Z" fill="#d7dde6" ${S}/><path d="M0 -14 V-88" stroke="#ffffff" stroke-width="2.5"/>` +
+        `<path d="M-18 -14 Q0 -6 18 -14 L16 -6 Q0 0 -16 -6 Z" fill="#f7c843" ${S}/><rect x="-3.5" y="-4" width="7" height="16" rx="3" fill="#3d5a80" ${S}/><circle cx="0" cy="14" r="4" fill="#f7c843" ${S}/></g>` +
+        grip
+      )
     default: // wooden_sword
       // Blade angled outward so it never crosses the face.
       return `<g transform="translate(${h.x} ${h.y}) rotate(22)"><path d="M-6 -10 V-74 L0 -86 L6 -74 V-10 Z" fill="#d9b38c" ${S}/><path d="M0 -14 V-76" stroke="#b98f62" stroke-width="2"/><rect x="-14" y="-12" width="28" height="7" rx="3" fill="#8a5a3b" ${S}/><rect x="-3.5" y="-6" width="7" height="16" rx="3" fill="#6b4226" ${S}/></g>` + grip

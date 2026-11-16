@@ -24,3 +24,23 @@
 
 - Buying, owning and equipping shows on the hero in the creator, on Home and in the world.
 - A purchase without enough gold is refused even when sent straight to the API; equipping an unowned item through the API is refused.
+
+## Build record: gear slice (2026-11-16)
+
+### Rulings (decision — reason — cost if wrong)
+
+- An item's id is the appearance value it unlocks — the renderer, creator and world need no mapping table — renaming an item later needs a data migration for characters wearing it.
+- Ownership is enforced by a trigger on `characters` (`check_items_owned`) — players may update their own character row, so a UI-only check could be bypassed — none.
+- The Leaf Crown costs 80 gold, exactly one daily Guardian win — gives a first goal reachable on day one, and lets the live test earn its gold honestly (no test-only gold function) — slightly cheaper than the agreed "about 100" for commons.
+- 11 items: 3 common (80–150), 5 rare (500–600), 3 epic (2,000–2,200) across hats, tops, weapons, backpack and boots; bottoms have no shop items yet — enough choice for the first slice — more items are rows plus drawings.
+- Buying does not auto-equip; the card switches to Wear — players choose when to change their look — one extra tap.
+- Creator "Randomise" only picks free options — random should never depend on what you own — it takes off shop items until you pick them again.
+
+### Results
+
+- `npm test` 89/89 · `npm run test:rls` 48 passed, 3 skipped · `npm run test:e2e` 8/8 · `npm run build` OK · Supabase advisors: 0 errors (warnings of the same expected kinds as Phase 3).
+- Final review: self-review (owner did not ask for subagents).
+
+### Next slices
+
+Knowledge pet, personal island, skill tree (each on its own branch), after the world upgrade the owner asked for on 2026-11-16 is planned (see `docs/ROADMAP.md`).
