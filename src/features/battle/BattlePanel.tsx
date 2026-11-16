@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import { Coins, Flag, Gift, Sparkles, Star, Zap } from 'lucide-react'
 import { Button } from '../../components/ui'
-import { useGame } from '../../game/store'
+import { reactToAnswer, useGame } from '../../game/store'
 import type { MonsterKind } from '../../game/map'
 import { Snapshot } from '../../world3d/SnapshotImage'
 import { useSession } from '../authentication/useSession'
@@ -74,6 +74,7 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
       setTotals(r.totals)
       setEarned((e) => ({ xp: e.xp + r.xp_gained, gold: e.gold + r.gold_gained, leveledTo: r.leveled_up ? r.totals.level : e.leveledTo }))
       playChime(r.correct ? 'tap' : 'pop')
+      reactToAnswer(r.correct, r.state.status === 'won')
       if (r.state.status === 'won') {
         useGame.setState((s) => ({ defeated: [...s.defeated, monsterId] }))
         playChime('done')

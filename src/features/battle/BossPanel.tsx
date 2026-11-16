@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Flag, Heart } from 'lucide-react'
 import { Button } from '../../components/ui'
-import { useGame } from '../../game/store'
+import { useGame, reactToAnswer } from '../../game/store'
 import { Snapshot } from '../../world3d/SnapshotImage'
 import { playChime } from '../loading/sound'
 import { answerBoss, BattleError, fleeBoss, startBoss, type AnswerPayload, type BossResult, type BossState } from './battleApi'
@@ -57,6 +57,7 @@ function Boss() {
       setRun(r.state)
       setTotals(r.totals)
       playChime(r.correct ? 'tap' : 'pop')
+      reactToAnswer(r.correct, r.state.status === 'won')
       if (r.state.status === 'won') playChime('done')
     } catch (e) {
       setError(e instanceof BattleError ? e.key : 'battle.errors.generic')
