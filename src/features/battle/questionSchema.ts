@@ -1,0 +1,82 @@
+import { z } from 'zod'
+
+export const QUESTION_TYPES = ['mcq', 'true_false', 'numeric', 'fill_blank'] as const
+export const BLOOM = ['remember', 'understand', 'apply', 'analyze', 'evaluate', 'create'] as const
+export const STATUSES = ['draft', 'in_review', 'approved', 'published', 'rejected'] as const
+const LEVELS = ['early_childhood', 'primary', 'lower_secondary', 'upper_secondary', 'pre_university', 'diploma', 'undergraduate', 'postgraduate', 'doctoral', 'vocational', 'lifelong'] as const
+
+const option = z.object({ id: z.string().regex(/^[a-z]$/), text: z.string().min(1) })
+const base = z.object({
+  id: z.string().regex(/^[a-z]+(-[a-z]+)*-\d{3}$/),
+  version: z.number().int().min(1),
+  status: z.enum(STATUSES),
+  level_ids: z.array(z.enum(LEVELS)).min(1),
+  subject: z.string().min(1),
+  topic: z.string().min(1),
+  subtopic: z.string().min(1),
+  difficulty: z.number().int().min(1).max(5),
+  bloom: z.enum(BLOOM),
+  prompt: z.string().min(5),
+  explanation: z.string().min(10),
+  objective: z.string().min(5),
+  alignment: z.string().min(5),
+})
+
+/** Source-file shape (with answers). The database splits it into `questions` and `question_keys`. */
+export const questionSource = z.discriminatedUnion('type', [
+  base.extend({
+    type: z.literal('mcq'),
+    options: z.array(option).min(3).max(5),
+    answer: z.string(),
+    wrong: z.record(z.string(), z.string().min(5)),
+  }),
+  base.extend({
+    type: z.literal('true_false'),
+    answer: z.enum(['true', 'false']),
+    wrong: z.record(z.string(), z.string().min(5)),
+  }),
+  base.extend({
+    type: z.literal('numeric'),
+    answer: z.object({ value: z.number(), tolerance: z.number().min(0), unit: z.string().optional() }),
+    mistakes: z.array(z.object({ value: z.number(), why: z.string().min(5) })).optional(),
+  }),
+  base.extend({
+    type: z.literal('fill_blank'),
+    answer: z.object({ accept: z.array(z.string().min(1)).min(1) }),
+  }),
+])
+export type QuestionSource = z.infer<typeof questionSource>
+
+/** What a client is allowed to see before answering. */
+export type PublicQuestion = {
+  id: string
+  type: (typeof QUESTION_TYPES)[number]
+  prompt: string
+  options: { id: string; text: string }[] | null
+  unit: string | null
+  difficulty: number
+  subject: string
+  status: (typeof STATUSES)[number]
+}
+
+/** Rules the schema cannot express. Returns human-readable problems; empty means valid. */
+export function questionProblems(q: QuestionSource): string[] {
+  const p: string[] = []
+  if (q.type === 'mcq') {
+    const ids = q.options.map((o) => o.id)
+    if (new Set(ids).size !== ids.length) p.push('duplicate option ids')
+    if (!ids.includes(q.answer)) p.push('answer is not one of the options')
+    for (const id of ids) if (id !== q.answer && !q.wrong[id]) p.push(`no explanation for wrong option ${id}`)
+    if (q.wrong[q.answer]) p.push('the correct option has a "wrong" explanation')
+    const texts = q.options.map((o) => o.text.toLowerCase())
+    if (new Set(texts).size !== texts.length) p.push('two options have the same text')
+  }
+  if (q.type === 'true_false') {
+    const other = q.answer === 'true' ? 'false' : 'true'
+    if (!q.wrong[other]) p.push(`no explanation for choosing ${other}`)
+  }
+  if (q.type === 'numeric' && q.mistakes?.some((m) => Math.abs(m.value - q.answer.value) <= q.answer.tolerance)) p.push('a listed mistake equals the answer')
+  if (q.type === 'fill_blank' && !q.prompt.includes('___')) p.push('fill-in-the-blank prompt has no ___')
+  if (q.type === 'fill_blank' && q.answer.accept.some((a) => q.prompt.toLowerCase().includes(a.toLowerCase()))) p.push('the answer appears in the prompt')
+  return p
+}

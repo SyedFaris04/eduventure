@@ -1,0 +1,138 @@
+import { beforeAll, describe, expect, it } from 'vitest'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
+import bank from '../../content/questions/starter.json'
+
+const url = process.env.VITE_SUPABASE_URL
+const key = process.env.VITE_SUPABASE_PUBLISHABLE_KEY
+const configured = Boolean(url && key)
+const newClient = () => createClient(url!, key!, { auth: { persistSession: false, autoRefreshToken: false } })
+const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
+
+type Q = { id: string; type: string; answer: unknown; options?: { id: string }[] }
+const byId = new Map((bank.questions as Q[]).map((q) => [q.id, q]))
+
+/** Builds the answer payload from the content file (the test plays the role of a student who knows). */
+function rightAnswer(qid: string) {
+  const q = byId.get(qid)!
+  if (q.type === 'mcq' || q.type === 'true_false') return { choice: q.answer }
+  if (q.type === 'numeric') return { value: String((q.answer as { value: number }).value) }
+  return { text: (q.answer as { accept: string[] }).accept[0] }
+}
+function wrongAnswer(qid: string) {
+  const q = byId.get(qid)!
+  if (q.type === 'mcq') return { choice: q.options!.find((o) => o.id !== q.answer)!.id }
+  if (q.type === 'true_false') return { choice: q.answer === 'true' ? 'false' : 'true' }
+  if (q.type === 'numeric') return { value: String((q.answer as { value: number }).value + 1000) }
+  return { text: 'definitely not this' }
+}
+
+async function player(level: string, subjects: string[], curriculum = 'international', grade: string | null = null) {
+  const c = newClient()
+  const { error } = await c.auth.signInAnonymously()
+  if (error) throw error
+  await c.rpc('set_birth_year', { p_year: 2000 })
+  const res = await c.from('academic_profiles').insert({
+    level_id: level, country_code: 'MY', curriculum_id: curriculum, grade_id: grade, language: 'en', subject_ids: subjects, goals: [], difficulty: 3,
+  })
+  if (res.error) throw res.error
+  return c
+}
+
+describe.skipIf(!configured)('battles (live project)', () => {
+  let a: SupabaseClient
+  let b: SupabaseClient
+
+  beforeAll(async () => {
+    a = await player('primary', ['mathematics'])
+    b = await player('primary', ['science'])
+  })
+
+  it('starts a battle without sending the answer', async () => {
+    const { data, error } = await a.rpc('start_encounter', { p_monster: 'sproutling' })
+    expect(error).toBeNull()
+    expect(data.monster_hp).toBe(60)
+    expect(data.player_hp).toBe(100)
+    expect(data.question.id).toMatch(/^(pri|gen)-/)
+    const text = JSON.stringify(data)
+    for (const leak of ['answer', 'explanation', 'wrong', 'mistakes', 'accept']) expect(text).not.toContain(`"${leak}"`)
+  })
+
+  it('resumes the same battle instead of starting a second one', async () => {
+    const first = await a.rpc('start_encounter', { p_monster: 'sproutling' })
+    const again = await a.rpc('start_encounter', { p_monster: 'dinobud' })
+    expect(again.data.encounter_id).toBe(first.data.encounter_id)
+    expect(again.data.monster_id).toBe('sproutling')
+  })
+
+  it('rejects an answer sent too quickly after the question appears', async () => {
+    const { data: s } = await b.rpc('start_encounter', { p_monster: 'sproutling' })
+    const { error } = await b.rpc('answer_question', { p_encounter: s.encounter_id, p_answer: rightAnswer(s.question.id) })
+    expect(error?.message).toMatch(/Too fast/)
+  })
+
+  it('a correct answer damages the monster and pays XP and gold from the server', async () => {
+    const { data: s } = await a.rpc('start_encounter', { p_monster: 'sproutling' })
+    const before = (await a.from('player_xp').select('xp').single()).data!.xp
+    await wait(1600)
+    const { data, error } = await a.rpc('answer_question', { p_encounter: s.encounter_id, p_answer: rightAnswer(s.question.id) })
+    expect(error).toBeNull()
+    expect(data.correct).toBe(true)
+    expect(data.damage).toBeGreaterThan(0)
+    expect(data.state.monster_hp).toBe(60 - data.damage)
+    expect(data.xp_gained).toBeGreaterThan(0)
+    const after = (await a.from('player_xp').select('xp').single()).data!.xp
+    expect(Number(after)).toBe(Number(before) + data.xp_gained)
+  })
+
+  it('a wrong answer explains the mistake, costs 10 HP and pays nothing', async () => {
+    const { data: s } = await a.rpc('start_encounter', { p_monster: 'sproutling' })
+    await wait(1600)
+    const { data } = await a.rpc('answer_question', { p_encounter: s.encounter_id, p_answer: wrongAnswer(s.question.id) })
+    expect(data.correct).toBe(false)
+    expect(data.explanation.length).toBeGreaterThan(10)
+    expect(data.xp_gained).toBe(0)
+    expect(data.state.player_hp).toBe(s.player_hp - 10)
+    expect(data.state.combo).toBe(0)
+  })
+
+  it("does not let a player answer someone else's battle", async () => {
+    const { data: s } = await b.rpc('start_encounter', { p_monster: 'sproutling' })
+    await wait(1600)
+    const { error } = await a.rpc('answer_question', { p_encounter: s.encounter_id, p_answer: rightAnswer(s.question.id) })
+    expect(error?.message).toMatch(/not found/)
+  })
+
+  it('rejects answers after fleeing', async () => {
+    const { data: s } = await b.rpc('start_encounter', { p_monster: 'sproutling' })
+    await b.rpc('flee_encounter', { p_encounter: s.encounter_id })
+    await wait(1600)
+    const { error } = await b.rpc('answer_question', { p_encounter: s.encounter_id, p_answer: rightAnswer(s.question.id) })
+    expect(error?.message).toMatch(/already ended/)
+  })
+
+  it('keeps answer keys, the question bank and internal helpers out of reach', async () => {
+    expect((await a.from('question_keys').select('*')).error).not.toBeNull()
+    expect((await a.from('questions').select('*')).error).not.toBeNull()
+    expect((await a.rpc('pick_question', { p_user: (await a.auth.getUser()).data.user!.id })).error).not.toBeNull()
+    expect((await a.from('player_wallets').update({ gold: 9999 }).eq('gold', 0).select()).data ?? []).toEqual([])
+  })
+
+  it('a Doctoral player gets general questions, and a repeat within 24 h pays 0 XP', { timeout: 120_000 }, async () => {
+    const c = await player('doctoral', ['research_methods'])
+    const seen = new Set<string>()
+    let repeat: { xp_gained: number; farmed: boolean } | null = null
+    for (let i = 0; i < 14 && !repeat; i++) {
+      const { data: s, error } = await c.rpc('start_encounter', { p_monster: 'dinobud' })
+      expect(error).toBeNull()
+      expect(s.question.id).toMatch(/^gen-/)
+      await wait(1600)
+      const { data } = await c.rpc('answer_question', { p_encounter: s.encounter_id, p_answer: rightAnswer(s.question.id) })
+      if (seen.has(s.question.id)) repeat = data
+      seen.add(s.question.id)
+    }
+    expect(repeat).not.toBeNull()
+    expect(repeat!.farmed).toBe(true)
+    // Only the monster-defeat bonus can still pay; the farmed question itself gives nothing.
+    expect(repeat!.xp_gained).toBeLessThanOrEqual(50)
+  })
+})
