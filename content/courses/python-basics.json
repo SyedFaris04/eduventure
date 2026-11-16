@@ -1,0 +1,330 @@
+{
+  "_meta": {
+    "author": "Eduventure (original lessons)",
+    "license": "CC BY 4.0"
+  },
+  "id": "python-basics",
+  "language": "python",
+  "title": "Python Basics",
+  "units": [
+    {
+      "id": "py-u1",
+      "title": "Hello, code",
+      "lessons": [
+        {
+          "id": "py-u1-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Your first print",
+          "objective": "Use print() to show text on the screen.",
+          "steps": [
+            {
+              "id": "py-u1-l1-s1",
+              "kind": "learn",
+              "text": "Computers follow instructions exactly. print() shows whatever is inside the brackets. Text goes inside quote marks. Press Run!",
+              "code": "print(\"Hello, world!\")",
+              "expected_output": "Hello, world!"
+            },
+            {
+              "id": "py-u1-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "print(\"Selamat pagi\")",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Selamat pagi"
+                },
+                {
+                  "id": "b",
+                  "text": "\"Selamat pagi\""
+                },
+                {
+                  "id": "c",
+                  "text": "print(\"Selamat pagi\")"
+                }
+              ],
+              "answer": "a",
+              "explanation": "print() shows the text inside the quotes. The quote marks themselves are not printed."
+            },
+            {
+              "id": "py-u1-l1-s3",
+              "kind": "learn",
+              "text": "Each print() starts a new line. Run this to see two lines.",
+              "code": "print(\"Kuala\")\nprint(\"Lumpur\")",
+              "expected_output": "Kuala\nLumpur"
+            },
+            {
+              "id": "py-u1-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "print(\"Nasi\")\nprint(\"lemak\")",
+              "answer_text": "Nasi\nlemak",
+              "explanation": "Every print() puts its text on its own line, so \"Nasi\" and \"lemak\" are on two lines."
+            },
+            {
+              "id": "py-u1-l1-s5",
+              "kind": "fix",
+              "text": "This code has a bug. Fix line 1 so it prints Hello.",
+              "code": "print(\"Hello)",
+              "broken_line": 1,
+              "accept": [
+                "print(\"Hello\")"
+              ],
+              "expected_output": "Hello",
+              "hint": "Text needs a quote mark at the start AND at the end.",
+              "explanation": "A string must be closed with a second quote mark: \"Hello\"."
+            },
+            {
+              "id": "py-u1-l1-s6",
+              "kind": "write",
+              "text": "Your turn! Write one line that prints: I love coding",
+              "starter": "",
+              "expected_output": "I love coding",
+              "must_use": [
+                "print"
+              ],
+              "solution": "print(\"I love coding\")",
+              "hint": "Use print() with the words inside quote marks."
+            }
+          ]
+        },
+        {
+          "id": "py-u1-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Playing with text",
+          "objective": "Join text with + and repeat it with *.",
+          "steps": [
+            {
+              "id": "py-u1-l2-s1",
+              "kind": "learn",
+              "text": "The + sign joins two pieces of text together. Notice the space inside \"Hello, \".",
+              "code": "print(\"Hello, \" + \"Aisyah\")",
+              "expected_output": "Hello, Aisyah"
+            },
+            {
+              "id": "py-u1-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "print(\"cat\" + \"fish\")",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "catfish"
+                },
+                {
+                  "id": "b",
+                  "text": "cat fish"
+                },
+                {
+                  "id": "c",
+                  "text": "cat + fish"
+                }
+              ],
+              "answer": "a",
+              "explanation": "+ glues the two strings together with nothing in between, so you get catfish."
+            },
+            {
+              "id": "py-u1-l2-s3",
+              "kind": "learn",
+              "text": "The * sign repeats text a number of times.",
+              "code": "print(\"Ha\" * 3)",
+              "expected_output": "HaHaHa"
+            },
+            {
+              "id": "py-u1-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "print(\"Go! \" * 2)",
+              "answer_text": "Go! Go!",
+              "explanation": "\"Go! \" repeated twice is \"Go! Go! \"."
+            },
+            {
+              "id": "py-u1-l2-s5",
+              "kind": "fix",
+              "text": "Python is fussy about capital letters. Fix line 1.",
+              "code": "Print(\"Hello\")",
+              "broken_line": 1,
+              "accept": [
+                "print(\"Hello\")"
+              ],
+              "expected_output": "Hello",
+              "hint": "Python commands are written in small letters.",
+              "explanation": "Python only knows print with a small p. Print with a capital P is a different, unknown name."
+            },
+            {
+              "id": "py-u1-l2-s6",
+              "kind": "write",
+              "text": "Join \"Hari \" and \"Raya\" with + so it prints: Hari Raya",
+              "starter": "",
+              "expected_output": "Hari Raya",
+              "must_use": [
+                "+"
+              ],
+              "solution": "print(\"Hari \" + \"Raya\")",
+              "hint": "Put both pieces of text inside print() with a + between them."
+            }
+          ]
+        },
+        {
+          "id": "py-u1-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Variables",
+          "objective": "Store values in variables and use them later.",
+          "steps": [
+            {
+              "id": "py-u1-l3-s1",
+              "kind": "learn",
+              "text": "A variable is a labelled box that keeps a value. = puts a value into the box.",
+              "code": "name = \"Aisyah\"\nprint(name)",
+              "expected_output": "Aisyah"
+            },
+            {
+              "id": "py-u1-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "city = \"Penang\"\nprint(\"city\")",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "city"
+                },
+                {
+                  "id": "b",
+                  "text": "Penang"
+                },
+                {
+                  "id": "c",
+                  "text": "\"Penang\""
+                }
+              ],
+              "answer": "a",
+              "explanation": "Quote marks make \"city\" plain text, so Python prints the word city, not the variable."
+            },
+            {
+              "id": "py-u1-l3-s3",
+              "kind": "learn",
+              "text": "A variable can change. The newest value wins.",
+              "code": "score = 10\nscore = 15\nprint(score)",
+              "expected_output": "15"
+            },
+            {
+              "id": "py-u1-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "food = \"roti\"\nfood = \"satay\"\nprint(food)",
+              "answer_text": "satay",
+              "explanation": "food first holds \"roti\", then is changed to \"satay\", so satay is printed."
+            },
+            {
+              "id": "py-u1-l3-s5",
+              "kind": "fix",
+              "text": "Line 2 has a typo in the variable name. Fix it.",
+              "code": "name = \"Ali\"\nprint(\"Hi, \" + nam)",
+              "broken_line": 2,
+              "accept": [
+                "print(\"Hi, \" + name)"
+              ],
+              "expected_output": "Hi, Ali",
+              "hint": "Check the spelling of the variable on line 1.",
+              "explanation": "The variable is called name. nam is a different name Python has never seen."
+            },
+            {
+              "id": "py-u1-l3-s6",
+              "kind": "write",
+              "text": "Finish the program so it prints: My pet is a cat",
+              "starter": "pet = \"cat\"\n",
+              "expected_output": "My pet is a cat",
+              "must_use": [
+                "pet"
+              ],
+              "solution": "pet = \"cat\"\nprint(\"My pet is a \" + pet)",
+              "hint": "Join \"My pet is a \" and the variable pet with +."
+            }
+          ]
+        },
+        {
+          "id": "py-u1-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Putting it together",
+          "objective": "Combine text and variables to make messages.",
+          "steps": [
+            {
+              "id": "py-u1-l4-s1",
+              "kind": "learn",
+              "text": "Join variables and text to build a full name. The \" \" adds a space.",
+              "code": "first = \"Nur\"\nlast = \"Aina\"\nprint(first + \" \" + last)",
+              "expected_output": "Nur Aina"
+            },
+            {
+              "id": "py-u1-l4-s2",
+              "kind": "predict",
+              "text": "Careful! These numbers are inside quotes. What will this print?",
+              "code": "a = \"1\"\nb = \"2\"\nprint(a + b)",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "3"
+                },
+                {
+                  "id": "b",
+                  "text": "12"
+                },
+                {
+                  "id": "c",
+                  "text": "1 + 2"
+                }
+              ],
+              "answer": "b",
+              "explanation": "With quotes they are text, and + joins text, so \"1\" + \"2\" makes 12."
+            },
+            {
+              "id": "py-u1-l4-s3",
+              "kind": "learn",
+              "text": "A comma in print() also joins things, and adds a space for you.",
+              "code": "print(\"Score:\", 10)",
+              "expected_output": "Score: 10"
+            },
+            {
+              "id": "py-u1-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "x = \"Hi\"\nprint(x, x)",
+              "answer_text": "Hi Hi",
+              "explanation": "The comma prints both values with one space between them."
+            },
+            {
+              "id": "py-u1-l4-s5",
+              "kind": "fix",
+              "text": "Line 2 is missing something between the text and the variable. Fix it.",
+              "code": "friend = \"Mei\"\nprint(\"Hello \" friend)",
+              "broken_line": 2,
+              "accept": [
+                "print(\"Hello \" + friend)",
+                "print(\"Hello\", friend)"
+              ],
+              "expected_output": "Hello Mei",
+              "hint": "Use + (or a comma) to join two things.",
+              "explanation": "Python needs a + or a comma between \"Hello \" and friend to know they belong together."
+            },
+            {
+              "id": "py-u1-l4-s6",
+              "kind": "write",
+              "text": "Finish the program so it prints: Welcome to Melaka!",
+              "starter": "town = \"Melaka\"\n",
+              "expected_output": "Welcome to Melaka!",
+              "must_use": [
+                "town"
+              ],
+              "solution": "town = \"Melaka\"\nprint(\"Welcome to \" + town + \"!\")",
+              "hint": "Join three things: \"Welcome to \", town and \"!\"."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

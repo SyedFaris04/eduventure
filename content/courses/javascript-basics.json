@@ -1,0 +1,334 @@
+{
+  "_meta": {
+    "author": "Eduventure (original lessons)",
+    "license": "CC BY 4.0"
+  },
+  "id": "javascript-basics",
+  "language": "javascript",
+  "title": "JavaScript Basics",
+  "units": [
+    {
+      "id": "js-u1",
+      "title": "Hello, code",
+      "lessons": [
+        {
+          "id": "js-u1-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Your first console.log",
+          "objective": "Use console.log() to show text.",
+          "steps": [
+            {
+              "id": "js-u1-l1-s1",
+              "kind": "learn",
+              "text": "JavaScript shows text with console.log(). Text goes inside quote marks. Press Run!",
+              "code": "console.log(\"Hello, world!\");",
+              "expected_output": "Hello, world!"
+            },
+            {
+              "id": "js-u1-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "console.log(\"Selamat pagi\");",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Selamat pagi"
+                },
+                {
+                  "id": "b",
+                  "text": "\"Selamat pagi\""
+                },
+                {
+                  "id": "c",
+                  "text": "console.log(\"Selamat pagi\")"
+                }
+              ],
+              "answer": "a",
+              "explanation": "console.log() shows the text inside the quotes, without the quote marks."
+            },
+            {
+              "id": "js-u1-l1-s3",
+              "kind": "learn",
+              "text": "Each console.log() prints on a new line.",
+              "code": "console.log(\"Kuala\");\nconsole.log(\"Lumpur\");",
+              "expected_output": "Kuala\nLumpur"
+            },
+            {
+              "id": "js-u1-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "console.log(\"Nasi\");\nconsole.log(\"lemak\");",
+              "answer_text": "Nasi\nlemak",
+              "explanation": "Every console.log() starts a new line."
+            },
+            {
+              "id": "js-u1-l1-s5",
+              "kind": "fix",
+              "text": "This code has a bug. Fix line 1 so it prints Hello.",
+              "code": "console.log(\"Hello);",
+              "broken_line": 1,
+              "accept": [
+                "console.log(\"Hello\");",
+                "console.log(\"Hello\")"
+              ],
+              "expected_output": "Hello",
+              "hint": "Text needs a quote mark at the start AND at the end.",
+              "explanation": "A string must be closed with a second quote mark: \"Hello\"."
+            },
+            {
+              "id": "js-u1-l1-s6",
+              "kind": "write",
+              "text": "Your turn! Print: I love coding",
+              "starter": "",
+              "expected_output": "I love coding",
+              "must_use": [
+                "console.log"
+              ],
+              "solution": "console.log(\"I love coding\");",
+              "hint": "Use console.log() with the words inside quote marks."
+            }
+          ]
+        },
+        {
+          "id": "js-u1-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Playing with text",
+          "objective": "Join text with + and repeat it with .repeat().",
+          "steps": [
+            {
+              "id": "js-u1-l2-s1",
+              "kind": "learn",
+              "text": "The + sign joins two pieces of text.",
+              "code": "console.log(\"Hello, \" + \"Aisyah\");",
+              "expected_output": "Hello, Aisyah"
+            },
+            {
+              "id": "js-u1-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "console.log(\"cat\" + \"fish\");",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "catfish"
+                },
+                {
+                  "id": "b",
+                  "text": "cat fish"
+                },
+                {
+                  "id": "c",
+                  "text": "cat + fish"
+                }
+              ],
+              "answer": "a",
+              "explanation": "+ glues the strings together with nothing in between: catfish."
+            },
+            {
+              "id": "js-u1-l2-s3",
+              "kind": "learn",
+              "text": ".repeat(n) repeats text n times.",
+              "code": "console.log(\"Ha\".repeat(3));",
+              "expected_output": "HaHaHa"
+            },
+            {
+              "id": "js-u1-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "console.log(\"Go! \".repeat(2));",
+              "answer_text": "Go! Go!",
+              "explanation": "\"Go! \" repeated twice is \"Go! Go! \"."
+            },
+            {
+              "id": "js-u1-l2-s5",
+              "kind": "fix",
+              "text": "JavaScript is fussy about capital letters. Fix line 1.",
+              "code": "Console.log(\"Hello\");",
+              "broken_line": 1,
+              "accept": [
+                "console.log(\"Hello\");",
+                "console.log(\"Hello\")"
+              ],
+              "expected_output": "Hello",
+              "hint": "console starts with a small c.",
+              "explanation": "JavaScript knows console with a small c. Console with a capital C is an unknown name."
+            },
+            {
+              "id": "js-u1-l2-s6",
+              "kind": "write",
+              "text": "Join \"Hari \" and \"Raya\" with + so it prints: Hari Raya",
+              "starter": "",
+              "expected_output": "Hari Raya",
+              "must_use": [
+                "+"
+              ],
+              "solution": "console.log(\"Hari \" + \"Raya\");",
+              "hint": "Put both strings inside console.log() with a + between them."
+            }
+          ]
+        },
+        {
+          "id": "js-u1-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Variables",
+          "objective": "Store values in variables with let.",
+          "steps": [
+            {
+              "id": "js-u1-l3-s1",
+              "kind": "learn",
+              "text": "let makes a variable: a labelled box for a value.",
+              "code": "let name = \"Aisyah\";\nconsole.log(name);",
+              "expected_output": "Aisyah"
+            },
+            {
+              "id": "js-u1-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "let city = \"Penang\";\nconsole.log(\"city\");",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "city"
+                },
+                {
+                  "id": "b",
+                  "text": "Penang"
+                },
+                {
+                  "id": "c",
+                  "text": "\"Penang\""
+                }
+              ],
+              "answer": "a",
+              "explanation": "Quote marks make \"city\" plain text, so the word city is printed."
+            },
+            {
+              "id": "js-u1-l3-s3",
+              "kind": "learn",
+              "text": "A let variable can change. The newest value wins.",
+              "code": "let score = 10;\nscore = 15;\nconsole.log(score);",
+              "expected_output": "15"
+            },
+            {
+              "id": "js-u1-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "let food = \"roti\";\nfood = \"satay\";\nconsole.log(food);",
+              "answer_text": "satay",
+              "explanation": "food is changed from \"roti\" to \"satay\" before it is printed."
+            },
+            {
+              "id": "js-u1-l3-s5",
+              "kind": "fix",
+              "text": "Line 2 has a typo in the variable name. Fix it.",
+              "code": "let name = \"Ali\";\nconsole.log(\"Hi, \" + nam);",
+              "broken_line": 2,
+              "accept": [
+                "console.log(\"Hi, \" + name);",
+                "console.log(\"Hi, \" + name)"
+              ],
+              "expected_output": "Hi, Ali",
+              "hint": "Check the spelling of the variable on line 1.",
+              "explanation": "The variable is called name. nam is a name JavaScript has never seen."
+            },
+            {
+              "id": "js-u1-l3-s6",
+              "kind": "write",
+              "text": "Finish the program so it prints: My pet is a cat",
+              "starter": "let pet = \"cat\";\n",
+              "expected_output": "My pet is a cat",
+              "must_use": [
+                "pet"
+              ],
+              "solution": "let pet = \"cat\";\nconsole.log(\"My pet is a \" + pet);",
+              "hint": "Join \"My pet is a \" and pet with +."
+            }
+          ]
+        },
+        {
+          "id": "js-u1-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Putting it together",
+          "objective": "Combine text and variables to make messages.",
+          "steps": [
+            {
+              "id": "js-u1-l4-s1",
+              "kind": "learn",
+              "text": "Join variables and text to build a full name. The \" \" adds a space.",
+              "code": "let first = \"Nur\";\nlet last = \"Aina\";\nconsole.log(first + \" \" + last);",
+              "expected_output": "Nur Aina"
+            },
+            {
+              "id": "js-u1-l4-s2",
+              "kind": "predict",
+              "text": "Careful! These numbers are inside quotes. What will this print?",
+              "code": "let a = \"1\";\nlet b = \"2\";\nconsole.log(a + b);",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "3"
+                },
+                {
+                  "id": "b",
+                  "text": "12"
+                },
+                {
+                  "id": "c",
+                  "text": "1 + 2"
+                }
+              ],
+              "answer": "b",
+              "explanation": "With quotes they are text, and + joins text, so you get 12."
+            },
+            {
+              "id": "js-u1-l4-s3",
+              "kind": "learn",
+              "text": "A comma in console.log() prints things with a space between them.",
+              "code": "console.log(\"Score:\", 10);",
+              "expected_output": "Score: 10"
+            },
+            {
+              "id": "js-u1-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "let x = \"Hi\";\nconsole.log(x, x);",
+              "answer_text": "Hi Hi",
+              "explanation": "The comma prints both values with one space between them."
+            },
+            {
+              "id": "js-u1-l4-s5",
+              "kind": "fix",
+              "text": "Line 2 is missing something between the text and the variable. Fix it.",
+              "code": "let friend = \"Mei\";\nconsole.log(\"Hello \" friend);",
+              "broken_line": 2,
+              "accept": [
+                "console.log(\"Hello \" + friend);",
+                "console.log(\"Hello \" + friend)",
+                "console.log(\"Hello\", friend);"
+              ],
+              "expected_output": "Hello Mei",
+              "hint": "Use + (or a comma) to join two things.",
+              "explanation": "JavaScript needs a + or a comma between \"Hello \" and friend."
+            },
+            {
+              "id": "js-u1-l4-s6",
+              "kind": "write",
+              "text": "Finish the program so it prints: Welcome to Melaka!",
+              "starter": "let town = \"Melaka\";\n",
+              "expected_output": "Welcome to Melaka!",
+              "must_use": [
+                "town"
+              ],
+              "solution": "let town = \"Melaka\";\nconsole.log(\"Welcome to \" + town + \"!\");",
+              "hint": "Join \"Welcome to \", town and \"!\"."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
