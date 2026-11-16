@@ -10,6 +10,8 @@ Educational multiplayer RPG for primary-school to university learners. Web (Reac
 
 Each phase: design chat, then build in small slices that each run before the next starts, then tests plus the phase's "done when" list, then a report, then the owner approves before the next phase. A phase is done when its checklist passes.
 
+Branching (owner's standing instruction, 2026-11-16): build each phase on its own branch. When all checks pass with no errors, merge it into `main`, push `main` to GitHub (`origin`) and delete the local phase branch, without asking. If anything fails, do not merge; report instead.
+
 ## Standing rules
 
 - XP, gold, items and rankings change only through database functions (`security definer`). The client never writes them; RLS makes those tables read-only to users.
