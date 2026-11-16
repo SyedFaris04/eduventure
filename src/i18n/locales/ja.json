@@ -403,7 +403,16 @@
     "joystick": "移動パッド",
     "talkTo": "{{name}}と話す",
     "battle": "{{name}}とバトル",
-    "challenge": "{{name}}に挑む"
+    "challenge": "{{name}}に挑む",
+    "noWebgl": "この端末では 3D の世界を表示できません。別のブラウザか端末でお試しください。",
+    "loadFailed": "世界を読み込めませんでした。接続を確認してください。",
+    "retry": "もう一度",
+    "quality": "画質：{{level}}",
+    "qualityLevel": {
+      "auto": "自動",
+      "high": "高",
+      "low": "低"
+    }
   },
   "npc": {
     "elder": {

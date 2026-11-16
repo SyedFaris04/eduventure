@@ -403,7 +403,16 @@
     "joystick": "Movement pad",
     "talkTo": "Talk to {{name}}",
     "battle": "Battle {{name}}",
-    "challenge": "Challenge {{name}}"
+    "challenge": "Challenge {{name}}",
+    "noWebgl": "Your device can't show the 3D world. Try another browser or device.",
+    "loadFailed": "The world didn't load. Check your connection.",
+    "retry": "Try again",
+    "quality": "Graphics: {{level}}",
+    "qualityLevel": {
+      "auto": "Auto",
+      "high": "High",
+      "low": "Low"
+    }
   },
   "npc": {
     "elder": {

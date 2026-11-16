@@ -403,7 +403,16 @@
     "joystick": "Pad pergerakan",
     "talkTo": "Bercakap dengan {{name}}",
     "battle": "Lawan {{name}}",
-    "challenge": "Cabar {{name}}"
+    "challenge": "Cabar {{name}}",
+    "noWebgl": "Peranti anda tidak dapat memaparkan dunia 3D. Cuba pelayar atau peranti lain.",
+    "loadFailed": "Dunia tidak dapat dimuatkan. Semak sambungan anda.",
+    "retry": "Cuba lagi",
+    "quality": "Grafik: {{level}}",
+    "qualityLevel": {
+      "auto": "Auto",
+      "high": "Tinggi",
+      "low": "Rendah"
+    }
   },
   "npc": {
     "elder": {

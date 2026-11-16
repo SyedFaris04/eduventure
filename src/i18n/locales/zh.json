@@ -403,7 +403,16 @@
     "joystick": "移动摇杆",
     "talkTo": "与{{name}}交谈",
     "battle": "挑战{{name}}",
-    "challenge": "挑战{{name}}"
+    "challenge": "挑战{{name}}",
+    "noWebgl": "你的设备无法显示 3D 世界。请换一个浏览器或设备试试。",
+    "loadFailed": "世界没有加载出来。请检查网络连接。",
+    "retry": "再试一次",
+    "quality": "画质：{{level}}",
+    "qualityLevel": {
+      "auto": "自动",
+      "high": "高",
+      "low": "低"
+    }
   },
   "npc": {
     "elder": {

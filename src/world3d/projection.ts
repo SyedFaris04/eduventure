@@ -5,7 +5,7 @@ export const gridToWorld = (p: Point): [number, 0, number] => [p.x, 0, p.y]
 export const worldToGrid = (x: number, z: number): Point => ({ x, y: z })
 
 /** Clash-style fixed camera: looks down the grid diagonal so screen-up is grid (−1, −1), as `screenDirToGrid` assumes. */
-export const CAMERA = { elevationDeg: 52, distance: 18, minDistance: 12, maxDistance: 26, fov: 30 } as const
+export const CAMERA = { elevationDeg: 52, distance: 22, minDistance: 13, maxDistance: 32, fov: 30 } as const
 
 /** Camera position relative to the point it looks at. */
 export function cameraOffset(distance: number): [number, number, number] {
