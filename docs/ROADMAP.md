@@ -111,6 +111,24 @@ Known limit of the chosen approach: other players' positions are display-only (n
 ### 3D world (between Phases 4 and 5) — built and merged
 The owner asked for a Clash-style 3D world before the rest of Phase 4. Spec: `docs/superpowers/specs/2026-11-16-3d-world-design.md`; plan: `docs/superpowers/plans/2026-11-16-3d-world.md`. Greenhaven is now real 3D with a fixed 52° camera, smooth blended hero animation, moving water, swaying trees and grass, hopping monsters, coins that fly to the gold counter, and one 3D hero used everywhere. Next projects in the same request, each with its own design: subject islands, the Coding island (Python and JavaScript in the browser, then Java on a server), and the Languages island.
 
+### Island world (project 2 of the same request) — built and merged
+Spec: `docs/superpowers/specs/2026-11-16-island-world-design.md`; plan: `docs/superpowers/plans/2026-11-16-island-world.md`.
+- Greenhaven became **Greenhaven Kampung**, the hub, with a jetty and Pak Hamid the boatman.
+- A skippable **boat ride** takes players to two islands, both open from the start: **Science Island (Hutan Borneo)**, with a Malaysian theme, and **Mathematics Mountains**, with an international theme.
+- Each island has its own scenery, 3 monsters and a level-5 boss (Raja Rafflesia, the Abacus Titan). Island monsters ask that island's subjects, chosen on the server.
+- One server-side unlock list gives: Second Chance (level 3), titles (levels 4, 10 and 15), island bosses and rare items (level 5), the swift perahu (level 7), 50/50 (level 8) and epic items (level 10).
+- Technology City and Language Kingdom show on the jetty as "Coming soon". They are projects 3 and 4.
+
+**Malaysian outreach ideas (noted, not built):**
+- festival events for Hari Raya, Chinese New Year, Deepavali and Merdeka, inclusive of everyone;
+- Malaysian food as energy items: nasi lemak, roti canai, teh tarik;
+- traditional outfits in the shop: baju Melayu, baju kurung, batik, cheongsam;
+- "SPM practice" labels on questions already tagged to KSSR, KSSM and SPM;
+- school leaderboards for Malaysian schools;
+- native Malay speakers reviewing the Bahasa Melayu text.
+
+**Rules for any Malaysian content:** no real brands or branded buildings, no religious sites or symbols, and no flags or emblems as decoration.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Pet, island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

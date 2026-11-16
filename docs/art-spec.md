@@ -35,6 +35,21 @@ Props are scaled at load time to fit their footprint (`FIT` in `src/world3d/Prop
 | `well.glb` | 1 tile | |
 | `fence.glb` | 1 tile long | Its long side is turned along the row automatically |
 
+### Code-built props
+
+These props are built from simple shapes in code (`src/world3d/props/codeProps.ts`), stand on y = 0 and face +z:
+- `palm`, `kampung_house` (2 × 2 tiles), `stall`;
+- `fern`, `mangrove`, `mushroom`;
+- `pine_snow`, `pillar`, `sundial`;
+- `abacus_gate` (spans 3 tiles; its posts stand on the tiles either side of the path).
+
+To replace one with a model:
+1. Add its `.glb` to `public/assets/models/`.
+2. Add it to `PROP_MODELS` and `FIT` in `Props.tsx`.
+3. Remove it from `CODE_PROP_KINDS`.
+
+The same instancing draws both kinds.
+
 ## Characters
 
 The hero and the villagers share one skeleton, `rig.glb` (the KayKit humanoid rig). It holds the clips Idle, Walking_A, Running_A, Cheer, Hit_A, Interact, 1H_Melee_Attack_Chop and Jump_Full_Short.
@@ -47,7 +62,7 @@ Clothes and hair are separate parts attached to bones, so every appearance optio
 
 ## Monsters
 
-Monsters are code-built and animated in code: idle breathing, hopping, a squash when hit and a poof on defeat. A hand-made replacement only needs to be a static model per monster (`sproutling`, `pebblewing`, `dinobud`, `guardian`) facing +z with its feet on y = 0. The code keeps animating it.
+Monsters are code-built and animated in code: idle breathing, hopping, a squash when hit and a poof on defeat. A hand-made replacement only needs to be a static model per monster or boss, facing +z with its feet on y = 0. The monsters are `sproutling`, `pebblewing`, `dinobud`, `hornbill`, `tapir`, `pangolin`, `cubelet`, `hexowl` and `pisnake`. The bosses are `guardian`, `raja_rafflesia` and `abacus_titan`. The code keeps animating it.
 
 ## Loading screen
 

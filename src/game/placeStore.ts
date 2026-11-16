@@ -17,6 +17,9 @@ export function loadPlace(): PlaceId {
 /** Where the player is. `arriving` means they came by boat, so they start on the jetty. */
 export const usePlace = create<{ place: PlaceId; arriving: boolean }>(() => ({ place: loadPlace(), arriving: loadPlace() !== 'greenhaven' }))
 
+// Development builds only: lets automated tests see which place is showing.
+if (import.meta.env.DEV) (window as unknown as { __place: typeof usePlace }).__place = usePlace
+
 export function setPlace(place: PlaceId) {
   try {
     localStorage.setItem(KEY, place)
