@@ -15,8 +15,14 @@ describe('level unlocks', () => {
     expect(isUnlocked(1, 'shop_tier', 'common')).toBe(true)
     expect(unlockLevel('shop_tier', 'common')).toBe(1)
   })
+  it('pet egg at 2, young at 5, adult at 10', () => {
+    expect(isUnlocked(1, 'pet', 'pet_egg')).toBe(false)
+    expect(isUnlocked(2, 'pet', 'pet_egg')).toBe(true)
+    expect(unlockLevel('pet', 'pet_young')).toBe(5)
+    expect(unlockLevel('pet', 'pet_adult')).toBe(10)
+  })
   it('lists what a level-up brings', () => {
-    expect(newUnlocks(4, 8).map((u) => u.key).sort()).toEqual(['fifty', 'island_bosses', 'rare', 'swift_perahu'])
+    expect(newUnlocks(4, 8).map((u) => u.key).sort()).toEqual(['fifty', 'island_bosses', 'pet_young', 'rare', 'swift_perahu'])
     expect(newUnlocks(5, 5)).toEqual([])
   })
 })
