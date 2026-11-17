@@ -3,7 +3,7 @@ import type { Point } from './iso'
 import type { BossId, MonsterKind, NpcId } from './map'
 import type { PlaceId } from './places'
 
-export type Prompt = { kind: 'npc'; id: NpcId } | { kind: 'monster'; id: string; monster: MonsterKind } | { kind: 'boss'; id: BossId }
+export type Prompt = { kind: 'npc'; id: NpcId } | { kind: 'monster'; id: string; monster: MonsterKind; returning: boolean } | { kind: 'boss'; id: BossId }
 
 type GameState = {
   /** Joystick vector in screen space (−1..1); keyboard is read inside Phaser. */
@@ -13,7 +13,7 @@ type GameState = {
   /** Bumped by the Interact button; Phaser treats each change as one press. */
   interactSeq: number
   dialogue: { npc: NpcId; page: number } | null
-  battle: { monsterId: string; monster: MonsterKind } | null
+  battle: { monsterId: string; monster: MonsterKind; returning?: boolean } | null
   boss: BossId | null
   /** Player tile position for the minimap (updated a few times per second). */
   player: Point

@@ -80,6 +80,44 @@ describe('WorldSim', () => {
     expect(map.monsterZones[m.kind]!.some((t) => t.x === Math.floor(m.pos.x) && t.y === Math.floor(m.pos.y))).toBe(true)
   })
 
+  it("adds up to three Returning monsters of the map's own kinds", () => {
+    const kinds = Object.keys(map.monsterCounts)
+    const sim = new WorldSim(map, seeded(), { returning: 2 })
+    const back = sim.monsters.filter((m) => m.returning)
+    expect(back).toHaveLength(2)
+    for (const m of back) expect(kinds).toContain(m.kind)
+    expect(new WorldSim(map, seeded(), { returning: 9 }).monsters.filter((m) => m.returning)).toHaveLength(3)
+    expect(new WorldSim(map, seeded(), { returning: 0 }).monsters.filter((m) => m.returning)).toHaveLength(0)
+  })
+
+  it('a beaten Returning monster stays gone while a normal one respawns', () => {
+    const sim = new WorldSim(map, seeded(), { returning: 1 })
+    const back = sim.monsters.find((m) => m.returning)!
+    const normal = sim.monsters.find((m) => !m.returning)!
+    sim.defeat(back.id, 1000)
+    sim.defeat(normal.id, 1000)
+    run(sim, 0.1, undefined, 1000 + RESPAWN_MS + 1)
+    expect(normal.alive).toBe(true)
+    expect(back.alive).toBe(false)
+  })
+
+  it('more Returning monsters can arrive later, but never more than three in a visit', () => {
+    const sim = new WorldSim(map, seeded())
+    sim.addReturning(1)
+    sim.addReturning(1)
+    expect(sim.monsters.filter((m) => m.returning)).toHaveLength(1)
+    sim.defeat('returning-0', 0)
+    sim.addReturning(5)
+    expect(sim.monsters.filter((m) => m.returning)).toHaveLength(3)
+  })
+
+  it('the prompt says when a monster is Returning', () => {
+    const sim = new WorldSim(map, seeded(), { returning: 1 })
+    sim.monsters = sim.monsters.filter((m) => m.returning)
+    sim.hero.pos = { ...sim.monsters[0].pos }
+    expect(sim.prompt()).toMatchObject({ kind: 'monster', returning: true })
+  })
+
   it('monsters stay inside their zone and hop between tiles', () => {
     const sim = new WorldSim(map, seeded())
     let hopped = false

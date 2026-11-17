@@ -594,7 +594,8 @@
     "d_defeat_3": "Kalahkan 3 raksasa",
     "d_subject_5": "Jawab 5 soalan {{subject}} dengan betul",
     "w_correct_50": "Jawab 50 soalan dengan betul",
-    "w_defeat_12": "Kalahkan 12 raksasa"
+    "w_defeat_12": "Kalahkan 12 raksasa",
+    "d_returning_3": "Kalahkan {{target}} raksasa Kembali"
   },
   "boss": {
     "name": "Penjaga Greenhaven",
@@ -870,5 +871,13 @@
       "gold": "Emas belum mencukupi.",
       "failed": "Tidak berjaya. Sila cuba lagi."
     }
+  },
+  "review": {
+    "badge": "Kembali",
+    "bonus": "Bonus kembali: +{{xp}} XP, +{{gold}} emas",
+    "jetty": "✨ {{n}} kembali",
+    "whyNot": "Kenapa tidak?",
+    "comesBack": "Topik ini akan kembali tidak lama lagi sebagai raksasa Kembali.",
+    "nothingDue": "Tiada apa-apa untuk diulang di sini sekarang. Cuba raksasa lain!"
   }
 }

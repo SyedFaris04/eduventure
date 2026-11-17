@@ -18,6 +18,8 @@ export type SimMonster = {
   respawnAt: number
   nextMove: number
   hop?: { from: Point; to: Point }
+  /** A due topic come back (spaced review): beaten once, it stays gone. */
+  returning?: boolean
 }
 
 /**
@@ -32,7 +34,7 @@ export class WorldSim {
   constructor(
     readonly map: GameMap,
     private rng: () => number = Math.random,
-    opts: { atArrival?: boolean; start?: Point } = {},
+    opts: { atArrival?: boolean; start?: Point; returning?: number } = {},
   ) {
     // A saved spot (coming back from the Academy) beats the jetty, which beats the first-time spawn.
     const start = opts.start ?? (opts.atArrival ? map.arrival : map.spawn)
@@ -42,6 +44,17 @@ export class WorldSim {
         const t = this.freeZoneTile(kind)
         this.monsters.push({ id: `${kind}-${i}`, kind, pos: { x: t.x + 0.5, y: t.y + 0.5 }, alive: true, hopT: -1, facing: this.rng() * Math.PI * 2, respawnAt: 0, nextMove: 1500 + this.rng() * 3000 })
       }
+    this.addReturning(opts.returning ?? 0)
+  }
+
+  /** Returning monsters (due topics come back): the island's own kinds, up to `due` of them, at most three a visit. */
+  addReturning(due: number) {
+    const kinds = (Object.keys(this.map.monsterCounts) as MonsterKind[]).filter((k) => this.map.monsterZones[k]?.length)
+    for (let i = this.monsters.filter((m) => m.returning).length; i < Math.min(3, due) && kinds.length; i++) {
+      const kind = kinds[i % kinds.length]
+      const t = this.freeZoneTile(kind)
+      this.monsters.push({ id: `returning-${i}`, kind, pos: { x: t.x + 0.5, y: t.y + 0.5 }, alive: true, hopT: -1, facing: this.rng() * Math.PI * 2, respawnAt: 0, nextMove: 1500 + this.rng() * 3000, returning: true })
+    }
   }
 
   private freeZoneTile(kind: MonsterKind): Point {
@@ -102,7 +115,7 @@ export class WorldSim {
 
   private moveMonster(m: SimMonster, dt: number, now: number, paused: boolean) {
     if (!m.alive) {
-      if (now >= m.respawnAt) {
+      if (!m.returning && now >= m.respawnAt) {
         const t = this.freeZoneTile(m.kind)
         m.pos = { x: t.x + 0.5, y: t.y + 0.5 }
         m.alive = true
@@ -142,6 +155,6 @@ export class WorldSim {
     const boss = this.map.bosses.find((b) => dist({ x: b.x + 0.5, y: b.y + 0.5 }) <= INTERACT_RANGE)
     if (boss) return { kind: 'boss', id: boss.id }
     const monster = this.monsters.filter((m) => m.alive && dist(m.pos) <= INTERACT_RANGE).sort((a, b) => dist(a.pos) - dist(b.pos))[0]
-    return monster ? { kind: 'monster', id: monster.id, monster: monster.kind } : null
+    return monster ? { kind: 'monster', id: monster.id, monster: monster.kind, returning: Boolean(monster.returning) } : null
   }
 }

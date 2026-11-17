@@ -24,6 +24,14 @@ describe('JettyPanel', () => {
     expect(screen.getByRole('button', { name: /sail to language kingdom/i })).toBeTruthy()
   })
 
+  it('shows how many Returning monsters wait on each island', () => {
+    usePlace.setState({ place: 'greenhaven', arriving: false })
+    useGame.setState({ jetty: true })
+    render(<JettyPanel returning={{ science_island: 2 }} />)
+    expect(screen.getByText('✨ 2 returning')).toBeTruthy()
+    expect(screen.getAllByText(/returning/)).toHaveLength(1)
+  })
+
   it('Sail starts the trip and closes the panel', () => {
     usePlace.setState({ place: 'greenhaven', arriving: false })
     useGame.setState({ jetty: true })

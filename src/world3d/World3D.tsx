@@ -1,6 +1,6 @@
 import type { Pet } from '../features/pet/petRules'
 import { PetFollower } from './pet/PetFollower'
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
 import { Stats, useGLTF } from '@react-three/drei'
 import { MeshBasicMaterial, RingGeometry, Vector3, type DirectionalLight, type Mesh, type PerspectiveCamera } from 'three'
@@ -58,7 +58,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       const prompt = useGame.getState().prompt
       // The boatman opens the list of places to sail to; other villagers talk.
       if (prompt?.kind === 'npc') useGame.setState(prompt.id === 'boatman' ? { jetty: true } : prompt.id === 'teacher' ? { academy: 'code' } : prompt.id === 'linguist' ? { academy: 'language' } : { dialogue: { npc: prompt.id, page: 0 } })
-      if (prompt?.kind === 'monster') useGame.setState({ battle: { monsterId: prompt.id, monster: prompt.monster } })
+      if (prompt?.kind === 'monster') useGame.setState({ battle: { monsterId: prompt.id, monster: prompt.monster, returning: prompt.returning } })
       if (prompt?.kind === 'boss') useGame.setState({ boss: prompt.id })
     }
     const keys = listenKeys(interact)
@@ -193,7 +193,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
 }
 
 /** One place in 3D. Default export so it loads as its own chunk with three.js. */
-export default function World3D({ hero, pet, map, atArrival = false, startAt }: { hero: Appearance; pet?: Pet | null; map: GameMap; atArrival?: boolean; startAt?: { x: number; y: number } }) {
+export default function World3D({ hero, pet, returning = 0, map, atArrival = false, startAt }: { hero: Appearance; pet?: Pet | null; returning?: number; map: GameMap; atArrival?: boolean; startAt?: { x: number; y: number } }) {
   const sim = useMemo(() => {
     const s = new WorldSim(map, Math.random, { atArrival, start: startAt })
     // Development only: /dev/world?at=x,y starts the hero on that tile (for screenshots).
@@ -202,6 +202,12 @@ export default function World3D({ hero, pet, map, atArrival = false, startAt }: 
     return s
     // eslint-disable-next-line react-hooks/exhaustive-deps -- the start spot is read once, when the place opens
   }, [map, atArrival])
+  // Due topics can arrive after the world has opened: top the Returning monsters up and redraw.
+  const [, redraw] = useState(0)
+  useEffect(() => {
+    sim.addReturning(returning)
+    redraw((n) => n + 1)
+  }, [sim, returning])
   const look = THEMES[map.theme]
   const covered = useGame((s) => Boolean(s.battle || s.boss))
   const level = useQuality(qualityLevel)

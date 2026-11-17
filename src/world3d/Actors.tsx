@@ -8,7 +8,7 @@ import type { SimMonster, WorldSim } from '../game/sim'
 import { useGame } from '../game/store'
 import { HeroModel, type OneShot } from './hero/HeroModel'
 import { useLatestReaction } from './hero/reaction'
-import { buildMonster } from './monsters/buildMonster'
+import { buildMonster, buildReturningMarker } from './monsters/buildMonster'
 import { monsterMotion } from './monsters/motion'
 
 export const HERO_SCALE = 0.56 // the rig is ~2.3 units tall; heroes stand about 1.3 tiles, big enough to read on a phone
@@ -91,6 +91,7 @@ function MonsterActor({ m, seed, reduced }: { m: SimMonster; seed: number; reduc
   const root = useRef<Group>(null)
   const body = useRef<Group>(null)
   const model = useMemo(() => buildMonster(m.kind), [m.kind])
+  const marker = useMemo(() => (m.returning ? buildReturningMarker() : null), [m.returning])
   const seen = useRef({ alive: m.alive, poofFrom: -1, popFrom: -1 })
   // Each monster fades on its own, so its materials are copies (the shared ones stay opaque elsewhere).
   const fadeMats = useMemo(() => {
@@ -132,11 +133,13 @@ function MonsterActor({ m, seed, reduced }: { m: SimMonster; seed: number; reduc
     b.position.y = motion.y
     b.scale.set(motion.sx * scale, motion.sy * scale, motion.sz * scale)
     for (const mat of fadeMats) mat.opacity = motion.opacity
+    if (marker && !reduced) marker.rotation.y = now / 900
   })
   useEffect(() => () => fadeMats.forEach((mm) => mm.dispose()), [fadeMats])
   return (
     <group ref={root}>
       <Blob size={0.75} />
+      {marker && <primitive object={marker} />}
       <group ref={body}>
         <primitive object={model} />
       </group>

@@ -594,7 +594,8 @@
     "d_defeat_3": "Derrota a 3 monstruos",
     "d_subject_5": "Responde bien 5 preguntas de {{subject}}",
     "w_correct_50": "Responde bien 50 preguntas",
-    "w_defeat_12": "Derrota a 12 monstruos"
+    "w_defeat_12": "Derrota a 12 monstruos",
+    "d_returning_3": "Derrota {{target}} monstruos que regresan"
   },
   "boss": {
     "name": "Guardián de Greenhaven",
@@ -870,5 +871,13 @@
       "gold": "Aún no tienes suficiente oro.",
       "failed": "No ha funcionado. Inténtalo de nuevo."
     }
+  },
+  "review": {
+    "badge": "Regresa",
+    "bonus": "Bonus de regreso: +{{xp}} XP, +{{gold}} de oro",
+    "jetty": "✨ {{n}} regresan",
+    "whyNot": "¿Por qué no?",
+    "comesBack": "Este tema volverá pronto como un monstruo que regresa.",
+    "nothingDue": "Ahora no hay nada que repasar aquí. ¡Prueba otro monstruo!"
   }
 }

@@ -594,7 +594,8 @@
     "d_defeat_3": "Bats 3 monstres",
     "d_subject_5": "Réponds juste à 5 questions de {{subject}}",
     "w_correct_50": "Réponds juste à 50 questions",
-    "w_defeat_12": "Bats 12 monstres"
+    "w_defeat_12": "Bats 12 monstres",
+    "d_returning_3": "Bats {{target}} monstres de retour"
   },
   "boss": {
     "name": "Gardien de Greenhaven",
@@ -870,5 +871,13 @@
       "gold": "Pas encore assez d’or.",
       "failed": "Cela n’a pas marché. Réessaie."
     }
+  },
+  "review": {
+    "badge": "De retour",
+    "bonus": "Bonus de retour : +{{xp}} XP, +{{gold}} or",
+    "jetty": "✨ {{n}} de retour",
+    "whyNot": "Pourquoi pas ?",
+    "comesBack": "Ce thème reviendra bientôt sous forme de monstre de retour.",
+    "nothingDue": "Rien à réviser ici pour le moment. Essaie un autre monstre !"
   }
 }

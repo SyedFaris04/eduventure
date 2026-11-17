@@ -252,3 +252,20 @@ export function buildMonster(kind: MonsterKind | BossId): Group {
   }
   return g
 }
+
+/** The golden ring and floating star over a Returning monster (a topic come back for review). */
+export function buildReturningMarker(): Group {
+  const g = new Group()
+  const parts: Part[] = [
+    ['cylinder', '*#ffd54f', [0, 0.02, 0], [0.95, 0.02, 0.95]],
+    ['octa', '*#ffe082', [0, 1.15, 0], [0.13, 0.17, 0.13]],
+    ['sphere', '*#fff3c4', [0, 1.15, 0], [0.07, 0.07, 0.07]],
+  ]
+  for (const [shape, colour, at, size] of parts) {
+    const m = new Mesh(geometry(shape), glow(colour.slice(1)))
+    m.position.set(...at)
+    m.scale.set(...size)
+    g.add(m)
+  }
+  return g
+}

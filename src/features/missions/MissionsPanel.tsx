@@ -51,7 +51,7 @@ export function MissionsPanel({ uid }: { uid: string }) {
     await queryClient.invalidateQueries({ queryKey: ['missions', uid] })
   }
 
-  const title = (m: Mission) => t(`missions.${m.template_id}`, { subject: m.subject ? t(`battle.subject.${m.subject}`, { defaultValue: m.subject }) : t('missions.anySubject') })
+  const title = (m: Mission) => t(`missions.${m.template_id}`, { target: m.target, subject: m.subject ? t(`battle.subject.${m.subject}`, { defaultValue: m.subject }) : t('missions.anySubject') })
 
   return (
     <Panel title={t('missions.title')} className="flex flex-col gap-3">

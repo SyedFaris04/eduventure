@@ -28,12 +28,12 @@ function Notice({ children }: { children: ReactNode }) {
 }
 
 /** The current place: its map downloads on demand (Suspense), then the 3D world shows it. */
-function PlaceWorld({ hero, pet }: { hero: Appearance; pet?: Pet | null }) {
+function PlaceWorld({ hero, pet, returning }: { hero: Appearance; pet?: Pet | null; returning?: Record<string, number> }) {
   const travel = useGame((s) => s.travel)
-  return travel ? <Travel hero={hero} to={travel.to} /> : <CurrentPlace hero={hero} pet={pet} />
+  return travel ? <Travel hero={hero} to={travel.to} /> : <CurrentPlace hero={hero} pet={pet} returning={returning} />
 }
 
-function CurrentPlace({ hero, pet }: { hero: Appearance; pet?: Pet | null }) {
+function CurrentPlace({ hero, pet, returning }: { hero: Appearance; pet?: Pet | null; returning?: Record<string, number> }) {
   const place = usePlace((s) => s.place)
   const arriving = usePlace((s) => s.arriving)
   const map = use(placeMap(place))
@@ -43,11 +43,11 @@ function CurrentPlace({ hero, pet }: { hero: Appearance; pet?: Pet | null }) {
   useEffect(() => {
     if (usePlace.getState().resumeAt) usePlace.setState({ resumeAt: null })
   }, [])
-  return <World3D key={place} hero={hero} pet={pet} map={map} atArrival={arriving} startAt={resumeAt ?? undefined} />
+  return <World3D key={place} hero={hero} pet={pet} returning={returning?.[place] ?? 0} map={map} atArrival={arriving} startAt={resumeAt ?? undefined} />
 }
 
 /** The 3D world, or a clear message when this device can't show it or the download failed. */
-export function GameCanvas({ hero, pet }: { hero: Appearance; pet?: Pet | null }) {
+export function GameCanvas({ hero, pet, returning }: { hero: Appearance; pet?: Pet | null; returning?: Record<string, number> }) {
   const { t } = useTranslation()
   const [attempt, setAttempt] = useState(0)
   const place = usePlace((s) => s.place)
@@ -79,7 +79,7 @@ export function GameCanvas({ hero, pet }: { hero: Appearance; pet?: Pet | null }
         }
       >
         <Suspense fallback={null}>
-          <PlaceWorld hero={hero} pet={pet} />
+          <PlaceWorld hero={hero} pet={pet} returning={returning} />
         </Suspense>
       </Boundary>
     </div>

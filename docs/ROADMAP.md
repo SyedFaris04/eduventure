@@ -177,6 +177,17 @@ Spec: `docs/superpowers/specs/2026-11-17-knowledge-pet-design.md`; plan: `docs/s
 
 **Next, from the research's "build next" list:** Returning monsters (spaced review in daily missions), Insight cards after wrong answers, forgiving streaks with earned shields, and the age-banded safety baseline. Later pet ideas: adventures and souvenirs, "teach your pet", photo mode and share cards, a pet house.
 
+### Returning monsters and the "Why not?" card — built and merged
+Spec: `docs/superpowers/specs/2026-11-17-returning-monsters-design.md`; plan: `docs/superpowers/plans/2026-11-17-returning-monsters.md`. Research features 3 and 4.
+- **A memory timer per topic:** a right answer when the topic is due doubles how long it stays fresh (2, 4, 8 … days, at most 60); a wrong answer brings it back in two minutes, then after a day.
+- **Returning monsters:** up to three glowing monsters per island, one per due topic. Their battle asks the due topics first, then normal questions. Winning pays a comeback bonus (+20 XP, +10 gold).
+- **Daily mission** "Defeat N Returning monsters", given only when something is due.
+- **The boatman** shows how many Returning monsters wait on each island.
+- **"Why not?" card** after every wrong answer, with the reason for the chosen option, the explanation and a reminder that the topic will come back.
+- Overdue topics never cost anything.
+
+**Next from the research:** forgiving streaks with earned shields, Elo-tuned difficulty, the age-banded safety baseline, and reasons for every wrong option in the matching/ordering/typed questions.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 
