@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  // Pre-bundle the lesson editor at startup; otherwise the dev server reloads the page the first time a lesson opens.
+  optimizeDeps: { include: ['codemirror', '@codemirror/state', '@codemirror/view', '@codemirror/lang-python', '@codemirror/lang-javascript'] },
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test-setup.ts'],

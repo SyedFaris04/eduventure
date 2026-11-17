@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
-import { BookOpen, ClipboardCheck, Coins, Globe2, LogOut, Pencil, ShoppingBag, Sparkles, Star, Volume2, VolumeX } from 'lucide-react'
+import { BookOpen, ClipboardCheck, Code2, Coins, Globe2, LogOut, Pencil, ShoppingBag, Sparkles, Star, Volume2, VolumeX } from 'lucide-react'
 import { useMyRoles } from '../admin/review'
 import { MissionsPanel } from '../missions/MissionsPanel'
 import { TitlePicker, useMyTitle } from '../character/TitlePicker'
+import { setAcademyOrigin } from '../academy/origin'
 import { Button, buttonClasses, Field, Modal, Panel } from '../../components/ui'
 import { LanguagePicker } from '../../i18n/LanguagePicker'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
@@ -101,6 +102,9 @@ export function HomePage() {
                 <ShoppingBag size={18} aria-hidden /> {t('home.shop')}
               </Link>
             </div>
+            <Link to="/academy" onClick={() => setAcademyOrigin('home')} className={buttonClasses('secondary', 'md', 'w-full')}>
+              <Code2 size={18} aria-hidden /> {t('home.academy')}
+            </Link>
             {roles.data && roles.data.length > 0 && (
               <Link to="/admin" className={buttonClasses('secondary', 'md', 'w-full')}>
                 <ClipboardCheck size={18} aria-hidden /> {t('home.admin')}

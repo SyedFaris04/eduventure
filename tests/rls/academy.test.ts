@@ -43,6 +43,16 @@ describe.skipIf(!url || !key)('academy (live project)', () => {
     expect(JSON.stringify(data)).not.toMatch(/"(accept|answer|answer_text|solution|explanation)"/)
   })
 
+  it('players can list visible lessons and their public steps', async () => {
+    const lessons = await a.from('lessons').select('id, course_id, unit_index, lesson_index, title')
+    expect(lessons.error).toBeNull()
+    expect(lessons.data!.map((l) => l.id)).toContain('py-u1-l1')
+    const steps = await a.from('lesson_steps').select('*').eq('lesson_id', 'py-u1-l1')
+    expect(steps.error).toBeNull()
+    expect(steps.data).toHaveLength(lessonSteps.get('py-u1-l1')!.length)
+    expect((await a.from('courses').select('id')).data!.map((c) => c.id).sort()).toEqual(['javascript-basics', 'python-basics'])
+  })
+
   it('the server normalises code like the app does', async () => {
     for (const s of ['print( "Hi" )', 'x  =  1 + 2', 'x = "a b"', '  console.log("Hello " + friend);  ']) {
       const { data } = await a.rpc('norm_code', { p: s })
