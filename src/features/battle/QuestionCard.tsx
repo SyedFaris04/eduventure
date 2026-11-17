@@ -58,6 +58,9 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
       return next
     })
 
+  // Code-reading questions put the program after a blank line: show it as code, keeping lines and indentation.
+  const [lead, ...rest] = question.prompt.split('\n\n')
+  const program = rest.join('\n\n')
   const optionList = Array.isArray(question.options) ? (question.options as Opt[]) : []
   const correctIds = result ? (Array.isArray(result.correct_answer) ? (result.correct_answer as string[]) : typeof result.correct_answer === 'string' ? [result.correct_answer] : []) : []
   const choiceStyle = (id: string, isPicked: boolean) =>
@@ -72,7 +75,12 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
         </span>
         {question.status !== 'published' && <span className="rounded-full border-2 border-path-dark bg-path/40 px-2 py-0.5 text-ink">{t('battle.draft')}</span>}
       </div>
-      <p className="font-display text-xl leading-snug font-semibold">{question.prompt}</p>
+      <p className="font-display text-xl leading-snug font-semibold">{lead}</p>
+      {program && (
+        <pre dir="ltr" className="overflow-x-auto rounded-xl border-[3px] border-wood-dark bg-[#1f2433] p-3 text-start text-sm leading-relaxed text-[#f4f1ea]">
+          <code>{program}</code>
+        </pre>
+      )}
       {question.type === 'multi_select' && <p className="text-sm font-semibold text-wood-dark">{t('battle.selectAll')}</p>}
 
       {(question.type === 'mcq' || question.type === 'true_false') && (

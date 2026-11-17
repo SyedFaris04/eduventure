@@ -32,9 +32,10 @@ export class WorldSim {
   constructor(
     readonly map: GameMap,
     private rng: () => number = Math.random,
-    opts: { atArrival?: boolean } = {},
+    opts: { atArrival?: boolean; start?: Point } = {},
   ) {
-    const start = opts.atArrival ? map.arrival : map.spawn
+    // A saved spot (coming back from the Academy) beats the jetty, which beats the first-time spawn.
+    const start = opts.start ?? (opts.atArrival ? map.arrival : map.spawn)
     this.hero = { pos: { x: start.x + 0.5, y: start.y + 0.5 }, dir: { x: 0, y: 0 }, speed01: 0, facing: 0 }
     for (const [kind, count] of Object.entries(map.monsterCounts) as [MonsterKind, number][])
       for (let i = 0; i < (map.monsterZones[kind]?.length ? count : 0); i++) {

@@ -94,7 +94,7 @@
     },
     "technology_city": {
       "name": "Bandar Teknologi",
-      "blurb": "Gear, litar dan kod menggerakkan bandar yang terang ini."
+      "blurb": "Jalan litar bercahaya, robot yang mesra dan Akademi Kod, tempat anda belajar Python dan JavaScript."
     },
     "university_district": {
       "name": "Daerah Universiti",
@@ -391,7 +391,8 @@
     "cancel": "Batal",
     "admin": "Semak soalan",
     "library": "Perpustakaan Akademik",
-    "shop": "Kedai"
+    "shop": "Kedai",
+    "academy": "Akademi Kod"
   },
   "world": {
     "canvasLabel": "{{place}}. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",
@@ -437,6 +438,12 @@
       "pages": [
         "Selamat datang! Bercakaplah dengan saya bila-bila masa anda mahu belayar ke pulau lain."
       ]
+    },
+    "teacher": {
+      "name": "Cikgu Byte",
+      "pages": [
+        "Selamat datang ke Akademi Kod! Masuklah dan tulis program pertama anda."
+      ]
     }
   },
   "monsters": {
@@ -466,6 +473,15 @@
     },
     "pisnake": {
       "name": "Ular Pi"
+    },
+    "bugsy": {
+      "name": "Bugsy"
+    },
+    "bytebot": {
+      "name": "Bot-Bait"
+    },
+    "loopy": {
+      "name": "Loopy"
     }
   },
   "battle": {
@@ -655,6 +671,20 @@
       "victoryText": "Anda melepasi keempat-empat pusingan. Gunung-ganang menyebut nama anda!",
       "lostText": "Titan Sempoa menyusun semula maniknya dan menunggu. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
       "alreadyToday": "Anda sudah menuntut ganjaran Titan Sempoa hari ini. Datang lagi esok!"
+    },
+    "glitch_golem": {
+      "name": "Golem Glic",
+      "title": "Pertarungan bos: Golem Glic",
+      "intro": {
+        "r1": "Pusingan 1: Golem Glic berkelip hidup! Tiga jawapan pengaturcaraan yang betul melepasi pusingan ini.",
+        "r2": "Pusingan 2: pikselnya berserabut lebih laju. Soalan semakin sukar.",
+        "r3": "Pusingan 3: nyahpepijat glic paling sukar sang Golem!",
+        "final": "Pusingan akhir: kod bercampur semua. Tiga lagi dan Golem itu dimulakan semula!"
+      },
+      "victory": "Golem Glic dimulakan semula!",
+      "victoryText": "Anda melepasi keempat-empat pusingan. Bandar Teknologi berjalan lancar semula!",
+      "lostText": "Golem Glic masih bergelora. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
+      "alreadyToday": "Anda sudah menuntut ganjaran Golem Glic hari ini. Datang lagi esok!"
     }
   },
   "jetty": {
@@ -669,5 +699,56 @@
     "sailingTo": "Belayar ke {{place}}…",
     "skip": "Langkau",
     "label": "Perjalanan bot"
+  },
+  "academy": {
+    "title": "Akademi Kod",
+    "intro": "Belajar mengekod sedikit demi sedikit. Setiap pelajaran menjalankan kod sebenar di sini.",
+    "lessonsDone": "{{done}} daripada {{total}} pelajaran",
+    "unit": "Unit {{n}}: {{title}}",
+    "lockedUnit": "Tamatkan unit sebelumnya untuk membuka",
+    "completed": "Selesai",
+    "backToWorld": "Kembali ke dunia",
+    "backToHome": "Kembali ke Laman Utama",
+    "backToCourse": "Kembali ke kursus",
+    "backToAcademy": "Semua kursus",
+    "step": "Langkah {{n}} daripada {{total}}",
+    "code": "Kod",
+    "yourCode": "Kod anda",
+    "keys": "Kekunci kod",
+    "insertKey": "Masukkan {{key}}",
+    "indent": "inden",
+    "terminal": "Terminal",
+    "run": "Jalankan",
+    "check": "Semak",
+    "continue": "Teruskan",
+    "finish": "Tamatkan pelajaran",
+    "next": "Pelajaran seterusnya",
+    "running": "Sedang berjalan…",
+    "pythonLoading": "Menyediakan Python… (hanya kali pertama)",
+    "pythonFailed": "Python tidak dapat dimuatkan. Semak sambungan anda.",
+    "retry": "Cuba lagi",
+    "timedOut": "Kod anda terlalu lama dan telah dihentikan. Adakah ada gelung yang tidak berhenti?",
+    "truncated": "Hanya 200 baris pertama ditunjukkan.",
+    "noOutput": "(tiada apa-apa dicetak)",
+    "yourAnswer": "Jawapan anda",
+    "correct": "Betul!",
+    "wrong": "Belum tepat. Cuba lagi!",
+    "answerWas": "Jawapan: {{answer}}",
+    "writeWrongOutput": "Program anda mencetak sesuatu yang berbeza. Ia sepatutnya mencetak:\n{{expected}}",
+    "mustUse": "Gunakan {{token}} dalam kod anda.",
+    "fixOtherLines": "Ubah baris {{n}} sahaja.",
+    "fixLineCount": "Kekalkan bilangan baris dan ubah baris {{n}} sahaja.",
+    "showAnswer": "Tunjuk jawapan",
+    "done": "Pelajaran selesai!",
+    "rewardXp": "+{{n}} XP",
+    "rewardGold": "+{{n}} emas",
+    "alreadyEarned": "Anda sudah menerima ganjaran pelajaran ini. Latihan menjadikan sempurna!",
+    "errors": {
+      "tooFast": "Fikir sejenak sebelum menjawab.",
+      "locked": "Tamatkan unit sebelumnya dahulu.",
+      "notFound": "Pelajaran ini tidak tersedia.",
+      "unanswered": "Jawab semua soalan dalam pelajaran dahulu.",
+      "generic": "Ada yang tidak kena. Sila cuba lagi."
+    }
   }
 }

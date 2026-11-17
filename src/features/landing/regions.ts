@@ -6,7 +6,7 @@ export const REGIONS = [
   { id: 'science_island', phase: 9, colour: '#4fa3c7', open: true },
   { id: 'language_kingdom', phase: 9, colour: '#c77fb0' },
   { id: 'history_ruins', phase: 9, colour: '#c9a46b' },
-  { id: 'technology_city', phase: 9, colour: '#6b8fd6' },
+  { id: 'technology_city', phase: 9, colour: '#6b8fd6', open: true },
   { id: 'university_district', phase: 9, colour: '#a3754f' },
   { id: 'monster_wilderness', phase: 9, colour: '#9c7b3c' },
   { id: 'clan_territory', phase: 5, colour: '#d9894a' },

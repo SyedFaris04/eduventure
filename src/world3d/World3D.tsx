@@ -55,7 +55,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       if (worldPaused() || performance.now() - panelClosedAt.current < 300) return
       const prompt = useGame.getState().prompt
       // The boatman opens the list of places to sail to; other villagers talk.
-      if (prompt?.kind === 'npc') useGame.setState(prompt.id === 'boatman' ? { jetty: true } : { dialogue: { npc: prompt.id, page: 0 } })
+      if (prompt?.kind === 'npc') useGame.setState(prompt.id === 'boatman' ? { jetty: true } : prompt.id === 'teacher' ? { academy: true } : { dialogue: { npc: prompt.id, page: 0 } })
       if (prompt?.kind === 'monster') useGame.setState({ battle: { monsterId: prompt.id, monster: prompt.monster } })
       if (prompt?.kind === 'boss') useGame.setState({ boss: prompt.id })
     }
@@ -191,13 +191,14 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
 }
 
 /** One place in 3D. Default export so it loads as its own chunk with three.js. */
-export default function World3D({ hero, map, atArrival = false }: { hero: Appearance; map: GameMap; atArrival?: boolean }) {
+export default function World3D({ hero, map, atArrival = false, startAt }: { hero: Appearance; map: GameMap; atArrival?: boolean; startAt?: { x: number; y: number } }) {
   const sim = useMemo(() => {
-    const s = new WorldSim(map, Math.random, { atArrival })
+    const s = new WorldSim(map, Math.random, { atArrival, start: startAt })
     // Development only: /dev/world?at=x,y starts the hero on that tile (for screenshots).
     const at = import.meta.env.DEV ? new URLSearchParams(location.search).get('at')?.split(',').map(Number) : undefined
     if (at?.length === 2 && at.every(Number.isFinite)) s.hero.pos = { x: at[0] + 0.5, y: at[1] + 0.5 }
     return s
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- the start spot is read once, when the place opens
   }, [map, atArrival])
   const look = THEMES[map.theme]
   const covered = useGame((s) => Boolean(s.battle || s.boss))

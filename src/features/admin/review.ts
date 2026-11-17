@@ -109,3 +109,42 @@ export async function bulkReview(ids: string[], action: Action, note: string | n
   if (error) throw new Error(error.message)
   return data as { done: number; skipped: { id: string; reason: string }[] }
 }
+
+export type AdminLessonStep = { id: string; lesson_id: string; step_index: number; kind: string; text: string; code?: string | null; options?: { id: string; text: string }[] | null; broken_line?: number | null; starter?: string | null; expected_output?: string | null; key?: { answer: unknown; explanation: string | null; solution: string | null } }
+export type AdminLesson = { id: string; course_id: string; unit_index: number; unit_title: string; lesson_index: number; title: string; objective: string; status: Status; version: number; steps: AdminLessonStep[] }
+
+/** Lessons in course/unit/lesson order, each with its steps in order and each step's answer key. */
+export function groupLessons(lessons: Omit<AdminLesson, 'steps'>[], steps: AdminLessonStep[], keys: { step_id: string; answer: unknown; explanation: string | null; solution: string | null }[]): AdminLesson[] {
+  const keyOf = new Map(keys.map(({ step_id, ...k }) => [step_id, k]))
+  return [...lessons]
+    .sort((a, b) => a.course_id.localeCompare(b.course_id) || a.unit_index - b.unit_index || a.lesson_index - b.lesson_index)
+    .map((l) => ({
+      ...l,
+      steps: steps
+        .filter((s) => s.lesson_id === l.id)
+        .sort((a, b) => a.step_index - b.step_index)
+        .map((s) => (keyOf.has(s.id) ? { ...s, key: keyOf.get(s.id) } : s)),
+    }))
+}
+
+/** Every lesson (any status) for reviewers; RLS only lets admins and educators read drafts and keys. */
+export function useLessonBank(enabled: boolean) {
+  return useQuery({
+    queryKey: ['admin', 'lessons'],
+    enabled,
+    queryFn: async () => {
+      const [ls, st, ks] = await Promise.all([
+        supabase!.from('lessons').select('id, course_id, unit_index, unit_title, lesson_index, title, objective, status, version'),
+        supabase!.from('lesson_steps').select('*'),
+        supabase!.from('lesson_step_keys').select('*'),
+      ])
+      for (const r of [ls, st, ks]) if (r.error) throw r.error
+      return groupLessons(ls.data as Omit<AdminLesson, 'steps'>[], st.data as AdminLessonStep[], ks.data as { step_id: string; answer: unknown; explanation: string | null; solution: string | null }[])
+    },
+  })
+}
+
+export async function reviewLesson(id: string, action: Action, note = '') {
+  const { error } = await supabase!.rpc('review_lesson', { p_id: id, p_action: action, p_note: note })
+  if (error) throw error
+}

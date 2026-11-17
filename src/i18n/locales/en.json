@@ -94,7 +94,7 @@
     },
     "technology_city": {
       "name": "Technology City",
-      "blurb": "Gears, circuits and code power this bright city."
+      "blurb": "Glowing circuit roads, friendly robots and the Code Academy, where you learn Python and JavaScript."
     },
     "university_district": {
       "name": "University District",
@@ -391,7 +391,8 @@
     "cancel": "Cancel",
     "admin": "Review questions",
     "library": "Academic Library",
-    "shop": "Shop"
+    "shop": "Shop",
+    "academy": "Code Academy"
   },
   "world": {
     "canvasLabel": "{{place}}. Move with W A S D or the arrow keys, tap to walk, press E to talk.",
@@ -437,6 +438,12 @@
       "pages": [
         "Selamat datang! Talk to me whenever you want to sail to another island."
       ]
+    },
+    "teacher": {
+      "name": "Cikgu Byte",
+      "pages": [
+        "Welcome to the Code Academy! Come in and write your first program."
+      ]
     }
   },
   "monsters": {
@@ -466,6 +473,15 @@
     },
     "pisnake": {
       "name": "Pi-thon"
+    },
+    "bugsy": {
+      "name": "Bugsy"
+    },
+    "bytebot": {
+      "name": "Byte-bot"
+    },
+    "loopy": {
+      "name": "Loopy"
     }
   },
   "battle": {
@@ -655,6 +671,20 @@
       "victoryText": "You cleared all four rounds. The mountains echo your name!",
       "lostText": "The Abacus Titan resets its beads and waits. Everything you earned is safe; read the explanations and try again.",
       "alreadyToday": "You've already claimed today's Abacus Titan reward. Come back tomorrow!"
+    },
+    "glitch_golem": {
+      "name": "Glitch Golem",
+      "title": "Boss battle: Glitch Golem",
+      "intro": {
+        "r1": "Round 1: the Glitch Golem flickers to life! Three correct coding answers clear the round.",
+        "r2": "Round 2: its pixels scramble faster. The questions get harder.",
+        "r3": "Round 3: debug the Golem's toughest glitches!",
+        "final": "Final round: code mixed with everything. Three more and the Golem reboots!"
+      },
+      "victory": "The Glitch Golem reboots!",
+      "victoryText": "You cleared all four rounds. Technology City runs smoothly again!",
+      "lostText": "The Glitch Golem keeps glitching. Everything you earned is safe; read the explanations and try again.",
+      "alreadyToday": "You've already claimed today's Glitch Golem reward. Come back tomorrow!"
     }
   },
   "jetty": {
@@ -669,5 +699,56 @@
     "sailingTo": "Sailing to {{place}}…",
     "skip": "Skip",
     "label": "Boat ride"
+  },
+  "academy": {
+    "title": "Code Academy",
+    "intro": "Learn to code one small step at a time. Every lesson runs real code right here.",
+    "lessonsDone": "{{done}} of {{total}} lessons",
+    "unit": "Unit {{n}}: {{title}}",
+    "lockedUnit": "Finish the unit before to unlock",
+    "completed": "Completed",
+    "backToWorld": "Back to the world",
+    "backToHome": "Back to Home",
+    "backToCourse": "Back to course",
+    "backToAcademy": "All courses",
+    "step": "Step {{n}} of {{total}}",
+    "code": "Code",
+    "yourCode": "Your code",
+    "keys": "Code keys",
+    "insertKey": "Insert {{key}}",
+    "indent": "indent",
+    "terminal": "Terminal",
+    "run": "Run",
+    "check": "Check",
+    "continue": "Continue",
+    "finish": "Finish lesson",
+    "next": "Next lesson",
+    "running": "Running…",
+    "pythonLoading": "Getting Python ready… (only the first time)",
+    "pythonFailed": "Python couldn't load. Check your connection.",
+    "retry": "Try again",
+    "timedOut": "Your code took too long and was stopped. Is there a loop that never ends?",
+    "truncated": "Only the first 200 lines are shown.",
+    "noOutput": "(nothing was printed)",
+    "yourAnswer": "Your answer",
+    "correct": "Correct!",
+    "wrong": "Not quite. Try again!",
+    "answerWas": "Answer: {{answer}}",
+    "writeWrongOutput": "Your program printed something different. It should print:\n{{expected}}",
+    "mustUse": "Use {{token}} in your code.",
+    "fixOtherLines": "Change only line {{n}}.",
+    "fixLineCount": "Keep the same number of lines and change only line {{n}}.",
+    "showAnswer": "Show answer",
+    "done": "Lesson complete!",
+    "rewardXp": "+{{n}} XP",
+    "rewardGold": "+{{n}} gold",
+    "alreadyEarned": "You already earned this lesson's reward. Practice makes perfect!",
+    "errors": {
+      "tooFast": "Take a moment to think before answering.",
+      "locked": "Finish the earlier unit first.",
+      "notFound": "This lesson isn't available.",
+      "unanswered": "Answer every question in the lesson first.",
+      "generic": "Something went wrong. Please try again."
+    }
   }
 }

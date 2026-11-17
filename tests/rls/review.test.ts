@@ -30,6 +30,11 @@ describe.skipIf(!url || !key)('question review: players', () => {
     expect(many.error?.message).toMatch(/not allowed/i)
   })
 
+  it('cannot review lessons', async () => {
+    const { error } = await player.rpc('review_lesson', { p_id: 'py-u1-l1', p_action: 'approve', p_note: '' })
+    expect(error?.message).toMatch(/not allowed/i)
+  })
+
   it('cannot read question statistics', async () => {
     const { error } = await player.rpc('question_stats')
     expect(error?.message).toMatch(/not allowed/i)
@@ -47,6 +52,13 @@ describe.skipIf(!url || !key || !adminEmail || !adminPassword)('question review:
     admin = newClient()
     const { error } = await admin.auth.signInWithPassword({ email: adminEmail!, password: adminPassword! })
     if (error) throw error
+  })
+
+  it('can read lessons with their answer keys', async () => {
+    const steps = await admin.from('lesson_steps').select('id').eq('lesson_id', 'py-u1-l1')
+    const keys = await admin.from('lesson_step_keys').select('step_id, answer').in('step_id', (steps.data ?? []).map((s) => s.id))
+    expect(steps.data?.length).toBeGreaterThan(0)
+    expect(keys.data?.length).toBeGreaterThan(0)
   })
 
   it('can read questions with their keys and history', async () => {

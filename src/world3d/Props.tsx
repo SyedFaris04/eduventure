@@ -26,9 +26,9 @@ function codePlacements(map: GameMap): CodePlacement[] {
   return map.props.flatMap((p) => {
     if (!isCodeProp(p.kind)) return []
     const h = hash(p.x, p.y)
-    // Kampung houses cover 2 × 2 tiles from their top-left cell.
-    const big = p.kind === 'kampung_house'
-    return [{ kind: p.kind, x: p.x + (big ? 1 : 0.5), z: p.y + (big ? 1 : 0.5), ry: SPIN[p.kind] ? h * 6.283 : 0, s: SPIN[p.kind] ? 0.85 + hash(p.x, p.y, 1) * 0.3 : 1 }]
+    // Kampung houses cover 2 × 2 tiles and the Code Academy 3 × 3, from their top-left cell.
+    const half = p.kind === 'academy' ? 1.5 : p.kind === 'kampung_house' ? 1 : 0.5
+    return [{ kind: p.kind, x: p.x + half, z: p.y + half, ry: SPIN[p.kind] ? h * 6.283 : 0, s: SPIN[p.kind] ? 0.85 + hash(p.x, p.y, 1) * 0.3 : 1 }]
   })
 }
 

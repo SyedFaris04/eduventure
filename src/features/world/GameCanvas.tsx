@@ -1,4 +1,4 @@
-import { Component, lazy, Suspense, use, useState, type ReactNode } from 'react'
+import { Component, lazy, Suspense, use, useEffect, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RefreshCw } from 'lucide-react'
 import { Button } from '../../components/ui'
@@ -36,7 +36,13 @@ function CurrentPlace({ hero }: { hero: Appearance }) {
   const place = usePlace((s) => s.place)
   const arriving = usePlace((s) => s.arriving)
   const map = use(placeMap(place))
-  return <World3D key={place} hero={hero} map={map} atArrival={arriving} />
+  // Coming back from the Code Academy: start where the player left, not at the jetty. The spot is cleared only
+  // once the world has really appeared, because the map download can make React throw the first render away.
+  const resumeAt = usePlace((s) => s.resumeAt)
+  useEffect(() => {
+    if (usePlace.getState().resumeAt) usePlace.setState({ resumeAt: null })
+  }, [])
+  return <World3D key={place} hero={hero} map={map} atArrival={arriving} startAt={resumeAt ?? undefined} />
 }
 
 /** The 3D world, or a clear message when this device can't show it or the download failed. */

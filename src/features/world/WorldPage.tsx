@@ -1,5 +1,8 @@
-import { Suspense } from 'react'
-import { Link } from 'react-router'
+import { Suspense, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router'
+import { useGame } from '../../game/store'
+import { usePlace } from '../../game/placeStore'
+import { setAcademyOrigin } from '../academy/origin'
 import { useTranslation } from 'react-i18next'
 import { Gauge, House } from 'lucide-react'
 import { buttonClasses } from '../../components/ui'
@@ -27,6 +30,18 @@ export function WorldPage() {
   const title = useMyTitle(uid)
   const quality = useQuality()
   const qualityText = t('world.quality', { level: t(`world.qualityLevel.${quality.choice}`) })
+  const navigate = useNavigate()
+  const academy = useGame((s) => s.academy)
+
+  // Cikgu Byte opens the Code Academy; remember the spot so "Back to the world" returns to the door.
+  useEffect(() => {
+    if (!academy) return
+    const p = useGame.getState().player
+    usePlace.setState({ resumeAt: { x: Math.floor(p.x), y: Math.floor(p.y) } })
+    useGame.setState({ academy: false })
+    setAcademyOrigin('world')
+    navigate('/academy')
+  }, [academy, navigate])
 
   return (
     <main className="fixed inset-0 overflow-hidden bg-[#5fb3d9] select-none">

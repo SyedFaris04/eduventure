@@ -93,8 +93,8 @@
       "blurb": "记得过去的残破殿堂。"
     },
     "technology_city": {
-      "name": "科技之城",
-      "blurb": "齿轮、电路和代码驱动着这座明亮的城市。"
+      "name": "科技城",
+      "blurb": "发光的电路街道、友善的机器人，还有教你 Python 和 JavaScript 的编程学院。"
     },
     "university_district": {
       "name": "大学区",
@@ -391,7 +391,8 @@
     "cancel": "取消",
     "admin": "审核题目",
     "library": "学术图书馆",
-    "shop": "商店"
+    "shop": "商店",
+    "academy": "编程学院"
   },
   "world": {
     "canvasLabel": "{{place}}。用 W A S D 或方向键移动，点击行走，按 E 交谈。",
@@ -437,6 +438,12 @@
       "pages": [
         "欢迎！想去别的岛屿时，随时来找我。"
       ]
+    },
+    "teacher": {
+      "name": "字节老师",
+      "pages": [
+        "欢迎来到编程学院！进来写你的第一个程序吧。"
+      ]
     }
   },
   "monsters": {
@@ -466,6 +473,15 @@
     },
     "pisnake": {
       "name": "派蛇"
+    },
+    "bugsy": {
+      "name": "小虫虫"
+    },
+    "bytebot": {
+      "name": "字节机器人"
+    },
+    "loopy": {
+      "name": "圈圈线"
     }
   },
   "battle": {
@@ -655,6 +671,20 @@
       "victoryText": "你通过了全部四轮。群山回响着你的名字！",
       "lostText": "算盘泰坦把算珠归位，耐心等待。你获得的一切都已保存；读一读解析，再试一次。",
       "alreadyToday": "你今天已经领取过算盘泰坦的奖励了。明天再来吧！"
+    },
+    "glitch_golem": {
+      "name": "故障巨像",
+      "title": "首领战：故障巨像",
+      "intro": {
+        "r1": "第 1 轮：故障巨像闪烁着醒来了！答对三道编程题即可通过本轮。",
+        "r2": "第 2 轮：它的像素乱得更快，题目变得更难。",
+        "r3": "第 3 轮：修复巨像最难的故障！",
+        "final": "最后一轮：编程和各种知识混合。再答对三题，巨像就会重启！"
+      },
+      "victory": "故障巨像重启了！",
+      "victoryText": "你通过了全部四轮。科技城又顺畅运行了！",
+      "lostText": "故障巨像还在出错。你获得的一切都已保存；读一读解析，再试一次。",
+      "alreadyToday": "你今天已经领取过故障巨像的奖励了。明天再来吧！"
     }
   },
   "jetty": {
@@ -669,5 +699,56 @@
     "sailingTo": "正在航行前往{{place}}……",
     "skip": "跳过",
     "label": "乘船"
+  },
+  "academy": {
+    "title": "编程学院",
+    "intro": "一小步一小步地学编程。每节课都在这里运行真正的代码。",
+    "lessonsDone": "已完成 {{done}}/{{total}} 节课",
+    "unit": "第 {{n}} 单元：{{title}}",
+    "lockedUnit": "完成前一个单元后解锁",
+    "completed": "已完成",
+    "backToWorld": "返回世界",
+    "backToHome": "返回主页",
+    "backToCourse": "返回课程",
+    "backToAcademy": "全部课程",
+    "step": "第 {{n}} 步，共 {{total}} 步",
+    "code": "代码",
+    "yourCode": "你的代码",
+    "keys": "代码按键",
+    "insertKey": "插入 {{key}}",
+    "indent": "缩进",
+    "terminal": "终端",
+    "run": "运行",
+    "check": "检查",
+    "continue": "继续",
+    "finish": "完成课程",
+    "next": "下一课",
+    "running": "运行中……",
+    "pythonLoading": "正在准备 Python……（仅第一次）",
+    "pythonFailed": "Python 无法加载。请检查网络连接。",
+    "retry": "重试",
+    "timedOut": "你的代码运行太久，已被停止。是不是有一个永远不会结束的循环？",
+    "truncated": "只显示前 200 行。",
+    "noOutput": "（没有输出任何内容）",
+    "yourAnswer": "你的答案",
+    "correct": "正确！",
+    "wrong": "还差一点，再试一次！",
+    "answerWas": "答案：{{answer}}",
+    "writeWrongOutput": "你的程序输出不一样。它应该输出：\n{{expected}}",
+    "mustUse": "在代码中使用 {{token}}。",
+    "fixOtherLines": "只修改第 {{n}} 行。",
+    "fixLineCount": "保持行数不变，只修改第 {{n}} 行。",
+    "showAnswer": "显示答案",
+    "done": "课程完成！",
+    "rewardXp": "+{{n}} 经验",
+    "rewardGold": "+{{n}} 金币",
+    "alreadyEarned": "你已经领取过这节课的奖励了。熟能生巧！",
+    "errors": {
+      "tooFast": "回答前先想一想。",
+      "locked": "请先完成前一个单元。",
+      "notFound": "这节课暂不可用。",
+      "unanswered": "请先回答这节课的所有问题。",
+      "generic": "出错了，请重试。"
+    }
   }
 }

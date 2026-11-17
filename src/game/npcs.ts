@@ -55,4 +55,22 @@ export const NPCS: Record<NpcId, { appearance: Appearance; pages: number }> = {
       backpack: 'none',
     },
   },
+  // Cikgu Byte, the coding teacher at the Code Academy door: talking opens the Academy.
+  teacher: {
+    pages: 1,
+    appearance: {
+      body: 'b',
+      skin: '#d9a074',
+      hairStyle: 'buzz',
+      hairColour: '#6c8ce0',
+      eyes: 'round',
+      face: 'smile',
+      top: 'robe_purple',
+      bottom: 'trousers_dark',
+      shoes: 'boots_black',
+      accessory: 'glasses',
+      weapon: 'quill',
+      backpack: 'none',
+    },
+  },
 }

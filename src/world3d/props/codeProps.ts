@@ -5,7 +5,7 @@ import type { Shape } from '../hero/parts'
 import { addWind } from '../wind'
 
 /** Props built from simple shapes in code (no CC0 pack has these in our style). Swap any for a model later. */
-export const CODE_PROP_KINDS = ['palm', 'kampung_house', 'stall', 'fern', 'mangrove', 'mushroom', 'pine_snow', 'pillar', 'sundial', 'abacus_gate'] as const satisfies readonly PropKind[]
+export const CODE_PROP_KINDS = ['palm', 'kampung_house', 'stall', 'fern', 'mangrove', 'mushroom', 'pine_snow', 'pillar', 'sundial', 'abacus_gate', 'server_tower', 'neon_lamp', 'robot_statue', 'holo_tree', 'academy'] as const satisfies readonly PropKind[]
 export type CodePropKind = (typeof CODE_PROP_KINDS)[number]
 export const isCodeProp = (k: PropKind): k is CodePropKind => (CODE_PROP_KINDS as readonly string[]).includes(k)
 
@@ -125,6 +125,48 @@ const DESIGNS: Record<CodePropKind, () => Part[]> = {
       ]),
     ]
   },
+  // Technology City — a server tower with glowing status strips.
+  server_tower: () => [
+    ['box', m('#2b3142'), [0, 1.1, 0], [0.8, 2.2, 0.8]],
+    ...[0.55, 0.95, 1.35, 1.75].map((y, i) => ['box', glow(i % 2 ? '#4fe3d0' : '#7cc0ff'), [0, y, 0.41], [0.6, 0.06, 0.02]] as Part),
+    ['sphere', glow('#ff5ea8'), [0.28, 2.12, 0.28], [0.1, 0.1, 0.1]],
+  ],
+  // A neon street lamp.
+  neon_lamp: () => [
+    ['box', m('#3a4256'), [0, 0.08, 0], [0.34, 0.16, 0.34]],
+    ['cylinder', m('#3a4256'), [0, 1.0, 0], [0.09, 1.9, 0.09]],
+    ['box', glow('#ff4fd8'), [0, 1.98, 0.12], [0.46, 0.12, 0.2]],
+  ],
+  // A friendly robot statue on a pedestal in Neon Plaza.
+  robot_statue: () => [
+    ['box', m('#5a6378'), [0, 0.2, 0], [0.9, 0.4, 0.9]],
+    ['rbox', m('#c9d2e3'), [0, 0.86, 0], [0.66, 0.74, 0.5]],
+    ['rbox', m('#e8ecf5'), [0, 1.5, 0], [0.54, 0.46, 0.46]],
+    ['sphere', glow('#46e0c9'), [-0.12, 1.53, 0.23], [0.1, 0.1, 0.04]],
+    ['sphere', glow('#46e0c9'), [0.12, 1.53, 0.23], [0.1, 0.1, 0.04]],
+    ['cylinder', m('#8a8f99'), [0, 1.86, 0], [0.04, 0.26, 0.04]],
+    ['sphere', glow('#ffcf4d'), [0, 2.02, 0], [0.1, 0.1, 0.1]],
+    ['box', glow('#ff4fd8'), [0, 0.92, 0.26], [0.3, 0.14, 0.02]],
+  ],
+  // A holographic tree: a metal trunk with glowing crystal leaves.
+  holo_tree: () => [
+    ['cylinder', m('#5a6378'), [0, 0.45, 0], [0.12, 0.9, 0.12]],
+    ['octa', glow('#46e0c9'), [0, 1.4, 0], [0.9, 1.0, 0.9]],
+    ['octa', glow('#7cf0ff'), [0.22, 1.85, 0.1], [0.46, 0.5, 0.46]],
+  ],
+  // The Code Academy (3 × 3 tiles): a white hall with a glowing code screen above the door.
+  academy: () => [
+    ['box', m('#e8ecf5'), [0, 0.8, 0], [2.8, 1.6, 2.6]],
+    ['box', m('#6b5fa8'), [0, 1.69, 0], [3.0, 0.18, 2.8]],
+    ['dome', m('#c9d2e3'), [0, 1.78, 0], [1.2, 0.5, 1.2]],
+    ['box', m('#2b3142'), [0, 0.46, 1.31], [0.62, 0.92, 0.04]],
+    ['box', glow('#46e0c9'), [0, 1.3, 1.31], [1.7, 0.42, 0.04]],
+    ...[-0.6, -0.2, 0.25].map((x, i) => ['box', glow(i === 1 ? '#ffcf4d' : '#ff4fd8'), [x, 1.3, 1.34], [0.3 + i * 0.05, 0.06, 0.02]] as Part),
+    ['box', m('#c9d2e3'), [-1.0, 0.9, 1.31], [0.4, 0.4, 0.04]],
+    ['box', m('#c9d2e3'), [1.0, 0.9, 1.31], [0.4, 0.4, 0.04]],
+    ['cylinder', m('#8a8f99'), [0.8, 2.15, -0.6], [0.05, 0.5, 0.05]],
+    ['sphere', glow('#ff5ea8'), [0.8, 2.42, -0.6], [0.12, 0.12, 0.12]],
+  ],
 }
 
 /** A fresh group for one prop; meshes share geometry and materials with every other copy. */

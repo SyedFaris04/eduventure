@@ -94,7 +94,7 @@
     },
     "technology_city": {
       "name": "Ciudad Tecnológica",
-      "blurb": "Engranajes, circuitos y código mueven esta ciudad brillante."
+      "blurb": "Calles de circuitos brillantes, robots amistosos y la Academia de Código, donde aprendes Python y JavaScript."
     },
     "university_district": {
       "name": "Distrito Universitario",
@@ -391,7 +391,8 @@
     "cancel": "Cancelar",
     "admin": "Revisar preguntas",
     "library": "Biblioteca académica",
-    "shop": "Tienda"
+    "shop": "Tienda",
+    "academy": "Academia de Código"
   },
   "world": {
     "canvasLabel": "{{place}}. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",
@@ -437,6 +438,12 @@
       "pages": [
         "¡Selamat datang! Habla conmigo cuando quieras navegar a otra isla."
       ]
+    },
+    "teacher": {
+      "name": "Cikgu Byte",
+      "pages": [
+        "¡Bienvenido a la Academia de Código! Entra y escribe tu primer programa."
+      ]
     }
   },
   "monsters": {
@@ -466,6 +473,15 @@
     },
     "pisnake": {
       "name": "Pitón Pi"
+    },
+    "bugsy": {
+      "name": "Bichito"
+    },
+    "bytebot": {
+      "name": "Byte-bot"
+    },
+    "loopy": {
+      "name": "Bucly"
     }
   },
   "battle": {
@@ -655,6 +671,20 @@
       "victoryText": "Superaste las cuatro rondas. ¡Las montañas repiten tu nombre!",
       "lostText": "El Titán del Ábaco reinicia sus cuentas y espera. Todo lo que ganaste está a salvo; lee las explicaciones e inténtalo de nuevo.",
       "alreadyToday": "Ya reclamaste hoy la recompensa del Titán del Ábaco. ¡Vuelve mañana!"
+    },
+    "glitch_golem": {
+      "name": "Gólem Glitch",
+      "title": "Batalla de jefe: Gólem Glitch",
+      "intro": {
+        "r1": "Ronda 1: ¡el Gólem Glitch cobra vida parpadeando! Tres respuestas correctas de programación superan la ronda.",
+        "r2": "Ronda 2: sus píxeles se mezclan más rápido. Las preguntas se vuelven más difíciles.",
+        "r3": "Ronda 3: ¡depura los fallos más duros del Gólem!",
+        "final": "Ronda final: código mezclado con todo. ¡Tres más y el Gólem se reinicia!"
+      },
+      "victory": "¡El Gólem Glitch se reinicia!",
+      "victoryText": "Superaste las cuatro rondas. ¡La Ciudad Tecnológica funciona bien otra vez!",
+      "lostText": "El Gólem Glitch sigue fallando. Todo lo que ganaste está a salvo; lee las explicaciones e inténtalo de nuevo.",
+      "alreadyToday": "Ya reclamaste hoy la recompensa del Gólem Glitch. ¡Vuelve mañana!"
     }
   },
   "jetty": {
@@ -669,5 +699,56 @@
     "sailingTo": "Navegando hacia {{place}}…",
     "skip": "Saltar",
     "label": "Viaje en barco"
+  },
+  "academy": {
+    "title": "Academia de Código",
+    "intro": "Aprende a programar paso a paso. Cada lección ejecuta código real aquí mismo.",
+    "lessonsDone": "{{done}} de {{total}} lecciones",
+    "unit": "Unidad {{n}}: {{title}}",
+    "lockedUnit": "Termina la unidad anterior para desbloquear",
+    "completed": "Completada",
+    "backToWorld": "Volver al mundo",
+    "backToHome": "Volver al inicio",
+    "backToCourse": "Volver al curso",
+    "backToAcademy": "Todos los cursos",
+    "step": "Paso {{n}} de {{total}}",
+    "code": "Código",
+    "yourCode": "Tu código",
+    "keys": "Teclas de código",
+    "insertKey": "Insertar {{key}}",
+    "indent": "sangría",
+    "terminal": "Terminal",
+    "run": "Ejecutar",
+    "check": "Comprobar",
+    "continue": "Continuar",
+    "finish": "Terminar lección",
+    "next": "Siguiente lección",
+    "running": "Ejecutando…",
+    "pythonLoading": "Preparando Python… (solo la primera vez)",
+    "pythonFailed": "Python no se pudo cargar. Revisa tu conexión.",
+    "retry": "Reintentar",
+    "timedOut": "Tu código tardó demasiado y se detuvo. ¿Hay un bucle que nunca termina?",
+    "truncated": "Solo se muestran las primeras 200 líneas.",
+    "noOutput": "(no se imprimió nada)",
+    "yourAnswer": "Tu respuesta",
+    "correct": "¡Correcto!",
+    "wrong": "Casi. ¡Inténtalo de nuevo!",
+    "answerWas": "Respuesta: {{answer}}",
+    "writeWrongOutput": "Tu programa imprimió algo distinto. Debería imprimir:\n{{expected}}",
+    "mustUse": "Usa {{token}} en tu código.",
+    "fixOtherLines": "Cambia solo la línea {{n}}.",
+    "fixLineCount": "Mantén el mismo número de líneas y cambia solo la línea {{n}}.",
+    "showAnswer": "Ver respuesta",
+    "done": "¡Lección completada!",
+    "rewardXp": "+{{n}} XP",
+    "rewardGold": "+{{n}} de oro",
+    "alreadyEarned": "Ya obtuviste la recompensa de esta lección. ¡La práctica hace al maestro!",
+    "errors": {
+      "tooFast": "Tómate un momento para pensar antes de responder.",
+      "locked": "Termina primero la unidad anterior.",
+      "notFound": "Esta lección no está disponible.",
+      "unanswered": "Responde primero todas las preguntas de la lección.",
+      "generic": "Algo salió mal. Inténtalo de nuevo."
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import type { Point } from './iso'
 import { PLACES, type PlaceId } from './places'
 
 const KEY = 'eduventure.place'
@@ -15,7 +16,7 @@ export function loadPlace(): PlaceId {
 }
 
 /** Where the player is. `arriving` means they came by boat, so they start on the jetty. */
-export const usePlace = create<{ place: PlaceId; arriving: boolean }>(() => ({ place: loadPlace(), arriving: loadPlace() !== 'greenhaven' }))
+export const usePlace = create<{ place: PlaceId; arriving: boolean; resumeAt: Point | null }>(() => ({ place: loadPlace(), arriving: loadPlace() !== 'greenhaven', resumeAt: null }))
 
 // Development builds only: lets automated tests see which place is showing.
 if (import.meta.env.DEV) (window as unknown as { __place: typeof usePlace }).__place = usePlace
@@ -26,5 +27,5 @@ export function setPlace(place: PlaceId) {
   } catch {
     // not remembered across reloads; still travel now
   }
-  usePlace.setState({ place, arriving: true })
+  usePlace.setState({ place, arriving: true, resumeAt: null })
 }

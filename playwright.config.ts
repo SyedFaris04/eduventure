@@ -12,7 +12,7 @@ export default defineConfig({
   projects: [
     {
       name: 'online',
-      testMatch: ['first-run.spec.ts', 'world.spec.ts', 'islands.spec.ts'],
+      testMatch: ['first-run.spec.ts', 'world.spec.ts', 'islands.spec.ts', 'academy.spec.ts'],
       // Software WebGL so the 3D world renders in headless runs.
       use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:5173', launchOptions: { args: ['--use-gl=angle', '--use-angle=swiftshader'] } },
     },
