@@ -1,3 +1,4 @@
+import { MyPetCheer } from '../pet/PetCheer'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
@@ -164,6 +165,7 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
               badge={result && result.damage > 0 && <span className="rounded-full bg-danger px-2 text-sm text-white">{t('battle.damage', { n: result.damage })}</span>}
             >
               {result?.second_chance && <p className="text-sm font-bold text-grass-dark">{t('battle.secondChance')}</p>}
+              {result && !result.correct && <MyPetCheer />}
               {result?.correct && (result.farmed ? <p className="text-sm font-semibold text-wood-dark">{t('battle.farmed')}</p> : <Rewards xp={result.xp_gained - result.bonus.xp} gold={result.gold_gained - result.bonus.gold} />)}
               <MissionNotes ids={result?.missions_completed} />
             </QuestionCard>

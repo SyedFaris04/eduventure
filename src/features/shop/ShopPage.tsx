@@ -11,8 +11,10 @@ import { Snapshot } from '../../world3d/SnapshotImage'
 import type { Appearance } from '../character/appearance'
 import { saveCharacter, useMyCharacter, useProgression } from '../character/useCharacter'
 import { isUnlocked, unlockLevel } from '../../game/unlocks'
-import { CATALOGUE, type Rarity, type ShopItem } from './catalogue'
+import { HERO_ITEMS, type Rarity, type ShopItem } from './catalogue'
 import { buyItem, ownedItemsKey, useOwnedItems } from './useShop'
+import { PetCorner, petSlot } from './PetCorner'
+import { dressPet, petKey, usePet } from '../pet/usePet'
 
 const RARITY_STYLE: Record<Rarity, string> = {
   common: 'bg-grass/30 text-ink',
@@ -28,6 +30,7 @@ export function ShopPage() {
   const character = useMyCharacter(uid)
   const progression = useProgression(uid)
   const owned = useOwnedItems(uid)
+  const pet = usePet(uid)
   const [busy, setBusy] = useState<string | null>(null)
   const [message, setMessage] = useState<{ kind: 'error' | 'success'; text: string } | null>(null)
 
@@ -44,6 +47,19 @@ export function ShopPage() {
     } catch (e) {
       const m = (e as { message?: string }).message ?? ''
       setMessage({ kind: 'error', text: t(/not enough gold/i.test(m) ? 'shop.errors.gold' : /already own/i.test(m) ? 'shop.errors.owned' : /reach level/i.test(m) ? 'shop.errors.level' : 'shop.errors.failed') })
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  async function dressUp(item: ShopItem) {
+    setBusy(item.id)
+    setMessage(null)
+    try {
+      await dressPet(petSlot(item), item.id)
+      await queryClient.invalidateQueries({ queryKey: petKey(uid) })
+    } catch {
+      setMessage({ kind: 'error', text: t('shop.errors.failed') })
     } finally {
       setBusy(null)
     }
@@ -84,7 +100,7 @@ export function ShopPage() {
 
         <Panel>
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {CATALOGUE.map((item) => {
+            {HERO_ITEMS.map((item) => {
               const mine = owned.data?.has(item.id) ?? false
               const wearing = look?.[item.slot] === item.id
               const short = item.price - gold
@@ -125,6 +141,16 @@ export function ShopPage() {
             })}
           </ul>
         </Panel>
+
+        <PetCorner
+          pet={pet.data}
+          owned={owned.data ?? new Set()}
+          level={progression.data?.level ?? 1}
+          gold={gold}
+          busy={busy !== null}
+          onBuy={buy}
+          onWear={dressUp}
+        />
       </div>
     </main>
   )

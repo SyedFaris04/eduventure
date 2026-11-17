@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { buildHero } from './hero/buildHero'
 import { RIG_URL } from './hero/useRig'
 import { buildMonster } from './monsters/buildMonster'
+import { buildPet } from './pet/buildPet'
 import { aspect, snapshotKey, type Subject } from './snapshotKey'
 
 /**
@@ -19,6 +20,7 @@ const loadRig = () =>
   (rig ??= new GLTFLoader().loadAsync(RIG_URL).then((g) => ({ scene: g.scene, clips: g.animations })))
 
 async function model(s: Subject): Promise<Object3D> {
+  if (s.kind === 'pet') return buildPet(s.pet.species, s.pet.stage, s.pet.form, s.pet.look)
   if (s.kind !== 'hero') return buildMonster(s.kind === 'boss' ? s.boss : s.monster)
   const { scene, clips } = await loadRig()
   const body = scene.clone(true)

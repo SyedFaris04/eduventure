@@ -362,7 +362,15 @@
       "winged_boots": "Bottes Ailées",
       "star_cloak": "Cape Étoilée",
       "golden_crown": "Couronne Dorée",
-      "golden_quill": "Plume Dorée"
+      "golden_quill": "Plume Dorée",
+      "pet_songkok": "Songkok",
+      "pet_flower": "Couronne de fleurs",
+      "pet_tengkolok": "Tengkolok",
+      "pet_batik": "Foulard batik",
+      "pet_bell": "Collier à clochette",
+      "pet_dye_ocean": "Teinture océan",
+      "pet_dye_rose": "Teinture rose",
+      "pet_dye_gold": "Teinture dorée"
     },
     "fromShop": "De la boutique"
   },
@@ -638,7 +646,9 @@
       "failed": "Un problème est survenu. Réessaie.",
       "level": "Il te faut un niveau plus élevé pour acheter cet objet."
     },
-    "lockedLevel": "Niveau {{level}}"
+    "lockedLevel": "Niveau {{level}}",
+    "petCorner": "Coin des compagnons",
+    "hatchFirst": "Fais éclore un compagnon pour l’essayer"
   },
   "unlocks": {
     "second_chance": "Seconde chance : ta première erreur de chaque combat ne coûte rien",
@@ -649,7 +659,10 @@
     "fifty": "50/50 : retire deux mauvaises réponses une fois par combat",
     "epic": "Objets épiques dans la boutique",
     "island_explorer": "Titre : Explorateur des îles",
-    "scholar_of_the_seas": "Titre : Savant des mers"
+    "scholar_of_the_seas": "Titre : Savant des mers",
+    "pet_egg": "Un œuf de compagnon à faire éclore",
+    "pet_young": "Ton compagnon peut grandir",
+    "pet_adult": "Ton compagnon peut devenir adulte"
   },
   "titles": {
     "label": "Titre",
@@ -788,5 +801,74 @@
   "hall": {
     "title": "Salle des langues",
     "intro": "Apprends l'anglais et le malais avec des leçons courtes et amusantes. Touche, écoute, associe et construis des phrases."
+  },
+  "pet": {
+    "title": "Mon compagnon",
+    "open": "Mon compagnon",
+    "lockedEgg": "Atteins le niveau {{level}} pour faire éclore ton œuf",
+    "chooseEgg": "Choisis ton œuf",
+    "species": {
+      "kancil": "Kancil (chevrotain)",
+      "beruang": "Beruang (ours malais)",
+      "naga": "Naga (dragon)"
+    },
+    "nameLabel": "Nom",
+    "names": {
+      "comel": "Comel",
+      "bulat": "Bulat",
+      "si_pintar": "Si Pintar",
+      "tompok": "Tompok",
+      "bintang": "Bintang",
+      "kiki": "Kiki",
+      "mochi": "Mochi",
+      "ombak": "Ombak"
+    },
+    "hatch": "Faire éclore !",
+    "hatched": "{{name}} est né ! Apprenez ensemble pour l’aider à grandir.",
+    "stage": {
+      "baby": "Bébé",
+      "young": "Jeune",
+      "adult": "Adulte"
+    },
+    "points": "{{n}} / {{need}} points de compagnon",
+    "need": {
+      "points": "{{n}} points de compagnon",
+      "level": "Niveau {{n}}",
+      "gold": "{{n}} or pour l’Upacara Evolusi"
+    },
+    "evolve": "Évoluer en {{stage}}",
+    "evolved": "{{name}} a évolué !",
+    "fullyGrown": "Adulte ! Ton compagnon continue d’apprendre avec toi.",
+    "branch": {
+      "science": "Sciences",
+      "maths": "Maths",
+      "technology": "Technologie",
+      "language": "Langues"
+    },
+    "form": {
+      "science": "Forme Sciences",
+      "maths": "Forme Maths",
+      "technology": "Forme Technologie",
+      "language": "Forme Langues",
+      "seimbang": "Forme Seimbang (équilibrée)"
+    },
+    "heading": "En route vers : {{form}}",
+    "howToGrow": "Ton compagnon grandit quand tu apprends : +1 par bonne réponse (jusqu’à 30 par jour), +5 par nouvelle leçon et +3 par jour de jeu. Il n’est jamais malade ni triste quand tu es absent.",
+    "dress": "Habiller",
+    "slot": {
+      "hat": "Chapeau",
+      "neck": "Cou",
+      "dye": "Couleur"
+    },
+    "wearItem": "Mettre {{item}}",
+    "takeOffItem": "Enlever {{item}}",
+    "noItems": "Achète chapeaux, colliers et couleurs dans le Coin des compagnons de la boutique.",
+    "cheer": "{{name}} : On y arrivera la prochaine fois !",
+    "errors": {
+      "points": "Ton compagnon a d’abord besoin de plus de points.",
+      "level": "Atteins le niveau indiqué pour évoluer.",
+      "gold": "Pas encore assez d’or.",
+      "failed": "Cela n’a pas marché. Réessaie."
+    }
   }
 }

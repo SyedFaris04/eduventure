@@ -362,7 +362,15 @@
       "winged_boots": "飞翼靴",
       "star_cloak": "星辰斗篷",
       "golden_crown": "黄金王冠",
-      "golden_quill": "黄金羽毛笔"
+      "golden_quill": "黄金羽毛笔",
+      "pet_songkok": "宋谷帽",
+      "pet_flower": "花冠",
+      "pet_tengkolok": "登果洛头巾",
+      "pet_batik": "峇迪围巾",
+      "pet_bell": "铃铛项圈",
+      "pet_dye_ocean": "海洋染料",
+      "pet_dye_rose": "玫瑰染料",
+      "pet_dye_gold": "金色染料"
     },
     "fromShop": "来自商店"
   },
@@ -638,7 +646,9 @@
       "failed": "出了点问题，请再试一次。",
       "level": "你需要更高的等级才能购买此物品。"
     },
-    "lockedLevel": "{{level}} 级"
+    "lockedLevel": "{{level}} 级",
+    "petCorner": "宠物角",
+    "hatchFirst": "先孵化宠物再来试戴"
   },
   "unlocks": {
     "second_chance": "第二次机会：每场战斗的第一次答错没有惩罚",
@@ -649,7 +659,10 @@
     "fifty": "50/50：每场战斗可去掉两个错误答案一次",
     "epic": "商店里的史诗物品",
     "island_explorer": "称号：岛屿探险家",
-    "scholar_of_the_seas": "称号：海洋学者"
+    "scholar_of_the_seas": "称号：海洋学者",
+    "pet_egg": "可以孵化的宠物蛋",
+    "pet_young": "你的宠物可以长大了",
+    "pet_adult": "你的宠物可以成年了"
   },
   "titles": {
     "label": "称号",
@@ -788,5 +801,74 @@
   "hall": {
     "title": "语言馆",
     "intro": "通过有趣的小课学习英语和马来语。点一点、听一听、配一配、拼句子。"
+  },
+  "pet": {
+    "title": "我的宠物",
+    "open": "我的宠物",
+    "lockedEgg": "达到 {{level}} 级即可孵化你的蛋",
+    "chooseEgg": "选择你的蛋",
+    "species": {
+      "kancil": "鼷鹿 (Kancil)",
+      "beruang": "马来熊 (Beruang)",
+      "naga": "龙 (Naga)"
+    },
+    "nameLabel": "名字",
+    "names": {
+      "comel": "Comel",
+      "bulat": "Bulat",
+      "si_pintar": "Si Pintar",
+      "tompok": "Tompok",
+      "bintang": "Bintang",
+      "kiki": "Kiki",
+      "mochi": "Mochi",
+      "ombak": "Ombak"
+    },
+    "hatch": "孵化！",
+    "hatched": "{{name}} 孵出来了！一起学习，帮助它成长。",
+    "stage": {
+      "baby": "幼年",
+      "young": "少年",
+      "adult": "成年"
+    },
+    "points": "{{n}} / {{need}} 宠物点数",
+    "need": {
+      "points": "{{n}} 宠物点数",
+      "level": "{{n}} 级",
+      "gold": "进化仪式需要 {{n}} 金币"
+    },
+    "evolve": "进化为{{stage}}",
+    "evolved": "{{name}} 进化了！",
+    "fullyGrown": "已经成年！你的宠物会继续陪你学习。",
+    "branch": {
+      "science": "科学",
+      "maths": "数学",
+      "technology": "科技",
+      "language": "语言"
+    },
+    "form": {
+      "science": "科学形态",
+      "maths": "数学形态",
+      "technology": "科技形态",
+      "language": "语言形态",
+      "seimbang": "平衡形态 (Seimbang)"
+    },
+    "heading": "正在走向：{{form}}",
+    "howToGrow": "你学习时宠物就会成长：每答对一题 +1（每天最多 30），每完成一节新课 +5，每玩一天 +3。你不在时，它永远不会生病或难过。",
+    "dress": "装扮",
+    "slot": {
+      "hat": "帽子",
+      "neck": "颈部",
+      "dye": "颜色"
+    },
+    "wearItem": "戴上{{item}}",
+    "takeOffItem": "取下{{item}}",
+    "noItems": "在商店的宠物角购买帽子、项圈和颜色。",
+    "cheer": "{{name}}：下次我们一定行！",
+    "errors": {
+      "points": "你的宠物需要更多点数。",
+      "level": "达到所示等级才能进化。",
+      "gold": "金币还不够。",
+      "failed": "没有成功，请再试一次。"
+    }
   }
 }

@@ -166,8 +166,19 @@ Spec: `docs/superpowers/specs/2026-11-17-languages-island-design.md`; plan: `doc
 - harder SPM-level units;
 - recorded human audio.
 
+### Knowledge pet (Phase 4 slice) — built and merged
+Spec: `docs/superpowers/specs/2026-11-17-knowledge-pet-design.md`; plan: `docs/superpowers/plans/2026-11-17-knowledge-pet.md`. Shaped by the engagement research in `docs/research/learning-game-engagement-features.md`.
+- **Egg at level 2:** kancil, beruang or naga, with a preset name (no free text, safe for every age band).
+- **Grows only from learning:** +1 per right answer (30 a day at most), +5 per new lesson, +3 per day played. It never gets sick, sad or loses anything.
+- **Evolution:** young at 100 points + level 5 + 50 gold; adult at 300 points + level 10 + 150 gold. Gold is only a small "Upacara Evolusi" fee; learning and level are the real gates.
+- **Adult form** follows the subject studied most (Science, Maths, Technology, Language), or the rare Seimbang form when all four are balanced.
+- **Pet corner** in the shop: 3 hats, 2 neck items and 3 dyes at fixed prices. Dressed on the pet page.
+- The pet follows the hero on every island and cheers after a wrong answer. A finished lesson now counts as a day played for the streak too.
+
+**Next, from the research's "build next" list:** Returning monsters (spaced review in daily missions), Insight cards after wrong answers, forgiving streaks with earned shields, and the age-banded safety baseline. Later pet ideas: adventures and souvenirs, "teach your pet", photo mode and share cards, a pet house.
+
 ### Phase 4 — Customization
-**Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Pet, island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
+**Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 
 - Item catalogue with rarities, inventory, shop (atomic purchase on the server), equip and unequip with layered rendering.
 - Knowledge pet that grows with learning milestones; skill tree unlocked by subject mastery.

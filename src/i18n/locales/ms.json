@@ -362,7 +362,15 @@
       "winged_boots": "But Bersayap",
       "star_cloak": "Jubah Bintang",
       "golden_crown": "Mahkota Emas",
-      "golden_quill": "Pena Bulu Emas"
+      "golden_quill": "Pena Bulu Emas",
+      "pet_songkok": "Songkok",
+      "pet_flower": "Mahkota bunga",
+      "pet_tengkolok": "Tengkolok",
+      "pet_batik": "Selendang batik",
+      "pet_bell": "Kolar loceng",
+      "pet_dye_ocean": "Pewarna lautan",
+      "pet_dye_rose": "Pewarna mawar",
+      "pet_dye_gold": "Pewarna emas"
     },
     "fromShop": "Dari kedai"
   },
@@ -638,7 +646,9 @@
       "failed": "Ada masalah. Sila cuba lagi.",
       "level": "Anda perlukan tahap lebih tinggi untuk membeli barang ini."
     },
-    "lockedLevel": "Tahap {{level}}"
+    "lockedLevel": "Tahap {{level}}",
+    "petCorner": "Sudut Peliharaan",
+    "hatchFirst": "Tetaskan haiwan peliharaan untuk mencuba ini"
   },
   "unlocks": {
     "second_chance": "Peluang Kedua: jawapan salah pertama dalam setiap pertarungan tidak menjejaskan apa-apa",
@@ -649,7 +659,10 @@
     "fifty": "50/50: buang dua jawapan salah sekali setiap pertarungan",
     "epic": "Barang epik di kedai",
     "island_explorer": "Gelaran: Penjelajah Pulau",
-    "scholar_of_the_seas": "Gelaran: Cendekiawan Lautan"
+    "scholar_of_the_seas": "Gelaran: Cendekiawan Lautan",
+    "pet_egg": "Telur haiwan peliharaan untuk ditetaskan",
+    "pet_young": "Haiwan peliharaan anda boleh membesar",
+    "pet_adult": "Haiwan peliharaan anda boleh menjadi dewasa"
   },
   "titles": {
     "label": "Gelaran",
@@ -788,5 +801,74 @@
   "hall": {
     "title": "Dewan Bahasa",
     "intro": "Belajar bahasa Inggeris dan Bahasa Melayu melalui pelajaran pendek yang seronok. Ketik, dengar, padankan dan bina ayat."
+  },
+  "pet": {
+    "title": "Haiwan peliharaan saya",
+    "open": "Haiwan peliharaan saya",
+    "lockedEgg": "Capai tahap {{level}} untuk menetaskan telur anda",
+    "chooseEgg": "Pilih telur anda",
+    "species": {
+      "kancil": "Kancil",
+      "beruang": "Beruang madu",
+      "naga": "Naga"
+    },
+    "nameLabel": "Nama",
+    "names": {
+      "comel": "Comel",
+      "bulat": "Bulat",
+      "si_pintar": "Si Pintar",
+      "tompok": "Tompok",
+      "bintang": "Bintang",
+      "kiki": "Kiki",
+      "mochi": "Mochi",
+      "ombak": "Ombak"
+    },
+    "hatch": "Tetaskan!",
+    "hatched": "{{name}} sudah menetas! Belajar bersama untuk membantunya membesar.",
+    "stage": {
+      "baby": "Bayi",
+      "young": "Remaja",
+      "adult": "Dewasa"
+    },
+    "points": "{{n}} / {{need}} mata peliharaan",
+    "need": {
+      "points": "{{n}} mata peliharaan",
+      "level": "Tahap {{n}}",
+      "gold": "{{n}} emas untuk Upacara Evolusi"
+    },
+    "evolve": "Evolusi ke {{stage}}",
+    "evolved": "{{name}} sudah berevolusi!",
+    "fullyGrown": "Sudah dewasa! Haiwan peliharaan anda terus belajar bersama anda.",
+    "branch": {
+      "science": "Sains",
+      "maths": "Matematik",
+      "technology": "Teknologi",
+      "language": "Bahasa"
+    },
+    "form": {
+      "science": "Bentuk Sains",
+      "maths": "Bentuk Matematik",
+      "technology": "Bentuk Teknologi",
+      "language": "Bentuk Bahasa",
+      "seimbang": "Bentuk Seimbang"
+    },
+    "heading": "Menuju: {{form}}",
+    "howToGrow": "Haiwan peliharaan anda membesar apabila anda belajar: +1 bagi setiap jawapan betul (hingga 30 sehari), +5 bagi setiap pelajaran baharu dan +3 bagi setiap hari anda bermain. Ia tidak pernah sakit atau sedih semasa anda tiada.",
+    "dress": "Hias",
+    "slot": {
+      "hat": "Topi",
+      "neck": "Leher",
+      "dye": "Warna"
+    },
+    "wearItem": "Pakai {{item}}",
+    "takeOffItem": "Tanggalkan {{item}}",
+    "noItems": "Beli topi, kolar dan warna untuk haiwan peliharaan anda di Sudut Peliharaan dalam kedai.",
+    "cheer": "{{name}}: Kita cuba lagi nanti!",
+    "errors": {
+      "points": "Haiwan peliharaan anda perlukan lebih banyak mata dahulu.",
+      "level": "Capai tahap yang ditunjukkan untuk berevolusi.",
+      "gold": "Emas belum mencukupi.",
+      "failed": "Tidak berjaya. Sila cuba lagi."
+    }
   }
 }

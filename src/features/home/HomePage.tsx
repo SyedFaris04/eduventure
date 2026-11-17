@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
-import { BookOpen, ClipboardCheck, Code2, Coins, Languages, Globe2, LogOut, Pencil, ShoppingBag, Sparkles, Star, Volume2, VolumeX } from 'lucide-react'
+import { BookOpen, ClipboardCheck, Code2, Coins, Languages, Globe2, LogOut, PawPrint, Pencil, ShoppingBag, Sparkles, Star, Volume2, VolumeX } from 'lucide-react'
 import { useMyRoles } from '../admin/review'
 import { MissionsPanel } from '../missions/MissionsPanel'
 import { TitlePicker, useMyTitle } from '../character/TitlePicker'
@@ -100,6 +100,9 @@ export function HomePage() {
               </Link>
               <Link to="/shop" className={buttonClasses('secondary', 'md', 'w-full')}>
                 <ShoppingBag size={18} aria-hidden /> {t('home.shop')}
+              </Link>
+              <Link to="/pet" className={buttonClasses('secondary', 'md', 'w-full')}>
+                <PawPrint size={18} aria-hidden /> {t('pet.title')}
               </Link>
             </div>
             <Link to="/academy" onClick={() => setAcademyOrigin('home')} className={buttonClasses('secondary', 'md', 'w-full')}>

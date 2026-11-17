@@ -1,3 +1,4 @@
+import { MyPetCheer } from '../pet/PetCheer'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Flag, Heart, Lock } from 'lucide-react'
@@ -182,6 +183,7 @@ function Boss({ id }: { id: BossId }) {
           {question && (!finished || result) && (
             <QuestionCard key={question.id} question={question} hidden={result ? undefined : run?.helpers.hidden} busy={busy} result={result} onSubmit={submit}>
               {result?.second_chance && <p className="text-sm font-bold text-grass-dark">{t('battle.secondChance')}</p>}
+              {result && !result.correct && <MyPetCheer />}
               <MissionNotes ids={result?.missions_completed} />
             </QuestionCard>
           )}
