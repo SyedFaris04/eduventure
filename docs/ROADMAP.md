@@ -188,6 +188,12 @@ Spec: `docs/superpowers/specs/2026-11-17-returning-monsters-design.md`; plan: `d
 
 **Next from the research:** forgiving streaks with earned shields, Elo-tuned difficulty, the age-banded safety baseline, and reasons for every wrong option in the matching/ordering/typed questions.
 
+### Forgiving streaks — built and merged
+Spec: `docs/superpowers/specs/2026-11-17-forgiving-streaks-design.md`. Research feature 5.
+- **Shields earned by playing:** one for every 7 days played, up to 2. A missed day uses the weekly rest day first, then a shield, automatically. Never sold.
+- **Streak box:** streak, shields, rest day, this week's dots and best streak. A broken streak shows the days learned this month instead of a zero.
+- **Number or week dots:** players choose; under-13 players see the week dots by default.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 
