@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { Box3, Mesh, Vector3 } from 'three'
+import { Box3, Mesh, MeshStandardMaterial, Vector3 } from 'three'
 import { snapshotKey } from '../snapshotKey'
-import { BOSS_IDS, buildMonster, MONSTER_KINDS } from './buildMonster'
+import { BOSS_IDS, buildMonster, buildReturningMarker, MONSTER_KINDS } from './buildMonster'
 import { monsterMotion, type MotionState } from './motion'
 
 const STATES: MotionState[] = ['idle', 'hop', 'hit', 'poof']
@@ -76,5 +76,15 @@ describe('island monsters and bosses', () => {
     const keys = BOSS_IDS.map((boss) => snapshotKey({ kind: 'boss', boss }))
     expect(new Set(keys).size).toBe(5)
     expect(keys).toContain('boss:raja_rafflesia')
+  })
+})
+
+describe('buildReturningMarker', () => {
+  it('is a small glowing ring and star', () => {
+    const meshes: Mesh[] = []
+    buildReturningMarker().traverse((o) => o instanceof Mesh && meshes.push(o))
+    expect(meshes.length).toBeGreaterThan(1)
+    expect(meshes.length).toBeLessThan(10)
+    expect(meshes.some((m) => (m.material as MeshStandardMaterial).emissiveIntensity > 0)).toBe(true)
   })
 })
