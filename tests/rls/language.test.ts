@@ -83,6 +83,11 @@ describe.skipIf(!url || !key)('language lessons (live project)', () => {
     expect((await b.rpc('answer_lesson_step', { p_attempt: s.attempt_id, p_step: t.id, p_answer: { text: sloppy } })).data.correct).toBe(true)
   })
 
+  it('units unlock in order', async () => {
+    expect((await b.rpc('start_lesson', { p_lesson: 'ms-u2-l1' })).error?.message).toMatch(/finish unit 1/i)
+    expect((await b.rpc('start_lesson', { p_lesson: 'en-u3-l4' })).error?.message).toMatch(/finish unit 1/i)
+  })
+
   it('listen is a bonus', async () => {
     const { data: s } = await b.rpc('start_lesson', { p_lesson: 'en-u1-l4' })
     expect(lessonSteps.get('en-u1-l4')!.some((x) => x.kind === 'listen')).toBe(true)
