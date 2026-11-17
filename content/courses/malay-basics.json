@@ -1,0 +1,463 @@
+{
+  "_meta": {
+    "author": "Eduventure (original lessons)",
+    "license": "CC BY 4.0"
+  },
+  "id": "malay-basics",
+  "kind": "language",
+  "language": "malay",
+  "title": "Bahasa Melayu for beginners",
+  "units": [
+    {
+      "id": "ms-u1",
+      "title": "Salam & perkenalan",
+      "lessons": [
+        {
+          "id": "ms-u1-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Salam",
+          "objective": "Greet people in Malay.",
+          "steps": [
+            {
+              "id": "ms-u1-l1-s1",
+              "kind": "card",
+              "text": "New word",
+              "word": "Selamat pagi",
+              "meaning": "Good morning",
+              "emoji": "🌅"
+            },
+            {
+              "id": "ms-u1-l1-s2",
+              "kind": "card",
+              "text": "New word",
+              "word": "Terima kasih",
+              "meaning": "Thank you",
+              "emoji": "🙏"
+            },
+            {
+              "id": "ms-u1-l1-s3",
+              "kind": "pick",
+              "text": "Pick the meaning.",
+              "prompt": "How do you say \"Thank you\" in Malay?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Terima kasih"
+                },
+                {
+                  "id": "b",
+                  "text": "Selamat pagi"
+                },
+                {
+                  "id": "c",
+                  "text": "Sama-sama"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Terima kasih = Thank you. Sama-sama = You are welcome."
+            },
+            {
+              "id": "ms-u1-l1-s4",
+              "kind": "card",
+              "text": "New word",
+              "word": "Selamat malam",
+              "meaning": "Good night",
+              "emoji": "🌙"
+            },
+            {
+              "id": "ms-u1-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs.",
+              "pairs": [
+                [
+                  "Helo",
+                  "Hello"
+                ],
+                [
+                  "Selamat pagi",
+                  "Good morning"
+                ],
+                [
+                  "Terima kasih",
+                  "Thank you"
+                ],
+                [
+                  "Selamat tinggal",
+                  "Goodbye"
+                ]
+              ]
+            },
+            {
+              "id": "ms-u1-l1-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear.",
+              "say": "Selamat pagi",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Selamat pagi"
+                },
+                {
+                  "id": "b",
+                  "text": "Selamat malam"
+                },
+                {
+                  "id": "c",
+                  "text": "Selamat tinggal"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "ms-u1-l1-s7",
+              "kind": "type",
+              "text": "Type it in Malay.",
+              "prompt": "Thank you",
+              "accept": [
+                "terima kasih"
+              ],
+              "explanation": "Thank you = Terima kasih."
+            }
+          ]
+        },
+        {
+          "id": "ms-u1-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Perkenalan",
+          "objective": "Introduce yourself in Malay.",
+          "steps": [
+            {
+              "id": "ms-u1-l2-s1",
+              "kind": "card",
+              "text": "New word",
+              "word": "Nama saya…",
+              "meaning": "My name is…",
+              "emoji": "🏷️"
+            },
+            {
+              "id": "ms-u1-l2-s2",
+              "kind": "card",
+              "text": "New word",
+              "word": "saya",
+              "meaning": "I / me",
+              "emoji": "🙋"
+            },
+            {
+              "id": "ms-u1-l2-s3",
+              "kind": "card",
+              "text": "New word",
+              "word": "kawan",
+              "meaning": "friend",
+              "emoji": "🧑‍🤝‍🧑"
+            },
+            {
+              "id": "ms-u1-l2-s4",
+              "kind": "build",
+              "text": "Build the sentence in Malay.",
+              "prompt": "My name is Adam.",
+              "tiles": [
+                "Nama",
+                "saya",
+                "Adam.",
+                "awak",
+                "kawan"
+              ],
+              "answer": [
+                "Nama",
+                "saya",
+                "Adam."
+              ],
+              "explanation": "In Malay the word order is \"Nama saya Adam\" (name my Adam)."
+            },
+            {
+              "id": "ms-u1-l2-s5",
+              "kind": "gap",
+              "text": "Fill the gap.",
+              "sentence": "___ saya Mei.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Nama"
+                },
+                {
+                  "id": "b",
+                  "text": "Makan"
+                },
+                {
+                  "id": "c",
+                  "text": "Rumah"
+                }
+              ],
+              "answer": "a",
+              "explanation": "\"Nama saya Mei\" = My name is Mei."
+            },
+            {
+              "id": "ms-u1-l2-s6",
+              "kind": "pick",
+              "text": "Pick the meaning.",
+              "prompt": "\"Saya pelajar.\" means…",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "I am a student."
+                },
+                {
+                  "id": "b",
+                  "text": "I am a teacher."
+                },
+                {
+                  "id": "c",
+                  "text": "I like rice."
+                }
+              ],
+              "answer": "a",
+              "explanation": "Pelajar = student."
+            },
+            {
+              "id": "ms-u1-l2-s7",
+              "kind": "type",
+              "text": "Type it in Malay.",
+              "prompt": "My name is Ali.",
+              "accept": [
+                "nama saya ali"
+              ],
+              "explanation": "My name is Ali = Nama saya Ali."
+            }
+          ]
+        },
+        {
+          "id": "ms-u1-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Nombor",
+          "objective": "Count from one to ten in Malay.",
+          "steps": [
+            {
+              "id": "ms-u1-l3-s1",
+              "kind": "card",
+              "text": "New word",
+              "word": "satu",
+              "meaning": "one",
+              "emoji": "1️⃣"
+            },
+            {
+              "id": "ms-u1-l3-s2",
+              "kind": "card",
+              "text": "New word",
+              "word": "dua",
+              "meaning": "two",
+              "emoji": "2️⃣"
+            },
+            {
+              "id": "ms-u1-l3-s3",
+              "kind": "card",
+              "text": "New word",
+              "word": "tiga",
+              "meaning": "three",
+              "emoji": "3️⃣"
+            },
+            {
+              "id": "ms-u1-l3-s4",
+              "kind": "match",
+              "text": "Match the pairs.",
+              "pairs": [
+                [
+                  "empat",
+                  "four"
+                ],
+                [
+                  "lima",
+                  "five"
+                ],
+                [
+                  "enam",
+                  "six"
+                ],
+                [
+                  "tujuh",
+                  "seven"
+                ]
+              ]
+            },
+            {
+              "id": "ms-u1-l3-s5",
+              "kind": "pick",
+              "text": "How many? (Berapa?)",
+              "prompt": "🍎🍎🍎",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "tiga"
+                },
+                {
+                  "id": "b",
+                  "text": "dua"
+                },
+                {
+                  "id": "c",
+                  "text": "lima"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Tiga = three."
+            },
+            {
+              "id": "ms-u1-l3-s6",
+              "kind": "gap",
+              "text": "Fill the gap.",
+              "sentence": "Saya ada ___ kucing. 🐱🐱",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "dua"
+                },
+                {
+                  "id": "b",
+                  "text": "tiga"
+                },
+                {
+                  "id": "c",
+                  "text": "satu"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Dua = two. Saya ada dua kucing = I have two cats."
+            },
+            {
+              "id": "ms-u1-l3-s7",
+              "kind": "type",
+              "text": "Type it in Malay.",
+              "prompt": "ten",
+              "accept": [
+                "sepuluh",
+                "10"
+              ],
+              "explanation": "Ten = sepuluh."
+            }
+          ]
+        },
+        {
+          "id": "ms-u1-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Apa khabar?",
+          "objective": "Ask and answer \"How are you?\".",
+          "steps": [
+            {
+              "id": "ms-u1-l4-s1",
+              "kind": "card",
+              "text": "New word",
+              "word": "Apa khabar?",
+              "meaning": "How are you?",
+              "emoji": "🤗"
+            },
+            {
+              "id": "ms-u1-l4-s2",
+              "kind": "card",
+              "text": "New word",
+              "word": "Khabar baik",
+              "meaning": "I am fine",
+              "emoji": "😊"
+            },
+            {
+              "id": "ms-u1-l4-s3",
+              "kind": "pick",
+              "text": "Pick the best reply.",
+              "prompt": "\"Apa khabar?\"",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Khabar baik, terima kasih."
+                },
+                {
+                  "id": "b",
+                  "text": "Nama saya Ali."
+                },
+                {
+                  "id": "c",
+                  "text": "Selamat malam."
+                }
+              ],
+              "answer": "a",
+              "explanation": "Apa khabar? is answered with Khabar baik (I am fine)."
+            },
+            {
+              "id": "ms-u1-l4-s4",
+              "kind": "build",
+              "text": "Build the sentence in Malay.",
+              "prompt": "Good morning, teacher!",
+              "tiles": [
+                "Selamat",
+                "pagi,",
+                "cikgu!",
+                "malam,",
+                "kawan!"
+              ],
+              "answer": [
+                "Selamat",
+                "pagi,",
+                "cikgu!"
+              ],
+              "explanation": "Cikgu = teacher. Malaysian students greet their teacher this way every morning."
+            },
+            {
+              "id": "ms-u1-l4-s5",
+              "kind": "gap",
+              "text": "Fill the gap.",
+              "sentence": "Selamat ___, cikgu! 🌅",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "pagi"
+                },
+                {
+                  "id": "b",
+                  "text": "malam"
+                },
+                {
+                  "id": "c",
+                  "text": "tinggal"
+                }
+              ],
+              "answer": "a",
+              "explanation": "The sun is rising, so it is pagi (morning)."
+            },
+            {
+              "id": "ms-u1-l4-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear.",
+              "say": "Apa khabar?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Apa khabar?"
+                },
+                {
+                  "id": "b",
+                  "text": "Khabar baik"
+                },
+                {
+                  "id": "c",
+                  "text": "Terima kasih"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "ms-u1-l4-s7",
+              "kind": "type",
+              "text": "Type it in Malay.",
+              "prompt": "How are you?",
+              "accept": [
+                "apa khabar"
+              ],
+              "explanation": "How are you? = Apa khabar?"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

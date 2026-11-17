@@ -4,7 +4,7 @@ import { runInNewContext } from 'node:vm'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { loadPyodide, type PyodideInterface } from 'pyodide'
 import { contentRules, courseSource, type Course, type Step } from './lessonSchema'
-import { normCode, normOutput, replaceLine } from './codeText'
+import { normAnswer, normCode, normOutput, replaceLine } from './codeText'
 import { formatArgs } from './runner/jsCore'
 
 const dir = new URL('../../../content/courses/', import.meta.url)
@@ -51,8 +51,8 @@ const run = (lang: Course['language'], code: string) => (lang === 'javascript' ?
 const steps = (c: Course) => c.units.flatMap((u) => u.lessons.flatMap((l) => l.steps))
 
 describe('course files', () => {
-  it('has both beginner courses', () => {
-    expect(courses.map((c) => c.id).sort()).toEqual(['javascript-basics', 'python-basics'])
+  it('has the coding and language courses', () => {
+    expect(courses.map((c) => c.id).sort()).toEqual(['english-basics', 'javascript-basics', 'malay-basics', 'python-basics'])
   })
 
   it('every course file matches the schema and the content rules', () => {
@@ -64,7 +64,7 @@ describe('course files', () => {
   })
 
   it('the rules really catch broken lessons', () => {
-    const c = structuredClone(courses[0])
+    const c = structuredClone(courses.find((x) => x.kind === 'code')!)
     const fix = steps(c).find((s) => s.kind === 'fix') as Extract<Step, { kind: 'fix' }>
     fix.broken_line = 99
     expect(contentRules(c).join(' ')).toMatch(/broken_line/)
@@ -74,6 +74,19 @@ describe('course files', () => {
     expect(normCode('print( "Hi" )')).toBe(normCode('print("Hi")'))
     expect(normCode('x  =  1 + 2')).toBe(normCode('x=1+2'))
     expect(normCode('x = "a b"')).not.toBe(normCode('x = "ab"'))
+  })
+
+  it('normAnswer forgives slips', () => {
+    expect(normAnswer('Selamat  pagi.')).toBe(normAnswer('selamat pagi'))
+    expect(normAnswer("I'm Aina!")).toBe(normAnswer('im aina'))
+    expect(normAnswer('hello')).not.toBe(normAnswer('hallo'))
+  })
+
+  it('the rules catch broken language steps', () => {
+    const c = structuredClone(courses.find((x) => x.kind === 'language')!)
+    const b = steps(c).find((s) => s.kind === 'build') as Extract<Step, { kind: 'build' }>
+    b.answer = [...b.answer, 'zebra']
+    expect(contentRules(c).join(' ')).toMatch(/zebra/)
   })
 
   it('normOutput ignores trailing spaces and blank lines only', () => {
@@ -87,7 +100,7 @@ describe('every sample prints what the lesson says', () => {
     py = await loadPyodide()
   }, 120_000)
 
-  for (const c of courses)
+  for (const c of courses.filter((x) => x.kind === 'code'))
     it(`${c.id}: learn, fix, write and predict outputs are real`, async () => {
       for (const s of steps(c)) {
         const check = async (code: string, expected: string, what: string) => {
