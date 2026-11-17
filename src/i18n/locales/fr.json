@@ -392,7 +392,8 @@
     "admin": "Relire les questions",
     "library": "Bibliothèque",
     "shop": "Boutique",
-    "academy": "Académie du code"
+    "academy": "Académie du code",
+    "hall": "Salle des langues"
   },
   "world": {
     "canvasLabel": "{{place}}. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",
@@ -749,6 +750,14 @@
       "notFound": "Cette leçon n'est pas disponible.",
       "unanswered": "Réponds d'abord à toutes les questions de la leçon.",
       "generic": "Un problème est survenu. Réessaie."
-    }
+    },
+    "play": "Écouter",
+    "answerLine": "Ta phrase",
+    "tray": "Mots",
+    "matchHint": "Touche un mot, puis son sens. Touche une paire à nouveau pour l'annuler."
+  },
+  "hall": {
+    "title": "Salle des langues",
+    "intro": "Apprends l'anglais et le malais avec des leçons courtes et amusantes. Touche, écoute, associe et construis des phrases."
   }
 }

@@ -392,7 +392,8 @@
     "admin": "Review questions",
     "library": "Academic Library",
     "shop": "Shop",
-    "academy": "Code Academy"
+    "academy": "Code Academy",
+    "hall": "Language Hall"
   },
   "world": {
     "canvasLabel": "{{place}}. Move with W A S D or the arrow keys, tap to walk, press E to talk.",
@@ -749,6 +750,14 @@
       "notFound": "This lesson isn't available.",
       "unanswered": "Answer every question in the lesson first.",
       "generic": "Something went wrong. Please try again."
-    }
+    },
+    "play": "Listen",
+    "answerLine": "Your sentence",
+    "tray": "Words",
+    "matchHint": "Tap a word, then its meaning. Tap a pair again to undo it."
+  },
+  "hall": {
+    "title": "Language Hall",
+    "intro": "Learn English and Bahasa Melayu with short, fun lessons. Tap, listen, match and build sentences."
   }
 }

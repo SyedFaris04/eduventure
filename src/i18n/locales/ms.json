@@ -392,7 +392,8 @@
     "admin": "Semak soalan",
     "library": "Perpustakaan Akademik",
     "shop": "Kedai",
-    "academy": "Akademi Kod"
+    "academy": "Akademi Kod",
+    "hall": "Dewan Bahasa"
   },
   "world": {
     "canvasLabel": "{{place}}. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",
@@ -749,6 +750,14 @@
       "notFound": "Pelajaran ini tidak tersedia.",
       "unanswered": "Jawab semua soalan dalam pelajaran dahulu.",
       "generic": "Ada yang tidak kena. Sila cuba lagi."
-    }
+    },
+    "play": "Dengar",
+    "answerLine": "Ayat anda",
+    "tray": "Perkataan",
+    "matchHint": "Ketik satu perkataan, kemudian maksudnya. Ketik pasangan sekali lagi untuk membatalkannya."
+  },
+  "hall": {
+    "title": "Dewan Bahasa",
+    "intro": "Belajar bahasa Inggeris dan Bahasa Melayu melalui pelajaran pendek yang seronok. Ketik, dengar, padankan dan bina ayat."
   }
 }

@@ -5,17 +5,20 @@ import { ArrowRight, Check, Coins, Eye, Lightbulb, Play, Sparkles, Trophy, X } f
 import { Button, ProgressBar } from '../../components/ui'
 import { useSession } from '../authentication/useSession'
 import { LevelUp, usePlayerLevel } from '../battle/BattlePanel'
-import { AcademyError, answerStep, completeLesson, lessonSolution, noteWriteAttempt, progressKey, startLesson, type Lang, type LessonDone, type LessonStart, type LessonStep, type StepAnswer, type StepResult } from './academyApi'
+import { AcademyError, answerStep, completeLesson, lessonSolution, noteWriteAttempt, progressKey, startLesson, type CourseLang, type Lang, type LessonDone, type LessonStart, type LessonStep, type StepAnswer, type StepResult } from './academyApi'
 import { checkWrite } from './checkWrite'
 import { fixLine } from './fixLine'
 import { KeyRow } from './KeyRow'
 import { resetRunner, runCode, runnerFor, type RunResult } from './runner/runner'
 import { Terminal, type RunStatus } from './Terminal'
 import type { EditorApi } from './CodeEditor'
+import { LanguageStep } from './LanguageStep'
+import { loadVoices, pickVoice } from './speech'
 
 const CodeEditor = lazy(() => import('./CodeEditor'))
 
-type Props = { courseId: string; lessonId: string; language: Lang; onExit: () => void; onNext?: () => void }
+type Props = { courseId: string; lessonId: string; language: CourseLang; onExit: () => void; onNext?: () => void }
+const isCode = (l: CourseLang): l is Lang => l === 'python' || l === 'javascript'
 
 /** One lesson: Learn, Predict, Fix and Write steps in order, then the reward (paid once, by the server). */
 export function LessonPlayer({ courseId, lessonId, language, onExit, onNext }: Props) {
@@ -31,8 +34,13 @@ export function LessonPlayer({ courseId, lessonId, language, onExit, onNext }: P
 
   useEffect(() => {
     let live = true
-    startLesson(lessonId)
-      .then((d) => live && setData(d))
+    // Language lessons wait briefly for the device's voices: without one, listening steps are skipped (a bonus anyway).
+    Promise.all([startLesson(lessonId), isCode(language) ? Promise.resolve([]) : loadVoices()])
+      .then(([d, voices]) => {
+        if (!live) return
+        const speaks = isCode(language) || pickVoice(voices, language) !== null
+        setData(speaks ? d : { ...d, steps: d.steps.filter((s) => s.kind !== 'listen') })
+      })
       .catch((e) => live && setError(e instanceof AcademyError ? e.key : 'academy.errors.generic'))
     // Python downloads while the learner reads the first step.
     if (language === 'python') runnerFor('python').ready().catch(() => undefined)
@@ -79,11 +87,28 @@ export function LessonPlayer({ courseId, lessonId, language, onExit, onNext }: P
           {t(error)}
         </p>
       )}
+      {!isCode(language) ? (
+        <LanguageStep
+          key={step.id}
+          step={step}
+          attempt={data.attempt_id}
+          language={language}
+          alreadySolved={solved}
+          last={last}
+          finishing={finishing}
+          onError={setError}
+          onContinue={() => {
+            setError(null)
+            if (last) void finish()
+            else setIndex((i) => i + 1)
+          }}
+        />
+      ) : (
       <StepView
         key={step.id}
         step={step}
         attempt={data.attempt_id}
-        language={language}
+        language={language as Lang}
         alreadySolved={solved}
         last={last}
         finishing={finishing}
@@ -94,6 +119,7 @@ export function LessonPlayer({ courseId, lessonId, language, onExit, onNext }: P
           else setIndex((i) => i + 1)
         }}
       />
+      )}
     </div>
   )
 }

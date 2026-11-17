@@ -94,6 +94,15 @@ const router = createBrowserRouter([
   { path: '/academy', ...page(async () => (await import('../features/academy/AcademyPages')).AcademyPage, true) },
   { path: '/academy/:course', ...page(async () => (await import('../features/academy/AcademyPages')).CoursePage, true) },
   { path: '/academy/:course/:lesson', ...page(async () => (await import('../features/academy/AcademyPages')).LessonPage, true) },
+  {
+    path: '/hall',
+    ...page(async () => {
+      const { AcademyPage } = await import('../features/academy/AcademyPages')
+      return () => <AcademyPage kind="language" />
+    }, true),
+  },
+  { path: '/hall/:course', ...page(async () => (await import('../features/academy/AcademyPages')).CoursePage, true) },
+  { path: '/hall/:course/:lesson', ...page(async () => (await import('../features/academy/AcademyPages')).LessonPage, true) },
   { path: '/admin', ...page(async () => (await import('../features/admin/AdminPage')).AdminPage) },
   { path: '/styleguide', ...page(async () => (await import('../features/styleguide/StyleguidePage')).StyleguidePage) },
   ...(import.meta.env.DEV

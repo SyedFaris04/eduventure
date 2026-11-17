@@ -392,7 +392,8 @@
     "admin": "Revisar preguntas",
     "library": "Biblioteca académica",
     "shop": "Tienda",
-    "academy": "Academia de Código"
+    "academy": "Academia de Código",
+    "hall": "Salón de Idiomas"
   },
   "world": {
     "canvasLabel": "{{place}}. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",
@@ -749,6 +750,14 @@
       "notFound": "Esta lección no está disponible.",
       "unanswered": "Responde primero todas las preguntas de la lección.",
       "generic": "Algo salió mal. Inténtalo de nuevo."
-    }
+    },
+    "play": "Escuchar",
+    "answerLine": "Tu frase",
+    "tray": "Palabras",
+    "matchHint": "Toca una palabra y luego su significado. Toca una pareja otra vez para deshacerla."
+  },
+  "hall": {
+    "title": "Salón de Idiomas",
+    "intro": "Aprende inglés y malayo con lecciones cortas y divertidas. Toca, escucha, empareja y construye frases."
   }
 }
