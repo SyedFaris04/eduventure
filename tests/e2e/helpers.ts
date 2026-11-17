@@ -86,6 +86,22 @@ export async function answerCorrectly(page: Page) {
   await expect(page.getByText(/Correct!/)).toBeVisible({ timeout: 15_000 })
 }
 
+/** Answers wrongly when the question type makes that easy; returns false (and does nothing) otherwise. */
+export async function answerWrongly(page: Page): Promise<boolean> {
+  const prompt = await page.locator('section[role=dialog] p.text-xl').innerText()
+  const q = bank.find((x) => x.prompt === prompt)
+  if (!q) throw new Error(`question not found in content/questions: ${prompt}`)
+  const list = (q.options ?? []) as Opt[]
+  if (q.type === 'mcq') await page.getByRole('button', { name: list.find((o) => o.id !== q.answer)!.text, exact: false }).first().click()
+  else if (q.type === 'true_false') await page.getByRole('button', { name: q.answer === 'true' ? /False/ : /True/ }).click()
+  else if (q.type === 'numeric' || q.type === 'short_answer' || q.type === 'fill_blank') {
+    await page.getByLabel('Your answer').fill('987654321')
+    await page.getByRole('button', { name: 'Answer', exact: true }).click()
+  } else return false
+  await expect(page.getByText('Why not?')).toBeVisible({ timeout: 15_000 })
+  return true
+}
+
 export const place = (page: Page) => page.evaluate(() => (window as unknown as { __place: { getState: () => { place: string } } }).__place.getState().place)
 export const promptIs = (page: Page, kind: string, id?: string) =>
   page.waitForFunction(

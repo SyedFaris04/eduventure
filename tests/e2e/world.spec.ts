@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { answerCorrectly, clickGrid, enterWorld, newPlayer, state, type GameState } from './helpers'
+import { answerCorrectly, answerWrongly, clickGrid, enterWorld, newPlayer, state, type GameState } from './helpers'
 
 test('walk, talk to the Elder, win a battle; Home shows the server totals after a reload', async ({ page }) => {
   test.setTimeout(240_000)
@@ -34,10 +34,13 @@ test('walk, talk to the Elder, win a battle; Home shows the server totals after 
   await page.keyboard.press('e')
   const battle = page.getByRole('dialog', { name: /Battle with Sproutling/ })
   await expect(battle).toBeVisible()
-  for (let i = 0; i < 10 && !(await page.getByRole('button', { name: 'Back to the village' }).count()); i++) {
-    await answerCorrectly(page)
+  // One mistake first: the "Why not?" card explains it and promises it will come back.
+  let missed = false
+  for (let i = 0; i < 12 && !(await page.getByRole('button', { name: 'Back to the village' }).count()); i++) {
+    if (missed || !(missed = await answerWrongly(page))) await answerCorrectly(page)
     if (await page.getByRole('button', { name: 'Continue' }).count()) await page.getByRole('button', { name: 'Continue' }).click()
   }
+  expect(missed).toBe(true)
   await expect(battle).toContainText('Victory!')
   await page.getByRole('button', { name: 'Back to the village' }).click()
 
