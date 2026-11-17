@@ -4,11 +4,12 @@ import { useGame } from '../../game/store'
 import { usePlace } from '../../game/placeStore'
 import { setAcademyOrigin } from '../academy/origin'
 import { useTranslation } from 'react-i18next'
-import { Gauge, House } from 'lucide-react'
+import { Gauge, House, PawPrint } from 'lucide-react'
 import { buttonClasses } from '../../components/ui'
 import { useSession } from '../authentication/useSession'
 import { useMyCharacter, useProgression } from '../character/useCharacter'
 import { useMyTitle } from '../character/TitlePicker'
+import { usePet } from '../pet/usePet'
 import { GameCanvas } from './GameCanvas'
 import { Hud } from './Hud'
 import { Minimap } from './Minimap'
@@ -28,6 +29,7 @@ export function WorldPage() {
   const character = useMyCharacter(uid)
   const progression = useProgression(uid)
   const title = useMyTitle(uid)
+  const pet = usePet(uid)
   const quality = useQuality()
   const qualityText = t('world.quality', { level: t(`world.qualityLevel.${quality.choice}`) })
   const navigate = useNavigate()
@@ -45,7 +47,7 @@ export function WorldPage() {
 
   return (
     <main className="fixed inset-0 overflow-hidden bg-[#5fb3d9] select-none">
-      {character.data && <GameCanvas hero={character.data.appearance} />}
+      {character.data && <GameCanvas hero={character.data.appearance} pet={pet.data} />}
       {/* Overlays ignore pointer events except on their own controls, so taps reach the map. */}
       <div className="pointer-events-none absolute inset-0">
         {character.data && <Hud character={character.data} xp={progression.data?.xp ?? 0} gold={progression.data?.gold ?? 0} title={title.data} />}
@@ -62,6 +64,9 @@ export function WorldPage() {
           <Gauge size={20} aria-hidden />
           <span className="hidden text-sm md:inline">{t(`world.qualityLevel.${quality.choice}`)}</span>
         </button>
+        <Link to="/pet" aria-label={t('pet.open')} title={t('pet.open')} className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-[7.25rem] z-10 px-3!')}>
+          <PawPrint size={20} aria-hidden />
+        </Link>
         <Suspense fallback={null}>
           <Minimap />
         </Suspense>

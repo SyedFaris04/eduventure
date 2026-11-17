@@ -362,7 +362,15 @@
       "winged_boots": "Winged Boots",
       "star_cloak": "Star Cloak",
       "golden_crown": "Golden Crown",
-      "golden_quill": "Golden Quill"
+      "golden_quill": "Golden Quill",
+      "pet_songkok": "Songkok",
+      "pet_flower": "Flower crown",
+      "pet_tengkolok": "Tengkolok",
+      "pet_batik": "Batik scarf",
+      "pet_bell": "Bell collar",
+      "pet_dye_ocean": "Ocean dye",
+      "pet_dye_rose": "Rose dye",
+      "pet_dye_gold": "Gold dye"
     },
     "fromShop": "From the shop"
   },
@@ -638,7 +646,9 @@
       "failed": "Something went wrong. Please try again.",
       "level": "You need a higher level to buy this item."
     },
-    "lockedLevel": "Level {{level}}"
+    "lockedLevel": "Level {{level}}",
+    "petCorner": "Pet corner",
+    "hatchFirst": "Hatch a pet to try this on"
   },
   "unlocks": {
     "second_chance": "Second Chance: your first wrong answer in each battle costs nothing",
@@ -649,7 +659,10 @@
     "fifty": "50/50: remove two wrong answers once per battle",
     "epic": "Epic items in the shop",
     "island_explorer": "Title: Island Explorer",
-    "scholar_of_the_seas": "Title: Scholar of the Seas"
+    "scholar_of_the_seas": "Title: Scholar of the Seas",
+    "pet_egg": "A pet egg to hatch",
+    "pet_young": "Your pet can grow up",
+    "pet_adult": "Your pet can become an adult"
   },
   "titles": {
     "label": "Title",
@@ -788,5 +801,74 @@
   "hall": {
     "title": "Language Hall",
     "intro": "Learn English and Bahasa Melayu with short, fun lessons. Tap, listen, match and build sentences."
+  },
+  "pet": {
+    "title": "My pet",
+    "open": "My pet",
+    "lockedEgg": "Reach level {{level}} to hatch your egg",
+    "chooseEgg": "Choose your egg",
+    "species": {
+      "kancil": "Kancil (mouse-deer)",
+      "beruang": "Beruang (sun bear)",
+      "naga": "Naga (dragon)"
+    },
+    "nameLabel": "Name",
+    "names": {
+      "comel": "Comel",
+      "bulat": "Bulat",
+      "si_pintar": "Si Pintar",
+      "tompok": "Tompok",
+      "bintang": "Bintang",
+      "kiki": "Kiki",
+      "mochi": "Mochi",
+      "ombak": "Ombak"
+    },
+    "hatch": "Hatch!",
+    "hatched": "{{name}} hatched! Learn together to help it grow.",
+    "stage": {
+      "baby": "Baby",
+      "young": "Young",
+      "adult": "Adult"
+    },
+    "points": "{{n}} / {{need}} pet points",
+    "need": {
+      "points": "{{n}} pet points",
+      "level": "Level {{n}}",
+      "gold": "{{n}} gold for the Upacara Evolusi"
+    },
+    "evolve": "Evolve to {{stage}}",
+    "evolved": "{{name}} evolved!",
+    "fullyGrown": "Fully grown! Your pet keeps learning with you.",
+    "branch": {
+      "science": "Science",
+      "maths": "Maths",
+      "technology": "Technology",
+      "language": "Language"
+    },
+    "form": {
+      "science": "Science form",
+      "maths": "Maths form",
+      "technology": "Technology form",
+      "language": "Language form",
+      "seimbang": "Seimbang (balanced) form"
+    },
+    "heading": "Heading for: {{form}}",
+    "howToGrow": "Your pet grows when you learn: +1 for each right answer (up to 30 a day), +5 for each new lesson and +3 for each day you play. It never gets sick or sad while you are away.",
+    "dress": "Dress up",
+    "slot": {
+      "hat": "Hat",
+      "neck": "Neck",
+      "dye": "Colour"
+    },
+    "wearItem": "Wear {{item}}",
+    "takeOffItem": "Take off {{item}}",
+    "noItems": "Buy hats, collars and colours for your pet in the shop's Pet corner.",
+    "cheer": "{{name}}: We'll get it next time!",
+    "errors": {
+      "points": "Your pet needs more pet points first.",
+      "level": "Reach the level shown to evolve.",
+      "gold": "Not enough gold yet.",
+      "failed": "That did not work. Please try again."
+    }
   }
 }

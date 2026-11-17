@@ -362,7 +362,15 @@
       "winged_boots": "Botas Aladas",
       "star_cloak": "Capa Estelar",
       "golden_crown": "Corona Dorada",
-      "golden_quill": "Pluma Dorada"
+      "golden_quill": "Pluma Dorada",
+      "pet_songkok": "Songkok",
+      "pet_flower": "Corona de flores",
+      "pet_tengkolok": "Tengkolok",
+      "pet_batik": "Pañuelo batik",
+      "pet_bell": "Collar con cascabel",
+      "pet_dye_ocean": "Tinte océano",
+      "pet_dye_rose": "Tinte rosa",
+      "pet_dye_gold": "Tinte dorado"
     },
     "fromShop": "De la tienda"
   },
@@ -638,7 +646,9 @@
       "failed": "Algo salió mal. Inténtalo de nuevo.",
       "level": "Necesitas un nivel más alto para comprar este objeto."
     },
-    "lockedLevel": "Nivel {{level}}"
+    "lockedLevel": "Nivel {{level}}",
+    "petCorner": "Rincón de mascotas",
+    "hatchFirst": "Abre un huevo para probártelo"
   },
   "unlocks": {
     "second_chance": "Segunda oportunidad: tu primer error en cada batalla no cuesta nada",
@@ -649,7 +659,10 @@
     "fifty": "50/50: quita dos respuestas incorrectas una vez por batalla",
     "epic": "Objetos épicos en la tienda",
     "island_explorer": "Título: Exploradora de Islas",
-    "scholar_of_the_seas": "Título: Sabio de los Mares"
+    "scholar_of_the_seas": "Título: Sabio de los Mares",
+    "pet_egg": "Un huevo de mascota para abrir",
+    "pet_young": "Tu mascota puede crecer",
+    "pet_adult": "Tu mascota puede hacerse adulta"
   },
   "titles": {
     "label": "Título",
@@ -788,5 +801,74 @@
   "hall": {
     "title": "Salón de Idiomas",
     "intro": "Aprende inglés y malayo con lecciones cortas y divertidas. Toca, escucha, empareja y construye frases."
+  },
+  "pet": {
+    "title": "Mi mascota",
+    "open": "Mi mascota",
+    "lockedEgg": "Llega al nivel {{level}} para abrir tu huevo",
+    "chooseEgg": "Elige tu huevo",
+    "species": {
+      "kancil": "Kancil (ciervo ratón)",
+      "beruang": "Beruang (oso malayo)",
+      "naga": "Naga (dragón)"
+    },
+    "nameLabel": "Nombre",
+    "names": {
+      "comel": "Comel",
+      "bulat": "Bulat",
+      "si_pintar": "Si Pintar",
+      "tompok": "Tompok",
+      "bintang": "Bintang",
+      "kiki": "Kiki",
+      "mochi": "Mochi",
+      "ombak": "Ombak"
+    },
+    "hatch": "¡Abrir!",
+    "hatched": "¡{{name}} ha nacido! Aprended juntos para que crezca.",
+    "stage": {
+      "baby": "Bebé",
+      "young": "Joven",
+      "adult": "Adulto"
+    },
+    "points": "{{n}} / {{need}} puntos de mascota",
+    "need": {
+      "points": "{{n}} puntos de mascota",
+      "level": "Nivel {{n}}",
+      "gold": "{{n}} de oro para la Upacara Evolusi"
+    },
+    "evolve": "Evolucionar a {{stage}}",
+    "evolved": "¡{{name}} ha evolucionado!",
+    "fullyGrown": "¡Ya es adulto! Tu mascota sigue aprendiendo contigo.",
+    "branch": {
+      "science": "Ciencias",
+      "maths": "Matemáticas",
+      "technology": "Tecnología",
+      "language": "Idiomas"
+    },
+    "form": {
+      "science": "Forma de Ciencias",
+      "maths": "Forma de Matemáticas",
+      "technology": "Forma de Tecnología",
+      "language": "Forma de Idiomas",
+      "seimbang": "Forma Seimbang (equilibrada)"
+    },
+    "heading": "Rumbo a: {{form}}",
+    "howToGrow": "Tu mascota crece cuando aprendes: +1 por cada respuesta correcta (hasta 30 al día), +5 por cada lección nueva y +3 por cada día que juegas. Nunca enferma ni se pone triste cuando no estás.",
+    "dress": "Vestir",
+    "slot": {
+      "hat": "Sombrero",
+      "neck": "Cuello",
+      "dye": "Color"
+    },
+    "wearItem": "Poner {{item}}",
+    "takeOffItem": "Quitar {{item}}",
+    "noItems": "Compra sombreros, collares y colores en el Rincón de mascotas de la tienda.",
+    "cheer": "{{name}}: ¡La próxima vez lo conseguimos!",
+    "errors": {
+      "points": "Tu mascota necesita más puntos primero.",
+      "level": "Alcanza el nivel indicado para evolucionar.",
+      "gold": "Aún no tienes suficiente oro.",
+      "failed": "No ha funcionado. Inténtalo de nuevo."
+    }
   }
 }

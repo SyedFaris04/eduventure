@@ -362,7 +362,15 @@
       "winged_boots": "翼のブーツ",
       "star_cloak": "星のマント",
       "golden_crown": "黄金の王冠",
-      "golden_quill": "黄金の羽ペン"
+      "golden_quill": "黄金の羽ペン",
+      "pet_songkok": "ソンコック",
+      "pet_flower": "花のかんむり",
+      "pet_tengkolok": "トゥンコロック",
+      "pet_batik": "バティックのスカーフ",
+      "pet_bell": "すずのくびわ",
+      "pet_dye_ocean": "オーシャンのいろ",
+      "pet_dye_rose": "ローズのいろ",
+      "pet_dye_gold": "ゴールドのいろ"
     },
     "fromShop": "ショップのアイテム"
   },
@@ -638,7 +646,9 @@
       "failed": "うまくいきませんでした。もう一度試してください。",
       "level": "このアイテムを買うにはもっと高いレベルが必要です。"
     },
-    "lockedLevel": "レベル{{level}}"
+    "lockedLevel": "レベル{{level}}",
+    "petCorner": "ペットコーナー",
+    "hatchFirst": "ペットをかえすと試着できます"
   },
   "unlocks": {
     "second_chance": "セカンドチャンス：各バトルで最初のまちがいはノーダメージ",
@@ -649,7 +659,10 @@
     "fifty": "50/50：バトルごとに1回、まちがいの答えを2つ消す",
     "epic": "ショップのエピックアイテム",
     "island_explorer": "称号：島の探検家",
-    "scholar_of_the_seas": "称号：海の学者"
+    "scholar_of_the_seas": "称号：海の学者",
+    "pet_egg": "かえせるペットのタマゴ",
+    "pet_young": "ペットが大きくなれる",
+    "pet_adult": "ペットがおとなになれる"
   },
   "titles": {
     "label": "称号",
@@ -788,5 +801,74 @@
   "hall": {
     "title": "ことばホール",
     "intro": "短くて楽しいレッスンで英語とマレー語を学ぼう。タップ、リスニング、マッチ、文づくり。"
+  },
+  "pet": {
+    "title": "マイペット",
+    "open": "マイペット",
+    "lockedEgg": "レベル {{level}} になるとタマゴをかえせます",
+    "chooseEgg": "タマゴをえらぼう",
+    "species": {
+      "kancil": "カンチル（マメジカ）",
+      "beruang": "ブルアン（マレーグマ）",
+      "naga": "ナーガ（ドラゴン）"
+    },
+    "nameLabel": "なまえ",
+    "names": {
+      "comel": "Comel",
+      "bulat": "Bulat",
+      "si_pintar": "Si Pintar",
+      "tompok": "Tompok",
+      "bintang": "Bintang",
+      "kiki": "Kiki",
+      "mochi": "Mochi",
+      "ombak": "Ombak"
+    },
+    "hatch": "かえす！",
+    "hatched": "{{name}} がうまれた！いっしょに学んで育てよう。",
+    "stage": {
+      "baby": "ベビー",
+      "young": "ジュニア",
+      "adult": "おとな"
+    },
+    "points": "{{n}} / {{need}} ペットポイント",
+    "need": {
+      "points": "{{n}} ペットポイント",
+      "level": "レベル {{n}}",
+      "gold": "進化の儀式に {{n}} ゴールド"
+    },
+    "evolve": "{{stage}}に進化",
+    "evolved": "{{name}} が進化した！",
+    "fullyGrown": "おとなになった！これからもいっしょに学ぼう。",
+    "branch": {
+      "science": "理科",
+      "maths": "算数・数学",
+      "technology": "テクノロジー",
+      "language": "ことば"
+    },
+    "form": {
+      "science": "理科のすがた",
+      "maths": "数学のすがた",
+      "technology": "テクノロジーのすがた",
+      "language": "ことばのすがた",
+      "seimbang": "バランスのすがた（スイムバン）"
+    },
+    "heading": "めざすすがた：{{form}}",
+    "howToGrow": "学ぶとペットが育ちます：正解ごとに +1（1日30まで）、新しいレッスンごとに +5、遊んだ日ごとに +3。あなたがいない間に病気になったり悲しんだりすることはありません。",
+    "dress": "きせかえ",
+    "slot": {
+      "hat": "ぼうし",
+      "neck": "くび",
+      "dye": "いろ"
+    },
+    "wearItem": "{{item}} をつける",
+    "takeOffItem": "{{item}} をはずす",
+    "noItems": "ショップのペットコーナーでぼうし・くびわ・いろを買えます。",
+    "cheer": "{{name}}：つぎはきっとできるよ！",
+    "errors": {
+      "points": "まずペットポイントがもっと必要です。",
+      "level": "表示のレベルになると進化できます。",
+      "gold": "ゴールドがまだ足りません。",
+      "failed": "うまくいきませんでした。もう一度ためしてね。"
+    }
   }
 }

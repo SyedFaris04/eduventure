@@ -91,6 +91,7 @@ const router = createBrowserRouter([
   { path: '/world', ...page(async () => (await import('../features/world/WorldPage')).WorldPage, true) },
   { path: '/library', ...page(async () => (await import('../features/library/LibraryPage')).LibraryPage, true) },
   { path: '/shop', ...page(async () => (await import('../features/shop/ShopPage')).ShopPage, true) },
+  { path: '/pet', ...page(async () => (await import('../features/pet/PetPage')).PetPage, true) },
   { path: '/academy', ...page(async () => (await import('../features/academy/AcademyPages')).AcademyPage, true) },
   { path: '/academy/:course', ...page(async () => (await import('../features/academy/AcademyPages')).CoursePage, true) },
   { path: '/academy/:course/:lesson', ...page(async () => (await import('../features/academy/AcademyPages')).LessonPage, true) },
