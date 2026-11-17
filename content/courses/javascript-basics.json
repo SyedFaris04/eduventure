@@ -329,6 +329,649 @@
           ]
         }
       ]
+    },
+    {
+      "id": "js-u2",
+      "title": "Numbers and choices",
+      "lessons": [
+        {
+          "id": "js-u2-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Maths with code",
+          "objective": "Calculate with + - * / and %.",
+          "steps": [
+            {
+              "id": "js-u2-l1-s1",
+              "kind": "learn",
+              "text": "JavaScript is a calculator too. / can give a decimal answer.",
+              "code": "console.log(6 + 4);\nconsole.log(7 / 2);",
+              "expected_output": "10\n3.5"
+            },
+            {
+              "id": "js-u2-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "console.log(3 * 4 - 2);",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "10"
+                },
+                {
+                  "id": "b",
+                  "text": "6"
+                },
+                {
+                  "id": "c",
+                  "text": "3 * 4 - 2"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Multiplication happens first: 3 * 4 is 12, then 12 - 2 is 10."
+            },
+            {
+              "id": "js-u2-l1-s3",
+              "kind": "learn",
+              "text": "Math.floor() drops the decimal part. % gives the remainder.",
+              "code": "console.log(Math.floor(17 / 5));\nconsole.log(17 % 5);",
+              "expected_output": "3\n2"
+            },
+            {
+              "id": "js-u2-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "let cakes = 20;\nlet friends = 6;\nconsole.log(Math.floor(cakes / friends));\nconsole.log(cakes % friends);",
+              "answer_text": "3\n2",
+              "explanation": "20 cakes shared by 6 friends: each gets 3, and 2 are left over."
+            },
+            {
+              "id": "js-u2-l1-s5",
+              "kind": "fix",
+              "text": "This should print the total cost as a number. Fix line 2.",
+              "code": "let price = \"5\";\nconsole.log(Number(price) + \"10\");",
+              "broken_line": 2,
+              "accept": [
+                "console.log(Number(price) + 10);",
+                "console.log(Number(price) + 10)"
+              ],
+              "expected_output": "15",
+              "hint": "Numbers have no quote marks.",
+              "explanation": "\"10\" with quotes is text, so + joins instead of adding."
+            },
+            {
+              "id": "js-u2-l1-s6",
+              "kind": "write",
+              "text": "A pizza has 8 slices and you eat 3. Print how many are left, using a calculation.",
+              "starter": "let slices = 8;\nlet eaten = 3;\n",
+              "expected_output": "5",
+              "must_use": [
+                "-"
+              ],
+              "solution": "let slices = 8;\nlet eaten = 3;\nconsole.log(slices - eaten);",
+              "hint": "Subtract eaten from slices inside console.log()."
+            }
+          ]
+        },
+        {
+          "id": "js-u2-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Comparing things",
+          "objective": "Use comparisons that answer true or false.",
+          "steps": [
+            {
+              "id": "js-u2-l2-s1",
+              "kind": "learn",
+              "text": "Comparisons answer true or false. === checks if two things are equal.",
+              "code": "console.log(5 > 3);\nconsole.log(2 === 3);",
+              "expected_output": "true\nfalse"
+            },
+            {
+              "id": "js-u2-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "console.log(10 <= 10);",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "true"
+                },
+                {
+                  "id": "b",
+                  "text": "false"
+                },
+                {
+                  "id": "c",
+                  "text": "10"
+                }
+              ],
+              "answer": "a",
+              "explanation": "<= means \"less than or equal to\". 10 equals 10, so it is true."
+            },
+            {
+              "id": "js-u2-l2-s3",
+              "kind": "learn",
+              "text": "You can compare text too. Capital letters matter!",
+              "code": "console.log(\"cat\" === \"cat\");\nconsole.log(\"Cat\" === \"cat\");",
+              "expected_output": "true\nfalse"
+            },
+            {
+              "id": "js-u2-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "let age = 12;\nconsole.log(age >= 13);",
+              "answer_text": "false",
+              "explanation": "12 is not 13 or more, so the answer is false."
+            },
+            {
+              "id": "js-u2-l2-s5",
+              "kind": "fix",
+              "text": "Line 2 should compare, not store. Fix it.",
+              "code": "let score = 100;\nconsole.log(score = 99);",
+              "broken_line": 2,
+              "accept": [
+                "console.log(score === 99);",
+                "console.log(score === 99)"
+              ],
+              "expected_output": "false",
+              "hint": "Use === to compare.",
+              "explanation": "A single = stores a value. Comparing needs ===."
+            },
+            {
+              "id": "js-u2-l2-s6",
+              "kind": "write",
+              "text": "Print whether 7 is greater than 4 (it should print true).",
+              "starter": "",
+              "expected_output": "true",
+              "must_use": [
+                ">"
+              ],
+              "solution": "console.log(7 > 4);",
+              "hint": "Put a comparison with > inside console.log()."
+            }
+          ]
+        },
+        {
+          "id": "js-u2-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Making choices with if",
+          "objective": "Run code only when a condition is true.",
+          "steps": [
+            {
+              "id": "js-u2-l3-s1",
+              "kind": "learn",
+              "text": "if runs the code in { } only when the condition in ( ) is true.",
+              "code": "let temp = 33;\nif (temp > 30) {\n  console.log(\"Panas! Drink water.\");\n}",
+              "expected_output": "Panas! Drink water."
+            },
+            {
+              "id": "js-u2-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "let marks = 45;\nif (marks >= 50) {\n  console.log(\"Pass\");\n} else {\n  console.log(\"Try again\");\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Pass"
+                },
+                {
+                  "id": "b",
+                  "text": "Try again"
+                },
+                {
+                  "id": "c",
+                  "text": "Pass Try again"
+                }
+              ],
+              "answer": "b",
+              "explanation": "45 is less than 50, so the else part runs."
+            },
+            {
+              "id": "js-u2-l3-s3",
+              "kind": "learn",
+              "text": "else runs when the condition is false.",
+              "code": "let raining = false;\nif (raining) {\n  console.log(\"Take an umbrella\");\n} else {\n  console.log(\"Enjoy the sun\");\n}",
+              "expected_output": "Enjoy the sun"
+            },
+            {
+              "id": "js-u2-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "let n = 4;\nif (n % 2 === 0) {\n  console.log(\"even\");\n} else {\n  console.log(\"odd\");\n}",
+              "answer_text": "even",
+              "explanation": "4 % 2 is 0, so the number is even."
+            },
+            {
+              "id": "js-u2-l3-s5",
+              "kind": "fix",
+              "text": "Line 2 is missing brackets around the condition. Fix it.",
+              "code": "let age = 15;\nif age >= 13 {\n  console.log(\"Teen\");\n}",
+              "broken_line": 2,
+              "accept": [
+                "if (age >= 13) {"
+              ],
+              "expected_output": "Teen",
+              "hint": "The condition goes inside ( ).",
+              "explanation": "JavaScript needs round brackets around an if condition."
+            },
+            {
+              "id": "js-u2-l3-s6",
+              "kind": "write",
+              "text": "Finish the program: if hour is less than 12, print Selamat pagi, otherwise print Selamat petang.",
+              "starter": "let hour = 9;\n",
+              "expected_output": "Selamat pagi",
+              "must_use": [
+                "if",
+                "else"
+              ],
+              "solution": "let hour = 9;\nif (hour < 12) {\n  console.log(\"Selamat pagi\");\n} else {\n  console.log(\"Selamat petang\");\n}",
+              "hint": "Use if (hour < 12) { ... } else { ... }."
+            }
+          ]
+        },
+        {
+          "id": "js-u2-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "More choices with else if",
+          "objective": "Choose between more than two paths.",
+          "steps": [
+            {
+              "id": "js-u2-l4-s1",
+              "kind": "learn",
+              "text": "else if is checked only when the conditions above were false.",
+              "code": "let score = 75;\nif (score >= 80) {\n  console.log(\"A\");\n} else if (score >= 60) {\n  console.log(\"B\");\n} else {\n  console.log(\"C\");\n}",
+              "expected_output": "B"
+            },
+            {
+              "id": "js-u2-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "let speed = 120;\nif (speed > 110) {\n  console.log(\"Too fast\");\n} else if (speed > 90) {\n  console.log(\"Fast\");\n} else {\n  console.log(\"OK\");\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Too fast"
+                },
+                {
+                  "id": "b",
+                  "text": "Fast"
+                },
+                {
+                  "id": "c",
+                  "text": "Too fast\nFast"
+                }
+              ],
+              "answer": "a",
+              "explanation": "The first condition that is true wins: 120 > 110."
+            },
+            {
+              "id": "js-u2-l4-s3",
+              "kind": "learn",
+              "text": "&& needs both sides true. || needs at least one.",
+              "code": "console.log(5 > 3 && 2 > 1);\nconsole.log(5 > 9 || 2 > 1);",
+              "expected_output": "true\ntrue"
+            },
+            {
+              "id": "js-u2-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "let x = 0;\nif (x > 0) {\n  console.log(\"positive\");\n} else if (x < 0) {\n  console.log(\"negative\");\n} else {\n  console.log(\"zero\");\n}",
+              "answer_text": "zero",
+              "explanation": "x is neither more nor less than 0, so the else part runs."
+            },
+            {
+              "id": "js-u2-l4-s5",
+              "kind": "fix",
+              "text": "Line 4 should check another condition. Fix it.",
+              "code": "let n = 50;\nif (n > 100) {\n  console.log(\"big\");\n} else (n > 10) {\n  console.log(\"medium\");\n}",
+              "broken_line": 4,
+              "accept": [
+                "} else if (n > 10) {"
+              ],
+              "expected_output": "medium",
+              "hint": "else cannot have a condition; use else if.",
+              "explanation": "Only else if can have its own condition."
+            },
+            {
+              "id": "js-u2-l4-s6",
+              "kind": "write",
+              "text": "Finish the program to print Hot above 30, Warm above 20, and Cool otherwise.",
+              "starter": "let temp = 25;\n",
+              "expected_output": "Warm",
+              "must_use": [
+                "else if"
+              ],
+              "solution": "let temp = 25;\nif (temp > 30) {\n  console.log(\"Hot\");\n} else if (temp > 20) {\n  console.log(\"Warm\");\n} else {\n  console.log(\"Cool\");\n}",
+              "hint": "Use if, else if and else in that order."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "js-u3",
+      "title": "Repeat and collect",
+      "lessons": [
+        {
+          "id": "js-u3-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Loops with for",
+          "objective": "Repeat code with a for loop.",
+          "steps": [
+            {
+              "id": "js-u3-l1-s1",
+              "kind": "learn",
+              "text": "This for loop counts i from 0 while i < 3, adding 1 each time.",
+              "code": "for (let i = 0; i < 3; i++) {\n  console.log(\"Hip hip hooray!\");\n}",
+              "expected_output": "Hip hip hooray!\nHip hip hooray!\nHip hip hooray!"
+            },
+            {
+              "id": "js-u3-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "let count = 0;\nfor (let i = 0; i < 4; i++) {\n  count = count + 1;\n}\nconsole.log(count);",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "4"
+                },
+                {
+                  "id": "b",
+                  "text": "3"
+                },
+                {
+                  "id": "c",
+                  "text": "5"
+                }
+              ],
+              "answer": "a",
+              "explanation": "i takes the values 0, 1, 2 and 3, so the loop runs four times and count ends at 4."
+            },
+            {
+              "id": "js-u3-l1-s3",
+              "kind": "learn",
+              "text": "Start the counter wherever you like.",
+              "code": "for (let n = 1; n <= 3; n++) {\n  console.log(n * 10);\n}",
+              "expected_output": "10\n20\n30"
+            },
+            {
+              "id": "js-u3-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "for (let i = 1; i <= 3; i++) {\n  console.log(\"Level\", i);\n}",
+              "answer_text": "Level 1\nLevel 2\nLevel 3",
+              "explanation": "i takes the values 1, 2 and 3."
+            },
+            {
+              "id": "js-u3-l1-s5",
+              "kind": "fix",
+              "text": "This loop should run 2 times. Fix line 1.",
+              "code": "for (let i = 0; i < 2; i--) {\n  console.log(\"Hi\");\n}",
+              "broken_line": 1,
+              "accept": [
+                "for (let i = 0; i < 2; i++) {"
+              ],
+              "expected_output": "Hi\nHi",
+              "hint": "The counter has to go up to reach 2.",
+              "explanation": "i-- makes i go down, so it never reaches 2 and the loop never ends. i++ counts up."
+            },
+            {
+              "id": "js-u3-l1-s6",
+              "kind": "write",
+              "text": "Use a for loop to print Hello 3 times.",
+              "starter": "",
+              "expected_output": "Hello\nHello\nHello",
+              "must_use": [
+                "for"
+              ],
+              "solution": "for (let i = 0; i < 3; i++) {\n  console.log(\"Hello\");\n}",
+              "hint": "for (let i = 0; i < 3; i++) { ... }"
+            }
+          ]
+        },
+        {
+          "id": "js-u3-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Loops with while",
+          "objective": "Repeat while a condition stays true.",
+          "steps": [
+            {
+              "id": "js-u3-l2-s1",
+              "kind": "learn",
+              "text": "while repeats as long as its condition is true. Change the counter, or it never stops!",
+              "code": "let count = 1;\nwhile (count <= 3) {\n  console.log(count);\n  count = count + 1;\n}",
+              "expected_output": "1\n2\n3"
+            },
+            {
+              "id": "js-u3-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "let n = 10;\nwhile (n > 0) {\n  n = n - 4;\n}\nconsole.log(n);",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "-2"
+                },
+                {
+                  "id": "b",
+                  "text": "2"
+                },
+                {
+                  "id": "c",
+                  "text": "0"
+                }
+              ],
+              "answer": "a",
+              "explanation": "n goes 10, 6, 2, -2. Now n > 0 is false, so the loop stops and -2 is printed."
+            },
+            {
+              "id": "js-u3-l2-s3",
+              "kind": "learn",
+              "text": "A loop can keep a running total.",
+              "code": "let total = 0;\nlet n = 1;\nwhile (n <= 4) {\n  total = total + n;\n  n = n + 1;\n}\nconsole.log(total);",
+              "expected_output": "10"
+            },
+            {
+              "id": "js-u3-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "let x = 1;\nwhile (x < 20) {\n  x = x * 3;\n}\nconsole.log(x);",
+              "answer_text": "27",
+              "explanation": "x becomes 3, then 9, then 27. 27 is not below 20, so the loop stops."
+            },
+            {
+              "id": "js-u3-l2-s5",
+              "kind": "fix",
+              "text": "This loop never ends. Fix line 4 so the counter goes up.",
+              "code": "let i = 0;\nwhile (i < 3) {\n  console.log(\"Go\");\n  i = i;\n}",
+              "broken_line": 4,
+              "accept": [
+                "  i = i + 1;",
+                "  i++;",
+                "  i += 1;"
+              ],
+              "expected_output": "Go\nGo\nGo",
+              "hint": "The counter must change each time round.",
+              "explanation": "i never changed, so i < 3 stayed true forever."
+            },
+            {
+              "id": "js-u3-l2-s6",
+              "kind": "write",
+              "text": "Use a while loop to print 5, 4, 3, 2, 1 (one per line).",
+              "starter": "let n = 5;\n",
+              "expected_output": "5\n4\n3\n2\n1",
+              "must_use": [
+                "while"
+              ],
+              "solution": "let n = 5;\nwhile (n > 0) {\n  console.log(n);\n  n = n - 1;\n}",
+              "hint": "Keep going while n > 0, and take 1 away each time."
+            }
+          ]
+        },
+        {
+          "id": "js-u3-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Arrays",
+          "objective": "Keep many values in one array.",
+          "steps": [
+            {
+              "id": "js-u3-l3-s1",
+              "kind": "learn",
+              "text": "An array holds many values in square brackets. Positions start at 0!",
+              "code": "let foods = [\"nasi lemak\", \"roti canai\", \"satay\"];\nconsole.log(foods[0]);\nconsole.log(foods.length);",
+              "expected_output": "nasi lemak\n3"
+            },
+            {
+              "id": "js-u3-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "let colours = [\"red\", \"green\", \"blue\"];\nconsole.log(colours[1]);",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "green"
+                },
+                {
+                  "id": "b",
+                  "text": "red"
+                },
+                {
+                  "id": "c",
+                  "text": "blue"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Positions start at 0, so [1] is the second item: green."
+            },
+            {
+              "id": "js-u3-l3-s3",
+              "kind": "learn",
+              "text": "push() adds an item to the end. join() turns the array into text.",
+              "code": "let pets = [\"cat\"];\npets.push(\"dog\");\nconsole.log(pets.join(\", \"));",
+              "expected_output": "cat, dog"
+            },
+            {
+              "id": "js-u3-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "let nums = [4, 8, 15];\nconsole.log(nums[2] + nums[0]);",
+              "answer_text": "19",
+              "explanation": "nums[2] is 15 and nums[0] is 4, so the sum is 19."
+            },
+            {
+              "id": "js-u3-l3-s5",
+              "kind": "fix",
+              "text": "This array has 3 items, so the last position is 2. Fix line 2.",
+              "code": "let fruits = [\"durian\", \"mango\", \"rambutan\"];\nconsole.log(fruits[3]);",
+              "broken_line": 2,
+              "accept": [
+                "console.log(fruits[2]);",
+                "console.log(fruits[fruits.length - 1]);"
+              ],
+              "expected_output": "rambutan",
+              "hint": "The last position is one less than the length.",
+              "explanation": "There is no position 3: the positions are 0, 1 and 2."
+            },
+            {
+              "id": "js-u3-l3-s6",
+              "kind": "write",
+              "text": "Add \"teh tarik\" to drinks with push, then print drinks.join(\", \").",
+              "starter": "let drinks = [\"kopi\", \"milo\"];\n",
+              "expected_output": "kopi, milo, teh tarik",
+              "must_use": [
+                "push"
+              ],
+              "solution": "let drinks = [\"kopi\", \"milo\"];\ndrinks.push(\"teh tarik\");\nconsole.log(drinks.join(\", \"));",
+              "hint": "Use drinks.push(...) and then print drinks.join(\", \")."
+            }
+          ]
+        },
+        {
+          "id": "js-u3-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Looping through arrays",
+          "objective": "Visit every item in an array with a loop.",
+          "steps": [
+            {
+              "id": "js-u3-l4-s1",
+              "kind": "learn",
+              "text": "for ... of visits every item in an array, one at a time.",
+              "code": "let cities = [\"Ipoh\", \"Kuching\", \"Johor Bahru\"];\nfor (const city of cities) {\n  console.log(\"I love \" + city);\n}",
+              "expected_output": "I love Ipoh\nI love Kuching\nI love Johor Bahru"
+            },
+            {
+              "id": "js-u3-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "let scores = [3, 5, 2];\nlet total = 0;\nfor (const s of scores) {\n  total = total + s;\n}\nconsole.log(total);",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "10"
+                },
+                {
+                  "id": "b",
+                  "text": "3"
+                },
+                {
+                  "id": "c",
+                  "text": "3,5,2"
+                }
+              ],
+              "answer": "a",
+              "explanation": "The loop adds every score: 3 + 5 + 2 = 10."
+            },
+            {
+              "id": "js-u3-l4-s3",
+              "kind": "learn",
+              "text": "Combine a loop and if to pick out some items.",
+              "code": "let nums = [7, 12, 3, 20];\nfor (const n of nums) {\n  if (n > 10) {\n    console.log(n);\n  }\n}",
+              "expected_output": "12\n20"
+            },
+            {
+              "id": "js-u3-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "let words = [\"hi\", \"hello\", \"hey\"];\nfor (const w of words) {\n  console.log(w.length);\n}",
+              "answer_text": "2\n5\n3",
+              "explanation": "Each word's length: hi is 2, hello is 5, hey is 3."
+            },
+            {
+              "id": "js-u3-l4-s5",
+              "kind": "fix",
+              "text": "Line 4 should add each price to the total. Fix it.",
+              "code": "let prices = [2, 3, 5];\nlet total = 0;\nfor (const p of prices) {\n  total = p;\n}\nconsole.log(total);",
+              "broken_line": 4,
+              "accept": [
+                "  total = total + p;",
+                "  total += p;"
+              ],
+              "expected_output": "10",
+              "hint": "Add p to what total already has.",
+              "explanation": "total = p throws away the old total. total = total + p keeps adding."
+            },
+            {
+              "id": "js-u3-l4-s6",
+              "kind": "write",
+              "text": "Print every number in the array doubled (one per line).",
+              "starter": "let nums = [1, 2, 3];\n",
+              "expected_output": "2\n4\n6",
+              "must_use": [
+                "for"
+              ],
+              "solution": "let nums = [1, 2, 3];\nfor (const n of nums) {\n  console.log(n * 2);\n}",
+              "hint": "Loop over nums and print n * 2."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

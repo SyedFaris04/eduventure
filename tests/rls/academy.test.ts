@@ -103,8 +103,8 @@ describe.skipIf(!url || !key)('academy (live project)', () => {
   }, 60_000)
 
   it('units unlock in order', async () => {
-    const { error } = await b.rpc('start_lesson', { p_lesson: 'js-u2-l1' })
-    expect(error?.message).toMatch(/finish unit 1|lesson not found/i)
+    expect((await b.rpc('start_lesson', { p_lesson: 'py-u2-l1' })).error?.message).toMatch(/finish unit 1/i)
+    expect((await b.rpc('start_lesson', { p_lesson: 'js-u3-l4' })).error?.message).toMatch(/finish unit 1/i)
   })
 
   it('solution needs two tries', async () => {

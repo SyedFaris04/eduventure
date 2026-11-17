@@ -14,7 +14,11 @@ const courses = files.map((f) => JSON.parse(readFileSync(new URL(f, dir), 'utf8'
 /** Runs JavaScript like the browser runner does: console.log lines joined with newlines; errors come back as text. */
 function runJs(code: string): { out: string; error: string | null } {
   const lines: string[] = []
-  const log = (...a: unknown[]) => lines.push(formatArgs(a)) // exactly how the browser runner prints
+  const log = (...a: unknown[]) => {
+    // A broken Fix sample may loop forever printing; stop it like the app's runner would.
+    if (lines.length >= 1000) throw new Error('too much output')
+    lines.push(formatArgs(a)) // exactly how the browser runner prints
+  }
   try {
     runInNewContext(code, { console: { log, error: log } }, { timeout: 2000 })
     return { out: lines.join('\n'), error: null }
@@ -26,7 +30,15 @@ function runJs(code: string): { out: string; error: string | null } {
 let py: PyodideInterface
 async function runPy(code: string): Promise<{ out: string; error: string | null }> {
   const lines: string[] = []
-  py.setStdout({ batched: (s) => lines.push(s) })
+  // Throw away anything a stopped run left in Python's output buffer.
+  py.setStdout({ batched: () => undefined })
+  await py.runPythonAsync('import sys; sys.stdout.flush()')
+  py.setStdout({
+    batched: (s) => {
+      if (lines.length >= 1000) throw new Error('too much output') // ends an endless printing loop
+      lines.push(s)
+    },
+  })
   try {
     await py.runPythonAsync(code, { globals: py.toPy({}) })
     return { out: lines.join('\n'), error: null }

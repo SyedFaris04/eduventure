@@ -325,6 +325,647 @@
           ]
         }
       ]
+    },
+    {
+      "id": "py-u2",
+      "title": "Numbers and choices",
+      "lessons": [
+        {
+          "id": "py-u2-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Maths with code",
+          "objective": "Calculate with + - * / and see the results.",
+          "steps": [
+            {
+              "id": "py-u2-l1-s1",
+              "kind": "learn",
+              "text": "Python is a great calculator. / divides and always gives a decimal answer.",
+              "code": "print(6 + 4)\nprint(7 / 2)",
+              "expected_output": "10\n3.5"
+            },
+            {
+              "id": "py-u2-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "print(3 * 4 - 2)",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "10"
+                },
+                {
+                  "id": "b",
+                  "text": "6"
+                },
+                {
+                  "id": "c",
+                  "text": "3 * 4 - 2"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Multiplication happens first: 3 * 4 is 12, then 12 - 2 is 10."
+            },
+            {
+              "id": "py-u2-l1-s3",
+              "kind": "learn",
+              "text": "// divides and drops the decimal part. % gives the remainder.",
+              "code": "print(17 // 5)\nprint(17 % 5)",
+              "expected_output": "3\n2"
+            },
+            {
+              "id": "py-u2-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "cakes = 20\nfriends = 6\nprint(cakes // friends)\nprint(cakes % friends)",
+              "answer_text": "3\n2",
+              "explanation": "20 cakes shared by 6 friends: each gets 3, and 2 are left over."
+            },
+            {
+              "id": "py-u2-l1-s5",
+              "kind": "fix",
+              "text": "This should print the total price. Fix line 2.",
+              "code": "price = 5\nprint(\"Total: \" + price * 3)",
+              "broken_line": 2,
+              "accept": [
+                "print(\"Total:\", price * 3)",
+                "print(\"Total: \" + str(price * 3))"
+              ],
+              "expected_output": "Total: 15",
+              "hint": "You can't join text and a number with +. Use a comma, or str().",
+              "explanation": "Python cannot add text and a number. A comma prints both, or str() turns the number into text."
+            },
+            {
+              "id": "py-u2-l1-s6",
+              "kind": "write",
+              "text": "A pizza has 8 slices and you eat 3. Print how many are left, using a calculation.",
+              "starter": "slices = 8\neaten = 3\n",
+              "expected_output": "5",
+              "must_use": [
+                "-"
+              ],
+              "solution": "slices = 8\neaten = 3\nprint(slices - eaten)",
+              "hint": "Subtract eaten from slices inside print()."
+            }
+          ]
+        },
+        {
+          "id": "py-u2-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Comparing things",
+          "objective": "Use comparisons that answer True or False.",
+          "steps": [
+            {
+              "id": "py-u2-l2-s1",
+              "kind": "learn",
+              "text": "Comparisons answer True or False. == checks if two things are equal.",
+              "code": "print(5 > 3)\nprint(2 == 3)",
+              "expected_output": "True\nFalse"
+            },
+            {
+              "id": "py-u2-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "print(10 <= 10)",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "True"
+                },
+                {
+                  "id": "b",
+                  "text": "False"
+                },
+                {
+                  "id": "c",
+                  "text": "10"
+                }
+              ],
+              "answer": "a",
+              "explanation": "<= means \"less than or equal to\". 10 is equal to 10, so it is True."
+            },
+            {
+              "id": "py-u2-l2-s3",
+              "kind": "learn",
+              "text": "You can compare text too. Capital letters matter!",
+              "code": "print(\"cat\" == \"cat\")\nprint(\"Cat\" == \"cat\")",
+              "expected_output": "True\nFalse"
+            },
+            {
+              "id": "py-u2-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "age = 12\nprint(age >= 13)",
+              "answer_text": "False",
+              "explanation": "12 is not 13 or more, so the answer is False."
+            },
+            {
+              "id": "py-u2-l2-s5",
+              "kind": "fix",
+              "text": "One = stores a value; two == compare. Fix line 2 so it compares.",
+              "code": "score = 100\nprint(score = 100)",
+              "broken_line": 2,
+              "accept": [
+                "print(score == 100)"
+              ],
+              "expected_output": "True",
+              "hint": "Use == to compare.",
+              "explanation": "A single = is for storing values. Comparing needs ==."
+            },
+            {
+              "id": "py-u2-l2-s6",
+              "kind": "write",
+              "text": "Print whether 7 is greater than 4 (it should print True).",
+              "starter": "",
+              "expected_output": "True",
+              "must_use": [
+                ">"
+              ],
+              "solution": "print(7 > 4)",
+              "hint": "Put a comparison with > inside print()."
+            }
+          ]
+        },
+        {
+          "id": "py-u2-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Making choices with if",
+          "objective": "Run code only when a condition is True.",
+          "steps": [
+            {
+              "id": "py-u2-l3-s1",
+              "kind": "learn",
+              "text": "if runs the indented lines only when the condition is True. Don't forget the colon!",
+              "code": "temp = 33\nif temp > 30:\n    print(\"Panas! Drink water.\")",
+              "expected_output": "Panas! Drink water."
+            },
+            {
+              "id": "py-u2-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "marks = 45\nif marks >= 50:\n    print(\"Pass\")\nelse:\n    print(\"Try again\")",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Pass"
+                },
+                {
+                  "id": "b",
+                  "text": "Try again"
+                },
+                {
+                  "id": "c",
+                  "text": "Pass Try again"
+                }
+              ],
+              "answer": "b",
+              "explanation": "45 is less than 50, so the else part runs."
+            },
+            {
+              "id": "py-u2-l3-s3",
+              "kind": "learn",
+              "text": "else runs when the if condition is False.",
+              "code": "raining = False\nif raining:\n    print(\"Take an umbrella\")\nelse:\n    print(\"Enjoy the sun\")",
+              "expected_output": "Enjoy the sun"
+            },
+            {
+              "id": "py-u2-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "n = 4\nif n % 2 == 0:\n    print(\"even\")\nelse:\n    print(\"odd\")",
+              "answer_text": "even",
+              "explanation": "4 % 2 is 0, so the number is even."
+            },
+            {
+              "id": "py-u2-l3-s5",
+              "kind": "fix",
+              "text": "Line 2 is missing something at the end. Fix it.",
+              "code": "age = 15\nif age >= 13\n    print(\"Teen\")",
+              "broken_line": 2,
+              "accept": [
+                "if age >= 13:"
+              ],
+              "expected_output": "Teen",
+              "hint": "Every if line ends with a colon :",
+              "explanation": "Python needs a colon at the end of an if line."
+            },
+            {
+              "id": "py-u2-l3-s6",
+              "kind": "write",
+              "text": "Finish the program: if hour is less than 12, print Selamat pagi, otherwise print Selamat petang.",
+              "starter": "hour = 9\n",
+              "expected_output": "Selamat pagi",
+              "must_use": [
+                "if",
+                "else"
+              ],
+              "solution": "hour = 9\nif hour < 12:\n    print(\"Selamat pagi\")\nelse:\n    print(\"Selamat petang\")",
+              "hint": "Use if hour < 12: and else:, with the prints indented."
+            }
+          ]
+        },
+        {
+          "id": "py-u2-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "More choices with elif",
+          "objective": "Choose between more than two paths.",
+          "steps": [
+            {
+              "id": "py-u2-l4-s1",
+              "kind": "learn",
+              "text": "elif means \"else if\": it is checked only when the conditions above were False.",
+              "code": "score = 75\nif score >= 80:\n    print(\"A\")\nelif score >= 60:\n    print(\"B\")\nelse:\n    print(\"C\")",
+              "expected_output": "B"
+            },
+            {
+              "id": "py-u2-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "speed = 120\nif speed > 110:\n    print(\"Too fast\")\nelif speed > 90:\n    print(\"Fast\")\nelse:\n    print(\"OK\")",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Too fast"
+                },
+                {
+                  "id": "b",
+                  "text": "Fast"
+                },
+                {
+                  "id": "c",
+                  "text": "Too fast\nFast"
+                }
+              ],
+              "answer": "a",
+              "explanation": "The first condition that is True wins: 120 > 110, so it prints Too fast."
+            },
+            {
+              "id": "py-u2-l4-s3",
+              "kind": "learn",
+              "text": "and needs both sides True. or needs at least one.",
+              "code": "print(5 > 3 and 2 > 1)\nprint(5 > 9 or 2 > 1)",
+              "expected_output": "True\nTrue"
+            },
+            {
+              "id": "py-u2-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "x = 0\nif x > 0:\n    print(\"positive\")\nelif x < 0:\n    print(\"negative\")\nelse:\n    print(\"zero\")",
+              "answer_text": "zero",
+              "explanation": "x is neither more nor less than 0, so the else part runs."
+            },
+            {
+              "id": "py-u2-l4-s5",
+              "kind": "fix",
+              "text": "Line 4 should be elif. Fix it.",
+              "code": "n = 50\nif n > 100:\n    print(\"big\")\nelse n > 10:\n    print(\"medium\")",
+              "broken_line": 4,
+              "accept": [
+                "elif n > 10:"
+              ],
+              "expected_output": "medium",
+              "hint": "else cannot have a condition; use elif.",
+              "explanation": "Only elif can have its own condition. else takes no condition."
+            },
+            {
+              "id": "py-u2-l4-s6",
+              "kind": "write",
+              "text": "Finish the program to print Hot above 30, Warm above 20, and Cool otherwise.",
+              "starter": "temp = 25\n",
+              "expected_output": "Warm",
+              "must_use": [
+                "elif"
+              ],
+              "solution": "temp = 25\nif temp > 30:\n    print(\"Hot\")\nelif temp > 20:\n    print(\"Warm\")\nelse:\n    print(\"Cool\")",
+              "hint": "Use if, elif and else in that order."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "py-u3",
+      "title": "Repeat and collect",
+      "lessons": [
+        {
+          "id": "py-u3-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Loops with for",
+          "objective": "Repeat code with for and range().",
+          "steps": [
+            {
+              "id": "py-u3-l1-s1",
+              "kind": "learn",
+              "text": "A for loop repeats the indented lines. range(3) gives 0, 1, 2.",
+              "code": "for i in range(3):\n    print(\"Hip hip hooray!\")",
+              "expected_output": "Hip hip hooray!\nHip hip hooray!\nHip hip hooray!"
+            },
+            {
+              "id": "py-u3-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "count = 0\nfor i in range(4):\n    count = count + 1\nprint(count)",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "4"
+                },
+                {
+                  "id": "b",
+                  "text": "3"
+                },
+                {
+                  "id": "c",
+                  "text": "5"
+                }
+              ],
+              "answer": "a",
+              "explanation": "range(4) gives 0, 1, 2 and 3, so the loop runs four times and count ends at 4."
+            },
+            {
+              "id": "py-u3-l1-s3",
+              "kind": "learn",
+              "text": "range(1, 4) starts at 1 and stops before 4.",
+              "code": "for n in range(1, 4):\n    print(n * 10)",
+              "expected_output": "10\n20\n30"
+            },
+            {
+              "id": "py-u3-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "for i in range(1, 4):\n    print(\"Level\", i)",
+              "answer_text": "Level 1\nLevel 2\nLevel 3",
+              "explanation": "i takes the values 1, 2 and 3."
+            },
+            {
+              "id": "py-u3-l1-s5",
+              "kind": "fix",
+              "text": "Line 1 is missing something at the end. Fix it.",
+              "code": "for i in range(2)\n    print(\"Hi\")",
+              "broken_line": 1,
+              "accept": [
+                "for i in range(2):"
+              ],
+              "expected_output": "Hi\nHi",
+              "hint": "A for line ends with a colon : just like an if line.",
+              "explanation": "Python needs a colon at the end of a for line, before the indented lines."
+            },
+            {
+              "id": "py-u3-l1-s6",
+              "kind": "write",
+              "text": "Use a for loop to print Hello 3 times.",
+              "starter": "",
+              "expected_output": "Hello\nHello\nHello",
+              "must_use": [
+                "for"
+              ],
+              "solution": "for i in range(3):\n    print(\"Hello\")",
+              "hint": "for i in range(3): then an indented print."
+            }
+          ]
+        },
+        {
+          "id": "py-u3-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Loops with while",
+          "objective": "Repeat while a condition stays True.",
+          "steps": [
+            {
+              "id": "py-u3-l2-s1",
+              "kind": "learn",
+              "text": "while repeats as long as its condition is True. Change the counter, or it never stops!",
+              "code": "count = 1\nwhile count <= 3:\n    print(count)\n    count = count + 1",
+              "expected_output": "1\n2\n3"
+            },
+            {
+              "id": "py-u3-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "n = 10\nwhile n > 0:\n    n = n - 4\nprint(n)",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "-2"
+                },
+                {
+                  "id": "b",
+                  "text": "2"
+                },
+                {
+                  "id": "c",
+                  "text": "0"
+                }
+              ],
+              "answer": "a",
+              "explanation": "n goes 10, 6, 2, -2. Now n > 0 is False, so the loop stops and -2 is printed."
+            },
+            {
+              "id": "py-u3-l2-s3",
+              "kind": "learn",
+              "text": "A loop can add things up. This is called a running total.",
+              "code": "total = 0\nn = 1\nwhile n <= 4:\n    total = total + n\n    n = n + 1\nprint(total)",
+              "expected_output": "10"
+            },
+            {
+              "id": "py-u3-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "x = 1\nwhile x < 20:\n    x = x * 3\nprint(x)",
+              "answer_text": "27",
+              "explanation": "x becomes 3, then 9, then 27. 27 is not below 20, so the loop stops."
+            },
+            {
+              "id": "py-u3-l2-s5",
+              "kind": "fix",
+              "text": "This loop never ends. Fix line 4 so the counter goes up.",
+              "code": "i = 0\nwhile i < 3:\n    print(\"Go\")\n    i = i",
+              "broken_line": 4,
+              "accept": [
+                "    i = i + 1",
+                "    i += 1"
+              ],
+              "expected_output": "Go\nGo\nGo",
+              "hint": "The counter must change each time round.",
+              "explanation": "i never changed, so i < 3 stayed True forever. Adding 1 lets the loop finish."
+            },
+            {
+              "id": "py-u3-l2-s6",
+              "kind": "write",
+              "text": "Use a while loop to print 5, 4, 3, 2, 1 (one per line).",
+              "starter": "n = 5\n",
+              "expected_output": "5\n4\n3\n2\n1",
+              "must_use": [
+                "while"
+              ],
+              "solution": "n = 5\nwhile n > 0:\n    print(n)\n    n = n - 1",
+              "hint": "Keep going while n > 0, and take 1 away from n each time."
+            }
+          ]
+        },
+        {
+          "id": "py-u3-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Lists",
+          "objective": "Keep many values in one list.",
+          "steps": [
+            {
+              "id": "py-u3-l3-s1",
+              "kind": "learn",
+              "text": "A list holds many values in square brackets. Positions start at 0!",
+              "code": "foods = [\"nasi lemak\", \"roti canai\", \"satay\"]\nprint(foods[0])\nprint(len(foods))",
+              "expected_output": "nasi lemak\n3"
+            },
+            {
+              "id": "py-u3-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "colours = [\"red\", \"green\", \"blue\"]\nprint(colours[1])",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "green"
+                },
+                {
+                  "id": "b",
+                  "text": "red"
+                },
+                {
+                  "id": "c",
+                  "text": "blue"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Positions start at 0, so [1] is the second item: green."
+            },
+            {
+              "id": "py-u3-l3-s3",
+              "kind": "learn",
+              "text": "append() adds an item to the end of a list.",
+              "code": "pets = [\"cat\"]\npets.append(\"dog\")\nprint(pets)",
+              "expected_output": "['cat', 'dog']"
+            },
+            {
+              "id": "py-u3-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "nums = [4, 8, 15]\nprint(nums[2] + nums[0])",
+              "answer_text": "19",
+              "explanation": "nums[2] is 15 and nums[0] is 4, so the sum is 19."
+            },
+            {
+              "id": "py-u3-l3-s5",
+              "kind": "fix",
+              "text": "This list has 3 items, so the last position is 2. Fix line 2.",
+              "code": "fruits = [\"durian\", \"mango\", \"rambutan\"]\nprint(fruits[3])",
+              "broken_line": 2,
+              "accept": [
+                "print(fruits[2])",
+                "print(fruits[-1])"
+              ],
+              "expected_output": "rambutan",
+              "hint": "The last position is one less than the length.",
+              "explanation": "There is no position 3: the positions are 0, 1 and 2."
+            },
+            {
+              "id": "py-u3-l3-s6",
+              "kind": "write",
+              "text": "Add \"teh tarik\" to the drinks list, then print the list.",
+              "starter": "drinks = [\"kopi\", \"milo\"]\n",
+              "expected_output": "['kopi', 'milo', 'teh tarik']",
+              "must_use": [
+                "append"
+              ],
+              "solution": "drinks = [\"kopi\", \"milo\"]\ndrinks.append(\"teh tarik\")\nprint(drinks)",
+              "hint": "Use drinks.append(...) and then print(drinks)."
+            }
+          ]
+        },
+        {
+          "id": "py-u3-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Looping through lists",
+          "objective": "Visit every item in a list with a loop.",
+          "steps": [
+            {
+              "id": "py-u3-l4-s1",
+              "kind": "learn",
+              "text": "for can visit every item in a list, one at a time.",
+              "code": "cities = [\"Ipoh\", \"Kuching\", \"Johor Bahru\"]\nfor city in cities:\n    print(\"I love \" + city)",
+              "expected_output": "I love Ipoh\nI love Kuching\nI love Johor Bahru"
+            },
+            {
+              "id": "py-u3-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "scores = [3, 5, 2]\ntotal = 0\nfor s in scores:\n    total = total + s\nprint(total)",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "10"
+                },
+                {
+                  "id": "b",
+                  "text": "3"
+                },
+                {
+                  "id": "c",
+                  "text": "[3, 5, 2]"
+                }
+              ],
+              "answer": "a",
+              "explanation": "The loop adds every score: 3 + 5 + 2 = 10."
+            },
+            {
+              "id": "py-u3-l4-s3",
+              "kind": "learn",
+              "text": "Combine a loop and if to pick out some items.",
+              "code": "nums = [7, 12, 3, 20]\nfor n in nums:\n    if n > 10:\n        print(n)",
+              "expected_output": "12\n20"
+            },
+            {
+              "id": "py-u3-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "words = [\"hi\", \"hello\", \"hey\"]\nfor w in words:\n    print(len(w))",
+              "answer_text": "2\n5\n3",
+              "explanation": "len() gives each word's length: hi is 2, hello is 5, hey is 3."
+            },
+            {
+              "id": "py-u3-l4-s5",
+              "kind": "fix",
+              "text": "Line 3 should add each price to the total. Fix it.",
+              "code": "prices = [2, 3, 5]\ntotal = 0\nfor p in prices:\n    total = p\nprint(total)",
+              "broken_line": 4,
+              "accept": [
+                "    total = total + p",
+                "    total += p"
+              ],
+              "expected_output": "10",
+              "hint": "Add p to what total already has.",
+              "explanation": "total = p throws away the old total. total = total + p keeps adding."
+            },
+            {
+              "id": "py-u3-l4-s6",
+              "kind": "write",
+              "text": "Print every number in the list doubled (one per line).",
+              "starter": "nums = [1, 2, 3]\n",
+              "expected_output": "2\n4\n6",
+              "must_use": [
+                "for"
+              ],
+              "solution": "nums = [1, 2, 3]\nfor n in nums:\n    print(n * 2)",
+              "hint": "Loop over nums and print n * 2."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
