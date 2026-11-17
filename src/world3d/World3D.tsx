@@ -1,3 +1,5 @@
+import type { Pet } from '../features/pet/petRules'
+import { PetFollower } from './pet/PetFollower'
 import { useEffect, useMemo, useRef } from 'react'
 import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
 import { Stats, useGLTF } from '@react-three/drei'
@@ -191,7 +193,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
 }
 
 /** One place in 3D. Default export so it loads as its own chunk with three.js. */
-export default function World3D({ hero, map, atArrival = false, startAt }: { hero: Appearance; map: GameMap; atArrival?: boolean; startAt?: { x: number; y: number } }) {
+export default function World3D({ hero, pet, map, atArrival = false, startAt }: { hero: Appearance; pet?: Pet | null; map: GameMap; atArrival?: boolean; startAt?: { x: number; y: number } }) {
   const sim = useMemo(() => {
     const s = new WorldSim(map, Math.random, { atArrival, start: startAt })
     // Development only: /dev/world?at=x,y starts the hero on that tile (for screenshots).
@@ -227,6 +229,7 @@ export default function World3D({ hero, map, atArrival = false, startAt }: { her
       <Monsters sim={sim} reduced={reduced} />
       <Bosses sim={sim} reduced={reduced} />
       <Hero sim={sim} appearance={hero} reduced={reduced} />
+      <PetFollower sim={sim} pet={pet} reduced={reduced} />
       {import.meta.env.DEV && location.search.includes('fps') && <Stats />}
     </Canvas>
   )

@@ -1,3 +1,4 @@
+import type { Pet } from '../pet/petRules'
 import { Component, lazy, Suspense, use, useEffect, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RefreshCw } from 'lucide-react'
@@ -27,12 +28,12 @@ function Notice({ children }: { children: ReactNode }) {
 }
 
 /** The current place: its map downloads on demand (Suspense), then the 3D world shows it. */
-function PlaceWorld({ hero }: { hero: Appearance }) {
+function PlaceWorld({ hero, pet }: { hero: Appearance; pet?: Pet | null }) {
   const travel = useGame((s) => s.travel)
-  return travel ? <Travel hero={hero} to={travel.to} /> : <CurrentPlace hero={hero} />
+  return travel ? <Travel hero={hero} to={travel.to} /> : <CurrentPlace hero={hero} pet={pet} />
 }
 
-function CurrentPlace({ hero }: { hero: Appearance }) {
+function CurrentPlace({ hero, pet }: { hero: Appearance; pet?: Pet | null }) {
   const place = usePlace((s) => s.place)
   const arriving = usePlace((s) => s.arriving)
   const map = use(placeMap(place))
@@ -42,11 +43,11 @@ function CurrentPlace({ hero }: { hero: Appearance }) {
   useEffect(() => {
     if (usePlace.getState().resumeAt) usePlace.setState({ resumeAt: null })
   }, [])
-  return <World3D key={place} hero={hero} map={map} atArrival={arriving} startAt={resumeAt ?? undefined} />
+  return <World3D key={place} hero={hero} pet={pet} map={map} atArrival={arriving} startAt={resumeAt ?? undefined} />
 }
 
 /** The 3D world, or a clear message when this device can't show it or the download failed. */
-export function GameCanvas({ hero }: { hero: Appearance }) {
+export function GameCanvas({ hero, pet }: { hero: Appearance; pet?: Pet | null }) {
   const { t } = useTranslation()
   const [attempt, setAttempt] = useState(0)
   const place = usePlace((s) => s.place)
@@ -78,7 +79,7 @@ export function GameCanvas({ hero }: { hero: Appearance }) {
         }
       >
         <Suspense fallback={null}>
-          <PlaceWorld hero={hero} />
+          <PlaceWorld hero={hero} pet={pet} />
         </Suspense>
       </Boundary>
     </div>
