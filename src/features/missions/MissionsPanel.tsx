@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { Coins, Flame, Gift, Moon, Sparkles } from 'lucide-react'
+import { Coins, Gift, Sparkles } from 'lucide-react'
 import { Button, Panel, ProgressBar } from '../../components/ui'
 import { supabase } from '../../services/supabase'
+import { StreakBox, type Streak } from './StreakBox'
 
 export type Mission = { id: string; template_id: string; period: 'daily' | 'weekly'; subject: string | null; progress: number; target: number; completed: boolean; claimed: boolean; xp: number; gold: number }
-type Streak = { current: number; today_done: boolean; rest_available: boolean }
 
 /** Keeps the server's idea of "today" in the player's own time zone. */
 function useSyncTimezone(uid: string | undefined) {
@@ -41,6 +41,11 @@ export function MissionsPanel({ uid }: { uid: string }) {
     },
   })
 
+  async function toggleView(st: Streak) {
+    await supabase!.from('user_settings').update({ streak_view: st.view === 'count' ? 'week' : 'count' }).eq('user_id', uid)
+    await queryClient.invalidateQueries({ queryKey: ['streak', uid] })
+  }
+
   async function claim(m: Mission) {
     setBusy(m.id)
     setError(null)
@@ -55,18 +60,7 @@ export function MissionsPanel({ uid }: { uid: string }) {
 
   return (
     <Panel title={t('missions.title')} className="flex flex-col gap-3">
-      {streak.data && (
-        <p className="flex flex-wrap items-center gap-2 rounded-xl bg-path/25 px-3 py-2 text-sm font-semibold">
-          <Flame size={18} className={streak.data.current ? 'fill-danger text-danger' : 'text-wood'} aria-hidden />
-          {streak.data.current ? t('missions.streak', { n: streak.data.current }) : t('missions.streakNone')}
-          {streak.data.today_done && <span className="text-grass-dark">· {t('missions.streakToday')}</span>}
-          {streak.data.rest_available && (
-            <span className="flex items-center gap-1 text-ink/70">
-              · <Moon size={14} aria-hidden /> {t('missions.restAvailable')}
-            </span>
-          )}
-        </p>
-      )}
+      {streak.data && <StreakBox streak={streak.data} onToggleView={() => void toggleView(streak.data!)} />}
       {error && (
         <p role="alert" className="text-sm font-semibold text-danger">
           {error}

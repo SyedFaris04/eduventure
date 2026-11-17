@@ -595,7 +595,15 @@
     "d_subject_5": "Answer 5 {{subject}} questions correctly",
     "w_correct_50": "Answer 50 questions correctly",
     "w_defeat_12": "Defeat 12 monsters",
-    "d_returning_3": "Defeat {{target}} Returning monsters"
+    "d_returning_3": "Defeat {{target}} Returning monsters",
+    "shield": "1 shield",
+    "shields": "{{n}} shields",
+    "restReady": "rest day ready",
+    "best": "Best: {{n}} days",
+    "weekLabel": "Played on {{n}} of 7 days this week",
+    "monthComeback": "You learned on {{n}} days this month — start a new streak today!",
+    "viewWeek": "Show only this week",
+    "viewCount": "Show my streak number"
   },
   "boss": {
     "name": "Greenhaven Guardian",

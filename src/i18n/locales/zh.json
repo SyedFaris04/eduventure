@@ -595,7 +595,15 @@
     "d_subject_5": "答对 5 道{{subject}}题",
     "w_correct_50": "答对 50 道题",
     "w_defeat_12": "打败 12 只怪物",
-    "d_returning_3": "打败 {{target}} 只回归怪物"
+    "d_returning_3": "打败 {{target}} 只回归怪物",
+    "shield": "1 个护盾",
+    "shields": "{{n}} 个护盾",
+    "restReady": "休息日可用",
+    "best": "最佳：{{n}} 天",
+    "weekLabel": "本周 7 天中玩了 {{n}} 天",
+    "monthComeback": "你这个月学习了 {{n}} 天——今天就开始新的连续记录吧！",
+    "viewWeek": "只显示本周",
+    "viewCount": "显示我的连续天数"
   },
   "boss": {
     "name": "绿港守护者",

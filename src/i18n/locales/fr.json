@@ -595,7 +595,15 @@
     "d_subject_5": "Réponds juste à 5 questions de {{subject}}",
     "w_correct_50": "Réponds juste à 50 questions",
     "w_defeat_12": "Bats 12 monstres",
-    "d_returning_3": "Bats {{target}} monstres de retour"
+    "d_returning_3": "Bats {{target}} monstres de retour",
+    "shield": "1 bouclier",
+    "shields": "{{n}} boucliers",
+    "restReady": "jour de repos prêt",
+    "best": "Record : {{n}} jours",
+    "weekLabel": "Joué {{n}} jours sur 7 cette semaine",
+    "monthComeback": "Tu as appris {{n}} jours ce mois-ci — commence une nouvelle série aujourd’hui !",
+    "viewWeek": "Afficher seulement cette semaine",
+    "viewCount": "Afficher le nombre de ma série"
   },
   "boss": {
     "name": "Gardien de Greenhaven",
