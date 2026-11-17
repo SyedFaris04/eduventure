@@ -4,8 +4,8 @@ import type { Theme, TileKind } from '../game/map'
 import { buildCodeProp, CODE_PROP_KINDS, type CodePropKind } from './props/codeProps'
 import { THEMES, tileColour } from './themes'
 
-const THEME_IDS: Theme[] = ['kampung', 'rainforest', 'alpine', 'tech']
-const TILES: TileKind[] = ['grass', 'flowers', 'path', 'sand', 'water', 'bridge', 'jetty', 'snow', 'stone', 'mud', 'circuit', 'metal']
+const THEME_IDS: Theme[] = ['kampung', 'rainforest', 'alpine', 'tech', 'kingdom']
+const TILES: TileKind[] = ['grass', 'flowers', 'path', 'sand', 'water', 'bridge', 'jetty', 'snow', 'stone', 'mud', 'circuit', 'metal', 'cobble']
 const HEX = /^#[0-9a-f]{6}$/i
 
 describe('themes', () => {
@@ -19,16 +19,16 @@ describe('themes', () => {
     }
   })
   it('themes look different from each other', () => {
-    expect(new Set(THEME_IDS.map((t) => THEMES[t].sky)).size).toBe(4)
+    expect(new Set(THEME_IDS.map((t) => THEMES[t].sky)).size).toBe(5)
     expect(tileColour('rainforest', 'grass')).not.toBe(tileColour('kampung', 'grass'))
   })
 })
 
-const WIDE: Partial<Record<CodePropKind, number>> = { kampung_house: 2.2, abacus_gate: 2.7, academy: 3.2 }
+const WIDE: Partial<Record<CodePropKind, number>> = { kampung_house: 2.2, abacus_gate: 2.7, academy: 3.2, language_hall: 3.2 }
 
 describe('code-built props', () => {
   it('covers every new prop kind', () => {
-    expect([...CODE_PROP_KINDS].sort()).toEqual(['abacus_gate', 'academy', 'fern', 'holo_tree', 'kampung_house', 'mangrove', 'mushroom', 'neon_lamp', 'palm', 'pillar', 'pine_snow', 'robot_statue', 'server_tower', 'stall', 'sundial'])
+    expect([...CODE_PROP_KINDS].sort()).toEqual(['abacus_gate', 'academy', 'fern', 'holo_tree', 'kampung_house', 'language_hall', 'letter_block', 'library_tower', 'mangrove', 'mushroom', 'neon_lamp', 'palm', 'pillar', 'pine_snow', 'robot_statue', 'scroll_tree', 'server_tower', 'signpost', 'stall', 'sundial'])
   })
 
   for (const kind of CODE_PROP_KINDS)
@@ -58,7 +58,8 @@ describe('code-built props', () => {
 })
 
 describe('water regions', () => {
-  it('splits the pond from the sea cove by the jetty', async () => {
+  // Loads the whole 3D water module, which takes several seconds on a busy machine.
+  it('splits the pond from the sea cove by the jetty', { timeout: 60_000 }, async () => {
     const { parseMap } = await import('../game/map')
     const { GREENHAVEN } = await import('../game/maps/greenhaven')
     const { waterRegions } = await import('./Water')

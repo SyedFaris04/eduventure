@@ -39,6 +39,7 @@ describe.skipIf(!url || !key)('islands (live project)', () => {
       { id: 'science_island', subject_ids: SCIENCE },
       { id: 'mathematics_mountains', subject_ids: MATHS },
       { id: 'technology_city', subject_ids: ['programming', 'computer_science', 'artificial_intelligence', 'cybersecurity'] },
+      { id: 'language_kingdom', subject_ids: ['english', 'malay_language', 'academic_english'] },
     ])
   })
 
@@ -82,6 +83,13 @@ describe.skipIf(!url || !key)('islands (live project)', () => {
     expect(error).toBeNull()
     expect(['programming', 'computer_science', 'artificial_intelligence', 'cybersecurity']).toContain(data.question.subject)
     expect((await a.rpc('start_boss', { p_boss: 'glitch_golem' })).error?.message).toMatch(/level 5/i)
+  })
+
+  it('language kingdom monsters ask language questions', async () => {
+    const { data, error } = await a.rpc('start_encounter', { p_monster: 'wordworm' })
+    expect(error).toBeNull()
+    expect(['english', 'malay_language', 'academic_english']).toContain(data.question.subject)
+    expect((await a.rpc('start_boss', { p_boss: 'lexicon_dragon' })).error?.message).toMatch(/level 5/i)
   })
 
   it('island boss gate', async () => {

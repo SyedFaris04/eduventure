@@ -20,7 +20,8 @@ describe('JettyPanel', () => {
     expect(screen.getByRole('button', { name: /sail to mathematics mountains/i })).toBeTruthy()
     expect(screen.getByRole('button', { name: /sail to technology city/i })).toBeTruthy()
     expect(screen.queryByRole('button', { name: /sail to greenhaven/i })).toBeNull()
-    expect(screen.getAllByText(/coming soon/i)).toHaveLength(1) // Language Kingdom (project 4)
+    expect(screen.queryByText(/coming soon/i)).toBeNull() // every island is built
+    expect(screen.getByRole('button', { name: /sail to language kingdom/i })).toBeTruthy()
   })
 
   it('Sail starts the trip and closes the panel', () => {

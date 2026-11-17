@@ -85,8 +85,8 @@
       "blurb": "Hutan Borneo: selva, manglares, una cascada y criaturas curiosas."
     },
     "language_kingdom": {
-      "name": "Reino de las Lenguas",
-      "blurb": "Una ciudad real de historias, palabras y poemas."
+      "name": "Reino de los Idiomas",
+      "blurb": "Un pueblo-castillo de letras con el Salón de Idiomas, donde aprendes inglés y malayo."
     },
     "history_ruins": {
       "name": "Ruinas de la Historia",
@@ -445,6 +445,12 @@
       "pages": [
         "¡Bienvenido a la Academia de Código! Entra y escribe tu primer programa."
       ]
+    },
+    "linguist": {
+      "name": "Cikgu Lina",
+      "pages": [
+        "¡Bienvenido al Salón de Idiomas! Entra y aprende un idioma nuevo conmigo."
+      ]
     }
   },
   "monsters": {
@@ -483,6 +489,15 @@
     },
     "loopy": {
       "name": "Bucly"
+    },
+    "wordworm": {
+      "name": "Gusano Lector"
+    },
+    "alphabat": {
+      "name": "Murciélago Alfabeto"
+    },
+    "commaleon": {
+      "name": "Coma-león"
     }
   },
   "battle": {
@@ -686,6 +701,20 @@
       "victoryText": "Superaste las cuatro rondas. ¡La Ciudad Tecnológica funciona bien otra vez!",
       "lostText": "El Gólem Glitch sigue fallando. Todo lo que ganaste está a salvo; lee las explicaciones e inténtalo de nuevo.",
       "alreadyToday": "Ya reclamaste hoy la recompensa del Gólem Glitch. ¡Vuelve mañana!"
+    },
+    "lexicon_dragon": {
+      "name": "Dragón Léxico",
+      "title": "Batalla de jefe: Dragón Léxico",
+      "intro": {
+        "r1": "Ronda 1: ¡el Dragón Léxico abre su libro! Tres respuestas correctas de idiomas superan la ronda.",
+        "r2": "Ronda 2: las páginas pasan más rápido. Las preguntas se vuelven más difíciles.",
+        "r3": "Ronda 3: ¡las palabras más difíciles del dragón!",
+        "final": "Ronda final: idiomas mezclados con todo. ¡Tres más y el dragón cierra su libro!"
+      },
+      "victory": "¡El Dragón Léxico cierra su libro!",
+      "victoryText": "Superaste las cuatro rondas. ¡El Reino de los Idiomas aclama tu nombre!",
+      "lostText": "El Dragón Léxico vuelve a la primera página y espera. Todo lo que ganaste está a salvo; lee las explicaciones e inténtalo de nuevo.",
+      "alreadyToday": "Ya reclamaste hoy la recompensa del Dragón Léxico. ¡Vuelve mañana!"
     }
   },
   "jetty": {

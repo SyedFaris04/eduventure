@@ -4,7 +4,7 @@ export const REGIONS = [
   { id: 'knowledge_forest', phase: 9, colour: '#4f9a5a' },
   { id: 'mathematics_mountains', phase: 9, colour: '#8fa3c7', open: true },
   { id: 'science_island', phase: 9, colour: '#4fa3c7', open: true },
-  { id: 'language_kingdom', phase: 9, colour: '#c77fb0' },
+  { id: 'language_kingdom', phase: 9, colour: '#c77fb0', open: true },
   { id: 'history_ruins', phase: 9, colour: '#c9a46b' },
   { id: 'technology_city', phase: 9, colour: '#6b8fd6', open: true },
   { id: 'university_district', phase: 9, colour: '#a3754f' },

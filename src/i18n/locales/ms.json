@@ -86,7 +86,7 @@
     },
     "language_kingdom": {
       "name": "Kerajaan Bahasa",
-      "blurb": "Kota diraja yang penuh cerita, kata dan puisi."
+      "blurb": "Kota istana huruf dengan Dewan Bahasa, tempat anda belajar bahasa Inggeris dan Bahasa Melayu."
     },
     "history_ruins": {
       "name": "Runtuhan Sejarah",
@@ -445,6 +445,12 @@
       "pages": [
         "Selamat datang ke Akademi Kod! Masuklah dan tulis program pertama anda."
       ]
+    },
+    "linguist": {
+      "name": "Cikgu Lina",
+      "pages": [
+        "Selamat datang ke Dewan Bahasa! Masuklah dan belajar bahasa baharu bersama saya."
+      ]
     }
   },
   "monsters": {
@@ -483,6 +489,15 @@
     },
     "loopy": {
       "name": "Loopy"
+    },
+    "wordworm": {
+      "name": "Ulat Buku"
+    },
+    "alphabat": {
+      "name": "Kelawar Abjad"
+    },
+    "commaleon": {
+      "name": "Koma-leon"
     }
   },
   "battle": {
@@ -686,6 +701,20 @@
       "victoryText": "Anda melepasi keempat-empat pusingan. Bandar Teknologi berjalan lancar semula!",
       "lostText": "Golem Glic masih bergelora. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
       "alreadyToday": "Anda sudah menuntut ganjaran Golem Glic hari ini. Datang lagi esok!"
+    },
+    "lexicon_dragon": {
+      "name": "Naga Leksikon",
+      "title": "Pertarungan bos: Naga Leksikon",
+      "intro": {
+        "r1": "Pusingan 1: Naga Leksikon membuka bukunya! Tiga jawapan bahasa yang betul melepasi pusingan ini.",
+        "r2": "Pusingan 2: halaman diselak lebih laju. Soalan semakin sukar.",
+        "r3": "Pusingan 3: perkataan paling licik sang naga!",
+        "final": "Pusingan akhir: bahasa bercampur semua. Tiga lagi dan naga itu menutup bukunya!"
+      },
+      "victory": "Naga Leksikon menutup bukunya!",
+      "victoryText": "Anda melepasi keempat-empat pusingan. Kerajaan Bahasa menyorakkan nama anda!",
+      "lostText": "Naga Leksikon kembali ke halaman pertama dan menunggu. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
+      "alreadyToday": "Anda sudah menuntut ganjaran Naga Leksikon hari ini. Datang lagi esok!"
     }
   },
   "jetty": {
