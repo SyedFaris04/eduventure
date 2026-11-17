@@ -21,7 +21,7 @@ export const MIN_READ_MS = 1600 // the server rejects answers sooner than 1.5 s 
 export function BattlePanel() {
   const battle = useGame((s) => s.battle)
   if (!battle) return null
-  return <Battle key={battle.monsterId} monsterId={battle.monsterId} kind={battle.monster} />
+  return <Battle key={battle.monsterId} monsterId={battle.monsterId} kind={battle.monster} returning={Boolean(battle.returning)} />
 }
 
 /** The player's level as the server last reported it, and the level they had when this panel opened. */
@@ -43,11 +43,11 @@ export function useProgressRefresh() {
   const uid = session?.user.id
   return {
     setTotals: (totals: { xp: number; level: number; gold: number }) => queryClient.setQueryData(['progression', uid], { xp: Number(totals.xp), level: totals.level, gold: Number(totals.gold) }),
-    refreshAll: () => Promise.all(['progression', 'missions', 'streak', 'library', 'mastery'].map((k) => queryClient.invalidateQueries({ queryKey: [k, uid] }))),
+    refreshAll: () => Promise.all(['progression', 'missions', 'streak', 'library', 'mastery', 'returning'].map((k) => queryClient.invalidateQueries({ queryKey: [k, uid] }))),
   }
 }
 
-function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
+function Battle({ monsterId, kind, returning }: { monsterId: string; kind: MonsterKind; returning: boolean }) {
   const { t } = useTranslation()
   const { setTotals, refreshAll } = useProgressRefresh()
   const [enc, setEnc] = useState<EncounterState | null>(null)
@@ -61,7 +61,7 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
 
   useEffect(() => {
     let cancelled = false
-    startEncounter(kind)
+    startEncounter(kind, returning)
       .then((s) => {
         if (cancelled) return
         setEnc(s)
@@ -135,6 +135,11 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
         <header className="flex items-center gap-3 rounded-t-[20px] bg-gradient-to-b from-[#a6d672] to-grass p-3">
           <Snapshot subject={{ kind: 'monster', monster }} px={160} alt="" className={`size-20 shrink-0 sm:size-24 ${result?.correct ? 'battle-hit' : 'hero-bob'}`} />
           <div className="min-w-0 flex-1 space-y-2">
+            {enc?.returning && (
+              <span className="inline-flex items-center gap-1 rounded-full border-2 border-wood-dark bg-gold px-2 text-xs font-bold">
+                <Sparkles size={12} aria-hidden /> {t('review.badge')}
+              </span>
+            )}
             <HpBar label={t('battle.monsterHp', { name: monsterName })} name={monsterName} value={enc?.monster_hp ?? 0} max={enc?.monster_max_hp ?? 1} colour="from-[#ff8a80] to-danger" />
             <HpBar label={t('battle.playerHp')} name={t('battle.you')} value={enc?.player_hp ?? 100} max={100} colour="from-[#c5e1a5] to-grass-dark" />
           </div>
@@ -178,6 +183,7 @@ function Battle({ monsterId, kind }: { monsterId: string; kind: MonsterKind }) {
               <div className="flex justify-center">
                 <Rewards xp={earned.xp} gold={earned.gold} />
               </div>
+              {result?.returning_bonus && <p className="font-bold text-path-dark">{t('review.bonus', result.returning_bonus)}</p>}
               {earned.leveledTo > 0 && <LevelUp level={earned.leveledTo} from={startLevel} />}
             </div>
           )}

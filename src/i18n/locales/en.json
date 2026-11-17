@@ -594,7 +594,8 @@
     "d_defeat_3": "Defeat 3 monsters",
     "d_subject_5": "Answer 5 {{subject}} questions correctly",
     "w_correct_50": "Answer 50 questions correctly",
-    "w_defeat_12": "Defeat 12 monsters"
+    "w_defeat_12": "Defeat 12 monsters",
+    "d_returning_3": "Defeat {{target}} Returning monsters"
   },
   "boss": {
     "name": "Greenhaven Guardian",
@@ -870,5 +871,13 @@
       "gold": "Not enough gold yet.",
       "failed": "That did not work. Please try again."
     }
+  },
+  "review": {
+    "badge": "Returning",
+    "bonus": "Comeback bonus: +{{xp}} XP, +{{gold}} gold",
+    "jetty": "✨ {{n}} returning",
+    "whyNot": "Why not?",
+    "comesBack": "This topic will come back soon as a Returning monster.",
+    "nothingDue": "Nothing is due here right now. Try another monster!"
   }
 }

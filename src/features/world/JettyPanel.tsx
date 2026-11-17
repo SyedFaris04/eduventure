@@ -7,7 +7,7 @@ import { PLACES, type PlaceId } from '../../game/places'
 import { usePlace } from '../../game/placeStore'
 
 /** The boatman's list of places: sail to any built island; the next projects' islands say "Coming soon". */
-export function JettyPanel() {
+export function JettyPanel({ returning = {} }: { returning?: Record<string, number> }) {
   const { t } = useTranslation()
   const open = useGame((s) => s.jetty)
   const here = usePlace((s) => s.place)
@@ -38,7 +38,10 @@ export function JettyPanel() {
             const name = t(`regions.${id}.name`)
             return (
               <li key={id} className="flex items-center justify-between gap-2 rounded-2xl border-[3px] border-wood/40 bg-white/85 px-3 py-2">
-                <span className="font-display text-lg font-semibold">{name}</span>
+                <span className="flex flex-col">
+                  <span className="font-display text-lg font-semibold">{name}</span>
+                  {(returning[id] ?? 0) > 0 && <span className="text-xs font-bold text-path-dark">{t('review.jetty', { n: returning[id] })}</span>}
+                </span>
                 {id === here ? (
                   <span className="flex items-center gap-1 text-sm font-bold text-grass-dark">
                     <MapPin size={16} aria-hidden /> {t('jetty.here')}

@@ -15,6 +15,8 @@ export type EncounterState = {
   status: 'active' | 'won' | 'lost' | 'fled'
   helpers: Helpers
   question: PublicQuestion | null
+  /** A Returning battle: due topics come back (spaced review). */
+  returning?: boolean
 }
 
 export type AnswerResult = {
@@ -31,6 +33,8 @@ export type AnswerResult = {
   leveled_up: boolean
   second_chance: boolean
   missions_completed: string[]
+  /** Paid on winning a Returning battle. */
+  returning_bonus?: { xp: number; gold: number } | null
   state: EncounterState
 }
 
@@ -52,11 +56,12 @@ const mapBattleError = (message: string | undefined) =>
     : /no questions/i.test(message ?? '') ? 'battle.errors.noQuestions'
     : /reach level \d+ to challenge/i.test(message ?? '') ? 'battle.errors.bossLevel'
     : /50\/50/i.test(message ?? '') ? 'battle.helpers.fiftyFailed'
+    : /nothing is due/i.test(message ?? '') ? 'review.nothingDue'
     : 'battle.errors.generic',
   )
 
-export async function startEncounter(monster: MonsterKind): Promise<EncounterState> {
-  const { data, error } = await supabase!.rpc('start_encounter', { p_monster: monster })
+export async function startEncounter(monster: MonsterKind, returning = false): Promise<EncounterState> {
+  const { data, error } = await supabase!.rpc('start_encounter', { p_monster: monster, p_returning: returning })
   if (error) throw toBattleError(error.message)
   return data as EncounterState
 }

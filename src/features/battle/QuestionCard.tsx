@@ -1,3 +1,4 @@
+import { WhyNot } from './WhyNot'
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ArrowDown, ArrowUp, Check, X } from 'lucide-react'
@@ -217,8 +218,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
             {badge && <span className="ms-auto">{badge}</span>}
           </p>
           {!result.correct && <p className="font-semibold">{t('battle.correctAnswerIs', { answer: formatAnswer(question, result.correct_answer, t) })}</p>}
-          {result.wrong_reason && <p className="text-sm">{result.wrong_reason}</p>}
-          <p className="text-sm">{result.explanation}</p>
+          {result.correct ? <p className="text-sm">{result.explanation}</p> : <WhyNot reason={result.wrong_reason} explanation={result.explanation} />}
           {children}
         </div>
       )}

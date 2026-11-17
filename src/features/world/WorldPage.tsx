@@ -10,6 +10,7 @@ import { useSession } from '../authentication/useSession'
 import { useMyCharacter, useProgression } from '../character/useCharacter'
 import { useMyTitle } from '../character/TitlePicker'
 import { usePet } from '../pet/usePet'
+import { useReturning } from '../review/useReturning'
 import { GameCanvas } from './GameCanvas'
 import { Hud } from './Hud'
 import { Minimap } from './Minimap'
@@ -30,6 +31,7 @@ export function WorldPage() {
   const progression = useProgression(uid)
   const title = useMyTitle(uid)
   const pet = usePet(uid)
+  const returning = useReturning(uid)
   const quality = useQuality()
   const qualityText = t('world.quality', { level: t(`world.qualityLevel.${quality.choice}`) })
   const navigate = useNavigate()
@@ -47,7 +49,7 @@ export function WorldPage() {
 
   return (
     <main className="fixed inset-0 overflow-hidden bg-[#5fb3d9] select-none">
-      {character.data && <GameCanvas hero={character.data.appearance} pet={pet.data} />}
+      {character.data && <GameCanvas hero={character.data.appearance} pet={pet.data} returning={returning.data} />}
       {/* Overlays ignore pointer events except on their own controls, so taps reach the map. */}
       <div className="pointer-events-none absolute inset-0">
         {character.data && <Hud character={character.data} xp={progression.data?.xp ?? 0} gold={progression.data?.gold ?? 0} title={title.data} />}
@@ -74,7 +76,7 @@ export function WorldPage() {
         <InteractButton />
         <DialogueBox playerName={character.data?.name ?? ''} />
         <AreaBanner />
-        <JettyPanel />
+        <JettyPanel returning={returning.data} />
         <BattlePanel />
         <BossPanel />
         <CoinBurst />
