@@ -1494,7 +1494,7 @@
       "answer": "a",
       "wrong": {
         "b": "Selamat malam = Good night.",
-        "c": "Selamat tinggal = Goodbye (said by the person leaving… or staying)."
+        "c": "Selamat tinggal = Goodbye, said by the person who is leaving (the one staying says \"Selamat jalan\")."
       }
     },
     {
