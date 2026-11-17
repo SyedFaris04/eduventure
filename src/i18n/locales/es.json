@@ -94,7 +94,7 @@
     },
     "technology_city": {
       "name": "Ciudad Tecnológica",
-      "blurb": "Engranajes, circuitos y código mueven esta ciudad brillante."
+      "blurb": "Calles de circuitos brillantes, robots amistosos y la Academia de Código, donde aprendes Python y JavaScript."
     },
     "university_district": {
       "name": "Distrito Universitario",
@@ -438,6 +438,12 @@
       "pages": [
         "¡Selamat datang! Habla conmigo cuando quieras navegar a otra isla."
       ]
+    },
+    "teacher": {
+      "name": "Cikgu Byte",
+      "pages": [
+        "¡Bienvenido a la Academia de Código! Entra y escribe tu primer programa."
+      ]
     }
   },
   "monsters": {
@@ -467,6 +473,15 @@
     },
     "pisnake": {
       "name": "Pitón Pi"
+    },
+    "bugsy": {
+      "name": "Bichito"
+    },
+    "bytebot": {
+      "name": "Byte-bot"
+    },
+    "loopy": {
+      "name": "Bucly"
     }
   },
   "battle": {
@@ -656,6 +671,20 @@
       "victoryText": "Superaste las cuatro rondas. ¡Las montañas repiten tu nombre!",
       "lostText": "El Titán del Ábaco reinicia sus cuentas y espera. Todo lo que ganaste está a salvo; lee las explicaciones e inténtalo de nuevo.",
       "alreadyToday": "Ya reclamaste hoy la recompensa del Titán del Ábaco. ¡Vuelve mañana!"
+    },
+    "glitch_golem": {
+      "name": "Gólem Glitch",
+      "title": "Batalla de jefe: Gólem Glitch",
+      "intro": {
+        "r1": "Ronda 1: ¡el Gólem Glitch cobra vida parpadeando! Tres respuestas correctas de programación superan la ronda.",
+        "r2": "Ronda 2: sus píxeles se mezclan más rápido. Las preguntas se vuelven más difíciles.",
+        "r3": "Ronda 3: ¡depura los fallos más duros del Gólem!",
+        "final": "Ronda final: código mezclado con todo. ¡Tres más y el Gólem se reinicia!"
+      },
+      "victory": "¡El Gólem Glitch se reinicia!",
+      "victoryText": "Superaste las cuatro rondas. ¡La Ciudad Tecnológica funciona bien otra vez!",
+      "lostText": "El Gólem Glitch sigue fallando. Todo lo que ganaste está a salvo; lee las explicaciones e inténtalo de nuevo.",
+      "alreadyToday": "Ya reclamaste hoy la recompensa del Gólem Glitch. ¡Vuelve mañana!"
     }
   },
   "jetty": {

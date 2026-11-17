@@ -8,7 +8,7 @@ import { canStandBeside, reachable } from './reach.testutil'
 describe('place store', () => {
   beforeEach(() => localStorage.clear())
   it('place store falls back', () => {
-    for (const bad of ['atlantis', 'technology_city', '']) {
+    for (const bad of ['atlantis', 'language_kingdom', '']) {
       localStorage.setItem('eduventure.place', bad)
       expect(loadPlace()).toBe('greenhaven')
     }
@@ -26,7 +26,6 @@ describe('place store', () => {
 describe('places', () => {
   it('every built place loads and parses', async () => {
     expect(BUILT_PLACES).toContain('greenhaven')
-    expect(PLACES.technology_city.built).toBe(false)
     expect(PLACES.language_kingdom.built).toBe(false)
     for (const id of BUILT_PLACES) {
       const map = parseMap(await PLACES[id].load!())
@@ -50,6 +49,7 @@ describe('islands', () => {
   const cases = [
     { id: 'science_island', theme: 'rainforest', kinds: ['hornbill', 'tapir', 'pangolin'], boss: 'raja_rafflesia', areas: ['Hutan Borneo', 'Air Terjun Langkawi', 'Paya Bakau', 'Pekan Kuching'] },
     { id: 'mathematics_mountains', theme: 'alpine', kinds: ['cubelet', 'hexowl', 'pisnake'], boss: 'abacus_titan', areas: ['Summit Gate', 'Sundial Terraces', 'Pillar Pass'] },
+    { id: 'technology_city', theme: 'tech', kinds: ['bugsy', 'bytebot', 'loopy'], boss: 'glitch_golem', areas: ['Code Academy', 'Server Gardens', 'Neon Plaza', 'Data Docks'] },
   ] as const
 
   for (const c of cases)
@@ -75,4 +75,16 @@ describe('islands', () => {
       const boatman = map.npcs.find((n) => n.id === 'boatman')!
       expect(canStandBeside(r, boatman.x, boatman.y)).toBe(true)
     })
+})
+
+describe('Technology City', () => {
+  it('has the Code Academy with Cikgu Byte at its door', async () => {
+    const map = parseMap(await PLACES.technology_city.load!())
+    expect(map.props.filter((p) => p.kind === 'academy')).toHaveLength(1)
+    const teacher = map.npcs.find((n) => n.id === 'teacher')!
+    expect(teacher).toBeDefined()
+    expect(canStandBeside(reachable(map, map.arrival), teacher.x, teacher.y)).toBe(true)
+    const academy = map.props.find((p) => p.kind === 'academy')!
+    expect(Math.hypot(teacher.x - (academy.x + 1), teacher.y - (academy.y + 1))).toBeLessThanOrEqual(3.5) // right by the door
+  })
 })

@@ -3,8 +3,8 @@ import type { BossId, MonsterKind } from '../../game/map'
 import { faceMaterial, geometry, material } from '../hero/materials'
 import type { Shape } from '../hero/parts'
 
-export const MONSTER_KINDS: MonsterKind[] = ['sproutling', 'pebblewing', 'dinobud', 'hornbill', 'tapir', 'pangolin', 'cubelet', 'hexowl', 'pisnake']
-export const BOSS_IDS: BossId[] = ['guardian', 'raja_rafflesia', 'abacus_titan']
+export const MONSTER_KINDS: MonsterKind[] = ['sproutling', 'pebblewing', 'dinobud', 'hornbill', 'tapir', 'pangolin', 'cubelet', 'hexowl', 'pisnake', 'bugsy', 'bytebot', 'loopy']
+export const BOSS_IDS: BossId[] = ['guardian', 'raja_rafflesia', 'abacus_titan', 'glitch_golem']
 type V3 = [number, number, number]
 type Part = [shape: Shape, colour: string, at: V3, size: V3, rot?: V3]
 
@@ -107,6 +107,34 @@ const DESIGNS: Record<MonsterKind | BossId, Part[]> = {
     ['box', '#e2574c', [0.52, 0.76, 0.22], [0.04, 0.02, 0.12]],
     ['eyes:round', '', [0.52, 0.9, 0.215], [0.26, 0.11, 1]],
   ],
+  // Technology City — Bugsy: a beetle whose antennae end in blinking cursors.
+  bugsy: [
+    ['sphere', '#3fae7a', [0, 0.34, -0.04], [0.8, 0.56, 0.9]],
+    ['box', '#2b7a56', [0, 0.6, -0.04], [0.03, 0.08, 0.86]],
+    ['sphere', '#2b3142', [0, 0.36, 0.42], [0.46, 0.42, 0.4]],
+    ...([1, -1] as const).map((s): Part => ['cylinder', '#2b3142', [s * 0.12, 0.66, 0.5], [0.03, 0.34, 0.03], [0.4, 0, -s * 0.3]]),
+    ...([1, -1] as const).map((s): Part => ['box', '*#ffcf4d', [s * 0.18, 0.82, 0.58], [0.04, 0.12, 0.04]]),
+    ...([-0.22, 0, 0.22] as const).flatMap((z): Part[] => ([1, -1] as const).map((s): Part => ['capsule', '#2b3142', [s * 0.4, 0.1, z], [0.06, 0.16, 0.06], [0, 0, s * 0.8]])),
+    eyes(0.42, 0.625, 0.3),
+  ],
+  // Technology City — Byte-bot: a small boxy robot on wheels with a screen face.
+  bytebot: [
+    ...([1, -1] as const).map((s): Part => ['cylinder', '#2b3142', [s * 0.27, 0.13, 0], [0.26, 0.09, 0.26], [0, 0, PI / 2]]),
+    ['rbox', '#c9d2e3', [0, 0.48, 0], [0.62, 0.5, 0.5]],
+    ['box', '*#46e0c9', [0, 0.5, 0.26], [0.3, 0.12, 0.02]],
+    ['rbox', '#e8ecf5', [0, 0.95, 0], [0.54, 0.42, 0.46]],
+    ['box', '#2b3142', [0, 0.95, 0.225], [0.42, 0.28, 0.02]],
+    ['cylinder', '#8a8f99', [0, 1.22, 0], [0.04, 0.16, 0.04]],
+    ['sphere', '*#ff5ea8', [0, 1.32, 0], [0.1, 0.1, 0.1]],
+    eyes(0.97, 0.24, 0.32),
+  ],
+  // Technology City — Loopy: a loop of orange cable with a plug for a head.
+  loopy: [
+    ['ring', '#ff8a3d', [0, 0.46, 0], [0.92, 0.92, 2.2]],
+    ['rbox', '#2b3142', [0.36, 0.86, 0.06], [0.3, 0.26, 0.32]],
+    ...([1, -1] as const).map((s): Part => ['box', '*#ffcf4d', [0.53, 0.86 + s * 0.06, 0.06], [0.08, 0.03, 0.03]]),
+    ['eyes:round', '', [0.36, 0.88, 0.225], [0.24, 0.1, 1]],
+  ],
   // The Greenhaven Guardian: a gentle, mossy stone golem with a glowing rune.
   guardian: [
     ['rbox', '#b6bec8', [0, 1.15, 0], [1.5, 1.5, 1.1]],
@@ -131,6 +159,17 @@ const DESIGNS: Record<MonsterKind | BossId, Part[]> = {
     ...([1, -1] as const).map((s): Part => ['box', '#3d7a3a', [s * 1.0, 1.05, 0.1], [0.9, 0.06, 0.32], [0, 0, s * 0.5]]),
     eyes(1.5, 0.415, 0.5),
     mouth(1.38, 0.415, 0.24),
+  ],
+  // Technology City boss — the Glitch Golem: a giant of purple pixel blocks with flickering glowing pixels.
+  glitch_golem: [
+    ...([1, -1] as const).map((s): Part => ['box', '#4f4594', [s * 0.33, 0.3, 0], [0.45, 0.6, 0.5]]),
+    ['box', '#6b5fa8', [0, 1.2, 0], [1.3, 1.2, 0.9]],
+    ['box', '#8a7fd0', [0, 2.15, 0.02], [0.8, 0.7, 0.7]],
+    ...([1, -1] as const).map((s): Part => ['box', '#5a4fa0', [s * 0.92, 1.15, 0.04], [0.4, 1.0, 0.45], [0, 0, s * 0.08]]),
+    ...([[-0.4, 1.5], [-0.1, 1.2], [0.25, 1.45], [0.4, 0.95], [-0.3, 0.85], [0.05, 0.75]] as const).map(([x, y], i): Part => ['box', i % 2 ? '*#46e0c9' : '*#ff4fd8', [x, y, 0.46], [0.16, 0.16, 0.03]]),
+    ['box', '*#ffcf4d', [0.3, 2.45, 0.37], [0.12, 0.12, 0.02]],
+    eyes(2.2, 0.375, 0.5),
+    mouth(2.0, 0.375, 0.24),
   ],
   // Mathematics Mountains boss — the Abacus Titan: a stone golem with an abacus in its chest and rune eyes.
   abacus_titan: [

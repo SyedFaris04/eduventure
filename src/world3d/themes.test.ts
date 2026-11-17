@@ -4,8 +4,8 @@ import type { Theme, TileKind } from '../game/map'
 import { buildCodeProp, CODE_PROP_KINDS, type CodePropKind } from './props/codeProps'
 import { THEMES, tileColour } from './themes'
 
-const THEME_IDS: Theme[] = ['kampung', 'rainforest', 'alpine']
-const TILES: TileKind[] = ['grass', 'flowers', 'path', 'sand', 'water', 'bridge', 'jetty', 'snow', 'stone', 'mud']
+const THEME_IDS: Theme[] = ['kampung', 'rainforest', 'alpine', 'tech']
+const TILES: TileKind[] = ['grass', 'flowers', 'path', 'sand', 'water', 'bridge', 'jetty', 'snow', 'stone', 'mud', 'circuit', 'metal']
 const HEX = /^#[0-9a-f]{6}$/i
 
 describe('themes', () => {
@@ -19,16 +19,16 @@ describe('themes', () => {
     }
   })
   it('themes look different from each other', () => {
-    expect(new Set(THEME_IDS.map((t) => THEMES[t].sky)).size).toBe(3)
+    expect(new Set(THEME_IDS.map((t) => THEMES[t].sky)).size).toBe(4)
     expect(tileColour('rainforest', 'grass')).not.toBe(tileColour('kampung', 'grass'))
   })
 })
 
-const WIDE: Partial<Record<CodePropKind, number>> = { kampung_house: 2.2, abacus_gate: 2.7 }
+const WIDE: Partial<Record<CodePropKind, number>> = { kampung_house: 2.2, abacus_gate: 2.7, academy: 3.2 }
 
 describe('code-built props', () => {
   it('covers every new prop kind', () => {
-    expect([...CODE_PROP_KINDS].sort()).toEqual(['abacus_gate', 'fern', 'kampung_house', 'mangrove', 'mushroom', 'palm', 'pillar', 'pine_snow', 'stall', 'sundial'])
+    expect([...CODE_PROP_KINDS].sort()).toEqual(['abacus_gate', 'academy', 'fern', 'holo_tree', 'kampung_house', 'mangrove', 'mushroom', 'neon_lamp', 'palm', 'pillar', 'pine_snow', 'robot_statue', 'server_tower', 'stall', 'sundial'])
   })
 
   for (const kind of CODE_PROP_KINDS)

@@ -93,8 +93,8 @@
       "blurb": "Des salles en ruine qui se souviennent du passé."
     },
     "technology_city": {
-      "name": "Cité de la Technologie",
-      "blurb": "Engrenages, circuits et code font vivre cette cité lumineuse."
+      "name": "Cité Technologique",
+      "blurb": "Des routes de circuits lumineux, des robots sympathiques et l'Académie du code, où tu apprends Python et JavaScript."
     },
     "university_district": {
       "name": "Quartier Universitaire",
@@ -438,6 +438,12 @@
       "pages": [
         "Selamat datang ! Parle-moi quand tu veux naviguer vers une autre île."
       ]
+    },
+    "teacher": {
+      "name": "Cikgu Byte",
+      "pages": [
+        "Bienvenue à l'Académie du code ! Entre et écris ton premier programme."
+      ]
     }
   },
   "monsters": {
@@ -467,6 +473,15 @@
     },
     "pisnake": {
       "name": "Python Pi"
+    },
+    "bugsy": {
+      "name": "Bestiole"
+    },
+    "bytebot": {
+      "name": "Byte-bot"
+    },
+    "loopy": {
+      "name": "Boucly"
     }
   },
   "battle": {
@@ -656,6 +671,20 @@
       "victoryText": "Tu as passé les quatre manches. Les montagnes résonnent de ton nom !",
       "lostText": "Le Titan Boulier remet ses perles en place et attend. Tout ce que tu as gagné est en sécurité ; lis les explications et réessaie.",
       "alreadyToday": "Tu as déjà réclamé la récompense du Titan Boulier aujourd'hui. Reviens demain !"
+    },
+    "glitch_golem": {
+      "name": "Golem Bug",
+      "title": "Combat de boss : Golem Bug",
+      "intro": {
+        "r1": "Manche 1 : le Golem Bug s'allume en clignotant ! Trois bonnes réponses de programmation pour passer la manche.",
+        "r2": "Manche 2 : ses pixels se brouillent plus vite. Les questions deviennent plus difficiles.",
+        "r3": "Manche 3 : corrige les pires bugs du Golem !",
+        "final": "Manche finale : le code mêlé à tout le reste. Encore trois et le Golem redémarre !"
+      },
+      "victory": "Le Golem Bug redémarre !",
+      "victoryText": "Tu as passé les quatre manches. La Cité Technologique tourne à nouveau sans accroc !",
+      "lostText": "Le Golem Bug bugue encore. Tout ce que tu as gagné est en sécurité ; lis les explications et réessaie.",
+      "alreadyToday": "Tu as déjà réclamé la récompense du Golem Bug aujourd'hui. Reviens demain !"
     }
   },
   "jetty": {

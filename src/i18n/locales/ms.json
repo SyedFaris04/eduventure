@@ -94,7 +94,7 @@
     },
     "technology_city": {
       "name": "Bandar Teknologi",
-      "blurb": "Gear, litar dan kod menggerakkan bandar yang terang ini."
+      "blurb": "Jalan litar bercahaya, robot yang mesra dan Akademi Kod, tempat anda belajar Python dan JavaScript."
     },
     "university_district": {
       "name": "Daerah Universiti",
@@ -438,6 +438,12 @@
       "pages": [
         "Selamat datang! Bercakaplah dengan saya bila-bila masa anda mahu belayar ke pulau lain."
       ]
+    },
+    "teacher": {
+      "name": "Cikgu Byte",
+      "pages": [
+        "Selamat datang ke Akademi Kod! Masuklah dan tulis program pertama anda."
+      ]
     }
   },
   "monsters": {
@@ -467,6 +473,15 @@
     },
     "pisnake": {
       "name": "Ular Pi"
+    },
+    "bugsy": {
+      "name": "Bugsy"
+    },
+    "bytebot": {
+      "name": "Bot-Bait"
+    },
+    "loopy": {
+      "name": "Loopy"
     }
   },
   "battle": {
@@ -656,6 +671,20 @@
       "victoryText": "Anda melepasi keempat-empat pusingan. Gunung-ganang menyebut nama anda!",
       "lostText": "Titan Sempoa menyusun semula maniknya dan menunggu. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
       "alreadyToday": "Anda sudah menuntut ganjaran Titan Sempoa hari ini. Datang lagi esok!"
+    },
+    "glitch_golem": {
+      "name": "Golem Glic",
+      "title": "Pertarungan bos: Golem Glic",
+      "intro": {
+        "r1": "Pusingan 1: Golem Glic berkelip hidup! Tiga jawapan pengaturcaraan yang betul melepasi pusingan ini.",
+        "r2": "Pusingan 2: pikselnya berserabut lebih laju. Soalan semakin sukar.",
+        "r3": "Pusingan 3: nyahpepijat glic paling sukar sang Golem!",
+        "final": "Pusingan akhir: kod bercampur semua. Tiga lagi dan Golem itu dimulakan semula!"
+      },
+      "victory": "Golem Glic dimulakan semula!",
+      "victoryText": "Anda melepasi keempat-empat pusingan. Bandar Teknologi berjalan lancar semula!",
+      "lostText": "Golem Glic masih bergelora. Semua yang anda peroleh selamat; baca penjelasan dan cuba lagi.",
+      "alreadyToday": "Anda sudah menuntut ganjaran Golem Glic hari ini. Datang lagi esok!"
     }
   },
   "jetty": {

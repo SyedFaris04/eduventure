@@ -36,7 +36,13 @@ function CurrentPlace({ hero }: { hero: Appearance }) {
   const place = usePlace((s) => s.place)
   const arriving = usePlace((s) => s.arriving)
   const map = use(placeMap(place))
-  return <World3D key={place} hero={hero} map={map} atArrival={arriving} />
+  // Coming back from the Code Academy: start where the player left (once), not at the jetty.
+  const [start] = useState(() => {
+    const at = usePlace.getState().resumeAt
+    if (at) usePlace.setState({ resumeAt: null })
+    return at ?? undefined
+  })
+  return <World3D key={place} hero={hero} map={map} atArrival={arriving} startAt={start} />
 }
 
 /** The 3D world, or a clear message when this device can't show it or the download failed. */

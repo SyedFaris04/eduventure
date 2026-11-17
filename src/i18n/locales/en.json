@@ -94,7 +94,7 @@
     },
     "technology_city": {
       "name": "Technology City",
-      "blurb": "Gears, circuits and code power this bright city."
+      "blurb": "Glowing circuit roads, friendly robots and the Code Academy, where you learn Python and JavaScript."
     },
     "university_district": {
       "name": "University District",
@@ -438,6 +438,12 @@
       "pages": [
         "Selamat datang! Talk to me whenever you want to sail to another island."
       ]
+    },
+    "teacher": {
+      "name": "Cikgu Byte",
+      "pages": [
+        "Welcome to the Code Academy! Come in and write your first program."
+      ]
     }
   },
   "monsters": {
@@ -467,6 +473,15 @@
     },
     "pisnake": {
       "name": "Pi-thon"
+    },
+    "bugsy": {
+      "name": "Bugsy"
+    },
+    "bytebot": {
+      "name": "Byte-bot"
+    },
+    "loopy": {
+      "name": "Loopy"
     }
   },
   "battle": {
@@ -656,6 +671,20 @@
       "victoryText": "You cleared all four rounds. The mountains echo your name!",
       "lostText": "The Abacus Titan resets its beads and waits. Everything you earned is safe; read the explanations and try again.",
       "alreadyToday": "You've already claimed today's Abacus Titan reward. Come back tomorrow!"
+    },
+    "glitch_golem": {
+      "name": "Glitch Golem",
+      "title": "Boss battle: Glitch Golem",
+      "intro": {
+        "r1": "Round 1: the Glitch Golem flickers to life! Three correct coding answers clear the round.",
+        "r2": "Round 2: its pixels scramble faster. The questions get harder.",
+        "r3": "Round 3: debug the Golem's toughest glitches!",
+        "final": "Final round: code mixed with everything. Three more and the Golem reboots!"
+      },
+      "victory": "The Glitch Golem reboots!",
+      "victoryText": "You cleared all four rounds. Technology City runs smoothly again!",
+      "lostText": "The Glitch Golem keeps glitching. Everything you earned is safe; read the explanations and try again.",
+      "alreadyToday": "You've already claimed today's Glitch Golem reward. Come back tomorrow!"
     }
   },
   "jetty": {

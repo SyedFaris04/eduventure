@@ -22,6 +22,11 @@ describe('WorldSim', () => {
     expect(sim.hero.pos).toEqual({ x: map.arrival.x + 0.5, y: map.arrival.y + 0.5 })
   })
 
+  it('returns to the academy door', () => {
+    const sim = new WorldSim(map, seeded(), { atArrival: true, start: { x: 10, y: 12 } })
+    expect(sim.hero.pos).toEqual({ x: 10.5, y: 12.5 })
+  })
+
   it('spawns as many monsters as the map asks for', () => {
     const sim = new WorldSim(map, seeded())
     const total = Object.values(map.monsterCounts).reduce((a, b) => a + (b ?? 0), 0)

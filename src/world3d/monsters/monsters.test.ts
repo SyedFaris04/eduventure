@@ -50,8 +50,8 @@ describe('island monsters and bosses', () => {
   }
 
   it('has all nine monsters and three bosses', () => {
-    expect([...MONSTER_KINDS].sort()).toEqual(['cubelet', 'dinobud', 'hexowl', 'hornbill', 'pangolin', 'pebblewing', 'pisnake', 'sproutling', 'tapir'])
-    expect([...BOSS_IDS].sort()).toEqual(['abacus_titan', 'guardian', 'raja_rafflesia'])
+    expect([...MONSTER_KINDS].sort()).toEqual(['bugsy', 'bytebot', 'cubelet', 'dinobud', 'hexowl', 'hornbill', 'loopy', 'pangolin', 'pebblewing', 'pisnake', 'sproutling', 'tapir'])
+    expect([...BOSS_IDS].sort()).toEqual(['abacus_titan', 'glitch_golem', 'guardian', 'raja_rafflesia'])
   })
 
   it('monsters stand on the ground at monster size', () => {
@@ -74,7 +74,7 @@ describe('island monsters and bosses', () => {
 
   it('each boss has its own picture key', () => {
     const keys = BOSS_IDS.map((boss) => snapshotKey({ kind: 'boss', boss }))
-    expect(new Set(keys).size).toBe(3)
+    expect(new Set(keys).size).toBe(4)
     expect(keys).toContain('boss:raja_rafflesia')
   })
 })
