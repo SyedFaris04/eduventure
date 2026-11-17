@@ -28,3 +28,4 @@ Branching (owner's standing instruction, 2026-11-16): build each phase on its ow
 
 - `npm run dev` — dev server, also reachable from a phone on the same Wi-Fi
 - `npm run build` — type-check (TypeScript 7) and production build
+- `npm run gen:questions` / `npm run gen:lessons` — turn edited `content/questions` or `content/courses` files into migrations (the tests check, and run, the content first)

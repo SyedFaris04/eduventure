@@ -129,6 +129,25 @@ Spec: `docs/superpowers/specs/2026-11-16-island-world-design.md`; plan: `docs/su
 
 **Rules for any Malaysian content:** no real brands or branded buildings, no religious sites or symbols, and no flags or emblems as decoration.
 
+### Coding island (project 3 of the same request) — built and merged
+Spec: `docs/superpowers/specs/2026-11-17-coding-island-design.md`; plan: `docs/superpowers/plans/2026-11-17-coding-island.md`.
+- **Technology City** is reached by boat. It has:
+  - code-reading monsters: Bugsy, Byte-bot and Loopy;
+  - the Glitch Golem boss at level 5;
+  - the Code Academy, with Cikgu Byte at the door. The Academy is also reachable from Home.
+- **Two beginner courses,** Python Basics and JavaScript Basics. Each has 3 units × 4 lessons (24 lessons, 144 steps), made of Learn, Predict, Fix and Write steps.
+- **Real code runs in the browser:** JavaScript in a worker, and Python through Pyodide, downloaded only for the first Python lesson. There is a 3-second limit and a 200-line output cap.
+- **Marking and rewards:** the server marks Predict and Fix steps and pays 25 XP and 10 gold once per lesson.
+- **Content checks:** every lesson sample and every one of the 60 new code-reading questions is executed by the tests.
+- **Review:** lessons are reviewed in `/admin` under "Code Academy lessons".
+
+**Later:**
+- Java on a server sandbox;
+- harder tracks (SPM Computer Science, university);
+- more units;
+- lesson text in Malay;
+- a free-play sandbox.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Pet, island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

@@ -27,6 +27,7 @@ The hero's body parts, hair, clothes, weapons and shop items are built in code (
 The island scenery is code-built too (`src/world3d/props/codeProps.ts`):
 - palms, kampung houses, the pasar malam stall, ferns, mangroves and mushrooms;
 - snowy pines, pillars, sundials and the abacus gate;
-- the wau kite, the waterfall and the perahu in the boat ride.
+- the wau kite, the waterfall and the perahu in the boat ride;
+- Technology City: server towers, neon lamps, the robot statue, holo trees and the Code Academy, plus Bugsy, Byte-bot, Loopy and the Glitch Golem.
 
 All of it is original to this project. No new art pack was added for the islands.

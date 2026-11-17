@@ -1,39 +1,7 @@
-import { expect, test, type Page } from '@playwright/test'
-import { clickGrid, enterWorld, newPlayer, state, type GameState } from './helpers'
+import { expect, test } from '@playwright/test'
+import { clickGrid, enterWorld, newPlayer, place, promptIs, sail, state, walkUntil } from './helpers'
 
 const SCIENCE = ['science', 'biology', 'chemistry', 'physics', 'environmental_science']
-const place = (page: Page) => page.evaluate(() => (window as unknown as { __place: { getState: () => { place: string } } }).__place.getState().place)
-const promptIs = (page: Page, kind: string, id?: string) =>
-  page.waitForFunction(
-    ([k, i]) => {
-      const p = (window as unknown as { __game: { getState: () => GameState } }).__game.getState().prompt
-      return p?.kind === k && (!i || p.id === i)
-    },
-    [kind, id] as const,
-    { timeout: 25_000 },
-  )
-
-/** Taps toward a tile until the given prompt appears (the camera eases, so each tap is re-aimed). */
-async function walkUntil(page: Page, target: { x: number; y: number }, kind: string, id?: string) {
-  for (let i = 0; i < 12; i++) {
-    const p = (await state(page)).prompt
-    if (p?.kind === kind && (!id || p.id === id)) return
-    await clickGrid(page, target)
-    await promptIs(page, kind, id).catch(() => undefined)
-  }
-  await promptIs(page, kind, id)
-}
-
-async function sail(page: Page, button: RegExp, to: string) {
-  await page.keyboard.press('e')
-  const jetty = page.getByRole('dialog', { name: "Pak Hamid's jetty" })
-  await expect(jetty).toBeVisible()
-  await jetty.getByRole('button', { name: button }).click()
-  await expect(page.getByText(/Sailing to/)).toBeVisible()
-  await page.waitForFunction((p) => (window as unknown as { __place: { getState: () => { place: string } } }).__place.getState().place === p, to, { timeout: 40_000 })
-  await page.waitForFunction(() => ((window as unknown as { __game: { getState: () => GameState } }).__game.getState().player.x ?? 0) > 0, null, { timeout: 30_000 })
-}
-
 test('sail to Science Island and fight', async ({ page }) => {
   test.setTimeout(480_000) // two boat rides and long walks on software rendering
   await newPlayer(page)
