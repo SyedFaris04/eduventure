@@ -11,7 +11,7 @@ import { Snapshot } from '../../world3d/SnapshotImage'
 import type { Appearance } from '../character/appearance'
 import { saveCharacter, useMyCharacter, useProgression } from '../character/useCharacter'
 import { isUnlocked, unlockLevel } from '../../game/unlocks'
-import { CATALOGUE, type Rarity, type ShopItem } from './catalogue'
+import { HERO_ITEMS, type Rarity, type ShopItem } from './catalogue'
 import { buyItem, ownedItemsKey, useOwnedItems } from './useShop'
 
 const RARITY_STYLE: Record<Rarity, string> = {
@@ -84,7 +84,7 @@ export function ShopPage() {
 
         <Panel>
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {CATALOGUE.map((item) => {
+            {HERO_ITEMS.map((item) => {
               const mine = owned.data?.has(item.id) ?? false
               const wearing = look?.[item.slot] === item.id
               const short = item.price - gold

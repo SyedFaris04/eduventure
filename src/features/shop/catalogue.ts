@@ -29,3 +29,6 @@ export const CATALOGUE = [
 export type ShopItem = (typeof CATALOGUE)[number]
 export type ShopItemId = ShopItem['id']
 export type Rarity = ShopItem['rarity']
+
+/** Items the hero wears (everything outside the pet corner). */
+export const HERO_ITEMS = CATALOGUE.filter((i): i is Exclude<ShopItem, { slot: `pet_${string}` }> => !i.slot.startsWith('pet_'))
