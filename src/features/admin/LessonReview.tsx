@@ -73,8 +73,8 @@ export function LessonReview({ isAdmin }: { isAdmin: boolean }) {
                           {(s.code || s.starter) && <pre className="mt-1 overflow-x-auto rounded bg-[#1f2433] p-2 text-xs text-[#f4f1ea]">{s.code ?? s.starter}</pre>}
                           {s.options && <p>Options: {s.options.map((o) => `${o.id}) ${o.text}`).join('   ')}</p>}
                           {s.broken_line && <p>Broken line: {s.broken_line}</p>}
-                          {s.expected_output && <p>Expected output: {s.expected_output}</p>}
-                          {s.key && (
+                          {s.expected_output && <p className="whitespace-pre-wrap">Expected output: {s.expected_output}</p>}
+                          {s.key && (s.key.answer ?? s.key.solution) != null && (
                             <p className="text-grass-dark">
                               Answer: {JSON.stringify(s.key.answer ?? s.key.solution)}
                               {s.key.explanation ? ` — ${s.key.explanation}` : ''}
