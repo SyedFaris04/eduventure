@@ -97,3 +97,31 @@ describe('every sample prints what the lesson says', () => {
       }
     }, 120_000)
 })
+
+type CodeQuestion = { id: string; type: string; prompt: string; code?: string; language?: 'python' | 'javascript'; options?: { id: string; text: string }[]; answer: unknown }
+const qdir = new URL('../../../content/questions/', import.meta.url)
+const codeQuestions = readdirSync(qdir)
+  .filter((f) => f.endsWith('.json'))
+  .flatMap((f) => (JSON.parse(readFileSync(new URL(f, qdir), 'utf8')) as { questions: CodeQuestion[] }).questions)
+  .filter((q) => q.code !== undefined)
+
+describe('code-reading questions print their answers', () => {
+  beforeAll(async () => {
+    py ??= await loadPyodide()
+  }, 120_000)
+
+  it('there are code-reading questions at every school level', () => {
+    expect(codeQuestions.length).toBeGreaterThanOrEqual(60)
+  })
+
+  it('every program runs, and the stated answer is what it really prints', async () => {
+    for (const q of codeQuestions) {
+      expect(q.language, q.id).toBeDefined()
+      expect(q.prompt.endsWith(q.code!), `${q.id}: the prompt must show the program`).toBe(q.type !== 'ordering')
+      const r = await run(q.language!, q.code!)
+      expect(r.error, `${q.id} threw`).toBeNull()
+      if (q.type === 'mcq') expect(normOutput(r.out), q.id).toBe(q.options!.find((o) => o.id === q.answer)!.text)
+      if (q.type === 'fill_blank') expect(normOutput(r.out), q.id).toBe((q.answer as { accept: string[] }).accept[0])
+    }
+  }, 120_000)
+})

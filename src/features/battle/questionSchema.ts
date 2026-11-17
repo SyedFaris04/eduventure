@@ -20,6 +20,9 @@ const base = z.object({
   explanation: z.string().min(10),
   objective: z.string().min(5),
   alignment: z.string().min(5),
+  // Code-reading questions keep their program here too, so the tests can run it and check the stated answer.
+  language: z.enum(['python', 'javascript']).optional(),
+  code: z.string().optional(),
 })
 
 /** Source-file shape (with answers). The database splits it into `questions` and `question_keys`. */
