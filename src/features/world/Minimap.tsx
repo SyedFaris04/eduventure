@@ -39,6 +39,12 @@ const COLOURS: Record<string, string> = {
   robot_statue: '#c9d2e3',
   holo_tree: '#46e0c9',
   academy: '#e8ecf5',
+  cobble: '#c9b9a0',
+  library_tower: '#3f5fa8',
+  signpost: '#e85a4f',
+  scroll_tree: '#7cb342',
+  letter_block: '#f2c14e',
+  language_hall: '#f4ecd8',
 }
 const colourOf = (c: Cell) => COLOURS[c.prop ?? ''] ?? (c.blocks && !c.npc ? COLOURS.house : COLOURS[c.tile])
 

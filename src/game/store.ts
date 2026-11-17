@@ -30,8 +30,8 @@ type GameState = {
   travel: { to: PlaceId } | null
   /** Name of the area the player is standing in, for the banner. */
   area: string | null
-  /** Cikgu Byte was asked to open the Code Academy; the world page navigates there. */
-  academy: boolean
+  /** A teacher was asked to open their school (Cikgu Byte: code, Cikgu Lina: language); the world page navigates there. */
+  academy: 'code' | 'language' | null
 }
 
 export const useGame = create<GameState>(() => ({
@@ -49,7 +49,7 @@ export const useGame = create<GameState>(() => ({
   jetty: false,
   travel: null,
   area: null,
-  academy: false,
+  academy: null,
 }))
 
 // Development builds only: lets automated tests and debugging read the game state.

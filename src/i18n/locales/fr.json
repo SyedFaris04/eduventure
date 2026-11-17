@@ -86,7 +86,7 @@
     },
     "language_kingdom": {
       "name": "Royaume des Langues",
-      "blurb": "Une cité royale d'histoires, de mots et de poèmes."
+      "blurb": "Une ville-château de lettres avec la Salle des langues, où tu apprends l'anglais et le malais."
     },
     "history_ruins": {
       "name": "Ruines de l'Histoire",
@@ -392,7 +392,8 @@
     "admin": "Relire les questions",
     "library": "Bibliothèque",
     "shop": "Boutique",
-    "academy": "Académie du code"
+    "academy": "Académie du code",
+    "hall": "Salle des langues"
   },
   "world": {
     "canvasLabel": "{{place}}. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",
@@ -444,6 +445,12 @@
       "pages": [
         "Bienvenue à l'Académie du code ! Entre et écris ton premier programme."
       ]
+    },
+    "linguist": {
+      "name": "Cikgu Lina",
+      "pages": [
+        "Bienvenue dans la Salle des langues ! Entre et apprends une nouvelle langue avec moi."
+      ]
     }
   },
   "monsters": {
@@ -482,6 +489,15 @@
     },
     "loopy": {
       "name": "Boucly"
+    },
+    "wordworm": {
+      "name": "Ver de livre"
+    },
+    "alphabat": {
+      "name": "Chauve-souris ABC"
+    },
+    "commaleon": {
+      "name": "Virgu-léon"
     }
   },
   "battle": {
@@ -685,6 +701,20 @@
       "victoryText": "Tu as passé les quatre manches. La Cité Technologique tourne à nouveau sans accroc !",
       "lostText": "Le Golem Bug bugue encore. Tout ce que tu as gagné est en sécurité ; lis les explications et réessaie.",
       "alreadyToday": "Tu as déjà réclamé la récompense du Golem Bug aujourd'hui. Reviens demain !"
+    },
+    "lexicon_dragon": {
+      "name": "Dragon Lexique",
+      "title": "Combat de boss : Dragon Lexique",
+      "intro": {
+        "r1": "Manche 1 : le Dragon Lexique ouvre son livre ! Trois bonnes réponses de langue pour passer la manche.",
+        "r2": "Manche 2 : les pages tournent plus vite. Les questions deviennent plus difficiles.",
+        "r3": "Manche 3 : les mots les plus rusés du dragon !",
+        "final": "Manche finale : les langues mêlées à tout le reste. Encore trois et le dragon referme son livre !"
+      },
+      "victory": "Le Dragon Lexique referme son livre !",
+      "victoryText": "Tu as passé les quatre manches. Le Royaume des Langues acclame ton nom !",
+      "lostText": "Le Dragon Lexique retourne à la première page et attend. Tout ce que tu as gagné est en sécurité ; lis les explications et réessaie.",
+      "alreadyToday": "Tu as déjà réclamé la récompense du Dragon Lexique aujourd'hui. Reviens demain !"
     }
   },
   "jetty": {
@@ -749,6 +779,14 @@
       "notFound": "Cette leçon n'est pas disponible.",
       "unanswered": "Réponds d'abord à toutes les questions de la leçon.",
       "generic": "Un problème est survenu. Réessaie."
-    }
+    },
+    "play": "Écouter",
+    "answerLine": "Ta phrase",
+    "tray": "Mots",
+    "matchHint": "Touche un mot, puis son sens. Touche une paire à nouveau pour l'annuler."
+  },
+  "hall": {
+    "title": "Salle des langues",
+    "intro": "Apprends l'anglais et le malais avec des leçons courtes et amusantes. Touche, écoute, associe et construis des phrases."
   }
 }

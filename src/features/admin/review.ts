@@ -110,7 +110,7 @@ export async function bulkReview(ids: string[], action: Action, note: string | n
   return data as { done: number; skipped: { id: string; reason: string }[] }
 }
 
-export type AdminLessonStep = { id: string; lesson_id: string; step_index: number; kind: string; text: string; code?: string | null; options?: { id: string; text: string }[] | null; broken_line?: number | null; starter?: string | null; expected_output?: string | null; key?: { answer: unknown; explanation: string | null; solution: string | null } }
+export type AdminLessonStep = { id: string; lesson_id: string; step_index: number; kind: string; text: string; code?: string | null; options?: { id: string; text: string }[] | null; broken_line?: number | null; starter?: string | null; expected_output?: string | null; word?: string | null; meaning?: string | null; emoji?: string | null; say?: string | null; prompt?: string | null; sentence?: string | null; tiles?: string[] | null; pairs?: { left: string[]; right: string[] } | null; key?: { answer: unknown; explanation: string | null; solution: string | null } }
 export type AdminLesson = { id: string; course_id: string; unit_index: number; unit_title: string; lesson_index: number; title: string; objective: string; status: Status; version: number; steps: AdminLessonStep[] }
 
 /** Lessons in course/unit/lesson order, each with its steps in order and each step's answer key. */
@@ -128,18 +128,25 @@ export function groupLessons(lessons: Omit<AdminLesson, 'steps'>[], steps: Admin
 }
 
 /** Every lesson (any status) for reviewers; RLS only lets admins and educators read drafts and keys. */
-export function useLessonBank(enabled: boolean) {
+/** Lessons that belong to courses of one kind (the Code Academy or the Language Hall). */
+export function filterByKind<L extends { course_id: string }>(lessons: L[], courses: { id: string; kind: 'code' | 'language' }[], kind: 'code' | 'language'): L[] {
+  const ofKind = new Set(courses.filter((c) => c.kind === kind).map((c) => c.id))
+  return lessons.filter((l) => ofKind.has(l.course_id))
+}
+
+export function useLessonBank(enabled: boolean, kind: 'code' | 'language' = 'code') {
   return useQuery({
-    queryKey: ['admin', 'lessons'],
+    queryKey: ['admin', 'lessons', kind],
     enabled,
     queryFn: async () => {
-      const [ls, st, ks] = await Promise.all([
+      const [cs, ls, st, ks] = await Promise.all([
+        supabase!.from('courses').select('id, kind'),
         supabase!.from('lessons').select('id, course_id, unit_index, unit_title, lesson_index, title, objective, status, version'),
         supabase!.from('lesson_steps').select('*'),
         supabase!.from('lesson_step_keys').select('*'),
       ])
-      for (const r of [ls, st, ks]) if (r.error) throw r.error
-      return groupLessons(ls.data as Omit<AdminLesson, 'steps'>[], st.data as AdminLessonStep[], ks.data as { step_id: string; answer: unknown; explanation: string | null; solution: string | null }[])
+      for (const r of [cs, ls, st, ks]) if (r.error) throw r.error
+      return groupLessons(filterByKind(ls.data as Omit<AdminLesson, 'steps'>[], cs.data as { id: string; kind: 'code' | 'language' }[], kind), st.data as AdminLessonStep[], ks.data as { step_id: string; answer: unknown; explanation: string | null; solution: string | null }[])
     },
   })
 }

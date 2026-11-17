@@ -7,8 +7,8 @@ const ACTION_LABEL: Record<Action, string> = { submit: 'Submit', approve: 'Appro
 const STATUS_STYLE: Record<string, string> = { draft: 'bg-wood/20', in_review: 'bg-path/40', approved: 'bg-water/40', published: 'bg-grass/40', rejected: 'bg-danger/20' }
 
 /** Staff tool (English only, like question review): read each lesson with its answers, then approve or publish it. */
-export function LessonReview({ isAdmin }: { isAdmin: boolean }) {
-  const lessons = useLessonBank(true)
+export function LessonReview({ isAdmin, kind = 'code' }: { isAdmin: boolean; kind?: 'code' | 'language' }) {
+  const lessons = useLessonBank(true, kind)
   const queryClient = useQueryClient()
   const [open, setOpen] = useState<string | null>(null)
   const [message, setMessage] = useState<string | null>(null)
@@ -19,7 +19,7 @@ export function LessonReview({ isAdmin }: { isAdmin: boolean }) {
     setMessage(null)
     const failed: string[] = []
     for (const id of ids) await reviewLesson(id, action).catch((e: Error) => failed.push(`${id}: ${e.message}`))
-    await queryClient.invalidateQueries({ queryKey: ['admin', 'lessons'] })
+    await queryClient.invalidateQueries({ queryKey: ['admin', 'lessons', kind] })
     setMessage(failed.length ? `Some lessons were skipped: ${failed.join('; ')}` : `${ACTION_LABEL[action]}: ${ids.length} lesson(s)`)
     setBusy(false)
   }
@@ -71,6 +71,15 @@ export function LessonReview({ isAdmin }: { isAdmin: boolean }) {
                             {s.step_index}. {s.kind}: {s.text}
                           </p>
                           {(s.code || s.starter) && <pre className="mt-1 overflow-x-auto rounded bg-[#1f2433] p-2 text-xs text-[#f4f1ea]">{s.code ?? s.starter}</pre>}
+                          {s.word && (
+                            <p className="text-base">
+                              {s.emoji} <b>{s.word}</b> = {s.meaning}
+                            </p>
+                          )}
+                          {(s.prompt || s.sentence) && <p className="text-base font-semibold">{s.prompt ?? s.sentence}</p>}
+                          {s.say && <p>Spoken: “{s.say}”</p>}
+                          {s.tiles && <p>Tiles: {s.tiles.join(' · ')}</p>}
+                          {s.pairs && <p>Pairs shown: {s.pairs.left.join(', ')} | {s.pairs.right.join(', ')}</p>}
                           {s.options && <p>Options: {s.options.map((o) => `${o.id}) ${o.text}`).join('   ')}</p>}
                           {s.broken_line && <p>Broken line: {s.broken_line}</p>}
                           {s.expected_output && <p className="whitespace-pre-wrap">Expected output: {s.expected_output}</p>}

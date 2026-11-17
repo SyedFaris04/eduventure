@@ -36,7 +36,7 @@ export function AdminPage() {
   const bank = useQuestionBank(isReviewer)
   const queryClient = useQueryClient()
 
-  const [tab, setTab] = useState<'questions' | 'lessons'>('questions')
+  const [tab, setTab] = useState<'questions' | 'lessons' | 'language'>('questions')
   const [status, setStatus] = useState<Status | 'all'>('in_review')
   const [level, setLevel] = useState('all')
   const [subject, setSubject] = useState('all')
@@ -111,14 +111,14 @@ export function AdminPage() {
         <p className="text-sm text-ink/70">{isAdmin ? 'Admin' : 'Educator'} · {questions.length} questions</p>
       </header>
       <nav aria-label="What to review" className="flex gap-2">
-        {(['questions', 'lessons'] as const).map((x) => (
+        {(['questions', 'lessons', 'language'] as const).map((x) => (
           <button key={x} type="button" aria-pressed={tab === x} onClick={() => setTab(x)} className={`rounded-full border-2 px-4 py-1 font-bold ${tab === x ? 'border-wood-dark bg-wood text-cream' : 'border-wood/40 bg-white'}`}>
-            {x === 'questions' ? 'Questions' : 'Code Academy lessons'}
+            {x === 'questions' ? 'Questions' : x === 'lessons' ? 'Code Academy lessons' : 'Language Hall lessons'}
           </button>
         ))}
       </nav>
-      {tab === 'lessons' ? (
-        <LessonReview isAdmin={isAdmin} />
+      {tab !== 'questions' ? (
+        <LessonReview key={tab} isAdmin={isAdmin} kind={tab === 'language' ? 'language' : 'code'} />
       ) : (
       <>
 

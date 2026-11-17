@@ -28,6 +28,7 @@ The island scenery is code-built too (`src/world3d/props/codeProps.ts`):
 - palms, kampung houses, the pasar malam stall, ferns, mangroves and mushrooms;
 - snowy pines, pillars, sundials and the abacus gate;
 - the wau kite, the waterfall and the perahu in the boat ride;
-- Technology City: server towers, neon lamps, the robot statue, holo trees and the Code Academy, plus Bugsy, Byte-bot, Loopy and the Glitch Golem.
+- Technology City: server towers, neon lamps, the robot statue, holo trees and the Code Academy, plus Bugsy, Byte-bot, Loopy and the Glitch Golem;
+- Language Kingdom: library towers, signposts, scroll trees, letter blocks and the Language Hall, plus Wordworm, Alpha-bat, Comma-leon and the Lexicon Dragon. Word-card pictures in the Language Hall are the device's emoji.
 
 All of it is original to this project. No new art pack was added for the islands.

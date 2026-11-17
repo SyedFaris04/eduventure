@@ -8,7 +8,7 @@ export const PLACES: Record<PlaceId, { built: boolean; load?: () => Promise<MapS
   science_island: { built: true, load: () => import('./maps/science_island').then((m) => m.SCIENCE_ISLAND) },
   mathematics_mountains: { built: true, load: () => import('./maps/mathematics_mountains').then((m) => m.MATHEMATICS_MOUNTAINS) },
   technology_city: { built: true, load: () => import('./maps/technology_city').then((m) => m.TECHNOLOGY_CITY) },
-  language_kingdom: { built: false }, // project 4
+  language_kingdom: { built: true, load: () => import('./maps/language_kingdom').then((m) => m.LANGUAGE_KINGDOM) },
 }
 
 export const BUILT_PLACES = (Object.keys(PLACES) as PlaceId[]).filter((p) => PLACES[p].built)

@@ -1,0 +1,1435 @@
+{
+  "_meta": {
+    "author": "Eduventure (original lessons)",
+    "license": "CC BY 4.0"
+  },
+  "id": "english-basics",
+  "kind": "language",
+  "language": "english",
+  "title": "English for Malaysian students",
+  "units": [
+    {
+      "id": "en-u1",
+      "title": "Hello & me",
+      "lessons": [
+        {
+          "id": "en-u1-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Greetings",
+          "objective": "Greet people in English.",
+          "steps": [
+            {
+              "id": "en-u1-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "Hello",
+              "meaning": "Helo",
+              "emoji": "👋"
+            },
+            {
+              "id": "en-u1-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "Good morning",
+              "meaning": "Selamat pagi",
+              "emoji": "🌅"
+            },
+            {
+              "id": "en-u1-l1-s3",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "\"Selamat pagi\" in English is…",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Good morning"
+                },
+                {
+                  "id": "b",
+                  "text": "Good night"
+                },
+                {
+                  "id": "c",
+                  "text": "Thank you"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Selamat pagi = Good morning. We say it before 12 noon."
+            },
+            {
+              "id": "en-u1-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "Thank you",
+              "meaning": "Terima kasih",
+              "emoji": "🙏"
+            },
+            {
+              "id": "en-u1-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "Hello",
+                  "Helo"
+                ],
+                [
+                  "Good morning",
+                  "Selamat pagi"
+                ],
+                [
+                  "Thank you",
+                  "Terima kasih"
+                ],
+                [
+                  "Goodbye",
+                  "Selamat tinggal"
+                ]
+              ]
+            },
+            {
+              "id": "en-u1-l1-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "Good morning",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Good morning"
+                },
+                {
+                  "id": "b",
+                  "text": "Good night"
+                },
+                {
+                  "id": "c",
+                  "text": "Goodbye"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "en-u1-l1-s7",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "Terima kasih",
+              "accept": [
+                "thank you",
+                "thanks",
+                "thank you very much"
+              ],
+              "explanation": "Terima kasih = Thank you (or just \"Thanks\")."
+            }
+          ]
+        },
+        {
+          "id": "en-u1-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "All about me",
+          "objective": "Say who you are.",
+          "steps": [
+            {
+              "id": "en-u1-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "My name is…",
+              "meaning": "Nama saya…",
+              "emoji": "🏷️"
+            },
+            {
+              "id": "en-u1-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "I am a student",
+              "meaning": "Saya seorang pelajar",
+              "emoji": "🎒"
+            },
+            {
+              "id": "en-u1-l2-s3",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "Nama saya Aina.",
+              "tiles": [
+                "My",
+                "name",
+                "is",
+                "Aina.",
+                "am",
+                "I"
+              ],
+              "answer": [
+                "My",
+                "name",
+                "is",
+                "Aina."
+              ],
+              "explanation": "English puts \"My name is\" before the name, just like \"Nama saya\"."
+            },
+            {
+              "id": "en-u1-l2-s4",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "I ___ a student.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "am"
+                },
+                {
+                  "id": "b",
+                  "text": "is"
+                },
+                {
+                  "id": "c",
+                  "text": "are"
+                }
+              ],
+              "answer": "a",
+              "explanation": "With \"I\" we always use \"am\": I am."
+            },
+            {
+              "id": "en-u1-l2-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "\"Saya seorang pelajar.\" means…",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "I am a student."
+                },
+                {
+                  "id": "b",
+                  "text": "I am a teacher."
+                },
+                {
+                  "id": "c",
+                  "text": "I like rice."
+                }
+              ],
+              "answer": "a",
+              "explanation": "Pelajar = student. Saya = I."
+            },
+            {
+              "id": "en-u1-l2-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "I am happy",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "I am happy"
+                },
+                {
+                  "id": "b",
+                  "text": "I am hungry"
+                },
+                {
+                  "id": "c",
+                  "text": "I am here"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "en-u1-l2-s7",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "Nama saya Ali.",
+              "accept": [
+                "my name is ali",
+                "i'm ali",
+                "i am ali"
+              ],
+              "explanation": "Nama saya Ali = My name is Ali."
+            }
+          ]
+        },
+        {
+          "id": "en-u1-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Numbers 1 to 10",
+          "objective": "Count from one to ten.",
+          "steps": [
+            {
+              "id": "en-u1-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "one",
+              "meaning": "satu",
+              "emoji": "1️⃣"
+            },
+            {
+              "id": "en-u1-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "five",
+              "meaning": "lima",
+              "emoji": "5️⃣"
+            },
+            {
+              "id": "en-u1-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "ten",
+              "meaning": "sepuluh",
+              "emoji": "🔟"
+            },
+            {
+              "id": "en-u1-l3-s4",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "two",
+                  "dua"
+                ],
+                [
+                  "three",
+                  "tiga"
+                ],
+                [
+                  "seven",
+                  "tujuh"
+                ],
+                [
+                  "nine",
+                  "sembilan"
+                ]
+              ]
+            },
+            {
+              "id": "en-u1-l3-s5",
+              "kind": "pick",
+              "text": "How many? · Berapa?",
+              "prompt": "🍎🍎🍎",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "three"
+                },
+                {
+                  "id": "b",
+                  "text": "two"
+                },
+                {
+                  "id": "c",
+                  "text": "four"
+                }
+              ],
+              "answer": "a",
+              "explanation": "There are three apples: one, two, three."
+            },
+            {
+              "id": "en-u1-l3-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "I have ___ cats. 🐱🐱",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "two"
+                },
+                {
+                  "id": "b",
+                  "text": "three"
+                },
+                {
+                  "id": "c",
+                  "text": "ten"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Count the cats: there are two."
+            },
+            {
+              "id": "en-u1-l3-s7",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "lapan",
+              "accept": [
+                "eight",
+                "8"
+              ],
+              "explanation": "Lapan = eight."
+            }
+          ]
+        },
+        {
+          "id": "en-u1-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Meeting friends",
+          "objective": "Ask and answer \"How are you?\".",
+          "steps": [
+            {
+              "id": "en-u1-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "How are you?",
+              "meaning": "Apa khabar?",
+              "emoji": "🤗"
+            },
+            {
+              "id": "en-u1-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "I am fine",
+              "meaning": "Saya sihat",
+              "emoji": "😊"
+            },
+            {
+              "id": "en-u1-l4-s3",
+              "kind": "pick",
+              "text": "Pick the best reply. · Pilih jawapan terbaik.",
+              "prompt": "\"How are you?\"",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "I am fine, thank you."
+                },
+                {
+                  "id": "b",
+                  "text": "My name is Ali."
+                },
+                {
+                  "id": "c",
+                  "text": "Goodbye."
+                }
+              ],
+              "answer": "a",
+              "explanation": "We answer \"How are you?\" with how we feel: \"I am fine, thank you.\""
+            },
+            {
+              "id": "en-u1-l4-s4",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "Apa khabar?",
+              "tiles": [
+                "How",
+                "are",
+                "you?",
+                "is",
+                "old"
+              ],
+              "answer": [
+                "How",
+                "are",
+                "you?"
+              ],
+              "explanation": "Apa khabar? = How are you?"
+            },
+            {
+              "id": "en-u1-l4-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "Nice to ___ you.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "meet"
+                },
+                {
+                  "id": "b",
+                  "text": "eat"
+                },
+                {
+                  "id": "c",
+                  "text": "sit"
+                }
+              ],
+              "answer": "a",
+              "explanation": "When we meet someone new we say \"Nice to meet you.\""
+            },
+            {
+              "id": "en-u1-l4-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "Goodbye",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Goodbye"
+                },
+                {
+                  "id": "b",
+                  "text": "Good night"
+                },
+                {
+                  "id": "c",
+                  "text": "Good morning"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "en-u1-l4-s7",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "Selamat tinggal",
+              "accept": [
+                "goodbye",
+                "bye",
+                "good bye"
+              ],
+              "explanation": "Selamat tinggal = Goodbye (or just \"Bye\")."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-u2",
+      "title": "Family & friends",
+      "lessons": [
+        {
+          "id": "en-u2-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "My family",
+          "objective": "Name the people in your family.",
+          "steps": [
+            {
+              "id": "en-u2-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "father",
+              "meaning": "bapa / ayah",
+              "emoji": "👨"
+            },
+            {
+              "id": "en-u2-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "mother",
+              "meaning": "ibu / emak",
+              "emoji": "👩"
+            },
+            {
+              "id": "en-u2-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "brother",
+              "meaning": "abang / adik lelaki",
+              "emoji": "👦"
+            },
+            {
+              "id": "en-u2-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "sister",
+              "meaning": "kakak / adik perempuan",
+              "emoji": "👧"
+            },
+            {
+              "id": "en-u2-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "grandfather",
+                  "datuk"
+                ],
+                [
+                  "grandmother",
+                  "nenek"
+                ],
+                [
+                  "uncle",
+                  "pak cik"
+                ],
+                [
+                  "aunt",
+                  "mak cik"
+                ]
+              ]
+            },
+            {
+              "id": "en-u2-l1-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "My father's sister is my…",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "aunt"
+                },
+                {
+                  "id": "b",
+                  "text": "uncle"
+                },
+                {
+                  "id": "c",
+                  "text": "cousin"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Your father's or mother's sister is your aunt (mak cik)."
+            },
+            {
+              "id": "en-u2-l1-s7",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "ibu",
+              "accept": [
+                "mother",
+                "mum",
+                "mom",
+                "mummy"
+              ],
+              "explanation": "Ibu = mother (or mum)."
+            }
+          ]
+        },
+        {
+          "id": "en-u2-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Describing people",
+          "objective": "Describe how people look and feel.",
+          "steps": [
+            {
+              "id": "en-u2-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "tall",
+              "meaning": "tinggi",
+              "emoji": "🦒"
+            },
+            {
+              "id": "en-u2-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "short",
+              "meaning": "rendah",
+              "emoji": "🐭"
+            },
+            {
+              "id": "en-u2-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "happy",
+              "meaning": "gembira",
+              "emoji": "😊"
+            },
+            {
+              "id": "en-u2-l2-s4",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "Dia sangat tinggi.",
+              "tiles": [
+                "She",
+                "is",
+                "very",
+                "tall.",
+                "short.",
+                "are"
+              ],
+              "answer": [
+                "She",
+                "is",
+                "very",
+                "tall."
+              ],
+              "explanation": "English needs \"is\": She is very tall."
+            },
+            {
+              "id": "en-u2-l2-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "My brother ___ funny.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "is"
+                },
+                {
+                  "id": "b",
+                  "text": "am"
+                },
+                {
+                  "id": "c",
+                  "text": "are"
+                }
+              ],
+              "answer": "a",
+              "explanation": "One person (my brother) takes \"is\"."
+            },
+            {
+              "id": "en-u2-l2-s6",
+              "kind": "pick",
+              "text": "Pick the opposite. · Pilih lawan katanya.",
+              "prompt": "tall",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "short"
+                },
+                {
+                  "id": "b",
+                  "text": "big"
+                },
+                {
+                  "id": "c",
+                  "text": "happy"
+                }
+              ],
+              "answer": "a",
+              "explanation": "The opposite of tall is short."
+            },
+            {
+              "id": "en-u2-l2-s7",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "She is kind",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "She is kind"
+                },
+                {
+                  "id": "b",
+                  "text": "She is tall"
+                },
+                {
+                  "id": "c",
+                  "text": "She is happy"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "en-u2-l2-s8",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "gembira",
+              "accept": [
+                "happy",
+                "glad"
+              ],
+              "explanation": "Gembira = happy."
+            }
+          ]
+        },
+        {
+          "id": "en-u2-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Have and has",
+          "objective": "Say what people have.",
+          "steps": [
+            {
+              "id": "en-u2-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "I have",
+              "meaning": "Saya ada",
+              "emoji": "🎒"
+            },
+            {
+              "id": "en-u2-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "She has",
+              "meaning": "Dia ada",
+              "emoji": "🐈"
+            },
+            {
+              "id": "en-u2-l3-s3",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "She ___ a cat.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "has"
+                },
+                {
+                  "id": "b",
+                  "text": "have"
+                },
+                {
+                  "id": "c",
+                  "text": "is"
+                }
+              ],
+              "answer": "a",
+              "explanation": "He, she and it take \"has\"."
+            },
+            {
+              "id": "en-u2-l3-s4",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "We ___ two dogs.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "have"
+                },
+                {
+                  "id": "b",
+                  "text": "has"
+                },
+                {
+                  "id": "c",
+                  "text": "am"
+                }
+              ],
+              "answer": "a",
+              "explanation": "I, you, we and they take \"have\"."
+            },
+            {
+              "id": "en-u2-l3-s5",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "Saya ada beg merah.",
+              "tiles": [
+                "I",
+                "have",
+                "a",
+                "red",
+                "bag.",
+                "has",
+                "blue"
+              ],
+              "answer": [
+                "I",
+                "have",
+                "a",
+                "red",
+                "bag."
+              ],
+              "explanation": "In English the colour comes before the thing: a red bag."
+            },
+            {
+              "id": "en-u2-l3-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "\"Dia ada dua adik.\" means…",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "She has two younger siblings."
+                },
+                {
+                  "id": "b",
+                  "text": "She is two years old."
+                },
+                {
+                  "id": "c",
+                  "text": "She has two cats."
+                }
+              ],
+              "answer": "a",
+              "explanation": "Adik = younger brother or sister."
+            },
+            {
+              "id": "en-u2-l3-s7",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "Saya ada kawan.",
+              "accept": [
+                "i have a friend",
+                "i have friends"
+              ],
+              "explanation": "Saya ada kawan = I have a friend."
+            }
+          ]
+        },
+        {
+          "id": "en-u2-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "My best friend",
+          "objective": "Talk about your friends.",
+          "steps": [
+            {
+              "id": "en-u2-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "best friend",
+              "meaning": "kawan baik",
+              "emoji": "🧑‍🤝‍🧑"
+            },
+            {
+              "id": "en-u2-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "We play",
+              "meaning": "Kami bermain",
+              "emoji": "⚽"
+            },
+            {
+              "id": "en-u2-l4-s3",
+              "kind": "pick",
+              "text": "Pick the best reply. · Pilih jawapan terbaik.",
+              "prompt": "\"Who is your best friend?\"",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "My best friend is Mei."
+                },
+                {
+                  "id": "b",
+                  "text": "I am fine."
+                },
+                {
+                  "id": "c",
+                  "text": "It is Monday."
+                }
+              ],
+              "answer": "a",
+              "explanation": "\"Who\" asks about a person, so we answer with a name."
+            },
+            {
+              "id": "en-u2-l4-s4",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "Kami bermain bola sepak selepas sekolah.",
+              "tiles": [
+                "We",
+                "play",
+                "football",
+                "after",
+                "school.",
+                "plays",
+                "before"
+              ],
+              "answer": [
+                "We",
+                "play",
+                "football",
+                "after",
+                "school."
+              ],
+              "explanation": "Kami = we; bermain = play; selepas = after."
+            },
+            {
+              "id": "en-u2-l4-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "play",
+                  "bermain"
+                ],
+                [
+                  "read",
+                  "membaca"
+                ],
+                [
+                  "sing",
+                  "menyanyi"
+                ],
+                [
+                  "swim",
+                  "berenang"
+                ]
+              ]
+            },
+            {
+              "id": "en-u2-l4-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "She is my best friend",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "She is my best friend"
+                },
+                {
+                  "id": "b",
+                  "text": "She is my sister"
+                },
+                {
+                  "id": "c",
+                  "text": "She is my teacher"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "en-u2-l4-s7",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "kawan baik",
+              "accept": [
+                "best friend",
+                "good friend"
+              ],
+              "explanation": "Kawan baik = best friend (or good friend)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-u3",
+      "title": "Food & my day",
+      "lessons": [
+        {
+          "id": "en-u3-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Malaysian food",
+          "objective": "Name everyday food and drinks.",
+          "steps": [
+            {
+              "id": "en-u3-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "rice",
+              "meaning": "nasi",
+              "emoji": "🍚"
+            },
+            {
+              "id": "en-u3-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "noodles",
+              "meaning": "mi",
+              "emoji": "🍜"
+            },
+            {
+              "id": "en-u3-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "chicken",
+              "meaning": "ayam",
+              "emoji": "🍗"
+            },
+            {
+              "id": "en-u3-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "egg",
+              "meaning": "telur",
+              "emoji": "🥚"
+            },
+            {
+              "id": "en-u3-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "water",
+                  "air"
+                ],
+                [
+                  "tea",
+                  "teh"
+                ],
+                [
+                  "milk",
+                  "susu"
+                ],
+                [
+                  "juice",
+                  "jus"
+                ]
+              ]
+            },
+            {
+              "id": "en-u3-l1-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "Nasi lemak is rice cooked in coconut ___.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "milk"
+                },
+                {
+                  "id": "b",
+                  "text": "water"
+                },
+                {
+                  "id": "c",
+                  "text": "tea"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Nasi lemak rice is cooked in coconut milk (santan)."
+            },
+            {
+              "id": "en-u3-l1-s7",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "telur",
+              "accept": [
+                "egg",
+                "an egg",
+                "eggs"
+              ],
+              "explanation": "Telur = egg."
+            }
+          ]
+        },
+        {
+          "id": "en-u3-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Times of day",
+          "objective": "Talk about the time of day.",
+          "steps": [
+            {
+              "id": "en-u3-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "morning",
+              "meaning": "pagi",
+              "emoji": "🌅"
+            },
+            {
+              "id": "en-u3-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "afternoon",
+              "meaning": "tengah hari",
+              "emoji": "☀️"
+            },
+            {
+              "id": "en-u3-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "evening",
+              "meaning": "petang",
+              "emoji": "🌆"
+            },
+            {
+              "id": "en-u3-l2-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "night",
+              "meaning": "malam",
+              "emoji": "🌙"
+            },
+            {
+              "id": "en-u3-l2-s5",
+              "kind": "pick",
+              "text": "Pick the answer. · Pilih jawapan.",
+              "prompt": "You eat breakfast in the…",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "morning"
+                },
+                {
+                  "id": "b",
+                  "text": "night"
+                },
+                {
+                  "id": "c",
+                  "text": "evening"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Breakfast (sarapan) is the first meal of the day, in the morning."
+            },
+            {
+              "id": "en-u3-l2-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "I sleep at ___. 😴",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "night"
+                },
+                {
+                  "id": "b",
+                  "text": "noon"
+                },
+                {
+                  "id": "c",
+                  "text": "breakfast"
+                }
+              ],
+              "answer": "a",
+              "explanation": "We sleep at night (malam)."
+            },
+            {
+              "id": "en-u3-l2-s7",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "Saya bersarapan pada pukul tujuh.",
+              "tiles": [
+                "I",
+                "eat",
+                "breakfast",
+                "at",
+                "seven.",
+                "eats",
+                "dinner"
+              ],
+              "answer": [
+                "I",
+                "eat",
+                "breakfast",
+                "at",
+                "seven."
+              ],
+              "explanation": "\"At\" goes before clock times: at seven."
+            },
+            {
+              "id": "en-u3-l2-s8",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "malam",
+              "accept": [
+                "night",
+                "evening"
+              ],
+              "explanation": "Malam = night (sometimes evening)."
+            }
+          ]
+        },
+        {
+          "id": "en-u3-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "My day",
+          "objective": "Describe your daily routine.",
+          "steps": [
+            {
+              "id": "en-u3-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "I wake up",
+              "meaning": "Saya bangun",
+              "emoji": "⏰"
+            },
+            {
+              "id": "en-u3-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "I go to school",
+              "meaning": "Saya pergi ke sekolah",
+              "emoji": "🏫"
+            },
+            {
+              "id": "en-u3-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "I go home",
+              "meaning": "Saya balik ke rumah",
+              "emoji": "🏠"
+            },
+            {
+              "id": "en-u3-l3-s4",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "He ___ up at six.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "wakes"
+                },
+                {
+                  "id": "b",
+                  "text": "wake"
+                },
+                {
+                  "id": "c",
+                  "text": "waking"
+                }
+              ],
+              "answer": "a",
+              "explanation": "He, she and it add -s: he wakes up."
+            },
+            {
+              "id": "en-u3-l3-s5",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "Dia pergi ke sekolah dengan bas.",
+              "tiles": [
+                "She",
+                "goes",
+                "to",
+                "school",
+                "by",
+                "bus.",
+                "go",
+                "car."
+              ],
+              "answer": [
+                "She",
+                "goes",
+                "to",
+                "school",
+                "by",
+                "bus."
+              ],
+              "explanation": "\"Go\" becomes \"goes\" with she; \"by bus\" says how."
+            },
+            {
+              "id": "en-u3-l3-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "\"Saya mandi pada waktu pagi.\" means…",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "I take a bath in the morning."
+                },
+                {
+                  "id": "b",
+                  "text": "I eat in the morning."
+                },
+                {
+                  "id": "c",
+                  "text": "I sleep in the morning."
+                }
+              ],
+              "answer": "a",
+              "explanation": "Mandi = take a bath / shower."
+            },
+            {
+              "id": "en-u3-l3-s7",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "Saya pergi ke sekolah.",
+              "accept": [
+                "i go to school"
+              ],
+              "explanation": "Saya pergi ke sekolah = I go to school."
+            }
+          ]
+        },
+        {
+          "id": "en-u3-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "At the pasar",
+          "objective": "Shop at the market in English.",
+          "steps": [
+            {
+              "id": "en-u3-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "How much?",
+              "meaning": "Berapa harga?",
+              "emoji": "💰"
+            },
+            {
+              "id": "en-u3-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "cheap",
+              "meaning": "murah",
+              "emoji": "🪙"
+            },
+            {
+              "id": "en-u3-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "expensive",
+              "meaning": "mahal",
+              "emoji": "💎"
+            },
+            {
+              "id": "en-u3-l4-s4",
+              "kind": "pick",
+              "text": "Pick the opposite. · Pilih lawan katanya.",
+              "prompt": "cheap",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "expensive"
+                },
+                {
+                  "id": "b",
+                  "text": "small"
+                },
+                {
+                  "id": "c",
+                  "text": "new"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Cheap (murah) is the opposite of expensive (mahal)."
+            },
+            {
+              "id": "en-u3-l4-s5",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "Berapa harga ikan ini?",
+              "tiles": [
+                "How",
+                "much",
+                "is",
+                "this",
+                "fish?",
+                "many",
+                "are"
+              ],
+              "answer": [
+                "How",
+                "much",
+                "is",
+                "this",
+                "fish?"
+              ],
+              "explanation": "We ask \"How much is…?\" for prices."
+            },
+            {
+              "id": "en-u3-l4-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "These mangoes ___ sweet.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "are"
+                },
+                {
+                  "id": "b",
+                  "text": "is"
+                },
+                {
+                  "id": "c",
+                  "text": "am"
+                }
+              ],
+              "answer": "a",
+              "explanation": "\"These mangoes\" is more than one, so we use \"are\"."
+            },
+            {
+              "id": "en-u3-l4-s7",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "How much is this?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "How much is this?"
+                },
+                {
+                  "id": "b",
+                  "text": "How are you?"
+                },
+                {
+                  "id": "c",
+                  "text": "What is this?"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "en-u3-l4-s8",
+              "kind": "type",
+              "text": "Type it in English. · Taip dalam bahasa Inggeris.",
+              "prompt": "murah",
+              "accept": [
+                "cheap"
+              ],
+              "explanation": "Murah = cheap."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

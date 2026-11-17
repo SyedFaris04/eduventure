@@ -1,14 +1,18 @@
 import { Link, useNavigate, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, Braces, CheckCircle2, Code2, Lock, PlayCircle } from 'lucide-react'
+import { ArrowLeft, Braces, CheckCircle2, Code2, Languages, Lock, PlayCircle } from 'lucide-react'
 import { buttonClasses, Panel, ProgressBar } from '../../components/ui'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
-import { useCatalogue, useCourseProgress, type Catalogue } from './academyApi'
+import { useCatalogue, useCourseProgress, type Catalogue, type CourseKind } from './academyApi'
 import { LessonPlayer } from './LessonPlayer'
 import { academyOrigin } from './origin'
 import { unitUnlocked } from './progress'
 
-function Shell({ back, backLabel, title, children }: { back: string; backLabel: string; title: string; children: React.ReactNode }) {
+/** The Code Academy (/academy) and the Language Hall (/hall) share these pages; each shows only its own courses. */
+const BASE: Record<CourseKind, string> = { code: '/academy', language: '/hall' }
+const NS: Record<CourseKind, 'academy' | 'hall'> = { code: 'academy', language: 'hall' }
+
+function Shell({ back, backLabel, title, kind = 'code', children }: { back: string; backLabel: string; title: string; kind?: CourseKind; children: React.ReactNode }) {
   return (
     <main className="relative min-h-dvh">
       <SceneBackdrop />
@@ -18,7 +22,7 @@ function Shell({ back, backLabel, title, children }: { back: string; backLabel: 
             <ArrowLeft size={18} className="rtl:rotate-180" aria-hidden />
           </Link>
           <h1 className="flex items-center gap-2 rounded-full bg-cream/90 px-4 py-1 text-2xl font-bold text-wood-dark">
-            <Code2 aria-hidden /> {title}
+            {kind === 'code' ? <Code2 aria-hidden /> : <Languages aria-hidden />} {title}
           </h1>
         </header>
         {children}
@@ -29,13 +33,14 @@ function Shell({ back, backLabel, title, children }: { back: string; backLabel: 
 
 const courseOf = (cat: Catalogue | undefined, id: string | undefined) => cat?.courses.find((c) => c.id === id)
 
-/** /academy: every course with how far the learner has got. */
-export function AcademyPage() {
+/** /academy or /hall: every course of that kind with how far the learner has got. */
+export function AcademyPage({ kind = 'code' }: { kind?: CourseKind }) {
   const { t } = useTranslation()
   const catalogue = useCatalogue()
+  const courses = catalogue.data?.courses.filter((c) => c.kind === kind)
   return (
-    <Shell back={academyOrigin()} backLabel={academyOrigin() === '/world' ? t('academy.backToWorld') : t('academy.backToHome')} title={t('academy.title')}>
-      <p className="rounded-xl bg-cream/85 px-4 py-2 font-semibold text-wood-dark">{t('academy.intro')}</p>
+    <Shell kind={kind} back={academyOrigin()} backLabel={academyOrigin() === '/world' ? t('academy.backToWorld') : t('academy.backToHome')} title={t(`${NS[kind]}.title`)}>
+      <p className="rounded-xl bg-cream/85 px-4 py-2 font-semibold text-wood-dark">{t(`${NS[kind]}.intro`)}</p>
       {catalogue.isError && (
         <p role="alert" className="rounded-xl border-2 border-danger bg-danger/10 p-2 font-semibold">
           {t('academy.errors.generic')}
@@ -43,7 +48,7 @@ export function AcademyPage() {
       )}
       {!catalogue.data && !catalogue.isError && <p className="font-display text-wood-dark">{t('common.loading')}</p>}
       <ul className="grid gap-4 sm:grid-cols-2">
-        {catalogue.data?.courses.map((c) => (
+        {courses?.map((c) => (
           <CourseCard key={c.id} course={c} />
         ))}
       </ul>
@@ -58,7 +63,7 @@ function CourseCard({ course }: { course: Catalogue['courses'][number] }) {
   const done = progress.data?.size ?? 0
   return (
     <li>
-      <Link to={`/academy/${course.id}`} className="block rounded-3xl border-4 border-wood bg-cream p-4 shadow-[0_6px_0_rgb(92_58_36/0.35)] hover:-translate-y-0.5">
+      <Link to={`${BASE[course.kind]}/${course.id}`} className="block rounded-3xl border-4 border-wood bg-cream p-4 shadow-[0_6px_0_rgb(92_58_36/0.35)] hover:-translate-y-0.5">
         <p className="flex items-center gap-2 font-display text-xl font-bold text-wood-dark">
           <Braces aria-hidden /> {course.title}
         </p>
@@ -79,7 +84,7 @@ export function CoursePage() {
   const completed = progress.data ?? new Set<string>()
   const units = course?.units.map((u) => ({ lessonIds: u.lessons.map((l) => l.id) })) ?? []
   return (
-    <Shell back="/academy" backLabel={t('academy.backToAcademy')} title={course?.title ?? t('academy.title')}>
+    <Shell kind={course?.kind} back={BASE[course?.kind ?? 'code']} backLabel={t('academy.backToAcademy')} title={course?.title ?? ''}>
       {!course && <p className="font-display text-wood-dark">{t('common.loading')}</p>}
       {course?.units.map((u, ui) => {
         const open = unitUnlocked(units, ui, completed)
@@ -104,7 +109,7 @@ export function CoursePage() {
                 return (
                   <li key={l.id}>
                     {open ? (
-                      <Link to={`/academy/${course.id}/${l.id}`} className="flex min-h-12 items-center gap-3 rounded-2xl border-[3px] border-wood/50 bg-white px-3 hover:border-wood">
+                      <Link to={`${BASE[course.kind]}/${course.id}/${l.id}`} className="flex min-h-12 items-center gap-3 rounded-2xl border-[3px] border-wood/50 bg-white px-3 hover:border-wood">
                         {body}
                       </Link>
                     ) : (
@@ -139,8 +144,8 @@ export function LessonPage() {
         courseId={course.id}
         lessonId={lessonId}
         language={course.language}
-        onExit={() => navigate(`/academy/${course.id}`)}
-        onNext={next ? () => navigate(`/academy/${course.id}/${next.id}`) : undefined}
+        onExit={() => navigate(`${BASE[course.kind]}/${course.id}`)}
+        onNext={next ? () => navigate(`${BASE[course.kind]}/${course.id}/${next.id}`) : undefined}
       />
     </main>
   )

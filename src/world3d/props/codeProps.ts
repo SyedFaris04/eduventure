@@ -5,7 +5,7 @@ import type { Shape } from '../hero/parts'
 import { addWind } from '../wind'
 
 /** Props built from simple shapes in code (no CC0 pack has these in our style). Swap any for a model later. */
-export const CODE_PROP_KINDS = ['palm', 'kampung_house', 'stall', 'fern', 'mangrove', 'mushroom', 'pine_snow', 'pillar', 'sundial', 'abacus_gate', 'server_tower', 'neon_lamp', 'robot_statue', 'holo_tree', 'academy'] as const satisfies readonly PropKind[]
+export const CODE_PROP_KINDS = ['palm', 'kampung_house', 'stall', 'fern', 'mangrove', 'mushroom', 'pine_snow', 'pillar', 'sundial', 'abacus_gate', 'server_tower', 'neon_lamp', 'robot_statue', 'holo_tree', 'academy', 'library_tower', 'signpost', 'scroll_tree', 'letter_block', 'language_hall'] as const satisfies readonly PropKind[]
 export type CodePropKind = (typeof CODE_PROP_KINDS)[number]
 export const isCodeProp = (k: PropKind): k is CodePropKind => (CODE_PROP_KINDS as readonly string[]).includes(k)
 
@@ -166,6 +166,42 @@ const DESIGNS: Record<CodePropKind, () => Part[]> = {
     ['box', m('#c9d2e3'), [1.0, 0.9, 1.31], [0.4, 0.4, 0.04]],
     ['cylinder', m('#8a8f99'), [0.8, 2.15, -0.6], [0.05, 0.5, 0.05]],
     ['sphere', glow('#ff5ea8'), [0.8, 2.42, -0.6], [0.12, 0.12, 0.12]],
+  ],
+  // Language Kingdom — a round library tower with a blue cone roof.
+  library_tower: () => [
+    ['cylinder', m('#c9b9a0'), [0, 1.3, 0], [0.9, 2.6, 0.9]],
+    ['cone', m('#3f5fa8'), [0, 2.98, 0], [1.1, 0.8, 1.1]],
+    ...[0.9, 1.6, 2.2].map((y) => ['box', m('#4a3a2a'), [0, y, 0.45], [0.18, 0.3, 0.04]] as Part),
+    ['box', m('#e85a4f'), [0, 2.55, 0.46], [0.5, 0.08, 0.03]],
+  ],
+  // A signpost pointing every way, with boards in many colours.
+  signpost: () => [
+    ['cylinder', m('#7a4f2a'), [0, 0.7, 0], [0.08, 1.4, 0.08]],
+    ...([[1.25, '#e85a4f', 0.3], [1.05, '#4fa3d9', -0.4], [0.85, '#f2c14e', 0.9]] as const).map(([y, c, r]) => ['box', m(c), [0, y, 0], [0.72, 0.16, 0.04], [0, r, 0]] as Part),
+  ],
+  // A tree whose branches hold rolled-up scrolls.
+  scroll_tree: () => [
+    ['cylinder', m('#8b5e34'), [0, 0.5, 0], [0.18, 1.0, 0.18]],
+    ['sphere', leaf('#7cb342'), [0, 1.35, 0], [1.0, 0.8, 1.0]],
+    ['cylinder', m('#f4ecd8'), [0.1, 1.15, 0.38], [0.14, 0.7, 0.14], [0, 0.3, Math.PI / 2]],
+    ['cylinder', m('#f4ecd8'), [-0.2, 1.55, -0.3], [0.12, 0.6, 0.12], [0, -0.6, Math.PI / 2]],
+  ],
+  // Toy letter blocks, stacked.
+  letter_block: () => [
+    ['rbox', m('#f2c14e'), [0, 0.3, 0], [0.6, 0.6, 0.6]],
+    ['box', m('#3f5fa8'), [0, 0.3, 0.31], [0.28, 0.34, 0.02]],
+    ['rbox', m('#e85a4f'), [0.05, 0.83, 0.03], [0.45, 0.45, 0.45], [0, 0.4, 0]],
+  ],
+  // The Language Hall (3 × 3 tiles): a cream hall with a blue roof and ABC blocks above the door.
+  language_hall: () => [
+    ['box', m('#f4ecd8'), [0, 0.75, 0], [2.8, 1.5, 2.6]],
+    ['box', m('#3f5fa8'), [0, 1.82, 0.66], [3.0, 0.1, 1.5], [0.55, 0, 0]],
+    ['box', m('#3f5fa8'), [0, 1.82, -0.66], [3.0, 0.1, 1.5], [-0.55, 0, 0]],
+    ['box', m('#2f4a85'), [0, 2.2, 0], [3.0, 0.1, 0.16]],
+    ['box', m('#7a4f2a'), [0, 0.46, 1.31], [0.62, 0.92, 0.04]],
+    ...([[-0.4, '#e85a4f'], [0, '#f2c14e'], [0.4, '#4fa3d9']] as const).map(([x, c]) => ['rbox', m(c), [x, 1.2, 1.34], [0.28, 0.28, 0.06]] as Part),
+    ['box', m('#c9d2e3'), [-1.0, 0.9, 1.31], [0.4, 0.4, 0.04]],
+    ['box', m('#c9d2e3'), [1.0, 0.9, 1.31], [0.4, 0.4, 0.04]],
   ],
 }
 

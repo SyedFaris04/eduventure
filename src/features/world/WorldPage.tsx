@@ -38,9 +38,9 @@ export function WorldPage() {
     if (!academy) return
     const p = useGame.getState().player
     usePlace.setState({ resumeAt: { x: Math.floor(p.x), y: Math.floor(p.y) } })
-    useGame.setState({ academy: false })
+    useGame.setState({ academy: null })
     setAcademyOrigin('world')
-    navigate('/academy')
+    navigate(academy === 'language' ? '/hall' : '/academy')
   }, [academy, navigate])
 
   return (

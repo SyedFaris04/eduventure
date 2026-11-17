@@ -1,0 +1,1947 @@
+{
+  "_meta": {
+    "set": "batch-11",
+    "author": "Eduventure (original questions)",
+    "license": "CC BY 4.0",
+    "note": "Language Kingdom questions: English for primary, lower and upper secondary (15 each) and beginner Bahasa Melayu (15). In review until approved in /admin; the Malay questions need a native-speaker check. Contains answers: never imported by src/."
+  },
+  "questions": [
+    {
+      "id": "pri-lang-001",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Greetings",
+      "difficulty": 1,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "Which greeting do we use in the morning?",
+      "explanation": "We say \"Good morning\" before 12 noon.",
+      "objective": "Use greetings for different times of day.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "Good morning"
+        },
+        {
+          "id": "b",
+          "text": "Good night"
+        },
+        {
+          "id": "c",
+          "text": "Goodbye"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "Good night is said before going to sleep.",
+        "c": "Goodbye is said when leaving."
+      }
+    },
+    {
+      "id": "pri-lang-002",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Plurals",
+      "difficulty": 1,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "One cat, two ___.",
+      "explanation": "Most nouns add -s for more than one: cats.",
+      "objective": "Form regular plurals.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "cat"
+        },
+        {
+          "id": "b",
+          "text": "cates"
+        },
+        {
+          "id": "c",
+          "text": "cats"
+        }
+      ],
+      "answer": "c",
+      "wrong": {
+        "a": "More than one needs the plural form.",
+        "b": "We just add -s: cat → cats."
+      }
+    },
+    {
+      "id": "pri-lang-003",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Articles",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "I eat ___ apple every day.",
+      "explanation": "\"Apple\" starts with a vowel sound, so we use \"an\".",
+      "objective": "Choose between a and an.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "the"
+        },
+        {
+          "id": "b",
+          "text": "an"
+        },
+        {
+          "id": "c",
+          "text": "a"
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "Before a vowel sound (a, e, i, o, u) we use \"an\".",
+        "a": "\"An\" is used because we mean any one apple, said for the first time."
+      }
+    },
+    {
+      "id": "pri-lang-004",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Opposites",
+      "difficulty": 1,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "The opposite of \"hot\" is ___.",
+      "explanation": "Hot and cold are opposites.",
+      "objective": "Know common opposites.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "answer": {
+        "accept": [
+          "cold"
+        ]
+      }
+    },
+    {
+      "id": "pri-lang-005",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Plurals",
+      "difficulty": 2,
+      "bloom": "understand",
+      "type": "true_false",
+      "prompt": "True or false: the plural of \"child\" is \"childs\".",
+      "explanation": "Child is irregular: the plural is \"children\".",
+      "objective": "Recognise irregular plurals.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "answer": "false",
+      "wrong": {
+        "true": "\"Childs\" is not a word; the plural of child is children."
+      }
+    },
+    {
+      "id": "pri-lang-006",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Be verbs",
+      "difficulty": 1,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "She ___ my sister.",
+      "explanation": "With he, she and it we use \"is\".",
+      "objective": "Use am, is and are.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "are"
+        },
+        {
+          "id": "b",
+          "text": "is"
+        },
+        {
+          "id": "c",
+          "text": "am"
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "\"Am\" goes only with \"I\".",
+        "a": "\"Are\" goes with you, we and they."
+      }
+    },
+    {
+      "id": "pri-lang-007",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Prepositions",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "The cat is sleeping ___ the table. 🐱⬇️",
+      "explanation": "Under means below something.",
+      "objective": "Use prepositions of place.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "under"
+        },
+        {
+          "id": "b",
+          "text": "on"
+        },
+        {
+          "id": "c",
+          "text": "in"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "On means on top of; the cat is below.",
+        "c": "In means inside something."
+      }
+    },
+    {
+      "id": "pri-lang-008",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Numbers",
+      "difficulty": 1,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "Seven plus three is ___. (Write the number as a word.)",
+      "explanation": "7 + 3 = 10, which we write as \"ten\".",
+      "objective": "Read and write number words.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "answer": {
+        "accept": [
+          "ten"
+        ]
+      }
+    },
+    {
+      "id": "pri-lang-009",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Sentence order",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "ordering",
+      "prompt": "Put the words in order to say what you like to eat.",
+      "explanation": "English sentences usually go: who (I) – action (like) – what (nasi lemak).",
+      "objective": "Order words in a simple sentence.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "like"
+        },
+        {
+          "id": "b",
+          "text": "nasi lemak."
+        },
+        {
+          "id": "c",
+          "text": "I"
+        }
+      ],
+      "answer": [
+        "c",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "id": "pri-lang-010",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Question words",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "___ is your name?",
+      "explanation": "\"What is your name?\" asks for a name.",
+      "objective": "Use question words.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "What"
+        },
+        {
+          "id": "b",
+          "text": "Where"
+        },
+        {
+          "id": "c",
+          "text": "When"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "Where asks about places.",
+        "c": "When asks about time."
+      }
+    },
+    {
+      "id": "pri-lang-011",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Capital letters",
+      "difficulty": 1,
+      "bloom": "understand",
+      "type": "true_false",
+      "prompt": "True or false: a sentence starts with a capital letter.",
+      "explanation": "Every sentence starts with a capital letter, like \"My name is Aina.\"",
+      "objective": "Use capital letters correctly.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "answer": "true",
+      "wrong": {
+        "false": "Sentences always start with a capital letter."
+      }
+    },
+    {
+      "id": "pri-lang-012",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Colours",
+      "difficulty": 1,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "The sky on a sunny day is ___.",
+      "explanation": "A clear daytime sky is blue.",
+      "objective": "Name colours.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "black"
+        },
+        {
+          "id": "b",
+          "text": "blue"
+        },
+        {
+          "id": "c",
+          "text": "green"
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "Grass is green; a clear sky is blue.",
+        "a": "The sky is dark only at night."
+      }
+    },
+    {
+      "id": "pri-lang-013",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Family",
+      "difficulty": 1,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "My mother's mother is my ___.",
+      "explanation": "Your mother's mother is your grandmother (nenek).",
+      "objective": "Name family members.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "grandmother"
+        },
+        {
+          "id": "b",
+          "text": "aunt"
+        },
+        {
+          "id": "c",
+          "text": "sister"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "An aunt is your mother's or father's sister.",
+        "c": "A sister has the same parents as you."
+      }
+    },
+    {
+      "id": "pri-lang-014",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Days",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "The day after Monday is ___.",
+      "explanation": "Monday, Tuesday, Wednesday…",
+      "objective": "Know the days of the week.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "answer": {
+        "accept": [
+          "tuesday"
+        ]
+      }
+    },
+    {
+      "id": "pri-lang-015",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "primary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Simple present",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "He ___ to school every day.",
+      "explanation": "In the simple present, he/she/it adds -s: he walks.",
+      "objective": "Use the simple present with he and she.",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "walking"
+        },
+        {
+          "id": "b",
+          "text": "walks"
+        },
+        {
+          "id": "c",
+          "text": "walk"
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "With he, she and it the verb adds -s.",
+        "a": "\"Walking\" needs \"is\" before it."
+      }
+    },
+    {
+      "id": "lsec-lang-001",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Past simple",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "Yesterday I ___ to Penang.",
+      "explanation": "\"Go\" is irregular: the past is \"went\".",
+      "objective": "Use irregular past forms.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "went"
+        },
+        {
+          "id": "b",
+          "text": "go"
+        },
+        {
+          "id": "c",
+          "text": "goes"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "\"Yesterday\" means the past, so we need the past form.",
+        "c": "\"Goes\" is present, for he/she/it."
+      }
+    },
+    {
+      "id": "lsec-lang-002",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Comparatives",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "Kuala Lumpur is ___ than Ipoh.",
+      "explanation": "Short adjectives add -er (doubling the last letter): big → bigger.",
+      "objective": "Form comparatives.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "big"
+        },
+        {
+          "id": "b",
+          "text": "biggest"
+        },
+        {
+          "id": "c",
+          "text": "bigger"
+        }
+      ],
+      "answer": "c",
+      "wrong": {
+        "a": "Comparing two things needs the comparative form.",
+        "b": "\"Biggest\" compares three or more."
+      }
+    },
+    {
+      "id": "lsec-lang-003",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Past simple",
+      "difficulty": 3,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "She ___ (buy) a new bag last week.",
+      "explanation": "\"Buy\" is irregular: buy → bought.",
+      "objective": "Use irregular past forms.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "answer": {
+        "accept": [
+          "bought"
+        ]
+      }
+    },
+    {
+      "id": "lsec-lang-004",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Present continuous",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "Look! The children ___ in the rain.",
+      "explanation": "For actions happening now: am/is/are + -ing.",
+      "objective": "Use the present continuous.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "are playing"
+        },
+        {
+          "id": "b",
+          "text": "play"
+        },
+        {
+          "id": "c",
+          "text": "played"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "\"Look!\" shows it is happening now, so we use the present continuous.",
+        "c": "It is happening now, not in the past."
+      }
+    },
+    {
+      "id": "lsec-lang-005",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Countable nouns",
+      "difficulty": 3,
+      "bloom": "understand",
+      "type": "true_false",
+      "prompt": "True or false: \"information\" can be made plural as \"informations\".",
+      "explanation": "\"Information\" is uncountable: we say \"some information\" or \"a piece of information\".",
+      "objective": "Recognise uncountable nouns.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "answer": "false",
+      "wrong": {
+        "true": "Uncountable nouns have no plural form."
+      }
+    },
+    {
+      "id": "lsec-lang-006",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Prepositions of time",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "My birthday is ___ June.",
+      "explanation": "We use \"in\" with months and years.",
+      "objective": "Use in, on and at for time.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "at"
+        },
+        {
+          "id": "b",
+          "text": "in"
+        },
+        {
+          "id": "c",
+          "text": "on"
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "\"On\" goes with days and dates.",
+        "a": "\"At\" goes with clock times."
+      }
+    },
+    {
+      "id": "lsec-lang-007",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Vocabulary",
+      "difficulty": 3,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "Choose the word closest in meaning to \"enormous\".",
+      "explanation": "Enormous means very big, like huge.",
+      "objective": "Use synonyms.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "huge"
+        },
+        {
+          "id": "b",
+          "text": "tiny"
+        },
+        {
+          "id": "c",
+          "text": "quick"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "Tiny is the opposite.",
+        "c": "Quick is about speed, not size."
+      }
+    },
+    {
+      "id": "lsec-lang-008",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Questions",
+      "difficulty": 3,
+      "bloom": "apply",
+      "type": "ordering",
+      "prompt": "Put the words in order to make a question.",
+      "explanation": "Questions often go: question word – do/does – subject – verb.",
+      "objective": "Form questions with do.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "do"
+        },
+        {
+          "id": "b",
+          "text": "you"
+        },
+        {
+          "id": "c",
+          "text": "live?"
+        },
+        {
+          "id": "d",
+          "text": "Where"
+        }
+      ],
+      "answer": [
+        "d",
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    {
+      "id": "lsec-lang-009",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Conjunctions",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "I was tired, ___ I went to bed early.",
+      "explanation": "\"So\" introduces a result.",
+      "objective": "Join ideas with conjunctions.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "because"
+        },
+        {
+          "id": "b",
+          "text": "so"
+        },
+        {
+          "id": "c",
+          "text": "but"
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "\"But\" shows a contrast, not a result.",
+        "a": "\"Because\" gives a reason; here we need the result."
+      }
+    },
+    {
+      "id": "lsec-lang-010",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Superlatives",
+      "difficulty": 3,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "Mount Kinabalu is the ___ (high) mountain in Malaysia.",
+      "explanation": "With \"the\" and three or more things, we use the superlative: highest.",
+      "objective": "Form superlatives.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "answer": {
+        "accept": [
+          "highest"
+        ]
+      }
+    },
+    {
+      "id": "lsec-lang-011",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Modals",
+      "difficulty": 3,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "You ___ wear a helmet when you ride a motorcycle. It is the law.",
+      "explanation": "\"Must\" expresses a strong rule or obligation.",
+      "objective": "Use modal verbs.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "might"
+        },
+        {
+          "id": "b",
+          "text": "can"
+        },
+        {
+          "id": "c",
+          "text": "must"
+        }
+      ],
+      "answer": "c",
+      "wrong": {
+        "a": "\"Might\" is only a possibility, not a rule.",
+        "b": "\"Can\" is about ability or permission, not a rule."
+      }
+    },
+    {
+      "id": "lsec-lang-012",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Spelling",
+      "difficulty": 2,
+      "bloom": "understand",
+      "type": "true_false",
+      "prompt": "True or false: the correct spelling is \"beautiful\".",
+      "explanation": "Beautiful: b-e-a-u-t-i-f-u-l.",
+      "objective": "Spell common words.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "answer": "true",
+      "wrong": {
+        "false": "That is the correct spelling."
+      }
+    },
+    {
+      "id": "lsec-lang-013",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Pronouns",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "This book is ___. Give it to me!",
+      "explanation": "Possessive pronouns stand alone: mine, yours, his, hers.",
+      "objective": "Use possessive pronouns.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "mine"
+        },
+        {
+          "id": "b",
+          "text": "my"
+        },
+        {
+          "id": "c",
+          "text": "me"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "\"My\" needs a noun after it (my book).",
+        "c": "\"Me\" is an object, not a possessive."
+      }
+    },
+    {
+      "id": "lsec-lang-014",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Phrasal verbs",
+      "difficulty": 3,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "Please ___ your shoes before you enter the house.",
+      "explanation": "Take off = remove clothing. In many Malaysian homes we take off our shoes.",
+      "objective": "Use common phrasal verbs.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "options": [
+        {
+          "id": "a",
+          "text": "put on"
+        },
+        {
+          "id": "b",
+          "text": "look after"
+        },
+        {
+          "id": "c",
+          "text": "take off"
+        }
+      ],
+      "answer": "c",
+      "wrong": {
+        "a": "Put on is the opposite: wearing them.",
+        "b": "Look after means to take care of."
+      }
+    },
+    {
+      "id": "lsec-lang-015",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lower_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Plurals",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "One knife, two ___.",
+      "explanation": "Words ending in -fe change to -ves: knife → knives.",
+      "objective": "Form irregular plurals.",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "answer": {
+        "accept": [
+          "knives"
+        ]
+      }
+    },
+    {
+      "id": "usec-lang-001",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Present perfect",
+      "difficulty": 3,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "I ___ never ___ snow.",
+      "explanation": "Life experience: have + past participle: I have never seen snow.",
+      "objective": "Use the present perfect for experiences.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "options": [
+        {
+          "id": "a",
+          "text": "have … seen"
+        },
+        {
+          "id": "b",
+          "text": "did … see"
+        },
+        {
+          "id": "c",
+          "text": "am … seeing"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "\"Never\" with life experience uses the present perfect.",
+        "c": "Experiences are not described with the continuous."
+      }
+    },
+    {
+      "id": "usec-lang-002",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Passive voice",
+      "difficulty": 4,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "Change to passive: \"The students cleaned the classroom.\"",
+      "explanation": "Passive: object becomes subject + was/were + past participle (+ by …).",
+      "objective": "Form the passive voice.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "options": [
+        {
+          "id": "a",
+          "text": "The classroom cleaned the students."
+        },
+        {
+          "id": "b",
+          "text": "The classroom is cleaning by the students."
+        },
+        {
+          "id": "c",
+          "text": "The classroom was cleaned by the students."
+        }
+      ],
+      "answer": "c",
+      "wrong": {
+        "a": "That changes the meaning completely.",
+        "b": "The tense must stay past, and passive uses be + past participle."
+      }
+    },
+    {
+      "id": "usec-lang-003",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Conditionals",
+      "difficulty": 4,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "If it rains tomorrow, we ___ the picnic.",
+      "explanation": "First conditional: If + present, will + verb.",
+      "objective": "Use the first conditional.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "options": [
+        {
+          "id": "a",
+          "text": "cancelled"
+        },
+        {
+          "id": "b",
+          "text": "will cancel"
+        },
+        {
+          "id": "c",
+          "text": "would cancel"
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "\"Would\" is for unlikely or imaginary situations (second conditional).",
+        "a": "The result of a real future condition uses \"will\"."
+      }
+    },
+    {
+      "id": "usec-lang-004",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Reported speech",
+      "difficulty": 4,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "She said, \"I am hungry.\" → She said that she ___ hungry.",
+      "explanation": "In reported speech the tense moves back: am → was.",
+      "objective": "Report statements.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "answer": {
+        "accept": [
+          "was"
+        ]
+      }
+    },
+    {
+      "id": "usec-lang-005",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Subject-verb agreement",
+      "difficulty": 3,
+      "bloom": "understand",
+      "type": "true_false",
+      "prompt": "True or false: \"Neither of the boys are ready.\" is correct.",
+      "explanation": "\"Neither\" is singular: \"Neither of the boys is ready.\"",
+      "objective": "Make verbs agree with tricky subjects.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "answer": "false",
+      "wrong": {
+        "true": "\"Neither\" takes a singular verb, so it should be \"is\"."
+      }
+    },
+    {
+      "id": "usec-lang-006",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Vocabulary in context",
+      "difficulty": 4,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "The flood forced many families to ___ their homes.",
+      "explanation": "Evacuate means to leave a dangerous place.",
+      "objective": "Choose words from context.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "options": [
+        {
+          "id": "a",
+          "text": "evaporate"
+        },
+        {
+          "id": "b",
+          "text": "evacuate"
+        },
+        {
+          "id": "c",
+          "text": "evaluate"
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "Evaluate means to judge something; it only looks similar.",
+        "a": "Evaporate means to turn into vapour."
+      }
+    },
+    {
+      "id": "usec-lang-007",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Relative clauses",
+      "difficulty": 3,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "The teacher ___ taught us English has retired.",
+      "explanation": "We use \"who\" for people.",
+      "objective": "Use relative pronouns.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "options": [
+        {
+          "id": "a",
+          "text": "who"
+        },
+        {
+          "id": "b",
+          "text": "which"
+        },
+        {
+          "id": "c",
+          "text": "whose"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "\"Which\" is for things, not people.",
+        "c": "\"Whose\" shows possession."
+      }
+    },
+    {
+      "id": "usec-lang-008",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Paragraph order",
+      "difficulty": 4,
+      "bloom": "apply",
+      "type": "ordering",
+      "prompt": "Put the sentences in order to make a short paragraph.",
+      "explanation": "Sequence words (first, next, finally) show the order.",
+      "objective": "Order sentences using connectors.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "options": [
+        {
+          "id": "a",
+          "text": "Next, cook it with coconut milk."
+        },
+        {
+          "id": "b",
+          "text": "Finally, serve it with sambal."
+        },
+        {
+          "id": "c",
+          "text": "First, wash the rice."
+        }
+      ],
+      "answer": [
+        "c",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "id": "usec-lang-009",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Formal writing",
+      "difficulty": 4,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "Which is best for a formal letter?",
+      "explanation": "Formal letters use full words and polite, neutral language.",
+      "objective": "Choose a formal register.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ur service sucks!!!"
+        },
+        {
+          "id": "b",
+          "text": "I am writing to complain about the service."
+        },
+        {
+          "id": "c",
+          "text": "Hey, the service was really bad lah."
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "\"Hey\" and \"lah\" are too informal for a formal letter.",
+        "a": "Text spellings and strong slang are not used in formal writing."
+      }
+    },
+    {
+      "id": "usec-lang-010",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Word formation",
+      "difficulty": 4,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "He spoke with great ___ (confident).",
+      "explanation": "After \"great\" we need a noun: confident → confidence.",
+      "objective": "Form nouns from adjectives.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "answer": {
+        "accept": [
+          "confidence"
+        ]
+      }
+    },
+    {
+      "id": "usec-lang-011",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Idioms",
+      "difficulty": 3,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "\"It's a piece of cake\" means…",
+      "explanation": "\"A piece of cake\" means something is very easy.",
+      "objective": "Understand common idioms.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "options": [
+        {
+          "id": "a",
+          "text": "It is delicious."
+        },
+        {
+          "id": "b",
+          "text": "It is a small part."
+        },
+        {
+          "id": "c",
+          "text": "It is very easy."
+        }
+      ],
+      "answer": "c",
+      "wrong": {
+        "a": "It is an idiom, not about real cake.",
+        "b": "The idiom is about how easy something is."
+      }
+    },
+    {
+      "id": "usec-lang-012",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Gerunds and infinitives",
+      "difficulty": 4,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "I enjoy ___ novels in my free time.",
+      "explanation": "\"Enjoy\" + verb-ing: I enjoy reading.",
+      "objective": "Use gerunds after certain verbs.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "options": [
+        {
+          "id": "a",
+          "text": "read"
+        },
+        {
+          "id": "b",
+          "text": "reading"
+        },
+        {
+          "id": "c",
+          "text": "to read"
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "\"Enjoy\" is followed by the -ing form.",
+        "a": "After \"enjoy\" we need a gerund."
+      }
+    },
+    {
+      "id": "usec-lang-013",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Punctuation",
+      "difficulty": 3,
+      "bloom": "understand",
+      "type": "true_false",
+      "prompt": "True or false: \"Its raining\" needs an apostrophe: \"It's raining\".",
+      "explanation": "\"It's\" = \"it is\", so it needs an apostrophe.",
+      "objective": "Use apostrophes correctly.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "answer": "true",
+      "wrong": {
+        "false": "\"It's\" is short for \"it is\" and needs the apostrophe."
+      }
+    },
+    {
+      "id": "usec-lang-014",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Linking words",
+      "difficulty": 3,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "___ the heavy traffic, we arrived on time.",
+      "explanation": "\"Despite\" shows contrast: something happened even though…",
+      "objective": "Use contrast linkers.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "options": [
+        {
+          "id": "a",
+          "text": "Because of"
+        },
+        {
+          "id": "b",
+          "text": "So"
+        },
+        {
+          "id": "c",
+          "text": "Despite"
+        }
+      ],
+      "answer": "c",
+      "wrong": {
+        "a": "Because of gives a cause; here the traffic did not stop us.",
+        "b": "\"So\" introduces a result and cannot start this way."
+      }
+    },
+    {
+      "id": "usec-lang-015",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "upper_secondary"
+      ],
+      "subject": "english",
+      "topic": "Language",
+      "subtopic": "Past perfect",
+      "difficulty": 5,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "When we reached the station, the train ___ already ___ (leave). Write both words, e.g. \"has gone\".",
+      "explanation": "An earlier past action uses the past perfect: had + past participle.",
+      "objective": "Use the past perfect.",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "answer": {
+        "accept": [
+          "had left"
+        ]
+      }
+    },
+    {
+      "id": "life-lang-001",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Salam",
+      "difficulty": 1,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "How do you say \"Good morning\" in Malay?",
+      "explanation": "Selamat pagi = Good morning.",
+      "objective": "Use Malay greetings.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Selamat pagi"
+        },
+        {
+          "id": "b",
+          "text": "Selamat malam"
+        },
+        {
+          "id": "c",
+          "text": "Selamat tinggal"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "Selamat malam = Good night.",
+        "c": "Selamat tinggal = Goodbye, said by the person who is leaving (the one staying says \"Selamat jalan\")."
+      }
+    },
+    {
+      "id": "life-lang-002",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Salam",
+      "difficulty": 1,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "What does \"Terima kasih\" mean?",
+      "explanation": "Terima kasih = Thank you.",
+      "objective": "Understand polite expressions.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Excuse me"
+        },
+        {
+          "id": "b",
+          "text": "You are welcome"
+        },
+        {
+          "id": "c",
+          "text": "Thank you"
+        }
+      ],
+      "answer": "c",
+      "wrong": {
+        "a": "Excuse me = Maaf / Tumpang lalu.",
+        "b": "You are welcome = Sama-sama."
+      }
+    },
+    {
+      "id": "life-lang-003",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Nombor",
+      "difficulty": 1,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "Which number is \"lima\"?",
+      "explanation": "Lima = five.",
+      "objective": "Read Malay numbers.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "options": [
+        {
+          "id": "a",
+          "text": "6"
+        },
+        {
+          "id": "b",
+          "text": "5"
+        },
+        {
+          "id": "c",
+          "text": "4"
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "4 is empat.",
+        "a": "6 is enam."
+      }
+    },
+    {
+      "id": "life-lang-004",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Nombor",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "Satu, dua, ___, empat. (Write the missing number in Malay.)",
+      "explanation": "Satu (1), dua (2), tiga (3), empat (4).",
+      "objective": "Count in Malay.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "answer": {
+        "accept": [
+          "tiga"
+        ]
+      }
+    },
+    {
+      "id": "life-lang-005",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Keluarga",
+      "difficulty": 1,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "What does \"ibu\" mean?",
+      "explanation": "Ibu = mother.",
+      "objective": "Name family members in Malay.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "options": [
+        {
+          "id": "a",
+          "text": "father"
+        },
+        {
+          "id": "b",
+          "text": "sister"
+        },
+        {
+          "id": "c",
+          "text": "mother"
+        }
+      ],
+      "answer": "c",
+      "wrong": {
+        "a": "Father = bapa or ayah.",
+        "b": "Sister = kakak (older) or adik (younger)."
+      }
+    },
+    {
+      "id": "life-lang-006",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Makanan",
+      "difficulty": 1,
+      "bloom": "understand",
+      "type": "true_false",
+      "prompt": "True or false: \"nasi\" means rice.",
+      "explanation": "Nasi = cooked rice, as in nasi lemak.",
+      "objective": "Name everyday foods in Malay.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "answer": "true",
+      "wrong": {
+        "false": "Nasi is indeed cooked rice."
+      }
+    },
+    {
+      "id": "life-lang-007",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Makanan",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "You are hungry. Which sentence fits?",
+      "explanation": "Lapar = hungry. Saya lapar = I am hungry.",
+      "objective": "Say how you feel in Malay.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Saya lapar."
+        },
+        {
+          "id": "b",
+          "text": "Saya haus."
+        },
+        {
+          "id": "c",
+          "text": "Saya penat."
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "Haus means thirsty.",
+        "c": "Penat means tired."
+      }
+    },
+    {
+      "id": "life-lang-008",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Ayat",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "ordering",
+      "prompt": "Put the words in order: \"My name is Adam.\"",
+      "explanation": "Malay says \"Nama saya Adam\" (name – my – Adam).",
+      "objective": "Introduce yourself in Malay.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "options": [
+        {
+          "id": "a",
+          "text": "saya"
+        },
+        {
+          "id": "b",
+          "text": "Adam."
+        },
+        {
+          "id": "c",
+          "text": "Nama"
+        }
+      ],
+      "answer": [
+        "c",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "id": "life-lang-009",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Pasar",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "At the market you ask \"How much is this?\". You say…",
+      "explanation": "Berapa = how much; harga = price; ini = this.",
+      "objective": "Ask prices in Malay.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Di mana tandas?"
+        },
+        {
+          "id": "b",
+          "text": "Berapa harga ini?"
+        },
+        {
+          "id": "c",
+          "text": "Apa khabar?"
+        }
+      ],
+      "answer": "b",
+      "wrong": {
+        "c": "Apa khabar = How are you?",
+        "a": "Di mana tandas = Where is the toilet?"
+      }
+    },
+    {
+      "id": "life-lang-010",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Warna",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "The Malay word for \"red\" is ___.",
+      "explanation": "Merah = red, as in the Malaysian flag colours.",
+      "objective": "Name colours in Malay.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "answer": {
+        "accept": [
+          "merah"
+        ]
+      }
+    },
+    {
+      "id": "life-lang-011",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Masa",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "What does \"esok\" mean?",
+      "explanation": "Esok = tomorrow.",
+      "objective": "Use time words in Malay.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "options": [
+        {
+          "id": "a",
+          "text": "yesterday"
+        },
+        {
+          "id": "b",
+          "text": "today"
+        },
+        {
+          "id": "c",
+          "text": "tomorrow"
+        }
+      ],
+      "answer": "c",
+      "wrong": {
+        "a": "Yesterday = semalam.",
+        "b": "Today = hari ini."
+      }
+    },
+    {
+      "id": "life-lang-012",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Kata ganti",
+      "difficulty": 2,
+      "bloom": "understand",
+      "type": "true_false",
+      "prompt": "True or false: \"kami\" and \"kita\" both mean \"we\".",
+      "explanation": "Both mean \"we\": kita includes the listener; kami does not.",
+      "objective": "Use Malay pronouns.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "answer": "true",
+      "wrong": {
+        "false": "Both mean we; kita includes the person you are talking to, kami does not."
+      }
+    },
+    {
+      "id": "life-lang-013",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Arah",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "What does \"kanan\" mean?",
+      "explanation": "Kanan = right, kiri = left.",
+      "objective": "Understand directions in Malay.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "options": [
+        {
+          "id": "a",
+          "text": "right (direction)"
+        },
+        {
+          "id": "b",
+          "text": "left"
+        },
+        {
+          "id": "c",
+          "text": "straight"
+        }
+      ],
+      "answer": "a",
+      "wrong": {
+        "b": "Left = kiri.",
+        "c": "Straight = terus."
+      }
+    },
+    {
+      "id": "life-lang-014",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Kata kerja",
+      "difficulty": 2,
+      "bloom": "apply",
+      "type": "mcq",
+      "prompt": "Which word means \"to eat\"?",
+      "explanation": "Makan = eat. \"Jom makan!\" = Let's eat!",
+      "objective": "Use common verbs in Malay.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "options": [
+        {
+          "id": "a",
+          "text": "minum"
+        },
+        {
+          "id": "b",
+          "text": "tidur"
+        },
+        {
+          "id": "c",
+          "text": "makan"
+        }
+      ],
+      "answer": "c",
+      "wrong": {
+        "a": "Minum = to drink.",
+        "b": "Tidur = to sleep."
+      }
+    },
+    {
+      "id": "life-lang-015",
+      "version": 1,
+      "status": "in_review",
+      "level_ids": [
+        "lifelong"
+      ],
+      "subject": "malay_language",
+      "topic": "Bahasa Melayu asas",
+      "subtopic": "Ayat",
+      "difficulty": 3,
+      "bloom": "apply",
+      "type": "fill_blank",
+      "prompt": "Complete: \"Saya ___ ke sekolah.\" (I go to school.)",
+      "explanation": "Pergi = to go. Saya pergi ke sekolah = I go to school.",
+      "objective": "Build simple Malay sentences.",
+      "alignment": "Bahasa Melayu for beginners (CEFR A1), for learners new to Malay.",
+      "answer": {
+        "accept": [
+          "pergi"
+        ]
+      }
+    }
+  ]
+}

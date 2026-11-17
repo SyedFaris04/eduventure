@@ -1,15 +1,16 @@
 import type { Point } from './iso'
 
-export type TileKind = 'grass' | 'flowers' | 'path' | 'sand' | 'water' | 'bridge' | 'jetty' | 'snow' | 'stone' | 'mud' | 'circuit' | 'metal'
+export type TileKind = 'grass' | 'flowers' | 'path' | 'sand' | 'water' | 'bridge' | 'jetty' | 'snow' | 'stone' | 'mud' | 'circuit' | 'metal' | 'cobble'
 export type PropKind =
   | 'tree' | 'bush' | 'rock' | 'fence' | 'well' | 'house'
   | 'palm' | 'kampung_house' | 'stall' | 'fern' | 'mangrove' | 'mushroom' | 'pine_snow' | 'pillar' | 'sundial' | 'abacus_gate'
   | 'server_tower' | 'neon_lamp' | 'robot_statue' | 'holo_tree' | 'academy'
-export type MonsterKind = 'sproutling' | 'pebblewing' | 'dinobud' | 'hornbill' | 'tapir' | 'pangolin' | 'cubelet' | 'hexowl' | 'pisnake' | 'bugsy' | 'bytebot' | 'loopy'
-export type NpcId = 'elder' | 'shopkeeper' | 'boatman' | 'teacher'
+  | 'library_tower' | 'signpost' | 'scroll_tree' | 'letter_block' | 'language_hall'
+export type MonsterKind = 'sproutling' | 'pebblewing' | 'dinobud' | 'hornbill' | 'tapir' | 'pangolin' | 'cubelet' | 'hexowl' | 'pisnake' | 'bugsy' | 'bytebot' | 'loopy' | 'wordworm' | 'alphabat' | 'commaleon'
+export type NpcId = 'elder' | 'shopkeeper' | 'boatman' | 'teacher' | 'linguist'
 
-export type BossId = 'guardian' | 'raja_rafflesia' | 'abacus_titan' | 'glitch_golem'
-export type Theme = 'kampung' | 'rainforest' | 'alpine' | 'tech'
+export type BossId = 'guardian' | 'raja_rafflesia' | 'abacus_titan' | 'glitch_golem' | 'lexicon_dragon'
+export type Theme = 'kampung' | 'rainforest' | 'alpine' | 'tech' | 'kingdom'
 /** A named stretch of a place (inclusive tile rectangle), shown in a banner when the player walks in. */
 export type Area = { name: string; x0: number; y0: number; x1: number; y1: number }
 export type Cell = { tile: TileKind; prop?: PropKind; blocks?: boolean; spawn?: 'player'; arrival?: true; npc?: NpcId; zone?: MonsterKind; boss?: BossId }

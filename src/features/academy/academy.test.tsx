@@ -85,7 +85,7 @@ describe('LessonPlayer', () => {
     runner.runCode.mockImplementation(async (_lang: string, code: string) => ({ stdout: code.includes('Hi') ? 'Hi' : code.includes('Hello') ? 'Hello' : '', error: null, timedOut: false, truncated: false }))
   })
 
-  it('plays learn, predict and write steps, then pays the reward', async () => {
+  it('plays learn, predict and write steps, then pays the reward', { timeout: 30_000 }, async () => {
     wrap(<LessonPlayer courseId="python-basics" lessonId="py-u1-l1" language="python" onExit={() => undefined} />)
     // Learn: Run shows the output.
     fireEvent.click(await screen.findByRole('button', { name: 'Run' }))

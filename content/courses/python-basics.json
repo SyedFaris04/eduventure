@@ -4,6 +4,7 @@
     "license": "CC BY 4.0"
   },
   "id": "python-basics",
+  "kind": "code",
   "language": "python",
   "title": "Python Basics",
   "units": [

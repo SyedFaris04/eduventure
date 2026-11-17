@@ -8,7 +8,7 @@ import { canStandBeside, reachable } from './reach.testutil'
 describe('place store', () => {
   beforeEach(() => localStorage.clear())
   it('place store falls back', () => {
-    for (const bad of ['atlantis', 'language_kingdom', '']) {
+    for (const bad of ['atlantis', 'nowhere_land', '']) {
       localStorage.setItem('eduventure.place', bad)
       expect(loadPlace()).toBe('greenhaven')
     }
@@ -26,7 +26,6 @@ describe('place store', () => {
 describe('places', () => {
   it('every built place loads and parses', async () => {
     expect(BUILT_PLACES).toContain('greenhaven')
-    expect(PLACES.language_kingdom.built).toBe(false)
     for (const id of BUILT_PLACES) {
       const map = parseMap(await PLACES[id].load!())
       expect(map.id).toBe(id)
@@ -50,6 +49,7 @@ describe('islands', () => {
     { id: 'science_island', theme: 'rainforest', kinds: ['hornbill', 'tapir', 'pangolin'], boss: 'raja_rafflesia', areas: ['Hutan Borneo', 'Air Terjun Langkawi', 'Paya Bakau', 'Pekan Kuching'] },
     { id: 'mathematics_mountains', theme: 'alpine', kinds: ['cubelet', 'hexowl', 'pisnake'], boss: 'abacus_titan', areas: ['Summit Gate', 'Sundial Terraces', 'Pillar Pass'] },
     { id: 'technology_city', theme: 'tech', kinds: ['bugsy', 'bytebot', 'loopy'], boss: 'glitch_golem', areas: ['Code Academy', 'Server Gardens', 'Neon Plaza', 'Data Docks'] },
+    { id: 'language_kingdom', theme: 'kingdom', kinds: ['wordworm', 'alphabat', 'commaleon'], boss: 'lexicon_dragon', areas: ['Language Hall', 'Library Tower', 'Market of Words', 'Story Gardens'] },
   ] as const
 
   for (const c of cases)
@@ -86,5 +86,17 @@ describe('Technology City', () => {
     expect(canStandBeside(reachable(map, map.arrival), teacher.x, teacher.y)).toBe(true)
     const academy = map.props.find((p) => p.kind === 'academy')!
     expect(Math.hypot(teacher.x - (academy.x + 1), teacher.y - (academy.y + 1))).toBeLessThanOrEqual(3.5) // right by the door
+  })
+})
+
+describe('Language Kingdom', () => {
+  it('has the Language Hall with Cikgu Lina at its door', async () => {
+    const map = parseMap(await PLACES.language_kingdom.load!())
+    expect(map.props.filter((p) => p.kind === 'language_hall')).toHaveLength(1)
+    const hall = map.props.find((p) => p.kind === 'language_hall')!
+    const lina = map.npcs.find((n) => n.id === 'linguist')!
+    expect(lina).toBeDefined()
+    expect(canStandBeside(reachable(map, map.arrival), lina.x, lina.y)).toBe(true)
+    expect(Math.hypot(lina.x - (hall.x + 1), lina.y - (hall.y + 1))).toBeLessThanOrEqual(3.5)
   })
 })

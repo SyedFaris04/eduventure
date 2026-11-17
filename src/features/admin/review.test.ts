@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { allowedActions, findDuplicates, groupLessons } from './review'
+import { allowedActions, filterByKind, findDuplicates, groupLessons } from './review'
 
 describe('allowedActions (mirrors review_question in SQL)', () => {
   it('lets educators approve, reject or send back questions in review', () => {
@@ -51,5 +51,14 @@ describe('lesson review', () => {
     expect(out[0].steps.map((s) => s.id)).toEqual(['py-u1-l1-s1', 'py-u1-l1-s2'])
     expect(out[0].steps[1].key).toEqual({ answer: { text: '1' }, explanation: 'e', solution: null })
     expect(out[1].steps).toEqual([])
+  })
+})
+
+describe('lesson review by kind', () => {
+  it('filterByKind keeps only that kind of course', () => {
+    const lessons = [{ id: 'py-u1-l1', course_id: 'python-basics' }, { id: 'en-u1-l1', course_id: 'english-basics' }]
+    const courses = [{ id: 'python-basics', kind: 'code' as const }, { id: 'english-basics', kind: 'language' as const }]
+    expect(filterByKind(lessons, courses, 'language').map((l) => l.id)).toEqual(['en-u1-l1'])
+    expect(filterByKind(lessons, courses, 'code').map((l) => l.id)).toEqual(['py-u1-l1'])
   })
 })

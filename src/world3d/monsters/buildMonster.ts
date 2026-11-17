@@ -3,8 +3,8 @@ import type { BossId, MonsterKind } from '../../game/map'
 import { faceMaterial, geometry, material } from '../hero/materials'
 import type { Shape } from '../hero/parts'
 
-export const MONSTER_KINDS: MonsterKind[] = ['sproutling', 'pebblewing', 'dinobud', 'hornbill', 'tapir', 'pangolin', 'cubelet', 'hexowl', 'pisnake', 'bugsy', 'bytebot', 'loopy']
-export const BOSS_IDS: BossId[] = ['guardian', 'raja_rafflesia', 'abacus_titan', 'glitch_golem']
+export const MONSTER_KINDS: MonsterKind[] = ['sproutling', 'pebblewing', 'dinobud', 'hornbill', 'tapir', 'pangolin', 'cubelet', 'hexowl', 'pisnake', 'bugsy', 'bytebot', 'loopy', 'wordworm', 'alphabat', 'commaleon']
+export const BOSS_IDS: BossId[] = ['guardian', 'raja_rafflesia', 'abacus_titan', 'glitch_golem', 'lexicon_dragon']
 type V3 = [number, number, number]
 type Part = [shape: Shape, colour: string, at: V3, size: V3, rot?: V3]
 
@@ -135,6 +135,36 @@ const DESIGNS: Record<MonsterKind | BossId, Part[]> = {
     ...([1, -1] as const).map((s): Part => ['box', '*#ffcf4d', [0.53, 0.86 + s * 0.06, 0.06], [0.08, 0.03, 0.03]]),
     ['eyes:round', '', [0.36, 0.88, 0.225], [0.24, 0.1, 1]],
   ],
+  // Language Kingdom — Wordworm: a bookworm in glasses, sitting on its favourite book.
+  wordworm: [
+    ['box', '#e85a4f', [0, 0.06, 0], [0.6, 0.12, 0.46]],
+    ['box', '#f4ecd8', [0, 0.13, 0.02], [0.54, 0.03, 0.42]],
+    ...([[-0.32, 0.26], [-0.12, 0.3], [0.1, 0.34]] as const).map(([z, s]): Part => ['sphere', '#8bc34a', [0, 0.14 + s / 2, z], [s, s, s]]),
+    ['sphere', '#9ccc65', [0, 0.55, 0.3], [0.42, 0.42, 0.4]],
+    ...([1, -1] as const).map((s): Part => ['ring', '#2b2b2b', [s * 0.1, 0.6, 0.49], [0.2, 0.2, 0.2]]),
+    eyes(0.6, 0.495, 0.32),
+    mouth(0.45, 0.49, 0.16),
+  ],
+  // Language Kingdom — Alpha-bat: a purple bat whose wings are covered in letters.
+  alphabat: [
+    ...([1, -1] as const).map((s): Part => ['cylinder', '#2b2b2b', [s * 0.08, 0.22, 0], [0.04, 0.44, 0.04]]),
+    ['sphere', '#5c4a8f', [0, 0.7, 0], [0.52, 0.52, 0.46]],
+    ...([1, -1] as const).map((s): Part => ['octa', '#7e6bb3', [s * 0.48, 0.76, -0.02], [0.62, 0.36, 0.05], [0, 0, s * 0.3]]),
+    ...([1, -1] as const).flatMap((s): Part[] => [['box', '#f2c14e', [s * 0.42, 0.8, 0.02], [0.08, 0.12, 0.02]], ['box', '#f2c14e', [s * 0.6, 0.72, 0.02], [0.06, 0.1, 0.02]]]),
+    ...([1, -1] as const).map((s): Part => ['cone', '#5c4a8f', [s * 0.14, 1.0, 0], [0.12, 0.2, 0.12]]),
+    eyes(0.74, 0.23, 0.32),
+    mouth(0.6, 0.22, 0.14),
+  ],
+  // Language Kingdom — Comma-leon: a chameleon whose curled tail is a comma.
+  commaleon: [
+    ['sphere', '#4fb38a', [0, 0.38, -0.02], [0.5, 0.44, 0.8]],
+    ['sphere', '#5cc79a', [0, 0.5, 0.42], [0.42, 0.38, 0.42]],
+    ['ring', '#3f9a75', [0, 0.32, -0.5], [0.4, 0.4, 1.4], [0, PI / 2, 0]],
+    ...([-0.1, 0.12, 0.32] as const).map((z): Part => ['cone', '#3f9a75', [0, 0.62, z - 0.1], [0.08, 0.14, 0.08]]),
+    ...([[0.18, 0.2], [-0.18, 0.2], [0.18, -0.22], [-0.18, -0.22]] as const).map(([x, z]): Part => ['capsule', '#3f9a75', [x, 0.08, z], [0.1, 0.16, 0.1]]),
+    eyes(0.56, 0.62, 0.34),
+    mouth(0.44, 0.61, 0.14),
+  ],
   // The Greenhaven Guardian: a gentle, mossy stone golem with a glowing rune.
   guardian: [
     ['rbox', '#b6bec8', [0, 1.15, 0], [1.5, 1.5, 1.1]],
@@ -170,6 +200,19 @@ const DESIGNS: Record<MonsterKind | BossId, Part[]> = {
     ['box', '*#ffcf4d', [0.3, 2.45, 0.37], [0.12, 0.12, 0.02]],
     eyes(2.2, 0.375, 0.5),
     mouth(2.0, 0.375, 0.24),
+  ],
+  // Language Kingdom boss — the Lexicon Dragon: a blue dragon whose wings are the pages of an open book.
+  lexicon_dragon: [
+    ...([1, -1] as const).map((s): Part => ['box', '#2f4a85', [s * 0.4, 0.3, 0.1], [0.4, 0.6, 0.5]]),
+    ['sphere', '#3f5fa8', [0, 1.0, 0], [1.3, 1.1, 1.5]],
+    ['sphere', '#4f6fbd', [0, 1.85, 0.55], [0.8, 0.72, 0.8]],
+    ['box', '#4f6fbd', [0, 1.72, 1.0], [0.5, 0.3, 0.36]],
+    ...([1, -1] as const).map((s): Part => ['cone', '#f2c14e', [s * 0.24, 2.3, 0.45], [0.12, 0.34, 0.12], [-0.3, 0, -s * 0.3]]),
+    ...([1, -1] as const).flatMap((s): Part[] => [['box', '#e85a4f', [s * 0.85, 1.55, -0.15], [0.95, 0.05, 0.75], [0, 0, s * 0.5]], ['box', '#f4ecd8', [s * 0.82, 1.6, -0.15], [0.88, 0.05, 0.68], [0, 0, s * 0.5]]]),
+    ['cone', '#3f5fa8', [0, 0.75, -0.95], [0.32, 0.8, 0.32], [-PI / 2 - 0.3, 0, 0]],
+    ['octa', '*#ffcf4d', [0, 1.1, 0.74], [0.24, 0.3, 0.06]],
+    eyes(1.92, 0.955, 0.5),
+    mouth(1.66, 1.185, 0.24),
   ],
   // Mathematics Mountains boss — the Abacus Titan: a stone golem with an abacus in its chest and rune eyes.
   abacus_titan: [

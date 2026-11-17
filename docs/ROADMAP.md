@@ -148,6 +148,24 @@ Spec: `docs/superpowers/specs/2026-11-17-coding-island-design.md`; plan: `docs/s
 - lesson text in Malay;
 - a free-play sandbox.
 
+### Languages island (project 4 of the same request) — built and merged
+Spec: `docs/superpowers/specs/2026-11-17-languages-island-design.md`; plan: `docs/superpowers/plans/2026-11-17-languages-island.md`.
+- **Language Kingdom:** reached by boat. Every island on the jetty is now built. It has:
+  - language monsters: Wordworm, Alpha-bat and Comma-leon;
+  - the Lexicon Dragon boss at level 5;
+  - the Language Hall, with Cikgu Lina at the door. The Hall is also reachable from Home.
+- **Two courses,** English for Malaysian students and Bahasa Melayu for beginners. Each has 3 units × 4 lessons.
+- **Exercises:** word cards with emoji and the phone's own voice, pick, match pairs, build the sentence, fill the gap, listen, and type with forgiving checks.
+- **Marking and rewards:** the server marks every exercise and pays 25 XP and 10 gold once per lesson. Listening is a bonus, so phones without a voice can still finish.
+- **Questions:** 60 new language questions for the island's monsters.
+- **Before publishing:** the Malay content needs a native-speaker check.
+
+**Later:**
+- speaking practice with the microphone;
+- Mandarin, Japanese, Korean and Arabic;
+- harder SPM-level units;
+- recorded human audio.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Pet, island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

@@ -86,7 +86,7 @@
     },
     "language_kingdom": {
       "name": "Language Kingdom",
-      "blurb": "A royal city of stories, words and poems."
+      "blurb": "A castle town of letters with the Language Hall, where you learn English and Bahasa Melayu."
     },
     "history_ruins": {
       "name": "History Ruins",
@@ -392,7 +392,8 @@
     "admin": "Review questions",
     "library": "Academic Library",
     "shop": "Shop",
-    "academy": "Code Academy"
+    "academy": "Code Academy",
+    "hall": "Language Hall"
   },
   "world": {
     "canvasLabel": "{{place}}. Move with W A S D or the arrow keys, tap to walk, press E to talk.",
@@ -444,6 +445,12 @@
       "pages": [
         "Welcome to the Code Academy! Come in and write your first program."
       ]
+    },
+    "linguist": {
+      "name": "Cikgu Lina",
+      "pages": [
+        "Selamat datang to the Language Hall! Come in and learn a new language with me."
+      ]
     }
   },
   "monsters": {
@@ -482,6 +489,15 @@
     },
     "loopy": {
       "name": "Loopy"
+    },
+    "wordworm": {
+      "name": "Wordworm"
+    },
+    "alphabat": {
+      "name": "Alpha-bat"
+    },
+    "commaleon": {
+      "name": "Comma-leon"
     }
   },
   "battle": {
@@ -685,6 +701,20 @@
       "victoryText": "You cleared all four rounds. Technology City runs smoothly again!",
       "lostText": "The Glitch Golem keeps glitching. Everything you earned is safe; read the explanations and try again.",
       "alreadyToday": "You've already claimed today's Glitch Golem reward. Come back tomorrow!"
+    },
+    "lexicon_dragon": {
+      "name": "Lexicon Dragon",
+      "title": "Boss battle: Lexicon Dragon",
+      "intro": {
+        "r1": "Round 1: the Lexicon Dragon opens its book! Three correct language answers clear the round.",
+        "r2": "Round 2: the pages turn faster. The questions get harder.",
+        "r3": "Round 3: the dragon's trickiest words!",
+        "final": "Final round: language mixed with everything. Three more and the dragon closes its book!"
+      },
+      "victory": "The Lexicon Dragon closes its book!",
+      "victoryText": "You cleared all four rounds. The Language Kingdom cheers your name!",
+      "lostText": "The Lexicon Dragon turns back to page one and waits. Everything you earned is safe; read the explanations and try again.",
+      "alreadyToday": "You've already claimed today's Lexicon Dragon reward. Come back tomorrow!"
     }
   },
   "jetty": {
@@ -749,6 +779,14 @@
       "notFound": "This lesson isn't available.",
       "unanswered": "Answer every question in the lesson first.",
       "generic": "Something went wrong. Please try again."
-    }
+    },
+    "play": "Listen",
+    "answerLine": "Your sentence",
+    "tray": "Words",
+    "matchHint": "Tap a word, then its meaning. Tap a pair again to undo it."
+  },
+  "hall": {
+    "title": "Language Hall",
+    "intro": "Learn English and Bahasa Melayu with short, fun lessons. Tap, listen, match and build sentences."
   }
 }

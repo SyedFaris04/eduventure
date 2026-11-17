@@ -22,3 +22,16 @@ export function replaceLine(code: string, n: number, line: string): string {
   lines[n - 1] = line
   return lines.join('\n')
 }
+
+/**
+ * A typed language answer as compared everywhere: case, extra spaces, a final . ! or ? and quote marks don't count.
+ * The server's public.norm_answer() applies the same rule.
+ */
+export const normAnswer = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/['"‘’“”]/g, '')
+    .trim()
+    .replace(/\s+/g, ' ')
+    .replace(/[.!?]+$/, '')
+    .trim()

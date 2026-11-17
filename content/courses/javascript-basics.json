@@ -4,6 +4,7 @@
     "license": "CC BY 4.0"
   },
   "id": "javascript-basics",
+  "kind": "code",
   "language": "javascript",
   "title": "JavaScript Basics",
   "units": [

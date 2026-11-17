@@ -73,4 +73,22 @@ export const NPCS: Record<NpcId, { appearance: Appearance; pages: number }> = {
       backpack: 'none',
     },
   },
+  // Cikgu Lina, the language teacher at the Language Hall door: talking opens the Hall.
+  linguist: {
+    pages: 1,
+    appearance: {
+      body: 'a',
+      skin: '#d9a074',
+      hairStyle: 'hijab',
+      hairColour: '#6c8ce0',
+      eyes: 'happy',
+      face: 'smile',
+      top: 'dress_pink',
+      bottom: 'skirt_red',
+      shoes: 'sandals',
+      accessory: 'glasses',
+      weapon: 'quill',
+      backpack: 'book_bag',
+    },
+  },
 }
