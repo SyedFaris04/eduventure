@@ -17,6 +17,8 @@ export type EncounterState = {
   question: PublicQuestion | null
   /** A Returning battle: due topics come back (spaced review). */
   returning?: boolean
+  /** The pet's random guess on this question (choice questions, sometimes). */
+  pet_guess?: string | null
 }
 
 export type AnswerResult = {
@@ -35,6 +37,8 @@ export type AnswerResult = {
   missions_completed: string[]
   /** Paid on winning a Returning battle. */
   returning_bonus?: { xp: number; gold: number } | null
+  /** 'taught' when the player was right over the pet's wrong guess; 'both' when both were right. */
+  pet?: 'taught' | 'both' | null
   state: EncounterState
 }
 

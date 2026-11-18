@@ -1,3 +1,4 @@
+import { AdventureSlot } from '../pet/AdventureCard'
 import { ClassesSlot } from '../teacher/MyClassesCard'
 import { ParentCardSlot } from '../parents/ParentCardSlot'
 import { useState } from 'react'
@@ -153,6 +154,7 @@ export function HomePage() {
               </Link>
             </Panel>
 
+            {uid && <AdventureSlot uid={uid} />}
             {uid && <ParentCardSlot uid={uid} />}
             {uid && <ClassesSlot uid={uid} />}
             {uid && <MissionsPanel uid={uid} />}

@@ -237,6 +237,12 @@ Spec: `docs/superpowers/specs/2026-11-18-sound-design.md`.
 - **Controls:** sound on/off plus Music and Effects sliders in ⚙️ Settings; the Home speaker button still mutes everything. Nothing plays before the first tap.
 - **Your own tracks:** see `docs/art-spec.md` (Music).
 
+### Teach your pet and pet adventures — built and merged
+Spec: `docs/superpowers/specs/2026-11-19-teach-your-pet-design.md`. Research feature 14 (the protégé effect).
+- **Teach your pet:** in about 1 in 5 choice questions the pet makes a random guess; answering right over a wrong guess "teaches" it (+2 pet points, inside the daily cap).
+- **Adventures:** every third new lesson the pet explores an island for 6 hours and comes back with a Malaysian fun fact (+10 pet points), collected on the pet page. Nothing is lost by coming back late.
+- **Needs a reviewer:** the 20 fun facts in `content/pet-facts.json` (English and Malay).
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

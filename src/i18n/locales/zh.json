@@ -878,7 +878,17 @@
       "level": "达到所示等级才能进化。",
       "gold": "金币还不够。",
       "failed": "没有成功，请再试一次。"
-    }
+    },
+    "guess": "{{name}} 觉得答案是“{{answer}}”。{{name}} 说得对吗？",
+    "taught": "你教会了 {{name}}！+2 宠物点数",
+    "both": "你和 {{name}} 都答对了！",
+    "exploring": "{{name}} 正在探索{{place}}，大约 {{time}} 回来。",
+    "back": "{{name}} 从{{place}}回来了！",
+    "openSouvenir": "打开纪念品",
+    "souvenirTitle": "{{name}} 从{{place}}带回了这个：",
+    "souvenirPoints": "+{{n}} 宠物点数",
+    "souvenirs": "纪念品（{{n}}）",
+    "noSouvenirs": "完成三节新课，你的宠物就会去探险，并带回一个有趣的知识。"
   },
   "review": {
     "badge": "回归",

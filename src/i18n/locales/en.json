@@ -878,7 +878,17 @@
       "level": "Reach the level shown to evolve.",
       "gold": "Not enough gold yet.",
       "failed": "That did not work. Please try again."
-    }
+    },
+    "guess": "{{name}} thinks it’s “{{answer}}”. Is {{name}} right?",
+    "taught": "You taught {{name}}! +2 pet points",
+    "both": "You and {{name}} both got it!",
+    "exploring": "{{name}} is exploring {{place}}. Back around {{time}}.",
+    "back": "{{name}} is back from {{place}}!",
+    "openSouvenir": "Open souvenir",
+    "souvenirTitle": "{{name}} brought this back from {{place}}:",
+    "souvenirPoints": "+{{n}} pet points",
+    "souvenirs": "Souvenirs ({{n}})",
+    "noSouvenirs": "Finish three new lessons and your pet will go exploring, then bring back a fun fact."
   },
   "review": {
     "badge": "Returning",

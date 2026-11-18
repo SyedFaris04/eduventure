@@ -878,7 +878,17 @@
       "level": "Alcanza el nivel indicado para evolucionar.",
       "gold": "Aún no tienes suficiente oro.",
       "failed": "No ha funcionado. Inténtalo de nuevo."
-    }
+    },
+    "guess": "{{name}} cree que es «{{answer}}». ¿Tiene razón {{name}}?",
+    "taught": "¡Le has enseñado a {{name}}! +2 puntos de mascota",
+    "both": "¡Tú y {{name}} habéis acertado!",
+    "exploring": "{{name}} está explorando {{place}}. Vuelve hacia las {{time}}.",
+    "back": "¡{{name}} ha vuelto de {{place}}!",
+    "openSouvenir": "Abrir recuerdo",
+    "souvenirTitle": "{{name}} ha traído esto de {{place}}:",
+    "souvenirPoints": "+{{n}} puntos de mascota",
+    "souvenirs": "Recuerdos ({{n}})",
+    "noSouvenirs": "Termina tres lecciones nuevas y tu mascota saldrá a explorar y traerá un dato curioso."
   },
   "review": {
     "badge": "Regresa",

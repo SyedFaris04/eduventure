@@ -878,7 +878,17 @@
       "level": "Capai tahap yang ditunjukkan untuk berevolusi.",
       "gold": "Emas belum mencukupi.",
       "failed": "Tidak berjaya. Sila cuba lagi."
-    }
+    },
+    "guess": "{{name}} rasa jawapannya “{{answer}}”. Betulkah {{name}}?",
+    "taught": "Anda mengajar {{name}}! +2 mata peliharaan",
+    "both": "Anda dan {{name}} sama-sama betul!",
+    "exploring": "{{name}} sedang menjelajah {{place}}. Pulang sekitar {{time}}.",
+    "back": "{{name}} sudah pulang dari {{place}}!",
+    "openSouvenir": "Buka cenderamata",
+    "souvenirTitle": "{{name}} membawa pulang ini dari {{place}}:",
+    "souvenirPoints": "+{{n}} mata peliharaan",
+    "souvenirs": "Cenderamata ({{n}})",
+    "noSouvenirs": "Selesaikan tiga pelajaran baharu dan haiwan peliharaan anda akan menjelajah, kemudian membawa pulang fakta menarik."
   },
   "review": {
     "badge": "Kembali",

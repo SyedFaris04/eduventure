@@ -1,4 +1,5 @@
 import { MyPetCheer } from '../pet/PetCheer'
+import { BattlePetGuess } from '../pet/BattlePetGuess'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
@@ -57,6 +58,7 @@ function Battle({ monsterId, kind, returning }: { monsterId: string; kind: Monst
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
   const shownAt = useRef(0)
+  const guessShown = useRef<string | null>(null)
   const { level, startLevel } = usePlayerLevel()
 
   useEffect(() => {
@@ -85,12 +87,14 @@ function Battle({ monsterId, kind, returning }: { monsterId: string; kind: Monst
     const wait = MIN_READ_MS - (Date.now() - shownAt.current)
     if (wait > 0) await new Promise((r) => setTimeout(r, wait))
     try {
+      guessShown.current = enc.pet_guess ?? null
       const r = await answerQuestion(enc.encounter_id, answer)
       setResult(r)
       setEnc(r.state)
       setTotals(r.totals)
       setEarned((e) => ({ xp: e.xp + r.xp_gained, gold: e.gold + r.gold_gained, leveledTo: r.leveled_up ? r.totals.level : e.leveledTo }))
       playSfx(r.correct ? 'correct' : 'wrong')
+      if (r.pet === 'taught') setTimeout(() => playSfx('chirp'), 500)
       reactToAnswer(r.correct, r.state.status === 'won')
       if (r.state.status === 'won') {
         useGame.setState((s) => ({ defeated: [...s.defeated, monsterId] }))
@@ -162,6 +166,8 @@ function Battle({ monsterId, kind, returning }: { monsterId: string; kind: Monst
 
           {enc && !finished && !result && <HelperBar level={level} helpers={enc.helpers} question={question} onFifty={() => void fifty()} busy={busy} />}
           {question && (!finished || result) && (
+            <>
+            <BattlePetGuess question={question} guess={result ? guessShown.current : (enc?.pet_guess ?? null)} result={result?.pet} />
             <QuestionCard
               key={question.id}
               question={question}
@@ -176,6 +182,7 @@ function Battle({ monsterId, kind, returning }: { monsterId: string; kind: Monst
               {result?.correct && (result.farmed ? <p className="text-sm font-semibold text-wood-dark">{t('battle.farmed')}</p> : <Rewards xp={result.xp_gained - result.bonus.xp} gold={result.gold_gained - result.bonus.gold} />)}
               <MissionNotes ids={result?.missions_completed} />
             </QuestionCard>
+            </>
           )}
 
           {finished && enc && (

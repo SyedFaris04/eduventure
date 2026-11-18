@@ -878,7 +878,17 @@
       "level": "表示のレベルになると進化できます。",
       "gold": "ゴールドがまだ足りません。",
       "failed": "うまくいきませんでした。もう一度ためしてね。"
-    }
+    },
+    "guess": "{{name}} は「{{answer}}」だと思っているよ。{{name}} は正しい？",
+    "taught": "{{name}} に教えてあげた！ +2 ペットポイント",
+    "both": "{{name}} といっしょに正解！",
+    "exploring": "{{name}} は {{place}} を探検中。{{time}} ごろ帰ってくるよ。",
+    "back": "{{name}} が {{place}} から帰ってきた！",
+    "openSouvenir": "おみやげを開ける",
+    "souvenirTitle": "{{name}} が {{place}} から持ち帰ったもの：",
+    "souvenirPoints": "+{{n}} ペットポイント",
+    "souvenirs": "おみやげ（{{n}}）",
+    "noSouvenirs": "新しいレッスンを3つ終えると、ペットが探検に出かけて豆知識を持ち帰ります。"
   },
   "review": {
     "badge": "リターン",
