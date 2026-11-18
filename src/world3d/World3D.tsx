@@ -14,7 +14,8 @@ import { Bosses, Hero, Monsters, Npcs } from './Actors'
 import { Ground } from './Ground'
 import { RIG_URL } from './hero/useRig'
 import { listenKeys } from './input'
-import { CAMERA, cameraOffset, worldToGrid } from './projection'
+import { cameraOffset, DEFAULT_YAW, lookHeight, worldToGrid } from './projection'
+import { useCamera } from './cameraStore'
 import { clearProps, preloadProps, Props } from './Props'
 import { createQualityMonitor } from './quality'
 import { qualityLevel, useQuality } from './qualityStore'
@@ -44,7 +45,6 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
   const ring = useRef<Mesh>(null)
   const ringAt = useRef(-1)
   const target = useRef(new Vector3(sim.hero.pos.x, 0, sim.hero.pos.y))
-  const distance = useRef<number>(CAMERA.distance)
   const lastEmit = useRef(0)
   const panelClosedAt = useRef(-Infinity)
   const monitor = useMemo(() => createQualityMonitor(), [])
@@ -74,10 +74,11 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     })
     // Wheel and two-finger pinch zoom within the Clash-style limits.
     const el = gl.domElement
-    const clampD = (d: number) => Math.min(CAMERA.maxDistance, Math.max(CAMERA.minDistance, d))
+    // Zoom is the player's saved camera setting (the store keeps it within its limits).
+    const zoom = (d: number) => useCamera.getState().set({ distance: d })
     const wheel = (e: WheelEvent) => {
       e.preventDefault()
-      distance.current = clampD(distance.current + e.deltaY * 0.01)
+      zoom(useCamera.getState().distance + e.deltaY * 0.01)
     }
     const touches = new Map<number, { x: number; y: number }>()
     let pinch = 0
@@ -94,7 +95,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       touches.set(e.pointerId, { x: e.clientX, y: e.clientY })
       if (touches.size === 2 && pinch) {
         const now = spread()
-        distance.current = clampD(distance.current * (pinch / now))
+        zoom(useCamera.getState().distance * (pinch / now))
         pinch = now
       }
     }
@@ -137,6 +138,9 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       for (const id of store.defeated) sim.defeat(id, now)
       useGame.setState({ defeated: [] })
     }
+    const view = useCamera.getState()
+    const yaw = DEFAULT_YAW + (view.turn * Math.PI) / 2
+    sim.cameraYaw = yaw
     const keys = keysRef.current?.read() ?? { x: 0, y: 0 }
     sim.update(dt, keys.x || keys.y ? keys : store.stick, now, worldPaused())
 
@@ -149,11 +153,15 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     }
 
     // Camera eases after the hero (instantly under reduced motion), frame-rate independent.
-    const goal = new Vector3(sim.hero.pos.x, 0, sim.hero.pos.y)
+    const goal = new Vector3(sim.hero.pos.x, lookHeight(view.tilt), sim.hero.pos.y)
     target.current.lerp(goal, reduced ? 1 : 1 - Math.pow(1 - 0.12, dt * 60))
-    const [ox, oy, oz] = cameraOffset(distance.current)
-    camera.position.set(target.current.x + ox, oy, target.current.z + oz)
+    const [ox, oy, oz] = cameraOffset(view.distance, view.tilt, yaw)
+    camera.position.set(target.current.x + ox, target.current.y + oy, target.current.z + oz)
     camera.lookAt(target.current)
+    if (camera.fov !== view.fov) {
+      camera.fov = view.fov
+      camera.updateProjectionMatrix()
+    }
     if (sun.current) {
       // Light from the upper left of the screen (−x), so shadows fall toward the viewer and stay visible.
       sun.current.position.set(target.current.x - 9, 15, target.current.z + 5)
@@ -213,7 +221,8 @@ export default function World3D({ hero, pet, returning = 0, map, atArrival = fal
   const level = useQuality(qualityLevel)
   const reduced = useMemo(reducedMotion, [])
   useEffect(preloadProps, [])
-  const start = cameraOffset(CAMERA.distance)
+  const view = useCamera.getState()
+  const start = cameraOffset(view.distance, view.tilt, DEFAULT_YAW + (view.turn * Math.PI) / 2)
 
   return (
     <Canvas
@@ -222,7 +231,7 @@ export default function World3D({ hero, pet, returning = 0, map, atArrival = fal
       shadows
       dpr={[1, 2]}
       gl={{ antialias: true, powerPreference: 'high-performance' }}
-      camera={{ fov: CAMERA.fov, near: 0.5, far: 150, position: [sim.hero.pos.x + start[0], start[1], sim.hero.pos.y + start[2]] }}
+      camera={{ fov: view.fov, near: 0.5, far: 150, position: [sim.hero.pos.x + start[0], start[1], sim.hero.pos.y + start[2]] }}
     >
       <color attach="background" args={[look.sky]} />
       <fog attach="fog" args={[look.sky, ...look.fog]} />

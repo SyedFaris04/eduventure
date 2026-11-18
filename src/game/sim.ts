@@ -30,6 +30,8 @@ export class WorldSim {
   hero: { pos: Point; dir: Point; speed01: number; facing: number }
   monsters: SimMonster[] = []
   path: Point[] = []
+  /** Which way the camera faces, so stick-up always walks away from it. */
+  cameraYaw = Math.PI / 4
 
   constructor(
     readonly map: GameMap,
@@ -96,7 +98,7 @@ export class WorldSim {
     if (input.x || input.y) {
       this.path = []
       const len = Math.min(1, Math.hypot(input.x, input.y))
-      const g = screenDirToGrid(input)
+      const g = screenDirToGrid(input, this.cameraYaw)
       dir = { x: g.x * len, y: g.y * len }
       next = step(h.pos, dir, dt, this.map.blocked)
     } else if (this.path.length) {
