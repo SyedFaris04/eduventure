@@ -1,3 +1,4 @@
+import { seeThrough, seeThroughRadius } from './seeThrough'
 import type { Pet } from '../features/pet/petRules'
 import { PetFollower } from './pet/PetFollower'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -158,6 +159,15 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     const [ox, oy, oz] = cameraOffset(view.distance, view.tilt, yaw)
     camera.position.set(target.current.x + ox, target.current.y + oy, target.current.z + oz)
     camera.lookAt(target.current)
+    // Tell the scenery where the hero is, so whatever stands in front of them is cut away.
+    const chest = new Vector3(sim.hero.pos.x, 0.8, sim.hero.pos.y)
+    const depth = camera.position.distanceTo(chest)
+    chest.project(camera)
+    seeThrough.hero.value.set((chest.x + 1) / 2, (chest.y + 1) / 2)
+    seeThrough.depth.value = depth
+    seeThrough.radius.value = seeThroughRadius(depth, camera.fov)
+    gl.getDrawingBufferSize(seeThrough.resolution.value)
+    seeThrough.aspect.value = seeThrough.resolution.value.x / Math.max(1, seeThrough.resolution.value.y)
     if (camera.fov !== view.fov) {
       camera.fov = view.fov
       camera.updateProjectionMatrix()

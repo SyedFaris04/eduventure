@@ -1,3 +1,4 @@
+import { addSeeThrough } from './seeThrough'
 import { useLayoutEffect, useMemo, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { Box3, InstancedMesh, Matrix4, Mesh, MeshStandardMaterial, Quaternion, SphereGeometry, Vector3, type Material, type BufferGeometry } from 'three'
@@ -123,12 +124,13 @@ function PartInstances({ part, items, shadows }: { part: { geometry: BufferGeome
     m.instanceMatrix.needsUpdate = true
     m.computeBoundingSphere()
   }, [items, part])
-  return <instancedMesh ref={ref} args={[part.geometry, part.material, items.length]} castShadow={shadows} receiveShadow frustumCulled={false} />
+  // Scenery in front of the hero is cut away in a small circle, so trees and roofs never hide them.
+  return <instancedMesh ref={ref} args={[part.geometry, addSeeThrough(part.material), items.length]} castShadow={shadows} receiveShadow frustumCulled={false} />
 }
 
 const bushGeo = new SphereGeometry(0.5, 12, 8)
-const bushMat = addWind(new MeshStandardMaterial({ color: '#5e9c35', roughness: 0.9 }), 0.03)
-const bushLight = addWind(new MeshStandardMaterial({ color: '#7cb342', roughness: 0.9 }), 0.03)
+const bushMat = addSeeThrough(addWind(new MeshStandardMaterial({ color: '#5e9c35', roughness: 0.9 }), 0.03))
+const bushLight = addSeeThrough(addWind(new MeshStandardMaterial({ color: '#7cb342', roughness: 0.9 }), 0.03))
 
 /** Code-built bush: a cluster of squashed spheres (no pack provides one in this style). */
 function Bushes({ map }: { map: GameMap }) {
