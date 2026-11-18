@@ -3,7 +3,7 @@ import { fireEvent, render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router'
 import { initI18n } from '../../i18n'
 import { ParentView } from './ParentPage'
-import { peekPendingCode, savePendingCode, takePendingCode } from './pendingCode'
+import { afterLoginPath, peekPendingCode, rememberParentCode, savePendingCode, takePendingCode } from './pendingCode'
 
 const report = { week: [], questions: 20, correct: 15, lessons: 2, strong: ['Fractions'], practise: ['Photosynthesis'], streak: 4, days: 3 }
 const view = (props: Partial<React.ComponentProps<typeof ParentView>>) => {
@@ -91,5 +91,12 @@ describe('pending parent code', () => {
     expect(peekPendingCode()).toBe('ABCD-EF23')
     expect(takePendingCode()).toBe('ABCD-EF23')
     expect(takePendingCode()).toBeNull()
+  })
+  it("is forgotten on the child's own phone, so the child is not sent to the parent page", () => {
+    rememberParentCode('ABCD-EF23', 'none')
+    expect(peekPendingCode()).toBe('ABCD-EF23')
+    rememberParentCode('ABCD-EF23', 'guest')
+    expect(peekPendingCode()).toBeNull()
+    expect(afterLoginPath()).toBe('/home')
   })
 })

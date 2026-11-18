@@ -8,7 +8,7 @@ import { SceneBackdrop } from '../landing/SceneBackdrop'
 import { FormMessage } from '../authentication/AuthLayout'
 import { useSession } from '../authentication/useSession'
 import { supabase } from '../../services/supabase'
-import { peekPendingCode, savePendingCode, takePendingCode } from './pendingCode'
+import { peekPendingCode, rememberParentCode, takePendingCode } from './pendingCode'
 
 export type Kid = { child_id: string; name: string | null; daily_limit: number | null }
 export type ChildClass = { class_id: string; name: string; school: string | null }
@@ -199,11 +199,9 @@ export function ParentPage() {
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState<{ kind: 'error' | 'success'; text: string } | null>(null)
   const urlCode = params.get('code')
-  useEffect(() => {
-    if (urlCode) savePendingCode(urlCode)
-  }, [urlCode])
-  const code = urlCode ?? peekPendingCode() ?? ''
   const kind = !session ? 'none' : session.user.is_anonymous ? 'guest' : 'parent'
+  useEffect(() => rememberParentCode(urlCode, kind), [urlCode, kind])
+  const code = urlCode ?? peekPendingCode() ?? ''
   const uid = session?.user.id
 
   const kids = useQuery({
