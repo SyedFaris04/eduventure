@@ -942,7 +942,9 @@
     "answersCol": "Réponses",
     "tpValue": "TP{{n}}",
     "notEnough": "Pas encore assez de pratique",
-    "tpNote": "Estimé à partir de la pratique sur EDUVENTURE — ce n’est pas le niveau officiel de l’école (PBD)."
+    "tpNote": "Estimé à partir de la pratique sur EDUVENTURE — ce n’est pas le niveau officiel de l’école (PBD).",
+    "classes": "Classes",
+    "leaveClass": "Retirer {{child}} de {{name}}"
   },
   "settings": {
     "title": "Réglages",
@@ -962,6 +964,62 @@
       "balanced": "Équilibrée",
       "classic": "Classique",
       "overhead": "Vue du dessus"
+    }
+  },
+  "teacher": {
+    "title": "Espace enseignant",
+    "intro": "Créez une classe, partagez son code avec vos élèves, fixez des missions sur un thème et suivez chaque élève.",
+    "login": "Se connecter",
+    "createAccount": "Créer un compte",
+    "guest": "Les enseignants ont besoin de leur propre compte (pas invité). Quittez d’abord le jeu invité sur cet appareil, ou utilisez un autre navigateur.",
+    "className": "Nom de la classe",
+    "school": "École (facultatif)",
+    "create": "Créer la classe",
+    "classes": "Vos classes",
+    "open": "Ouvrir {{name}}",
+    "members": "{{n}} élèves",
+    "whatsapp": "Partager sur WhatsApp",
+    "whatsappText": "Rejoins ma classe EDUVENTURE « {{name}} » : ouvre EDUVENTURE, va dans Accueil → Mes classes et saisis le code {{code}}",
+    "copy": "Copier le code",
+    "archive": "Archiver la classe",
+    "newQuest": "Nouvelle mission",
+    "topic": "Thème",
+    "chooseTopic": "Choisissez un thème",
+    "tp": "TP visé",
+    "anyTp": "Tout niveau",
+    "target": "Bonnes réponses requises",
+    "due": "Échéance",
+    "setQuest": "Fixer la mission",
+    "questLine": "{{target}} bonnes réponses avant le {{date}} · {{finished}} sur {{n}} terminé",
+    "deleteQuest": "Supprimer la mission {{topic}}",
+    "students": "Élèves",
+    "student": "Élève",
+    "daysCol": "Jours cette semaine",
+    "rightCol": "Justes cette semaine",
+    "right": "{{correct}} sur {{n}} justes",
+    "noStudents": "Pas encore d’élèves. Partagez le code {{code}} avec votre classe.",
+    "removeStudent": "Retirer {{name}}",
+    "privacy": "Vous ne voyez que la progression : jamais l’e-mail, l’âge ou d’autres données. Les moins de 18 ans ne peuvent rejoindre qu’après l’accord d’un parent.",
+    "errors": {
+      "account": "Les enseignants ont besoin d’un compte avec e-mail et de 18 ans ou plus.",
+      "noQuestions": "Pas encore de questions sur ce thème à ce niveau.",
+      "due": "Choisissez une échéance à partir d’aujourd’hui.",
+      "target": "Choisissez entre 5 et 30 bonnes réponses.",
+      "failed": "Un problème est survenu. Réessayez."
+    }
+  },
+  "classes": {
+    "title": "Mes classes",
+    "code": "Code de la classe",
+    "join": "Rejoindre",
+    "needParent": "Un parent doit approuver ton compte avant que tu puisses rejoindre une classe. Utilise « Demander à mon parent » plus haut.",
+    "noQuests": "Pas encore de missions.",
+    "due": "avant le {{date}}",
+    "leaveClass": "Quitter {{name}}",
+    "errors": {
+      "notValid": "Ce code de classe n’est pas valide.",
+      "own": "C’est ta propre classe.",
+      "failed": "Un problème est survenu. Réessaie."
     }
   }
 }

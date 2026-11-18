@@ -93,6 +93,7 @@ const router = createBrowserRouter([
   { path: '/shop', ...page(async () => (await import('../features/shop/ShopPage')).ShopPage, true) },
   // Parents approve here without making a game character, so it is not behind the onboarding guard.
   { path: '/parent', ...page(async () => (await import('../features/parents/ParentPage')).ParentPage) },
+  { path: '/teacher', ...page(async () => (await import('../features/teacher/TeacherPage')).TeacherPage) },
   { path: '/pet', ...page(async () => (await import('../features/pet/PetPage')).PetPage, true) },
   { path: '/academy', ...page(async () => (await import('../features/academy/AcademyPages')).AcademyPage, true) },
   { path: '/academy/:course', ...page(async () => (await import('../features/academy/AcademyPages')).CoursePage, true) },

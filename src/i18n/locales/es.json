@@ -942,7 +942,9 @@
     "answersCol": "Respuestas",
     "tpValue": "TP{{n}}",
     "notEnough": "Aún no hay suficiente práctica",
-    "tpNote": "Estimado a partir de la práctica en EDUVENTURE; no es el nivel oficial del colegio (PBD)."
+    "tpNote": "Estimado a partir de la práctica en EDUVENTURE; no es el nivel oficial del colegio (PBD).",
+    "classes": "Clases",
+    "leaveClass": "Sacar a {{child}} de {{name}}"
   },
   "settings": {
     "title": "Ajustes",
@@ -962,6 +964,62 @@
       "balanced": "Equilibrada",
       "classic": "Clásica",
       "overhead": "Cenital"
+    }
+  },
+  "teacher": {
+    "title": "Página del docente",
+    "intro": "Crea una clase, comparte su código con tus alumnos, asigna misiones sobre un tema y mira cómo va cada uno.",
+    "login": "Iniciar sesión",
+    "createAccount": "Crear una cuenta",
+    "guest": "Los docentes necesitan su propia cuenta (no de invitado). Cierra antes el juego de invitado en este dispositivo o usa otro navegador.",
+    "className": "Nombre de la clase",
+    "school": "Colegio (opcional)",
+    "create": "Crear clase",
+    "classes": "Tus clases",
+    "open": "Abrir {{name}}",
+    "members": "{{n}} alumnos",
+    "whatsapp": "Compartir por WhatsApp",
+    "whatsappText": "Únete a mi clase de EDUVENTURE \"{{name}}\": abre EDUVENTURE, ve a Inicio → Mis clases e introduce el código {{code}}",
+    "copy": "Copiar código",
+    "archive": "Archivar clase",
+    "newQuest": "Nueva misión",
+    "topic": "Tema",
+    "chooseTopic": "Elige un tema",
+    "tp": "TP objetivo",
+    "anyTp": "Cualquier nivel",
+    "target": "Respuestas correctas necesarias",
+    "due": "Fecha límite",
+    "setQuest": "Asignar misión",
+    "questLine": "{{target}} respuestas correctas antes del {{date}} · {{finished}} de {{n}} terminadas",
+    "deleteQuest": "Borrar misión {{topic}}",
+    "students": "Alumnos",
+    "student": "Alumno",
+    "daysCol": "Días esta semana",
+    "rightCol": "Aciertos esta semana",
+    "right": "{{correct}} de {{n}} bien",
+    "noStudents": "Aún no hay alumnos. Comparte el código {{code}} con tu clase.",
+    "removeStudent": "Quitar a {{name}}",
+    "privacy": "Solo ves el progreso de aprendizaje: nunca el correo, la edad ni otros datos. Los menores de 18 solo pueden unirse cuando un adulto de su familia aprueba su cuenta.",
+    "errors": {
+      "account": "Los docentes necesitan una cuenta con correo y tener 18 años o más.",
+      "noQuestions": "Aún no hay preguntas de ese tema en ese nivel.",
+      "due": "Elige una fecha límite a partir de hoy.",
+      "target": "Elige entre 5 y 30 respuestas correctas.",
+      "failed": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "classes": {
+    "title": "Mis clases",
+    "code": "Código de clase",
+    "join": "Unirme",
+    "needParent": "Un adulto de tu familia debe aprobar tu cuenta antes de unirte a una clase. Usa «Pedírselo a mi familia» arriba.",
+    "noQuests": "Aún no hay misiones.",
+    "due": "hasta el {{date}}",
+    "leaveClass": "Salir de {{name}}",
+    "errors": {
+      "notValid": "Ese código de clase no es válido.",
+      "own": "Es tu propia clase.",
+      "failed": "Algo salió mal. Inténtalo de nuevo."
     }
   }
 }

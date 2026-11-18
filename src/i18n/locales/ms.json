@@ -942,7 +942,9 @@
     "answersCol": "Jawapan",
     "tpValue": "TP{{n}}",
     "notEnough": "Latihan belum mencukupi",
-    "tpNote": "Anggaran daripada latihan EDUVENTURE — bukan tahap rasmi sekolah (PBD) anak anda."
+    "tpNote": "Anggaran daripada latihan EDUVENTURE — bukan tahap rasmi sekolah (PBD) anak anda.",
+    "classes": "Kelas",
+    "leaveClass": "Keluarkan {{child}} daripada {{name}}"
   },
   "settings": {
     "title": "Tetapan",
@@ -962,6 +964,62 @@
       "balanced": "Seimbang",
       "classic": "Klasik",
       "overhead": "Atas"
+    }
+  },
+  "teacher": {
+    "title": "Halaman guru",
+    "intro": "Cipta kelas, kongsi kodnya dengan murid, tetapkan misi pada satu topik dan lihat prestasi setiap murid.",
+    "login": "Log masuk",
+    "createAccount": "Cipta akaun",
+    "guest": "Guru perlukan akaun sendiri (bukan tetamu). Log keluar daripada permainan tetamu pada peranti ini dahulu, atau guna pelayar lain.",
+    "className": "Nama kelas",
+    "school": "Sekolah (pilihan)",
+    "create": "Cipta kelas",
+    "classes": "Kelas anda",
+    "open": "Buka {{name}}",
+    "members": "{{n}} murid",
+    "whatsapp": "Kongsi di WhatsApp",
+    "whatsappText": "Sertai kelas EDUVENTURE saya \"{{name}}\": buka EDUVENTURE, pergi ke Utama → Kelas saya dan masukkan kod {{code}}",
+    "copy": "Salin kod",
+    "archive": "Arkibkan kelas",
+    "newQuest": "Misi baharu",
+    "topic": "Topik",
+    "chooseTopic": "Pilih topik",
+    "tp": "TP sasaran",
+    "anyTp": "Mana-mana tahap",
+    "target": "Jawapan betul diperlukan",
+    "due": "Tarikh akhir",
+    "setQuest": "Tetapkan misi",
+    "questLine": "{{target}} jawapan betul sebelum {{date}} · {{finished}} daripada {{n}} selesai",
+    "deleteQuest": "Padam misi {{topic}}",
+    "students": "Murid",
+    "student": "Murid",
+    "daysCol": "Hari minggu ini",
+    "rightCol": "Betul minggu ini",
+    "right": "{{correct}} daripada {{n}} betul",
+    "noStudents": "Belum ada murid. Kongsi kod {{code}} dengan kelas anda.",
+    "removeStudent": "Keluarkan {{name}}",
+    "privacy": "Anda hanya melihat kemajuan pembelajaran: bukan e-mel, umur atau maklumat lain murid. Pemain bawah 18 tahun hanya boleh menyertai selepas ibu bapa meluluskan akaun mereka.",
+    "errors": {
+      "account": "Guru perlukan akaun dengan e-mel, berumur 18 tahun atau lebih.",
+      "noQuestions": "Belum ada soalan untuk topik itu pada tahap itu.",
+      "due": "Pilih tarikh akhir mulai hari ini.",
+      "target": "Pilih antara 5 hingga 30 jawapan betul.",
+      "failed": "Ada masalah. Sila cuba lagi."
+    }
+  },
+  "classes": {
+    "title": "Kelas saya",
+    "code": "Kod kelas",
+    "join": "Sertai",
+    "needParent": "Ibu bapa mesti meluluskan akaun anda sebelum anda boleh menyertai kelas. Guna “Minta ibu bapa saya” di atas.",
+    "noQuests": "Belum ada misi.",
+    "due": "tarikh akhir {{date}}",
+    "leaveClass": "Tinggalkan {{name}}",
+    "errors": {
+      "notValid": "Kod kelas itu tidak sah.",
+      "own": "Itu kelas anda sendiri.",
+      "failed": "Ada masalah. Sila cuba lagi."
     }
   }
 }

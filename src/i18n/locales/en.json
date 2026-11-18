@@ -942,7 +942,9 @@
     "answersCol": "Answers",
     "tpValue": "TP{{n}}",
     "notEnough": "Not enough practice yet",
-    "tpNote": "Estimated from EDUVENTURE practice — not your child's official school (PBD) level."
+    "tpNote": "Estimated from EDUVENTURE practice — not your child's official school (PBD) level.",
+    "classes": "Classes",
+    "leaveClass": "Take {{child}} out of {{name}}"
   },
   "settings": {
     "title": "Settings",
@@ -962,6 +964,62 @@
       "balanced": "Balanced",
       "classic": "Classic",
       "overhead": "Overhead"
+    }
+  },
+  "teacher": {
+    "title": "Teacher page",
+    "intro": "Create a class, share its code with your students, set quests on a topic and see how each student is doing.",
+    "login": "Log in",
+    "createAccount": "Create an account",
+    "guest": "Teachers need their own account (not a guest). Log out of the guest game on this device first, or use another browser.",
+    "className": "Class name",
+    "school": "School (optional)",
+    "create": "Create class",
+    "classes": "Your classes",
+    "open": "Open {{name}}",
+    "members": "{{n}} students",
+    "whatsapp": "Share on WhatsApp",
+    "whatsappText": "Join my EDUVENTURE class \"{{name}}\": open EDUVENTURE, go to Home → My classes and enter the code {{code}}",
+    "copy": "Copy code",
+    "archive": "Archive class",
+    "newQuest": "New quest",
+    "topic": "Topic",
+    "chooseTopic": "Choose a topic",
+    "tp": "Target TP",
+    "anyTp": "Any level",
+    "target": "Right answers needed",
+    "due": "Due",
+    "setQuest": "Set quest",
+    "questLine": "{{target}} right answers by {{date}} · {{finished}} of {{n}} finished",
+    "deleteQuest": "Delete quest {{topic}}",
+    "students": "Students",
+    "student": "Student",
+    "daysCol": "Days this week",
+    "rightCol": "Right this week",
+    "right": "{{correct}} of {{n}} right",
+    "noStudents": "No students yet. Share the code {{code}} with your class.",
+    "removeStudent": "Remove {{name}}",
+    "privacy": "You see only learning progress: never students' email, age or anything else. Players under 18 can join only after a parent approves their account.",
+    "errors": {
+      "account": "Teachers need an account with an email, 18 or older.",
+      "noQuestions": "There are no questions for that topic at that level yet.",
+      "due": "Choose a due date from today on.",
+      "target": "Choose between 5 and 30 right answers.",
+      "failed": "Something went wrong. Please try again."
+    }
+  },
+  "classes": {
+    "title": "My classes",
+    "code": "Class code",
+    "join": "Join",
+    "needParent": "A parent must approve your account before you can join a class. Use “Ask my parent” above.",
+    "noQuests": "No quests yet.",
+    "due": "due {{date}}",
+    "leaveClass": "Leave {{name}}",
+    "errors": {
+      "notValid": "That class code is not valid.",
+      "own": "That is your own class.",
+      "failed": "Something went wrong. Please try again."
     }
   }
 }

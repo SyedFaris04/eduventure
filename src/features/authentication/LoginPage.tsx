@@ -1,4 +1,4 @@
-import { peekPendingCode } from '../parents/pendingCode'
+import { afterLoginPath } from '../parents/pendingCode'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -11,8 +11,8 @@ import { loginSchema, type LoginValues } from './schemas'
 import { useSession } from './useSession'
 
 // The progress guard on /home forwards to onboarding or the character creator when setup is unfinished.
-// A parent who came from a child's link goes back to the parent page.
-const afterLogin = () => (peekPendingCode() ? '/parent' : '/home')
+// Parents and teachers who came from their page go back to it.
+const afterLogin = afterLoginPath
 
 export function LoginPage() {
   const { t } = useTranslation()

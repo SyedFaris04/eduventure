@@ -11,6 +11,7 @@ import { supabase } from '../../services/supabase'
 import { peekPendingCode, savePendingCode, takePendingCode } from './pendingCode'
 
 export type Kid = { child_id: string; name: string | null; daily_limit: number | null }
+export type ChildClass = { class_id: string; name: string; school: string | null }
 export type TopicTp = { subject: string; topic: string; answers: number; tp: number | null }
 export type Report = { week: { day: string; minutes: number; played: boolean }[]; questions: number; correct: number; lessons: number; strong: string[]; practise: string[]; streak: number; topics?: TopicTp[] }
 const LIMITS = [30, 60, 90, 120]
@@ -20,14 +21,16 @@ type ViewProps = {
   code: string
   kids: Kid[]
   reports: Record<string, Report | undefined>
+  classes: Record<string, ChildClass[] | undefined>
   busy: boolean
   onApprove: (code: string) => void
   onSetLimit: (child: string, minutes: number | null) => void
   onRemove: (child: string) => void
+  onRemoveClass: (child: string, classId: string) => void
 }
 
 /** The parent page from plain values (ParentPage wires it to the server). */
-export function ParentView({ session, code, kids, reports, busy, onApprove, onSetLimit, onRemove }: ViewProps) {
+export function ParentView({ session, code, kids, reports, classes, busy, onApprove, onSetLimit, onRemove, onRemoveClass }: ViewProps) {
   const { t } = useTranslation()
   const [typed, setTyped] = useState(code)
   const [sure, setSure] = useState(false)
@@ -143,6 +146,20 @@ export function ParentView({ session, code, kids, reports, busy, onApprove, onSe
                   )}
                 </div>
               )}
+              {(classes[k.child_id]?.length ?? 0) > 0 && (
+                <div className="text-sm">
+                  <p className="font-semibold">{t('parents.classes')}</p>
+                  {classes[k.child_id]!.map((c) => (
+                    <p key={c.class_id} className="flex items-center gap-2">
+                      <span>{c.name}</span>
+                      {c.school && <span className="text-xs text-wood-dark/70">· {c.school}</span>}
+                      <button type="button" disabled={busy} onClick={() => onRemoveClass(k.child_id, c.class_id)} aria-label={t('parents.leaveClass', { child: k.name ?? '—', name: c.name })} className="ms-auto text-xs font-bold text-water-dark underline">
+                        {t('parents.remove')}
+                      </button>
+                    </p>
+                  ))}
+                </div>
+              )}
               <div className="flex flex-wrap items-end gap-2">
                 <Select label={t('parents.limit')} value={k.daily_limit ?? ''} disabled={busy} onChange={(e) => onSetLimit(k.child_id, e.target.value ? Number(e.target.value) : null)}>
                   <option value="">{t('parents.noLimit')}</option>
@@ -208,6 +225,16 @@ export function ParentPage() {
       },
     })),
   })
+  const childClasses = useQueries({
+    queries: (kids.data ?? []).map((k) => ({
+      queryKey: ['child-classes', k.child_id],
+      queryFn: async () => {
+        const { data, error } = await supabase!.rpc('child_classes', { p_child: k.child_id })
+        if (error) throw error
+        return data as ChildClass[]
+      },
+    })),
+  })
 
   async function run(fn: () => Rpc, ok?: (data: unknown) => string) {
     setBusy(true)
@@ -222,6 +249,7 @@ export function ParentPage() {
     if (ok) setMessage({ kind: 'success', text: ok(data) })
     await queryClient.invalidateQueries({ queryKey: ['children', uid] })
     await queryClient.invalidateQueries({ queryKey: ['child-report'] })
+    await queryClient.invalidateQueries({ queryKey: ['child-classes'] })
   }
 
   return (
@@ -237,6 +265,7 @@ export function ParentPage() {
           code={code}
           kids={kids.data ?? []}
           reports={Object.fromEntries((kids.data ?? []).map((k, i) => [k.child_id, reports[i]?.data]))}
+          classes={Object.fromEntries((kids.data ?? []).map((k, i) => [k.child_id, childClasses[i]?.data]))}
           busy={busy}
           onApprove={(c) =>
             void run(
@@ -249,6 +278,7 @@ export function ParentPage() {
           }
           onSetLimit={(child, minutes) => void run(() => supabase!.rpc('set_child_limit', { p_child: child, p_minutes: minutes }))}
           onRemove={(child) => void run(() => supabase!.rpc('remove_child', { p_child: child }))}
+          onRemoveClass={(child, classId) => void run(() => supabase!.rpc('guardian_remove_class', { p_child: child, p_class: classId }))}
         />
       </div>
     </main>
