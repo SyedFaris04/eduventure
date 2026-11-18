@@ -207,7 +207,7 @@ Spec: `docs/superpowers/specs/2026-11-18-parent-consent-design.md`. Research fea
 Spec: `docs/superpowers/specs/2026-11-18-camera-settings-design.md`.
 - A ⚙️ **Settings** button in the world holds graphics quality and the camera: presets Close-up, Balanced (the new default, lower and closer than before), Classic (the old view) and Overhead; sliders for camera height, zoom and field of view; turn left/right in 90° steps; Reset.
 - A lower camera aims at the hero's chest so faces read. Stick and keys follow the camera's turn. Saved on each device.
-- **Later, if needed:** fade trees and roofs that hide the hero at low angles.
+- **See-through circle:** trees, houses and bushes standing between the camera and the hero are cut away in a small soft circle around the hero, so low camera angles never hide them.
 
 ### Adaptive difficulty — built and merged
 Spec: `docs/superpowers/specs/2026-11-18-adaptive-difficulty-design.md`. Research feature 2.
