@@ -1,0 +1,29 @@
+{
+  "_meta": {
+    "author": "Eduventure (original text)",
+    "license": "CC BY 4.0",
+    "note": "Fun facts a pet brings back from an adventure. Kid-friendly, widely documented facts; a reviewer should check them (and the Malay) before launch."
+  },
+  "facts": [
+    { "id": "kinabalu", "en": "Mount Kinabalu in Sabah is Malaysia's highest mountain, about 4,095 metres tall.", "ms": "Gunung Kinabalu di Sabah ialah gunung tertinggi di Malaysia, kira-kira 4,095 meter tinggi." },
+    { "id": "rafflesia", "en": "The Rafflesia, found in Malaysia's rainforests, has the biggest single flower in the world: up to about 1 metre across.", "ms": "Rafflesia yang tumbuh di hutan hujan Malaysia mempunyai bunga tunggal terbesar di dunia, selebar kira-kira 1 meter." },
+    { "id": "states", "en": "Malaysia has 13 states and 3 federal territories.", "ms": "Malaysia mempunyai 13 negeri dan 3 wilayah persekutuan." },
+    { "id": "bunga_raya", "en": "The bunga raya (hibiscus) is Malaysia's national flower.", "ms": "Bunga raya ialah bunga kebangsaan Malaysia." },
+    { "id": "tiger", "en": "The Malayan tiger is Malaysia's national animal.", "ms": "Harimau Malaya ialah haiwan kebangsaan Malaysia." },
+    { "id": "merdeka", "en": "Malaysia became independent on 31 August 1957. We celebrate it as Hari Merdeka.", "ms": "Malaysia mencapai kemerdekaan pada 31 Ogos 1957. Kita menyambutnya sebagai Hari Merdeka." },
+    { "id": "hari_malaysia", "en": "Malaysia was formed on 16 September 1963, the day we call Hari Malaysia.", "ms": "Malaysia dibentuk pada 16 September 1963, hari yang kita panggil Hari Malaysia." },
+    { "id": "twin_towers", "en": "The Petronas Twin Towers in Kuala Lumpur are 452 metres tall. They were the world's tallest buildings from 1998 to 2004.", "ms": "Menara Berkembar Petronas di Kuala Lumpur setinggi 452 meter. Ia bangunan tertinggi di dunia dari 1998 hingga 2004." },
+    { "id": "kancil", "en": "The kancil (mouse-deer) is one of the smallest hoofed animals in the world.", "ms": "Kancil ialah antara haiwan berkuku yang paling kecil di dunia." },
+    { "id": "hornbill", "en": "The rhinoceros hornbill is Sarawak's state bird. Sarawak is called the Land of the Hornbills.", "ms": "Burung kenyalang ialah burung negeri Sarawak. Sarawak digelar Bumi Kenyalang." },
+    { "id": "taman_negara", "en": "The rainforest of Taman Negara is often said to be about 130 million years old, one of the oldest in the world.", "ms": "Hutan hujan Taman Negara sering dikatakan berusia kira-kira 130 juta tahun, antara yang tertua di dunia." },
+    { "id": "rajang", "en": "The Rajang River in Sarawak is the longest river in Malaysia.", "ms": "Sungai Rajang di Sarawak ialah sungai terpanjang di Malaysia." },
+    { "id": "mulu", "en": "The Sarawak Chamber in Gunung Mulu National Park is one of the largest known cave chambers in the world.", "ms": "Sarawak Chamber di Taman Negara Gunung Mulu ialah antara ruang gua terbesar yang diketahui di dunia." },
+    { "id": "orangutan", "en": "Wild orangutans live only on the islands of Borneo and Sumatra, including Sabah and Sarawak.", "ms": "Orang utan liar hanya hidup di Pulau Borneo dan Sumatera, termasuk Sabah dan Sarawak." },
+    { "id": "penang_bridge", "en": "The Penang Bridge, opened in 1985, links Penang Island to the mainland.", "ms": "Jambatan Pulau Pinang yang dibuka pada tahun 1985 menghubungkan Pulau Pinang dengan tanah besar." },
+    { "id": "equator", "en": "Malaysia lies close to the equator, so it is warm all year round.", "ms": "Malaysia terletak berhampiran garisan khatulistiwa, jadi cuacanya panas sepanjang tahun." },
+    { "id": "wau", "en": "The wau bulan is a traditional moon-shaped kite from Kelantan.", "ms": "Wau bulan ialah layang-layang tradisional berbentuk bulan dari Kelantan." },
+    { "id": "congkak", "en": "Congkak is a traditional board game where players move seeds or shells from hole to hole.", "ms": "Congkak ialah permainan papan tradisional di mana pemain memindahkan biji atau cengkerang dari lubang ke lubang." },
+    { "id": "batik", "en": "Batik is a way of decorating cloth with wax and dye. Malaysian batik often shows flowers and leaves.", "ms": "Batik ialah cara menghias kain dengan lilin dan pewarna. Batik Malaysia selalunya bercorak bunga dan daun." },
+    { "id": "proboscis", "en": "The proboscis monkey, with its big nose, lives only on the island of Borneo.", "ms": "Monyet belanda yang berhidung besar hanya hidup di Pulau Borneo." }
+  ]
+}
