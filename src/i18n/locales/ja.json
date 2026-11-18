@@ -935,7 +935,14 @@
       "parentAccount": "お子さまではなく、ご自身の保護者アカウントでログインしてください。",
       "own": "自分のアカウントは承認できません。",
       "failed": "問題が発生しました。もう一度お試しください。"
-    }
+    },
+    "topics": "トピック",
+    "topicCol": "トピック",
+    "tpCol": "推定 TP",
+    "answersCol": "回答数",
+    "tpValue": "TP{{n}}",
+    "notEnough": "まだ練習が足りません",
+    "tpNote": "EDUVENTURE での練習からの推定です。学校の正式な（PBD）レベルではありません。"
   },
   "settings": {
     "title": "設定",

@@ -11,7 +11,8 @@ import { supabase } from '../../services/supabase'
 import { peekPendingCode, savePendingCode, takePendingCode } from './pendingCode'
 
 export type Kid = { child_id: string; name: string | null; daily_limit: number | null }
-export type Report = { week: { day: string; minutes: number; played: boolean }[]; questions: number; correct: number; lessons: number; strong: string[]; practise: string[]; streak: number }
+export type TopicTp = { subject: string; topic: string; answers: number; tp: number | null }
+export type Report = { week: { day: string; minutes: number; played: boolean }[]; questions: number; correct: number; lessons: number; strong: string[]; practise: string[]; streak: number; topics?: TopicTp[] }
 const LIMITS = [30, 60, 90, 120]
 
 type ViewProps = {
@@ -113,6 +114,33 @@ export function ParentView({ session, code, kids, reports, busy, onApprove, onSe
                         ))
                       : t('parents.nothingYet')}
                   </p>
+                  {r.topics && r.topics.length > 0 && (
+                    <div className="mt-2 overflow-x-auto">
+                      <table className="w-full text-start text-sm">
+                        <caption className="text-start font-semibold">{t('parents.topics')}</caption>
+                        <thead>
+                          <tr className="text-xs text-wood-dark/80">
+                            <th className="pe-2 text-start font-semibold">{t('parents.topicCol')}</th>
+                            <th className="pe-2 text-start font-semibold">{t('parents.tpCol')}</th>
+                            <th className="text-start font-semibold">{t('parents.answersCol')}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {r.topics.map((tp) => (
+                            <tr key={`${tp.subject}/${tp.topic}`} className="border-t border-wood/15">
+                              <td className="py-1 pe-2">
+                                <span className="block">{tp.topic}</span>
+                                <span className="text-xs text-wood-dark/70">{t(`battle.subject.${tp.subject}`, { defaultValue: tp.subject })}</span>
+                              </td>
+                              <td className="py-1 pe-2 font-bold">{tp.tp ? t('parents.tpValue', { n: tp.tp }) : <span className="font-normal text-wood-dark/70">{t('parents.notEnough')}</span>}</td>
+                              <td className="py-1">{tp.answers}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      <p className="mt-1 text-xs text-wood-dark/80">{t('parents.tpNote')}</p>
+                    </div>
+                  )}
                 </div>
               )}
               <div className="flex flex-wrap items-end gap-2">

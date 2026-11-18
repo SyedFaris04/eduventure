@@ -59,6 +59,13 @@ describe('question bank', () => {
     expect(questionProblems({ ...blank, prompt: 'Plants make food by photosynthesis ___.' } as typeof blank)).toContain('the answer appears in the prompt')
   })
 
+  it('every KSSR/KSSM-aligned question carries a matching curriculum tag', () => {
+    const good = questionSource.parse(starter.questions[0])
+    expect(good.curriculum).toBeTruthy()
+    expect(questionProblems({ ...good, curriculum: undefined })).toContain('alignment names KSSR/KSSM but there is no curriculum tag')
+    expect(questionProblems({ ...good, curriculum: { system: good.curriculum!.system === 'KSSR' ? 'KSSM' : 'KSSR', subject: 'Matematik', years: [1] } })).toContain('curriculum system does not match the alignment')
+  })
+
   it('nothing is published before a person approves it', () => {
     expect(questions.every((q) => (q as { status: string }).status === 'in_review')).toBe(true)
   })

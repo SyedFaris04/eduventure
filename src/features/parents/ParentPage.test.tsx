@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router'
 import { initI18n } from '../../i18n'
 import { ParentView } from './ParentPage'
@@ -51,6 +51,24 @@ describe('ParentView', () => {
     expect(v.onSetLimit).toHaveBeenCalledWith('c1', 60)
     fireEvent.click(screen.getByRole('button', { name: 'Remove' }))
     expect(v.onRemove).toHaveBeenCalledWith('c1')
+  })
+})
+
+describe('ParentView topics', () => {
+  beforeAll(async () => {
+    await initI18n()
+  })
+  it('shows an estimated TP per topic, labelled as an estimate', () => {
+    const topics = [
+      { subject: 'mathematics', topic: 'Fractions', answers: 8, tp: 3 },
+      { subject: 'science', topic: 'Plants', answers: 2, tp: null },
+    ]
+    view({ kids: [{ child_id: 'c1', name: 'Aina', daily_limit: null }], reports: { c1: { ...report, topics } } })
+    const table = within(screen.getByRole('table'))
+    expect(table.getByText('Fractions')).toBeTruthy()
+    expect(table.getByText('TP3')).toBeTruthy()
+    expect(screen.getByText('Not enough practice yet')).toBeTruthy()
+    expect(screen.getByText(/not your child.s official school \(PBD\) level/i)).toBeTruthy()
   })
 })
 

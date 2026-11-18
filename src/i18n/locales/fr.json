@@ -935,7 +935,14 @@
       "parentAccount": "Connectez-vous avec votre propre compte parent, pas celui de votre enfant.",
       "own": "Vous ne pouvez pas approuver votre propre compte.",
       "failed": "Un problème est survenu. Réessayez."
-    }
+    },
+    "topics": "Thèmes",
+    "topicCol": "Thème",
+    "tpCol": "TP estimé",
+    "answersCol": "Réponses",
+    "tpValue": "TP{{n}}",
+    "notEnough": "Pas encore assez de pratique",
+    "tpNote": "Estimé à partir de la pratique sur EDUVENTURE — ce n’est pas le niveau officiel de l’école (PBD)."
   },
   "settings": {
     "title": "Réglages",

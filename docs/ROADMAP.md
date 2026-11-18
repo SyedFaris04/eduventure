@@ -215,6 +215,13 @@ Spec: `docs/superpowers/specs/2026-11-18-adaptive-difficulty-design.md`. Researc
 - Battles pick questions near a target chance of a right answer: 77.5% for monsters, 87.5% for Returning monsters (85% and 90% for under-13s), 62.5% for bosses, still at random among good fits.
 - **Later:** curriculum tags (KSSR/KSSM, TP levels) on every question, and skill in the parent report.
 
+### Curriculum tags and estimated TP — built and merged
+Spec: `docs/superpowers/specs/2026-11-18-curriculum-tags-design.md`.
+- All 435 questions whose alignment names KSSR or KSSM carry a tag (system, subject, years) in their content file and the database; `scripts/tag-curriculum.mjs` adds them and the content checks require them.
+- Every question has a TP level from its Bloom level (remember 1 … create 6).
+- The parent report shows an **estimated TP per topic** (at least 2 right at that level or above, with 60% right), labelled as an estimate, not the school's PBD level.
+- **Needs an educator:** check the tags and replace the Bloom-based TP with DSKP descriptors per topic.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

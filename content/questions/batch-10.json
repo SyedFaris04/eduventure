@@ -22,7 +22,7 @@
       "prompt": "What does this Python code print?\n\nprint(\"Hi\" + \"!\")",
       "explanation": "+ glues \"Hi\" and \"!\" together, so the program prints Hi!.",
       "objective": "Predict the output of joining strings.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "python",
       "code": "print(\"Hi\" + \"!\")",
       "options": [
@@ -61,7 +61,7 @@
       "prompt": "What does this Python code print?\n\nx = 3\nprint(x + 2)",
       "explanation": "x holds 3, so x + 2 is 5.",
       "objective": "Use a variable in a calculation.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "python",
       "code": "x = 3\nprint(x + 2)",
       "options": [
@@ -100,7 +100,7 @@
       "prompt": "What does this JavaScript code print?\n\nconsole.log(2 * 4);",
       "explanation": "* multiplies, so 2 * 4 is 8.",
       "objective": "Predict the result of multiplication.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "javascript",
       "code": "console.log(2 * 4);",
       "options": [
@@ -139,7 +139,7 @@
       "prompt": "Type exactly what this Python code prints: ___\n\nprint(\"ab\" * 3)",
       "explanation": "\"ab\" * 3 repeats the text three times: ababab.",
       "objective": "Repeat a string with *.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "python",
       "code": "print(\"ab\" * 3)",
       "answer": {
@@ -164,7 +164,7 @@
       "prompt": "True or false: this code prints 5.\n\nprint(7 - 2)",
       "explanation": "7 - 2 is 5, and print() shows it.",
       "objective": "Predict the result of subtraction.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "python",
       "code": "print(7 - 2)",
       "answer": "true",
@@ -188,7 +188,7 @@
       "prompt": "What does this JavaScript code print?\n\nlet a = \"sun\";\nconsole.log(a + \"flower\");",
       "explanation": "a holds \"sun\"; joined with \"flower\" it makes sunflower.",
       "objective": "Join a variable and a string.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "javascript",
       "code": "let a = \"sun\";\nconsole.log(a + \"flower\");",
       "options": [
@@ -227,7 +227,7 @@
       "prompt": "What does this Python code print?\n\nprint(10 - 4)",
       "explanation": "10 take away 4 is 6.",
       "objective": "Predict the result of subtraction.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "python",
       "code": "print(10 - 4)",
       "options": [
@@ -266,7 +266,7 @@
       "prompt": "Type exactly what this JavaScript code prints: ___\n\nconsole.log(\"Go\" + \"!\" + \"!\");",
       "explanation": "All three strings are joined: Go!!",
       "objective": "Join several strings.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "javascript",
       "code": "console.log(\"Go\" + \"!\" + \"!\");",
       "answer": {
@@ -291,7 +291,7 @@
       "prompt": "What does this Python code print?\n\nname = \"Ali\"\nprint(\"Hi \" + name)",
       "explanation": "name holds \"Ali\", so the message is Hi Ali.",
       "objective": "Use a variable inside a message.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "python",
       "code": "name = \"Ali\"\nprint(\"Hi \" + name)",
       "options": [
@@ -330,7 +330,7 @@
       "prompt": "True or false: this code prints 10.\n\nprint(\"5\" + \"5\")",
       "explanation": "With quote marks, \"5\" is text. Joining two texts gives 55.",
       "objective": "Tell text and numbers apart.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "python",
       "code": "print(\"5\" + \"5\")",
       "answer": "false",
@@ -354,7 +354,7 @@
       "prompt": "What does this JavaScript code print?\n\nconsole.log(\"3\" + \"4\");",
       "explanation": "\"3\" and \"4\" are strings; + joins them into 34.",
       "objective": "Tell text and numbers apart.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "javascript",
       "code": "console.log(\"3\" + \"4\");",
       "options": [
@@ -393,7 +393,7 @@
       "prompt": "Put the lines in order so the program prints Ready, then Set, then Go!",
       "explanation": "Programs run from top to bottom, so the lines must be in the order you want the words.",
       "objective": "Order instructions in a sequence.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "python",
       "code": "print(\"Ready\")\nprint(\"Set\")\nprint(\"Go!\")",
       "options": [
@@ -432,7 +432,7 @@
       "prompt": "What does this JavaScript code print?\n\nlet n = 5;\nn = n + 1;\nconsole.log(n);",
       "explanation": "n starts at 5 and becomes 6 before it is printed.",
       "objective": "Update a variable.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "javascript",
       "code": "let n = 5;\nn = n + 1;\nconsole.log(n);",
       "options": [
@@ -471,7 +471,7 @@
       "prompt": "Type exactly what this Python code prints: ___\n\nx = 2\ny = 3\nprint(x * y)",
       "explanation": "x * y is 2 * 3, which is 6.",
       "objective": "Use two variables in a calculation.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "python",
       "code": "x = 2\ny = 3\nprint(x * y)",
       "answer": {
@@ -496,7 +496,7 @@
       "prompt": "True or false: this code prints true.\n\nconsole.log(10 > 3);",
       "explanation": "10 is greater than 3, so the comparison is true.",
       "objective": "Predict the result of a comparison.",
-      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).",
+      "alignment": "Primary computing: first steps in coding (e.g. KSSR Teknologi Maklumat dan Komunikasi Tahun 4-6).", "curriculum": {"system": "KSSR", "subject": "Teknologi Maklumat dan Komunikasi", "years": [4,5,6]},
       "language": "javascript",
       "code": "console.log(10 > 3);",
       "answer": "true",
@@ -520,7 +520,7 @@
       "prompt": "What does this Python code print?\n\nage = 12\nif age >= 13:\n    print(\"teen\")\nelse:\n    print(\"child\")",
       "explanation": "12 >= 13 is False, so the else branch prints child.",
       "objective": "Trace an if/else statement.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "python",
       "code": "age = 12\nif age >= 13:\n    print(\"teen\")\nelse:\n    print(\"child\")",
       "options": [
@@ -559,7 +559,7 @@
       "prompt": "What does this JavaScript code print?\n\nlet t = 30;\nif (t > 25) {\n  console.log(\"hot\");\n} else {\n  console.log(\"cool\");\n}",
       "explanation": "30 > 25 is true, so it prints hot.",
       "objective": "Trace an if/else statement.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "javascript",
       "code": "let t = 30;\nif (t > 25) {\n  console.log(\"hot\");\n} else {\n  console.log(\"cool\");\n}",
       "options": [
@@ -598,7 +598,7 @@
       "prompt": "What does this Python code print?\n\ntotal = 0\nfor i in range(4):\n    total = total + i\nprint(total)",
       "explanation": "range(4) is 0, 1, 2, 3, and 0 + 1 + 2 + 3 = 6.",
       "objective": "Trace a counting loop.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "python",
       "code": "total = 0\nfor i in range(4):\n    total = total + i\nprint(total)",
       "options": [
@@ -637,7 +637,7 @@
       "prompt": "What does this Python code print?\n\nprint(len(\"Melaka\"))",
       "explanation": "len() counts the characters: Melaka has 6.",
       "objective": "Find the length of a string.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "python",
       "code": "print(len(\"Melaka\"))",
       "options": [
@@ -676,7 +676,7 @@
       "prompt": "What does this JavaScript code print?\n\nconsole.log(\"Penang\".length);",
       "explanation": ".length counts the characters: Penang has 6.",
       "objective": "Find the length of a string.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "javascript",
       "code": "console.log(\"Penang\".length);",
       "options": [
@@ -715,7 +715,7 @@
       "prompt": "Type exactly what this Python code prints: ___\n\nprint(17 % 5)",
       "explanation": "17 divided by 5 is 3 remainder 2, and % gives the remainder.",
       "objective": "Use the remainder operator.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "python",
       "code": "print(17 % 5)",
       "answer": {
@@ -740,7 +740,7 @@
       "prompt": "Type exactly what this JavaScript code prints: ___\n\nconsole.log(17 % 5);",
       "explanation": "17 divided by 5 is 3 remainder 2, and % gives the remainder.",
       "objective": "Use the remainder operator.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "javascript",
       "code": "console.log(17 % 5);",
       "answer": {
@@ -765,7 +765,7 @@
       "prompt": "True or false: this code prints True.\n\nprint(3 == 3.0)",
       "explanation": "3 and 3.0 have the same value, so == is True.",
       "objective": "Compare whole numbers and decimals.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "python",
       "code": "print(3 == 3.0)",
       "answer": "true",
@@ -789,7 +789,7 @@
       "prompt": "What does this JavaScript code print?\n\nlet s = 0;\nfor (let i = 1; i <= 3; i++) {\n  s += i;\n}\nconsole.log(s);",
       "explanation": "The loop adds 1 + 2 + 3, so s is 6.",
       "objective": "Trace a counting loop.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "javascript",
       "code": "let s = 0;\nfor (let i = 1; i <= 3; i++) {\n  s += i;\n}\nconsole.log(s);",
       "options": [
@@ -828,7 +828,7 @@
       "prompt": "What does this Python code print?\n\nx = 5\nx += 3\nprint(x)",
       "explanation": "x += 3 means x = x + 3, so x becomes 8.",
       "objective": "Use a shorthand update.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "python",
       "code": "x = 5\nx += 3\nprint(x)",
       "options": [
@@ -867,7 +867,7 @@
       "prompt": "What does this Python code print?\n\nprint(\"abc\".upper())",
       "explanation": ".upper() gives the string in capital letters.",
       "objective": "Use a string method.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "python",
       "code": "print(\"abc\".upper())",
       "options": [
@@ -906,7 +906,7 @@
       "prompt": "What does this JavaScript code print?\n\nconsole.log(\"Hello\".toUpperCase());",
       "explanation": ".toUpperCase() gives the string in capitals.",
       "objective": "Use a string method.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "javascript",
       "code": "console.log(\"Hello\".toUpperCase());",
       "options": [
@@ -945,7 +945,7 @@
       "prompt": "Put the lines in order so the program prints 10.",
       "explanation": "Variables must be given values before they are used, so the print line goes last.",
       "objective": "Order statements so variables exist before use.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "python",
       "code": "a = 4\nb = 6\nprint(a + b)",
       "options": [
@@ -984,7 +984,7 @@
       "prompt": "True or false: this code prints true.\n\nconsole.log(5 === \"5\");",
       "explanation": "=== also compares the type: the number 5 is not the string \"5\", so it prints false.",
       "objective": "Understand strict equality.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "javascript",
       "code": "console.log(5 === \"5\");",
       "answer": "false",
@@ -1008,7 +1008,7 @@
       "prompt": "What does this Python code print?\n\nn = 7\nif n % 2 == 0:\n    print(\"even\")\nelse:\n    print(\"odd\")",
       "explanation": "7 % 2 is 1, so the test is False and it prints odd.",
       "objective": "Combine the remainder operator with if.",
-      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).",
+      "alignment": "Lower-secondary computing: programming basics (e.g. KSSM Asas Sains Komputer Tingkatan 1-3).", "curriculum": {"system": "KSSM", "subject": "Asas Sains Komputer", "years": [1,2,3]},
       "language": "python",
       "code": "n = 7\nif n % 2 == 0:\n    print(\"even\")\nelse:\n    print(\"odd\")",
       "options": [
@@ -1047,7 +1047,7 @@
       "prompt": "What does this Python code print?\n\nnums = [2, 4, 6]\nprint(nums[1])",
       "explanation": "List positions start at 0, so nums[1] is 4.",
       "objective": "Index into a list.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "python",
       "code": "nums = [2, 4, 6]\nprint(nums[1])",
       "options": [
@@ -1086,7 +1086,7 @@
       "prompt": "What does this JavaScript code print?\n\nlet a = [2, 4, 6];\nconsole.log(a[a.length - 1]);",
       "explanation": "a.length - 1 is 2, the last position, which holds 6.",
       "objective": "Find the last item of an array.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "javascript",
       "code": "let a = [2, 4, 6];\nconsole.log(a[a.length - 1]);",
       "options": [
@@ -1125,7 +1125,7 @@
       "prompt": "What does this Python code print?\n\ndef double(x):\n    return x * 2\n\nprint(double(5))",
       "explanation": "double(5) returns 5 * 2 = 10.",
       "objective": "Trace a function call.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "python",
       "code": "def double(x):\n    return x * 2\n\nprint(double(5))",
       "options": [
@@ -1164,7 +1164,7 @@
       "prompt": "What does this JavaScript code print?\n\nfunction sq(n) {\n  return n * n;\n}\nconsole.log(sq(4));",
       "explanation": "sq(4) returns 4 * 4 = 16.",
       "objective": "Trace a function call.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "javascript",
       "code": "function sq(n) {\n  return n * n;\n}\nconsole.log(sq(4));",
       "options": [
@@ -1203,7 +1203,7 @@
       "prompt": "What does this Python code print?\n\nprint(\"computer\"[0:4])",
       "explanation": "[0:4] takes positions 0, 1, 2 and 3: c, o, m, p.",
       "objective": "Slice a string.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "python",
       "code": "print(\"computer\"[0:4])",
       "options": [
@@ -1242,7 +1242,7 @@
       "prompt": "What does this JavaScript code print?\n\nconsole.log(\"computer\".slice(0, 4));",
       "explanation": "slice(0, 4) takes positions 0 to 3: comp.",
       "objective": "Slice a string.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "javascript",
       "code": "console.log(\"computer\".slice(0, 4));",
       "options": [
@@ -1281,7 +1281,7 @@
       "prompt": "What does this Python code print?\n\ni = 1\nwhile i < 20:\n    i = i * 2\nprint(i)",
       "explanation": "i doubles until it is no longer below 20: 1, 2, 4, 8, 16, 32.",
       "objective": "Trace a while loop.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "python",
       "code": "i = 1\nwhile i < 20:\n    i = i * 2\nprint(i)",
       "options": [
@@ -1320,7 +1320,7 @@
       "prompt": "True or false: this code prints 4.\n\nnums = [1, 2, 3]\nnums.append(4)\nprint(len(nums))",
       "explanation": "append adds one item, so the list has 4 items.",
       "objective": "Change a list with append.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "python",
       "code": "nums = [1, 2, 3]\nnums.append(4)\nprint(len(nums))",
       "answer": "true",
@@ -1344,7 +1344,7 @@
       "prompt": "What does this JavaScript code print?\n\nlet arr = [1, 2, 3];\narr.push(4);\nconsole.log(arr.length);",
       "explanation": "push adds 4 to the end, so the length is 4.",
       "objective": "Change an array with push.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "javascript",
       "code": "let arr = [1, 2, 3];\narr.push(4);\nconsole.log(arr.length);",
       "options": [
@@ -1383,7 +1383,7 @@
       "prompt": "What does this Python code print?\n\nwords = [\"kopi\", \"teh\", \"milo\"]\nprint(\", \".join(words))",
       "explanation": "\", \".join puts a comma and a space between the words.",
       "objective": "Join list items into a string.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "python",
       "code": "words = [\"kopi\", \"teh\", \"milo\"]\nprint(\", \".join(words))",
       "options": [
@@ -1422,7 +1422,7 @@
       "prompt": "What does this JavaScript code print?\n\nconsole.log([\"kopi\", \"teh\"].join(\" & \"));",
       "explanation": "join(\" & \") puts \" & \" between the items.",
       "objective": "Join array items into a string.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "javascript",
       "code": "console.log([\"kopi\", \"teh\"].join(\" & \"));",
       "options": [
@@ -1461,7 +1461,7 @@
       "prompt": "What does this Python code print?\n\ndef greet(name=\"kawan\"):\n    return \"Hai \" + name\n\nprint(greet())",
       "explanation": "greet() uses the default value, so it returns Hai kawan.",
       "objective": "Use a default parameter.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "python",
       "code": "def greet(name=\"kawan\"):\n    return \"Hai \" + name\n\nprint(greet())",
       "options": [
@@ -1500,7 +1500,7 @@
       "prompt": "True or false: this code prints number.\n\nconsole.log(typeof 42);",
       "explanation": "typeof 42 is \"number\".",
       "objective": "Find the type of a value.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "javascript",
       "code": "console.log(typeof 42);",
       "answer": "true",
@@ -1524,7 +1524,7 @@
       "prompt": "Put the lines in order to make a working program that prints 5. (The return line belongs inside the function.)",
       "explanation": "A function must be defined (def, then its body) before it is called.",
       "objective": "Define a function before calling it.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "python",
       "code": "def add(a, b):\n    return a + b\nprint(add(2, 3))",
       "options": [
@@ -1563,7 +1563,7 @@
       "prompt": "What does this JavaScript code print?\n\nlet c = 0;\nfor (const ch of \"banana\") {\n  if (ch === \"a\") c++;\n}\nconsole.log(c);",
       "explanation": "banana has three a letters.",
       "objective": "Count with a loop and a condition.",
-      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).",
+      "alignment": "Upper-secondary computing: programming (e.g. KSSM Sains Komputer Tingkatan 4-5 / SPM).", "curriculum": {"system": "KSSM", "subject": "Sains Komputer", "years": [4,5]},
       "language": "javascript",
       "code": "let c = 0;\nfor (const ch of \"banana\") {\n  if (ch === \"a\") c++;\n}\nconsole.log(c);",
       "options": [

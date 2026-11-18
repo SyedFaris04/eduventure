@@ -935,7 +935,14 @@
       "parentAccount": "Sila log masuk dengan akaun ibu bapa anda sendiri, bukan akaun anak anda.",
       "own": "Anda tidak boleh meluluskan akaun anda sendiri.",
       "failed": "Ada masalah. Sila cuba lagi."
-    }
+    },
+    "topics": "Topik",
+    "topicCol": "Topik",
+    "tpCol": "Anggaran TP",
+    "answersCol": "Jawapan",
+    "tpValue": "TP{{n}}",
+    "notEnough": "Latihan belum mencukupi",
+    "tpNote": "Anggaran daripada latihan EDUVENTURE — bukan tahap rasmi sekolah (PBD) anak anda."
   },
   "settings": {
     "title": "Tetapan",
