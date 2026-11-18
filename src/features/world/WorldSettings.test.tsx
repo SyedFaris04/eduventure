@@ -1,3 +1,4 @@
+import { useAudioSettings } from '../../audio/settings'
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { initI18n } from '../../i18n'
@@ -33,6 +34,16 @@ describe('WorldSettings', () => {
     expect(useCamera.getState().turn).toBe(1)
     fireEvent.click(screen.getByRole('button', { name: 'Reset camera' }))
     expect(useCamera.getState()).toMatchObject({ tilt: 38, distance: 15, fov: 30, turn: 0 })
+  })
+
+  it('sound: on/off, music and effects volumes', () => {
+    useAudioSettings.getState().set({ muted: true, music: 0.35, effects: 0.7 })
+    render(<WorldSettings onClose={() => undefined} />)
+    fireEvent.click(screen.getByRole('button', { name: 'Off' }))
+    expect(useAudioSettings.getState().muted).toBe(false)
+    fireEvent.change(screen.getByRole('slider', { name: 'Music' }), { target: { value: '20' } })
+    fireEvent.change(screen.getByRole('slider', { name: 'Sound effects' }), { target: { value: '90' } })
+    expect(useAudioSettings.getState()).toMatchObject({ music: 0.2, effects: 0.9 })
   })
 
   it('graphics quality lives here too', () => {

@@ -964,7 +964,12 @@
       "balanced": "Seimbang",
       "classic": "Klasik",
       "overhead": "Atas"
-    }
+    },
+    "sound": "Bunyi",
+    "soundOn": "Hidup",
+    "soundOff": "Mati",
+    "music": "Muzik",
+    "effects": "Kesan bunyi"
   },
   "teacher": {
     "title": "Halaman guru",

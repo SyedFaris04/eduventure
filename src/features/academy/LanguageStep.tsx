@@ -1,3 +1,4 @@
+import { playSfx } from '../../audio/engine'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight, Check, Volume2 } from 'lucide-react'
@@ -45,6 +46,7 @@ export function LanguageStep({ step, attempt, language, alreadySolved, last, fin
     try {
       const r = await answerStep(attempt, step.id, answer)
       setMarked(r)
+      playSfx(r.correct ? 'correct' : 'wrong')
       if (r.correct) setPassed(true)
     } catch (e) {
       onError(e instanceof AcademyError ? e.key : 'academy.errors.generic')

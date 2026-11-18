@@ -1,3 +1,4 @@
+import { playSfx } from '../audio/engine'
 import { seeThrough, seeThroughRadius } from './seeThrough'
 import type { Pet } from '../features/pet/petRules'
 import { PetFollower } from './pet/PetFollower'
@@ -47,6 +48,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
   const ringAt = useRef(-1)
   const target = useRef(new Vector3(sim.hero.pos.x, 0, sim.hero.pos.y))
   const lastEmit = useRef(0)
+  const lastStep = useRef(0)
   const panelClosedAt = useRef(-Infinity)
   const monitor = useMemo(() => createQualityMonitor(), [])
   const level = useQuality(qualityLevel)
@@ -144,6 +146,12 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     sim.cameraYaw = yaw
     const keys = keysRef.current?.read() ?? { x: 0, y: 0 }
     sim.update(dt, keys.x || keys.y ? keys : store.stick, now, worldPaused())
+
+    // Soft footsteps while walking.
+    if (sim.hero.speed01 > 0.3 && now - lastStep.current > 330) {
+      lastStep.current = now
+      playSfx('step')
+    }
 
     const prompt = sim.prompt()
     if (store.prompt?.id !== prompt?.id) useGame.setState({ prompt })

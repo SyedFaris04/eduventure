@@ -230,6 +230,13 @@ Spec: `docs/superpowers/specs/2026-11-18-teacher-mode-design.md`. Research featu
 - **Class report:** days played and answers right this week, and progress on each quest. Teachers never see email or age.
 - **Later:** class raids and seeing classmates (multiplayer phase), Google Classroom links, teacher verification for schools.
 
+### Sound and music — built and merged
+Spec: `docs/superpowers/specs/2026-11-18-sound-design.md`.
+- **Calm music composed in code:** a soft pad, a gentle melody and a quiet bass on a pentatonic scale, one mood per island plus a calm "study" mood for Home and lessons; moods crossfade; half volume in battles and lessons, lower still while a word is spoken.
+- **Sound effects:** taps, right and (soft) wrong answers, victory, defeat, coins, level up, missions, footsteps, boat splash, pet chirps and sparkles, shop purchases, lesson complete.
+- **Controls:** sound on/off plus Music and Effects sliders in ⚙️ Settings; the Home speaker button still mutes everything. Nothing plays before the first tap.
+- **Your own tracks:** see `docs/art-spec.md` (Music).
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

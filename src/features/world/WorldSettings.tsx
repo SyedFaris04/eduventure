@@ -1,3 +1,4 @@
+import { useAudioSettings } from '../../audio/settings'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RotateCcw, RotateCw, Settings, Undo2, X } from 'lucide-react'
@@ -26,6 +27,7 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
   const { t } = useTranslation()
   const cam = useCamera()
   const quality = useQuality()
+  const sound = useAudioSettings()
   useEffect(() => {
     const key = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
     window.addEventListener('keydown', key)
@@ -67,6 +69,17 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
             </Button>
           </div>
           <p className="text-xs text-wood-dark/80">{t('settings.hint')}</p>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <p className="flex items-center justify-between font-display font-semibold">
+            {t('settings.sound')}
+            <Button variant={sound.muted ? 'secondary' : 'primary'} aria-pressed={!sound.muted} onClick={() => sound.set({ muted: !sound.muted })}>
+              {sound.muted ? t('settings.soundOff') : t('settings.soundOn')}
+            </Button>
+          </p>
+          <Slider label={t('settings.music')} value={Math.round(sound.music * 100)} min={0} max={100} onChange={(v) => sound.set({ music: v / 100 })} />
+          <Slider label={t('settings.effects')} value={Math.round(sound.effects * 100)} min={0} max={100} onChange={(v) => sound.set({ effects: v / 100 })} />
         </div>
 
         <div className="flex flex-col gap-2">

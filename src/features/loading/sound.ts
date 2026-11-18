@@ -1,48 +1,11 @@
-const KEY = 'eduventure.sound'
-let ctx: AudioContext | null = null
+import { playSfx } from '../../audio/engine'
+import { useAudioSettings } from '../../audio/settings'
 
-export function getSoundEnabled(): boolean {
-  try {
-    return localStorage.getItem(KEY) === 'on'
-  } catch {
-    return false
-  }
-}
+// The loading screen and Home switch all sound on or off; volumes live in ⚙️ Settings (src/audio).
+export const getSoundEnabled = () => !useAudioSettings.getState().muted
+export const setSoundEnabled = (on: boolean) => useAudioSettings.getState().set({ muted: !on })
 
-export function setSoundEnabled(on: boolean) {
-  try {
-    localStorage.setItem(KEY, on ? 'on' : 'off')
-  } catch {
-    // private mode: setting lasts for this visit only
-  }
-}
+const MAP = { tap: 'tap', pop: 'hop', done: 'sparkle' } as const
 
-const NOTES = {
-  tap: [880, 1320],
-  pop: [660, 990],
-  done: [523, 659, 784, 1047],
-} as const
-
-/**
- * Tiny synthesized chime, no audio files. Browsers only allow audio after a user gesture,
- * so the first call must come from a click (the sound toggle or a character tap).
- */
-export function playChime(kind: keyof typeof NOTES) {
-  if (!getSoundEnabled() || typeof AudioContext === 'undefined') return
-  ctx ??= new AudioContext()
-  void ctx.resume()
-  const start = ctx.currentTime
-  NOTES[kind].forEach((freq, i) => {
-    const osc = ctx!.createOscillator()
-    const gain = ctx!.createGain()
-    const t = start + i * 0.08
-    osc.type = 'sine'
-    osc.frequency.value = freq
-    gain.gain.setValueAtTime(0.0001, t)
-    gain.gain.exponentialRampToValueAtTime(0.12, t + 0.015)
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.25)
-    osc.connect(gain).connect(ctx!.destination)
-    osc.start(t)
-    osc.stop(t + 0.3)
-  })
-}
+/** The loading screen's little reactions (kept for its callers; the game uses playSfx directly). */
+export const playChime = (kind: keyof typeof MAP) => playSfx(MAP[kind])

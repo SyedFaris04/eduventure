@@ -1,3 +1,4 @@
+import { startMusicDirector } from '../audio/director'
 import type { ComponentType } from 'react'
 import { createBrowserRouter, Link, RouterProvider, useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -117,6 +118,9 @@ const router = createBrowserRouter([
     : []),
   { path: '*', element: <NotFound /> },
 ])
+
+// Calm music follows the page and the island; it starts on the first tap.
+startMusicDirector(router)
 
 export function App() {
   return <RouterProvider router={router} />

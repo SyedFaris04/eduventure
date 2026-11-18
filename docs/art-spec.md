@@ -67,3 +67,10 @@ Monsters are code-built and animated in code: idle breathing, hopping, a squash 
 ## Loading screen
 
 This is unchanged: `public/assets/loading/eduventure-loading.png`.
+
+## Music (optional)
+The game composes calm music in code. To use your own tracks instead, put MP3 files in `public/assets/audio/` named
+`music-<mood>.mp3` and list them in `public/assets/audio/manifest.json` (for example `["music-study.mp3"]`). Moods:
+`study` (Home, lessons, other pages), `kampung` (Greenhaven), `rainforest` (Science Island), `alpine` (Mathematics
+Mountains), `tech` (Technology City), `kingdom` (Language Kingdom). Use calm, loopable tracks you own or that are
+licensed for commercial use (for example CC0), about 1–3 minutes, normalised quieter than −16 LUFS.

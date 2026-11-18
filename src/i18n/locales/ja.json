@@ -964,7 +964,12 @@
       "balanced": "バランス",
       "classic": "クラシック",
       "overhead": "真上"
-    }
+    },
+    "sound": "サウンド",
+    "soundOn": "オン",
+    "soundOff": "オフ",
+    "music": "音楽",
+    "effects": "効果音"
   },
   "teacher": {
     "title": "先生ページ",

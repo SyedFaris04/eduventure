@@ -1,3 +1,4 @@
+import { playSfx } from '../../audio/engine'
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FastForward, Sailboat } from 'lucide-react'
@@ -29,6 +30,8 @@ export function Travel({ hero, to }: { hero: Appearance; to: PlaceId }) {
   const [failed, setFailed] = useState<unknown>(null)
   const duration = skip ? 0 : rideMs(level, reduced)
   const place = t(`regions.${to}.name`)
+
+  useEffect(() => playSfx('splash'), [])
 
   useEffect(() => {
     let live = true

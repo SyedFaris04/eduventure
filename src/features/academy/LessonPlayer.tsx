@@ -1,3 +1,4 @@
+import { playSfx } from '../../audio/engine'
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
@@ -55,6 +56,7 @@ export function LessonPlayer({ courseId, lessonId, language, onExit, onNext }: P
     try {
       const r = await completeLesson(data.attempt_id)
       setDone(r)
+      playSfx('lesson')
       queryClient.setQueryData(['progression', session?.user.id], { xp: Number(r.totals.xp), level: r.totals.level, gold: Number(r.totals.gold) })
       await queryClient.invalidateQueries({ queryKey: progressKey(courseId) })
     } catch (e) {
@@ -164,6 +166,7 @@ function StepView({ step, attempt, language, alreadySolved, last, finishing, onE
     try {
       const r = await answerStep(attempt, step.id, answer)
       setMarked(r)
+      playSfx(r.correct ? 'correct' : 'wrong')
       if (r.correct) setPassed(true)
     } catch (e) {
       onError(e instanceof AcademyError ? e.key : 'academy.errors.generic')
