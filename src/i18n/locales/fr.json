@@ -878,7 +878,17 @@
       "level": "Atteins le niveau indiqué pour évoluer.",
       "gold": "Pas encore assez d’or.",
       "failed": "Cela n’a pas marché. Réessaie."
-    }
+    },
+    "guess": "{{name}} pense que c’est « {{answer}} ». {{name}} a-t-il raison ?",
+    "taught": "Tu as appris quelque chose à {{name}} ! +2 points",
+    "both": "Toi et {{name}} avez trouvé !",
+    "exploring": "{{name}} explore {{place}}. Retour vers {{time}}.",
+    "back": "{{name}} est revenu de {{place}} !",
+    "openSouvenir": "Ouvrir le souvenir",
+    "souvenirTitle": "{{name}} a rapporté ceci de {{place}} :",
+    "souvenirPoints": "+{{n}} points de compagnon",
+    "souvenirs": "Souvenirs ({{n}})",
+    "noSouvenirs": "Termine trois nouvelles leçons et ton compagnon partira explorer, puis rapportera une anecdote."
   },
   "review": {
     "badge": "De retour",

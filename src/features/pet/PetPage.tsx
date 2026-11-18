@@ -1,8 +1,10 @@
+import { supabase } from '../../services/supabase'
+import { factText, type Souvenir } from './AdventureCard'
 import { playSfx } from '../../audio/engine'
 import { useState } from 'react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { useQueryClient } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { ArrowLeft, Check, Coins, Egg, PawPrint, Sparkles, X } from 'lucide-react'
 import { Button, buttonClasses, Panel, ProgressBar, Select } from '../../components/ui'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
@@ -28,11 +30,12 @@ type ViewProps = {
   onHatch: (species: PetSpecies, name: string) => void
   onEvolve: () => void
   onDress: (slot: Slot, item: string | null) => void
+  souvenirs?: Souvenir[]
 }
 
 /** Everything on the pet page, from plain values (PetPage wires it to the server). */
-export function PetView({ level, gold, pet, owned, busy, onHatch, onEvolve, onDress }: ViewProps) {
-  const { t } = useTranslation()
+export function PetView({ level, gold, pet, owned, busy, onHatch, onEvolve, onDress, souvenirs = [] }: ViewProps) {
+  const { t, i18n } = useTranslation()
   const [species, setSpecies] = useState<PetSpecies>('kancil')
   const [name, setName] = useState<string>(PET_NAMES[0])
   const eggLevel = unlockLevel('pet', 'pet_egg')!
@@ -130,6 +133,22 @@ export function PetView({ level, gold, pet, owned, busy, onHatch, onEvolve, onDr
         )}
       </Panel>
 
+      <Panel className="flex flex-col gap-2 md:col-span-2">
+        <h2 className="font-display text-xl font-semibold">{t('pet.souvenirs', { n: souvenirs.length })}</h2>
+        {souvenirs.length === 0 ? (
+          <p className="text-sm">{t('pet.noSouvenirs')}</p>
+        ) : (
+          <ul className="flex flex-col gap-1 text-sm">
+            {souvenirs.map((f) => (
+              <li key={f.id} className="rounded-lg bg-white/70 px-2 py-1">
+                <span className="me-1 text-xs font-bold text-path-dark">{t(`regions.${f.island}.name`)} ·</span>
+                {factText(f, i18n.language)}
+              </li>
+            ))}
+          </ul>
+        )}
+      </Panel>
+
       <Panel className="flex flex-col gap-3 md:col-span-2">
         <h2 className="font-display text-xl font-semibold">{t('pet.dress')}</h2>
         {SLOTS.every((s) => ownedFor(s).length === 0) && (
@@ -175,6 +194,15 @@ export function PetPage() {
   const progression = useProgression(uid)
   const pet = usePet(uid)
   const owned = useOwnedItems(uid)
+  const souvenirs = useQuery({
+    queryKey: ['souvenirs', uid],
+    enabled: Boolean(uid),
+    queryFn: async () => {
+      const { data, error } = await supabase!.rpc('my_souvenirs')
+      if (error) throw error
+      return data as Souvenir[]
+    },
+  })
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState<{ kind: 'error' | 'success'; text: string } | null>(null)
 
@@ -218,6 +246,7 @@ export function PetPage() {
             pet={pet.data}
             owned={owned.data ?? new Set()}
             busy={busy}
+            souvenirs={souvenirs.data ?? []}
             onHatch={(s, n) => run(() => hatchPet(s, n), () => (playSfx('sparkle'), t('pet.hatched', { name: t(`pet.names.${n}`) })))}
             onEvolve={() => run(evolvePet, () => (playSfx('levelup'), t('pet.evolved', { name, fee: STEPS[pet.data!.stage === 'baby' ? 'young' : 'adult'].gold })))}
             onDress={(slot, item) => run(() => dressPet(slot, item))}
