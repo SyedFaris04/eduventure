@@ -209,6 +209,12 @@ Spec: `docs/superpowers/specs/2026-11-18-camera-settings-design.md`.
 - A lower camera aims at the hero's chest so faces read. Stick and keys follow the camera's turn. Saved on each device.
 - **Later, if needed:** fade trees and roofs that hide the hero at low angles.
 
+### Adaptive difficulty — built and merged
+Spec: `docs/superpowers/specs/2026-11-18-adaptive-difficulty-design.md`. Research feature 2.
+- Every question has an Elo-style rating and every player a skill per subject; both move after each battle and boss answer (repeats within a day don't count).
+- Battles pick questions near a target chance of a right answer: 77.5% for monsters, 87.5% for Returning monsters (85% and 90% for under-13s), 62.5% for bosses, still at random among good fits.
+- **Later:** curriculum tags (KSSR/KSSM, TP levels) on every question, and skill in the parent report.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 
