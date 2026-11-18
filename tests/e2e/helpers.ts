@@ -15,6 +15,8 @@ export const state = (page: Page) => page.evaluate(() => (window as unknown as {
 export async function newPlayer(page: Page) {
   const next = () => page.getByRole('button', { name: /^Next/ }).click()
   await page.goto('/welcome')
+  // The walking tests tap far-off tiles; the Classic camera (the original, higher view) keeps them on screen.
+  await page.evaluate(() => localStorage.setItem('eduventure.camera', JSON.stringify({ tilt: 52, distance: 22, fov: 30, turn: 0 })))
   await page.getByRole('button', { name: /Start Your Adventure/ }).click()
   await page.getByLabel('Year you were born').selectOption('2016')
   await next()
