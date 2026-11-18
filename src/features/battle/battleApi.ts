@@ -57,6 +57,7 @@ const mapBattleError = (message: string | undefined) =>
     : /reach level \d+ to challenge/i.test(message ?? '') ? 'battle.errors.bossLevel'
     : /50\/50/i.test(message ?? '') ? 'battle.helpers.fiftyFailed'
     : /nothing is due/i.test(message ?? '') ? 'review.nothingDue'
+    : /time's up/i.test(message ?? '') ? 'parents.timeUp'
     : 'battle.errors.generic',
   )
 

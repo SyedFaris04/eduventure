@@ -1,3 +1,5 @@
+import { BreakReminder } from '../parents/BreakReminder'
+import { usePlayClock } from '../parents/usePlayClock'
 import { Suspense, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useGame } from '../../game/store'
@@ -32,6 +34,7 @@ export function WorldPage() {
   const title = useMyTitle(uid)
   const pet = usePet(uid)
   const returning = useReturning(uid)
+  const sessionMinutes = usePlayClock(uid)
   const quality = useQuality()
   const qualityText = t('world.quality', { level: t(`world.qualityLevel.${quality.choice}`) })
   const navigate = useNavigate()
@@ -80,6 +83,7 @@ export function WorldPage() {
         <BattlePanel />
         <BossPanel />
         <CoinBurst />
+        <BreakReminder minutes={sessionMinutes} />
       </div>
     </main>
   )
