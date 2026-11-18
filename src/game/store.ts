@@ -26,6 +26,8 @@ type GameState = {
   cheerSeq: number
   /** The boatman's destination list is open. */
   jetty: boolean
+  /** The settings panel is open. */
+  settings: boolean
   /** Sailing to another place (the boat ride is showing). */
   travel: { to: PlaceId } | null
   /** Name of the area the player is standing in, for the banner. */
@@ -47,6 +49,7 @@ export const useGame = create<GameState>(() => ({
   hitSeq: 0,
   cheerSeq: 0,
   jetty: false,
+  settings: false,
   travel: null,
   area: null,
   academy: null,
@@ -55,10 +58,10 @@ export const useGame = create<GameState>(() => ({
 // Development builds only: lets automated tests and debugging read the game state.
 if (import.meta.env.DEV) (window as unknown as { __game: typeof useGame }).__game = useGame
 
-/** True while a panel owns the input (dialogue, battle, boss or jetty): the world pauses movement. */
+/** True while a panel owns the input (dialogue, battle, boss, jetty or settings): the world pauses movement. */
 export const worldPaused = () => {
   const s = useGame.getState()
-  return Boolean(s.dialogue || s.battle || s.boss || s.jetty)
+  return Boolean(s.dialogue || s.battle || s.boss || s.jetty || s.settings)
 }
 
 /** Hero reaction after an answer: a flinch for a wrong one, a cheer for a win. */

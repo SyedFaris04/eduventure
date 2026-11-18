@@ -14,8 +14,8 @@ sensible default, and a reset, since no single setting suits everyone
 
 **Goals.**
 - A ⚙️ **Settings** button in the world (replacing the graphics toggle) opens a panel with: Graphics (Auto/High/Low),
-  four camera **presets** — Close (32°, 14), Balanced (40°, 18, the new default), Classic (52°, 22, today's view),
-  Overhead (65°, 27) — and fine controls: **Tilt** 25–70°, **Zoom** 13–32, **Field of view** 25–50°, **Rotate** left/right
+  four camera **presets** — Close-up (28°, 10), Balanced (38°, 15, the new default), Classic (52°, 22, today's view),
+  Overhead (65°, 27) — and fine controls: **Tilt** 25–70°, **Zoom** 9–32, **Field of view** 25–50°, **Rotate** left/right
   in 90° steps, and **Reset**.
 - The camera aims higher on the hero when the tilt is low (from feet at 70° to chest height at 25°), so faces read.
 - Keyboard and joystick "up" always means "away from the camera", whatever the rotation.

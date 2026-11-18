@@ -936,5 +936,25 @@
       "own": "Anda tidak boleh meluluskan akaun anda sendiri.",
       "failed": "Ada masalah. Sila cuba lagi."
     }
+  },
+  "settings": {
+    "title": "Tetapan",
+    "open": "Tetapan",
+    "camera": "Kamera",
+    "tilt": "Ketinggian kamera",
+    "zoom": "Zum",
+    "fov": "Medan pandangan",
+    "turnLeft": "Pusing kamera ke kiri",
+    "turnRight": "Pusing kamera ke kanan",
+    "reset": "Set semula kamera",
+    "resetShort": "Set semula",
+    "hint": "Kamera rendah menunjukkan wajah dengan lebih jelas; kamera tinggi menunjukkan lebih banyak peta. Disimpan pada peranti ini.",
+    "graphics": "Grafik",
+    "preset": {
+      "close": "Dekat",
+      "balanced": "Seimbang",
+      "classic": "Klasik",
+      "overhead": "Atas"
+    }
   }
 }

@@ -44,7 +44,7 @@ describe('projection', () => {
   })
 
   it('presets: Balanced is the new default, Classic is the old view', () => {
-    expect(PRESETS.balanced).toEqual({ tilt: 40, distance: 18 })
+    expect(PRESETS.balanced).toEqual({ tilt: 38, distance: 15 })
     expect(PRESETS.classic).toEqual({ tilt: CAMERA.elevationDeg, distance: CAMERA.distance })
     expect(PRESETS.close.tilt).toBeLessThan(PRESETS.balanced.tilt)
     expect(PRESETS.overhead.tilt).toBeGreaterThan(PRESETS.classic.tilt)

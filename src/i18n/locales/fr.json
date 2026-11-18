@@ -936,5 +936,25 @@
       "own": "Vous ne pouvez pas approuver votre propre compte.",
       "failed": "Un problème est survenu. Réessayez."
     }
+  },
+  "settings": {
+    "title": "Réglages",
+    "open": "Réglages",
+    "camera": "Caméra",
+    "tilt": "Hauteur de la caméra",
+    "zoom": "Zoom",
+    "fov": "Champ de vision",
+    "turnLeft": "Tourner la caméra à gauche",
+    "turnRight": "Tourner la caméra à droite",
+    "reset": "Réinitialiser la caméra",
+    "resetShort": "Réinitialiser",
+    "hint": "Une caméra plus basse montre mieux les visages ; plus haute, elle montre plus de carte. Enregistré sur cet appareil.",
+    "graphics": "Graphismes",
+    "preset": {
+      "close": "Rapprochée",
+      "balanced": "Équilibrée",
+      "classic": "Classique",
+      "overhead": "Vue du dessus"
+    }
   }
 }

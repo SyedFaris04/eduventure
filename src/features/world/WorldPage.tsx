@@ -6,7 +6,7 @@ import { useGame } from '../../game/store'
 import { usePlace } from '../../game/placeStore'
 import { setAcademyOrigin } from '../academy/origin'
 import { useTranslation } from 'react-i18next'
-import { Gauge, House, PawPrint } from 'lucide-react'
+import { House, PawPrint, Settings } from 'lucide-react'
 import { buttonClasses } from '../../components/ui'
 import { useSession } from '../authentication/useSession'
 import { useMyCharacter, useProgression } from '../character/useCharacter'
@@ -23,7 +23,7 @@ import { JettyPanel } from './JettyPanel'
 import { AreaBanner } from './AreaBanner'
 import { BattlePanel } from '../battle/BattlePanel'
 import { BossPanel } from '../battle/BossPanel'
-import { NEXT_CHOICE, useQuality } from '../../world3d/qualityStore'
+import { WorldSettings } from './WorldSettings'
 
 export function WorldPage() {
   const { t } = useTranslation()
@@ -35,8 +35,8 @@ export function WorldPage() {
   const pet = usePet(uid)
   const returning = useReturning(uid)
   const sessionMinutes = usePlayClock(uid)
-  const quality = useQuality()
-  const qualityText = t('world.quality', { level: t(`world.qualityLevel.${quality.choice}`) })
+  const settingsOpen = useGame((s) => s.settings)
+  const setSettingsOpen = (open: boolean) => useGame.setState({ settings: open })
   const navigate = useNavigate()
   const academy = useGame((s) => s.academy)
 
@@ -61,13 +61,12 @@ export function WorldPage() {
         </Link>
         <button
           type="button"
-          onClick={() => quality.setChoice(NEXT_CHOICE[quality.choice])}
-          aria-label={qualityText}
-          title={qualityText}
+          onClick={() => setSettingsOpen(true)}
+          aria-label={t('settings.open')}
+          title={t('settings.open')}
           className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-16 z-10 px-3!')}
         >
-          <Gauge size={20} aria-hidden />
-          <span className="hidden text-sm md:inline">{t(`world.qualityLevel.${quality.choice}`)}</span>
+          <Settings size={20} aria-hidden />
         </button>
         <Link to="/pet" aria-label={t('pet.open')} title={t('pet.open')} className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-[7.25rem] z-10 px-3!')}>
           <PawPrint size={20} aria-hidden />
@@ -84,6 +83,7 @@ export function WorldPage() {
         <BossPanel />
         <CoinBurst />
         <BreakReminder minutes={sessionMinutes} />
+        {settingsOpen && <WorldSettings onClose={() => setSettingsOpen(false)} />}
       </div>
     </main>
   )
