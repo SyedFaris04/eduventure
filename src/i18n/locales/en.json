@@ -935,7 +935,14 @@
       "parentAccount": "Please log in with your own parent account, not your child's.",
       "own": "You cannot approve your own account.",
       "failed": "Something went wrong. Please try again."
-    }
+    },
+    "topics": "Topics",
+    "topicCol": "Topic",
+    "tpCol": "Estimated TP",
+    "answersCol": "Answers",
+    "tpValue": "TP{{n}}",
+    "notEnough": "Not enough practice yet",
+    "tpNote": "Estimated from EDUVENTURE practice — not your child's official school (PBD) level."
   },
   "settings": {
     "title": "Settings",

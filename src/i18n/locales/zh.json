@@ -935,7 +935,14 @@
       "parentAccount": "请用你自己的家长账号登录，而不是孩子的账号。",
       "own": "你不能批准自己的账号。",
       "failed": "出错了，请再试一次。"
-    }
+    },
+    "topics": "主题",
+    "topicCol": "主题",
+    "tpCol": "估计 TP",
+    "answersCol": "作答数",
+    "tpValue": "TP{{n}}",
+    "notEnough": "练习还不够",
+    "tpNote": "根据 EDUVENTURE 练习估计——并非孩子学校的正式（PBD）等级。"
   },
   "settings": {
     "title": "设置",

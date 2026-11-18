@@ -935,7 +935,14 @@
       "parentAccount": "Inicia sesión con tu propia cuenta, no con la de tu hijo o hija.",
       "own": "No puedes aprobar tu propia cuenta.",
       "failed": "Algo salió mal. Inténtalo de nuevo."
-    }
+    },
+    "topics": "Temas",
+    "topicCol": "Tema",
+    "tpCol": "TP estimado",
+    "answersCol": "Respuestas",
+    "tpValue": "TP{{n}}",
+    "notEnough": "Aún no hay suficiente práctica",
+    "tpNote": "Estimado a partir de la práctica en EDUVENTURE; no es el nivel oficial del colegio (PBD)."
   },
   "settings": {
     "title": "Ajustes",
