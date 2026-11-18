@@ -1,3 +1,4 @@
+import { peekPendingCode } from '../parents/pendingCode'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -10,7 +11,8 @@ import { loginSchema, type LoginValues } from './schemas'
 import { useSession } from './useSession'
 
 // The progress guard on /home forwards to onboarding or the character creator when setup is unfinished.
-const AFTER_LOGIN = '/home'
+// A parent who came from a child's link goes back to the parent page.
+const afterLogin = () => (peekPendingCode() ? '/parent' : '/home')
 
 export function LoginPage() {
   const { t } = useTranslation()
@@ -24,14 +26,14 @@ export function LoginPage() {
 
   // Arriving from the confirmation link signs the player in automatically.
   useEffect(() => {
-    if (session && !session.user.is_anonymous) navigate(AFTER_LOGIN, { replace: true })
+    if (session && !session.user.is_anonymous) navigate(afterLogin(), { replace: true })
   }, [session, navigate])
 
   const onSubmit = handleSubmit(async ({ email, password }) => {
     setFormError(null)
     try {
       await logIn(email, password)
-      navigate(AFTER_LOGIN, { replace: true })
+      navigate(afterLogin(), { replace: true })
     } catch (e) {
       setFormError(e instanceof AuthMessageError ? e.key : 'auth.errors.generic')
     }

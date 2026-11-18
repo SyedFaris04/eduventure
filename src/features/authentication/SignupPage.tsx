@@ -1,3 +1,4 @@
+import { peekPendingCode } from '../parents/pendingCode'
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -34,7 +35,7 @@ export function SignupPage() {
     try {
       await signUp(v)
       // Projects with email confirmation off sign the player in straight away.
-      if (useSessionStore.getState().session) navigate('/home', { replace: true })
+      if (useSessionStore.getState().session) navigate(peekPendingCode() ? '/parent' : '/home', { replace: true })
       else setSentTo({ email: v.email, guardian: under13 })
     } catch (e) {
       setFormError(e instanceof AuthMessageError ? e.key : 'auth.errors.generic')
