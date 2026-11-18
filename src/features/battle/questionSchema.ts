@@ -20,6 +20,8 @@ const base = z.object({
   explanation: z.string().min(10),
   objective: z.string().min(5),
   alignment: z.string().min(5),
+  // Malaysian curriculum tag (scripts/tag-curriculum.mjs fills it from the alignment text; reviewers may correct it).
+  curriculum: z.object({ system: z.enum(['KSSR', 'KSSM']), subject: z.string().min(2), years: z.array(z.number().int().min(1).max(6)).min(1) }).optional(),
   // Code-reading questions keep their program here too, so the tests can run it and check the stated answer.
   language: z.enum(['python', 'javascript']).optional(),
   code: z.string().optional(),
@@ -85,6 +87,9 @@ export type PublicQuestion = {
 /** Rules the schema cannot express. Returns human-readable problems; empty means valid. */
 export function questionProblems(q: QuestionSource): string[] {
   const p: string[] = []
+  const named = /\bKSSR\b/.test(q.alignment) ? 'KSSR' : /\bKSSM\b/.test(q.alignment) ? 'KSSM' : null
+  if (named && !q.curriculum) p.push('alignment names KSSR/KSSM but there is no curriculum tag')
+  if (named && q.curriculum && q.curriculum.system !== named) p.push('curriculum system does not match the alignment')
   if (q.type === 'mcq') {
     const ids = q.options.map((o) => o.id)
     if (new Set(ids).size !== ids.length) p.push('duplicate option ids')

@@ -22,7 +22,7 @@
       "prompt": "Which greeting do we use in the morning?",
       "explanation": "We say \"Good morning\" before 12 noon.",
       "objective": "Use greetings for different times of day.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "options": [
         {
           "id": "a",
@@ -59,7 +59,7 @@
       "prompt": "One cat, two ___.",
       "explanation": "Most nouns add -s for more than one: cats.",
       "objective": "Form regular plurals.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "options": [
         {
           "id": "a",
@@ -96,7 +96,7 @@
       "prompt": "I eat ___ apple every day.",
       "explanation": "\"Apple\" starts with a vowel sound, so we use \"an\".",
       "objective": "Choose between a and an.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "options": [
         {
           "id": "a",
@@ -133,7 +133,7 @@
       "prompt": "The opposite of \"hot\" is ___.",
       "explanation": "Hot and cold are opposites.",
       "objective": "Know common opposites.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "answer": {
         "accept": [
           "cold"
@@ -156,7 +156,7 @@
       "prompt": "True or false: the plural of \"child\" is \"childs\".",
       "explanation": "Child is irregular: the plural is \"children\".",
       "objective": "Recognise irregular plurals.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "answer": "false",
       "wrong": {
         "true": "\"Childs\" is not a word; the plural of child is children."
@@ -178,7 +178,7 @@
       "prompt": "She ___ my sister.",
       "explanation": "With he, she and it we use \"is\".",
       "objective": "Use am, is and are.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "options": [
         {
           "id": "a",
@@ -215,7 +215,7 @@
       "prompt": "The cat is sleeping ___ the table. 🐱⬇️",
       "explanation": "Under means below something.",
       "objective": "Use prepositions of place.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "options": [
         {
           "id": "a",
@@ -252,7 +252,7 @@
       "prompt": "Seven plus three is ___. (Write the number as a word.)",
       "explanation": "7 + 3 = 10, which we write as \"ten\".",
       "objective": "Read and write number words.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "answer": {
         "accept": [
           "ten"
@@ -275,7 +275,7 @@
       "prompt": "Put the words in order to say what you like to eat.",
       "explanation": "English sentences usually go: who (I) – action (like) – what (nasi lemak).",
       "objective": "Order words in a simple sentence.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "options": [
         {
           "id": "a",
@@ -312,7 +312,7 @@
       "prompt": "___ is your name?",
       "explanation": "\"What is your name?\" asks for a name.",
       "objective": "Use question words.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "options": [
         {
           "id": "a",
@@ -349,7 +349,7 @@
       "prompt": "True or false: a sentence starts with a capital letter.",
       "explanation": "Every sentence starts with a capital letter, like \"My name is Aina.\"",
       "objective": "Use capital letters correctly.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "answer": "true",
       "wrong": {
         "false": "Sentences always start with a capital letter."
@@ -371,7 +371,7 @@
       "prompt": "The sky on a sunny day is ___.",
       "explanation": "A clear daytime sky is blue.",
       "objective": "Name colours.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "options": [
         {
           "id": "a",
@@ -408,7 +408,7 @@
       "prompt": "My mother's mother is my ___.",
       "explanation": "Your mother's mother is your grandmother (nenek).",
       "objective": "Name family members.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "options": [
         {
           "id": "a",
@@ -445,7 +445,7 @@
       "prompt": "The day after Monday is ___.",
       "explanation": "Monday, Tuesday, Wednesday…",
       "objective": "Know the days of the week.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "answer": {
         "accept": [
           "tuesday"
@@ -468,7 +468,7 @@
       "prompt": "He ___ to school every day.",
       "explanation": "In the simple present, he/she/it adds -s: he walks.",
       "objective": "Use the simple present with he and she.",
-      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).",
+      "alignment": "Primary English (e.g. KSSR Bahasa Inggeris Tahun 3-6, CEFR A1).", "curriculum": {"system": "KSSR", "subject": "Bahasa Inggeris", "years": [3,4,5,6]},
       "options": [
         {
           "id": "a",
@@ -505,7 +505,7 @@
       "prompt": "Yesterday I ___ to Penang.",
       "explanation": "\"Go\" is irregular: the past is \"went\".",
       "objective": "Use irregular past forms.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "options": [
         {
           "id": "a",
@@ -542,7 +542,7 @@
       "prompt": "Kuala Lumpur is ___ than Ipoh.",
       "explanation": "Short adjectives add -er (doubling the last letter): big → bigger.",
       "objective": "Form comparatives.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "options": [
         {
           "id": "a",
@@ -579,7 +579,7 @@
       "prompt": "She ___ (buy) a new bag last week.",
       "explanation": "\"Buy\" is irregular: buy → bought.",
       "objective": "Use irregular past forms.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "answer": {
         "accept": [
           "bought"
@@ -602,7 +602,7 @@
       "prompt": "Look! The children ___ in the rain.",
       "explanation": "For actions happening now: am/is/are + -ing.",
       "objective": "Use the present continuous.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "options": [
         {
           "id": "a",
@@ -639,7 +639,7 @@
       "prompt": "True or false: \"information\" can be made plural as \"informations\".",
       "explanation": "\"Information\" is uncountable: we say \"some information\" or \"a piece of information\".",
       "objective": "Recognise uncountable nouns.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "answer": "false",
       "wrong": {
         "true": "Uncountable nouns have no plural form."
@@ -661,7 +661,7 @@
       "prompt": "My birthday is ___ June.",
       "explanation": "We use \"in\" with months and years.",
       "objective": "Use in, on and at for time.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "options": [
         {
           "id": "a",
@@ -698,7 +698,7 @@
       "prompt": "Choose the word closest in meaning to \"enormous\".",
       "explanation": "Enormous means very big, like huge.",
       "objective": "Use synonyms.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "options": [
         {
           "id": "a",
@@ -735,7 +735,7 @@
       "prompt": "Put the words in order to make a question.",
       "explanation": "Questions often go: question word – do/does – subject – verb.",
       "objective": "Form questions with do.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "options": [
         {
           "id": "a",
@@ -777,7 +777,7 @@
       "prompt": "I was tired, ___ I went to bed early.",
       "explanation": "\"So\" introduces a result.",
       "objective": "Join ideas with conjunctions.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "options": [
         {
           "id": "a",
@@ -814,7 +814,7 @@
       "prompt": "Mount Kinabalu is the ___ (high) mountain in Malaysia.",
       "explanation": "With \"the\" and three or more things, we use the superlative: highest.",
       "objective": "Form superlatives.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "answer": {
         "accept": [
           "highest"
@@ -837,7 +837,7 @@
       "prompt": "You ___ wear a helmet when you ride a motorcycle. It is the law.",
       "explanation": "\"Must\" expresses a strong rule or obligation.",
       "objective": "Use modal verbs.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "options": [
         {
           "id": "a",
@@ -874,7 +874,7 @@
       "prompt": "True or false: the correct spelling is \"beautiful\".",
       "explanation": "Beautiful: b-e-a-u-t-i-f-u-l.",
       "objective": "Spell common words.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "answer": "true",
       "wrong": {
         "false": "That is the correct spelling."
@@ -896,7 +896,7 @@
       "prompt": "This book is ___. Give it to me!",
       "explanation": "Possessive pronouns stand alone: mine, yours, his, hers.",
       "objective": "Use possessive pronouns.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "options": [
         {
           "id": "a",
@@ -933,7 +933,7 @@
       "prompt": "Please ___ your shoes before you enter the house.",
       "explanation": "Take off = remove clothing. In many Malaysian homes we take off our shoes.",
       "objective": "Use common phrasal verbs.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "options": [
         {
           "id": "a",
@@ -970,7 +970,7 @@
       "prompt": "One knife, two ___.",
       "explanation": "Words ending in -fe change to -ves: knife → knives.",
       "objective": "Form irregular plurals.",
-      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).",
+      "alignment": "Lower-secondary English (e.g. KSSM English Form 1-3, CEFR A2-B1).", "curriculum": {"system": "KSSM", "subject": "English", "years": [1,2,3]},
       "answer": {
         "accept": [
           "knives"
@@ -993,7 +993,7 @@
       "prompt": "I ___ never ___ snow.",
       "explanation": "Life experience: have + past participle: I have never seen snow.",
       "objective": "Use the present perfect for experiences.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "options": [
         {
           "id": "a",
@@ -1030,7 +1030,7 @@
       "prompt": "Change to passive: \"The students cleaned the classroom.\"",
       "explanation": "Passive: object becomes subject + was/were + past participle (+ by …).",
       "objective": "Form the passive voice.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "options": [
         {
           "id": "a",
@@ -1067,7 +1067,7 @@
       "prompt": "If it rains tomorrow, we ___ the picnic.",
       "explanation": "First conditional: If + present, will + verb.",
       "objective": "Use the first conditional.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "options": [
         {
           "id": "a",
@@ -1104,7 +1104,7 @@
       "prompt": "She said, \"I am hungry.\" → She said that she ___ hungry.",
       "explanation": "In reported speech the tense moves back: am → was.",
       "objective": "Report statements.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "answer": {
         "accept": [
           "was"
@@ -1127,7 +1127,7 @@
       "prompt": "True or false: \"Neither of the boys are ready.\" is correct.",
       "explanation": "\"Neither\" is singular: \"Neither of the boys is ready.\"",
       "objective": "Make verbs agree with tricky subjects.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "answer": "false",
       "wrong": {
         "true": "\"Neither\" takes a singular verb, so it should be \"is\"."
@@ -1149,7 +1149,7 @@
       "prompt": "The flood forced many families to ___ their homes.",
       "explanation": "Evacuate means to leave a dangerous place.",
       "objective": "Choose words from context.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "options": [
         {
           "id": "a",
@@ -1186,7 +1186,7 @@
       "prompt": "The teacher ___ taught us English has retired.",
       "explanation": "We use \"who\" for people.",
       "objective": "Use relative pronouns.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "options": [
         {
           "id": "a",
@@ -1223,7 +1223,7 @@
       "prompt": "Put the sentences in order to make a short paragraph.",
       "explanation": "Sequence words (first, next, finally) show the order.",
       "objective": "Order sentences using connectors.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "options": [
         {
           "id": "a",
@@ -1260,7 +1260,7 @@
       "prompt": "Which is best for a formal letter?",
       "explanation": "Formal letters use full words and polite, neutral language.",
       "objective": "Choose a formal register.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "options": [
         {
           "id": "a",
@@ -1297,7 +1297,7 @@
       "prompt": "He spoke with great ___ (confident).",
       "explanation": "After \"great\" we need a noun: confident → confidence.",
       "objective": "Form nouns from adjectives.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "answer": {
         "accept": [
           "confidence"
@@ -1320,7 +1320,7 @@
       "prompt": "\"It's a piece of cake\" means…",
       "explanation": "\"A piece of cake\" means something is very easy.",
       "objective": "Understand common idioms.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "options": [
         {
           "id": "a",
@@ -1357,7 +1357,7 @@
       "prompt": "I enjoy ___ novels in my free time.",
       "explanation": "\"Enjoy\" + verb-ing: I enjoy reading.",
       "objective": "Use gerunds after certain verbs.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "options": [
         {
           "id": "a",
@@ -1394,7 +1394,7 @@
       "prompt": "True or false: \"Its raining\" needs an apostrophe: \"It's raining\".",
       "explanation": "\"It's\" = \"it is\", so it needs an apostrophe.",
       "objective": "Use apostrophes correctly.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "answer": "true",
       "wrong": {
         "false": "\"It's\" is short for \"it is\" and needs the apostrophe."
@@ -1416,7 +1416,7 @@
       "prompt": "___ the heavy traffic, we arrived on time.",
       "explanation": "\"Despite\" shows contrast: something happened even though…",
       "objective": "Use contrast linkers.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "options": [
         {
           "id": "a",
@@ -1453,7 +1453,7 @@
       "prompt": "When we reached the station, the train ___ already ___ (leave). Write both words, e.g. \"has gone\".",
       "explanation": "An earlier past action uses the past perfect: had + past participle.",
       "objective": "Use the past perfect.",
-      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).",
+      "alignment": "Upper-secondary English (e.g. KSSM English Form 4-5 / SPM, CEFR B1-B2).", "curriculum": {"system": "KSSM", "subject": "English", "years": [4,5]},
       "answer": {
         "accept": [
           "had left"

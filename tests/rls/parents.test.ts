@@ -82,6 +82,7 @@ describe.skipIf(!url || !key)('parent approval (live project)', () => {
     const report = (await p.rpc('child_report', { p_child: childId })).data
     expect(report.week).toHaveLength(7)
     expect(report.questions).toBeGreaterThanOrEqual(0)
+    expect(Array.isArray(report.topics)).toBe(true)
     expect((await child.rpc('child_report', { p_child: childId })).error?.message).toMatch(/not your child/i)
 
     expect((await p.rpc('remove_child', { p_child: childId })).error).toBeNull()
