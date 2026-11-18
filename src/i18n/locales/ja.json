@@ -595,7 +595,15 @@
     "d_subject_5": "{{subject}}の問題に5問正解する",
     "w_correct_50": "50問正解する",
     "w_defeat_12": "モンスターを12体たおす",
-    "d_returning_3": "リターンモンスターを {{target}} 体たおす"
+    "d_returning_3": "リターンモンスターを {{target}} 体たおす",
+    "shield": "シールド 1こ",
+    "shields": "シールド {{n}}こ",
+    "restReady": "お休みの日あり",
+    "best": "さいこう：{{n}} 日",
+    "weekLabel": "今週は 7 日中 {{n}} 日あそびました",
+    "monthComeback": "今月は {{n}} 日学びました — 今日から新しい連続記録をはじめよう！",
+    "viewWeek": "今週だけ表示",
+    "viewCount": "連続日数を表示"
   },
   "boss": {
     "name": "グリーンヘイブンの守り神",

@@ -595,7 +595,15 @@
     "d_subject_5": "Jawab 5 soalan {{subject}} dengan betul",
     "w_correct_50": "Jawab 50 soalan dengan betul",
     "w_defeat_12": "Kalahkan 12 raksasa",
-    "d_returning_3": "Kalahkan {{target}} raksasa Kembali"
+    "d_returning_3": "Kalahkan {{target}} raksasa Kembali",
+    "shield": "1 perisai",
+    "shields": "{{n}} perisai",
+    "restReady": "hari rehat tersedia",
+    "best": "Terbaik: {{n}} hari",
+    "weekLabel": "Bermain {{n}} daripada 7 hari minggu ini",
+    "monthComeback": "Anda belajar {{n}} hari bulan ini — mulakan rentetan baharu hari ini!",
+    "viewWeek": "Tunjuk minggu ini sahaja",
+    "viewCount": "Tunjuk nombor rentetan saya"
   },
   "boss": {
     "name": "Penjaga Greenhaven",
