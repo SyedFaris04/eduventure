@@ -222,6 +222,14 @@ Spec: `docs/superpowers/specs/2026-11-18-curriculum-tags-design.md`.
 - The parent report shows an **estimated TP per topic** (at least 2 right at that level or above, with 60% right), labelled as an estimate, not the school's PBD level.
 - **Needs an educator:** check the tags and replace the Bloom-based TP with DSKP descriptors per topic.
 
+### Teacher mode — built and merged
+Spec: `docs/superpowers/specs/2026-11-18-teacher-mode-design.md`. Research feature 12.
+- **Teacher page `/teacher`:** any adult with an email account creates a class and shares its code (copy or WhatsApp).
+- **Students join** from Home → My classes. Players under 18 need an approved parent first; parents see their child's classes and can take them out (removing the parent link also leaves every class).
+- **Class quests:** topic (with its KSSR/KSSM tag), optional TP, 5–30 right answers, due date. Quest topics come up four times as often in the student's battles until done.
+- **Class report:** days played and answers right this week, and progress on each quest. Teachers never see email or age.
+- **Later:** class raids and seeing classmates (multiplayer phase), Google Classroom links, teacher verification for schools.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 
