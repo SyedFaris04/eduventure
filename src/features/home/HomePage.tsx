@@ -1,3 +1,4 @@
+import { ParentCardSlot } from '../parents/ParentCardSlot'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -146,6 +147,7 @@ export function HomePage() {
               </Link>
             </Panel>
 
+            {uid && <ParentCardSlot uid={uid} />}
             {uid && <MissionsPanel uid={uid} />}
 
             {isGuest && <GuestUpgrade under13={under13} />}

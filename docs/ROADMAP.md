@@ -194,6 +194,15 @@ Spec: `docs/superpowers/specs/2026-11-17-forgiving-streaks-design.md`. Research 
 - **Streak box:** streak, shields, rest day, this week's dots and best streak. A broken streak shows the days learned this month instead of a zero.
 - **Number or week dots:** players choose; under-13 players see the week dots by default.
 
+### Parent approval, time limits and break reminders — built and merged
+Spec: `docs/superpowers/specs/2026-11-18-parent-consent-design.md`. Research features 8, 9 and 13.
+- **Ask my parent:** players under 18 get a link and a code to send by WhatsApp. They keep learning while they wait.
+- **Parent page `/parent`:** the parent logs in (or creates an account) on their own phone, ticks "I am the parent or guardian, 18 or older" and approves. Opening the link on the child's phone never signs the child out.
+- **Parent controls:** a daily play limit (30–120 minutes), enforced by the server when a battle, boss or lesson starts, and a weekly report: days and minutes played, questions right, lessons, strong topics, topics to practise and the streak.
+- **Break reminder** every 40 minutes of play, for everyone.
+- **Before launch:** configure custom SMTP in Supabase (the free tier sends only a few sign-up emails an hour), and have the consent wording checked by a lawyer.
+- **Later:** chat, friends and any purchases must require an approved parent for players under 18 (`my_guardian().status = 'approved'`).
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

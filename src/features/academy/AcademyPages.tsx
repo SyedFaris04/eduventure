@@ -1,3 +1,6 @@
+import { useSession } from '../authentication/useSession'
+import { BreakReminder } from '../parents/BreakReminder'
+import { usePlayClock } from '../parents/usePlayClock'
 import { Link, useNavigate, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft, Braces, CheckCircle2, Code2, Languages, Lock, PlayCircle } from 'lucide-react'
@@ -130,6 +133,8 @@ export function CoursePage() {
 
 /** /academy/:course/:lesson: the lesson player, full width. */
 export function LessonPage() {
+  const { session } = useSession()
+  const sessionMinutes = usePlayClock(session?.user.id)
   const { course: courseId, lesson: lessonId } = useParams()
   const navigate = useNavigate()
   const catalogue = useCatalogue()
@@ -147,6 +152,7 @@ export function LessonPage() {
         onExit={() => navigate(`${BASE[course.kind]}/${course.id}`)}
         onNext={next ? () => navigate(`${BASE[course.kind]}/${course.id}/${next.id}`) : undefined}
       />
+      <BreakReminder minutes={sessionMinutes} />
     </main>
   )
 }

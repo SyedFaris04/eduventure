@@ -43,7 +43,8 @@ export class AcademyError extends Error {
 }
 const fail = (message: string): never => {
   throw new AcademyError(
-    /too fast/i.test(message) ? 'academy.errors.tooFast'
+    /time's up/i.test(message) ? 'parents.timeUp'
+    : /too fast/i.test(message) ? 'academy.errors.tooFast'
     : /finish unit/i.test(message) ? 'academy.errors.locked'
     : /not found/i.test(message) ? 'academy.errors.notFound'
     : /answer every question/i.test(message) ? 'academy.errors.unanswered'
