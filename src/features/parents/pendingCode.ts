@@ -26,3 +26,35 @@ export function takePendingCode(): string | null {
   }
   return code
 }
+
+/**
+ * On the parent page: keep the code for a parent who still has to log in, but forget it on the child's own phone
+ * (a guest session), or every later login there would send the child to the parent page.
+ */
+export function rememberParentCode(urlCode: string | null, session: 'none' | 'guest' | 'parent') {
+  if (session === 'guest') takePendingCode()
+  else if (urlCode) savePendingCode(urlCode)
+}
+
+// A teacher (or parent) sent to log in comes back to the page they started from.
+const RETURN = 'eduventure.returnTo'
+export function saveReturnTo(path: '/teacher' | '/parent') {
+  try {
+    sessionStorage.setItem(RETURN, path)
+  } catch {
+    /* ignore */
+  }
+}
+
+/** Where to go after logging in: the parent page while a child's code waits, else a saved page, else Home. */
+export function afterLoginPath(): string {
+  if (peekPendingCode()) return '/parent'
+  try {
+    const to = sessionStorage.getItem(RETURN)
+    sessionStorage.removeItem(RETURN)
+    if (to === '/teacher' || to === '/parent') return to
+  } catch {
+    /* ignore */
+  }
+  return '/home'
+}

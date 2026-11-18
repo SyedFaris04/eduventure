@@ -942,7 +942,9 @@
     "answersCol": "回答数",
     "tpValue": "TP{{n}}",
     "notEnough": "まだ練習が足りません",
-    "tpNote": "EDUVENTURE での練習からの推定です。学校の正式な（PBD）レベルではありません。"
+    "tpNote": "EDUVENTURE での練習からの推定です。学校の正式な（PBD）レベルではありません。",
+    "classes": "クラス",
+    "leaveClass": "{{child}} を {{name}} から外す"
   },
   "settings": {
     "title": "設定",
@@ -962,6 +964,62 @@
       "balanced": "バランス",
       "classic": "クラシック",
       "overhead": "真上"
+    }
+  },
+  "teacher": {
+    "title": "先生ページ",
+    "intro": "クラスを作ってコードを生徒に共有し、テーマごとにクエストを出し、一人ひとりの様子を確認できます。",
+    "login": "ログイン",
+    "createAccount": "アカウントを作成",
+    "guest": "先生にはゲスト以外の専用アカウントが必要です。この端末のゲストゲームから先にログアウトするか、別のブラウザを使ってください。",
+    "className": "クラス名",
+    "school": "学校名（任意）",
+    "create": "クラスを作成",
+    "classes": "あなたのクラス",
+    "open": "{{name}} を開く",
+    "members": "生徒 {{n}} 人",
+    "whatsapp": "WhatsAppで共有",
+    "whatsappText": "EDUVENTURE のクラス「{{name}}」に参加してね：EDUVENTURE を開いて ホーム → マイクラス でコード {{code}} を入力",
+    "copy": "コードをコピー",
+    "archive": "クラスをアーカイブ",
+    "newQuest": "新しいクエスト",
+    "topic": "テーマ",
+    "chooseTopic": "テーマを選ぶ",
+    "tp": "目標 TP",
+    "anyTp": "どのレベルでも",
+    "target": "必要な正解数",
+    "due": "期限",
+    "setQuest": "クエストを出す",
+    "questLine": "{{date}} までに {{target}} 問正解 · {{n}} 人中 {{finished}} 人達成",
+    "deleteQuest": "クエスト {{topic}} を削除",
+    "students": "生徒",
+    "student": "生徒",
+    "daysCol": "今週の日数",
+    "rightCol": "今週の正解",
+    "right": "{{n}} 問中 {{correct}} 問正解",
+    "noStudents": "まだ生徒がいません。コード {{code}} をクラスに共有してください。",
+    "removeStudent": "{{name}} を外す",
+    "privacy": "見えるのは学習の進み具合だけで、メールや年齢などは見えません。18歳未満は保護者の承認後にのみ参加できます。",
+    "errors": {
+      "account": "先生にはメールのある18歳以上のアカウントが必要です。",
+      "noQuestions": "そのテーマとレベルの問題はまだありません。",
+      "due": "期限は今日以降にしてください。",
+      "target": "正解数は 5〜30 の間で選んでください。",
+      "failed": "問題が発生しました。もう一度お試しください。"
+    }
+  },
+  "classes": {
+    "title": "マイクラス",
+    "code": "クラスコード",
+    "join": "参加",
+    "needParent": "クラスに参加するには、まず保護者の承認が必要です。上の「保護者にたのむ」を使ってね。",
+    "noQuests": "まだクエストはありません。",
+    "due": "期限 {{date}}",
+    "leaveClass": "{{name}} をぬける",
+    "errors": {
+      "notValid": "そのクラスコードは無効です。",
+      "own": "それは自分のクラスです。",
+      "failed": "問題が発生しました。もう一度お試しください。"
     }
   }
 }

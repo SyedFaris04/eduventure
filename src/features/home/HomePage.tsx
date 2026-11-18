@@ -1,3 +1,4 @@
+import { ClassesSlot } from '../teacher/MyClassesCard'
 import { ParentCardSlot } from '../parents/ParentCardSlot'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
@@ -5,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
-import { BookOpen, ClipboardCheck, Code2, Coins, Languages, Globe2, LogOut, PawPrint, Pencil, ShoppingBag, Sparkles, Star, Volume2, VolumeX } from 'lucide-react'
+import { BookOpen, ClipboardCheck, Code2, Coins, Languages, Globe2, GraduationCap, LogOut, PawPrint, Pencil, ShoppingBag, Sparkles, Star, Volume2, VolumeX } from 'lucide-react'
 import { useMyRoles } from '../admin/review'
 import { MissionsPanel } from '../missions/MissionsPanel'
 import { TitlePicker, useMyTitle } from '../character/TitlePicker'
@@ -102,6 +103,11 @@ export function HomePage() {
               <Link to="/shop" className={buttonClasses('secondary', 'md', 'w-full')}>
                 <ShoppingBag size={18} aria-hidden /> {t('home.shop')}
               </Link>
+              {session && !session.user.is_anonymous && (
+                <Link to="/teacher" className={buttonClasses('secondary', 'md', 'w-full')}>
+                  <GraduationCap size={18} aria-hidden /> {t('teacher.title')}
+                </Link>
+              )}
               <Link to="/pet" className={buttonClasses('secondary', 'md', 'w-full')}>
                 <PawPrint size={18} aria-hidden /> {t('pet.title')}
               </Link>
@@ -148,6 +154,7 @@ export function HomePage() {
             </Panel>
 
             {uid && <ParentCardSlot uid={uid} />}
+            {uid && <ClassesSlot uid={uid} />}
             {uid && <MissionsPanel uid={uid} />}
 
             {isGuest && <GuestUpgrade under13={under13} />}

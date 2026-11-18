@@ -942,7 +942,9 @@
     "answersCol": "作答数",
     "tpValue": "TP{{n}}",
     "notEnough": "练习还不够",
-    "tpNote": "根据 EDUVENTURE 练习估计——并非孩子学校的正式（PBD）等级。"
+    "tpNote": "根据 EDUVENTURE 练习估计——并非孩子学校的正式（PBD）等级。",
+    "classes": "班级",
+    "leaveClass": "让 {{child}} 退出 {{name}}"
   },
   "settings": {
     "title": "设置",
@@ -962,6 +964,62 @@
       "balanced": "平衡",
       "classic": "经典",
       "overhead": "俯视"
+    }
+  },
+  "teacher": {
+    "title": "教师页面",
+    "intro": "创建班级，把班级代码发给学生，按主题布置任务，并查看每位学生的情况。",
+    "login": "登录",
+    "createAccount": "创建账号",
+    "guest": "教师需要自己的账号（不是访客）。请先在此设备上退出访客游戏，或使用其他浏览器。",
+    "className": "班级名称",
+    "school": "学校（可选）",
+    "create": "创建班级",
+    "classes": "你的班级",
+    "open": "打开 {{name}}",
+    "members": "{{n}} 名学生",
+    "whatsapp": "通过 WhatsApp 分享",
+    "whatsappText": "加入我的 EDUVENTURE 班级“{{name}}”：打开 EDUVENTURE，进入主页 → 我的班级，输入代码 {{code}}",
+    "copy": "复制代码",
+    "archive": "归档班级",
+    "newQuest": "新任务",
+    "topic": "主题",
+    "chooseTopic": "选择主题",
+    "tp": "目标 TP",
+    "anyTp": "任何等级",
+    "target": "需要答对的题数",
+    "due": "截止日期",
+    "setQuest": "布置任务",
+    "questLine": "在 {{date}} 前答对 {{target}} 题 · {{n}} 人中已有 {{finished}} 人完成",
+    "deleteQuest": "删除任务 {{topic}}",
+    "students": "学生",
+    "student": "学生",
+    "daysCol": "本周天数",
+    "rightCol": "本周答对",
+    "right": "{{n}} 题中答对 {{correct}} 题",
+    "noStudents": "还没有学生。把代码 {{code}} 分享给你的班级。",
+    "removeStudent": "移除 {{name}}",
+    "privacy": "你只能看到学习进度：看不到学生的邮箱、年龄或其他信息。未满 18 岁的玩家需家长批准账号后才能加入。",
+    "errors": {
+      "account": "教师需要一个有邮箱、年满 18 岁的账号。",
+      "noQuestions": "该主题在这个等级还没有题目。",
+      "due": "请选择今天或之后的截止日期。",
+      "target": "请选择 5 到 30 道答对的题。",
+      "failed": "出错了，请再试一次。"
+    }
+  },
+  "classes": {
+    "title": "我的班级",
+    "code": "班级代码",
+    "join": "加入",
+    "needParent": "家长需要先批准你的账号，你才能加入班级。请使用上面的“请家长批准”。",
+    "noQuests": "还没有任务。",
+    "due": "截止 {{date}}",
+    "leaveClass": "退出 {{name}}",
+    "errors": {
+      "notValid": "这个班级代码无效。",
+      "own": "这是你自己的班级。",
+      "failed": "出错了，请再试一次。"
     }
   }
 }

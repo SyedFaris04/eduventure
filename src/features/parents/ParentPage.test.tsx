@@ -3,11 +3,11 @@ import { fireEvent, render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router'
 import { initI18n } from '../../i18n'
 import { ParentView } from './ParentPage'
-import { peekPendingCode, savePendingCode, takePendingCode } from './pendingCode'
+import { afterLoginPath, peekPendingCode, rememberParentCode, savePendingCode, takePendingCode } from './pendingCode'
 
 const report = { week: [], questions: 20, correct: 15, lessons: 2, strong: ['Fractions'], practise: ['Photosynthesis'], streak: 4, days: 3 }
 const view = (props: Partial<React.ComponentProps<typeof ParentView>>) => {
-  const all = { session: 'parent' as const, code: '', kids: [], reports: {}, busy: false, onApprove: vi.fn(), onSetLimit: vi.fn(), onRemove: vi.fn(), ...props }
+  const all = { session: 'parent' as const, code: '', kids: [], reports: {}, busy: false, classes: {}, onApprove: vi.fn(), onSetLimit: vi.fn(), onRemove: vi.fn(), onRemoveClass: vi.fn(), ...props }
   render(
     <MemoryRouter>
       <ParentView {...all} />
@@ -72,6 +72,18 @@ describe('ParentView topics', () => {
   })
 })
 
+describe('ParentView classes', () => {
+  beforeAll(async () => {
+    await initI18n()
+  })
+  it("lists the child's classes and can take the child out", () => {
+    const v = view({ kids: [{ child_id: 'c1', name: 'Aina', daily_limit: null }], classes: { c1: [{ class_id: 'k1', name: '6 Bestari', school: 'SK Taman' }] } })
+    expect(screen.getByText('6 Bestari')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Take Aina out of 6 Bestari' }))
+    expect(v.onRemoveClass).toHaveBeenCalledWith('c1', 'k1')
+  })
+})
+
 describe('pending parent code', () => {
   beforeEach(() => localStorage.clear())
   it('survives a log-in round trip, then is used once', () => {
@@ -79,5 +91,12 @@ describe('pending parent code', () => {
     expect(peekPendingCode()).toBe('ABCD-EF23')
     expect(takePendingCode()).toBe('ABCD-EF23')
     expect(takePendingCode()).toBeNull()
+  })
+  it("is forgotten on the child's own phone, so the child is not sent to the parent page", () => {
+    rememberParentCode('ABCD-EF23', 'none')
+    expect(peekPendingCode()).toBe('ABCD-EF23')
+    rememberParentCode('ABCD-EF23', 'guest')
+    expect(peekPendingCode()).toBeNull()
+    expect(afterLoginPath()).toBe('/home')
   })
 })
