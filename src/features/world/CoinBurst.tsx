@@ -1,3 +1,4 @@
+import { playSfx } from '../../audio/engine'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Coins } from 'lucide-react'
 import { useGame } from '../../game/store'
@@ -31,6 +32,7 @@ export function CoinBurst() {
           pending.current = []
           const from = screenOf.current?.(at)
           if (!from) return
+          playSfx('coin')
           if (reduced()) pulseGold()
           else setBurst({ from, key: Date.now() })
         }

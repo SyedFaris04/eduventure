@@ -964,7 +964,12 @@
       "balanced": "Equilibrada",
       "classic": "Clásica",
       "overhead": "Cenital"
-    }
+    },
+    "sound": "Sonido",
+    "soundOn": "Activado",
+    "soundOff": "Desactivado",
+    "music": "Música",
+    "effects": "Efectos de sonido"
   },
   "teacher": {
     "title": "Página del docente",

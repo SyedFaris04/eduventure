@@ -10,7 +10,7 @@ import { Snapshot } from '../../world3d/SnapshotImage'
 import { newUnlocks } from '../../game/unlocks'
 import { useSession } from '../authentication/useSession'
 import { useProgression } from '../character/useCharacter'
-import { playChime } from '../loading/sound'
+import { playSfx } from '../../audio/engine'
 import { answerQuestion, askFifty, BattleError, fleeEncounter, startEncounter, type AnswerPayload, type AnswerResult, type EncounterState } from './battleApi'
 import type { PublicQuestion } from './questionSchema'
 import { HelperBar } from './HelperBar'
@@ -90,12 +90,14 @@ function Battle({ monsterId, kind, returning }: { monsterId: string; kind: Monst
       setEnc(r.state)
       setTotals(r.totals)
       setEarned((e) => ({ xp: e.xp + r.xp_gained, gold: e.gold + r.gold_gained, leveledTo: r.leveled_up ? r.totals.level : e.leveledTo }))
-      playChime(r.correct ? 'tap' : 'pop')
+      playSfx(r.correct ? 'correct' : 'wrong')
       reactToAnswer(r.correct, r.state.status === 'won')
       if (r.state.status === 'won') {
         useGame.setState((s) => ({ defeated: [...s.defeated, monsterId] }))
-        playChime('done')
-      }
+        setTimeout(() => playSfx('victory'), 350)
+      } else if (r.state.status === 'lost') setTimeout(() => playSfx('defeat'), 350)
+      if (r.leveled_up) setTimeout(() => playSfx('levelup'), 900)
+      else if (r.missions_completed?.length) setTimeout(() => playSfx('mission'), 900)
     } catch (e) {
       setError(e instanceof BattleError ? e.key : 'battle.errors.generic')
     } finally {

@@ -1,3 +1,4 @@
+import { playSfx } from '../../audio/engine'
 import { useState } from 'react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -217,8 +218,8 @@ export function PetPage() {
             pet={pet.data}
             owned={owned.data ?? new Set()}
             busy={busy}
-            onHatch={(s, n) => run(() => hatchPet(s, n), () => t('pet.hatched', { name: t(`pet.names.${n}`) }))}
-            onEvolve={() => run(evolvePet, () => t('pet.evolved', { name, fee: STEPS[pet.data!.stage === 'baby' ? 'young' : 'adult'].gold }))}
+            onHatch={(s, n) => run(() => hatchPet(s, n), () => (playSfx('sparkle'), t('pet.hatched', { name: t(`pet.names.${n}`) })))}
+            onEvolve={() => run(evolvePet, () => (playSfx('levelup'), t('pet.evolved', { name, fee: STEPS[pet.data!.stage === 'baby' ? 'young' : 'adult'].gold })))}
             onDress={(slot, item) => run(() => dressPet(slot, item))}
           />
         )}

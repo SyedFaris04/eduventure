@@ -1,3 +1,4 @@
+import { playSfx } from '../../audio/engine'
 import { useState } from 'react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -42,6 +43,7 @@ export function ShopPage() {
     setMessage(null)
     try {
       await buyItem(item.id)
+      playSfx('buy')
       await Promise.all([queryClient.invalidateQueries({ queryKey: ['progression', uid] }), queryClient.invalidateQueries({ queryKey: ownedItemsKey(uid) })])
       setMessage({ kind: 'success', text: t('shop.bought', { item: t(`character.opt.${item.id}`) }) })
     } catch (e) {

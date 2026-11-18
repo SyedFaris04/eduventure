@@ -964,7 +964,12 @@
       "balanced": "Balanced",
       "classic": "Classic",
       "overhead": "Overhead"
-    }
+    },
+    "sound": "Sound",
+    "soundOn": "On",
+    "soundOff": "Off",
+    "music": "Music",
+    "effects": "Sound effects"
   },
   "teacher": {
     "title": "Teacher page",

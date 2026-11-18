@@ -964,7 +964,12 @@
       "balanced": "平衡",
       "classic": "经典",
       "overhead": "俯视"
-    }
+    },
+    "sound": "声音",
+    "soundOn": "开",
+    "soundOff": "关",
+    "music": "音乐",
+    "effects": "音效"
   },
   "teacher": {
     "title": "教师页面",

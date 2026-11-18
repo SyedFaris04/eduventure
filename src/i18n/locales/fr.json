@@ -964,7 +964,12 @@
       "balanced": "Équilibrée",
       "classic": "Classique",
       "overhead": "Vue du dessus"
-    }
+    },
+    "sound": "Son",
+    "soundOn": "Activé",
+    "soundOff": "Désactivé",
+    "music": "Musique",
+    "effects": "Effets sonores"
   },
   "teacher": {
     "title": "Espace enseignant",

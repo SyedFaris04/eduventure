@@ -1,3 +1,4 @@
+import { setSpeaking } from '../../audio/director'
 export type SpeechLang = 'english' | 'malay'
 type Voice = { lang: string; name: string }
 
@@ -43,6 +44,9 @@ export function speak(text: string, lang: SpeechLang) {
   u.voice = voice
   u.lang = voice.lang
   u.rate = 0.9 // a little slower for learners
+  // The music steps back while a word is spoken.
+  u.onend = u.onerror = () => setSpeaking(false)
+  setSpeaking(true)
   s.cancel()
   s.speak(u)
 }

@@ -7,7 +7,7 @@ import { useGame, reactToAnswer } from '../../game/store'
 import type { BossId } from '../../game/map'
 import { isUnlocked, unlockLevel } from '../../game/unlocks'
 import { Snapshot } from '../../world3d/SnapshotImage'
-import { playChime } from '../loading/sound'
+import { playSfx } from '../../audio/engine'
 import { answerBoss, askBossFifty, BattleError, fleeBoss, startBoss, type AnswerPayload, type BossResult, type BossState } from './battleApi'
 import type { PublicQuestion } from './questionSchema'
 import { QuestionCard } from './QuestionCard'
@@ -97,9 +97,10 @@ function Boss({ id }: { id: BossId }) {
       setResult(r)
       setRun(r.state)
       setTotals(r.totals)
-      playChime(r.correct ? 'tap' : 'pop')
+      playSfx(r.correct ? 'correct' : 'wrong')
       reactToAnswer(r.correct, r.state.status === 'won')
-      if (r.state.status === 'won') playChime('done')
+      if (r.state.status === 'won') setTimeout(() => playSfx('victory'), 350)
+      else if (r.state.status === 'lost') setTimeout(() => playSfx('defeat'), 350)
     } catch (e) {
       setError(e instanceof BattleError ? e.key : 'battle.errors.generic')
     } finally {
