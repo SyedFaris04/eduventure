@@ -936,5 +936,25 @@
       "own": "No puedes aprobar tu propia cuenta.",
       "failed": "Algo salió mal. Inténtalo de nuevo."
     }
+  },
+  "settings": {
+    "title": "Ajustes",
+    "open": "Ajustes",
+    "camera": "Cámara",
+    "tilt": "Altura de la cámara",
+    "zoom": "Zoom",
+    "fov": "Campo de visión",
+    "turnLeft": "Girar la cámara a la izquierda",
+    "turnRight": "Girar la cámara a la derecha",
+    "reset": "Restablecer cámara",
+    "resetShort": "Restablecer",
+    "hint": "Una cámara más baja muestra mejor las caras; una más alta muestra más mapa. Se guarda en este dispositivo.",
+    "graphics": "Gráficos",
+    "preset": {
+      "close": "Cercana",
+      "balanced": "Equilibrada",
+      "classic": "Clásica",
+      "overhead": "Cenital"
+    }
   }
 }

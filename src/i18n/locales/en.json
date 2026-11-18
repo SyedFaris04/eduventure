@@ -936,5 +936,25 @@
       "own": "You cannot approve your own account.",
       "failed": "Something went wrong. Please try again."
     }
+  },
+  "settings": {
+    "title": "Settings",
+    "open": "Settings",
+    "camera": "Camera",
+    "tilt": "Camera height",
+    "zoom": "Zoom",
+    "fov": "Field of view",
+    "turnLeft": "Turn camera left",
+    "turnRight": "Turn camera right",
+    "reset": "Reset camera",
+    "resetShort": "Reset",
+    "hint": "A lower camera shows faces better; a higher one shows more of the map. Saved on this device.",
+    "graphics": "Graphics",
+    "preset": {
+      "close": "Close-up",
+      "balanced": "Balanced",
+      "classic": "Classic",
+      "overhead": "Overhead"
+    }
   }
 }

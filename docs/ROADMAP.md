@@ -203,6 +203,12 @@ Spec: `docs/superpowers/specs/2026-11-18-parent-consent-design.md`. Research fea
 - **Before launch:** configure custom SMTP in Supabase (the free tier sends only a few sign-up emails an hour), and have the consent wording checked by a lawyer.
 - **Later:** chat, friends and any purchases must require an approved parent for players under 18 (`my_guardian().status = 'approved'`).
 
+### Camera settings — built and merged
+Spec: `docs/superpowers/specs/2026-11-18-camera-settings-design.md`.
+- A ⚙️ **Settings** button in the world holds graphics quality and the camera: presets Close-up, Balanced (the new default, lower and closer than before), Classic (the old view) and Overhead; sliders for camera height, zoom and field of view; turn left/right in 90° steps; Reset.
+- A lower camera aims at the hero's chest so faces read. Stick and keys follow the camera's turn. Saved on each device.
+- **Later, if needed:** fade trees and roofs that hide the hero at low angles.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

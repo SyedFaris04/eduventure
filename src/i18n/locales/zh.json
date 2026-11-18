@@ -936,5 +936,25 @@
       "own": "你不能批准自己的账号。",
       "failed": "出错了，请再试一次。"
     }
+  },
+  "settings": {
+    "title": "设置",
+    "open": "设置",
+    "camera": "镜头",
+    "tilt": "镜头高度",
+    "zoom": "缩放",
+    "fov": "视野",
+    "turnLeft": "向左转动镜头",
+    "turnRight": "向右转动镜头",
+    "reset": "重置镜头",
+    "resetShort": "重置",
+    "hint": "镜头越低越能看清脸，越高能看到更多地图。设置保存在本设备上。",
+    "graphics": "画面",
+    "preset": {
+      "close": "近景",
+      "balanced": "平衡",
+      "classic": "经典",
+      "overhead": "俯视"
+    }
   }
 }

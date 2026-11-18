@@ -49,6 +49,12 @@ describe('screenDirToGrid', () => {
     expect(d.x).toBeCloseTo(-Math.SQRT1_2)
     expect(d.y).toBeCloseTo(-Math.SQRT1_2)
   })
+  it('screen-right is still sideways after the camera turns', () => {
+    const yaw = Math.PI / 4 + Math.PI / 2
+    const r = screenDirToGrid({ x: 1, y: 0 }, yaw)
+    expect(r.x).toBeCloseTo(Math.cos(yaw), 6)
+    expect(r.y).toBeCloseTo(-Math.sin(yaw), 6)
+  })
   it('returns zero for no input', () => {
     expect(screenDirToGrid({ x: 0, y: 0 })).toEqual({ x: 0, y: 0 })
   })

@@ -1,4 +1,4 @@
-import { TILE_H, TILE_W, type Point } from './iso'
+import type { Point } from './iso'
 
 export const SPEED = 3.2 // tiles per second
 export const RADIUS = 0.3 // collision radius in tiles
@@ -23,9 +23,10 @@ export function step(pos: Point, dir: Point, dt: number, blocked: Blocked): Poin
 }
 
 /** Screen-space input (up = −y) → normalised grid-space direction. */
-export function screenDirToGrid(d: Point): Point {
-  const gx = d.y / TILE_H + d.x / TILE_W
-  const gy = d.y / TILE_H - d.x / TILE_W
+export function screenDirToGrid(d: Point, yaw = Math.PI / 4): Point {
+  // Screen-up walks away from the camera and screen-right walks to its right, whichever way it faces.
+  const gx = d.x * Math.cos(yaw) + d.y * Math.sin(yaw)
+  const gy = -d.x * Math.sin(yaw) + d.y * Math.cos(yaw)
   const len = Math.hypot(gx, gy)
   return len === 0 ? { x: 0, y: 0 } : { x: gx / len, y: gy / len }
 }
