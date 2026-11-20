@@ -114,8 +114,7 @@ const OPEN: TileKind[] = ['grass', 'flowers', 'sand']
 const cache = new Map<string, ModelPart[]>()
 
 /** Where each festival's pieces stand: open ground beside paths (or sand), spread out, the same every time. */
-export function festivalLayout(map: GameMap, kind: FestivalKind, fancy: boolean): FestivalPiece[] {
-  const taken: { x: number; y: number }[] = []
+export function festivalLayout(map: GameMap, kind: FestivalKind, fancy: boolean, taken: { x: number; y: number }[] = []): FestivalPiece[] {
   const free = (x: number, y: number) => {
     const c = map.cells[y]?.[x]
     return Boolean(c) && OPEN.includes(c.tile) && !c.prop && !c.npc && !c.spawn && !c.arrival && !map.blocked(x, y)
@@ -148,3 +147,10 @@ export function festivalLayout(map: GameMap, kind: FestivalKind, fancy: boolean)
 
 /** Festivals decorate the Kampung (the hub) only. */
 export const decoratedKinds = (mapId: string, kinds: FestivalKind[]): FestivalKind[] => (mapId === 'greenhaven' ? kinds : [])
+
+/** Every festival that is on, laid out together. */
+export function festivalLayouts(map: GameMap, kinds: FestivalKind[], fancy: boolean): FestivalPiece[] {
+  // One list of taken tiles, so festivals that overlap (CNY and Raya in Feb 2027) never stand on the same spot.
+  const taken: { x: number; y: number }[] = []
+  return kinds.flatMap((k) => festivalLayout(map, k, fancy, taken))
+}

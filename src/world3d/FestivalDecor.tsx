@@ -3,7 +3,7 @@ import { Sparkles } from '@react-three/drei'
 import type { GameMap } from '../game/map'
 import type { FestivalKind } from '../features/festival/festivalRules'
 import { PartInstances } from './Props'
-import { festivalLayout } from './props/festivalProps'
+import { festivalLayouts } from './props/festivalProps'
 
 /** Merdeka fireworks: coloured sparkle bursts high above the kampung (only on capable devices, never under reduced motion). */
 function Fireworks({ map }: { map: GameMap }) {
@@ -24,7 +24,7 @@ function Fireworks({ map }: { map: GameMap }) {
 
 /** The decorations of every festival that is on. Pieces never block movement: the map's walls are unchanged. */
 export function FestivalDecor({ map, kinds, fancy, shadows }: { map: GameMap; kinds: FestivalKind[]; fancy: boolean; shadows: boolean }) {
-  const pieces = useMemo(() => kinds.flatMap((k) => festivalLayout(map, k, fancy)), [map, kinds, fancy])
+  const pieces = useMemo(() => festivalLayouts(map, kinds, fancy), [map, kinds, fancy])
   if (!kinds.length) return null
   return (
     <>

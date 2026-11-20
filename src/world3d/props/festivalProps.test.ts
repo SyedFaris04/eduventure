@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { parseMap, type GameMap } from '../../game/map'
 import { PLACES } from '../../game/places'
 import { FESTIVAL_KINDS } from '../../features/festival/festivalRules'
-import { decoratedKinds, festivalLayout } from './festivalProps'
+import { decoratedKinds, festivalLayout, festivalLayouts } from './festivalProps'
 
 describe('festival decorations', () => {
   let map: GameMap
@@ -31,6 +31,14 @@ describe('festival decorations', () => {
     expect(festivalLayout(map, 'cny', true)).toEqual(festivalLayout(map, 'cny', true))
     expect(count(false)).toBeLessThan(count(true))
     expect(count(false)).toBeGreaterThan(0)
+  })
+
+  it('two festivals on at once never put their pieces on the same tile', () => {
+    for (const fancy of [true, false]) {
+      const spots = festivalLayouts(map, ['cny', 'raya'], fancy).flatMap((p) => p.items.map((s) => `${s.x},${s.z}`))
+      expect(spots.length).toBeGreaterThan(0)
+      expect(new Set(spots).size).toBe(spots.length)
+    }
   })
 
   it('only the Kampung is decorated', () => {
