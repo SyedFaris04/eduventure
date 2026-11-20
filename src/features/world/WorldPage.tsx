@@ -32,6 +32,7 @@ import { PlayerCard } from '../multiplayer/PlayerCard'
 import { RoomStatus } from '../multiplayer/RoomStatus'
 import { sendEmote } from '../multiplayer/useRoom'
 import { CraftPanel } from '../harvest/CraftPanel'
+import { BoardPanel } from '../board/BoardPanel'
 
 export function WorldPage() {
   const { t } = useTranslation()
@@ -100,6 +101,7 @@ export function WorldPage() {
         <BossPanel />
         <HarvestPanel />
         <CraftPanel />
+        <BoardPanel />
         <CoinBurst />
         <PlayerCard />
         <BreakReminder minutes={sessionMinutes} />

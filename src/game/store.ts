@@ -9,6 +9,7 @@ export type Prompt =
   | { kind: 'boss'; id: BossId }
   | { kind: 'harvest'; x: number; y: number; material: Material }
   | { kind: 'workbench' }
+  | { kind: 'board' }
 
 type GameState = {
   /** Joystick vector in screen space (−1..1); keyboard is read inside Phaser. */

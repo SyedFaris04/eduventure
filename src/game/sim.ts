@@ -162,7 +162,8 @@ export class WorldSim {
     if (monster) return { kind: 'monster', id: monster.id, monster: monster.kind, returning: Boolean(monster.returning) }
     const near = (k: (q: GameMap['props'][number]) => boolean) =>
       this.map.props.filter((q) => k(q) && dist({ x: q.x + 0.5, y: q.y + 0.5 }) <= INTERACT_RANGE).sort((a, b) => dist({ x: a.x + 0.5, y: a.y + 0.5 }) - dist({ x: b.x + 0.5, y: b.y + 0.5 }))[0]
-    if (near((q) => q.kind === 'workbench')) return { kind: 'workbench' }
+    const camp = near((q) => q.kind === 'workbench' || q.kind === 'whiteboard')
+    if (camp) return { kind: camp.kind === 'workbench' ? 'workbench' : 'board' }
     const node = near((q) => q.kind in HARVEST && !this.regrowing.has(`${q.x},${q.y}`))
     if (node) return { kind: 'harvest', x: node.x, y: node.y, material: HARVEST[node.kind]! }
     return null
