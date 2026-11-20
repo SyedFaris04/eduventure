@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseMap } from './map'
+import { HARVEST, parseMap } from './map'
 import { GREENHAVEN } from './maps/greenhaven'
 import { RESPAWN_MS, WorldSim } from './sim'
 
@@ -23,8 +23,8 @@ describe('WorldSim', () => {
   })
 
   it('returns to the academy door', () => {
-    const sim = new WorldSim(map, seeded(), { atArrival: true, start: { x: 10, y: 12 } })
-    expect(sim.hero.pos).toEqual({ x: 10.5, y: 12.5 })
+    const sim = new WorldSim(map, seeded(), { atArrival: true, start: { x: 10, y: 28 } })
+    expect(sim.hero.pos).toEqual({ x: 10.5, y: 28.5 })
   })
 
   it('spawns as many monsters as the map asks for', () => {
@@ -54,18 +54,18 @@ describe('WorldSim', () => {
 
   it('standing by Elder Rowan gives the npc prompt', () => {
     const sim = new WorldSim(map, seeded())
-    sim.hero.pos = { x: 12.5, y: 14.5 }
+    sim.hero.pos = { x: 12.5, y: 30.5 }
     expect(sim.prompt()).toEqual({ kind: 'npc', id: 'elder' })
   })
 
   it('a tap on a tree walks to a free tile beside it', () => {
     const sim = new WorldSim(map, seeded())
-    sim.hero.pos = { x: 12.5, y: 14.5 }
-    sim.tap({ x: 11.4, y: 12.6 }) // tree at tile (11, 12)
+    sim.hero.pos = { x: 12.5, y: 30.5 }
+    sim.tap({ x: 11.4, y: 28.6 }) // tree at tile (11, 28)
     expect(sim.path.length).toBeGreaterThan(0)
     const end = sim.path[sim.path.length - 1]
     expect(map.blocked(end.x, end.y)).toBe(false)
-    expect(Math.max(Math.abs(end.x - 11), Math.abs(end.y - 12))).toBe(1)
+    expect(Math.max(Math.abs(end.x - 11), Math.abs(end.y - 28))).toBe(1)
   })
 
   it('a defeated monster disappears and respawns in its zone after 20 s', () => {
@@ -128,5 +128,53 @@ describe('WorldSim', () => {
       for (const m of sim.monsters) expect(map.monsterZones[m.kind]!.some((t) => t.x === Math.floor(m.pos.x) && t.y === Math.floor(m.pos.y)), m.id).toBe(true)
     }
     expect(hopped).toBe(true)
+  })
+})
+
+describe('harvesting and the camp', () => {
+  const node = map.props.find((p) => p.kind === 'harvest_tree')!
+  const free = (x: number, y: number) => [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([dx, dy]) => ({ x: x + dx, y: y + dy })).find((p) => !map.blocked(p.x, p.y))!
+
+  it('standing by a ready harvest tree offers to harvest it', () => {
+    const sim = new WorldSim(map, seeded())
+    const at = free(node.x, node.y)
+    sim.monsters = []
+    sim.hero.pos = { x: at.x + 0.5, y: at.y + 0.5 }
+    expect(sim.prompt()).toMatchObject({ kind: 'harvest', x: node.x, y: node.y, material: 'wood' })
+  })
+
+  it('a regrowing node is never offered', () => {
+    const sim = new WorldSim(map, seeded())
+    const at = free(node.x, node.y)
+    sim.monsters = []
+    sim.hero.pos = { x: at.x + 0.5, y: at.y + 0.5 }
+    sim.regrowing = new Set([`${node.x},${node.y}`])
+    expect(sim.prompt()).not.toMatchObject({ kind: 'harvest', x: node.x, y: node.y })
+  })
+
+  it('a regrowing node never hides a ready one next to it', () => {
+    const nodes = map.props.filter((p) => p.kind in HARVEST)
+    const d = (n: { x: number; y: number }, x: number, y: number) => Math.hypot(n.x - x, n.y - y)
+    // A free tile with two nodes in reach.
+    let spot: { x: number; y: number; near: typeof nodes } | undefined
+    for (let y = 0; y < map.height && !spot; y++)
+      for (let x = 0; x < map.width && !spot; x++) {
+        const near = nodes.filter((n) => d(n, x, y) <= 1.5).sort((a, b) => d(a, x, y) - d(b, x, y))
+        if (!map.blocked(x, y) && near.length >= 2 && d(near[0], x, y) < d(near[1], x, y)) spot = { x, y, near }
+      }
+    const sim = new WorldSim(map, seeded())
+    sim.monsters = []
+    sim.hero.pos = { x: spot!.x + 0.5, y: spot!.y + 0.5 }
+    sim.regrowing = new Set([`${spot!.near[0].x},${spot!.near[0].y}`])
+    expect(sim.prompt()).toMatchObject({ kind: 'harvest', x: spot!.near[1].x, y: spot!.near[1].y })
+  })
+
+  it('the workbench opens crafting', () => {
+    const bench = map.props.find((p) => p.kind === 'workbench')!
+    const sim = new WorldSim(map, seeded())
+    const at = free(bench.x, bench.y)
+    sim.monsters = []
+    sim.hero.pos = { x: at.x + 0.5, y: at.y + 0.5 }
+    expect(sim.prompt()).toEqual({ kind: 'workbench' })
   })
 })

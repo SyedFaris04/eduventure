@@ -1,9 +1,14 @@
 import { create } from 'zustand'
 import type { Point } from './iso'
-import type { BossId, MonsterKind, NpcId } from './map'
+import type { BossId, MonsterKind, NpcId, Material } from './map'
 import type { PlaceId } from './places'
 
-export type Prompt = { kind: 'npc'; id: NpcId } | { kind: 'monster'; id: string; monster: MonsterKind; returning: boolean } | { kind: 'boss'; id: BossId }
+export type Prompt =
+  | { kind: 'npc'; id: NpcId }
+  | { kind: 'monster'; id: string; monster: MonsterKind; returning: boolean }
+  | { kind: 'boss'; id: BossId }
+  | { kind: 'harvest'; x: number; y: number; material: Material }
+  | { kind: 'workbench' }
 
 type GameState = {
   /** Joystick vector in screen space (−1..1); keyboard is read inside Phaser. */
@@ -26,6 +31,10 @@ type GameState = {
   cheerSeq: number
   /** The boatman's destination list is open. */
   jetty: boolean
+  /** A harvest in progress (the node the player is harvesting). */
+  harvest: { x: number; y: number; material: Material } | null
+  /** The camp workbench is open. */
+  workbench: boolean
   /** The settings panel is open. */
   settings: boolean
   /** Sailing to another place (the boat ride is showing). */
@@ -49,6 +58,8 @@ export const useGame = create<GameState>(() => ({
   hitSeq: 0,
   cheerSeq: 0,
   jetty: false,
+  harvest: null,
+  workbench: false,
   settings: false,
   travel: null,
   area: null,
@@ -61,7 +72,7 @@ if (import.meta.env.DEV) (window as unknown as { __game: typeof useGame }).__gam
 /** True while a panel owns the input (dialogue, battle, boss, jetty or settings): the world pauses movement. */
 export const worldPaused = () => {
   const s = useGame.getState()
-  return Boolean(s.dialogue || s.battle || s.boss || s.jetty || s.settings)
+  return Boolean(s.dialogue || s.battle || s.boss || s.jetty || s.settings || s.harvest || s.workbench)
 }
 
 /** Hero reaction after an answer: a flinch for a wrong one, a cheer for a win. */

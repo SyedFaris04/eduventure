@@ -370,7 +370,14 @@
       "pet_bell": "Collier à clochette",
       "pet_dye_ocean": "Teinture océan",
       "pet_dye_rose": "Teinture rose",
-      "pet_dye_gold": "Teinture dorée"
+      "pet_dye_gold": "Teinture dorée",
+      "woodcutter_hat": "Casquette de bûcheron",
+      "herb_crown": "Couronne d’herbes",
+      "crystal_staff": "Bâton de cristal",
+      "rattan_pack": "Panier en rotin",
+      "pet_leaf_hat": "Chapeau feuille",
+      "pet_crystal_collar": "Collier de cristal",
+      "pet_dye_forest": "Vert forêt"
     },
     "fromShop": "De la boutique"
   },
@@ -1036,6 +1043,69 @@
       "notValid": "Ce code de classe n’est pas valide.",
       "own": "C’est ta propre classe.",
       "failed": "Un problème est survenu. Réessaie."
+    }
+  },
+  "harvest": {
+    "action": {
+      "wood": "Couper l’arbre",
+      "stone": "Miner la roche",
+      "herbs": "Cueillir des herbes",
+      "crystal": "Miner le cristal"
+    },
+    "useWorkbench": "Utiliser l’établi",
+    "hint": "Réponds à une question pour récolter. Une bonne réponse rapporte plus !",
+    "gained": "+{{n}} {{name}}",
+    "done": "Terminé",
+    "materials": "Tes matériaux",
+    "material": {
+      "wood": "Bois",
+      "stone": "Pierre",
+      "herbs": "Herbes",
+      "crystal": "Cristal"
+    },
+    "errors": {
+      "regrowing": "Il repousse encore. Reviens dans quelques minutes.",
+      "pickaxe": "Il te faut une pioche pour le cristal. Fabriques-en une à l’établi du camp.",
+      "notEnough": "Pas encore assez de matériaux."
+    }
+  },
+  "craft": {
+    "title": "Établi du camp",
+    "tab": {
+      "tools": "Outils",
+      "items": "Objets",
+      "camp": "Camp"
+    },
+    "craft": "Fabriquer",
+    "make": "Fabriquer {{name}}",
+    "owned": "Possédé",
+    "madeTool": "Tu as fabriqué {{name}} ! Il t’aide à chaque récolte.",
+    "madeItem": "Tu as fabriqué {{name}} ! Porte-le depuis la page de ton personnage ou de ton compagnon.",
+    "tool": {
+      "stone_axe": "Hache en pierre",
+      "stone_pickaxe": "Pioche en pierre",
+      "crystal_axe": "Hache en cristal",
+      "crystal_pickaxe": "Pioche en cristal"
+    },
+    "toolHelp": {
+      "stone_axe": "+1 bois par arbre",
+      "stone_pickaxe": "+1 pierre ou cristal, et permet d’extraire le cristal",
+      "crystal_axe": "+2 bois par arbre",
+      "crystal_pickaxe": "+2 pierre ou cristal"
+    },
+    "camp": {
+      "camp_bench": "Banc du camp",
+      "camp_lantern": "Lanterne du camp",
+      "camp_flag": "Drapeau de l’île",
+      "whiteboard": "Tableau blanc"
+    },
+    "campHelp": "Tous les joueurs de cette île construisent le camp ensemble. Donne des matériaux pour terminer chaque projet.",
+    "give": "Donner {{n}} {{name}}",
+    "thanks": "Merci ! Tu as donné {{n}} {{name}} au camp.",
+    "built": "Construit",
+    "yours": "Tu as donné {{n}} jusqu’ici",
+    "errors": {
+      "taken": "Quelqu’un vient de donner le reste. Le camp a été mis à jour."
     }
   }
 }

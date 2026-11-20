@@ -12,7 +12,7 @@ const BODY = 'body' // replaced by the species colour, or the dye
 export const PET_SCALE: Record<PetStage, number> = { baby: 0.45, young: 0.6, adult: 0.75 }
 
 export const FORM_COLOUR: Record<PetForm, string> = { science: '#4fc3f7', maths: '#ffb74d', technology: '#7c4dff', language: '#e57373', seimbang: '#ffd54f' }
-const DYES: Record<string, string> = { pet_dye_ocean: '#4fa3d9', pet_dye_rose: '#e88fb4', pet_dye_gold: '#f2c14e' }
+const DYES: Record<string, string> = { pet_dye_ocean: '#4fa3d9', pet_dye_rose: '#e88fb4', pet_dye_gold: '#f2c14e', pet_dye_forest: '#4f9a3a' }
 
 type Design = { colour: string; head: V3; neck: V3; baby: Part[]; young: Part[]; adult: (c: string) => Part[] }
 const eyes = (y: number, z: number, w = 0.3): Part => ['eyes:round', '', [0, y, z], [w, w * 0.42, 1]]
@@ -104,6 +104,10 @@ const HATS: Record<string, Part[]> = {
     ...[0, 1, 2, 3, 4].map((i): Part => ['sphere', '#f48fb1', [Math.cos((i * 2 * PI) / 5) * 0.07, 0.02, Math.sin((i * 2 * PI) / 5) * 0.07], [0.07, 0.04, 0.07]]),
     ['sphere', '#ffd54f', [0, 0.04, 0], [0.06, 0.04, 0.06]],
   ],
+  pet_leaf_hat: [
+    ['sphere', '#5aa83c', [0, 0.02, 0], [0.3, 0.04, 0.22]],
+    ['cylinder', '#3f7a2a', [0, 0.07, 0], [0.02, 0.1, 0.02]],
+  ],
   pet_tengkolok: [
     ['cylinder', '#b03a2e', [0, 0, 0], [0.28, 0.1, 0.22]],
     ['cone', '#b03a2e', [0.06, 0.1, 0], [0.12, 0.16, 0.1], [0, 0, -0.5]],
@@ -111,6 +115,10 @@ const HATS: Record<string, Part[]> = {
   ],
 }
 const NECKS: Record<string, Part[]> = {
+  pet_crystal_collar: [
+    ['cylinder', '#6f7680', [0, 0, 0], [0.32, 0.05, 0.28]],
+    ['octa', '#6fd0ff', [0, -0.07, 0.15], [0.06, 0.1, 0.06]],
+  ],
   pet_batik: [
     ['cylinder', '#7e57c2', [0, 0, 0], [0.34, 0.06, 0.3]],
     ['cone', '#7e57c2', [0, -0.08, 0.14], [0.1, 0.14, 0.04], [PI, 0, 0]],

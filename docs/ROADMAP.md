@@ -243,6 +243,13 @@ Spec: `docs/superpowers/specs/2026-11-19-teach-your-pet-design.md`. Research fea
 - **Adventures:** every third new lesson the pet explores an island for 6 hours and comes back with a Malaysian fun fact (+10 pet points), collected on the pet page. Nothing is lost by coming back late.
 - **Needs a reviewer:** the 20 fun facts in `content/pet-facts.json` (English and Malay).
 
+### Bigger islands, harvesting and crafting — built and merged
+Spec: `docs/superpowers/specs/2026-11-20-harvest-craft-design.md`. Decision #40.
+- **Bigger islands:** every island is about twice the area, with a forest, a rocky slope, an herb meadow, new monster zones (1.5× the monsters) and a camp.
+- **Harvesting:** walk up to a fruit tree, rock, herb bush or crystal and press E (or tap the button). Answer one question: right gives 2, wrong gives 1 and explains why. Nodes regrow after 3 minutes. Crystal needs a pickaxe.
+- **Crafting at the camp workbench:** stone and crystal axes and pickaxes (more per harvest), and seven crafted-only items: woodcutter cap, herb crown, crystal staff, rattan basket, and a leaf hat, crystal collar and forest-green dye for the pet.
+- **Camp builds:** everyone on an island gives materials to build its bench, lantern, flag and whiteboard stand together; finished builds appear in the world for all players.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

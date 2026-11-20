@@ -6,6 +6,8 @@ export type PropKind =
   | 'palm' | 'kampung_house' | 'stall' | 'fern' | 'mangrove' | 'mushroom' | 'pine_snow' | 'pillar' | 'sundial' | 'abacus_gate'
   | 'server_tower' | 'neon_lamp' | 'robot_statue' | 'holo_tree' | 'academy'
   | 'library_tower' | 'signpost' | 'scroll_tree' | 'letter_block' | 'language_hall'
+  // Harvesting and camps (bigger islands)
+  | 'harvest_tree' | 'harvest_rock' | 'crystal' | 'herb' | 'workbench' | 'camp_bench' | 'camp_lantern' | 'camp_flag' | 'whiteboard'
 export type MonsterKind = 'sproutling' | 'pebblewing' | 'dinobud' | 'hornbill' | 'tapir' | 'pangolin' | 'cubelet' | 'hexowl' | 'pisnake' | 'bugsy' | 'bytebot' | 'loopy' | 'wordworm' | 'alphabat' | 'commaleon'
 export type NpcId = 'elder' | 'shopkeeper' | 'boatman' | 'teacher' | 'linguist'
 
@@ -84,3 +86,10 @@ export function areaAt(map: GameMap, p: Point): string | null {
   const y = Math.floor(p.y)
   return map.areas.find((a) => x >= a.x0 && x <= a.x1 && y >= a.y0 && y <= a.y1)?.name ?? null
 }
+
+export type Material = 'wood' | 'stone' | 'herbs' | 'crystal'
+/** What each harvestable prop gives. */
+export const HARVEST: Partial<Record<PropKind, Material>> = { harvest_tree: 'wood', harvest_rock: 'stone', herb: 'herbs', crystal: 'crystal' }
+/** Camp build spots: drawn (and solid) only once the island has built them together. */
+export const CAMP_BUILDS = ['camp_bench', 'camp_lantern', 'camp_flag', 'whiteboard'] as const satisfies readonly PropKind[]
+export type CampBuild = (typeof CAMP_BUILDS)[number]

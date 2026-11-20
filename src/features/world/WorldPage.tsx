@@ -24,6 +24,9 @@ import { AreaBanner } from './AreaBanner'
 import { BattlePanel } from '../battle/BattlePanel'
 import { BossPanel } from '../battle/BossPanel'
 import { WorldSettings } from './WorldSettings'
+import { HarvestPanel } from '../harvest/HarvestPanel'
+import { MaterialsBar } from '../harvest/MaterialsBar'
+import { CraftPanel } from '../harvest/CraftPanel'
 
 export function WorldPage() {
   const { t } = useTranslation()
@@ -55,7 +58,11 @@ export function WorldPage() {
       {character.data && <GameCanvas hero={character.data.appearance} pet={pet.data} returning={returning.data} />}
       {/* Overlays ignore pointer events except on their own controls, so taps reach the map. */}
       <div className="pointer-events-none absolute inset-0">
-        {character.data && <Hud character={character.data} xp={progression.data?.xp ?? 0} gold={progression.data?.gold ?? 0} title={title.data} />}
+        {/* The player card with the materials stacked under it, so they never overlap whatever the card's height. */}
+        <div className="absolute start-3 top-3 z-10 flex flex-col items-start gap-1.5">
+          {character.data && <Hud character={character.data} xp={progression.data?.xp ?? 0} gold={progression.data?.gold ?? 0} title={title.data} />}
+          <MaterialsBar />
+        </div>
         <Link to="/home" aria-label={t('world.home')} className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-3 z-10 px-3!')}>
           <House size={20} aria-hidden />
         </Link>
@@ -81,6 +88,8 @@ export function WorldPage() {
         <JettyPanel returning={returning.data} />
         <BattlePanel />
         <BossPanel />
+        <HarvestPanel />
+        <CraftPanel />
         <CoinBurst />
         <BreakReminder minutes={sessionMinutes} />
         {settingsOpen && <WorldSettings onClose={() => setSettingsOpen(false)} />}

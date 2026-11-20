@@ -370,7 +370,14 @@
       "pet_bell": "すずのくびわ",
       "pet_dye_ocean": "オーシャンのいろ",
       "pet_dye_rose": "ローズのいろ",
-      "pet_dye_gold": "ゴールドのいろ"
+      "pet_dye_gold": "ゴールドのいろ",
+      "woodcutter_hat": "きこりの帽子",
+      "herb_crown": "ハーブの冠",
+      "crystal_staff": "クリスタルの杖",
+      "rattan_pack": "籐のかご",
+      "pet_leaf_hat": "葉っぱの帽子",
+      "pet_crystal_collar": "クリスタルの首輪",
+      "pet_dye_forest": "森の緑"
     },
     "fromShop": "ショップのアイテム"
   },
@@ -1036,6 +1043,69 @@
       "notValid": "そのクラスコードは無効です。",
       "own": "それは自分のクラスです。",
       "failed": "問題が発生しました。もう一度お試しください。"
+    }
+  },
+  "harvest": {
+    "action": {
+      "wood": "木を切る",
+      "stone": "岩をほる",
+      "herbs": "薬草をつむ",
+      "crystal": "水晶をほる"
+    },
+    "useWorkbench": "作業台を使う",
+    "hint": "問題に1つ答えて集めよう。正解ならもっともらえる！",
+    "gained": "+{{n}} {{name}}",
+    "done": "完了",
+    "materials": "あなたの素材",
+    "material": {
+      "wood": "木材",
+      "stone": "石",
+      "herbs": "ハーブ",
+      "crystal": "クリスタル"
+    },
+    "errors": {
+      "regrowing": "まだ再生中です。数分後にまた来てね。",
+      "pickaxe": "クリスタルにはつるはしが必要です。キャンプの作業台で作ろう。",
+      "notEnough": "素材がまだ足りません。"
+    }
+  },
+  "craft": {
+    "title": "キャンプの作業台",
+    "tab": {
+      "tools": "道具",
+      "items": "アイテム",
+      "camp": "キャンプ"
+    },
+    "craft": "作る",
+    "make": "{{name}}を作る",
+    "owned": "所持中",
+    "madeTool": "{{name}}を作った！これから毎回の採集で役立つよ。",
+    "madeItem": "{{name}}を作った！キャラクターやペットのページで身につけよう。",
+    "tool": {
+      "stone_axe": "石のおの",
+      "stone_pickaxe": "石のつるはし",
+      "crystal_axe": "クリスタルのおの",
+      "crystal_pickaxe": "クリスタルのつるはし"
+    },
+    "toolHelp": {
+      "stone_axe": "木1本ごとに木材+1",
+      "stone_pickaxe": "石かクリスタル+1、クリスタルを掘れるようになる",
+      "crystal_axe": "木1本ごとに木材+2",
+      "crystal_pickaxe": "石かクリスタル+2"
+    },
+    "camp": {
+      "camp_bench": "キャンプのベンチ",
+      "camp_lantern": "キャンプのランタン",
+      "camp_flag": "島の旗",
+      "whiteboard": "ホワイトボード"
+    },
+    "campHelp": "この島のみんなで一緒にキャンプを作ります。素材を渡して各プロジェクトを完成させよう。",
+    "give": "{{name}}を{{n}}渡す",
+    "thanks": "ありがとう！キャンプに{{name}}を{{n}}渡しました。",
+    "built": "完成",
+    "yours": "これまでに{{n}}渡しました",
+    "errors": {
+      "taken": "ちょうど誰かが残りを渡しました。キャンプを更新しました。"
     }
   }
 }

@@ -43,11 +43,11 @@ test('english lesson in the hall', async ({ page }) => {
   test.setTimeout(480_000)
   await newPlayer(page)
   await enterWorld(page)
-  await walkUntil(page, { x: 17.5, y: 32.5 }, 'npc', 'boatman')
+  await walkUntil(page, { x: 17.5, y: 48.5 }, 'npc', 'boatman')
   await sail(page, /Sail to Language Kingdom/, 'language_kingdom')
 
   // Cikgu Lina stands at the Language Hall door (tile 22, 11).
-  await walkUntil(page, { x: 21.5, y: 12.5 }, 'npc', 'linguist')
+  await walkUntil(page, { x: 21.5, y: 28.5 }, 'npc', 'linguist')
   const door = (await state(page)).player
   await page.keyboard.press('e')
   await expect(page).toHaveURL(/\/hall$/)

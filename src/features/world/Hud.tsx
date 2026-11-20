@@ -12,7 +12,7 @@ export function Hud({ character, xp, gold, title }: { character: MyCharacter; xp
   return (
     <section
       aria-label={t('world.hud')}
-      className="pointer-events-auto absolute start-3 top-3 z-10 flex w-[min(calc(100vw-5.5rem),20rem)] items-center gap-3 rounded-2xl border-[3px] border-wood bg-cream/95 p-2 shadow-[0_4px_0_var(--color-wood-dark)]"
+      className="pointer-events-auto flex w-[min(calc(100vw-5.5rem),20rem)] items-center gap-3 rounded-2xl border-[3px] border-wood bg-cream/95 p-2 shadow-[0_4px_0_var(--color-wood-dark)]"
     >
       <div className="size-12 shrink-0 overflow-hidden rounded-xl border-2 border-wood/50 bg-water/40 sm:size-14">
         <Snapshot subject={{ kind: 'hero', appearance: character.appearance }} px={72} alt="" className="-mt-1 w-full" />

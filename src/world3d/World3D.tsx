@@ -1,3 +1,4 @@
+import { HarvestNodes } from './HarvestNodes'
 import { twoFinger } from './gestures'
 import { playSfx } from '../audio/engine'
 import { seeThrough, seeThroughRadius } from './seeThrough'
@@ -11,7 +12,7 @@ import type { Appearance } from '../features/character/appearance'
 import { areaAt, type GameMap } from '../game/map'
 import { clearPlaceMaps } from '../game/placeMaps'
 import { WorldSim } from '../game/sim'
-import { useGame, worldPaused } from '../game/store'
+import { useGame, worldPaused, type Prompt } from '../game/store'
 import { screenOf } from '../game/screen'
 import { Bosses, Hero, Monsters, Npcs } from './Actors'
 import { Ground } from './Ground'
@@ -64,6 +65,8 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       if (prompt?.kind === 'npc') useGame.setState(prompt.id === 'boatman' ? { jetty: true } : prompt.id === 'teacher' ? { academy: 'code' } : prompt.id === 'linguist' ? { academy: 'language' } : { dialogue: { npc: prompt.id, page: 0 } })
       if (prompt?.kind === 'monster') useGame.setState({ battle: { monsterId: prompt.id, monster: prompt.monster, returning: prompt.returning } })
       if (prompt?.kind === 'boss') useGame.setState({ boss: prompt.id })
+      if (prompt?.kind === 'harvest') useGame.setState({ harvest: { x: prompt.x, y: prompt.y, material: prompt.material } })
+      if (prompt?.kind === 'workbench') useGame.setState({ workbench: true })
     }
     const keys = listenKeys(interact)
     keysRef.current = keys
@@ -163,7 +166,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     }
 
     const prompt = sim.prompt()
-    if (store.prompt?.id !== prompt?.id) useGame.setState({ prompt })
+    if (promptKey(store.prompt) !== promptKey(prompt)) useGame.setState({ prompt })
     if (now - lastEmit.current > 150) {
       lastEmit.current = now
       const area = areaAt(sim.map, sim.hero.pos)
@@ -229,7 +232,12 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
 }
 
 /** One place in 3D. Default export so it loads as its own chunk with three.js. */
-export default function World3D({ hero, pet, returning = 0, map, atArrival = false, startAt }: { hero: Appearance; pet?: Pet | null; returning?: number; map: GameMap; atArrival?: boolean; startAt?: { x: number; y: number } }) {
+const NONE = new Set<string>()
+
+/** Identity of a prompt, so the store only changes when the thing nearby changes. */
+const promptKey = (p: Prompt | null) => (!p ? '' : p.kind === 'harvest' ? `harvest:${p.x},${p.y}` : p.kind === 'workbench' ? 'workbench' : `${p.kind}:${p.id}`)
+
+export default function World3D({ hero, pet, returning = 0, regrowing = NONE, built = NONE, map, atArrival = false, startAt }: { hero: Appearance; pet?: Pet | null; returning?: number; regrowing?: Set<string>; built?: Set<string>; map: GameMap; atArrival?: boolean; startAt?: { x: number; y: number } }) {
   const sim = useMemo(() => {
     const s = new WorldSim(map, Math.random, { atArrival, start: startAt })
     // Development only: /dev/world?at=x,y starts the hero on that tile (for screenshots).
@@ -238,6 +246,10 @@ export default function World3D({ hero, pet, returning = 0, map, atArrival = fal
     return s
     // eslint-disable-next-line react-hooks/exhaustive-deps -- the start spot is read once, when the place opens
   }, [map, atArrival])
+  // Regrowing harvest nodes offer nothing until they are ready again.
+  useEffect(() => {
+    sim.regrowing = regrowing
+  }, [sim, regrowing])
   // Due topics can arrive after the world has opened: top the Returning monsters up and redraw.
   const [, redraw] = useState(0)
   useEffect(() => {
@@ -267,6 +279,7 @@ export default function World3D({ hero, pet, returning = 0, map, atArrival = fal
       <Ground map={map} />
       <Water map={map} sparkles={level === 'high' && !reduced} />
       <Props map={map} shadows={level === 'high'} />
+      <HarvestNodes map={map} regrowing={regrowing} built={built} shadows={level === 'high'} />
       <Decor map={map} fancy={level === 'high' && !reduced} />
       <Npcs sim={sim} reduced={reduced} />
       <Monsters sim={sim} reduced={reduced} />

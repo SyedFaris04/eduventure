@@ -71,11 +71,11 @@ test('Cikgu Byte opens the Academy, and Back returns to the Academy door', async
   test.setTimeout(420_000)
   await newPlayer(page)
   await enterWorld(page)
-  await walkUntil(page, { x: 17.5, y: 32.5 }, 'npc', 'boatman')
+  await walkUntil(page, { x: 17.5, y: 48.5 }, 'npc', 'boatman')
   await sail(page, /Sail to Technology City/, 'technology_city')
 
   // Cikgu Byte stands at the Academy door (tile 22, 11).
-  await walkUntil(page, { x: 21.5, y: 12.5 }, 'npc', 'teacher')
+  await walkUntil(page, { x: 21.5, y: 28.5 }, 'npc', 'teacher')
   const door = (await state(page)).player
   await page.keyboard.press('e')
   await expect(page).toHaveURL(/\/academy$/)

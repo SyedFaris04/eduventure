@@ -29,4 +29,5 @@ Branching (owner's standing instruction, 2026-11-16): build each phase on its ow
 - `npm run dev` — dev server, also reachable from a phone on the same Wi-Fi
 - `npm run build` — type-check (TypeScript 7) and production build
 - `npm run gen:questions` / `npm run gen:lessons` — turn edited `content/questions` or `content/courses` files into migrations (the tests check, and run, the content first)
+- After moving or adding harvest nodes (`t`, `o`, `c`, `v`) in a map, run `python scripts/gen-nodes.py`: it writes a migration listing every node, so the server only lets players harvest real ones.
 - After adding questions with a KSSR/KSSM alignment, run `node scripts/tag-curriculum.mjs` (adds the curriculum tag), then `npm run gen:questions`.

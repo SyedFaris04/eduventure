@@ -1,5 +1,5 @@
 import type { Pet } from '../pet/petRules'
-import { Component, lazy, Suspense, use, useEffect, useState, type ReactNode } from 'react'
+import { Component, lazy, Suspense, use, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RefreshCw } from 'lucide-react'
 import { Button } from '../../components/ui'
@@ -9,6 +9,8 @@ import { usePlace } from '../../game/placeStore'
 import { placeMap } from '../../game/placeMaps'
 import { useGame } from '../../game/store'
 import { Travel } from './Travel'
+import { useSession } from '../authentication/useSession'
+import { useCamp, useRegrowing } from '../harvest/harvestApi'
 
 // three.js and the models download only when the world opens.
 const World3D = lazy(() => import('../../world3d/World3D'))
@@ -37,13 +39,17 @@ function CurrentPlace({ hero, pet, returning }: { hero: Appearance; pet?: Pet | 
   const place = usePlace((s) => s.place)
   const arriving = usePlace((s) => s.arriving)
   const map = use(placeMap(place))
+  const uid = useSession().session?.user.id
+  const regrowing = useRegrowing(uid, place).data
+  const camp = useCamp(place, Boolean(uid)).data
+  const built = useMemo(() => new Set<string>(camp?.filter((p) => p.built).map((p) => p.project)), [camp])
   // Coming back from the Code Academy: start where the player left, not at the jetty. The spot is cleared only
   // once the world has really appeared, because the map download can make React throw the first render away.
   const resumeAt = usePlace((s) => s.resumeAt)
   useEffect(() => {
     if (usePlace.getState().resumeAt) usePlace.setState({ resumeAt: null })
   }, [])
-  return <World3D key={place} hero={hero} pet={pet} returning={returning?.[place] ?? 0} map={map} atArrival={arriving} startAt={resumeAt ?? undefined} />
+  return <World3D key={place} hero={hero} pet={pet} returning={returning?.[place] ?? 0} map={map} atArrival={arriving} startAt={resumeAt ?? undefined} regrowing={regrowing} built={built} />
 }
 
 /** The 3D world, or a clear message when this device can't show it or the download failed. */

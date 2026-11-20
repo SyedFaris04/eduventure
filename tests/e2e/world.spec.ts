@@ -12,10 +12,10 @@ test('walk, talk to the Elder, win a battle; Home shows the server totals after 
   await page.waitForFunction((y) => (window as unknown as { __game: { getState: () => GameState } }).__game.getState().player.y < y - 0.5, start.y, { timeout: 20_000 })
   await page.keyboard.up('ArrowUp')
 
-  // Elder Rowan stands at tile (12, 13). The camera eases after the hero, so let it settle before tapping.
+  // Elder Rowan stands at tile (12, 29). The camera eases after the hero, so let it settle before tapping.
   for (let i = 0; i < 4 && (await state(page)).prompt?.kind !== 'npc'; i++) {
     await page.waitForTimeout(1500)
-    await clickGrid(page, { x: 12.5, y: 13.5 })
+    await clickGrid(page, { x: 12.5, y: 29.5 })
     await page.waitForFunction(() => (window as unknown as { __game: { getState: () => GameState } }).__game.getState().prompt?.kind === 'npc', null, { timeout: 30_000 }).catch(() => undefined)
   }
   await expect(page.getByRole('button', { name: /Talk to Elder Rowan/ })).toBeVisible()
