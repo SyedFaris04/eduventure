@@ -68,3 +68,54 @@ describe.skipIf(!url || !key)('multiplayer: room cards and names', () => {
     expect(await visibility(p)).toEqual({ visible: true, reason: null })
   })
 })
+
+const adminEmail = process.env.TEST_ADMIN_EMAIL
+const adminPassword = process.env.TEST_ADMIN_PASSWORD
+
+describe.skipIf(!url || !key)('multiplayer: blocks, reports and moderation', () => {
+  let me: SupabaseClient
+  let them: SupabaseClient
+  let theirId: string
+  beforeAll(async () => {
+    me = await player(2000, 'Block Tester')
+    them = await player(2000, 'Some Rider')
+    theirId = (await card(them)).public_id
+  })
+
+  it('blocking is private and reversible', async () => {
+    expect((await me.rpc('block_player', { p_public_id: theirId })).error).toBeNull()
+    expect((await me.rpc('my_blocks')).data).toContain(theirId)
+    await me.rpc('unblock_player', { p_public_id: theirId })
+    expect((await me.rpc('my_blocks')).data).not.toContain(theirId)
+    expect((await me.rpc('block_player', { p_public_id: (await card(me)).public_id })).error?.message).toMatch(/yourself/)
+  })
+
+  it('reports need a real player, never yourself, and are limited', async () => {
+    const mine = (await card(me)).public_id
+    expect((await me.rpc('report_player', { p_public_id: mine, p_reason: 'other', p_place: 'greenhaven' })).error?.message).toMatch(/yourself/)
+    expect((await me.rpc('report_player', { p_public_id: crypto.randomUUID(), p_reason: 'other', p_place: 'greenhaven' })).error?.message).toMatch(/No such player/)
+    for (let i = 0; i < 10; i++) expect((await me.rpc('report_player', { p_public_id: theirId, p_reason: 'rude_name', p_place: 'greenhaven' })).error).toBeNull()
+    expect((await me.rpc('report_player', { p_public_id: theirId, p_reason: 'rude_name', p_place: 'greenhaven' })).error?.message).toMatch(/Too many/)
+  })
+
+  it("players cannot see reports, ban, or switch someone else's child", async () => {
+    expect((await me.rpc('open_reports')).error).not.toBeNull()
+    expect((await me.rpc('ban_from_multiplayer', { p_public_id: theirId, p_banned: true })).error).not.toBeNull()
+    const theirUid = (await them.auth.getUser()).data.user!.id
+    expect((await me.rpc('set_child_visible', { p_child: theirUid, p_visible: false })).error).not.toBeNull()
+    expect((await card(them)).banned).toBe(false)
+  })
+
+  it.skipIf(!adminEmail || !adminPassword)('a moderator ban shows on the card and closes the reports', async () => {
+    const admin = newClient()
+    const { error } = await admin.auth.signInWithPassword({ email: adminEmail!, password: adminPassword! })
+    if (error) throw error
+    const listed = ((await admin.rpc('open_reports')).data as { reported_public_id: string; open_count: number }[]).find((r) => r.reported_public_id === theirId)
+    expect(listed?.open_count).toBe(10)
+    expect((await admin.rpc('ban_from_multiplayer', { p_public_id: theirId, p_banned: true })).error).toBeNull()
+    expect(await card(them)).toMatchObject({ banned: true, visible: false })
+    expect(((await admin.rpc('open_reports')).data as { reported_public_id: string }[]).some((r) => r.reported_public_id === theirId)).toBe(false)
+    await admin.rpc('ban_from_multiplayer', { p_public_id: theirId, p_banned: false })
+    expect((await card(them)).banned).toBe(false)
+  })
+})
