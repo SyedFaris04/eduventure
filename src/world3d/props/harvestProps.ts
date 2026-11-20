@@ -5,13 +5,13 @@ import type { Shape } from '../hero/parts'
 import { addWind } from '../wind'
 
 type V3 = [number, number, number]
-type Part = [Shape, Material, V3, V3, V3?]
+export type Part = [Shape, Material, V3, V3, V3?]
 export type HarvestKind = 'harvest_tree' | 'harvest_rock' | 'crystal' | 'herb'
 export type ModelPart = { geometry: BufferGeometry; material: Material; local: Matrix4 }
 
 const m = material
 const glows = new Map<string, MeshStandardMaterial>()
-const glow = (c: string) => {
+export const glow = (c: string) => {
   let g = glows.get(c)
   if (!g) glows.set(c, (g = new MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: 0.7, roughness: 0.35 })))
   return g
@@ -104,7 +104,7 @@ const CAMP: Record<'workbench' | CampBuild, () => Part[]> = {
   ],
 }
 
-function toParts(parts: Part[]): ModelPart[] {
+export function toParts(parts: Part[]): ModelPart[] {
   return parts.map(([shape, mat, at, size, rot]) => ({
     geometry: geometry(shape),
     material: mat,

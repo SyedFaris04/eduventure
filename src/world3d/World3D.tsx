@@ -25,6 +25,9 @@ import { createQualityMonitor } from './quality'
 import { qualityLevel, useQuality } from './qualityStore'
 import { Water } from './Water'
 import { Decor } from './Decor'
+import { FestivalDecor } from './FestivalDecor'
+import { decoratedKinds } from './props/festivalProps'
+import type { FestivalKind } from '../features/festival/festivalRules'
 import { THEMES } from './themes'
 import { windTime } from './wind'
 
@@ -237,7 +240,9 @@ const NONE = new Set<string>()
 /** Identity of a prompt, so the store only changes when the thing nearby changes. */
 const promptKey = (p: Prompt | null) => (!p ? '' : p.kind === 'harvest' ? `harvest:${p.x},${p.y}` : p.kind === 'workbench' ? 'workbench' : `${p.kind}:${p.id}`)
 
-export default function World3D({ hero, pet, returning = 0, regrowing = NONE, built = NONE, map, atArrival = false, startAt }: { hero: Appearance; pet?: Pet | null; returning?: number; regrowing?: Set<string>; built?: Set<string>; map: GameMap; atArrival?: boolean; startAt?: { x: number; y: number } }) {
+const NO_FESTIVALS: FestivalKind[] = []
+
+export default function World3D({ hero, pet, returning = 0, regrowing = NONE, built = NONE, festivals = NO_FESTIVALS, map, atArrival = false, startAt }: { hero: Appearance; pet?: Pet | null; returning?: number; regrowing?: Set<string>; built?: Set<string>; festivals?: FestivalKind[]; map: GameMap; atArrival?: boolean; startAt?: { x: number; y: number } }) {
   const sim = useMemo(() => {
     const s = new WorldSim(map, Math.random, { atArrival, start: startAt })
     // Development only: /dev/world?at=x,y starts the hero on that tile (for screenshots).
@@ -257,6 +262,7 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
     redraw((n) => n + 1)
   }, [sim, returning])
   const look = THEMES[map.theme]
+  const festive = useMemo(() => decoratedKinds(map.id, festivals), [map.id, festivals])
   const covered = useGame((s) => Boolean(s.battle || s.boss))
   const level = useQuality(qualityLevel)
   const reduced = useMemo(reducedMotion, [])
@@ -281,6 +287,7 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
       <Props map={map} shadows={level === 'high'} />
       <HarvestNodes map={map} regrowing={regrowing} built={built} shadows={level === 'high'} />
       <Decor map={map} fancy={level === 'high' && !reduced} />
+      <FestivalDecor map={map} kinds={festive} fancy={level === 'high' && !reduced} shadows={level === 'high'} />
       <Npcs sim={sim} reduced={reduced} />
       <Monsters sim={sim} reduced={reduced} />
       <Bosses sim={sim} reduced={reduced} />

@@ -377,7 +377,17 @@
       "rattan_pack": "سلة الخيزران",
       "pet_leaf_hat": "قبعة ورقة",
       "pet_crystal_collar": "طوق كريستالي",
-      "pet_dye_forest": "أخضر الغابة"
+      "pet_dye_forest": "أخضر الغابة",
+      "holiday_sunhat": "قبعة شمس للعطلة",
+      "pet_shades": "نظارة شمسية",
+      "lion_dance_hat": "قبعة رقصة الأسد",
+      "pet_lantern": "حلية فانوس",
+      "songket_top": "قميص سونغكيت",
+      "pet_ketupat": "حلية كتوبات",
+      "sparkler_wand": "عصا الشرارات",
+      "pet_bunting": "طوق الرايات",
+      "kolam_shawl": "شال كولام",
+      "pet_marigold": "إكليل القطيفة"
     },
     "fromShop": "من المتجر"
   },
@@ -610,7 +620,14 @@
     "weekLabel": "لعبت {{n}} من 7 أيام هذا الأسبوع",
     "monthComeback": "تعلّمت في {{n}} يومًا هذا الشهر — ابدأ سلسلة جديدة اليوم!",
     "viewWeek": "اعرض هذا الأسبوع فقط",
-    "viewCount": "اعرض رقم سلسلتي"
+    "viewCount": "اعرض رقم سلسلتي",
+    "festival": {
+      "daily": "{{festival}}: أجب عن {{target}} أسئلة بشكل صحيح اليوم",
+      "answers": "{{festival}}: أجب عن {{target}} سؤالًا بشكل صحيح",
+      "monsters": "{{festival}}: اهزم {{target}} وحوش",
+      "harvest": "{{festival}}: احصد {{target}} مرات",
+      "lessons": "{{festival}}: أكمل {{target}} دروس"
+    }
   },
   "boss": {
     "name": "حارس غرينهيفن",
@@ -1107,5 +1124,26 @@
     "errors": {
       "taken": "قدّم أحدهم الباقي للتو. تم تحديث المخيم."
     }
+  },
+  "festival": {
+    "name": {
+      "school_holiday": "العطلة المدرسية",
+      "cny": "رأس السنة الصينية",
+      "raya": "Hari Raya",
+      "merdeka": "Merdeka",
+      "deepavali": "Deepavali"
+    },
+    "until": "حتى {{date}}",
+    "tokens": "{{n}} من رموز المهرجان",
+    "tokenIcon": "رموز المهرجان",
+    "errors": {
+      "off": "هذا المهرجان ليس قائمًا الآن.",
+      "tokens": "تحتاج إلى مزيد من رموز المهرجان."
+    },
+    "stall": "كشك المهرجان",
+    "stallIntro": "اجمع رموز المهرجان من مهام المهرجان. تعود هذه العناصر كل عام.",
+    "needMore": "ينقصك {{n}} من الرموز",
+    "owned": "تملكه",
+    "chipLabel": "{{names}}: {{n}} من رموز المهرجان. افتح كشك المهرجان"
   }
 }

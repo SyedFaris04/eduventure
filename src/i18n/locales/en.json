@@ -377,7 +377,17 @@
       "rattan_pack": "Rattan basket",
       "pet_leaf_hat": "Leaf hat",
       "pet_crystal_collar": "Crystal collar",
-      "pet_dye_forest": "Forest green"
+      "pet_dye_forest": "Forest green",
+      "holiday_sunhat": "Holiday sun hat",
+      "pet_shades": "Cool shades",
+      "lion_dance_hat": "Lion dance hat",
+      "pet_lantern": "Lantern charm",
+      "songket_top": "Songket baju",
+      "pet_ketupat": "Ketupat charm",
+      "sparkler_wand": "Sparkler wand",
+      "pet_bunting": "Bunting collar",
+      "kolam_shawl": "Kolam shawl",
+      "pet_marigold": "Marigold garland"
     },
     "fromShop": "From the shop"
   },
@@ -610,7 +620,14 @@
     "weekLabel": "Played on {{n}} of 7 days this week",
     "monthComeback": "You learned on {{n}} days this month — start a new streak today!",
     "viewWeek": "Show only this week",
-    "viewCount": "Show my streak number"
+    "viewCount": "Show my streak number",
+    "festival": {
+      "daily": "{{festival}}: answer {{target}} questions right today",
+      "answers": "{{festival}}: answer {{target}} questions right",
+      "monsters": "{{festival}}: defeat {{target}} monsters",
+      "harvest": "{{festival}}: harvest {{target}} times",
+      "lessons": "{{festival}}: finish {{target}} lessons"
+    }
   },
   "boss": {
     "name": "Greenhaven Guardian",
@@ -1107,5 +1124,26 @@
     "errors": {
       "taken": "Someone just gave the rest of this. The camp has been updated."
     }
+  },
+  "festival": {
+    "name": {
+      "school_holiday": "School holiday",
+      "cny": "Chinese New Year",
+      "raya": "Hari Raya",
+      "merdeka": "Merdeka",
+      "deepavali": "Deepavali"
+    },
+    "until": "until {{date}}",
+    "tokens": "{{n}} festival tokens",
+    "tokenIcon": "festival tokens",
+    "errors": {
+      "off": "This festival isn't on right now.",
+      "tokens": "You need more festival tokens."
+    },
+    "stall": "Festival stall",
+    "stallIntro": "Earn festival tokens from festival missions. These items come back every year.",
+    "needMore": "{{n}} more tokens",
+    "owned": "Owned",
+    "chipLabel": "{{names}}: {{n}} festival tokens. Open the festival stall"
   }
 }

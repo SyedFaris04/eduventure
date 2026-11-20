@@ -120,7 +120,7 @@ Spec: `docs/superpowers/specs/2026-11-16-island-world-design.md`; plan: `docs/su
 - Technology City and Language Kingdom show on the jetty as "Coming soon". They are projects 3 and 4.
 
 **Malaysian outreach ideas (noted, not built):**
-- festival events for Hari Raya, Chinese New Year, Deepavali and Merdeka, inclusive of everyone;
+- ~~festival events for Hari Raya, Chinese New Year, Deepavali and Merdeka, inclusive of everyone~~ (built: festival and school-holiday events);
 - Malaysian food as energy items: nasi lemak, roti canai, teh tarik;
 - traditional outfits in the shop: baju Melayu, baju kurung, batik, cheongsam;
 - "SPM practice" labels on questions already tagged to KSSR, KSSM and SPM;
@@ -249,6 +249,12 @@ Spec: `docs/superpowers/specs/2026-11-20-harvest-craft-design.md`. Decision #40.
 - **Harvesting:** walk up to a fruit tree, rock, herb bush or crystal and press E (or tap the button). Answer one question: right gives 2, wrong gives 1 and explains why. Nodes regrow after 3 minutes. Crystal needs a pickaxe.
 - **Crafting at the camp workbench:** stone and crystal axes and pickaxes (more per harvest), and seven crafted-only items: woodcutter cap, herb crown, crystal staff, rattan basket, and a leaf hat, crystal collar and forest-green dye for the pet.
 - **Camp builds:** everyone on an island gives materials to build its bench, lantern, flag and whiteboard stand together; finished builds appear in the world for all players.
+
+### Festival and school-holiday events — built and merged
+Spec: `docs/superpowers/specs/2026-11-20-festival-events-design.md`. Decision #41. Christmas was dropped by the owner.
+- **Festivals:** year-end school holiday (from 5 Dec 2026), Chinese New Year, Ramadan and Hari Raya, Merdeka and Deepavali. Dates are rows in the `festivals` table (Malaysia time); 2027's Ramadan start, Deepavali and year-end holiday are provisional.
+- **While a festival is on:** Kampung decorations, five festival missions paying festival tokens, a festival chip under the player card, and a festival stall in the shop (one outfit item and one pet item per festival). Items return every year; tokens never expire.
+- **Admin preview** in `/admin` shows any festival on the admin's own account before it starts.
 
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.

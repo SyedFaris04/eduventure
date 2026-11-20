@@ -99,6 +99,11 @@ const DESIGNS: Record<PetSpecies, Design> = {
 }
 
 const HATS: Record<string, Part[]> = {
+  pet_shades: [
+    ...[-0.09, 0.09].map((x): Part => ['sphere', '#1f2a36', [x, 0.02, 0.12], [0.12, 0.07, 0.04]]),
+    ['box', '#1f2a36', [0, 0.03, 0.12], [0.08, 0.02, 0.02]],
+    ['sphere', '#ffffff', [-0.11, 0.04, 0.14], [0.03, 0.02, 0.01]],
+  ],
   pet_songkok: [['cylinder', '#2b2b2b', [0, 0, 0], [0.26, 0.12, 0.2]]],
   pet_flower: [
     ...[0, 1, 2, 3, 4].map((i): Part => ['sphere', '#f48fb1', [Math.cos((i * 2 * PI) / 5) * 0.07, 0.02, Math.sin((i * 2 * PI) / 5) * 0.07], [0.07, 0.04, 0.07]]),
@@ -115,6 +120,23 @@ const HATS: Record<string, Part[]> = {
   ],
 }
 const NECKS: Record<string, Part[]> = {
+  pet_lantern: [
+    ['cylinder', '#d32f2f', [0, 0, 0], [0.32, 0.05, 0.28]],
+    ['sphere', '#e53935', [0, -0.1, 0.15], [0.12, 0.14, 0.12]],
+    ...[-0.02, -0.18].map((y): Part => ['cylinder', '#f2c14e', [0, y, 0.15], [0.07, 0.03, 0.07]]),
+  ],
+  pet_ketupat: [
+    ['cylinder', '#4f7a2a', [0, 0, 0], [0.32, 0.05, 0.28]],
+    ['octa', '#d8b54a', [0, -0.09, 0.15], [0.12, 0.14, 0.12]],
+    ['box', '#4f7a2a', [0, -0.09, 0.2], [0.13, 0.02, 0.02], [0, 0, 0.6]],
+  ],
+  pet_bunting: [
+    ['cylinder', '#f7f1e1', [0, 0, 0], [0.33, 0.04, 0.29]],
+    ...(['#d8352a', '#ffffff', '#1f4fa3', '#f2c14e'] as const).map((c, i): Part => ['cone', c, [-0.12 + i * 0.08, -0.05, 0.15 - Math.abs(i - 1.5) * 0.02], [0.06, 0.1, 0.02], [PI, 0, 0]]),
+  ],
+  pet_marigold: [
+    ...[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i): Part => ['sphere', i % 2 ? '#ffb300' : '#f57c00', [Math.cos((i * 2 * PI) / 10) * 0.16, -0.01, Math.sin((i * 2 * PI) / 10) * 0.14], [0.07, 0.06, 0.07]]),
+  ],
   pet_crystal_collar: [
     ['cylinder', '#6f7680', [0, 0, 0], [0.32, 0.05, 0.28]],
     ['octa', '#6fd0ff', [0, -0.07, 0.15], [0.06, 0.1, 0.06]],

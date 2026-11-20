@@ -5,7 +5,7 @@ import { rightAnswer as right } from './answers'
 const url = process.env.VITE_SUPABASE_URL
 const key = process.env.VITE_SUPABASE_PUBLISHABLE_KEY
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
-type Mission = { id: string; template_id: string; period: string; progress: number; target: number; completed: boolean; claimed: boolean }
+type Mission = { id: string; template_id: string; period: string; progress: number; target: number; completed: boolean; claimed: boolean; festival?: string | null }
 
 describe.skipIf(!url || !key)('missions and streaks (live project)', () => {
   let c: SupabaseClient
@@ -24,11 +24,11 @@ describe.skipIf(!url || !key)('missions and streaks (live project)', () => {
   })
 
   it('gives every player 3 daily and 2 weekly missions, starting at zero', async () => {
-    const m = await missions()
+    const m = (await missions()).filter((x) => !x.festival) // festival missions come and go with the festivals
     expect(m.filter((x) => x.period === 'daily')).toHaveLength(3)
     expect(m.filter((x) => x.period === 'weekly')).toHaveLength(2)
     expect(m.every((x) => x.progress === 0 && !x.completed && !x.claimed)).toBe(true)
-    expect((await missions()).map((x) => x.id)).toEqual(m.map((x) => x.id)) // asking again does not create more
+    expect((await missions()).filter((x) => !x.festival).map((x) => x.id)).toEqual(m.map((x) => x.id)) // asking again does not create more
   })
 
   it('cannot claim an unfinished mission or somebody else’s', async () => {

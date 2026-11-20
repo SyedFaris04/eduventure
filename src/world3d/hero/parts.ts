@@ -53,7 +53,7 @@ function face(a: Appearance): PartSpec[] {
   return [p('eyes', 'head', `eyes:${a.eyes}`, INK, [0, 0.5, 0.471], [0.74, 0.3, 1]), p('face', 'head', `mouth:${a.face}`, INK, [0, 0.26, 0.471], [0.44, 0.22, 1])]
 }
 
-const LONG_SLEEVES = new Set(['hoodie_orange', 'robe_purple', 'scholar_coat', 'knight_tabard', 'star_cloak'])
+const LONG_SLEEVES = new Set(['hoodie_orange', 'robe_purple', 'scholar_coat', 'knight_tabard', 'star_cloak', 'songket_top'])
 
 function top(a: Appearance, w: number): PartSpec[] {
   const torso = (c: string) => p('top', 'spine', 'rbox', c, [0, 0.27, 0], [0.62 * w, 0.58, 0.48])
@@ -78,6 +78,22 @@ function top(a: Appearance, w: number): PartSpec[] {
       return [torso('#3d5a80'), ...sleeves('#3d5a80', true), p('top', 'hips', 'flare', '#3d5a80', [0, -0.08, 0], [0.7 * w, 0.32, 0.56]), p('top', 'spine', 'cone', WHITE, [0, 0.44, front], [0.22, 0.2, 0.03], [0, 0, PI]), ...[0.3, 0.16].map((y) => p('top', 'spine', 'sphere', GOLD, [0.05, y, front + 0.01], [0.05, 0.05, 0.03]))]
     case 'knight_tabard':
       return [torso('#9aa3b0'), ...sleeves('#9aa3b0', true), p('top', 'spine', 'box', '#d9534f', [0, 0.2, front + 0.01], [0.34, 0.66, 0.03]), p('top', 'spine', 'box', GOLD, [0, 0.27, front + 0.03], [0.06, 0.3, 0.02]), p('top', 'spine', 'box', GOLD, [0, 0.3, front + 0.03], [0.22, 0.06, 0.02])]
+    case 'songket_top': // a baju in deep red with a gold songket band
+      return [
+        torso('#7a1f3d'),
+        ...sleeves('#7a1f3d', true),
+        p('top', 'chest', 'ring', GOLD, [0, 0.2, 0], [0.5 * w, 0.44, 0.12], [PI / 2, 0, 0]),
+        p('top', 'spine', 'box', GOLD, [0, 0.08, front + 0.01], [0.64 * w, 0.12, 0.03]),
+        ...[-0.18, 0, 0.18].map((x) => p('top', 'spine', 'octa', '#f7e3a1', [x * w, 0.08, front + 0.03], [0.07, 0.07, 0.02])),
+      ]
+    case 'kolam_shawl': // a cream shirt with a magenta shawl dotted in kolam colours
+      return [
+        torso('#fff6e3'),
+        ...sleeves('#fff6e3', false),
+        p('top', 'chest', 'ring', '#c2185b', [0, 0.14, 0], [0.66 * w, 0.56, 0.5], [PI / 2, 0, 0]),
+        p('top', 'chest', 'box', '#c2185b', [-0.16, -0.12, front + 0.02], [0.15, 0.5, 0.03], [0, 0, 0.12]),
+        ...([[-0.18, -0.02, GOLD], [-0.15, -0.18, '#2fa36b'], [-0.13, -0.32, GOLD]] as const).map(([x, y, c]) => p('top', 'chest', 'octa', c, [x, y, front + 0.04], [0.06, 0.06, 0.02])),
+      ]
     case 'star_cloak':
       return [
         torso('#283a6b'),
@@ -192,6 +208,16 @@ function accessory(a: Appearance): PartSpec[] {
       return [x('cylinder', '#c0392b', [0, 0.98, 0], [0.78, 0.2, 0.76]), x('ring', '#2b2b2b', [0, 0.98, 0], [0.8, 0.78, 0.4], [PI / 2, 0, 0]), x('box', '#2b2b2b', [0, 0.9, 0.36], [0.62, 0.04, 0.26])]
     case 'herb_crown':
       return [x('ring', '#4f9a3a', [0, 0.92, 0], [1, 0.92, 0.3], [PI / 2, 0, 0]), ...[-0.3, 0, 0.3].map((lx, i) => x('sphere', i === 1 ? '#fff6e3' : '#f48fb1', [lx, 0.98, 0.42 - Math.abs(lx) * 0.4], [0.11, 0.11, 0.07]))]
+    case 'holiday_sunhat':
+      return [x('cylinder', '#e8c77a', [0, 0.98, 0], [1.5, 0.04, 1.45]), x('cylinder', '#e8c77a', [0, 1.1, 0], [0.78, 0.24, 0.76]), x('ring', '#e2574c', [0, 1.02, 0], [0.8, 0.78, 0.16], [PI / 2, 0, 0])]
+    case 'lion_dance_hat':
+      return [
+        x('dome', '#d8352a', [0, 1.0, 0], [0.84, 0.46, 0.82]),
+        x('ring', GOLD, [0, 0.96, 0], [0.86, 0.84, 0.22], [PI / 2, 0, 0]),
+        ...SIDES.flatMap((side) => [x('sphere', '#ffffff', [sx(side) * 0.2, 1.18, 0.32], [0.15, 0.15, 0.08]), x('sphere', INK, [sx(side) * 0.2, 1.18, 0.37], [0.07, 0.07, 0.04])]),
+        x('octa', GOLD, [0, 1.42, 0.05], [0.13, 0.2, 0.13]),
+        x('sphere', '#fff6e3', [0, 1.02, 0.4], [0.3, 0.08, 0.08]),
+      ]
     case 'golden_crown':
       return [x('cylinder', GOLD, [0, 1.02, 0], [0.74, 0.2, 0.72]), ...[-0.24, 0, 0.24].map((cx) => x('cone', GOLD, [cx, 1.2, 0.26], [0.13, 0.2, 0.08])), x('sphere', '#d9534f', [0, 1.02, 0.36], [0.09, 0.09, 0.05]), ...SIDES.map((side) => x('sphere', '#6cc4f0', [sx(side) * 0.2, 1.02, 0.34], [0.07, 0.07, 0.04]))]
     default:
@@ -227,6 +253,12 @@ function weapon(a: Appearance): PartSpec[] {
       return [w('cylinder', '#f4f1ea', [0, 0.22, 0], [0.05, 0.42, 0.05]), w('octa', '#e88fb4', [0, 0.52, 0], [0.16, 0.26, 0.16])]
     case 'crystal_staff':
       return [w('cylinder', '#8a5a3b', [0, 0.3, 0], [0.07, 1.3, 0.07], upright), w('octa', '#6fd0ff', [0, 1.02, 0], [0.16, 0.3, 0.16], upright), w('octa', '#9be3ff', [0.08, 0.9, 0], [0.07, 0.14, 0.07], upright)]
+    case 'sparkler_wand':
+      return [
+        w('cylinder', '#9aa3b0', [0, 0.3, 0], [0.03, 0.62, 0.03]),
+        w('octa', GOLD, [0, 0.68, 0], [0.2, 0.2, 0.06]),
+        ...([[0.14, 0.78, '#fff6e3'], [-0.12, 0.8, '#ffb347'], [0.04, 0.9, '#fff6e3'], [-0.06, 0.58, '#ffb347']] as const).map(([dx, dy, c]) => w('sphere', c, [dx, dy, 0], [0.05, 0.05, 0.05])),
+      ]
     case 'steel_sword':
       return [w('box', '#d7dde6', [0, 0.5, 0], [0.11, 0.74, 0.035]), w('cone', '#d7dde6', [0, 0.93, 0], [0.11, 0.12, 0.035]), w('rbox', GOLD, [0, 0.11, 0], [0.32, 0.06, 0.08]), w('cylinder', '#3d5a80', [0, 0, 0], [0.06, 0.18, 0.06]), w('sphere', GOLD, [0, -0.1, 0], [0.08, 0.08, 0.08])]
     default: // wooden_sword

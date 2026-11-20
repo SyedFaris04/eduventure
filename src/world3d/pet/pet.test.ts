@@ -7,6 +7,7 @@ import { snapshotKey } from '../snapshotKey'
 import { buildPet, PET_SCALE } from './buildPet'
 import { followStep } from './follow'
 import { PetFollower } from './PetFollower'
+import { CATALOGUE } from '../../features/shop/catalogue'
 
 const meshes = (g: Group) => {
   const out: Mesh[] = []
@@ -18,6 +19,14 @@ const STAGES: PetStage[] = ['baby', 'young', 'adult']
 const FORMS: (PetForm | null)[] = [null, 'science', 'maths', 'technology', 'language', 'seimbang']
 
 describe('buildPet', () => {
+  it('every pet hat and neck item in the catalogue adds its own model', () => {
+    const plain = meshes(buildPet(PET_SPECIES[0], 'young', null, {})).length
+    for (const item of CATALOGUE.filter((i) => i.slot === 'pet_hat' || i.slot === 'pet_neck')) {
+      const look = item.slot === 'pet_hat' ? { hat: item.id } : { neck: item.id }
+      expect(meshes(buildPet(PET_SPECIES[0], 'young', null, look)).length, item.id).toBeGreaterThan(plain)
+    }
+  })
+
   it('builds every species, stage and form from a sensible number of meshes', () => {
     for (const sp of PET_SPECIES)
       for (const st of STAGES)

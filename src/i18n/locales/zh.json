@@ -377,7 +377,17 @@
       "rattan_pack": "藤编背篓",
       "pet_leaf_hat": "叶子帽",
       "pet_crystal_collar": "水晶项圈",
-      "pet_dye_forest": "森林绿"
+      "pet_dye_forest": "森林绿",
+      "holiday_sunhat": "假期太阳帽",
+      "pet_shades": "酷炫墨镜",
+      "lion_dance_hat": "舞狮帽",
+      "pet_lantern": "灯笼挂饰",
+      "songket_top": "宋吉锦上衣",
+      "pet_ketupat": "马来粽挂饰",
+      "sparkler_wand": "仙女棒",
+      "pet_bunting": "彩旗项圈",
+      "kolam_shawl": "彩粉画披肩",
+      "pet_marigold": "万寿菊花环"
     },
     "fromShop": "来自商店"
   },
@@ -610,7 +620,14 @@
     "weekLabel": "本周 7 天中玩了 {{n}} 天",
     "monthComeback": "你这个月学习了 {{n}} 天——今天就开始新的连续记录吧！",
     "viewWeek": "只显示本周",
-    "viewCount": "显示我的连续天数"
+    "viewCount": "显示我的连续天数",
+    "festival": {
+      "daily": "{{festival}}：今天答对 {{target}} 道题",
+      "answers": "{{festival}}：答对 {{target}} 道题",
+      "monsters": "{{festival}}：打败 {{target}} 只怪物",
+      "harvest": "{{festival}}：采集 {{target}} 次",
+      "lessons": "{{festival}}：完成 {{target}} 节课"
+    }
   },
   "boss": {
     "name": "绿港守护者",
@@ -1107,5 +1124,26 @@
     "errors": {
       "taken": "刚刚有人补齐了剩下的材料，营地已更新。"
     }
+  },
+  "festival": {
+    "name": {
+      "school_holiday": "学校假期",
+      "cny": "农历新年",
+      "raya": "Hari Raya",
+      "merdeka": "Merdeka",
+      "deepavali": "Deepavali"
+    },
+    "until": "至{{date}}",
+    "tokens": "{{n}} 个节庆代币",
+    "tokenIcon": "节庆代币",
+    "errors": {
+      "off": "这个节庆现在没有举行。",
+      "tokens": "你需要更多节庆代币。"
+    },
+    "stall": "节庆摊位",
+    "stallIntro": "完成节庆任务赚取节庆代币。这些物品每年都会回来。",
+    "needMore": "还差 {{n}} 个代币",
+    "owned": "已拥有",
+    "chipLabel": "{{names}}：{{n}} 个节庆代币。打开节庆摊位"
   }
 }

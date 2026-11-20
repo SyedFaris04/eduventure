@@ -16,6 +16,7 @@ import { HERO_ITEMS, type Rarity, type ShopItem } from './catalogue'
 import { buyItem, ownedItemsKey, useOwnedItems } from './useShop'
 import { PetCorner, petSlot } from './PetCorner'
 import { dressPet, petKey, usePet } from '../pet/usePet'
+import { FestivalStall } from '../festival/FestivalStall'
 
 const RARITY_STYLE: Record<Rarity, string> = {
   common: 'bg-grass/30 text-ink',
@@ -97,6 +98,7 @@ export function ShopPage() {
           </p>
         </header>
 
+        <FestivalStall />
         <p className="rounded-xl bg-cream/85 px-4 py-2 text-sm font-semibold text-wood-dark">{t('shop.intro')}</p>
         {message && <FormMessage kind={message.kind}>{message.text}</FormMessage>}
 

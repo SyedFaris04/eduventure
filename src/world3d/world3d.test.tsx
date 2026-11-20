@@ -9,6 +9,7 @@ const world = vi.hoisted(() => ({ renders: 0, fail: true }))
 vi.mock('./webgl', () => ({ hasWebGL: () => webgl.ok }))
 vi.mock('../features/authentication/useSession', () => ({ useSession: () => ({ session: null }) }))
 vi.mock('../features/harvest/harvestApi', () => ({ useRegrowing: () => ({ data: undefined }), useCamp: () => ({ data: undefined }) }))
+vi.mock('../features/festival/festivalApi', () => ({ useFestivals: () => ({ data: undefined }) }))
 vi.mock('./World3D', () => ({
   default: () => {
     world.renders++

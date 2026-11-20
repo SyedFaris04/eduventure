@@ -26,6 +26,7 @@ import { BossPanel } from '../battle/BossPanel'
 import { WorldSettings } from './WorldSettings'
 import { HarvestPanel } from '../harvest/HarvestPanel'
 import { MaterialsBar } from '../harvest/MaterialsBar'
+import { FestivalChip } from '../festival/FestivalChip'
 import { CraftPanel } from '../harvest/CraftPanel'
 
 export function WorldPage() {
@@ -62,6 +63,7 @@ export function WorldPage() {
         <div className="absolute start-3 top-3 z-10 flex flex-col items-start gap-1.5">
           {character.data && <Hud character={character.data} xp={progression.data?.xp ?? 0} gold={progression.data?.gold ?? 0} title={title.data} />}
           <MaterialsBar />
+          <FestivalChip />
         </div>
         <Link to="/home" aria-label={t('world.home')} className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-3 z-10 px-3!')}>
           <House size={20} aria-hidden />

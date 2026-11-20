@@ -4,6 +4,8 @@ import { APPEARANCE_OPTIONS, DEFAULT_APPEARANCE, PART_ORDER, shopValues, type Ap
 import { HeroModel } from './HeroModel'
 import { Snapshot } from '../SnapshotImage'
 import { BOSS_IDS, MONSTER_KINDS } from '../monsters/buildMonster'
+import { CATALOGUE } from '../../features/shop/catalogue'
+import { PET_SPECIES, type Pet } from '../../features/pet/petRules'
 
 /** Development-only contact sheet (/dev/hero?part=top&turn=0.6): every value of one part side by side, for checking the 3D parts by eye. */
 export default function HeroLab() {
@@ -18,6 +20,16 @@ export default function HeroLab() {
         {BOSS_IDS.map((b) => (
           <Snapshot key={b} subject={{ kind: 'boss', boss: b }} px={160} alt={b} className="w-[160px] bg-white/40" />
         ))}
+      </main>
+    )
+  // ?pets: every pet hat and neck item on a young pet.
+  if (q.has('pets'))
+    return (
+      <main style={{ display: 'flex', flexWrap: 'wrap', gap: 12, padding: 12, background: '#cfe9f7', minHeight: '100vh' }}>
+        {CATALOGUE.filter((i) => i.slot === 'pet_hat' || i.slot === 'pet_neck').map((i) => {
+          const pet = { species: PET_SPECIES[0], name: i.id, stage: 'young', form: null, points: 0, branches: {}, look: i.slot === 'pet_hat' ? { hat: i.id } : { neck: i.id } } as unknown as Pet
+          return <Snapshot key={i.id} subject={{ kind: 'pet', pet }} px={140} alt={i.id} className="w-[140px] bg-white/40" />
+        })}
       </main>
     )
   const part = (PART_ORDER.includes(q.get('part') as AppearancePart) ? q.get('part') : 'top') as AppearancePart
