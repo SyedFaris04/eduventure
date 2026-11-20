@@ -4,7 +4,9 @@ import { renderHook } from '@testing-library/react'
 const started = vi.hoisted(() => ({ n: 0, visibility: { visible: true } as { visible: boolean } | undefined }))
 vi.mock('../authentication/useSession', () => ({ useSession: () => ({ session: { user: { id: 'u' } } }) }))
 vi.mock('./multiplayerApi', () => ({ useBlocks: () => ({ data: new Set() }), useMyVisibility: () => ({ data: started.visibility }) }))
-vi.mock('./roomClient', () => ({ startRoom: () => (started.n++, { stop() {}, sendMove() {}, sendEmote() {} }) }))
+// A configured client without needing .env.local (CI has no Supabase keys for unit tests).
+vi.mock('../../services/supabase', () => ({ supabase: { auth: { getSession: async () => ({ data: { session: null } }) } } }))
+vi.mock('./roomClient',() => ({ startRoom: () => (started.n++, { stop() {}, sendMove() {}, sendEmote() {} }) }))
 
 const { useRoom, useRoomConnection } = await import('./useRoom')
 

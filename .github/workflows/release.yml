@@ -1,0 +1,104 @@
+# Every push to main: test, publish the game to GitHub Pages (/eduventure/play/), then build the signed Android app
+# that opens it and attach it to a GitHub Release (always at releases/latest/download/eduventure.apk).
+# Needs the repository secrets in README.md ("Android app and hosting") and Pages set to "GitHub Actions".
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+
+  pages:
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build the game for /eduventure/play/
+        run: |
+          if [ -z "$VITE_SUPABASE_URL" ] || [ -z "$VITE_SUPABASE_PUBLISHABLE_KEY" ]; then
+            echo "::error::Add the VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY secrets (README: Android app and hosting)."
+            exit 1
+          fi
+          npm run build:pages
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+          VITE_ROOMS_URL: ${{ secrets.VITE_ROOMS_URL }}
+      - name: Check the site (download page, deep links, assets)
+        run: |
+          npx playwright install --with-deps chromium
+          npm run check:pages
+      - uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: pages
+      - id: deploy
+        uses: actions/deploy-pages@v5.0.1
+
+  android:
+    # Only after the game it opens is live.
+    needs: [test, pages]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v6.1.0
+        with:
+          distribution: temurin
+          java-version: 21
+      - run: npm ci
+      - run: npx cap sync android
+      - name: Build the signed APK
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          VERSION_CODE: ${{ github.run_number }}
+        run: |
+          if [ -z "$ANDROID_KEYSTORE_BASE64" ] || [ -z "$ANDROID_KEYSTORE_PASSWORD" ]; then
+            echo "::error::Add the ANDROID_KEYSTORE_BASE64 and ANDROID_KEYSTORE_PASSWORD secrets: an unsigned app could never be updated."
+            exit 1
+          fi
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/release.jks"
+          export ANDROID_KEYSTORE_PATH="$RUNNER_TEMP/release.jks"
+          cd android
+          ./gradlew assembleRelease --no-daemon
+          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/eduventure.apk"
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "app-v${{ github.run_number }}" eduventure.apk \
+            --title "Eduventure (build ${{ github.run_number }})" \
+            --notes "Install on Android: allow your browser to install unknown apps, then open eduventure.apk. The app opens the latest game, so you only need a new APK when the app itself changes." \
+            --latest
