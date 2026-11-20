@@ -10,6 +10,7 @@ import { startRoom, type RoomClient } from './roomClient'
 /** Kept in step with server/rooms/src/room.ts. */
 export const EMOTES = ['wave', 'cheer', 'clap', 'thumbs_up', 'good_luck', 'well_done'] as const
 export type Emote = (typeof EMOTES)[number]
+export const EMOTE_ICON: Record<Emote, string> = { wave: '👋', cheer: '🎉', clap: '👏', thumbs_up: '👍', good_luck: '🍀', well_done: '⭐' }
 export type OtherPet = Pick<Pet, 'species' | 'stage' | 'form' | 'look'>
 export type OtherPlayer = { id: string; name: string | null; appearance: Appearance; pet: OtherPet | null; x: number; y: number; battle: boolean }
 
@@ -23,6 +24,10 @@ type RoomState = {
 }
 export const EMPTY_ROOM: RoomState = { status: 'off', you: null, canEmote: true, players: {}, emotes: {} }
 export const useRoom = create<RoomState>(() => EMPTY_ROOM)
+
+let active: RoomClient | null = null
+/** Sends an emote through this island's room, when there is one. */
+export const sendEmote = (e: Emote) => active?.sendEmote(e)
 
 /** The live room for this place, or null when multiplayer is off (no VITE_ROOMS_URL, no session). */
 export function useRoomConnection(place: string): RoomClient | null {
@@ -43,8 +48,10 @@ export function useRoomConnection(place: string): RoomClient | null {
       blocked: () => blocked.current ?? new Set(),
     })
     setClient(c)
+    active = c
     return () => {
       c.stop()
+      if (active === c) active = null
       setClient(null)
     }
     // Rejoining when my own switch changes shows or hides me to the others straight away.

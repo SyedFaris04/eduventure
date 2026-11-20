@@ -978,7 +978,8 @@
     "notEnough": "まだ練習が足りません",
     "tpNote": "EDUVENTURE での練習からの推定です。学校の正式な（PBD）レベルではありません。",
     "classes": "クラス",
-    "leaveClass": "{{child}} を {{name}} から外す"
+    "leaveClass": "{{child}} を {{name}} から外す",
+    "letOthersSee": "ほかのプレイヤーにこの子を見せる"
   },
   "settings": {
     "title": "設定",
@@ -1145,5 +1146,38 @@
     "needMore": "あと{{n}}枚",
     "owned": "所持済み",
     "chipLabel": "{{names}}：フェスティバルトークン {{n}}枚。屋台を開く"
+  },
+  "multiplayer": {
+    "player": "プレイヤー",
+    "openCard": "{{name}}：メニュー",
+    "inBattle": "バトル中",
+    "emotes": "エモート",
+    "emote": {
+      "wave": "手をふる",
+      "cheer": "応援",
+      "clap": "拍手",
+      "thumbs_up": "いいね",
+      "good_luck": "がんばって！",
+      "well_done": "よくできました！"
+    },
+    "hide": "このプレイヤーを非表示",
+    "report": "報告する",
+    "reason": {
+      "rude_name": "失礼な名前",
+      "bad_behaviour": "よくない行動",
+      "other": "その他"
+    },
+    "reported": "ありがとう。モデレーターが確認します。",
+    "solo": "ひとりでプレイ中",
+    "errors": {
+      "tooMany": "今日はたくさん報告しました。ありがとう。また明日ためしてください。"
+    },
+    "letSee": "ほかのプレイヤーに自分を見せる",
+    "hidden": {
+      "off": "ほかのプレイヤーからは見えません。",
+      "parent": "保護者がこの設定をオフにしました。",
+      "awaiting_parent": "保護者がアカウントを承認するまで非表示です。",
+      "banned": "今はほかのプレイヤーに参加できません。"
+    }
   }
 }

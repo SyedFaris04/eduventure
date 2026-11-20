@@ -978,7 +978,8 @@
     "notEnough": "Not enough practice yet",
     "tpNote": "Estimated from EDUVENTURE practice — not your child's official school (PBD) level.",
     "classes": "Classes",
-    "leaveClass": "Take {{child}} out of {{name}}"
+    "leaveClass": "Take {{child}} out of {{name}}",
+    "letOthersSee": "Let other players see this child"
   },
   "settings": {
     "title": "Settings",
@@ -1145,5 +1146,38 @@
     "needMore": "{{n}} more tokens",
     "owned": "Owned",
     "chipLabel": "{{names}}: {{n}} festival tokens. Open the festival stall"
+  },
+  "multiplayer": {
+    "player": "Player",
+    "openCard": "{{name}}: options",
+    "inBattle": "In a battle",
+    "emotes": "Emotes",
+    "emote": {
+      "wave": "Wave",
+      "cheer": "Cheer",
+      "clap": "Clap",
+      "thumbs_up": "Thumbs up",
+      "good_luck": "Good luck!",
+      "well_done": "Well done!"
+    },
+    "hide": "Hide this player",
+    "report": "Report",
+    "reason": {
+      "rude_name": "Rude name",
+      "bad_behaviour": "Bad behaviour",
+      "other": "Something else"
+    },
+    "reported": "Thanks — a moderator will look at this.",
+    "solo": "Playing solo",
+    "errors": {
+      "tooMany": "You've sent a lot of reports today. Thank you — please try again tomorrow."
+    },
+    "letSee": "Let other players see me",
+    "hidden": {
+      "off": "You're hidden from other players.",
+      "parent": "Your parent has turned this off.",
+      "awaiting_parent": "Hidden until a parent approves your account.",
+      "banned": "You can't join other players right now."
+    }
   }
 }

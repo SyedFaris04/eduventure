@@ -978,7 +978,8 @@
     "notEnough": "Aún no hay suficiente práctica",
     "tpNote": "Estimado a partir de la práctica en EDUVENTURE; no es el nivel oficial del colegio (PBD).",
     "classes": "Clases",
-    "leaveClass": "Sacar a {{child}} de {{name}}"
+    "leaveClass": "Sacar a {{child}} de {{name}}",
+    "letOthersSee": "Dejar que otros jugadores vean a este niño o niña"
   },
   "settings": {
     "title": "Ajustes",
@@ -1145,5 +1146,38 @@
     "needMore": "Faltan {{n}} fichas",
     "owned": "Tuyo",
     "chipLabel": "{{names}}: {{n}} fichas de festival. Abrir el puesto del festival"
+  },
+  "multiplayer": {
+    "player": "Jugador",
+    "openCard": "{{name}}: opciones",
+    "inBattle": "En una batalla",
+    "emotes": "Gestos",
+    "emote": {
+      "wave": "Saludar",
+      "cheer": "Animar",
+      "clap": "Aplaudir",
+      "thumbs_up": "Pulgar arriba",
+      "good_luck": "¡Buena suerte!",
+      "well_done": "¡Bien hecho!"
+    },
+    "hide": "Ocultar a este jugador",
+    "report": "Denunciar",
+    "reason": {
+      "rude_name": "Nombre grosero",
+      "bad_behaviour": "Mal comportamiento",
+      "other": "Otra cosa"
+    },
+    "reported": "Gracias: un moderador lo revisará.",
+    "solo": "Jugando solo",
+    "errors": {
+      "tooMany": "Hoy has enviado muchas denuncias. Gracias; inténtalo de nuevo mañana."
+    },
+    "letSee": "Dejar que otros jugadores me vean",
+    "hidden": {
+      "off": "Estás oculto para otros jugadores.",
+      "parent": "Tu madre, padre o tutor lo ha desactivado.",
+      "awaiting_parent": "Oculto hasta que un adulto apruebe tu cuenta.",
+      "banned": "Ahora no puedes unirte a otros jugadores."
+    }
   }
 }

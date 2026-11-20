@@ -4,7 +4,7 @@ import { Html } from '@react-three/drei'
 import { useTranslation } from 'react-i18next'
 import type { Group } from 'three'
 import type { Appearance } from '../features/character/appearance'
-import { useRoom, type Emote, type OtherPlayer } from '../features/multiplayer/useRoom'
+import { EMOTE_ICON, useRoom, type Emote, type OtherPlayer } from '../features/multiplayer/useRoom'
 import type { RoomClient } from '../features/multiplayer/roomClient'
 import type { WorldSim } from '../game/sim'
 import { useGame } from '../game/store'
@@ -13,7 +13,6 @@ import { HeroModel } from './hero/HeroModel'
 import { PetFollower, type Leader } from './pet/PetFollower'
 import { faceToward, glide } from './glide'
 
-export const EMOTE_ICON: Record<Emote, string> = { wave: '👋', cheer: '🎉', clap: '👏', thumbs_up: '👍', good_luck: '🍀', well_done: '⭐' }
 const BUBBLE_MS = 3000
 const WALK_SPEED = 3.2
 

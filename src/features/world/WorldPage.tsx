@@ -27,6 +27,10 @@ import { WorldSettings } from './WorldSettings'
 import { HarvestPanel } from '../harvest/HarvestPanel'
 import { MaterialsBar } from '../harvest/MaterialsBar'
 import { FestivalChip } from '../festival/FestivalChip'
+import { EmoteBar } from '../multiplayer/EmoteBar'
+import { PlayerCard } from '../multiplayer/PlayerCard'
+import { RoomStatus } from '../multiplayer/RoomStatus'
+import { sendEmote } from '../multiplayer/useRoom'
 import { CraftPanel } from '../harvest/CraftPanel'
 
 export function WorldPage() {
@@ -64,6 +68,7 @@ export function WorldPage() {
           {character.data && <Hud character={character.data} xp={progression.data?.xp ?? 0} gold={progression.data?.gold ?? 0} title={title.data} />}
           <MaterialsBar />
           <FestivalChip />
+          <RoomStatus />
         </div>
         <Link to="/home" aria-label={t('world.home')} className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-3 z-10 px-3!')}>
           <House size={20} aria-hidden />
@@ -80,6 +85,9 @@ export function WorldPage() {
         <Link to="/pet" aria-label={t('pet.open')} title={t('pet.open')} className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-[7.25rem] z-10 px-3!')}>
           <PawPrint size={20} aria-hidden />
         </Link>
+        <div className="absolute end-3 top-[10.5rem] z-10">
+          <EmoteBar onEmote={sendEmote} />
+        </div>
         <Suspense fallback={null}>
           <Minimap />
         </Suspense>
@@ -93,6 +101,7 @@ export function WorldPage() {
         <HarvestPanel />
         <CraftPanel />
         <CoinBurst />
+        <PlayerCard />
         <BreakReminder minutes={sessionMinutes} />
         {settingsOpen && <WorldSettings onClose={() => setSettingsOpen(false)} />}
       </div>
