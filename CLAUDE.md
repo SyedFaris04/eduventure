@@ -31,4 +31,5 @@ Branching (owner's standing instruction, 2026-11-16): build each phase on its ow
 - `npm run gen:questions` / `npm run gen:lessons` — turn edited `content/questions` or `content/courses` files into migrations (the tests check, and run, the content first)
 - After moving or adding harvest nodes (`t`, `o`, `c`, `v`) in a map, run `python scripts/gen-nodes.py`: it writes a migration listing every node, so the server only lets players harvest real ones.
 - Festival dates live in the `festivals` table (Malaysia time). Confirm provisional dates and add next year's festivals as new rows (a migration, or the owner in the Supabase table editor). Check a festival before it starts with the admin preview in `/admin`, or `/dev/world?festival=cny` for the decorations.
+- After editing `content/blocked-words.txt` (words a typed character name may not contain), run `python scripts/gen-blocked-words.py` and push the migration. Avoid short words that hide inside innocent names.
 - After adding questions with a KSSR/KSSM alignment, run `node scripts/tag-curriculum.mjs` (adds the curriculum tag), then `npm run gen:questions`.

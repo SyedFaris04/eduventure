@@ -1,0 +1,60 @@
+# Words a character name may not contain (checked on the server by name_ok(), after lower-casing,
+# mapping leetspeak 0→o 1→i 3→e 4→a 5→s 7→t @→a $→s, and removing spaces and symbols).
+# One lower-case word per line. Avoid short words that hide inside innocent names
+# (for example "cock" in "peacock", "rape" in "grape", "hell" in "hello", "ass" in "class").
+# After editing: python scripts/gen-blocked-words.py, then push the migration. Reviewed by the owner.
+
+# English
+fuck
+fuk
+shit
+bitch
+cunt
+asshole
+dumbass
+jackass
+bastard
+slut
+whore
+pussy
+dickhead
+penis
+vagina
+boobs
+wank
+twat
+porn
+sexy
+rapist
+nigger
+nigga
+faggot
+retard
+nazi
+hitler
+motherf
+
+# Bahasa Melayu
+pukimak
+kimak
+puki
+pantat
+pepek
+butoh
+lancau
+bangsat
+babi
+anjing
+sial
+celaka
+keparat
+jahanam
+haramjadah
+bodoh
+bangang
+bengap
+sundal
+jalang
+pelacur
+jubur
+konek
