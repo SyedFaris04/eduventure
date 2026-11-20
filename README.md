@@ -56,10 +56,10 @@ One-time setup (the owner):
 1. **Keep the signing key safe.** The release key (`eduventure-release.jks`) and `android-secrets.txt` were made once
    and are not in the repository. Back up both somewhere private (a password manager or a USB drive), not in OneDrive
    alongside the code. If the key is lost, every player must uninstall the app before they can install a new one.
-2. **GitHub → Settings → Secrets and variables → Actions → New repository secret**, four times:
-   - `ANDROID_KEYSTORE_BASE64` and `ANDROID_KEYSTORE_PASSWORD`, copied from `android-secrets.txt`;
-   - `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`, the same values as in `.env.local`;
-   - optional, once multiplayer is deployed: `VITE_ROOMS_URL`.
+2. **GitHub → Settings → Secrets and variables → Actions → Secrets tab → New repository secret**, twice:
+   `ANDROID_KEYSTORE_BASE64` and `ANDROID_KEYSTORE_PASSWORD`, copied from `android-secrets.txt`. (The Supabase address
+   and publishable key are public and written in the workflow; once multiplayer is deployed, add `VITE_ROOMS_URL` as a
+   variable.)
 3. **GitHub → Settings → Pages → Build and deployment → Source: GitHub Actions.**
 4. **Supabase → Authentication → URL Configuration:** add `https://syedfaris04.github.io/eduventure/play/**` to the
    Redirect URLs (so verification and password-reset emails open the hosted game).

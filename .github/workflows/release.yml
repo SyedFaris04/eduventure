@@ -48,16 +48,13 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Build the game for /eduventure/play/
-        run: |
-          if [ -z "$VITE_SUPABASE_URL" ] || [ -z "$VITE_SUPABASE_PUBLISHABLE_KEY" ]; then
-            echo "::error::Add the VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY secrets (README: Android app and hosting)."
-            exit 1
-          fi
-          npm run build:pages
+        run: npm run build:pages
         env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
-          VITE_ROOMS_URL: ${{ secrets.VITE_ROOMS_URL }}
+          # Public by design: the project address and the publishable key ship to every visitor's browser (the
+          # database's rules protect the data). Repository variables of the same names override them.
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL || 'https://itythivrujbfcucbxbxa.supabase.co' }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_KlX6o77F8h9fS8Q8i_b8-g_fbYWKN1f' }}
+          VITE_ROOMS_URL: ${{ vars.VITE_ROOMS_URL || secrets.VITE_ROOMS_URL }}
       - name: Check the site (download page, deep links, assets)
         run: |
           npx playwright install --with-deps chromium
