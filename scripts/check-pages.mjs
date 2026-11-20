@@ -26,14 +26,59 @@ const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--ena
 const page = await browser.newPage()
 const missing = []
 page.on('response', (r) => r.status() === 404 && r.url().includes('/assets/') && missing.push(r.url()))
+const errors = []
+page.on('pageerror', (e) => errors.push(e.message))
 const fail = (msg) => {
   console.error('pages check failed:', msg)
   process.exitCode = 1
 }
 try {
+  // The website: both buttons, the language switch, a demo answer and the QR code.
+  const APK = 'https://github.com/SyedFaris04/eduventure/releases/latest/download/eduventure.apk'
   await page.goto(`${base}/eduventure/`)
-  if (!(await page.getByRole('link', { name: /Play in your browser/ }).isVisible())) fail('download page has no play link')
-  if (!(await page.getByRole('link', { name: /Download the Android app/ }).isVisible())) fail('download page has no APK link')
+  await page.evaluate(() => localStorage.removeItem('eduventure.site.lang'))
+  await page.reload()
+  const play = page.getByRole('link', { name: 'Play in your browser' }).first()
+  if (!(await play.isVisible())) fail('website has no play link')
+  if ((await play.getAttribute('href')) !== 'play/') fail('the play link does not go to the game')
+  const apk = page.getByRole('link', { name: 'Download for Android' }).first()
+  if (!(await apk.isVisible()) || (await apk.getAttribute('href')) !== APK) fail('website has no working APK link')
+  await page.getByRole('button', { name: /Bahasa Melayu|BM/ }).click()
+  if (!(await page.getByRole('link', { name: 'Muat turun untuk Android' }).first().isVisible())) fail('the language switch did not change the page to Malay')
+  await page.getByRole('button', { name: /English|EN/ }).click()
+  await page.getByRole('button', { name: /Sunlight/ }).click()
+  if (!(await page.getByText('Right! The Sproutling takes a hit.').isVisible())) fail('the demo question did not answer')
+  // On a phone, a vertical swipe over the 3D island scrolls the page (only sideways drags spin it).
+  const phone = await browser.newPage({ viewport: { width: 360, height: 640 }, hasTouch: true, isMobile: true })
+  await phone.goto(`${base}/eduventure/`)
+  await phone.locator('canvas').first().waitFor({ timeout: 30_000 }).catch(() => {})
+  const touch = await phone.evaluate(() => [...document.querySelectorAll('canvas')].map((c) => getComputedStyle(c).touchAction))
+  if (touch.length === 0) fail('the 3D island did not load')
+  if (touch.some((t) => !t.includes('pan-y'))) fail(`a vertical swipe over the 3D island does not scroll the page (touch-action: ${touch.join(', ')})`)
+  await phone.close()
+
+  // The backs of the flip cards fit inside the cards, in both languages, at tablet and laptop widths.
+  for (const width of [320, 360, 768, 1024, 1366]) for (const lang of ['en', 'ms']) {
+    const tab = await browser.newPage({ viewport: { width, height: 900 } })
+    await tab.goto(`${base}/eduventure/`)
+    await tab.evaluate((l) => localStorage.setItem('eduventure.site.lang', l), lang)
+    await tab.reload()
+    const spill = await tab.evaluate(() => [...document.querySelectorAll('.flip-back')].some((b) => b.scrollHeight > b.clientHeight + 1))
+    if (spill) fail(`flip-card text spills out of its card at ${width}px (${lang})`)
+    await tab.close()
+  }
+
+  // No sideways scrolling on the narrowest phones, in either language.
+  for (const lang of ['en', 'ms']) {
+    const small = await browser.newPage({ viewport: { width: 320, height: 640 } })
+    await small.goto(`${base}/eduventure/`)
+    await small.evaluate((l) => localStorage.setItem('eduventure.site.lang', l), lang)
+    await small.reload()
+    if (await small.evaluate(() => document.documentElement.scrollWidth > innerWidth)) fail(`the website scrolls sideways on a 320px phone (${lang})`)
+    await small.close()
+  }
+  const qrOk = await page.getByRole('img', { name: /QR code/ }).evaluate((img) => img.complete && img.naturalWidth > 0)
+  if (!qrOk) fail('the QR code did not load')
 
   await page.goto(`${base}/eduventure/play/explore`)
   await page.getByRole('heading').first().waitFor({ timeout: 30_000 })
@@ -58,6 +103,7 @@ try {
   if (!page.url().includes('/eduventure/play/welcome')) fail(`the game started at ${page.url()}`)
   await page.waitForTimeout(3000)
   if (missing.length) fail(`assets missing: ${missing.join(', ')}`)
+  if (errors.length) fail(`page errors: ${errors.join(' | ')}`)
 } finally {
   await browser.close()
   server.close()
