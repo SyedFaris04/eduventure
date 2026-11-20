@@ -14,7 +14,7 @@ export function startNative(router: Router) {
     else if (action === 'back') window.history.back()
     else if (action !== 'ignore') useGame.setState(action.patch)
   })
-  void StatusBar.setStyle({ style: Style.Dark }).catch(() => {})
-  void StatusBar.setBackgroundColor({ color: '#5a3d30' }).catch(() => {})
+  // Dark icons: the app draws edge to edge (Android 15+ ignores a status-bar colour), so the light pages show behind them.
+  void StatusBar.setStyle({ style: Style.Light }).catch(() => {})
   void SplashScreen.hide().catch(() => {})
 }

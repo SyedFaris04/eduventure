@@ -8,10 +8,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Read-only by default; each job asks for only what it needs (npm install scripts never run with write access).
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: read
 
 concurrency:
   group: release
@@ -20,6 +19,8 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-node@v7.1.0
@@ -32,6 +33,10 @@ jobs:
   pages:
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -67,6 +72,8 @@ jobs:
     # Only after the game it opens is live.
     needs: [test, pages]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # the GitHub Release
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-node@v7.1.0
