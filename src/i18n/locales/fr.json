@@ -377,7 +377,17 @@
       "rattan_pack": "Panier en rotin",
       "pet_leaf_hat": "Chapeau feuille",
       "pet_crystal_collar": "Collier de cristal",
-      "pet_dye_forest": "Vert forêt"
+      "pet_dye_forest": "Vert forêt",
+      "holiday_sunhat": "Chapeau de soleil des vacances",
+      "pet_shades": "Lunettes de soleil",
+      "lion_dance_hat": "Chapeau de danse du lion",
+      "pet_lantern": "Breloque lanterne",
+      "songket_top": "Baju en songket",
+      "pet_ketupat": "Breloque ketupat",
+      "sparkler_wand": "Baguette cierge magique",
+      "pet_bunting": "Collier de fanions",
+      "kolam_shawl": "Châle kolam",
+      "pet_marigold": "Guirlande de soucis"
     },
     "fromShop": "De la boutique"
   },
@@ -610,7 +620,14 @@
     "weekLabel": "Joué {{n}} jours sur 7 cette semaine",
     "monthComeback": "Tu as appris {{n}} jours ce mois-ci — commence une nouvelle série aujourd’hui !",
     "viewWeek": "Afficher seulement cette semaine",
-    "viewCount": "Afficher le nombre de ma série"
+    "viewCount": "Afficher le nombre de ma série",
+    "festival": {
+      "daily": "{{festival}} : réponds juste à {{target}} questions aujourd'hui",
+      "answers": "{{festival}} : réponds juste à {{target}} questions",
+      "monsters": "{{festival}} : bats {{target}} monstres",
+      "harvest": "{{festival}} : récolte {{target}} fois",
+      "lessons": "{{festival}} : termine {{target}} leçons"
+    }
   },
   "boss": {
     "name": "Gardien de Greenhaven",
@@ -1107,5 +1124,26 @@
     "errors": {
       "taken": "Quelqu’un vient de donner le reste. Le camp a été mis à jour."
     }
+  },
+  "festival": {
+    "name": {
+      "school_holiday": "Vacances scolaires",
+      "cny": "Nouvel An chinois",
+      "raya": "Hari Raya",
+      "merdeka": "Merdeka",
+      "deepavali": "Deepavali"
+    },
+    "until": "jusqu'au {{date}}",
+    "tokens": "{{n}} jetons de fête",
+    "tokenIcon": "jetons de fête",
+    "errors": {
+      "off": "Cette fête n'a pas lieu en ce moment.",
+      "tokens": "Il te faut plus de jetons de fête."
+    },
+    "stall": "Stand de la fête",
+    "stallIntro": "Gagne des jetons de fête avec les missions de fête. Ces objets reviennent chaque année.",
+    "needMore": "Encore {{n}} jetons",
+    "owned": "Possédé",
+    "chipLabel": "{{names}} : {{n}} jetons de fête. Ouvrir le stand de la fête"
   }
 }

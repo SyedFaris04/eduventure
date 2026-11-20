@@ -377,7 +377,17 @@
       "rattan_pack": "Cesta de ratán",
       "pet_leaf_hat": "Sombrero de hoja",
       "pet_crystal_collar": "Collar de cristal",
-      "pet_dye_forest": "Verde bosque"
+      "pet_dye_forest": "Verde bosque",
+      "holiday_sunhat": "Sombrero de vacaciones",
+      "pet_shades": "Gafas de sol",
+      "lion_dance_hat": "Gorro de danza del león",
+      "pet_lantern": "Colgante de farolillo",
+      "songket_top": "Baju de songket",
+      "pet_ketupat": "Colgante de ketupat",
+      "sparkler_wand": "Varita de bengala",
+      "pet_bunting": "Collar de banderines",
+      "kolam_shawl": "Chal de kolam",
+      "pet_marigold": "Guirnalda de caléndulas"
     },
     "fromShop": "De la tienda"
   },
@@ -610,7 +620,14 @@
     "weekLabel": "Jugaste {{n}} de 7 días esta semana",
     "monthComeback": "Aprendiste {{n}} días este mes: ¡empieza una nueva racha hoy!",
     "viewWeek": "Mostrar solo esta semana",
-    "viewCount": "Mostrar el número de mi racha"
+    "viewCount": "Mostrar el número de mi racha",
+    "festival": {
+      "daily": "{{festival}}: responde bien {{target}} preguntas hoy",
+      "answers": "{{festival}}: responde bien {{target}} preguntas",
+      "monsters": "{{festival}}: derrota a {{target}} monstruos",
+      "harvest": "{{festival}}: recolecta {{target}} veces",
+      "lessons": "{{festival}}: termina {{target}} lecciones"
+    }
   },
   "boss": {
     "name": "Guardián de Greenhaven",
@@ -1107,5 +1124,26 @@
     "errors": {
       "taken": "Alguien acaba de aportar lo que faltaba. El campamento se ha actualizado."
     }
+  },
+  "festival": {
+    "name": {
+      "school_holiday": "Vacaciones escolares",
+      "cny": "Año Nuevo chino",
+      "raya": "Hari Raya",
+      "merdeka": "Merdeka",
+      "deepavali": "Deepavali"
+    },
+    "until": "hasta el {{date}}",
+    "tokens": "{{n}} fichas de festival",
+    "tokenIcon": "fichas de festival",
+    "errors": {
+      "off": "Este festival no está activo ahora.",
+      "tokens": "Necesitas más fichas de festival."
+    },
+    "stall": "Puesto del festival",
+    "stallIntro": "Gana fichas de festival con las misiones del festival. Estos objetos vuelven cada año.",
+    "needMore": "Faltan {{n}} fichas",
+    "owned": "Tuyo",
+    "chipLabel": "{{names}}: {{n}} fichas de festival. Abrir el puesto del festival"
   }
 }

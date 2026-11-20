@@ -377,7 +377,17 @@
       "rattan_pack": "Bakul rotan",
       "pet_leaf_hat": "Topi daun",
       "pet_crystal_collar": "Kolar kristal",
-      "pet_dye_forest": "Hijau hutan"
+      "pet_dye_forest": "Hijau hutan",
+      "holiday_sunhat": "Topi matahari cuti",
+      "pet_shades": "Cermin mata hitam",
+      "lion_dance_hat": "Topi tarian singa",
+      "pet_lantern": "Hiasan tanglung",
+      "songket_top": "Baju songket",
+      "pet_ketupat": "Hiasan ketupat",
+      "sparkler_wand": "Tongkat bunga api",
+      "pet_bunting": "Kolar panji-panji",
+      "kolam_shawl": "Selendang kolam",
+      "pet_marigold": "Kalungan bunga marigold"
     },
     "fromShop": "Dari kedai"
   },
@@ -610,7 +620,14 @@
     "weekLabel": "Bermain {{n}} daripada 7 hari minggu ini",
     "monthComeback": "Anda belajar {{n}} hari bulan ini — mulakan rentetan baharu hari ini!",
     "viewWeek": "Tunjuk minggu ini sahaja",
-    "viewCount": "Tunjuk nombor rentetan saya"
+    "viewCount": "Tunjuk nombor rentetan saya",
+    "festival": {
+      "daily": "{{festival}}: jawab {{target}} soalan dengan betul hari ini",
+      "answers": "{{festival}}: jawab {{target}} soalan dengan betul",
+      "monsters": "{{festival}}: kalahkan {{target}} raksasa",
+      "harvest": "{{festival}}: tuai {{target}} kali",
+      "lessons": "{{festival}}: habiskan {{target}} pelajaran"
+    }
   },
   "boss": {
     "name": "Penjaga Greenhaven",
@@ -1107,5 +1124,26 @@
     "errors": {
       "taken": "Seseorang baru sahaja memberi bakinya. Kem telah dikemas kini."
     }
+  },
+  "festival": {
+    "name": {
+      "school_holiday": "Cuti sekolah",
+      "cny": "Tahun Baru Cina",
+      "raya": "Hari Raya",
+      "merdeka": "Merdeka",
+      "deepavali": "Deepavali"
+    },
+    "until": "hingga {{date}}",
+    "tokens": "{{n}} token perayaan",
+    "tokenIcon": "token perayaan",
+    "errors": {
+      "off": "Perayaan ini tidak berlangsung sekarang.",
+      "tokens": "Anda perlukan lebih banyak token perayaan."
+    },
+    "stall": "Gerai perayaan",
+    "stallIntro": "Kumpul token perayaan daripada misi perayaan. Barang-barang ini kembali setiap tahun.",
+    "needMore": "{{n}} token lagi",
+    "owned": "Dimiliki",
+    "chipLabel": "{{names}}: {{n}} token perayaan. Buka gerai perayaan"
   }
 }

@@ -377,7 +377,17 @@
       "rattan_pack": "籐のかご",
       "pet_leaf_hat": "葉っぱの帽子",
       "pet_crystal_collar": "クリスタルの首輪",
-      "pet_dye_forest": "森の緑"
+      "pet_dye_forest": "森の緑",
+      "holiday_sunhat": "休日の麦わら帽子",
+      "pet_shades": "サングラス",
+      "lion_dance_hat": "獅子舞の帽子",
+      "pet_lantern": "ちょうちんチャーム",
+      "songket_top": "ソンケットのバジュ",
+      "pet_ketupat": "クトゥパットのチャーム",
+      "sparkler_wand": "スパークラーの杖",
+      "pet_bunting": "旗飾りの首輪",
+      "kolam_shawl": "コーラムのショール",
+      "pet_marigold": "マリーゴールドの花輪"
     },
     "fromShop": "ショップのアイテム"
   },
@@ -610,7 +620,14 @@
     "weekLabel": "今週は 7 日中 {{n}} 日あそびました",
     "monthComeback": "今月は {{n}} 日学びました — 今日から新しい連続記録をはじめよう！",
     "viewWeek": "今週だけ表示",
-    "viewCount": "連続日数を表示"
+    "viewCount": "連続日数を表示",
+    "festival": {
+      "daily": "{{festival}}：今日{{target}}問正解する",
+      "answers": "{{festival}}：{{target}}問正解する",
+      "monsters": "{{festival}}：モンスターを{{target}}体倒す",
+      "harvest": "{{festival}}：{{target}}回収穫する",
+      "lessons": "{{festival}}：レッスンを{{target}}回終える"
+    }
   },
   "boss": {
     "name": "グリーンヘイブンの守り神",
@@ -1107,5 +1124,26 @@
     "errors": {
       "taken": "ちょうど誰かが残りを渡しました。キャンプを更新しました。"
     }
+  },
+  "festival": {
+    "name": {
+      "school_holiday": "学校の休み",
+      "cny": "旧正月",
+      "raya": "Hari Raya",
+      "merdeka": "Merdeka",
+      "deepavali": "Deepavali"
+    },
+    "until": "{{date}}まで",
+    "tokens": "フェスティバルトークン {{n}}枚",
+    "tokenIcon": "フェスティバルトークン",
+    "errors": {
+      "off": "このフェスティバルは今は開催されていません。",
+      "tokens": "フェスティバルトークンが足りません。"
+    },
+    "stall": "フェスティバルの屋台",
+    "stallIntro": "フェスティバルミッションでトークンを集めよう。アイテムは毎年また登場します。",
+    "needMore": "あと{{n}}枚",
+    "owned": "所持済み",
+    "chipLabel": "{{names}}：フェスティバルトークン {{n}}枚。屋台を開く"
   }
 }
