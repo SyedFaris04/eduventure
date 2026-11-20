@@ -31,9 +31,32 @@ const fail = (msg) => {
   process.exitCode = 1
 }
 try {
+  // The website: both buttons, the language switch, a demo answer and the QR code.
+  const APK = 'https://github.com/SyedFaris04/eduventure/releases/latest/download/eduventure.apk'
   await page.goto(`${base}/eduventure/`)
-  if (!(await page.getByRole('link', { name: /Play in your browser/ }).isVisible())) fail('download page has no play link')
-  if (!(await page.getByRole('link', { name: /Download the Android app/ }).isVisible())) fail('download page has no APK link')
+  await page.evaluate(() => localStorage.removeItem('eduventure.site.lang'))
+  await page.reload()
+  const play = page.getByRole('link', { name: 'Play in your browser' }).first()
+  if (!(await play.isVisible())) fail('website has no play link')
+  if ((await play.getAttribute('href')) !== 'play/') fail('the play link does not go to the game')
+  const apk = page.getByRole('link', { name: 'Download for Android' }).first()
+  if (!(await apk.isVisible()) || (await apk.getAttribute('href')) !== APK) fail('website has no working APK link')
+  await page.getByRole('button', { name: /Bahasa Melayu|BM/ }).click()
+  if (!(await page.getByRole('link', { name: 'Muat turun untuk Android' }).first().isVisible())) fail('the language switch did not change the page to Malay')
+  await page.getByRole('button', { name: /English|EN/ }).click()
+  await page.getByRole('button', { name: /Sunlight/ }).click()
+  if (!(await page.getByText('Right! The Sproutling takes a hit.').isVisible())) fail('the demo question did not answer')
+  // No sideways scrolling on the narrowest phones, in either language.
+  for (const lang of ['en', 'ms']) {
+    const small = await browser.newPage({ viewport: { width: 320, height: 640 } })
+    await small.goto(`${base}/eduventure/`)
+    await small.evaluate((l) => localStorage.setItem('eduventure.site.lang', l), lang)
+    await small.reload()
+    if (await small.evaluate(() => document.documentElement.scrollWidth > innerWidth)) fail(`the website scrolls sideways on a 320px phone (${lang})`)
+    await small.close()
+  }
+  const qrOk = await page.getByRole('img', { name: /QR code/ }).evaluate((img) => img.complete && img.naturalWidth > 0)
+  if (!qrOk) fail('the QR code did not load')
 
   await page.goto(`${base}/eduventure/play/explore`)
   await page.getByRole('heading').first().waitFor({ timeout: 30_000 })

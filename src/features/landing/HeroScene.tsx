@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Float, Sparkles } from '@react-three/drei'
+import { Float, OrbitControls, Sparkles } from '@react-three/drei'
 import type { Group } from 'three'
 
 // Palette tokens (CSS variables are not readable by WebGL materials).
@@ -153,10 +153,14 @@ function Compass() {
   )
 }
 
-/** Welcome-page hero. Lazy-loaded so three.js never ships in the first download. */
-export default function HeroScene() {
+/**
+ * Welcome-page hero. Lazy-loaded so three.js never ships in the first download.
+ * The website adds `spin` (turns slowly, drag to rotate) and pauses it with `active` while it is off-screen.
+ */
+export default function HeroScene({ spin = false, active = true }: { spin?: boolean; active?: boolean }) {
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 1.1, 8.6], fov: 38 }} gl={{ alpha: true, antialias: true }}>
+    <Canvas dpr={[1, 2]} frameloop={active ? 'always' : 'never'} camera={{ position: [0, 1.1, 8.6], fov: 38 }} gl={{ alpha: true, antialias: true }}>
+      {spin && <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.8} minPolarAngle={Math.PI / 3} maxPolarAngle={Math.PI / 1.9} />}
       <ambientLight intensity={1.2} />
       <directionalLight position={[4, 6, 5]} intensity={1.8} />
       <Float speed={1.2} floatIntensity={0.5} rotationIntensity={0.12}>
