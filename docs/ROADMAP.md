@@ -291,6 +291,7 @@ Spec: `docs/superpowers/specs/2026-11-20-whiteboard-camps-design.md`. Decision #
 - **Done when:** two players damage the same world boss; farming the same question repeatedly stops paying.
 
 ### Phase 7 — Android and iOS
+**Status (2026-11-21): Android built in the cloud.** GitHub Actions publishes the game to GitHub Pages (`/eduventure/play/`) and builds a signed APK that opens it, on every push to `main` (decision #44, README "Android app and hosting"). The owner's one-time setup and phone test are still to do. iOS and the Play Store are not started.
 - The same Capacitor project builds both. Google Play costs $25 once; the App Store costs $99 a year and needs a Mac or a cloud Mac build service. Both stores have extra rules for apps used by children under 13.
 - Capacitor project, safe areas, back button, full screen, icons, splash, offline and reconnect handling.
 - Written steps for debug and release APKs.
