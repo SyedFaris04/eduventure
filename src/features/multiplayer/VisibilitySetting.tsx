@@ -10,24 +10,25 @@ export function VisibilitySetting() {
   const queryClient = useQueryClient()
   const uid = useSession().session?.user.id
   const v = useMyVisibility(uid).data
-  const [busy, setBusy] = useState(false)
+  // The box follows the tap at once; the server's answer replaces it when it arrives.
+  const [wanted, setWanted] = useState<boolean | null>(null)
   if (!uid || !v) return null
   const locked = v.reason !== null && v.reason !== 'off'
 
   async function toggle(on: boolean) {
-    setBusy(true)
+    setWanted(on)
     try {
       await setVisible(uid!, on)
       await queryClient.invalidateQueries({ queryKey: visibilityKey(uid) })
     } finally {
-      setBusy(false)
+      setWanted(null)
     }
   }
 
   return (
     <div className="flex flex-col gap-1">
       <label className="flex items-center gap-2 text-sm font-semibold">
-        <input type="checkbox" checked={v.reason === null} disabled={locked || busy} onChange={(e) => void toggle(e.target.checked)} className="size-5 accent-grass-dark" />
+        <input type="checkbox" checked={wanted ?? v.reason === null} disabled={locked || wanted !== null} onChange={(e) => void toggle(e.target.checked)} className="size-5 accent-grass-dark" />
         {t('multiplayer.letSee')}
       </label>
       {v.reason && <p className="text-xs font-semibold text-wood-dark/80">{t(`multiplayer.hidden.${v.reason}`)}</p>}

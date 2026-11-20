@@ -12,13 +12,14 @@ const bank = readdirSync(dir)
 export type GameState = { prompt: { kind: string; id?: string } | null; player: { x: number; y: number }; monsters: { kind: string; x: number; y: number }[] }
 export const state = (page: Page) => page.evaluate(() => (window as unknown as { __game: { getState: () => GameState } }).__game.getState())
 
-export async function newPlayer(page: Page) {
+/** A new guest through onboarding and the creator. Born 2016 by default (safe-list name); pass a year and a name for an older player. */
+export async function newPlayer(page: Page, opts: { year?: string; name?: string } = {}) {
   const next = () => page.getByRole('button', { name: /^Next/ }).click()
   await page.goto('/welcome')
   // The walking tests tap far-off tiles; the Classic camera (the original, higher view) keeps them on screen.
   await page.evaluate(() => localStorage.setItem('eduventure.camera', JSON.stringify({ tilt: 52, distance: 22, fov: 30, turn: 0 })))
   await page.getByRole('button', { name: /Start Your Adventure/ }).click()
-  await page.getByLabel('Year you were born').selectOption('2016')
+  await page.getByLabel('Year you were born').selectOption(opts.year ?? '2016')
   await next()
   await page.getByRole('button', { name: /Lower Secondary School/ }).click()
   await next()
@@ -33,6 +34,10 @@ export async function newPlayer(page: Page) {
   await next()
   await next()
   await page.getByRole('button', { name: 'Save and continue' }).click()
+  if (opts.name) {
+    await page.getByRole('tab', { name: 'Name' }).click()
+    await page.getByLabel('Hero name').fill(opts.name)
+  }
   await page.getByRole('button', { name: 'Save hero' }).click()
   await expect(page).toHaveURL(/\/home$/)
 }

@@ -19,7 +19,9 @@ describe('VisibilitySetting', () => {
   it('lets players hide themselves from others', async () => {
     state.visibility = { visible: true, reason: null }
     show()
-    fireEvent.click(screen.getByRole('checkbox', { name: 'Let other players see me' }))
+    const box = screen.getByRole('checkbox', { name: 'Let other players see me' }) as HTMLInputElement
+    fireEvent.click(box)
+    expect(box.checked).toBe(false) // flips at once, while the server saves it
     await waitFor(() => expect(state.setVisible).toHaveBeenCalledWith('u', false))
   })
 

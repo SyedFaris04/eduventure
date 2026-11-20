@@ -9,6 +9,7 @@ const HELLO_MS = 5000
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
+    if (new URL(request.url).pathname === '/health') return new Response('ok')
     const m = new URL(request.url).pathname.match(/^\/room\/([a-z_]+)\/(\d{1,2})$/)
     if (!m || !(PLACES as readonly string[]).includes(m[1]) || Number(m[2]) > 49) return new Response('Not found', { status: 404 })
     if (request.headers.get('Upgrade') !== 'websocket') return new Response('Expected a WebSocket', { status: 426 })

@@ -256,6 +256,13 @@ Spec: `docs/superpowers/specs/2026-11-20-festival-events-design.md`. Decision #4
 - **While a festival is on:** Kampung decorations, five festival missions paying festival tokens, a festival chip under the player card, and a festival stall in the shop (one outfit item and one pet item per festival). Items return every year; tokens never expire.
 - **Admin preview** in `/admin` shows any festival on the admin's own account before it starts.
 
+### Multiplayer: see other players — built and merged (online once the room server is deployed)
+Spec: `docs/superpowers/specs/2026-11-20-multiplayer-design.md`. Decision #42.
+- **On every island**, players in the same room of up to 12 see each other's hero, pet and name tag, with ⚔ over anyone in a battle.
+- **Emotes only:** wave, cheer, clap, thumbs up, "good luck" and "well done". No typing yet (the whiteboard camps come next).
+- **Safety:** under-13s are hidden until a parent approves; "Let other players see me" in Settings; a parent switch per child; hide or report a player by tapping their name; moderator reports and bans in `/admin`; a word filter for typed names.
+- **Server:** a free Cloudflare room server in `server/rooms`. The owner creates the Cloudflare account and deploys it (README); until then the game plays solo as before.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 
