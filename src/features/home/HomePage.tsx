@@ -83,7 +83,7 @@ export function HomePage() {
 
         <h1 className="text-center font-display text-3xl font-bold text-wood-dark md:text-start">{t('home.welcome', { name: character.data?.name ?? '' })}</h1>
 
-        <div className="grid gap-5 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
           <Panel title={t('home.yourHero')} className="flex flex-col items-center gap-3 md:self-start">
             {character.data && (
               <Snapshot subject={{ kind: 'hero', appearance: character.data.appearance }} px={220} alt={t('character.previewAlt', { name: character.data.name })} className="hero-bob w-[min(60vw,200px)]" />

@@ -70,7 +70,7 @@ export function Travel({ hero, to }: { hero: Appearance; to: PlaceId }) {
         </p>
       </div>
       {skippable && !skip && (
-        <div className="pointer-events-auto absolute end-4 bottom-6">
+        <div className="pointer-events-auto absolute end-[max(1rem,env(safe-area-inset-right))] bottom-[max(1.5rem,env(safe-area-inset-bottom))]">
           <Button variant="secondary" onClick={() => setSkip(true)}>
             <FastForward size={18} aria-hidden /> {t('ride.skip')}
           </Button>

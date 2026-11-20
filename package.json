@@ -14,9 +14,15 @@
     "gen:questions": "node scripts/gen-questions.mjs",
     "fetch:models": "node scripts/fetch-models.mjs",
     "gen:lessons": "node scripts/gen-lessons.mjs",
-    "test:e2e:mp": "playwright test -c playwright.multiplayer.config.ts"
+    "test:e2e:mp": "playwright test -c playwright.multiplayer.config.ts",
+    "build:pages": "node -e \"process.env.BASE_PATH='/eduventure/play/';require('node:child_process').execSync('npm run build',{stdio:'inherit'})\" && node scripts/pages-bundle.mjs",
+    "check:pages": "node scripts/check-pages.mjs"
   },
   "dependencies": {
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.6.2",
+    "@capacitor/splash-screen": "8.0.2",
+    "@capacitor/status-bar": "8.0.4",
     "@codemirror/lang-javascript": "6.2.5",
     "@codemirror/lang-python": "6.2.1",
     "@codemirror/state": "6.7.6",
@@ -44,6 +50,8 @@
     "zustand": "^5.1.0"
   },
   "devDependencies": {
+    "@capacitor/android": "8.6.2",
+    "@capacitor/cli": "8.6.2",
     "@gltf-transform/core": "^4.5.1",
     "@gltf-transform/functions": "^4.5.1",
     "@playwright/test": "^1.65.1",

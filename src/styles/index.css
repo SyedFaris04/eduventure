@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Phones held sideways: short and wide, so layouts go side by side instead of stacking below the fold. */
+@custom-variant short (@media (orientation: landscape) and (max-height: 500px));
+
 /* Palette sampled from the loading art and the isometric reference.
    `static` emits every token as a CSS variable, even ones no utility class uses yet (inline styles, SVG, canvas). */
 @theme static {
@@ -75,4 +78,13 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Notches, rounded corners and gesture bars (the Android app draws edge to edge): pages keep clear of them, and the
+   world's overlay (the HUD, touch controls and panels) is inset while the 3D view still fills the screen. */
+#root {
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+}
+.safe-inset {
+  inset: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
 }

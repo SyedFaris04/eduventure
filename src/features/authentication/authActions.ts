@@ -1,6 +1,7 @@
 import { isAuthError } from '@supabase/supabase-js'
 import { supabase } from '../../services/supabase'
 import { ageBandFromBirthYear } from './ageBand'
+import { appUrl } from '../../app/base'
 
 /** Error carrying an i18n key so every screen can show the same plain-language message. */
 export class AuthMessageError extends Error {
@@ -38,7 +39,6 @@ function client() {
   return supabase
 }
 
-const origin = () => window.location.origin
 
 export async function startGuest(): Promise<void> {
   const { error } = await client().auth.signInAnonymously()
@@ -53,7 +53,7 @@ export async function signUp(v: { birthYear: number; email: string; password: st
     options: {
       // The database trigger reads these; for under-13s the account email is the guardian's.
       data: { birth_year: v.birthYear, ...(under13 ? { guardian_email: v.email } : {}) },
-      emailRedirectTo: `${origin()}/login?verified=1`,
+      emailRedirectTo: appUrl('/login?verified=1'),
     },
   })
   if (error) throw mapAuthError(error)
@@ -65,7 +65,7 @@ export async function logIn(email: string, password: string): Promise<void> {
 }
 
 export async function requestPasswordReset(email: string): Promise<void> {
-  const { error } = await client().auth.resetPasswordForEmail(email, { redirectTo: `${origin()}/update-password` })
+  const { error } = await client().auth.resetPasswordForEmail(email, { redirectTo: appUrl('/update-password') })
   if (error) throw mapAuthError(error)
 }
 
@@ -76,7 +76,7 @@ export async function updatePassword(password: string): Promise<void> {
 
 /** Guest → full account. Supabase emails a confirmation link; the password is chosen after confirming. */
 export async function upgradeGuest(email: string): Promise<void> {
-  const { error } = await client().auth.updateUser({ email }, { emailRedirectTo: `${origin()}/update-password?upgrade=1` })
+  const { error } = await client().auth.updateUser({ email }, { emailRedirectTo: appUrl('/update-password?upgrade=1') })
   if (error) throw mapAuthError(error)
 }
 

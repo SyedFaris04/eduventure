@@ -5,8 +5,9 @@ import { Box3, InstancedMesh, Matrix4, Mesh, MeshStandardMaterial, Quaternion, S
 import type { GameMap, PropKind } from '../game/map'
 import { addWind } from './wind'
 import { buildCodeProp, isCodeProp, type CodePropKind } from './props/codeProps'
+import { withBase } from '../app/base'
 
-const URL = (n: string) => `/assets/models/${n}.glb`
+const URL = (n: string) => withBase(`/assets/models/${n}.glb`)
 export const PROP_MODELS = ['tree_a', 'tree_b', 'rock_a', 'rock_b', 'rock_c', 'house_a', 'house_b', 'well', 'fence'] as const
 type Model = (typeof PROP_MODELS)[number]
 

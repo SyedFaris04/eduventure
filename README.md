@@ -34,3 +34,34 @@ Without it the game works exactly as before, solo.
 2. In `server/rooms`: `npm install`, `npx wrangler secret put SUPABASE_PUBLISHABLE_KEY` (paste the publishable key), then `npm run deploy`.
 3. Add the address it prints to `.env.local` as `VITE_ROOMS_URL=wss://eduventure-rooms.<account>.workers.dev`, and rebuild the web app.
 
+## Android app and hosting
+
+Every push to `main` runs `.github/workflows/release.yml`: the tests, then the game is published to GitHub Pages at
+**https://syedfaris04.github.io/eduventure/play/** (the site root is a download page until the website exists), then a
+signed Android app is built and attached to a GitHub Release. The newest app is always at
+**https://github.com/SyedFaris04/eduventure/releases/latest/download/eduventure.apk**.
+
+The app opens the hosted game, so game updates reach every player without a new APK. That address is built into every
+installed app: keep the repository's name and GitHub Pages on. (If you ever add your own domain, installed apps will
+open the game in the phone's browser until they install a new APK.)
+
+One-time setup (the owner):
+1. **Keep the signing key safe.** The release key (`eduventure-release.jks`) and `android-secrets.txt` were made once
+   and are not in the repository. Back up both somewhere private (a password manager or a USB drive), not in OneDrive
+   alongside the code. If the key is lost, every player must uninstall the app before they can install a new one.
+2. **GitHub → Settings → Secrets and variables → Actions → New repository secret**, four times:
+   - `ANDROID_KEYSTORE_BASE64` and `ANDROID_KEYSTORE_PASSWORD`, copied from `android-secrets.txt`;
+   - `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`, the same values as in `.env.local`;
+   - optional, once multiplayer is deployed: `VITE_ROOMS_URL`.
+3. **GitHub → Settings → Pages → Build and deployment → Source: GitHub Actions.**
+4. **Supabase → Authentication → URL Configuration:** add `https://syedfaris04.github.io/eduventure/play/**` to the
+   Redirect URLs (so verification and password-reset emails open the hosted game).
+5. **GitHub → Actions → Release → Run workflow** (or push to `main`) and wait for the three jobs to turn green.
+6. **On an Android phone:** open the APK link, allow your browser to "install unknown apps", install, open and play.
+
+Local commands: `npm run build:pages` builds the Pages site into `pages/`, `npm run check:pages` checks it in a browser
+(download page, deep links, assets). `npx cap sync android` updates the Android project after changing
+`capacitor.config.json` or a Capacitor plugin; `python scripts/gen-app-icons.py` redraws the icon and splash screen.
+`DEVICE_SHOTS=<folder> npx playwright test device-shots --project devices` screenshots every main screen at phone,
+tablet and laptop sizes.
+

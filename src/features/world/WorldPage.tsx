@@ -63,7 +63,7 @@ export function WorldPage() {
     <main className="fixed inset-0 overflow-hidden bg-[#5fb3d9] select-none">
       {character.data && <GameCanvas hero={character.data.appearance} pet={pet.data} returning={returning.data} />}
       {/* Overlays ignore pointer events except on their own controls, so taps reach the map. */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="safe-inset pointer-events-none absolute">
         {/* The player card with the materials stacked under it, so they never overlap whatever the card's height. */}
         <div className="absolute start-3 top-3 z-10 flex flex-col items-start gap-1.5">
           {character.data && <Hud character={character.data} xp={progression.data?.xp ?? 0} gold={progression.data?.gold ?? 0} title={title.data} />}

@@ -1,4 +1,5 @@
 import { startMusicDirector } from '../audio/director'
+import { Capacitor } from '@capacitor/core'
 import type { ComponentType } from 'react'
 import { createBrowserRouter, Link, RouterProvider, useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -11,6 +12,7 @@ import { BOOT_TASKS } from './bootTasks'
 import { RequireProgress } from './guards'
 import { nextRequiredRoute } from './progress'
 import { queryClient } from './providers'
+import { routerBasename } from './base'
 
 function NotFound() {
   const { t } = useTranslation()
@@ -118,10 +120,13 @@ const router = createBrowserRouter([
       ]
     : []),
   { path: '*', element: <NotFound /> },
-])
+], { basename: routerBasename() })
 
 // Calm music follows the page and the island; it starts on the first tap.
 startMusicDirector(router)
+
+// Inside the Android app: the back button, status bar and splash screen.
+if (Capacitor.isNativePlatform()) void import('./native').then((m) => m.startNative(router))
 
 export function App() {
   return <RouterProvider router={router} />
