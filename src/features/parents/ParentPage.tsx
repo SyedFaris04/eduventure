@@ -10,7 +10,7 @@ import { useSession } from '../authentication/useSession'
 import { supabase } from '../../services/supabase'
 import { peekPendingCode, rememberParentCode, takePendingCode } from './pendingCode'
 
-export type Kid = { child_id: string; name: string | null; daily_limit: number | null }
+export type Kid = { child_id: string; name: string | null; daily_limit: number | null; visible?: boolean }
 export type ChildClass = { class_id: string; name: string; school: string | null }
 export type TopicTp = { subject: string; topic: string; answers: number; tp: number | null }
 export type Report = { week: { day: string; minutes: number; played: boolean }[]; questions: number; correct: number; lessons: number; strong: string[]; practise: string[]; streak: number; topics?: TopicTp[] }
@@ -25,12 +25,13 @@ type ViewProps = {
   busy: boolean
   onApprove: (code: string) => void
   onSetLimit: (child: string, minutes: number | null) => void
+  onSetVisible: (child: string, visible: boolean) => void
   onRemove: (child: string) => void
   onRemoveClass: (child: string, classId: string) => void
 }
 
 /** The parent page from plain values (ParentPage wires it to the server). */
-export function ParentView({ session, code, kids, reports, classes, busy, onApprove, onSetLimit, onRemove, onRemoveClass }: ViewProps) {
+export function ParentView({ session, code, kids, reports, classes, busy, onApprove, onSetLimit, onSetVisible, onRemove, onRemoveClass }: ViewProps) {
   const { t } = useTranslation()
   const [typed, setTyped] = useState(code)
   const [sure, setSure] = useState(false)
@@ -169,6 +170,10 @@ export function ParentView({ session, code, kids, reports, classes, busy, onAppr
                     </option>
                   ))}
                 </Select>
+                <label className="flex min-h-11 items-center gap-2 text-sm font-semibold">
+                  <input type="checkbox" checked={k.visible !== false} disabled={busy} onChange={(e) => onSetVisible(k.child_id, e.target.checked)} className="size-5 accent-grass-dark" />
+                  {t('parents.letOthersSee')}
+                </label>
                 <Button variant="secondary" disabled={busy} onClick={() => onRemove(k.child_id)}>
                   {t('parents.remove')}
                 </Button>
@@ -275,6 +280,7 @@ export function ParentPage() {
             )
           }
           onSetLimit={(child, minutes) => void run(() => supabase!.rpc('set_child_limit', { p_child: child, p_minutes: minutes }))}
+          onSetVisible={(child, visible) => void run(() => supabase!.rpc('set_child_visible', { p_child: child, p_visible: visible }))}
           onRemove={(child) => void run(() => supabase!.rpc('remove_child', { p_child: child }))}
           onRemoveClass={(child, classId) => void run(() => supabase!.rpc('guardian_remove_class', { p_child: child, p_class: classId }))}
         />

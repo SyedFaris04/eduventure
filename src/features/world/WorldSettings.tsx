@@ -7,6 +7,7 @@ import { useCamera } from '../../world3d/cameraStore'
 import { PRESETS, type PresetId } from '../../world3d/projection'
 import { useQuality } from '../../world3d/qualityStore'
 import type { QualityChoice } from '../../world3d/quality'
+import { VisibilitySetting } from '../multiplayer/VisibilitySetting'
 
 const PRESET_IDS = Object.keys(PRESETS) as PresetId[]
 const QUALITIES: QualityChoice[] = ['auto', 'high', 'low']
@@ -93,6 +94,7 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
             ))}
           </div>
         </div>
+        {import.meta.env.VITE_ROOMS_URL && <VisibilitySetting />}
       </section>
     </div>
   )
