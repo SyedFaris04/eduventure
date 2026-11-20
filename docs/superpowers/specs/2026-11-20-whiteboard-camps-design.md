@@ -23,7 +23,7 @@ The owner chose a **lasting island board**: notes stay on the island's board for
   - **Under 18:** may write only with an approved parent (`guardianships` row), and only while the parent's new "Can write on boards" switch is on (on by default).
   - **Writing shows your name, so it follows the visibility rules** (`visibility_reason`). A player who is banned, hidden by a parent, hidden by their own "Let other players see me" switch, or an under-13 waiting for a parent can read but not write. Notes by writers who are not visible right now are left out of the board.
   - **Unknown age** (signed in, no birth year) can't write; they are told to set their birth year first.
-  - **Guests** can read but not write. Under-13s whose parent set `chat_mode = 'off'` can't write either (this matches the emote rule).
+  - **Adult guests** can read but not write, because anyone can claim to be an adult as a guest. A guest under 18 with an approving parent may write: the parent vouches (most players start as guests). Guests can report. Under-13s whose parent set `chat_mode = 'off'` can't write either (this matches the emote rule).
 - **Limits:** 5 notes an hour per player. Notes show for **3 days**, and the board lists the newest 50.
 - **Safety tools:**
   - Tap a note to **report** it (reason: rude, personal information, unkind, other) or to **hide that player** (reuses `player_blocks`, so they disappear from the board and the world).
@@ -149,7 +149,7 @@ The owner chose a **lasting island board**: notes stay on the island's board for
 - Unknown-age players can't write until they set a birth year.
 - The board opens only after the island builds its whiteboard stand.
 - Under-13 readers don't see typed notes at all.
-- Guests can read but not write.
+- Adult guests can read but not write; guests under 18 with an approving parent may write.
 - Three reports hide a note until a moderator decides.
 - Notes are kept 30 days for moderation and shown for 3 days.
 - There are no rewards for writing.
