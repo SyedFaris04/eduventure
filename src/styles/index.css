@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Phones held sideways: short and wide, so layouts go side by side instead of stacking below the fold. */
+@custom-variant short (@media (orientation: landscape) and (max-height: 500px));
+
 /* Palette sampled from the loading art and the isometric reference.
    `static` emits every token as a CSS variable, even ones no utility class uses yet (inline styles, SVG, canvas). */
 @theme static {

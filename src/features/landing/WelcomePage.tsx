@@ -53,8 +53,8 @@ export function WelcomePage() {
       <SceneBackdrop />
       <LanguagePicker className="absolute top-4 end-4 z-10" />
 
-      <div className="relative mx-auto grid min-h-dvh max-w-6xl items-center gap-4 px-4 pt-16 pb-10 md:grid-cols-2 md:gap-8 md:pt-6">
-        <div className="order-1 h-[34dvh] min-h-56 md:order-2 md:h-[70dvh]">
+      <div className="relative mx-auto grid min-h-dvh max-w-6xl items-center gap-4 px-4 pt-16 pb-10 short:grid-cols-2 short:gap-6 short:pt-4 short:pb-4 md:grid-cols-2 md:gap-8 md:pt-6">
+        <div className="order-1 h-[34dvh] min-h-56 short:order-2 short:h-[80dvh] short:min-h-0 md:order-2 md:h-[70dvh]">
           {show3D && (
             <Suspense fallback={null}>
               <HeroScene />
@@ -62,8 +62,8 @@ export function WelcomePage() {
           )}
         </div>
 
-        <div className="rise-in order-2 flex flex-col items-center text-center md:order-1 md:items-start md:text-start">
-          <h1 className="title-outline bg-gradient-to-b from-[#fff1a8] via-gold to-[#ef9b2f] bg-clip-text font-display text-[clamp(2.5rem,10vw,4.5rem)] leading-none font-bold tracking-wide text-transparent">
+        <div className="rise-in order-2 flex flex-col items-center text-center short:order-1 md:order-1 md:items-start md:text-start">
+          <h1 className="title-outline bg-gradient-to-b from-[#fff1a8] via-gold to-[#ef9b2f] bg-clip-text font-display text-[clamp(2.5rem,10vw,4.5rem)] leading-none font-bold short:text-5xl tracking-wide text-transparent">
             {t('common.appName').toUpperCase()}
           </h1>
           <p className="mt-4 -rotate-1 rounded-xl border-[3px] border-wood bg-cream px-4 py-1.5 font-display text-lg font-semibold text-wood-dark shadow-[0_3px_0_var(--color-wood)] sm:text-xl">

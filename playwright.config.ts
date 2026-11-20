@@ -16,6 +16,8 @@ export default defineConfig({
       // Software WebGL so the 3D world renders in headless runs.
       use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:5173', launchOptions: { args: ['--use-gl=angle', '--use-angle=swiftshader'] } },
     },
+    // Device-pass screenshots (a tool; skipped unless DEVICE_SHOTS is set).
+    { name: 'devices', testMatch: 'device-shots.spec.ts', use: { baseURL: 'http://localhost:5173', launchOptions: { args: ['--use-gl=angle', '--use-angle=swiftshader'] } } },
     { name: 'offline', testMatch: 'offline.spec.ts', use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:5174' } },
   ],
   webServer: [
