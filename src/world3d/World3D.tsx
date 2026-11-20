@@ -26,6 +26,8 @@ import { qualityLevel, useQuality } from './qualityStore'
 import { Water } from './Water'
 import { Decor } from './Decor'
 import { FestivalDecor } from './FestivalDecor'
+import { OtherPlayers } from './OtherPlayers'
+import { useRoomConnection } from '../features/multiplayer/useRoom'
 import { decoratedKinds } from './props/festivalProps'
 import type { FestivalKind } from '../features/festival/festivalRules'
 import { THEMES } from './themes'
@@ -263,6 +265,7 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
   }, [sim, returning])
   const look = THEMES[map.theme]
   const festive = useMemo(() => decoratedKinds(map.id, festivals), [map.id, festivals])
+  const room = useRoomConnection(map.id)
   const covered = useGame((s) => Boolean(s.battle || s.boss))
   const level = useQuality(qualityLevel)
   const reduced = useMemo(reducedMotion, [])
@@ -292,7 +295,8 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
       <Monsters sim={sim} reduced={reduced} />
       <Bosses sim={sim} reduced={reduced} />
       <Hero sim={sim} appearance={hero} reduced={reduced} />
-      <PetFollower sim={sim} pet={pet} reduced={reduced} />
+      <PetFollower leader={sim} pet={pet} reduced={reduced} />
+      <OtherPlayers sim={sim} client={room} reduced={reduced} lowQuality={level !== 'high'} />
       {import.meta.env.DEV && location.search.includes('fps') && <Stats />}
     </Canvas>
   )

@@ -43,6 +43,8 @@ type GameState = {
   area: string | null
   /** A teacher was asked to open their school (Cikgu Byte: code, Cikgu Lina: language); the world page navigates there. */
   academy: 'code' | 'language' | null
+  /** Another player's card is open (their public id). */
+  playerCard: string | null
 }
 
 export const useGame = create<GameState>(() => ({
@@ -64,6 +66,7 @@ export const useGame = create<GameState>(() => ({
   travel: null,
   area: null,
   academy: null,
+  playerCard: null,
 }))
 
 // Development builds only: lets automated tests and debugging read the game state.

@@ -978,7 +978,8 @@
     "notEnough": "练习还不够",
     "tpNote": "根据 EDUVENTURE 练习估计——并非孩子学校的正式（PBD）等级。",
     "classes": "班级",
-    "leaveClass": "让 {{child}} 退出 {{name}}"
+    "leaveClass": "让 {{child}} 退出 {{name}}",
+    "letOthersSee": "让其他玩家看到这个孩子"
   },
   "settings": {
     "title": "设置",
@@ -1145,5 +1146,38 @@
     "needMore": "还差 {{n}} 个代币",
     "owned": "已拥有",
     "chipLabel": "{{names}}：{{n}} 个节庆代币。打开节庆摊位"
+  },
+  "multiplayer": {
+    "player": "玩家",
+    "openCard": "{{name}}：选项",
+    "inBattle": "战斗中",
+    "emotes": "表情",
+    "emote": {
+      "wave": "挥手",
+      "cheer": "欢呼",
+      "clap": "鼓掌",
+      "thumbs_up": "点赞",
+      "good_luck": "祝你好运！",
+      "well_done": "做得好！"
+    },
+    "hide": "隐藏这位玩家",
+    "report": "举报",
+    "reason": {
+      "rude_name": "名字不礼貌",
+      "bad_behaviour": "行为不当",
+      "other": "其他"
+    },
+    "reported": "谢谢——管理员会查看。",
+    "solo": "单人游戏中",
+    "errors": {
+      "tooMany": "你今天已经举报了很多次。谢谢你——请明天再试。"
+    },
+    "letSee": "让其他玩家看到我",
+    "hidden": {
+      "off": "其他玩家看不到你。",
+      "parent": "你的家长关闭了这个选项。",
+      "awaiting_parent": "在家长批准你的账户之前保持隐藏。",
+      "banned": "你现在不能加入其他玩家。"
+    }
   }
 }

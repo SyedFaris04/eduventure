@@ -77,6 +77,6 @@ describe('following the hero', () => {
     expect(Math.hypot(p.x - 1.5, p.y - 1.5)).toBeGreaterThan(0.5)
   })
   it('PetFollower renders nothing without a pet', () => {
-    expect(renderToString(createElement(PetFollower, { sim: {} as never, pet: null, reduced: false }))).toBe('')
+    expect(renderToString(createElement(PetFollower, { leader: {} as never, pet: null, reduced: false }))).toBe('')
   })
 })

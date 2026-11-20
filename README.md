@@ -23,3 +23,14 @@ Requires Node.js 22+ and a free Supabase project.
 
 5. Open http://localhost:5173. The page says "Supabase connected" when the keys work.
    To test on your phone, open the `Network:` address that `npm run dev` prints (same Wi-Fi).
+
+## Multiplayer (optional)
+
+Players see each other through a small free Cloudflare room server in `server/rooms` (see its README).
+Without it the game works exactly as before, solo.
+
+1. Create a free account at cloudflare.com, then an API token from the **Edit Cloudflare Workers** template,
+   and put it in `.env.local` as `CLOUDFLARE_API_TOKEN=...` (never commit it).
+2. In `server/rooms`: `npm install`, `npx wrangler secret put SUPABASE_PUBLISHABLE_KEY` (paste the publishable key), then `npm run deploy`.
+3. Add the address it prints to `.env.local` as `VITE_ROOMS_URL=wss://eduventure-rooms.<account>.workers.dev`, and rebuild the web app.
+

@@ -15,3 +15,5 @@ supabase/.branches/
 *.tsbuildinfo
 .superpowers/
 .cache/
+server/rooms/.wrangler/
+server/rooms/.dev.vars

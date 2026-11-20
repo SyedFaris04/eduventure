@@ -13,7 +13,8 @@
     "gen:seed": "node scripts/gen-seed.mjs",
     "gen:questions": "node scripts/gen-questions.mjs",
     "fetch:models": "node scripts/fetch-models.mjs",
-    "gen:lessons": "node scripts/gen-lessons.mjs"
+    "gen:lessons": "node scripts/gen-lessons.mjs",
+    "test:e2e:mp": "playwright test -c playwright.multiplayer.config.ts"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "6.2.5",

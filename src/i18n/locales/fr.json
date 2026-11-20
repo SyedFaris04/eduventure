@@ -978,7 +978,8 @@
     "notEnough": "Pas encore assez de pratique",
     "tpNote": "Estimé à partir de la pratique sur EDUVENTURE — ce n’est pas le niveau officiel de l’école (PBD).",
     "classes": "Classes",
-    "leaveClass": "Retirer {{child}} de {{name}}"
+    "leaveClass": "Retirer {{child}} de {{name}}",
+    "letOthersSee": "Laisser les autres joueurs voir cet enfant"
   },
   "settings": {
     "title": "Réglages",
@@ -1145,5 +1146,38 @@
     "needMore": "Encore {{n}} jetons",
     "owned": "Possédé",
     "chipLabel": "{{names}} : {{n}} jetons de fête. Ouvrir le stand de la fête"
+  },
+  "multiplayer": {
+    "player": "Joueur",
+    "openCard": "{{name}} : options",
+    "inBattle": "En combat",
+    "emotes": "Émotes",
+    "emote": {
+      "wave": "Saluer",
+      "cheer": "Acclamer",
+      "clap": "Applaudir",
+      "thumbs_up": "Pouce levé",
+      "good_luck": "Bonne chance !",
+      "well_done": "Bravo !"
+    },
+    "hide": "Masquer ce joueur",
+    "report": "Signaler",
+    "reason": {
+      "rude_name": "Nom grossier",
+      "bad_behaviour": "Mauvais comportement",
+      "other": "Autre chose"
+    },
+    "reported": "Merci — un modérateur va regarder.",
+    "solo": "Partie en solo",
+    "errors": {
+      "tooMany": "Tu as envoyé beaucoup de signalements aujourd'hui. Merci — réessaie demain."
+    },
+    "letSee": "Laisser les autres joueurs me voir",
+    "hidden": {
+      "off": "Tu es masqué pour les autres joueurs.",
+      "parent": "Ton parent a désactivé cette option.",
+      "awaiting_parent": "Masqué jusqu'à ce qu'un parent approuve ton compte.",
+      "banned": "Tu ne peux pas rejoindre d'autres joueurs pour l'instant."
+    }
   }
 }

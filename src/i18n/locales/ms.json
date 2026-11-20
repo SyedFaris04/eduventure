@@ -978,7 +978,8 @@
     "notEnough": "Latihan belum mencukupi",
     "tpNote": "Anggaran daripada latihan EDUVENTURE — bukan tahap rasmi sekolah (PBD) anak anda.",
     "classes": "Kelas",
-    "leaveClass": "Keluarkan {{child}} daripada {{name}}"
+    "leaveClass": "Keluarkan {{child}} daripada {{name}}",
+    "letOthersSee": "Benarkan pemain lain melihat anak ini"
   },
   "settings": {
     "title": "Tetapan",
@@ -1145,5 +1146,38 @@
     "needMore": "{{n}} token lagi",
     "owned": "Dimiliki",
     "chipLabel": "{{names}}: {{n}} token perayaan. Buka gerai perayaan"
+  },
+  "multiplayer": {
+    "player": "Pemain",
+    "openCard": "{{name}}: pilihan",
+    "inBattle": "Sedang bertarung",
+    "emotes": "Emosi",
+    "emote": {
+      "wave": "Lambai",
+      "cheer": "Sorak",
+      "clap": "Tepuk",
+      "thumbs_up": "Bagus",
+      "good_luck": "Semoga berjaya!",
+      "well_done": "Syabas!"
+    },
+    "hide": "Sembunyikan pemain ini",
+    "report": "Laporkan",
+    "reason": {
+      "rude_name": "Nama kasar",
+      "bad_behaviour": "Kelakuan buruk",
+      "other": "Lain-lain"
+    },
+    "reported": "Terima kasih — moderator akan menyemaknya.",
+    "solo": "Bermain sendirian",
+    "errors": {
+      "tooMany": "Anda telah menghantar banyak laporan hari ini. Terima kasih — sila cuba lagi esok."
+    },
+    "letSee": "Benarkan pemain lain melihat saya",
+    "hidden": {
+      "off": "Anda disembunyikan daripada pemain lain.",
+      "parent": "Ibu bapa anda telah mematikan ini.",
+      "awaiting_parent": "Disembunyikan sehingga ibu bapa meluluskan akaun anda.",
+      "banned": "Anda tidak boleh menyertai pemain lain buat masa ini."
+    }
   }
 }

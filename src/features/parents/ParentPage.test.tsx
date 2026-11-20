@@ -7,7 +7,7 @@ import { afterLoginPath, peekPendingCode, rememberParentCode, savePendingCode, t
 
 const report = { week: [], questions: 20, correct: 15, lessons: 2, strong: ['Fractions'], practise: ['Photosynthesis'], streak: 4, days: 3 }
 const view = (props: Partial<React.ComponentProps<typeof ParentView>>) => {
-  const all = { session: 'parent' as const, code: '', kids: [], reports: {}, busy: false, classes: {}, onApprove: vi.fn(), onSetLimit: vi.fn(), onRemove: vi.fn(), onRemoveClass: vi.fn(), ...props }
+  const all = { session: 'parent' as const, code: '', kids: [], reports: {}, busy: false, classes: {}, onApprove: vi.fn(), onSetLimit: vi.fn(), onSetVisible: vi.fn(), onRemove: vi.fn(), onRemoveClass: vi.fn(), ...props }
   render(
     <MemoryRouter>
       <ParentView {...all} />
@@ -98,5 +98,13 @@ describe('pending parent code', () => {
     rememberParentCode('ABCD-EF23', 'guest')
     expect(peekPendingCode()).toBeNull()
     expect(afterLoginPath()).toBe('/home')
+  })
+
+  it('a parent can stop other players seeing their child', () => {
+    const v = view({ kids: [{ child_id: 'c1', name: 'Aina', daily_limit: null, visible: true }], reports: {} })
+    const box = screen.getByRole('checkbox', { name: 'Let other players see this child' }) as HTMLInputElement
+    expect(box.checked).toBe(true)
+    fireEvent.click(box)
+    expect(v.onSetVisible).toHaveBeenCalledWith('c1', false)
   })
 })
