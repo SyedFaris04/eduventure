@@ -967,7 +967,7 @@
     "turnRight": "Tourner la caméra à droite",
     "reset": "Réinitialiser la caméra",
     "resetShort": "Réinitialiser",
-    "hint": "Une caméra plus basse montre mieux les visages ; plus haute, elle montre plus de carte. Enregistré sur cet appareil.",
+    "hint": "Faites tourner la caméra tout autour : glissez avec le bouton droit ou maintenez Z / X (R / F pour incliner). Sur téléphone et tablette : tournez deux doigts pour pivoter, glissez-les vers le haut ou le bas pour incliner, pincez pour zoomer. Enregistré sur cet appareil.",
     "graphics": "Graphismes",
     "preset": {
       "close": "Rapprochée",
@@ -979,7 +979,8 @@
     "soundOn": "Activé",
     "soundOff": "Désactivé",
     "music": "Musique",
-    "effects": "Effets sonores"
+    "effects": "Effets sonores",
+    "rotation": "Rotation"
   },
   "teacher": {
     "title": "Espace enseignant",

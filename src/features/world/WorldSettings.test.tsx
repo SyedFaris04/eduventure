@@ -31,9 +31,11 @@ describe('WorldSettings', () => {
     fireEvent.change(screen.getByRole('slider', { name: 'Field of view' }), { target: { value: '45' } })
     expect(useCamera.getState()).toMatchObject({ distance: 25, fov: 45 })
     fireEvent.click(screen.getByRole('button', { name: 'Turn camera right' }))
-    expect(useCamera.getState().turn).toBe(1)
+    expect(useCamera.getState().yaw).toBe(45)
+    fireEvent.change(screen.getByRole('slider', { name: 'Rotation' }), { target: { value: '200' } })
+    expect(useCamera.getState().yaw).toBe(200)
     fireEvent.click(screen.getByRole('button', { name: 'Reset camera' }))
-    expect(useCamera.getState()).toMatchObject({ tilt: 38, distance: 15, fov: 30, turn: 0 })
+    expect(useCamera.getState()).toMatchObject({ tilt: 38, distance: 15, fov: 30, yaw: 0 })
   })
 
   it('sound: on/off, music and effects volumes', () => {
