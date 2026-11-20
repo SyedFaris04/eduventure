@@ -30,6 +30,7 @@ const errors = []
 page.on('pageerror', (e) => errors.push(e.message))
 const fail = (msg) => {
   console.error('pages check failed:', msg)
+  if (process.env.GITHUB_ACTIONS) console.log(`::error title=check-pages::${msg}`) // shows on the run's summary page
   process.exitCode = 1
 }
 try {
@@ -51,9 +52,11 @@ try {
   // On a phone, a vertical swipe over the 3D island scrolls the page (only sideways drags spin it).
   const phone = await browser.newPage({ viewport: { width: 360, height: 640 }, hasTouch: true, isMobile: true })
   await phone.goto(`${base}/eduventure/`)
-  await phone.locator('canvas').first().waitFor({ timeout: 30_000 }).catch(() => {})
+  // CI machines often have no WebGL: then the stills show (correct) and there is no canvas to check.
+  const hasGL = await phone.evaluate(() => Boolean(document.createElement('canvas').getContext('webgl')))
+  if (hasGL) await phone.locator('canvas').first().waitFor({ timeout: 30_000 }).catch(() => fail('the 3D island did not load'))
+  else console.log('no WebGL here: 3D scenes show their still pictures; swipe check skipped')
   const touch = await phone.evaluate(() => [...document.querySelectorAll('canvas')].map((c) => getComputedStyle(c).touchAction))
-  if (touch.length === 0) fail('the 3D island did not load')
   if (touch.some((t) => !t.includes('pan-y'))) fail(`a vertical swipe over the 3D island does not scroll the page (touch-action: ${touch.join(', ')})`)
   await phone.close()
 
