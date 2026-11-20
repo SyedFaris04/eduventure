@@ -32,6 +32,17 @@ export const CATALOGUE = [
   { id: 'pet_leaf_hat', slot: 'pet_hat', rarity: 'common', price: 1, craft: true },
   { id: 'pet_crystal_collar', slot: 'pet_neck', rarity: 'rare', price: 1, craft: true },
   { id: 'pet_dye_forest', slot: 'pet_dye', rarity: 'common', price: 1, craft: true },
+  // Festival stall: bought with festival tokens while that festival is on (src/features/festival); never sold for gold.
+  { id: 'holiday_sunhat', slot: 'accessory', rarity: 'common', price: 1, festival: 'school_holiday', tokens: 30 },
+  { id: 'pet_shades', slot: 'pet_hat', rarity: 'common', price: 1, festival: 'school_holiday', tokens: 20 },
+  { id: 'lion_dance_hat', slot: 'accessory', rarity: 'common', price: 1, festival: 'cny', tokens: 30 },
+  { id: 'pet_lantern', slot: 'pet_neck', rarity: 'common', price: 1, festival: 'cny', tokens: 20 },
+  { id: 'songket_top', slot: 'top', rarity: 'common', price: 1, festival: 'raya', tokens: 30 },
+  { id: 'pet_ketupat', slot: 'pet_neck', rarity: 'common', price: 1, festival: 'raya', tokens: 20 },
+  { id: 'sparkler_wand', slot: 'weapon', rarity: 'common', price: 1, festival: 'merdeka', tokens: 30 },
+  { id: 'pet_bunting', slot: 'pet_neck', rarity: 'common', price: 1, festival: 'merdeka', tokens: 20 },
+  { id: 'kolam_shawl', slot: 'top', rarity: 'common', price: 1, festival: 'deepavali', tokens: 30 },
+  { id: 'pet_marigold', slot: 'pet_neck', rarity: 'common', price: 1, festival: 'deepavali', tokens: 20 },
 ] as const
 
 export type ShopItem = (typeof CATALOGUE)[number]

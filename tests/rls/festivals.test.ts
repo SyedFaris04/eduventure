@@ -79,6 +79,14 @@ describe.skipIf(!url || !key)('festivals: players', () => {
     expect(kinds).toEqual(new Set((f as Festivals).festivals.map((x) => x.kind)))
   })
 
+  it('the stall refuses when the festival is off, and the gold shop never sells festival items', async () => {
+    const on = new Set(((await a.rpc('my_festivals')).data as Festivals).festivals.map((x) => x.kind))
+    const item = on.has('deepavali') ? 'pet_bunting' : 'pet_marigold'
+    expect((await a.rpc('buy_festival_item', { p_item: item })).error?.message).toMatch(/not on right now/)
+    expect((await a.rpc('buy_item', { p_item: item })).error?.message).toMatch(/festival stall/)
+    expect((await a.rpc('buy_festival_item', { p_item: 'leaf_crown' })).error?.message).toMatch(/No such festival item/)
+  })
+
   it('only admins can preview', async () => {
     const { error } = await a.rpc('set_festival_preview', { p_id: 'cny_2027' })
     expect(error?.message).toMatch(/Admins only/)
@@ -132,4 +140,21 @@ describe.skipIf(!url || !key || !adminEmail || !adminPassword)('festivals: admin
     expect(data).toMatchObject({ tokens: 2, totals: expect.objectContaining({ tokens: 52 }) })
     expect((await admin.rpc('claim_mission', { p_id: daily.id })).error?.message).toMatch(/already claimed/)
   }, 60000)
+
+  it('an admin can buy a previewed festival item once with tokens, and a reset takes it back', async () => {
+    await admin.rpc('set_festival_preview', { p_id: 'year_end_2026', p_reset: true })
+    expect((await admin.rpc('buy_festival_item', { p_item: 'pet_shades' })).data).toEqual({ item_id: 'pet_shades', tokens: 30 })
+    expect((await admin.rpc('buy_festival_item', { p_item: 'pet_shades' })).error?.message).toMatch(/already own/)
+    expect((await admin.rpc('buy_festival_item', { p_item: 'holiday_sunhat' })).data).toEqual({ item_id: 'holiday_sunhat', tokens: 0 })
+    await admin.rpc('set_festival_preview', { p_id: 'year_end_2026', p_reset: true })
+    expect((await admin.rpc('buy_festival_item', { p_item: 'holiday_sunhat' })).error).toBeNull()
+  })
+
+  it('buying without enough tokens is refused', async () => {
+    await admin.rpc('set_festival_preview', { p_id: 'cny_2027', p_reset: true })
+    expect((await admin.rpc('buy_festival_item', { p_item: 'lion_dance_hat' })).data).toMatchObject({ tokens: 20 })
+    expect((await admin.rpc('buy_festival_item', { p_item: 'pet_lantern' })).data).toMatchObject({ tokens: 0 })
+    await admin.rpc('set_festival_preview', { p_id: 'raya_2027' })
+    expect((await admin.rpc('buy_festival_item', { p_item: 'pet_ketupat' })).error?.message).toMatch(/Not enough festival tokens/)
+  })
 })
