@@ -11,6 +11,7 @@ import { useGame } from '../../game/store'
 import { Travel } from './Travel'
 import { useSession } from '../authentication/useSession'
 import { useCamp, useRegrowing } from '../harvest/harvestApi'
+import { useFestivals } from '../festival/festivalApi'
 
 // three.js and the models download only when the world opens.
 const World3D = lazy(() => import('../../world3d/World3D'))
@@ -43,13 +44,15 @@ function CurrentPlace({ hero, pet, returning }: { hero: Appearance; pet?: Pet | 
   const regrowing = useRegrowing(uid, place).data
   const camp = useCamp(place, Boolean(uid)).data
   const built = useMemo(() => new Set<string>(camp?.filter((p) => p.built).map((p) => p.project)), [camp])
+  const fest = useFestivals(uid).data
+  const festivals = useMemo(() => fest?.festivals.map((f) => f.kind), [fest])
   // Coming back from the Code Academy: start where the player left, not at the jetty. The spot is cleared only
   // once the world has really appeared, because the map download can make React throw the first render away.
   const resumeAt = usePlace((s) => s.resumeAt)
   useEffect(() => {
     if (usePlace.getState().resumeAt) usePlace.setState({ resumeAt: null })
   }, [])
-  return <World3D key={place} hero={hero} pet={pet} returning={returning?.[place] ?? 0} map={map} atArrival={arriving} startAt={resumeAt ?? undefined} regrowing={regrowing} built={built} />
+  return <World3D key={place} hero={hero} pet={pet} returning={returning?.[place] ?? 0} map={map} atArrival={arriving} startAt={resumeAt ?? undefined} regrowing={regrowing} built={built} festivals={festivals} />
 }
 
 /** The 3D world, or a clear message when this device can't show it or the download failed. */

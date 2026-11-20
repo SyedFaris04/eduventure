@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import { Check, ShoppingBag, Star } from 'lucide-react'
@@ -26,7 +26,12 @@ export function FestivalStall() {
   const pet = usePet(uid).data
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState<{ kind: 'error' | 'success'; text: string } | null>(null)
-  if (!festivals?.festivals.length) return null
+  const on = Boolean(festivals?.festivals.length)
+  // Opened from the world's festival chip (/shop#festival): bring the stall into view once it has appeared.
+  useEffect(() => {
+    if (on && window.location.hash === '#festival') document.getElementById('festival')?.scrollIntoView({ block: 'start' })
+  }, [on])
+  if (!festivals || !on) return null
   const tokens = festivals.tokens
 
   async function buy(item: FestivalItem) {
