@@ -9,6 +9,7 @@ import type { PublicQuestion } from '../battle/questionSchema'
 import { LessonReview } from './LessonReview'
 import { allowedActions, bulkReview, findDuplicates, reviewQuestion, useHistory, useMyRoles, useQuestionBank, type Action, type AdminQuestion, type Status } from './review'
 import { FestivalPreview } from './FestivalPreview'
+import { PlayerReports } from './PlayerReports'
 
 // Admin area: English-only for now (decision #19); translated before outside educators are invited.
 const STATUSES: Status[] = ['draft', 'in_review', 'approved', 'published', 'rejected']
@@ -34,6 +35,7 @@ export function AdminPage() {
   const roles = useMyRoles(session?.user.id)
   const isReviewer = Boolean(roles.data?.some((r) => r === 'admin' || r === 'educator'))
   const isAdmin = Boolean(roles.data?.includes('admin'))
+  const isModerator = Boolean(roles.data?.includes('moderator'))
   const bank = useQuestionBank(isReviewer)
   const queryClient = useQueryClient()
 
@@ -62,6 +64,13 @@ export function AdminPage() {
 
   if (!loading && !session) return <Navigate to="/login" replace />
   if (roles.isPending || (isReviewer && bank.isPending)) return <p className="p-8 font-display">Loading…</p>
+  if (!isReviewer && isModerator)
+    return (
+      <main className="mx-auto flex max-w-4xl flex-col gap-4 px-4 py-6">
+        <h1 className="text-3xl font-bold text-wood-dark">Moderation</h1>
+        <PlayerReports />
+      </main>
+    )
   if (!isReviewer)
     return (
       <main className="grid min-h-dvh place-items-center p-6">
@@ -112,6 +121,7 @@ export function AdminPage() {
         <p className="text-sm text-ink/70">{isAdmin ? 'Admin' : 'Educator'} · {questions.length} questions</p>
       </header>
       {isAdmin && <FestivalPreview />}
+      {(isAdmin || isModerator) && <PlayerReports />}
       <nav aria-label="What to review" className="flex gap-2">
         {(['questions', 'lessons', 'language'] as const).map((x) => (
           <button key={x} type="button" aria-pressed={tab === x} onClick={() => setTab(x)} className={`rounded-full border-2 px-4 py-1 font-bold ${tab === x ? 'border-wood-dark bg-wood text-cream' : 'border-wood/40 bg-white'}`}>
