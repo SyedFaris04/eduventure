@@ -1,5 +1,5 @@
 import { DurableObject } from 'cloudflare:workers'
-import { PLACES, Room, type Card, type Out, type Player } from './room'
+import { PLACES, recipients, Room, type Card, type Out, type Player } from './room'
 
 type Env = { ROOM: DurableObjectNamespace<RoomObject>; SUPABASE_URL: string; SUPABASE_PUBLISHABLE_KEY: string }
 /** Kept on each socket so the room survives hibernation. */
@@ -61,6 +61,8 @@ export class RoomObject extends DurableObject<Env> {
     if (!tag.player) {
       if (msg.t !== 'hello' || typeof msg.token !== 'string') return ws.close(4000, 'hello first')
       const card = await this.card(msg.token)
+      // The socket may have closed while the sign-in was checked: joining it now would leave a ghost behind.
+      if (ws.readyState !== WebSocket.OPEN) return
       if (!card) return ws.close(4001, 'sign-in rejected')
       if (card.banned) return ws.close(4003, 'banned')
       const out = this.room.join(tag.conn, card)
@@ -71,6 +73,7 @@ export class RoomObject extends DurableObject<Env> {
       this.save(ws, tag.conn)
       return this.deliver(out)
     }
+    if (!this.room.note(tag.conn)) return ws.close(4008, 'too many messages')
     const out = msg.t === 'move' ? this.room.move(tag.conn, { x: msg.x, y: msg.y, battle: msg.battle }) : msg.t === 'emote' ? this.room.emote(tag.conn, msg.e) : []
     if (msg.t === 'move') this.save(ws, tag.conn)
     this.deliver(out)
@@ -103,12 +106,11 @@ export class RoomObject extends DurableObject<Env> {
 
   private deliver(out: Out[]) {
     if (!out.length) return
-    const sockets = this.ctx.getWebSockets().map((ws) => ({ ws, conn: (ws.deserializeAttachment() as Tag).conn }))
+    const sockets = new Map(this.ctx.getWebSockets().map((ws) => [(ws.deserializeAttachment() as Tag).conn, ws]))
     for (const o of out) {
       const text = JSON.stringify(o.msg)
-      for (const s of sockets) {
-        const hit = o.to === 'all' || (o.to === 'one' ? s.conn === o.conn : s.conn !== o.conn)
-        if (!hit) continue
+      for (const conn of recipients(o, [...sockets.keys()], (c) => this.room.player(c) !== undefined)) {
+        const s = { ws: sockets.get(conn)! }
         try {
           s.ws.send(text)
           if ((o.msg as { t: string }).t === 'replaced') s.ws.close(4002, 'replaced')

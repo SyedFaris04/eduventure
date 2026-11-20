@@ -2,59 +2,63 @@
 # mapping leetspeak 0→o 1→i 3→e 4→a 5→s 7→t @→a $→s, and removing spaces and symbols).
 # One lower-case word per line. Avoid short words that hide inside innocent names
 # (for example "cock" in "peacock", "rape" in "grape", "hell" in "hello", "ass" in "class").
-# After editing: python scripts/gen-blocked-words.py, then push the migration. Reviewed by the owner.
+# A word starting with = only matches as a whole word (single spaced-out letters are joined first, so "f u k" still
+# counts): use it for short words inside real names, like Nazim (nazi), Hakim Akmal (kimak), Wan Kamal (wank),
+# Yamashita (shit), Fukuda (fuk) or Scunthorpe (cunt). Other words match anywhere in the name.
+# After editing: python scripts/gen-blocked-words.py (writes a new migration), then push it. Reviewed by the owner.
 
 # English
 fuck
-fuk
-shit
+=fuk
+=shit
+bullshit
 bitch
-cunt
+=cunt
 asshole
 dumbass
 jackass
 bastard
-slut
+=slut
 whore
 pussy
 dickhead
-penis
+=penis
 vagina
 boobs
-wank
-twat
-porn
-sexy
+=wank
+=twat
+=porn
+=sexy
 rapist
 nigger
 nigga
 faggot
 retard
-nazi
+=nazi
 hitler
 motherf
 
 # Bahasa Melayu
 pukimak
-kimak
-puki
-pantat
-pepek
-butoh
-lancau
+=kimak
+=puki
+=pantat
+=pepek
+=butoh
+=lancau
 bangsat
-babi
-anjing
-sial
-celaka
+=babi
+=anjing
+=sial
+=celaka
 keparat
 jahanam
 haramjadah
-bodoh
-bangang
-bengap
-sundal
-jalang
+=bodoh
+=bangang
+=bengap
+=sundal
+=jalang
 pelacur
-jubur
-konek
+=jubur
+=konek

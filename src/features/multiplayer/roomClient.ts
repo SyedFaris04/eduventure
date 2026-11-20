@@ -37,7 +37,7 @@ export function startRoom({ url, place, token, WebSocketImpl = WebSocket, blocke
       case 'welcome': {
         attempt = 0
         const players = (m.players as OtherPlayer[]).filter((p) => !hidden(p.id))
-        useRoom.setState({ status: 'online', you: m.you as string, canEmote: m.can_emote !== false, players: Object.fromEntries(players.map((p) => [p.id, p])), emotes: {} })
+        useRoom.setState({ status: 'online', you: m.you as string, visible: m.visible !== false, canEmote: m.can_emote !== false, players: Object.fromEntries(players.map((p) => [p.id, p])), emotes: {} })
         break
       }
       case 'join': {

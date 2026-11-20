@@ -18,11 +18,13 @@ type RoomState = {
   /** off: multiplayer not configured or stopped; solo: configured but not connected right now. */
   status: 'off' | 'connecting' | 'online' | 'solo'
   you: string | null
+  /** Whether other players can see me (false: I still see them, but send nothing). */
+  visible: boolean
   canEmote: boolean
   players: Record<string, OtherPlayer>
   emotes: Record<string, { e: Emote; at: number }>
 }
-export const EMPTY_ROOM: RoomState = { status: 'off', you: null, canEmote: true, players: {}, emotes: {} }
+export const EMPTY_ROOM: RoomState = { status: 'off', you: null, visible: true, canEmote: true, players: {}, emotes: {} }
 export const useRoom = create<RoomState>(() => EMPTY_ROOM)
 
 let active: RoomClient | null = null
@@ -40,7 +42,8 @@ export function useRoomConnection(place: string): RoomClient | null {
 
   useEffect(() => {
     const url = import.meta.env.VITE_ROOMS_URL as string | undefined
-    if (!url || !uid || !supabase) return
+    // Wait for my own visibility, so the first join isn't thrown away a moment later (which could leave a ghost).
+    if (!url || !uid || !supabase || visible === undefined) return
     const c = startRoom({
       url,
       place,

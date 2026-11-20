@@ -6,7 +6,7 @@ import { EMOTE_ICON, EMOTES, useRoom, type Emote } from './useRoom'
 /** Emotes only, no typing: a button that opens six emotes. Hidden when a parent turned emotes off. */
 export function EmoteBar({ onEmote }: { onEmote: (e: Emote) => void }) {
   const { t } = useTranslation()
-  const can = useRoom((s) => s.canEmote && s.status === 'online')
+  const can = useRoom((s) => s.canEmote && s.visible && s.status === 'online')
   const [open, setOpen] = useState(false)
   if (!can) return null
   return (

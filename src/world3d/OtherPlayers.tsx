@@ -126,12 +126,14 @@ function SendPosition({ sim, client }: { sim: WorldSim; client: RoomClient }) {
 /** Everyone else in this island's room, plus this player's own emote bubble and position updates. */
 export function OtherPlayers({ sim, client, reduced, lowQuality }: { sim: WorldSim; client: RoomClient | null; reduced: boolean; lowQuality: boolean }) {
   const players = useRoom((s) => s.players)
+  // Hidden players see everyone but send nothing: every message to the server counts against the free plan.
+  const visible = useRoom((s) => s.visible)
   if (!client) return null
   const list = Object.values(players)
   const pets = !(lowQuality && list.length > 6)
   return (
     <>
-      <SendPosition sim={sim} client={client} />
+      {visible && <SendPosition sim={sim} client={client} />}
       <SelfBubble sim={sim} />
       {list.map((p) => (
         <Other key={p.id} p={p} reduced={reduced} showPet={pets} />

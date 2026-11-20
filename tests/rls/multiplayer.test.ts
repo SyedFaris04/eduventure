@@ -25,7 +25,7 @@ const visibility = async (c: SupabaseClient) => (await c.rpc('my_visibility')).d
 
 // A blocked word with an o or e in it, written in leetspeak (o→0, e→3, s→5).
 const words = readFileSync(new URL('../../content/blocked-words.txt', import.meta.url), 'utf8').split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('#'))
-const leet = words.find((w) => /[oe]/.test(w))!.replace(/o/g, '0').replace(/e/g, '3').replace(/s/g, '5')
+const leet = words.find((w) => !w.startsWith('=') && /[oe]/.test(w))!.replace(/o/g, '0').replace(/e/g, '3').replace(/s/g, '5')
 
 describe.skipIf(!url || !key)('multiplayer: room cards and names', () => {
   let adult: SupabaseClient
@@ -48,6 +48,8 @@ describe.skipIf(!url || !key)('multiplayer: room cards and names', () => {
     expect(error?.message).toMatch(/different name/)
     expect((await other.rpc('name_ok', { p_name: 'Sunny Day' })).data).toBe(true)
     expect((await other.rpc('name_ok', { p_name: leet })).data).toBe(false)
+    // Short words hide inside real names, so they only count as whole words (tests/sql/names-ok.sql has the full list).
+    for (const name of ['Nazim', 'Hakim Akmal', 'Wan Kamal', 'Yamashita', 'Fukuda', 'Scunthorpe']) expect((await other.rpc('name_ok', { p_name: name })).data, name).toBe(true)
   })
 
   it('an under-13 is hidden until a parent approves, and still has a card', async () => {

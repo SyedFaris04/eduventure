@@ -7,6 +7,8 @@ export const EMOTES = ['wave', 'cheer', 'clap', 'thumbs_up', 'good_luck', 'well_
 export const MAX_VISIBLE = 12
 const MOVES_PER_SECOND = 4
 const EMOTE_GAP_MS = 2000
+/** Above this, a connection is flooding (every incoming message is billed), and the server closes it. */
+const MESSAGES_PER_SECOND = 20
 
 /** From the database (my_room_card), read with the player's own token. */
 export type Card = { public_id: string; visible: boolean; can_emote: boolean; banned: boolean; name: string | null; appearance: unknown; pet: unknown }
@@ -14,7 +16,7 @@ export type Player = { card: Card; x: number; y: number; battle: boolean }
 /** `all-but`: everyone except `conn`; `one`: only `conn`; `all`: everyone. */
 export type Out = { to: 'all-but' | 'one' | 'all'; conn: string; msg: object }
 
-type Slot = Player & { moves: number[]; lastEmote: number }
+type Slot = Player & { moves: number[]; lastEmote: number; msgs: number[] }
 
 const coord = (v: unknown) => {
   const n = typeof v === 'number' && Number.isFinite(v) ? v : 0
@@ -33,7 +35,7 @@ export class Room {
 
   /** Puts back a player after the object woke from hibernation. */
   restore(conn: string, p: Player) {
-    this.slots.set(conn, { ...p, moves: [], lastEmote: 0 })
+    this.slots.set(conn, { ...p, moves: [], lastEmote: 0, msgs: [] })
   }
 
   join(conn: string, card: Card): Out[] | 'full' {
@@ -47,13 +49,25 @@ export class Room {
     }
     const visible = [...this.slots.values()].filter((s) => s.card.visible).length
     if (card.visible && !replacing && visible >= MAX_VISIBLE) return 'full'
-    const slot: Slot = { card, x: replacing?.x ?? 0, y: replacing?.y ?? 0, battle: false, moves: [], lastEmote: 0 }
+    const slot: Slot = { card, x: replacing?.x ?? 0, y: replacing?.y ?? 0, battle: false, moves: [], lastEmote: 0, msgs: [] }
     const others = [...this.slots.entries()].filter(([, s]) => s.card.visible).map(([, s]) => shown(s.card.public_id, s))
     this.slots.set(conn, slot)
-    out.push({ to: 'one', conn, msg: { t: 'welcome', you: card.public_id, can_emote: card.can_emote, players: others } })
+    out.push({ to: 'one', conn, msg: { t: 'welcome', you: card.public_id, visible: card.visible, can_emote: card.can_emote, players: others } })
     // A replaced connection was already announced, so the others see one hero, not two.
     if (card.visible && !(replacing && replacing.card.visible)) out.push({ to: 'all-but', conn, msg: { t: 'join', p: shown(card.public_id, slot) } })
+    // Seen before and hidden now (say a parent switched them off, then they opened a second tab): gone for the others.
+    if (!card.visible && replacing?.card.visible) out.push({ to: 'all-but', conn, msg: { t: 'leave', id: card.public_id } })
     return out
+  }
+
+  /** Counts one incoming message; false when the connection sends more than it ever should. */
+  note(conn: string): boolean {
+    const s = this.slots.get(conn)
+    if (!s) return true
+    const t = this.now()
+    s.msgs = s.msgs.filter((at) => t - at < 1000)
+    s.msgs.push(t)
+    return s.msgs.length <= MESSAGES_PER_SECOND
   }
 
   leave(conn: string): Out[] {
@@ -84,4 +98,10 @@ export class Room {
     s.lastEmote = t
     return [{ to: 'all', conn, msg: { t: 'emote', id: s.card.public_id, e } }]
   }
+}
+
+/** Which sockets get a message: room traffic only reaches players who joined (said hello with a valid sign-in); a direct message reaches its own socket. */
+export function recipients(o: Out, conns: string[], joined: (conn: string) => boolean): string[] {
+  if (o.to === 'one') return conns.filter((c) => c === o.conn)
+  return conns.filter((c) => joined(c) && (o.to === 'all' || c !== o.conn))
 }

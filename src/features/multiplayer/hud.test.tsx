@@ -38,6 +38,9 @@ describe('multiplayer HUD', () => {
     room.useRoom.setState({ canEmote: false })
     wrap(<EmoteBar onEmote={send} />)
     expect(screen.queryByRole('button', { name: 'Emotes' })).toBeNull()
+    room.useRoom.setState({ canEmote: true, visible: false })
+    wrap(<EmoteBar onEmote={send} />)
+    expect(screen.queryByRole('button', { name: 'Emotes' })).toBeNull() // nobody would see it
   })
 
   it('Hide this player blocks them and removes them at once', async () => {

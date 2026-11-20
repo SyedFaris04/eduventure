@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { MAX_VISIBLE, Room, type Card, type Out } from './room'
+import { MAX_VISIBLE, Room, recipients, type Card, type Out } from './room'
 
 let clock = 0
 const room = () => new Room(() => clock)
@@ -84,5 +84,37 @@ describe('Room', () => {
     r.restore('a', { card: card('A'), x: 4, y: 5, battle: true })
     const out = r.join('b', card('B'))
     expect((msgs(out, 'welcome')[0].msg as { players: object[] }).players[0]).toMatchObject({ id: 'A', x: 4, y: 5, battle: true })
+  })
+
+  it('welcome tells a player whether others can see them', () => {
+    const r = room()
+    expect((msgs(r.join('h', card('H', { visible: false })), 'welcome')[0].msg as { visible: boolean }).visible).toBe(false)
+    expect((msgs(r.join('a', card('A')), 'welcome')[0].msg as { visible: boolean }).visible).toBe(true)
+  })
+
+  it('a visible player who comes back hidden (a second tab after a parent switched them off) disappears for the others', () => {
+    const r = room()
+    r.join('a', card('A'))
+    r.join('k1', card('K'))
+    const out = r.join('k2', card('K', { visible: false }))
+    expect(msgs(out, 'leave')).toEqual([{ to: 'all-but', conn: 'k2', msg: { t: 'leave', id: 'K' } }])
+  })
+
+  it('a connection sending more than 20 messages a second is flagged', () => {
+    const r = room()
+    clock = 90_000
+    r.join('a', card('A'))
+    for (let i = 0; i < 20; i++) expect(r.note('a')).toBe(true)
+    expect(r.note('a')).toBe(false)
+    clock = 91_001
+    expect(r.note('a')).toBe(true)
+  })
+
+  it('room traffic only reaches players who have joined; a direct message reaches its socket', () => {
+    const joined = (c: string) => c === 'a' || c === 'b'
+    const conns = ['a', 'b', 'lurker']
+    expect(recipients({ to: 'all', conn: 'a', msg: {} }, conns, joined)).toEqual(['a', 'b'])
+    expect(recipients({ to: 'all-but', conn: 'a', msg: {} }, conns, joined)).toEqual(['b'])
+    expect(recipients({ to: 'one', conn: 'gone', msg: {} }, [...conns, 'gone'], joined)).toEqual(['gone'])
   })
 })
