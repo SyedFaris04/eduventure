@@ -12,8 +12,9 @@ import { NoteComposer } from './NoteComposer'
 
 const REPORT_REASONS: NoteReportReason[] = ['rude', 'personal_info', 'unkind', 'other']
 
-export function BoardPanel() {
-  return useGame((s) => s.board) ? <Board /> : null
+/** The open camp board; `place` overrides the island (the /dev/board page uses the hidden QA board). */
+export function BoardPanel({ place }: { place?: string }) {
+  return useGame((s) => s.board) ? <Board place={place} /> : null
 }
 
 function ago(iso: string, lang: string) {
@@ -23,11 +24,12 @@ function ago(iso: string, lang: string) {
 }
 
 /** The island's camp board: today's question, the latest notes, and pinning a note of your own. */
-function Board() {
+function Board({ place: override }: { place?: string }) {
   const { t, i18n } = useTranslation()
   const queryClient = useQueryClient()
   const uid = useSession().session?.user.id
-  const place = usePlace((s) => s.place)
+  const island = usePlace((s) => s.place)
+  const place = override ?? island
   const board = useIslandBoard(place, true).data
   const rights = useBoardRights(uid).data
   const [busy, setBusy] = useState(false)
@@ -82,6 +84,8 @@ function Board() {
                 <p className="text-xs font-bold uppercase text-wood-dark">{t('board.today')}</p>
                 <p className="font-display text-lg font-bold">{t(`board.q.${dailyQuestion(new Date())}`)}</p>
               </div>
+              {/* Above the notes: the newest note (yours, after pinning) shows at the top, right under it. */}
+              {rights && <NoteComposer rights={rights} busy={busy} onPost={post} />}
               {message && (
                 <p role={message.ok ? 'status' : 'alert'} className={`rounded-xl border-2 p-2 text-sm font-semibold ${message.ok ? 'border-grass-dark bg-grass/20' : 'border-danger bg-danger/10'}`}>
                   {message.text}
@@ -124,7 +128,6 @@ function Board() {
                   </li>
                 ))}
               </ul>
-              {rights && <NoteComposer rights={rights} busy={busy} onPost={post} />}
             </>
           )}
         </div>
