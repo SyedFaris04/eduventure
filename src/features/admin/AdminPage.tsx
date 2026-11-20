@@ -10,6 +10,7 @@ import { LessonReview } from './LessonReview'
 import { allowedActions, bulkReview, findDuplicates, reviewQuestion, useHistory, useMyRoles, useQuestionBank, type Action, type AdminQuestion, type Status } from './review'
 import { FestivalPreview } from './FestivalPreview'
 import { PlayerReports } from './PlayerReports'
+import { ReportedNotes } from './ReportedNotes'
 
 // Admin area: English-only for now (decision #19); translated before outside educators are invited.
 const STATUSES: Status[] = ['draft', 'in_review', 'approved', 'published', 'rejected']
@@ -69,6 +70,7 @@ export function AdminPage() {
       <main className="mx-auto flex max-w-4xl flex-col gap-4 px-4 py-6">
         <h1 className="text-3xl font-bold text-wood-dark">Moderation</h1>
         <PlayerReports />
+        <ReportedNotes />
       </main>
     )
   if (!isReviewer)
@@ -122,6 +124,7 @@ export function AdminPage() {
       </header>
       {isAdmin && <FestivalPreview />}
       {(isAdmin || isModerator) && <PlayerReports />}
+      {(isAdmin || isModerator) && <ReportedNotes />}
       <nav aria-label="What to review" className="flex gap-2">
         {(['questions', 'lessons', 'language'] as const).map((x) => (
           <button key={x} type="button" aria-pressed={tab === x} onClick={() => setTab(x)} className={`rounded-full border-2 px-4 py-1 font-bold ${tab === x ? 'border-wood-dark bg-wood text-cream' : 'border-wood/40 bg-white'}`}>
