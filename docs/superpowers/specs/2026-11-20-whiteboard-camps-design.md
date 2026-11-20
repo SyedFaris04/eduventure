@@ -1,6 +1,6 @@
 # Whiteboard camps — design
 
-Date: 2026-11-20. Status: approved by the owner ("continue"), with the reviewer's questions settled below (owner: typing is Latin letters only; database push approved).
+Date: 2026-11-20. Status: approved by the owner ("proceed"), with the reviewer's questions settled below (owner: typing is Latin letters only; database push approved).
 
 ## Intent
 
