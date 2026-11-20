@@ -62,6 +62,8 @@ function Workbench() {
       playSfx('mission')
     } catch (e) {
       setMessage({ ok: false, text: t(e instanceof HarvestError ? e.message : 'battle.errors.generic') })
+      // Someone else may have finished a project or the numbers moved: show the latest.
+      for (const k of [campKey(place), materialsKey(uid)]) void queryClient.invalidateQueries({ queryKey: k })
     } finally {
       setBusy(false)
     }

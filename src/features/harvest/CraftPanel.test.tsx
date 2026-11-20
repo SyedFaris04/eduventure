@@ -46,4 +46,17 @@ describe('CraftPanel', () => {
     fireEvent.click(screen.getByRole('button', { name: /give 2 wood/i }))
     expect(api.contribute).toHaveBeenCalledWith('greenhaven', 'camp_bench', 'wood', 2)
   })
+
+  it('when someone else finished the project first, says so and refreshes the camp', async () => {
+    const { HarvestError } = await import('./harvestApi')
+    api.contribute.mockRejectedValue(new HarvestError('craft.errors.taken'))
+    useGame.setState({ workbench: true })
+    const client = new QueryClient()
+    const refresh = vi.spyOn(client, 'invalidateQueries')
+    render(<QueryClientProvider client={client}><CraftPanel /></QueryClientProvider>)
+    fireEvent.click(screen.getByRole('tab', { name: /camp/i }))
+    fireEvent.click(screen.getByRole('button', { name: /give 2 wood/i }))
+    expect(await screen.findByText(/someone just gave/i)).toBeTruthy()
+    expect(refresh).toHaveBeenCalledWith({ queryKey: ['camp', 'greenhaven'] })
+  })
 })

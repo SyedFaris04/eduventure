@@ -160,11 +160,11 @@ export class WorldSim {
     if (boss) return { kind: 'boss', id: boss.id }
     const monster = this.monsters.filter((m) => m.alive && dist(m.pos) <= INTERACT_RANGE).sort((a, b) => dist(a.pos) - dist(b.pos))[0]
     if (monster) return { kind: 'monster', id: monster.id, monster: monster.kind, returning: Boolean(monster.returning) }
-    const near = (k: (kind: string) => boolean) =>
-      this.map.props.filter((q) => k(q.kind) && dist({ x: q.x + 0.5, y: q.y + 0.5 }) <= INTERACT_RANGE).sort((a, b) => dist({ x: a.x + 0.5, y: a.y + 0.5 }) - dist({ x: b.x + 0.5, y: b.y + 0.5 }))[0]
-    if (near((k) => k === 'workbench')) return { kind: 'workbench' }
-    const node = near((k) => k in HARVEST)
-    if (node && !this.regrowing.has(`${node.x},${node.y}`)) return { kind: 'harvest', x: node.x, y: node.y, material: HARVEST[node.kind]! }
+    const near = (k: (q: GameMap['props'][number]) => boolean) =>
+      this.map.props.filter((q) => k(q) && dist({ x: q.x + 0.5, y: q.y + 0.5 }) <= INTERACT_RANGE).sort((a, b) => dist({ x: a.x + 0.5, y: a.y + 0.5 }) - dist({ x: b.x + 0.5, y: b.y + 0.5 }))[0]
+    if (near((q) => q.kind === 'workbench')) return { kind: 'workbench' }
+    const node = near((q) => q.kind in HARVEST && !this.regrowing.has(`${q.x},${q.y}`))
+    if (node) return { kind: 'harvest', x: node.x, y: node.y, material: HARVEST[node.kind]! }
     return null
   }
 }

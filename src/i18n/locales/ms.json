@@ -1103,6 +1103,9 @@
     "give": "Beri {{n}} {{name}}",
     "thanks": "Terima kasih! Anda memberi {{n}} {{name}} kepada kem.",
     "built": "Siap",
-    "yours": "Sumbangan anda setakat ini: {{n}}"
+    "yours": "Sumbangan anda setakat ini: {{n}}",
+    "errors": {
+      "taken": "Seseorang baru sahaja memberi bakinya. Kem telah dikemas kini."
+    }
   }
 }

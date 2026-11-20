@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseMap } from './map'
+import { HARVEST, parseMap } from './map'
 import { GREENHAVEN } from './maps/greenhaven'
 import { RESPAWN_MS, WorldSim } from './sim'
 
@@ -143,13 +143,30 @@ describe('harvesting and the camp', () => {
     expect(sim.prompt()).toMatchObject({ kind: 'harvest', x: node.x, y: node.y, material: 'wood' })
   })
 
-  it('a regrowing node offers nothing', () => {
+  it('a regrowing node is never offered', () => {
     const sim = new WorldSim(map, seeded())
     const at = free(node.x, node.y)
     sim.monsters = []
     sim.hero.pos = { x: at.x + 0.5, y: at.y + 0.5 }
     sim.regrowing = new Set([`${node.x},${node.y}`])
-    expect(sim.prompt()?.kind).not.toBe('harvest')
+    expect(sim.prompt()).not.toMatchObject({ kind: 'harvest', x: node.x, y: node.y })
+  })
+
+  it('a regrowing node never hides a ready one next to it', () => {
+    const nodes = map.props.filter((p) => p.kind in HARVEST)
+    const d = (n: { x: number; y: number }, x: number, y: number) => Math.hypot(n.x - x, n.y - y)
+    // A free tile with two nodes in reach.
+    let spot: { x: number; y: number; near: typeof nodes } | undefined
+    for (let y = 0; y < map.height && !spot; y++)
+      for (let x = 0; x < map.width && !spot; x++) {
+        const near = nodes.filter((n) => d(n, x, y) <= 1.5).sort((a, b) => d(a, x, y) - d(b, x, y))
+        if (!map.blocked(x, y) && near.length >= 2 && d(near[0], x, y) < d(near[1], x, y)) spot = { x, y, near }
+      }
+    const sim = new WorldSim(map, seeded())
+    sim.monsters = []
+    sim.hero.pos = { x: spot!.x + 0.5, y: spot!.y + 0.5 }
+    sim.regrowing = new Set([`${spot!.near[0].x},${spot!.near[0].y}`])
+    expect(sim.prompt()).toMatchObject({ kind: 'harvest', x: spot!.near[1].x, y: spot!.near[1].y })
   })
 
   it('the workbench opens crafting', () => {

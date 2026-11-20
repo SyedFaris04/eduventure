@@ -1103,6 +1103,9 @@
     "give": "Donner {{n}} {{name}}",
     "thanks": "Merci ! Tu as donné {{n}} {{name}} au camp.",
     "built": "Construit",
-    "yours": "Tu as donné {{n}} jusqu’ici"
+    "yours": "Tu as donné {{n}} jusqu’ici",
+    "errors": {
+      "taken": "Quelqu’un vient de donner le reste. Le camp a été mis à jour."
+    }
   }
 }

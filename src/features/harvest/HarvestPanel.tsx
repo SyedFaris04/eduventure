@@ -58,6 +58,7 @@ function Harvest({ x, y, material }: { x: number; y: number; material: Material 
     try {
       const r = await answerHarvest(answer)
       setResult(r)
+      queryClient.setQueryData(cooldownsKey(uid, place), (s: Set<string> | undefined) => new Set([...(s ?? []), `${x},${y}`]))
       queryClient.setQueryData(materialsKey(uid), (m: { tools: string[] } | undefined) => ({ tools: m?.tools ?? [], materials: r.materials }))
       playSfx(r.correct ? 'correct' : 'wrong')
       reactToAnswer(r.correct, false)

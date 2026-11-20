@@ -12,7 +12,7 @@ export function MaterialsBar() {
   const { data } = useMaterials(useSession().session?.user.id)
   if (!data || ORDER.every((m) => !data.materials[m])) return null
   return (
-    <ul aria-label={t('harvest.materials')} className="pointer-events-auto absolute start-3 top-[5.5rem] z-10 flex gap-2 rounded-full border-2 border-wood bg-cream/95 px-3 py-1 text-xs font-bold text-wood-dark sm:top-24">
+    <ul aria-label={t('harvest.materials')} className="pointer-events-auto flex gap-2 rounded-full border-2 border-wood bg-cream/95 px-3 py-1 text-xs font-bold text-wood-dark">
       {ORDER.map((m) => {
         const Icon = MATERIAL_ICON[m]
         return (

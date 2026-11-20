@@ -1103,6 +1103,9 @@
     "give": "Dar {{n}} {{name}}",
     "thanks": "¡Gracias! Diste {{n}} {{name}} al campamento.",
     "built": "Construido",
-    "yours": "Has aportado {{n}} hasta ahora"
+    "yours": "Has aportado {{n}} hasta ahora",
+    "errors": {
+      "taken": "Alguien acaba de aportar lo que faltaba. El campamento se ha actualizado."
+    }
   }
 }

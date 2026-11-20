@@ -65,6 +65,21 @@ describe.skipIf(!url || !key)('harvesting and crafting', () => {
     expect(again.question.id).toBe(x.data.question.id)
   })
 
+  it('a node never pays twice, even when a new ask races the answer', async () => {
+    let raced = 0
+    for (const t of nodes('harvest_tree').slice(6, 10)) {
+      const { data: s } = await a.rpc('start_harvest', t)
+      await wait(1600)
+      const [, again] = await Promise.all([a.rpc('answer_harvest', { p_answer: right(s.question.id) }), a.rpc('start_harvest', t)])
+      if (again.error) continue // the ask came after the answer: refused as regrowing, as it should be
+      raced++
+      await wait(1600)
+      const second = await a.rpc('answer_harvest', { p_answer: right(again.data.question.id) })
+      expect(second.error?.message).toMatch(/regrowing/)
+    }
+    console.log('races hit:', raced)
+  }, 60000)
+
   it('answering too fast is refused', async () => {
     const { data: s } = await a.rpc('start_harvest', nodes('harvest_tree')[2])
     const { error } = await a.rpc('answer_harvest', { p_answer: right(s.question.id) })
@@ -83,12 +98,13 @@ describe.skipIf(!url || !key)('harvesting and crafting', () => {
     expect((await a.rpc('craft', { p_recipe: 'stone_axe' })).error?.message).toMatch(/Not enough/)
     const t = nodes('harvest_tree')
     const rocks = nodes('harvest_rock')
-    await harvest(a, t[2]) // wood 5
+    await harvest(a, t[2]) // wood 5 or more
     for (const r of rocks.slice(0, 2)) await harvest(a, r) // stone 4
+    const { data: before } = await a.rpc('my_materials')
     const { data, error } = await a.rpc('craft', { p_recipe: 'stone_axe' })
     expect(error).toBeNull()
     expect(data.tools).toEqual(['stone_axe'])
-    expect(data.materials).toMatchObject({ wood: 1, stone: 1 })
+    expect(data.materials).toMatchObject({ wood: before.materials.wood - 4, stone: before.materials.stone - 3 })
     expect((await harvest(a, t[3])).gained).toBe(3)
     expect((await a.rpc('craft', { p_recipe: 'stone_axe' })).error?.message).toMatch(/already/)
   }, 60000)

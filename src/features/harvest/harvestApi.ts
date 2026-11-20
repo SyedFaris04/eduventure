@@ -21,6 +21,7 @@ export function harvestErrorKey(message: string | undefined) {
     : /pickaxe/i.test(m) ? 'harvest.errors.pickaxe'
     : /too fast/i.test(m) ? 'battle.errors.tooFast'
     : /time's up/i.test(m) ? 'parents.timeUp'
+    : /given already|already built/i.test(m) ? 'craft.errors.taken'
     : /not enough/i.test(m) ? 'harvest.errors.notEnough'
     : 'battle.errors.generic'
 }

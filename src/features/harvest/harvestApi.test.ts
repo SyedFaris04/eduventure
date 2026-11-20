@@ -8,6 +8,8 @@ describe('harvest helpers', () => {
     expect(harvestErrorKey('Too fast: take a moment to read the question')).toBe('battle.errors.tooFast')
     expect(harvestErrorKey("Time's up for today — see you tomorrow!")).toBe('parents.timeUp')
     expect(harvestErrorKey('Not enough wood')).toBe('harvest.errors.notEnough')
+    expect(harvestErrorKey('Enough wood has been given already')).toBe('craft.errors.taken')
+    expect(harvestErrorKey('Already built')).toBe('craft.errors.taken')
     expect(harvestErrorKey('something odd')).toBe('battle.errors.generic')
   })
 

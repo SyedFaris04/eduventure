@@ -14,6 +14,10 @@ test('harvest a tree with one question, then open the camp workbench', async ({ 
   await expect(page.getByText(/\+2 Wood/)).toBeVisible()
   await page.getByRole('button', { name: 'Done' }).click()
   await expect(page.getByRole('list', { name: 'Your materials' })).toBeVisible()
+  // The materials sit under the player card, never on top of it.
+  const card = (await page.getByRole('region', { name: 'Your hero' }).boundingBox())!
+  const bar = (await page.getByRole('list', { name: 'Your materials' }).boundingBox())!
+  expect(bar.y).toBeGreaterThanOrEqual(card.y + card.height)
 
   // The camp workbench at (25, 6).
   await walkUntil(page, { x: 25, y: 7 }, 'workbench')

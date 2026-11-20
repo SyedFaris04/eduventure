@@ -12,7 +12,8 @@ const { HarvestPanel } = await import('./HarvestPanel')
 const { HarvestError } = await import('./harvestApi')
 
 const question = { id: 'q', type: 'mcq', prompt: 'Which is a mammal?', options: [{ id: 'a', text: 'Cat' }, { id: 'b', text: 'Fish' }], difficulty: 1, subject: 'science' }
-const show = () => render(<QueryClientProvider client={new QueryClient()}><HarvestPanel /></QueryClientProvider>)
+let client: QueryClient
+const show = () => render(<QueryClientProvider client={(client = new QueryClient())}><HarvestPanel /></QueryClientProvider>)
 
 describe('HarvestPanel', () => {
   beforeAll(async () => {
@@ -32,6 +33,8 @@ describe('HarvestPanel', () => {
     fireEvent.click(await screen.findByRole('button', { name: /Cat/ }))
     expect(await screen.findByText(/\+2 Wood/, undefined, { timeout: 4000 })).toBeTruthy()
     expect(api.startHarvest).toHaveBeenCalledWith('greenhaven', 3, 4)
+    // The tree shows as regrowing at once, before the next refresh from the server.
+    expect([...(client.getQueryData(['harvest-cooldowns', 'u', 'greenhaven']) as Set<string>)]).toEqual(['3,4'])
     fireEvent.click(screen.getByRole('button', { name: /done/i }))
     expect(useGame.getState().harvest).toBeNull()
   }, 10000)
