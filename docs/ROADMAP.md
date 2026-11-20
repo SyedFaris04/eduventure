@@ -290,6 +290,9 @@ Spec: `docs/superpowers/specs/2026-11-20-whiteboard-camps-design.md`. Decision #
 - Tournaments, world boss with shared health, clan wars, seasonal event framework, achievements and titles, pet evolutions.
 - **Done when:** two players damage the same world boss; farming the same question repeatedly stops paying.
 
+### Website — built
+An interactive one-page site at `syedfaris04.github.io/eduventure/` (English and Malay) with the game's 3D island, a demo battle, the knowledge pet, the islands, safety for children and the Android download with install steps and a QR code (decision #45). Published by the same workflow as the game and the APK.
+
 ### Phase 7 — Android and iOS
 **Status (2026-11-21): Android built in the cloud.** GitHub Actions publishes the game to GitHub Pages (`/eduventure/play/`) and builds a signed APK that opens it, on every push to `main` (decision #44, README "Android app and hosting"). The owner's one-time setup and phone test are still to do. iOS and the Play Store are not started.
 - The same Capacitor project builds both. Google Play costs $25 once; the App Store costs $99 a year and needs a Mac or a cloud Mac build service. Both stores have extra rules for apps used by children under 13.

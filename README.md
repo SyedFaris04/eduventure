@@ -34,10 +34,17 @@ Without it the game works exactly as before, solo.
 2. In `server/rooms`: `npm install`, `npx wrangler secret put SUPABASE_PUBLISHABLE_KEY` (paste the publishable key), then `npm run deploy`.
 3. Add the address it prints to `.env.local` as `VITE_ROOMS_URL=wss://eduventure-rooms.<account>.workers.dev`, and rebuild the web app.
 
+## Website
+
+**https://syedfaris04.github.io/eduventure/** is the page to share: what the game is, the 3D island, a demo battle,
+the knowledge pet, the islands, safety for children, and the Android download (button, install steps and a QR code).
+English and Malay. It lives in `site/` (all its words are in `site/copy.ts`), reuses the game's 3D models, and is
+published with the game by the same workflow. `npm run dev:site` runs it locally; `npm run build:site` builds it.
+
 ## Android app and hosting
 
 Every push to `main` runs `.github/workflows/release.yml`: the tests, then the game is published to GitHub Pages at
-**https://syedfaris04.github.io/eduventure/play/** (the site root is a download page until the website exists), then a
+**https://syedfaris04.github.io/eduventure/play/** (the website is at the site root), then a
 signed Android app is built and attached to a GitHub Release. The newest app is always at
 **https://github.com/SyedFaris04/eduventure/releases/latest/download/eduventure.apk**.
 
