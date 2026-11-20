@@ -76,3 +76,12 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Notches, rounded corners and gesture bars (the Android app draws edge to edge): pages keep clear of them, and the
+   world's overlay (the HUD, touch controls and panels) is inset while the 3D view still fills the screen. */
+#root {
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+}
+.safe-inset {
+  inset: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+}

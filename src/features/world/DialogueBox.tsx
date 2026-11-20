@@ -28,7 +28,7 @@ export function DialogueBox({ playerName }: { playerName: string }) {
   const advance = () => useGame.setState({ dialogue: last ? null : { ...dialogue, page: dialogue.page + 1 } })
 
   return (
-    <div className="pointer-events-auto absolute inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 mx-auto max-w-2xl">
+    <div className="pointer-events-auto absolute inset-x-3 bottom-3 z-20 mx-auto max-w-2xl">
       <section
         role="dialog"
         aria-label={t(`npc.${dialogue.npc}.name`)}
