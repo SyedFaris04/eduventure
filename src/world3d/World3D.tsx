@@ -1,3 +1,4 @@
+import { twoFinger } from './gestures'
 import { playSfx } from '../audio/engine'
 import { seeThrough, seeThroughRadius } from './seeThrough'
 import type { Pet } from '../features/pet/petRules'
@@ -83,29 +84,33 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       e.preventDefault()
       zoom(useCamera.getState().distance + e.deltaY * 0.01)
     }
+    // Two fingers: pinch to zoom, twist to turn, slide up or down to tilt. Right mouse drag turns and tilts too.
     const touches = new Map<number, { x: number; y: number }>()
-    let pinch = 0
-    const spread = () => {
-      const [a, b] = [...touches.values()]
-      return a && b ? Math.hypot(a.x - b.x, a.y - b.y) : 0
-    }
+    let dragging = false
     const down = (e: PointerEvent) => {
-      touches.set(e.pointerId, { x: e.clientX, y: e.clientY })
-      if (touches.size === 2) pinch = spread()
+      if (e.pointerType === 'mouse' && e.button === 2) dragging = true
+      if (e.pointerType !== 'mouse') touches.set(e.pointerId, { x: e.clientX, y: e.clientY })
     }
     const move = (e: PointerEvent) => {
-      if (!touches.has(e.pointerId)) return
-      touches.set(e.pointerId, { x: e.clientX, y: e.clientY })
-      if (touches.size === 2 && pinch) {
-        const now = spread()
-        zoom(useCamera.getState().distance * (pinch / now))
-        pinch = now
+      if (dragging) {
+        useCamera.getState().orbit(e.movementX * 0.35, e.movementY * 0.2)
+        return
       }
+      if (!touches.has(e.pointerId)) return
+      const before = [...touches.values()]
+      touches.set(e.pointerId, { x: e.clientX, y: e.clientY })
+      if (touches.size !== 2) return
+      const [a1, b1] = [...touches.values()]
+      const g = twoFinger(before[0], before[1], a1, b1)
+      zoom(useCamera.getState().distance * g.scale)
+      useCamera.getState().orbit(-g.yawDeg, g.panY * 0.15)
     }
     const up = (e: PointerEvent) => {
+      if (e.pointerType === 'mouse') dragging = false
       touches.delete(e.pointerId)
-      pinch = 0
     }
+    const noMenu = (e: Event) => e.preventDefault() // right-drag turns the camera instead
+    el.addEventListener('contextmenu', noMenu)
     el.addEventListener('wheel', wheel, { passive: false })
     el.addEventListener('pointerdown', down)
     el.addEventListener('pointermove', move)
@@ -124,6 +129,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       keys.stop()
       unsub()
       el.removeEventListener('wheel', wheel)
+      el.removeEventListener('contextmenu', noMenu)
       el.removeEventListener('pointerdown', down)
       el.removeEventListener('pointermove', move)
       window.removeEventListener('pointerup', up)
@@ -141,8 +147,11 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       for (const id of store.defeated) sim.defeat(id, now)
       useGame.setState({ defeated: [] })
     }
+    // Z / X turn the camera, R / F tilt it, while held.
+    const camKeys = keysRef.current?.readCamera()
+    if (camKeys && (camKeys.yaw || camKeys.tilt)) useCamera.getState().orbit(camKeys.yaw * 90 * dt, camKeys.tilt * 40 * dt)
     const view = useCamera.getState()
-    const yaw = DEFAULT_YAW + (view.turn * Math.PI) / 2
+    const yaw = DEFAULT_YAW + (view.yaw * Math.PI) / 180
     sim.cameraYaw = yaw
     const keys = keysRef.current?.read() ?? { x: 0, y: 0 }
     sim.update(dt, keys.x || keys.y ? keys : store.stick, now, worldPaused())
@@ -198,7 +207,8 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
   })
 
   const tap = (e: ThreeEvent<PointerEvent>) => {
-    if (!e.nativeEvent.isPrimary || worldPaused()) return
+    // Only a left click or a single finger walks; the right button turns the camera.
+    if (!e.nativeEvent.isPrimary || e.nativeEvent.button !== 0 || worldPaused()) return
     const g = worldToGrid(e.point.x, e.point.z)
     sim.tap(g)
     ringAt.current = performance.now()
@@ -240,7 +250,7 @@ export default function World3D({ hero, pet, returning = 0, map, atArrival = fal
   const reduced = useMemo(reducedMotion, [])
   useEffect(preloadProps, [])
   const view = useCamera.getState()
-  const start = cameraOffset(view.distance, view.tilt, DEFAULT_YAW + (view.turn * Math.PI) / 2)
+  const start = cameraOffset(view.distance, view.tilt, DEFAULT_YAW + (view.yaw * Math.PI) / 180)
 
   return (
     <Canvas

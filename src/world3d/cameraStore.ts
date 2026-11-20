@@ -1,19 +1,21 @@
 import { create } from 'zustand'
 import { CAMERA, PRESETS, type PresetId } from './projection'
 
-export type CameraSettings = { tilt: number; distance: number; fov: number; turn: number }
-export const DEFAULT_CAMERA: CameraSettings = { ...PRESETS.balanced, fov: CAMERA.fov, turn: 0 }
+/** `yaw` turns the camera around the hero, in degrees (0–359, 0 = the original diagonal view). */
+export type CameraSettings = { tilt: number; distance: number; fov: number; yaw: number }
+export const DEFAULT_CAMERA: CameraSettings = { ...PRESETS.balanced, fov: CAMERA.fov, yaw: 0 }
 const KEY = 'eduventure.camera'
 const LIMITS = { tilt: [25, 70], distance: [CAMERA.minDistance, CAMERA.maxDistance], fov: [25, 50] } as const
 const clamp = (v: number, [lo, hi]: readonly [number, number]) => Math.min(hi, Math.max(lo, v))
 
-function tidy(c: Partial<CameraSettings>): CameraSettings {
+function tidy(c: Partial<CameraSettings> & { turn?: number }): CameraSettings {
   const n = (v: unknown, d: number) => (typeof v === 'number' && Number.isFinite(v) ? v : d)
   return {
     tilt: clamp(n(c.tilt, DEFAULT_CAMERA.tilt), LIMITS.tilt),
     distance: clamp(n(c.distance, DEFAULT_CAMERA.distance), LIMITS.distance),
     fov: clamp(n(c.fov, DEFAULT_CAMERA.fov), LIMITS.fov),
-    turn: ((Math.round(n(c.turn, 0)) % 4) + 4) % 4,
+    // Older saves stored quarter turns.
+    yaw: (((Math.round(n(c.yaw, n(c.turn, 0) * 90)) % 360) + 360) % 360),
   }
 }
 
@@ -34,14 +36,17 @@ function save(c: CameraSettings) {
   }
 }
 
+let saveSoon: ReturnType<typeof setTimeout> | undefined
+
 type Store = CameraSettings & {
   set: (c: Partial<CameraSettings>) => void
   preset: (id: PresetId) => void
-  rotate: (by: 1 | -1) => void
+  rotate: (degrees: number) => void
+  orbit: (dYaw: number, dTilt: number) => void
   reset: () => void
 }
 
-/** The player's camera: tilt, zoom, field of view and a quarter-turn heading, all saved on this device. */
+/** The player's camera: tilt, zoom, field of view and a heading all the way around, saved on this device. */
 export const useCamera = create<Store>((set, get) => {
   const update = (c: Partial<CameraSettings>) => {
     const next = tidy({ ...get(), ...c })
@@ -52,7 +57,14 @@ export const useCamera = create<Store>((set, get) => {
     ...loadCamera(),
     set: update,
     preset: (id) => update(PRESETS[id]),
-    rotate: (by) => update({ turn: get().turn + by }),
+    rotate: (degrees) => update({ yaw: get().yaw + degrees }),
+    // Dragging and held keys move the camera every frame: change it at once, save a moment later.
+    orbit: (dYaw, dTilt) => {
+      const next = tidy({ ...get(), yaw: get().yaw + dYaw, tilt: get().tilt + dTilt })
+      set(next)
+      clearTimeout(saveSoon)
+      saveSoon = setTimeout(() => save(next), 400)
+    },
     reset: () => update(DEFAULT_CAMERA),
   }
 })

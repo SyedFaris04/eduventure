@@ -967,7 +967,7 @@
     "turnRight": "Pusing kamera ke kanan",
     "reset": "Set semula kamera",
     "resetShort": "Set semula",
-    "hint": "Kamera rendah menunjukkan wajah dengan lebih jelas; kamera tinggi menunjukkan lebih banyak peta. Disimpan pada peranti ini.",
+    "hint": "Pusing kamera sepenuhnya: seret dengan butang kanan tetikus, atau tekan Z / X (R / F untuk condong). Di telefon dan tablet: pusing dua jari untuk memusing, leret ke atas atau bawah untuk condong, cubit untuk zum. Disimpan pada peranti ini.",
     "graphics": "Grafik",
     "preset": {
       "close": "Dekat",
@@ -979,7 +979,8 @@
     "soundOn": "Hidup",
     "soundOff": "Mati",
     "music": "Muzik",
-    "effects": "Kesan bunyi"
+    "effects": "Kesan bunyi",
+    "rotation": "Putaran"
   },
   "teacher": {
     "title": "Halaman guru",

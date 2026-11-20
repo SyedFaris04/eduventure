@@ -57,11 +57,12 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
           <Slider label={t('settings.tilt')} value={cam.tilt} min={25} max={70} onChange={(tilt) => cam.set({ tilt })} />
           <Slider label={t('settings.zoom')} value={cam.distance} min={9} max={32} step={0.5} onChange={(distance) => cam.set({ distance })} />
           <Slider label={t('settings.fov')} value={cam.fov} min={25} max={50} onChange={(fov) => cam.set({ fov })} />
+          <Slider label={t('settings.rotation')} value={cam.yaw} min={0} max={359} onChange={(yaw) => cam.set({ yaw })} />
           <div className="flex flex-wrap items-center gap-2">
-            <Button variant="secondary" onClick={() => cam.rotate(-1)} aria-label={t('settings.turnLeft')}>
+            <Button variant="secondary" onClick={() => cam.rotate(-45)} aria-label={t('settings.turnLeft')}>
               <RotateCcw size={16} aria-hidden />
             </Button>
-            <Button variant="secondary" onClick={() => cam.rotate(1)} aria-label={t('settings.turnRight')}>
+            <Button variant="secondary" onClick={() => cam.rotate(45)} aria-label={t('settings.turnRight')}>
               <RotateCw size={16} aria-hidden />
             </Button>
             <Button variant="secondary" onClick={cam.reset} aria-label={t('settings.reset')} className="ms-auto">
