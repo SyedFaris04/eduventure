@@ -20,7 +20,7 @@ export function App() {
     <div className="min-h-dvh bg-gradient-to-b from-[#8ed1ff] via-[#c9ecff] to-cream text-ink">
       <header className="sticky top-0 z-20 border-b-4 border-wood/30 bg-[#8ed1ff]/90 backdrop-blur">
         <nav className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-2">
-          <a href="#top" className="title-outline me-auto bg-gradient-to-b from-[#fff1a8] via-gold to-[#ef9b2f] bg-clip-text font-display text-xl font-bold text-transparent sm:text-3xl">
+          <a href="#top" className="title-outline me-auto min-w-0 truncate bg-gradient-to-b from-[#fff1a8] via-gold to-[#ef9b2f] bg-clip-text font-display text-xl font-bold text-transparent sm:text-3xl">
             EDUVENTURE
           </a>
           <button type="button" onClick={() => setLang(lang === 'en' ? 'ms' : 'en')} className={buttonClasses('secondary', 'md', 'px-3!')} lang={lang === 'en' ? 'ms' : 'en'}>

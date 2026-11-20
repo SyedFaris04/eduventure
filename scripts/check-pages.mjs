@@ -66,8 +66,9 @@ try {
     await tab.goto(`${base}/eduventure/`)
     await tab.evaluate((l) => localStorage.setItem('eduventure.site.lang', l), lang)
     await tab.reload()
-    const spill = await tab.evaluate(() => [...document.querySelectorAll('.flip-back')].some((b) => b.scrollHeight > b.clientHeight + 1))
-    if (spill) fail(`flip-card text spills out of its card at ${width}px (${lang})`)
+    await tab.evaluate(() => document.fonts.ready) // measure with the site's fonts, not the stand-in font
+    const spill = await tab.evaluate(() => [...document.querySelectorAll('.flip-back')].filter((b) => b.scrollHeight > b.clientHeight + 1).map((b) => `${b.scrollHeight}/${b.clientHeight}`))
+    if (spill.length) fail(`flip-card text spills out of its card at ${width}px (${lang}): ${spill.join(', ')}`)
     await tab.close()
   }
 
@@ -77,7 +78,12 @@ try {
     await small.goto(`${base}/eduventure/`)
     await small.evaluate((l) => localStorage.setItem('eduventure.site.lang', l), lang)
     await small.reload()
-    if (await small.evaluate(() => document.documentElement.scrollWidth > innerWidth)) fail(`the website scrolls sideways on a 320px phone (${lang})`)
+    await small.evaluate(() => document.fonts.ready)
+    const wide = await small.evaluate(() =>
+      document.documentElement.scrollWidth > innerWidth
+        ? [...document.querySelectorAll('body *')].filter((e) => e.getBoundingClientRect().right > innerWidth + 1).slice(0, 4).map((e) => `${e.tagName}(${(e.textContent ?? '').trim().slice(0, 20)}) ${Math.round(e.getBoundingClientRect().right)}px`)
+        : [])
+    if (wide.length) fail(`the website scrolls sideways on a 320px phone (${lang}): ${wide.join('; ')}`)
     await small.close()
   }
   const qrOk = await page.getByRole('img', { name: /QR code/ }).evaluate((img) => img.complete && img.naturalWidth > 0)
