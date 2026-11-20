@@ -1045,6 +1045,21 @@
       "herbs": "薬草をつむ",
       "crystal": "水晶をほる"
     },
-    "useWorkbench": "作業台を使う"
+    "useWorkbench": "作業台を使う",
+    "hint": "問題に1つ答えて集めよう。正解ならもっともらえる！",
+    "gained": "+{{n}} {{name}}",
+    "done": "完了",
+    "materials": "あなたの素材",
+    "material": {
+      "wood": "木材",
+      "stone": "石",
+      "herbs": "ハーブ",
+      "crystal": "クリスタル"
+    },
+    "errors": {
+      "regrowing": "まだ再生中です。数分後にまた来てね。",
+      "pickaxe": "クリスタルにはつるはしが必要です。キャンプの作業台で作ろう。",
+      "notEnough": "素材がまだ足りません。"
+    }
   }
 }

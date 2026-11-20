@@ -1045,6 +1045,21 @@
       "herbs": "Cueillir des herbes",
       "crystal": "Miner le cristal"
     },
-    "useWorkbench": "Utiliser l’établi"
+    "useWorkbench": "Utiliser l’établi",
+    "hint": "Réponds à une question pour récolter. Une bonne réponse rapporte plus !",
+    "gained": "+{{n}} {{name}}",
+    "done": "Terminé",
+    "materials": "Tes matériaux",
+    "material": {
+      "wood": "Bois",
+      "stone": "Pierre",
+      "herbs": "Herbes",
+      "crystal": "Cristal"
+    },
+    "errors": {
+      "regrowing": "Il repousse encore. Reviens dans quelques minutes.",
+      "pickaxe": "Il te faut une pioche pour le cristal. Fabriques-en une à l’établi du camp.",
+      "notEnough": "Pas encore assez de matériaux."
+    }
   }
 }

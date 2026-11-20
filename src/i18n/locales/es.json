@@ -1045,6 +1045,21 @@
       "herbs": "Recoger hierbas",
       "crystal": "Extraer cristal"
     },
-    "useWorkbench": "Usar el banco de trabajo"
+    "useWorkbench": "Usar el banco de trabajo",
+    "hint": "Responde una pregunta para recoger. ¡Si aciertas, consigues más!",
+    "gained": "+{{n}} {{name}}",
+    "done": "Hecho",
+    "materials": "Tus materiales",
+    "material": {
+      "wood": "Madera",
+      "stone": "Piedra",
+      "herbs": "Hierbas",
+      "crystal": "Cristal"
+    },
+    "errors": {
+      "regrowing": "Todavía está volviendo a crecer. Vuelve en unos minutos.",
+      "pickaxe": "Necesitas un pico para el cristal. Fabrica uno en el banco del campamento.",
+      "notEnough": "Aún no tienes suficientes materiales."
+    }
   }
 }
