@@ -370,7 +370,14 @@
       "pet_bell": "Kolar loceng",
       "pet_dye_ocean": "Pewarna lautan",
       "pet_dye_rose": "Pewarna mawar",
-      "pet_dye_gold": "Pewarna emas"
+      "pet_dye_gold": "Pewarna emas",
+      "woodcutter_hat": "Topi penebang",
+      "herb_crown": "Mahkota herba",
+      "crystal_staff": "Tongkat kristal",
+      "rattan_pack": "Bakul rotan",
+      "pet_leaf_hat": "Topi daun",
+      "pet_crystal_collar": "Kolar kristal",
+      "pet_dye_forest": "Hijau hutan"
     },
     "fromShop": "Dari kedai"
   },
@@ -1061,5 +1068,41 @@
       "pickaxe": "Anda perlukan beliung untuk kristal. Buat satu di meja kerja kem.",
       "notEnough": "Bahan belum cukup."
     }
+  },
+  "craft": {
+    "title": "Meja kerja kem",
+    "tab": {
+      "tools": "Alatan",
+      "items": "Barang",
+      "camp": "Kem"
+    },
+    "craft": "Buat",
+    "make": "Buat {{name}}",
+    "owned": "Dimiliki",
+    "madeTool": "Anda membuat {{name}}! Ia membantu setiap kali mengumpul.",
+    "madeItem": "Anda membuat {{name}}! Pakai dari halaman watak atau haiwan anda.",
+    "tool": {
+      "stone_axe": "Kapak batu",
+      "stone_pickaxe": "Beliung batu",
+      "crystal_axe": "Kapak kristal",
+      "crystal_pickaxe": "Beliung kristal"
+    },
+    "toolHelp": {
+      "stone_axe": "+1 kayu daripada setiap pokok",
+      "stone_pickaxe": "+1 batu atau kristal, dan boleh melombong kristal",
+      "crystal_axe": "+2 kayu daripada setiap pokok",
+      "crystal_pickaxe": "+2 batu atau kristal"
+    },
+    "camp": {
+      "camp_bench": "Bangku kem",
+      "camp_lantern": "Tanglung kem",
+      "camp_flag": "Bendera pulau",
+      "whiteboard": "Papan putih"
+    },
+    "campHelp": "Semua orang di pulau ini membina kem bersama. Beri bahan untuk menyiapkan setiap projek.",
+    "give": "Beri {{n}} {{name}}",
+    "thanks": "Terima kasih! Anda memberi {{n}} {{name}} kepada kem.",
+    "built": "Siap",
+    "yours": "Sumbangan anda setakat ini: {{n}}"
   }
 }

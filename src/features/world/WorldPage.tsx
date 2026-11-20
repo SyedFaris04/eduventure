@@ -26,6 +26,7 @@ import { BossPanel } from '../battle/BossPanel'
 import { WorldSettings } from './WorldSettings'
 import { HarvestPanel } from '../harvest/HarvestPanel'
 import { MaterialsBar } from '../harvest/MaterialsBar'
+import { CraftPanel } from '../harvest/CraftPanel'
 
 export function WorldPage() {
   const { t } = useTranslation()
@@ -85,6 +86,7 @@ export function WorldPage() {
         <BattlePanel />
         <BossPanel />
         <HarvestPanel />
+        <CraftPanel />
         <CoinBurst />
         <BreakReminder minutes={sessionMinutes} />
         {settingsOpen && <WorldSettings onClose={() => setSettingsOpen(false)} />}

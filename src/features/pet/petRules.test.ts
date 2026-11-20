@@ -23,8 +23,9 @@ describe('pet next step', () => {
 })
 
 describe('pet shop items', () => {
-  it('has eight pet items, kept apart from the hero slots', () => {
-    expect(CATALOGUE.filter(isPetItem)).toHaveLength(8)
+  it('has eight pet items for sale and three crafted, kept apart from the hero slots', () => {
+    expect(CATALOGUE.filter((i) => isPetItem(i) && !('craft' in i))).toHaveLength(8)
+    expect(CATALOGUE.filter((i) => isPetItem(i) && 'craft' in i)).toHaveLength(3)
     expect(CATALOGUE.filter((i) => !isPetItem(i)).every((i) => !i.slot.startsWith('pet_'))).toBe(true)
     expect(shopValues('accessory').some((id) => id.startsWith('pet_'))).toBe(false)
   })

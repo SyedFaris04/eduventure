@@ -370,7 +370,14 @@
       "pet_bell": "铃铛项圈",
       "pet_dye_ocean": "海洋染料",
       "pet_dye_rose": "玫瑰染料",
-      "pet_dye_gold": "金色染料"
+      "pet_dye_gold": "金色染料",
+      "woodcutter_hat": "樵夫帽",
+      "herb_crown": "草药花冠",
+      "crystal_staff": "水晶法杖",
+      "rattan_pack": "藤编背篓",
+      "pet_leaf_hat": "叶子帽",
+      "pet_crystal_collar": "水晶项圈",
+      "pet_dye_forest": "森林绿"
     },
     "fromShop": "来自商店"
   },
@@ -1061,5 +1068,41 @@
       "pickaxe": "采水晶需要镐。去营地工作台做一把吧。",
       "notEnough": "材料还不够。"
     }
+  },
+  "craft": {
+    "title": "营地工作台",
+    "tab": {
+      "tools": "工具",
+      "items": "物品",
+      "camp": "营地"
+    },
+    "craft": "制作",
+    "make": "制作{{name}}",
+    "owned": "已拥有",
+    "madeTool": "你做好了{{name}}！以后每次采集都会帮上忙。",
+    "madeItem": "你做好了{{name}}！可在角色或宠物页面穿戴。",
+    "tool": {
+      "stone_axe": "石斧",
+      "stone_pickaxe": "石镐",
+      "crystal_axe": "水晶斧",
+      "crystal_pickaxe": "水晶镐"
+    },
+    "toolHelp": {
+      "stone_axe": "每棵树多得 1 木头",
+      "stone_pickaxe": "石头或水晶多得 1，并可开采水晶",
+      "crystal_axe": "每棵树多得 2 木头",
+      "crystal_pickaxe": "石头或水晶多得 2"
+    },
+    "camp": {
+      "camp_bench": "营地长椅",
+      "camp_lantern": "营地灯笼",
+      "camp_flag": "岛屿旗帜",
+      "whiteboard": "白板架"
+    },
+    "campHelp": "这座岛上的所有人一起建造营地。贡献材料来完成每个项目。",
+    "give": "贡献 {{n}} {{name}}",
+    "thanks": "谢谢！你为营地贡献了 {{n}} {{name}}。",
+    "built": "已建成",
+    "yours": "你已贡献 {{n}}"
   }
 }

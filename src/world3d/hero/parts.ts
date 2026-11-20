@@ -188,6 +188,10 @@ function accessory(a: Appearance): PartSpec[] {
       return [x('ring', '#5e8c31', [0, 0.92, 0], [1, 0.92, 0.26], [PI / 2, 0, 0]), ...[-0.4, -0.24, -0.08, 0.08, 0.24, 0.4].map((lx) => x('sphere', '#7cc04a', [lx, 1.02, 0.4 - Math.abs(lx) * 0.5], [0.1, 0.2, 0.05], [0, 0, -lx]))]
     case 'wizard_hat':
       return [x('cylinder', '#4a3f9a', [0, 0.96, 0], [1.34, 0.05, 1.3]), x('cone', '#5a4fb5', [0, 1.38, -0.04], [0.8, 0.82, 0.78], [-0.12, 0, 0]), x('ring', GOLD, [0, 1.02, 0], [0.78, 0.76, 0.2], [PI / 2, 0, 0]), x('octa', GOLD, [0, 1.36, 0.36], [0.13, 0.13, 0.05])]
+    case 'woodcutter_hat':
+      return [x('cylinder', '#c0392b', [0, 0.98, 0], [0.78, 0.2, 0.76]), x('ring', '#2b2b2b', [0, 0.98, 0], [0.8, 0.78, 0.4], [PI / 2, 0, 0]), x('box', '#2b2b2b', [0, 0.9, 0.36], [0.62, 0.04, 0.26])]
+    case 'herb_crown':
+      return [x('ring', '#4f9a3a', [0, 0.92, 0], [1, 0.92, 0.3], [PI / 2, 0, 0]), ...[-0.3, 0, 0.3].map((lx, i) => x('sphere', i === 1 ? '#fff6e3' : '#f48fb1', [lx, 0.98, 0.42 - Math.abs(lx) * 0.4], [0.11, 0.11, 0.07]))]
     case 'golden_crown':
       return [x('cylinder', GOLD, [0, 1.02, 0], [0.74, 0.2, 0.72]), ...[-0.24, 0, 0.24].map((cx) => x('cone', GOLD, [cx, 1.2, 0.26], [0.13, 0.2, 0.08])), x('sphere', '#d9534f', [0, 1.02, 0.36], [0.09, 0.09, 0.05]), ...SIDES.map((side) => x('sphere', '#6cc4f0', [sx(side) * 0.2, 1.02, 0.34], [0.07, 0.07, 0.04]))]
     default:
@@ -221,6 +225,8 @@ function weapon(a: Appearance): PartSpec[] {
       return [w('cone', GOLD, [0, 0.38, 0], [0.16, 0.68, 0.05]), w('cylinder', INK, [0, 0.02, 0], [0.03, 0.1, 0.03]), w('octa', '#fff6e3', [0.12, 0.6, 0], [0.07, 0.07, 0.07]), w('octa', '#fff6e3', [-0.1, 0.36, 0], [0.05, 0.05, 0.05])]
     case 'crystal_wand':
       return [w('cylinder', '#f4f1ea', [0, 0.22, 0], [0.05, 0.42, 0.05]), w('octa', '#e88fb4', [0, 0.52, 0], [0.16, 0.26, 0.16])]
+    case 'crystal_staff':
+      return [w('cylinder', '#8a5a3b', [0, 0.3, 0], [0.07, 1.3, 0.07], upright), w('octa', '#6fd0ff', [0, 1.02, 0], [0.16, 0.3, 0.16], upright), w('octa', '#9be3ff', [0.08, 0.9, 0], [0.07, 0.14, 0.07], upright)]
     case 'steel_sword':
       return [w('box', '#d7dde6', [0, 0.5, 0], [0.11, 0.74, 0.035]), w('cone', '#d7dde6', [0, 0.93, 0], [0.11, 0.12, 0.035]), w('rbox', GOLD, [0, 0.11, 0], [0.32, 0.06, 0.08]), w('cylinder', '#3d5a80', [0, 0, 0], [0.06, 0.18, 0.06]), w('sphere', GOLD, [0, -0.1, 0], [0.08, 0.08, 0.08])]
     default: // wooden_sword
@@ -240,6 +246,8 @@ function backpack(a: Appearance): PartSpec[] {
       return [b('rbox', '#4f7fc7', [0, -0.06, -0.33], [0.46, 0.5, 0.2]), b('box', '#d9534f', [-0.1, 0.24, -0.33], [0.08, 0.2, 0.16]), b('box', GOLD, [0.06, 0.27, -0.33], [0.1, 0.26, 0.16])]
     case 'scroll_case':
       return [b('cylinder', '#c0874f', [0, -0.05, -0.3], [0.15, 1, 0.15], [0, 0, 0.6]), b('cylinder', '#8a5a3b', [-0.27, 0.34, -0.3], [0.17, 0.1, 0.17], [0, 0, 0.6])]
+    case 'rattan_pack':
+      return [b('cylinder', '#c8a165', [0, -0.05, -0.36], [0.46, 0.6, 0.3]), ...[0.12, -0.2].map((y) => b('cylinder', '#9c6b3c', [0, y, -0.36], [0.47, 0.05, 0.31])), b('sphere', '#5aa83c', [0.1, 0.3, -0.36], [0.16, 0.12, 0.12])]
     case 'owl_pack':
       return [
         b('sphere', '#a87048', [0.3, 0.12, -0.3], [0.4, 0.5, 0.34]),

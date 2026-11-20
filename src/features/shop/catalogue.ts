@@ -24,6 +24,14 @@ export const CATALOGUE = [
   { id: 'pet_dye_ocean', slot: 'pet_dye', rarity: 'common', price: 100 },
   { id: 'pet_dye_rose', slot: 'pet_dye', rarity: 'common', price: 100 },
   { id: 'pet_dye_gold', slot: 'pet_dye', rarity: 'epic', price: 900 },
+  // Crafted at a camp workbench from harvested materials; never sold (the price is a placeholder the shop refuses).
+  { id: 'woodcutter_hat', slot: 'accessory', rarity: 'common', price: 1, craft: true },
+  { id: 'herb_crown', slot: 'accessory', rarity: 'common', price: 1, craft: true },
+  { id: 'crystal_staff', slot: 'weapon', rarity: 'rare', price: 1, craft: true },
+  { id: 'rattan_pack', slot: 'backpack', rarity: 'common', price: 1, craft: true },
+  { id: 'pet_leaf_hat', slot: 'pet_hat', rarity: 'common', price: 1, craft: true },
+  { id: 'pet_crystal_collar', slot: 'pet_neck', rarity: 'rare', price: 1, craft: true },
+  { id: 'pet_dye_forest', slot: 'pet_dye', rarity: 'common', price: 1, craft: true },
 ] as const
 
 export type ShopItem = (typeof CATALOGUE)[number]
@@ -31,4 +39,4 @@ export type ShopItemId = ShopItem['id']
 export type Rarity = ShopItem['rarity']
 
 /** Items the hero wears (everything outside the pet corner). */
-export const HERO_ITEMS = CATALOGUE.filter((i): i is Exclude<ShopItem, { slot: `pet_${string}` }> => !i.slot.startsWith('pet_'))
+export const HERO_ITEMS = CATALOGUE.filter((i): i is Exclude<ShopItem, { slot: `pet_${string}` }> => !i.slot.startsWith('pet_') && !('craft' in i))

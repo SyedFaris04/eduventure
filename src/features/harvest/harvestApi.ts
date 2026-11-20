@@ -55,3 +55,30 @@ export function useRegrowing(uid: string | undefined, place: string) {
     queryFn: async () => regrowingSet(await call<Cooldown[]>('my_harvest_cooldowns', { p_place: place })),
   })
 }
+
+// ---- Workbench and camp ----
+export type Recipe = { id: string; kind: 'tool' | 'cosmetic'; cost: Partial<Materials>; sort: number }
+export type CampProject = { project: 'camp_bench' | 'camp_lantern' | 'camp_flag' | 'whiteboard'; cost: Partial<Materials>; built: boolean; given: Partial<Materials>; mine: number }
+
+export const craft = (recipe: string) => call<MyMaterials>('craft', { p_recipe: recipe })
+export const contribute = (place: string, project: string, material: Material, amount: number) =>
+  call<{ given: number; materials: Materials; camp: CampProject[] }>('contribute', { p_place: place, p_project: project, p_material: material, p_amount: amount })
+
+export const campKey = (place: string) => ['camp', place]
+
+export function useRecipes() {
+  return useQuery({
+    queryKey: ['recipes'],
+    staleTime: Infinity,
+    queryFn: async () => {
+      const { data, error } = await supabase!.from('recipes').select('id, kind, cost, sort').order('sort')
+      if (error) throw error
+      return data as Recipe[]
+    },
+  })
+}
+
+/** This island's shared camp projects; refreshed every minute so other players' builds appear. */
+export function useCamp(place: string, enabled = true) {
+  return useQuery({ queryKey: campKey(place), enabled, refetchInterval: 60_000, queryFn: () => call<CampProject[]>('camp_state', { p_place: place }) })
+}

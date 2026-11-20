@@ -370,7 +370,14 @@
       "pet_bell": "Bell collar",
       "pet_dye_ocean": "Ocean dye",
       "pet_dye_rose": "Rose dye",
-      "pet_dye_gold": "Gold dye"
+      "pet_dye_gold": "Gold dye",
+      "woodcutter_hat": "Woodcutter cap",
+      "herb_crown": "Herb crown",
+      "crystal_staff": "Crystal staff",
+      "rattan_pack": "Rattan basket",
+      "pet_leaf_hat": "Leaf hat",
+      "pet_crystal_collar": "Crystal collar",
+      "pet_dye_forest": "Forest green"
     },
     "fromShop": "From the shop"
   },
@@ -1061,5 +1068,41 @@
       "pickaxe": "You need a pickaxe for crystal. Craft one at the camp workbench.",
       "notEnough": "Not enough materials yet."
     }
+  },
+  "craft": {
+    "title": "Camp workbench",
+    "tab": {
+      "tools": "Tools",
+      "items": "Items",
+      "camp": "Camp"
+    },
+    "craft": "Craft",
+    "make": "Craft {{name}}",
+    "owned": "Owned",
+    "madeTool": "You made a {{name}}! It now helps every harvest.",
+    "madeItem": "You made {{name}}! Wear it from your character or pet page.",
+    "tool": {
+      "stone_axe": "Stone axe",
+      "stone_pickaxe": "Stone pickaxe",
+      "crystal_axe": "Crystal axe",
+      "crystal_pickaxe": "Crystal pickaxe"
+    },
+    "toolHelp": {
+      "stone_axe": "+1 wood from every tree",
+      "stone_pickaxe": "+1 stone or crystal, and lets you mine crystal",
+      "crystal_axe": "+2 wood from every tree",
+      "crystal_pickaxe": "+2 stone or crystal"
+    },
+    "camp": {
+      "camp_bench": "Camp bench",
+      "camp_lantern": "Camp lantern",
+      "camp_flag": "Island flag",
+      "whiteboard": "Whiteboard stand"
+    },
+    "campHelp": "Everyone on this island builds the camp together. Give materials to finish each project.",
+    "give": "Give {{n}} {{name}}",
+    "thanks": "Thank you! You gave {{n}} {{name}} to the camp.",
+    "built": "Built",
+    "yours": "You gave {{n}} so far"
   }
 }

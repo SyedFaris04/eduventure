@@ -370,7 +370,14 @@
       "pet_bell": "Collar con cascabel",
       "pet_dye_ocean": "Tinte océano",
       "pet_dye_rose": "Tinte rosa",
-      "pet_dye_gold": "Tinte dorado"
+      "pet_dye_gold": "Tinte dorado",
+      "woodcutter_hat": "Gorra de leñador",
+      "herb_crown": "Corona de hierbas",
+      "crystal_staff": "Bastón de cristal",
+      "rattan_pack": "Cesta de ratán",
+      "pet_leaf_hat": "Sombrero de hoja",
+      "pet_crystal_collar": "Collar de cristal",
+      "pet_dye_forest": "Verde bosque"
     },
     "fromShop": "De la tienda"
   },
@@ -1061,5 +1068,41 @@
       "pickaxe": "Necesitas un pico para el cristal. Fabrica uno en el banco del campamento.",
       "notEnough": "Aún no tienes suficientes materiales."
     }
+  },
+  "craft": {
+    "title": "Banco del campamento",
+    "tab": {
+      "tools": "Herramientas",
+      "items": "Objetos",
+      "camp": "Campamento"
+    },
+    "craft": "Fabricar",
+    "make": "Fabricar {{name}}",
+    "owned": "Tuyo",
+    "madeTool": "¡Has fabricado {{name}}! Ahora ayuda en cada recolección.",
+    "madeItem": "¡Has fabricado {{name}}! Póntelo desde tu personaje o tu mascota.",
+    "tool": {
+      "stone_axe": "Hacha de piedra",
+      "stone_pickaxe": "Pico de piedra",
+      "crystal_axe": "Hacha de cristal",
+      "crystal_pickaxe": "Pico de cristal"
+    },
+    "toolHelp": {
+      "stone_axe": "+1 de madera por árbol",
+      "stone_pickaxe": "+1 de piedra o cristal, y puedes extraer cristal",
+      "crystal_axe": "+2 de madera por árbol",
+      "crystal_pickaxe": "+2 de piedra o cristal"
+    },
+    "camp": {
+      "camp_bench": "Banco del campamento",
+      "camp_lantern": "Farol del campamento",
+      "camp_flag": "Bandera de la isla",
+      "whiteboard": "Pizarra blanca"
+    },
+    "campHelp": "Todos en esta isla construyen el campamento juntos. Aporta materiales para terminar cada proyecto.",
+    "give": "Dar {{n}} {{name}}",
+    "thanks": "¡Gracias! Diste {{n}} {{name}} al campamento.",
+    "built": "Construido",
+    "yours": "Has aportado {{n}} hasta ahora"
   }
 }

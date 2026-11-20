@@ -57,6 +57,14 @@ describe.skipIf(!url || !key)('harvesting and crafting', () => {
     expect(w.materials.wood).toBe(3)
   }, 30000)
 
+  it('asking again for the same node keeps the same question, even when the asks overlap', async () => {
+    const t = nodes('harvest_tree')[4]
+    const [x, y] = await Promise.all([a.rpc('start_harvest', t), a.rpc('start_harvest', t)])
+    expect(x.data.question.id).toBe(y.data.question.id)
+    const { data: again } = await a.rpc('start_harvest', t)
+    expect(again.question.id).toBe(x.data.question.id)
+  })
+
   it('answering too fast is refused', async () => {
     const { data: s } = await a.rpc('start_harvest', nodes('harvest_tree')[2])
     const { error } = await a.rpc('answer_harvest', { p_answer: right(s.question.id) })
