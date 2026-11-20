@@ -1,0 +1,15 @@
+{
+  "appId": "com.eduventure.app",
+  "appName": "Eduventure",
+  "webDir": "android-shell",
+  "server": {
+    "url": "https://syedfaris04.github.io/eduventure/play/",
+    "errorPath": "offline.html",
+    "androidScheme": "https"
+  },
+  "android": { "backgroundColor": "#8ed1ff" },
+  "plugins": {
+    "SplashScreen": { "launchAutoHide": false, "backgroundColor": "#8ed1ff", "showSpinner": false },
+    "SystemBars": { "insetsHandling": "native", "initialViewportFitValueHint": "cover" }
+  }
+}

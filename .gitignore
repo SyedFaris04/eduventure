@@ -18,3 +18,8 @@ supabase/.branches/
 server/rooms/.wrangler/
 server/rooms/.dev.vars
 pages/
+
+# Android signing keys (never commit; the release key lives in GitHub secrets)
+*.jks
+*.keystore
+android/keystore.properties

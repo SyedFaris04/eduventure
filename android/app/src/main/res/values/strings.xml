@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Eduventure</string>
+    <string name="title_activity_main">Eduventure</string>
+    <string name="package_name">com.eduventure.app</string>
+    <string name="custom_url_scheme">com.eduventure.app</string>
+</resources>
