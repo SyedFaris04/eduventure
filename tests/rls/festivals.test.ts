@@ -1,5 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { readdirSync, readFileSync } from 'node:fs'
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
+import { rightAnswer } from './answers'
 
 const url = process.env.VITE_SUPABASE_URL
 const key = process.env.VITE_SUPABASE_PUBLISHABLE_KEY
@@ -19,6 +21,29 @@ async function player() {
 
 type Festival = { id: string; kind: string; starts_on: string; ends_on: string; preview: boolean }
 type Festivals = { festivals: Festival[]; tokens: number }
+type Mission = { id: string; template_id: string; period: string; festival: string | null; tokens: number; ends_on: string | null; progress: number; target: number; completed: boolean; claimed: boolean }
+const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
+
+// Real Greenhaven trees and rocks (no pickaxe needed), read from the generated node list.
+const dir = new URL('../../supabase/migrations/', import.meta.url)
+const nodesSql = readFileSync(new URL(readdirSync(dir).filter((f) => f.endsWith('_harvest_nodes.sql')).sort().at(-1)!, dir), 'utf8')
+const greenNodes = [...nodesSql.matchAll(/\('greenhaven', (\d+), (\d+), 'harvest_(tree|rock)'/g)].map((m) => ({ p_place: 'greenhaven', p_x: +m[1], p_y: +m[2] }))
+
+/** Harvests n ready Greenhaven nodes with right answers (each answer also counts as a right answer for missions). */
+async function harvestRight(c: SupabaseClient, n: number) {
+  const { data: cd } = await c.rpc('my_harvest_cooldowns', { p_place: 'greenhaven' })
+  const busy = new Set(((cd ?? []) as { x: number; y: number }[]).map((r) => `${r.x},${r.y}`))
+  const ready = greenNodes.filter((t) => !busy.has(`${t.p_x},${t.p_y}`))
+  expect(ready.length).toBeGreaterThanOrEqual(n)
+  for (const t of ready.slice(0, n)) {
+    const { data: s, error } = await c.rpc('start_harvest', t)
+    expect(error).toBeNull()
+    await wait(1600)
+    const { error: e2 } = await c.rpc('answer_harvest', { p_answer: rightAnswer(s.question.id) })
+    expect(e2).toBeNull()
+  }
+}
+
 const todayKL = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kuala_Lumpur' }).format(new Date())
 
 describe.skipIf(!url || !key)('festivals: players', () => {
@@ -47,6 +72,13 @@ describe.skipIf(!url || !key)('festivals: players', () => {
     expect((data as Festivals).festivals.some((x) => x.id === 'fake_2026' || x.preview)).toBe(false)
   })
 
+  it('festival missions appear only for festivals that are on', async () => {
+    const { data: f } = await a.rpc('my_festivals')
+    const { data: m } = await a.rpc('my_missions')
+    const kinds = new Set((m as Mission[]).filter((x) => x.festival).map((x) => x.festival))
+    expect(kinds).toEqual(new Set((f as Festivals).festivals.map((x) => x.kind)))
+  })
+
   it('only admins can preview', async () => {
     const { error } = await a.rpc('set_festival_preview', { p_id: 'cny_2027' })
     expect(error?.message).toMatch(/Admins only/)
@@ -73,4 +105,31 @@ describe.skipIf(!url || !key || !adminEmail || !adminPassword)('festivals: admin
     expect(cny).toEqual([expect.objectContaining({ id: 'cny_2027', preview: true })])
     expect(f.tokens).toBe(50)
   })
+
+  it('an admin preview gives the five festival missions, harvesting fills them, and an ended festival cannot be claimed', async () => {
+    await admin.rpc('set_festival_preview', { p_id: 'merdeka_2027', p_reset: true })
+    const mine = async () => ((await admin.rpc('my_missions')).data as Mission[]).filter((x) => x.festival === 'merdeka')
+    const m = await mine()
+    expect(m).toHaveLength(5)
+    expect(m.every((x) => x.progress === 0 && !x.claimed)).toBe(true)
+    expect(m.find((x) => x.template_id === 'f_merdeka_daily')).toMatchObject({ period: 'daily', target: 5, tokens: 2, ends_on: null })
+    expect(m.filter((x) => x.period === 'festival').every((x) => x.ends_on === '2027-09-16')).toBe(true)
+
+    await harvestRight(admin, 5)
+    const after = await mine()
+    const daily = after.find((x) => x.template_id === 'f_merdeka_daily')!
+    expect(daily.completed).toBe(true)
+    expect(after.find((x) => x.template_id === 'f_merdeka_harvest')!.progress).toBe(5)
+
+    // Merdeka off: its missions disappear and cannot be claimed.
+    await admin.rpc('set_festival_preview', { p_id: 'cny_2027' })
+    expect(await mine()).toEqual([])
+    expect((await admin.rpc('claim_mission', { p_id: daily.id })).error?.message).toMatch(/ended/)
+
+    await admin.rpc('set_festival_preview', { p_id: 'merdeka_2027' })
+    const { data, error } = await admin.rpc('claim_mission', { p_id: daily.id })
+    expect(error).toBeNull()
+    expect(data).toMatchObject({ tokens: 2, totals: expect.objectContaining({ tokens: 52 }) })
+    expect((await admin.rpc('claim_mission', { p_id: daily.id })).error?.message).toMatch(/already claimed/)
+  }, 60000)
 })
