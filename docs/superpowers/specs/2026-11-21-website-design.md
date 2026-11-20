@@ -43,6 +43,15 @@ The owner wants a website to share with people. It briefly shows what Eduventure
 - **Works and loads fast on phones, tablets and laptops.** The text and buttons show first. The 3D code loads afterwards, on its own, only for sections that scroll into view.
 - **Still pictures instead of 3D** when the browser prefers reduced motion, when WebGL is unavailable, or on low-end devices (the game's existing quality check).
 
+## Calls from the builder check (mine)
+
+- **When 3D shows:** the browser has WebGL (`hasWebGL()` in `src/world3d/webgl.ts`) and doesn't prefer reduced motion. The welcome page's "4 cores or fewer" rule is **not** used: it would hide the 3D from many phones, against "interactive with 3D". Each 3D section loads only when it scrolls near the screen (IntersectionObserver), and its canvas stops drawing while off-screen (`frameloop` set to `never`), so a slow phone only ever draws one small scene at a time.
+- **Still pictures:**
+  - the hero section uses the loading artwork (a copy in `site/public/`);
+  - the monster and the pet use simple shapes drawn in code: a green slime, and a pet circle that grows per stage.
+  - "Hit" and "Evolve" animate these with CSS when there's no 3D.
+- **Shared game code:** `HeroScene` gains optional props (`spin`, which turns slowly and lets the player drag to rotate with drei `OrbitControls`, no zoom or pan). The defaults leave the game's welcome page exactly as it is. The game's tests and `check-pages` run again.
+
 ## Non-goals
 
 - More pages, a blog, a sign-up form, analytics, a contact form, or the 5 other languages.
