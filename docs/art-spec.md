@@ -43,6 +43,11 @@ These props are built from simple shapes in code (`src/world3d/props/codeProps.t
 - `pine_snow`, `pillar`, `sundial`;
 - `abacus_gate` (spans 3 tiles; its posts stand on the tiles either side of the path).
 
+Harvest nodes, the workbench and camp builds are code-built too (`src/world3d/props/harvestProps.ts`), each with a
+ready and a regrowing look: `harvest_tree`, `harvest_rock`, `crystal`, `herb`, `workbench`, `camp_bench`,
+`camp_lantern`, `camp_flag`, `whiteboard`. Keep ready trees carrying fruit and herb bushes carrying flowers, so players
+can tell what can be harvested.
+
 To replace one with a model:
 1. Add its `.glb` to `public/assets/models/`.
 2. Add it to `PROP_MODELS` and `FIT` in `Props.tsx`.
