@@ -114,6 +114,7 @@ const router = createBrowserRouter([
     ? [
         { path: '/dev/hero', ...page(async () => (await import('../world3d/hero/HeroLab')).default) },
         { path: '/dev/world', ...page(async () => (await import('../world3d/WorldLab')).default) },
+        { path: '/dev/board', ...page(async () => (await import('../features/board/BoardLab')).default) },
       ]
     : []),
   { path: '*', element: <NotFound /> },

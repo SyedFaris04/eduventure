@@ -177,4 +177,12 @@ describe('harvesting and the camp', () => {
     sim.hero.pos = { x: at.x + 0.5, y: at.y + 0.5 }
     expect(sim.prompt()).toEqual({ kind: 'workbench' })
   })
+
+  it('standing by the whiteboard opens the camp board (the panel says if the stand is not built yet)', () => {
+    const board = map.props.find((p) => p.kind === 'whiteboard')!
+    const sim = new WorldSim(map, seeded())
+    sim.monsters = []
+    sim.hero.pos = { x: board.x + 0.5, y: board.y + 0.5 }
+    expect(sim.prompt()).toEqual({ kind: 'board' })
+  })
 })

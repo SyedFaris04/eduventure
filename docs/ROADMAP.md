@@ -263,6 +263,13 @@ Spec: `docs/superpowers/specs/2026-11-20-multiplayer-design.md`. Decision #42.
 - **Safety:** under-13s are hidden until a parent approves; "Let other players see me" in Settings; a parent switch per child; hide or report a player by tapping their name; moderator reports and bans in `/admin`; a word filter for typed names.
 - **Server:** a free Cloudflare room server in `server/rooms`. The owner creates the Cloudflare account and deploys it (README); until then the game plays solo as before.
 
+### Whiteboard camps — built and merged
+Spec: `docs/superpowers/specs/2026-11-20-whiteboard-camps-design.md`. Decision #43.
+- **A camp board on every island**, opened at the whiteboard stand once the island has built it. Notes stay for 3 days, newest first, with a daily discussion question on top.
+- **Safe by age:** under-13s pin stickers and ready-made phrases (shown in each reader's language) and never see typed notes; players 13 and over may also type 120 characters in Latin letters, with no bad words, phone numbers, emails, links or @handles. Under-18s need an approving parent, and parents get a "Can write on camp boards" switch.
+- **Safety:** report a note or hide its writer; 3 reports hide a note until a moderator removes or keeps it in `/admin`. Hidden, banned and adult-guest players can read but not write. Up to 5 notes an hour; writing earns nothing.
+- **Works without the room server:** notes are saved in the database and an open board refreshes every 20 seconds.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

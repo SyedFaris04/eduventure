@@ -9,6 +9,7 @@ export type Prompt =
   | { kind: 'boss'; id: BossId }
   | { kind: 'harvest'; x: number; y: number; material: Material }
   | { kind: 'workbench' }
+  | { kind: 'board' }
 
 type GameState = {
   /** Joystick vector in screen space (−1..1); keyboard is read inside Phaser. */
@@ -35,6 +36,8 @@ type GameState = {
   harvest: { x: number; y: number; material: Material } | null
   /** The camp workbench is open. */
   workbench: boolean
+  /** The island's camp board is open. */
+  board: boolean
   /** The settings panel is open. */
   settings: boolean
   /** Sailing to another place (the boat ride is showing). */
@@ -62,6 +65,7 @@ export const useGame = create<GameState>(() => ({
   jetty: false,
   harvest: null,
   workbench: false,
+  board: false,
   settings: false,
   travel: null,
   area: null,
@@ -75,7 +79,7 @@ if (import.meta.env.DEV) (window as unknown as { __game: typeof useGame }).__gam
 /** True while a panel owns the input (dialogue, battle, boss, jetty or settings): the world pauses movement. */
 export const worldPaused = () => {
   const s = useGame.getState()
-  return Boolean(s.dialogue || s.battle || s.boss || s.jetty || s.settings || s.harvest || s.workbench)
+  return Boolean(s.dialogue || s.battle || s.boss || s.jetty || s.settings || s.harvest || s.workbench || s.board)
 }
 
 /** Hero reaction after an answer: a flinch for a wrong one, a cheer for a win. */

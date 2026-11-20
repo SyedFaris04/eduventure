@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Axe, Crown, Hammer, Leaf, MessageCircle, Pickaxe, Swords } from 'lucide-react'
+import { Axe, ClipboardList, Crown, Hammer, Leaf, MessageCircle, Pickaxe, Swords } from 'lucide-react'
 import { pressInteract, useGame } from '../../game/store'
 
 const coarse = () => window.matchMedia?.('(pointer: coarse)').matches ?? false
@@ -60,19 +60,21 @@ export function Joystick() {
 export function InteractButton() {
   const { t } = useTranslation()
   const prompt = useGame((s) => s.prompt)
-  const busy = useGame((s) => Boolean(s.dialogue || s.battle || s.boss || s.harvest || s.workbench))
+  const busy = useGame((s) => Boolean(s.dialogue || s.battle || s.boss || s.harvest || s.workbench || s.board))
   if (!prompt || busy) return null
   const label =
     prompt.kind === 'npc' ? t('world.talkTo', { name: t(`npc.${prompt.id}.name`) })
     : prompt.kind === 'boss' ? t('world.challenge', { name: t('boss.name') })
     : prompt.kind === 'monster' ? t('world.battle', { name: t(`monsters.${prompt.monster}.name`) })
     : prompt.kind === 'harvest' ? t(`harvest.action.${prompt.material}`)
+    : prompt.kind === 'board' ? t('board.prompt')
     : t('harvest.useWorkbench')
   const Icon =
     prompt.kind === 'npc' ? MessageCircle
     : prompt.kind === 'boss' ? Crown
     : prompt.kind === 'monster' ? Swords
     : prompt.kind === 'workbench' ? Hammer
+    : prompt.kind === 'board' ? ClipboardList
     : prompt.material === 'wood' ? Axe
     : prompt.material === 'herbs' ? Leaf
     : Pickaxe

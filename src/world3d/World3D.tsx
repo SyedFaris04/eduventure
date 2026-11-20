@@ -72,6 +72,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       if (prompt?.kind === 'boss') useGame.setState({ boss: prompt.id })
       if (prompt?.kind === 'harvest') useGame.setState({ harvest: { x: prompt.x, y: prompt.y, material: prompt.material } })
       if (prompt?.kind === 'workbench') useGame.setState({ workbench: true })
+      if (prompt?.kind === 'board') useGame.setState({ board: true })
     }
     const keys = listenKeys(interact)
     keysRef.current = keys
@@ -240,7 +241,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
 const NONE = new Set<string>()
 
 /** Identity of a prompt, so the store only changes when the thing nearby changes. */
-const promptKey = (p: Prompt | null) => (!p ? '' : p.kind === 'harvest' ? `harvest:${p.x},${p.y}` : p.kind === 'workbench' ? 'workbench' : `${p.kind}:${p.id}`)
+const promptKey = (p: Prompt | null) => (!p ? '' : p.kind === 'harvest' ? `harvest:${p.x},${p.y}` : p.kind === 'workbench' || p.kind === 'board' ? p.kind : `${p.kind}:${p.id}`)
 
 const NO_FESTIVALS: FestivalKind[] = []
 
