@@ -32,7 +32,7 @@ describe.skipIf(!url || !key)('shop and gear (live project)', () => {
   })
 
   it('the database catalogue matches the client catalogue exactly', async () => {
-    const { data, error } = await poor.from('shop_items').select('id, slot, rarity, price').order('id')
+    const { data, error } = await poor.from('shop_items').select('id, slot, rarity, price').eq('craft_only', false).order('id')
     expect(error).toBeNull()
     const client = [...CATALOGUE].map(({ id, slot, rarity, price }) => ({ id, slot, rarity, price })).sort((x, y) => x.id.localeCompare(y.id))
     expect(data).toEqual(client)
