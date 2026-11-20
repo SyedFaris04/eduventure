@@ -5,6 +5,7 @@ import type { SiteCopy } from '../App'
 import { PetStill, type PetStage } from '../Still'
 import { can3D, useInView } from '../useInView'
 import { card, Section } from './Section'
+import { Fallback } from '../ErrorBoundary'
 
 const PetScene = lazy(() => import('../three/PetScene'))
 const STAGES: PetStage[] = ['egg', 'baby', 'young', 'adult']
@@ -22,7 +23,7 @@ export function MeetPet({ t }: { t: SiteCopy }) {
   return (
     <Section id="pet" title={t.pet.title} lead={t.pet.lead}>
       <div ref={ref} className={`${card} mx-auto flex max-w-md flex-col items-center gap-3 p-6`}>
-        <div className="h-56 w-full">{three && near ? <Suspense fallback={still}><PetScene stage={stage} active={visible} /></Suspense> : still}</div>
+        <div className="scene-3d h-56 w-full">{three && near ? <Fallback still={still}><Suspense fallback={still}><PetScene stage={stage} active={visible} /></Suspense></Fallback> : still}</div>
         <ol className="flex gap-2" aria-label={t.pet.title}>
           {STAGES.map((s, k) => (
             <li key={s} aria-current={k === i ? 'step' : undefined} className={`rounded-full border-2 px-3 py-0.5 text-sm font-bold ${k === i ? 'border-wood-dark bg-gold' : 'border-wood/40 bg-white'}`}>

@@ -26,6 +26,8 @@ const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--ena
 const page = await browser.newPage()
 const missing = []
 page.on('response', (r) => r.status() === 404 && r.url().includes('/assets/') && missing.push(r.url()))
+const errors = []
+page.on('pageerror', (e) => errors.push(e.message))
 const fail = (msg) => {
   console.error('pages check failed:', msg)
   process.exitCode = 1
@@ -46,6 +48,26 @@ try {
   await page.getByRole('button', { name: /English|EN/ }).click()
   await page.getByRole('button', { name: /Sunlight/ }).click()
   if (!(await page.getByText('Right! The Sproutling takes a hit.').isVisible())) fail('the demo question did not answer')
+  // On a phone, a vertical swipe over the 3D island scrolls the page (only sideways drags spin it).
+  const phone = await browser.newPage({ viewport: { width: 360, height: 640 }, hasTouch: true, isMobile: true })
+  await phone.goto(`${base}/eduventure/`)
+  await phone.locator('canvas').first().waitFor({ timeout: 30_000 }).catch(() => {})
+  const touch = await phone.evaluate(() => [...document.querySelectorAll('canvas')].map((c) => getComputedStyle(c).touchAction))
+  if (touch.length === 0) fail('the 3D island did not load')
+  if (touch.some((t) => !t.includes('pan-y'))) fail(`a vertical swipe over the 3D island does not scroll the page (touch-action: ${touch.join(', ')})`)
+  await phone.close()
+
+  // The backs of the flip cards fit inside the cards, in both languages, at tablet and laptop widths.
+  for (const width of [320, 360, 768, 1024, 1366]) for (const lang of ['en', 'ms']) {
+    const tab = await browser.newPage({ viewport: { width, height: 900 } })
+    await tab.goto(`${base}/eduventure/`)
+    await tab.evaluate((l) => localStorage.setItem('eduventure.site.lang', l), lang)
+    await tab.reload()
+    const spill = await tab.evaluate(() => [...document.querySelectorAll('.flip-back')].some((b) => b.scrollHeight > b.clientHeight + 1))
+    if (spill) fail(`flip-card text spills out of its card at ${width}px (${lang})`)
+    await tab.close()
+  }
+
   // No sideways scrolling on the narrowest phones, in either language.
   for (const lang of ['en', 'ms']) {
     const small = await browser.newPage({ viewport: { width: 320, height: 640 } })
@@ -81,6 +103,7 @@ try {
   if (!page.url().includes('/eduventure/play/welcome')) fail(`the game started at ${page.url()}`)
   await page.waitForTimeout(3000)
   if (missing.length) fail(`assets missing: ${missing.join(', ')}`)
+  if (errors.length) fail(`page errors: ${errors.join(' | ')}`)
 } finally {
   await browser.close()
   server.close()

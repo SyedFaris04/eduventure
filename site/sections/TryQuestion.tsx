@@ -8,6 +8,7 @@ import { answer, QUESTIONS, START } from '../quiz'
 import { MonsterStill } from '../Still'
 import { can3D, useInView } from '../useInView'
 import { card, Section } from './Section'
+import { Fallback } from '../ErrorBoundary'
 
 const MonsterScene = lazy(() => import('../three/MonsterScene'))
 
@@ -24,7 +25,7 @@ export function TryQuestion({ t, lang }: { t: SiteCopy; lang: Lang }) {
     <Section id="try" title={t.quiz.title} lead={t.quiz.lead} tint="bg-grass/15">
       <div className={`${card} mx-auto grid max-w-4xl gap-4 p-4 md:grid-cols-[1fr_1.4fr] md:p-6`}>
         <div ref={ref}>
-          <div className="h-56">{three && near ? <Suspense fallback={still}><MonsterScene hits={hits} active={visible} /></Suspense> : still}</div>
+          <div className="scene-3d h-56">{three && near ? <Fallback still={still}><Suspense fallback={still}><MonsterScene hits={hits} active={visible} /></Suspense></Fallback> : still}</div>
           <p className="text-center text-sm font-bold text-wood-dark">{t.quiz.health}</p>
           <div role="meter" aria-label={t.quiz.health} aria-valuemin={0} aria-valuemax={START.hp} aria-valuenow={s.hp} className="mx-auto mt-1 h-4 max-w-xs overflow-hidden rounded-full border-2 border-wood-dark bg-wood-dark/70">
             <div className="h-full bg-gradient-to-r from-danger to-[#ff8a65] transition-[width] duration-500" style={{ width: `${(s.hp / START.hp) * 100}%` }} />

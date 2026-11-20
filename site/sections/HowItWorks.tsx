@@ -19,7 +19,7 @@ export function HowItWorks({ t }: { t: SiteCopy }) {
           const c = t.how.cards[key]
           const flipped = open === key
           return (
-            <button key={key} type="button" aria-pressed={flipped} onClick={() => setOpen(flipped ? null : key)} className={`flip group h-64 text-start ${flipped ? 'flipped' : ''}`}>
+            <button key={key} type="button" aria-pressed={flipped} onClick={() => setOpen(flipped ? null : key)} className={`flip group h-64 text-start md:h-80 lg:h-72 ${flipped ? 'flipped' : ''}`}>
               <span className="flip-inner">
                 <span className={`flip-face ${card} flex flex-col items-center justify-center gap-3 bg-gradient-to-b ${colour} p-6 text-center`}>
                   <Icon size={56} className="text-cream drop-shadow-[0_3px_0_var(--color-wood-dark)]" aria-hidden />

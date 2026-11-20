@@ -54,7 +54,7 @@ const en = {
     title: 'Safe for children',
     lead: 'Built for students, with parents in charge.',
     points: {
-      parents: 'Players under 18 need a parent to approve their account, and parents can set a daily play limit.',
+      parents: 'Players under 18 link a parent, who approves their account, can set a daily play limit and decides about camp boards and being seen by others.',
       chat: 'Under-13s talk with stickers and ready-made phrases only, and never see typed messages from strangers.',
       boards: 'Camp boards filter bad words, phone numbers and links. Anything can be reported to a moderator.',
       fair: 'No ads, no loot boxes and nothing to buy with real money.',
@@ -133,7 +133,7 @@ const ms: Copy = {
     title: 'Selamat untuk kanak-kanak',
     lead: 'Dibina untuk pelajar, dengan ibu bapa sebagai pengawal.',
     points: {
-      parents: 'Pemain bawah 18 tahun memerlukan kelulusan ibu bapa, dan ibu bapa boleh menetapkan had masa bermain harian.',
+      parents: 'Pemain bawah 18 tahun memautkan ibu bapa, yang meluluskan akaun mereka, boleh menetapkan had masa bermain harian dan menentukan papan kem serta sama ada mereka dilihat pemain lain.',
       chat: 'Pemain bawah 13 tahun berbual dengan pelekat dan frasa sedia ada sahaja, dan tidak melihat mesej bertaip daripada orang asing.',
       boards: 'Papan kem menapis kata kesat, nombor telefon dan pautan. Apa-apa sahaja boleh dilaporkan kepada moderator.',
       fair: 'Tiada iklan, tiada kotak rawak dan tiada apa-apa untuk dibeli dengan wang sebenar.',
