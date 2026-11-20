@@ -15,10 +15,10 @@ export const HERO_SCALE = 0.56 // the rig is ~2.3 units tall; heroes stand about
 const shadowGeo = new CircleGeometry(0.5, 20).rotateX(-Math.PI / 2)
 const shadowMat = new MeshBasicMaterial({ color: '#1d3a12', transparent: true, opacity: 0.22, depthWrite: false })
 /** A soft round shadow under every actor; it reads even with real shadows off on low quality. */
-const Blob = ({ size }: { size: number }) => <mesh geometry={shadowGeo} material={shadowMat} position={[0, 0.012, 0]} scale={size} />
+export const Blob = ({ size }: { size: number }) => <mesh geometry={shadowGeo} material={shadowMat} position={[0, 0.012, 0]} scale={size} />
 
 // Turn toward an angle the short way round.
-const turnToward = (from: number, to: number, k: number) => {
+export const turnToward = (from: number, to: number, k: number) => {
   const d = Math.atan2(Math.sin(to - from), Math.cos(to - from))
   return from + d * k
 }
