@@ -23,8 +23,8 @@ describe('WorldSim', () => {
   })
 
   it('returns to the academy door', () => {
-    const sim = new WorldSim(map, seeded(), { atArrival: true, start: { x: 10, y: 12 } })
-    expect(sim.hero.pos).toEqual({ x: 10.5, y: 12.5 })
+    const sim = new WorldSim(map, seeded(), { atArrival: true, start: { x: 10, y: 28 } })
+    expect(sim.hero.pos).toEqual({ x: 10.5, y: 28.5 })
   })
 
   it('spawns as many monsters as the map asks for', () => {
@@ -54,18 +54,18 @@ describe('WorldSim', () => {
 
   it('standing by Elder Rowan gives the npc prompt', () => {
     const sim = new WorldSim(map, seeded())
-    sim.hero.pos = { x: 12.5, y: 14.5 }
+    sim.hero.pos = { x: 12.5, y: 30.5 }
     expect(sim.prompt()).toEqual({ kind: 'npc', id: 'elder' })
   })
 
   it('a tap on a tree walks to a free tile beside it', () => {
     const sim = new WorldSim(map, seeded())
-    sim.hero.pos = { x: 12.5, y: 14.5 }
-    sim.tap({ x: 11.4, y: 12.6 }) // tree at tile (11, 12)
+    sim.hero.pos = { x: 12.5, y: 30.5 }
+    sim.tap({ x: 11.4, y: 28.6 }) // tree at tile (11, 28)
     expect(sim.path.length).toBeGreaterThan(0)
     const end = sim.path[sim.path.length - 1]
     expect(map.blocked(end.x, end.y)).toBe(false)
-    expect(Math.max(Math.abs(end.x - 11), Math.abs(end.y - 12))).toBe(1)
+    expect(Math.max(Math.abs(end.x - 11), Math.abs(end.y - 28))).toBe(1)
   })
 
   it('a defeated monster disappears and respawns in its zone after 20 s', () => {
@@ -128,5 +128,36 @@ describe('WorldSim', () => {
       for (const m of sim.monsters) expect(map.monsterZones[m.kind]!.some((t) => t.x === Math.floor(m.pos.x) && t.y === Math.floor(m.pos.y)), m.id).toBe(true)
     }
     expect(hopped).toBe(true)
+  })
+})
+
+describe('harvesting and the camp', () => {
+  const node = map.props.find((p) => p.kind === 'harvest_tree')!
+  const free = (x: number, y: number) => [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([dx, dy]) => ({ x: x + dx, y: y + dy })).find((p) => !map.blocked(p.x, p.y))!
+
+  it('standing by a ready harvest tree offers to harvest it', () => {
+    const sim = new WorldSim(map, seeded())
+    const at = free(node.x, node.y)
+    sim.monsters = []
+    sim.hero.pos = { x: at.x + 0.5, y: at.y + 0.5 }
+    expect(sim.prompt()).toMatchObject({ kind: 'harvest', x: node.x, y: node.y, material: 'wood' })
+  })
+
+  it('a regrowing node offers nothing', () => {
+    const sim = new WorldSim(map, seeded())
+    const at = free(node.x, node.y)
+    sim.monsters = []
+    sim.hero.pos = { x: at.x + 0.5, y: at.y + 0.5 }
+    sim.regrowing = new Set([`${node.x},${node.y}`])
+    expect(sim.prompt()?.kind).not.toBe('harvest')
+  })
+
+  it('the workbench opens crafting', () => {
+    const bench = map.props.find((p) => p.kind === 'workbench')!
+    const sim = new WorldSim(map, seeded())
+    const at = free(bench.x, bench.y)
+    sim.monsters = []
+    sim.hero.pos = { x: at.x + 0.5, y: at.y + 0.5 }
+    expect(sim.prompt()).toEqual({ kind: 'workbench' })
   })
 })

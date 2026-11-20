@@ -1,5 +1,5 @@
 import type { Point } from './iso'
-import type { GameMap, MonsterKind } from './map'
+import { HARVEST, type GameMap, type MonsterKind } from './map'
 import { followPath, INTERACT_RANGE, screenDirToGrid, SPEED, step, tapGoal } from './movement'
 import type { Prompt } from './store'
 
@@ -32,6 +32,8 @@ export class WorldSim {
   path: Point[] = []
   /** Which way the camera faces, so stick-up always walks away from it. */
   cameraYaw = Math.PI / 4
+  /** Harvest nodes ("x,y") this player harvested recently: they show as regrowing and offer nothing. */
+  regrowing = new Set<string>()
 
   constructor(
     readonly map: GameMap,
@@ -157,6 +159,12 @@ export class WorldSim {
     const boss = this.map.bosses.find((b) => dist({ x: b.x + 0.5, y: b.y + 0.5 }) <= INTERACT_RANGE)
     if (boss) return { kind: 'boss', id: boss.id }
     const monster = this.monsters.filter((m) => m.alive && dist(m.pos) <= INTERACT_RANGE).sort((a, b) => dist(a.pos) - dist(b.pos))[0]
-    return monster ? { kind: 'monster', id: monster.id, monster: monster.kind, returning: Boolean(monster.returning) } : null
+    if (monster) return { kind: 'monster', id: monster.id, monster: monster.kind, returning: Boolean(monster.returning) }
+    const near = (k: (kind: string) => boolean) =>
+      this.map.props.filter((q) => k(q.kind) && dist({ x: q.x + 0.5, y: q.y + 0.5 }) <= INTERACT_RANGE).sort((a, b) => dist({ x: a.x + 0.5, y: a.y + 0.5 }) - dist({ x: b.x + 0.5, y: b.y + 0.5 }))[0]
+    if (near((k) => k === 'workbench')) return { kind: 'workbench' }
+    const node = near((k) => k in HARVEST)
+    if (node && !this.regrowing.has(`${node.x},${node.y}`)) return { kind: 'harvest', x: node.x, y: node.y, material: HARVEST[node.kind]! }
+    return null
   }
 }

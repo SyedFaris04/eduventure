@@ -1037,5 +1037,14 @@
       "own": "Itu kelas anda sendiri.",
       "failed": "Ada masalah. Sila cuba lagi."
     }
+  },
+  "harvest": {
+    "action": {
+      "wood": "Tebang pokok",
+      "stone": "Pecahkan batu",
+      "herbs": "Petik herba",
+      "crystal": "Lombong kristal"
+    },
+    "useWorkbench": "Guna meja kerja"
   }
 }

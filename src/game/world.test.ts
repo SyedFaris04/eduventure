@@ -22,10 +22,10 @@ describe('isometric projection', () => {
 describe('Greenhaven map', () => {
   const map = parseMap(GREENHAVEN)
 
-  it('is 36 × 36 with every row the same width', () => {
-    expect(map.width).toBe(36)
-    expect(map.height).toBe(36)
-    expect(GREENHAVEN.rows.every((r) => r.length === 36)).toBe(true)
+  it('is 52 × 52 with every row the same width', () => {
+    expect(map.width).toBe(52)
+    expect(map.height).toBe(52)
+    expect(GREENHAVEN.rows.every((r) => r.length === 52)).toBe(true)
   })
   it('only uses characters from its legend', () => {
     const unknown = GREENHAVEN.rows.join('').split('').filter((c) => !(c in GREENHAVEN.legend))
@@ -33,10 +33,10 @@ describe('Greenhaven map', () => {
   })
   it('has a walkable player spawn and blocked borders', () => {
     expect(map.blocked(map.spawn.x, map.spawn.y)).toBe(false)
-    for (let i = 0; i < 36; i++) {
+    for (let i = 0; i < 52; i++) {
       // the jetty runs off the south edge into the sea; everything else on the border is blocked
-      const jetty = map.cells[35][i].tile === 'jetty'
-      expect(map.blocked(i, 0) && (jetty || map.blocked(i, 35)) && map.blocked(0, i) && map.blocked(35, i)).toBe(true)
+      const jetty = map.cells[51][i].tile === 'jetty'
+      expect(map.blocked(i, 0) && (jetty || map.blocked(i, 51)) && map.blocked(0, i) && map.blocked(51, i)).toBe(true)
     }
     expect(map.blocked(-1, 5)).toBe(true)
   })
@@ -46,9 +46,9 @@ describe('Greenhaven map', () => {
       expect(map.monsterZones[zone]!.every((p) => !map.blocked(p.x, p.y))).toBe(true)
     }
     expect(map.npcs.map((n) => n.id).sort()).toEqual(['boatman', 'elder', 'shopkeeper'])
-    expect(map.bosses).toEqual([{ id: 'guardian', x: 17, y: 4 }])
+    expect(map.bosses).toEqual([{ id: 'guardian', x: 17, y: 20 }])
     // the Guardian can be reached on foot from the spawn (a free tile next to it)
-    expect(map.blocked(17, 5)).toBe(false)
+    expect(map.blocked(17, 21)).toBe(false)
   })
 
   it('is a kampung with a jetty, palms, kampung houses and named areas', () => {
@@ -57,7 +57,7 @@ describe('Greenhaven map', () => {
     expect(map.props.filter((p) => p.kind === 'palm').length).toBeGreaterThanOrEqual(6)
     expect(map.props.filter((p) => p.kind === 'kampung_house').length).toBeGreaterThanOrEqual(2)
     expect(map.props.some((p) => p.kind === 'stall')).toBe(true)
-    expect(map.monsterCounts).toEqual({ sproutling: 4, pebblewing: 3, dinobud: 3 })
+    expect(map.monsterCounts).toEqual({ sproutling: 6, pebblewing: 5, dinobud: 5 })
   })
   it('the boatman can be reached from the spawn and from the arrival point', () => {
     const boatman = map.npcs.find((n) => n.id === 'boatman')!

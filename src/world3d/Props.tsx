@@ -12,7 +12,7 @@ type Model = (typeof PROP_MODELS)[number]
 
 /** Footprint each model is scaled to, in tiles (houses cover 2 × 2). */
 const FIT: Record<Model, number> = { tree_a: 1.25, tree_b: 1.25, rock_a: 0.8, rock_b: 0.8, rock_c: 0.75, house_a: 2.1, house_b: 2.1, well: 0.95, fence: 1.02 }
-const hash = (x: number, y: number, k = 0) => {
+export const hash = (x: number, y: number, k = 0) => {
   const s = Math.sin(x * 12.9898 + y * 78.233 + k * 37.719) * 43758.5453
   return s - Math.floor(s)
 }
@@ -111,7 +111,7 @@ function ModelInstances({ model, items, shadows }: { model: Model; items: Placem
   )
 }
 
-function PartInstances({ part, items, shadows }: { part: { geometry: BufferGeometry; material: Material; local: Matrix4 }; items: { x: number; z: number; ry: number; s: number }[]; shadows: boolean }) {
+export function PartInstances({ part, items, shadows }: { part: { geometry: BufferGeometry; material: Material; local: Matrix4 }; items: { x: number; z: number; ry: number; s: number }[]; shadows: boolean }) {
   const ref = useRef<InstancedMesh>(null)
   useLayoutEffect(() => {
     const m = ref.current

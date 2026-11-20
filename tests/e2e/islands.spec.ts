@@ -9,7 +9,7 @@ test('sail to Science Island and fight', async ({ page }) => {
   expect(await place(page)).toBe('greenhaven')
 
   // Pak Hamid stands at the jetty south of the village road.
-  await walkUntil(page, { x: 17.5, y: 32.5 }, 'npc', 'boatman')
+  await walkUntil(page, { x: 17.5, y: 48.5 }, 'npc', 'boatman')
   await sail(page, /Sail to Science Island/, 'science_island')
   await expect(page.locator('[data-area-banner]')).toHaveText('Pekan Kuching', { timeout: 10_000 })
 
@@ -31,6 +31,6 @@ test('sail to Science Island and fight', async ({ page }) => {
   await expect(battle).toHaveCount(0)
 
   // Back to the jetty and home.
-  await walkUntil(page, { x: 21.5, y: 39.5 }, 'npc', 'boatman')
+  await walkUntil(page, { x: 21.5, y: 55.5 }, 'npc', 'boatman')
   await sail(page, /Sail to Greenhaven Kampung/, 'greenhaven')
 })

@@ -1037,5 +1037,14 @@
       "own": "C’est ta propre classe.",
       "failed": "Un problème est survenu. Réessaie."
     }
+  },
+  "harvest": {
+    "action": {
+      "wood": "Couper l’arbre",
+      "stone": "Miner la roche",
+      "herbs": "Cueillir des herbes",
+      "crystal": "Miner le cristal"
+    },
+    "useWorkbench": "Utiliser l’établi"
   }
 }

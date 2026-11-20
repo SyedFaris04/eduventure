@@ -1037,5 +1037,14 @@
       "own": "这是你自己的班级。",
       "failed": "出错了，请再试一次。"
     }
+  },
+  "harvest": {
+    "action": {
+      "wood": "砍树",
+      "stone": "采石",
+      "herbs": "采草药",
+      "crystal": "开采水晶"
+    },
+    "useWorkbench": "使用工作台"
   }
 }

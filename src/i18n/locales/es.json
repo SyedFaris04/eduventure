@@ -1037,5 +1037,14 @@
       "own": "Es tu propia clase.",
       "failed": "Algo salió mal. Inténtalo de nuevo."
     }
+  },
+  "harvest": {
+    "action": {
+      "wood": "Talar árbol",
+      "stone": "Picar roca",
+      "herbs": "Recoger hierbas",
+      "crystal": "Extraer cristal"
+    },
+    "useWorkbench": "Usar el banco de trabajo"
   }
 }
