@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { initI18n } from '../../i18n'
 import { NoteComposer } from './NoteComposer'
 
@@ -22,6 +22,18 @@ describe('NoteComposer', () => {
     expect(screen.getByText('102 left')).toBeTruthy()
     fireEvent.click(pin)
     expect(onPost).toHaveBeenCalledWith({ sticker: 'idea', phrase: 'p01', body: 'Plants make oxygen' })
+  })
+
+  it('keeps the words when the server refuses the note, and clears them once pinned', async () => {
+    const onPost = vi.fn().mockResolvedValueOnce(false).mockResolvedValueOnce(true)
+    render(<NoteComposer rights={adult} busy={false} onPost={onPost} />)
+    const box = screen.getByLabelText('Your words (optional)') as HTMLInputElement
+    fireEvent.change(box, { target: { value: 'call me later' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Pin' }))
+    await waitFor(() => expect(onPost).toHaveBeenCalledTimes(1))
+    expect(box.value).toBe('call me later')
+    fireEvent.click(screen.getByRole('button', { name: 'Pin' }))
+    await waitFor(() => expect(box.value).toBe(''))
   })
 
   it('gives under-13s stickers and phrases but no text box', () => {

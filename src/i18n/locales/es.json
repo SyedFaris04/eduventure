@@ -1227,11 +1227,12 @@
       "email": "No se permiten correos electrónicos en los tablones.",
       "link": "No se permiten enlaces en los tablones.",
       "handle": "No se permiten nombres con @ en los tablones.",
-      "word": "Por favor, elige palabras más amables.",
       "limit": "Has puesto 5 notas en esta hora. Inténtalo más tarde.",
       "closed": "Este tablón aún no está construido.",
       "reportLimit": "Has enviado muchas denuncias hoy. Inténtalo mañana.",
-      "generic": "Algo salió mal. Inténtalo de nuevo."
+      "generic": "Algo salió mal. Inténtalo de nuevo.",
+      "contact": "No se permiten datos de contacto ni apps de mensajería en los tablones.",
+      "word": "Por favor, elige palabras más amables."
     },
     "sticker": {
       "star": "Estrella",

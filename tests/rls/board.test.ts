@@ -136,6 +136,17 @@ describe.skipIf(!url || !key || !adminEmail || !adminPassword)('whiteboard camps
     const own = (await board(teen)).notes.filter((n) => n.mine && n.phrase === 'p02')
     expect((await teen.rpc('delete_my_note', { p_id: own[0].id })).error).toBeNull()
     expect((await board(teen)).notes.some((n) => n.id === own[0].id)).toBe(false)
+    // A deleted note still counts toward the hour.
+    expect((await post(teen, { phrase: 'p02' })).error?.message).toMatch(/Too many notes/)
+  })
+
+  it('deleting a reported note keeps the evidence for moderators', async () => {
+    expect((await adultGuest.rpc('report_note', { p_id: teenNote, p_reason: 'personal_info' })).error).toBeNull()
+    expect((await teen.rpc('delete_my_note', { p_id: teenNote })).error).toBeNull()
+    expect((await board(adultGuest)).notes.some((n) => n.id === teenNote)).toBe(false)
+    const reported = (await admin.rpc('reported_notes')).data as { id: number; deleted: boolean; body: string }[]
+    expect(reported.find((n) => n.id === teenNote)).toMatchObject({ deleted: true, body: `Plants make oxygen ${stamp}` })
+    expect((await admin.rpc('resolve_note', { p_id: teenNote, p_remove: true })).error).toBeNull()
   })
 
   it('three reports hide a note until a moderator decides', async () => {

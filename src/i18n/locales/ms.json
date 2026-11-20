@@ -1227,11 +1227,12 @@
       "email": "Alamat e-mel tidak dibenarkan di papan.",
       "link": "Pautan tidak dibenarkan di papan.",
       "handle": "Nama @ tidak dibenarkan di papan.",
-      "word": "Sila pilih kata-kata yang lebih baik.",
       "limit": "Anda sudah melekat 5 nota dalam sejam ini. Cuba lagi nanti.",
       "closed": "Papan ini belum dibina.",
       "reportLimit": "Anda sudah menghantar banyak laporan hari ini. Cuba lagi esok.",
-      "generic": "Ada masalah. Sila cuba lagi."
+      "generic": "Ada masalah. Sila cuba lagi.",
+      "contact": "Butiran hubungan dan aplikasi pesanan tidak dibenarkan di papan.",
+      "word": "Sila pilih kata-kata yang lebih baik."
     },
     "sticker": {
       "star": "Bintang",

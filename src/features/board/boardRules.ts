@@ -19,8 +19,9 @@ export function dailyQuestion(now: Date): number {
   return Math.floor((now.getTime() + KL_OFFSET) / DAY) % QUESTION_COUNT
 }
 
-// The same characters the server's text_ok accepts: Latin letters (with accents), digits and plain punctuation.
-const ALLOWED = /^[A-Za-z0-9À-ÖØ-öø-ÿĀ-ſ .,!?'"():;+=/%*&#@_’‘“”-]*$/u
+// The characters the server's text_ok accepts: Latin letters it can fold to a-z (é, ñ…; not ı, ū or ß), digits and
+// plain punctuation, including the … – — that phone keyboards type.
+const ALLOWED = /^[A-Za-z0-9À-ÅÇ-ÏÑ-ÖØ-Ýà-åç-ïñ-öø-ýÿ .,!?'"():;+=/%*&#@$_’‘“”…–—-]*$/u
 
 /** A hint before sending; the server decides (words, phone numbers, links and so on are only checked there). */
 export function bodyProblem(text: string): null | 'script' | 'long' {

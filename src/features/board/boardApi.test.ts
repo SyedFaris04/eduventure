@@ -1,9 +1,13 @@
 import { describe, expect, it } from 'vitest'
+import en from '../../i18n/locales/en.json'
 import { boardErrorKey, boardQuery } from './boardApi'
 
 describe('board helpers', () => {
   it('maps server errors to messages the player understands', () => {
-    for (const p of ['script', 'phone', 'email', 'link', 'handle', 'word']) expect(boardErrorKey(`Not allowed: ${p}`)).toBe(`board.error.${p}`)
+    for (const p of ['script', 'phone', 'email', 'link', 'handle', 'contact', 'word']) {
+      expect(boardErrorKey(`Not allowed: ${p}`)).toBe(`board.error.${p}`)
+      expect((en.board.error as Record<string, string>)[p]).toBeTruthy()
+    }
     expect(boardErrorKey('Too long')).toBe('board.error.long')
     expect(boardErrorKey('Too many notes')).toBe('board.error.limit')
     expect(boardErrorKey('The board is not built yet')).toBe('board.error.closed')

@@ -50,8 +50,10 @@ function Board({ place: override }: { place?: string }) {
     try {
       await work()
       if (done) setMessage({ ok: true, text: t(done) })
+      return true
     } catch (e) {
       setMessage({ ok: false, text: t(e instanceof BoardError ? e.message : 'board.error.generic') })
+      return false
     } finally {
       setBusy(false)
       void queryClient.invalidateQueries({ queryKey: boardKey(place) })

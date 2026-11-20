@@ -92,7 +92,7 @@ The owner chose a **lasting island board**: notes stay on the island's board for
   - In order: rights, the stand is built, an under-13 sent no body, `text_ok`, then the rate limit of 5 an hour.
   - Each refusal has its own message, which the client maps to friendly text.
   - The body is trimmed, and an empty body counts as null.
-- **`delete_my_note(p_id)`**.
+- **`delete_my_note(p_id)`**: hides the note (`deleted_at`) rather than deleting it, so reports keep their evidence and it still counts toward the hourly limit (review fix).
 - **`report_note(p_id, p_reason)`**: no reporting your own note; at most 10 note reports a day. When 3 distinct open reports are reached, it sets `hidden = true`.
 - **Moderators:** `reported_notes()`, which lists open reports grouped by note with the note's content and its writer's public_id and name. `resolve_note(p_id, p_remove boolean)` either deletes the note or unhides it and closes its reports, and writes `audit_logs`.
 - **Parents:** `set_child_board_writing(p_child, p_on)`, and `my_children` gains `board_writing`.

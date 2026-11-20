@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-const note = { id: 9, place: 'greenhaven', sticker: 'star', phrase: 'p01', body: 'meet me behind the school', public_id: 'pid-9', name: 'Bad Rider', hidden: true, reports: 3, reasons: ['personal_info'], created_at: '2026-11-21T01:00:00Z' }
+const note = { id: 9, place: 'greenhaven', sticker: 'star', phrase: 'p01', body: 'meet me behind the school', public_id: 'pid-9', name: 'Bad Rider', hidden: true, deleted: true, reports: 3, reasons: ['personal_info'], created_at: '2026-11-21T01:00:00Z' }
 const rpc = vi.hoisted(() => vi.fn())
 vi.mock('../../services/supabase', () => ({ supabase: { rpc } }))
 
@@ -17,7 +17,7 @@ describe('ReportedNotes', () => {
     show()
     expect(await screen.findByText('meet me behind the school')).toBeTruthy()
     expect(screen.getByText(/Great idea!/)).toBeTruthy()
-    expect(screen.getByText(/3 reports \(Personal information\) · hidden/)).toBeTruthy()
+    expect(screen.getByText(/3 reports \(Personal information\) · hidden · deleted by the writer/)).toBeTruthy()
   })
 
   it('removes or keeps a note, and bans only after confirming', async () => {

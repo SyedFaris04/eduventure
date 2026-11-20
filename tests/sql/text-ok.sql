@@ -19,6 +19,15 @@ with cases (body, expected) as (values
   ('012 345 6789', 'phone'), ('0123456789', 'phone'), ('call 012-345 6789', 'phone'), ('(03) 1234 5678', 'phone'),
   ('mail me a@b.co', 'email'), ('go to www.site.com', 'link'), ('site.my', 'link'), ('http://x', 'link'),
   ('see games.gg', 'link'), ('@cool_kid', 'handle'), ('follow @abc', 'handle'),
+  -- Review fixes: letters the filter can't fold, punctuation inside a word, spaced-out contact details, phone keyboards.
+  ('you are shıt', 'script'), ('fūck off', 'script'), ('fu.ck', 'word'), ('fu-ck you', 'word'), ('fu2ck', 'word'),
+  ('ali@gmail .com', 'email'), ('follow @ cool_kid', 'handle'), ('see youtu.be', 'link'), ('site .co', 'link'),
+  ('012/345/6789', 'phone'), ('012,345,6789', 'phone'), ('012_345_6789', 'phone'),
+  ('ali at gmail dot com', 'contact'), ('add me on instagram', 'contact'), ('whatsapp me', 'contact'),
+  ('fire retardant', null), ('you are retarded', 'word'),
+  -- The owner decides these (school topics that hit the word list); refused until then.
+  ('Nazi Germany invaded Poland', 'word'), ('Anjing saya comel', 'word'), ('babi hutan', 'word'),
+  ('Hmm… ok', null), ('great — thanks', null), ('pages 21–35', null), ('Great job. My turn', null), ('École is fun', null),
   ('你好', 'script'), ('１２３４５６７', 'script'), ('привет', 'script'), ('مرحبا', 'script'), ('hi 😀', 'script')
 )
 select count(*) filter (where public.text_ok(body) is distinct from expected) as wrong,

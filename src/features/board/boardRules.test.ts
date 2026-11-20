@@ -29,6 +29,8 @@ describe('board rules', () => {
   it('hints at text the server would refuse for its script or length', () => {
     expect(bodyProblem('你好')).toBe('script')
     expect(bodyProblem('hi 😀')).toBe('script')
+    expect(bodyProblem('you are shıt')).toBe('script') // letters the server can't fold
+    expect(bodyProblem('Hmm… ok — École')).toBeNull() // phone keyboards type … and —
     expect(bodyProblem('x'.repeat(MAX_BODY + 1))).toBe('long')
     expect(bodyProblem('Café! (12 + 30 = 42)')).toBeNull()
     expect(bodyProblem('')).toBeNull()

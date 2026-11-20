@@ -1227,11 +1227,12 @@
       "email": "Email addresses aren't allowed on boards.",
       "link": "Links aren't allowed on boards.",
       "handle": "@names aren't allowed on boards.",
-      "word": "Please choose kinder words.",
       "limit": "You've pinned 5 notes this hour. Try again later.",
       "closed": "This board isn't built yet.",
       "reportLimit": "You've sent a lot of reports today. Try again tomorrow.",
-      "generic": "Something went wrong. Please try again."
+      "generic": "Something went wrong. Please try again.",
+      "contact": "Contact details and messaging apps aren't allowed on boards.",
+      "word": "Please choose kinder words."
     },
     "sticker": {
       "star": "Star",

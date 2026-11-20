@@ -1227,11 +1227,12 @@
       "email": "Les adresses e-mail sont interdites sur les tableaux.",
       "link": "Les liens sont interdits sur les tableaux.",
       "handle": "Les noms en @ sont interdits sur les tableaux.",
-      "word": "Choisis des mots plus gentils, s’il te plaît.",
       "limit": "Tu as épinglé 5 notes cette heure-ci. Réessaie plus tard.",
       "closed": "Ce tableau n’est pas encore construit.",
       "reportLimit": "Tu as envoyé beaucoup de signalements aujourd’hui. Réessaie demain.",
-      "generic": "Un problème est survenu. Réessaie."
+      "generic": "Un problème est survenu. Réessaie.",
+      "contact": "Les coordonnées et les applis de messagerie sont interdites sur les tableaux.",
+      "word": "Choisis des mots plus gentils, s’il te plaît."
     },
     "sticker": {
       "star": "Étoile",

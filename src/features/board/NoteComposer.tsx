@@ -5,7 +5,7 @@ import type { BoardRights, NoteDraft } from './boardApi'
 import { bodyProblem, MAX_BODY, PHRASES, STICKER_ICON, STICKERS, type StickerKey } from './boardRules'
 
 /** Pick a sticker and a ready-made phrase; players 13 and over may also type. The server checks everything again. */
-export function NoteComposer({ rights, busy, onPost }: { rights: BoardRights; busy: boolean; onPost: (note: NoteDraft) => void }) {
+export function NoteComposer({ rights, busy, onPost }: { rights: BoardRights; busy: boolean; onPost: (note: NoteDraft) => Promise<boolean> }) {
   const { t } = useTranslation()
   const [sticker, setSticker] = useState<StickerKey | null>(null)
   const [phrase, setPhrase] = useState('')
@@ -20,8 +20,9 @@ export function NoteComposer({ rights, busy, onPost }: { rights: BoardRights; bu
   const problem = rights.can_type ? bodyProblem(body) : null
   const ready = Boolean(sticker || phrase || text) && !problem
 
-  function pin() {
-    onPost({ ...(sticker && { sticker }), ...(phrase && { phrase }), ...(text && { body: text }) })
+  // Cleared only once pinned, so a refused note (a phone number, say) can be fixed instead of retyped.
+  async function pin() {
+    if (!(await onPost({ ...(sticker && { sticker }), ...(phrase && { phrase }), ...(text && { body: text }) }))) return
     setSticker(null)
     setPhrase('')
     setBody('')
@@ -66,7 +67,7 @@ export function NoteComposer({ rights, busy, onPost }: { rights: BoardRights; bu
         </div>
       )}
       {problem && <p role="alert" className="text-sm font-semibold text-danger">{t(`board.error.${problem}`)}</p>}
-      <Button disabled={!ready || busy} onClick={pin}>
+      <Button disabled={!ready || busy} onClick={() => void pin()}>
         {t('board.pin')}
       </Button>
     </div>
