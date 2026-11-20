@@ -14,7 +14,9 @@
     "gen:questions": "node scripts/gen-questions.mjs",
     "fetch:models": "node scripts/fetch-models.mjs",
     "gen:lessons": "node scripts/gen-lessons.mjs",
-    "test:e2e:mp": "playwright test -c playwright.multiplayer.config.ts"
+    "test:e2e:mp": "playwright test -c playwright.multiplayer.config.ts",
+    "build:pages": "node -e \"process.env.BASE_PATH='/eduventure/play/';require('node:child_process').execSync('npm run build',{stdio:'inherit'})\" && node scripts/pages-bundle.mjs",
+    "check:pages": "node scripts/check-pages.mjs"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "6.2.5",

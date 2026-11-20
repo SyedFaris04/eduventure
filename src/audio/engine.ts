@@ -1,6 +1,7 @@
 import { barNotes, midiToHz, MOODS, type Mood, type Note } from './theory'
 import { SFX, type SfxName } from './sfx'
 import { useAudioSettings } from './settings'
+import { withBase } from '../app/base'
 
 /**
  * One AudioContext for the whole game: master → (music, effects). Browsers start it suspended until a tap, so every
@@ -107,7 +108,7 @@ let files: Set<string> | null = null
 async function musicFiles(): Promise<Set<string>> {
   if (files) return files
   try {
-    const r = await fetch('/assets/audio/manifest.json')
+    const r = await fetch(withBase('/assets/audio/manifest.json'))
     files = new Set(r.ok ? ((await r.json()) as string[]) : [])
   } catch {
     files = new Set()
@@ -159,7 +160,7 @@ function startPlayer(c: AudioContext, mood: Mood, file: boolean): Player {
   out.connect(musicBus)
   const p: Player = { mood, out, bar: 0, nextAt: c.currentTime + 0.1, timer: null }
   if (file) {
-    const el = new Audio(`/assets/audio/music-${mood}.mp3`)
+    const el = new Audio(withBase(`/assets/audio/music-${mood}.mp3`))
     el.loop = true
     c.createMediaElementSource(el).connect(out)
     void el.play().catch(() => undefined)

@@ -1,7 +1,8 @@
 import type { CSSProperties } from 'react'
+import { withBase } from '../../app/base'
 
 /** Measured in pixels on the 1672 × 941 loading artwork. Check with `/?debug=hotspots`. */
-export const ART = { w: 1672, h: 941, webp: '/assets/loading/eduventure-loading.webp', png: '/assets/loading/eduventure-loading.png' }
+export const ART = { w: 1672, h: 941, webp: withBase('/assets/loading/eduventure-loading.webp'), png: withBase('/assets/loading/eduventure-loading.png') }
 
 export type Rect = { x: number; y: number; w: number; h: number }
 

@@ -8,6 +8,7 @@ import { AuthMessageError, startGuest } from '../authentication/authActions'
 import { useSession } from '../authentication/useSession'
 import { SceneBackdrop } from './SceneBackdrop'
 import './landing.css'
+import { withBase } from '../../app/base'
 
 const HeroScene = lazy(() => import('./HeroScene'))
 
@@ -74,7 +75,7 @@ export function WelcomePage() {
             <div role="alert" className="mt-5 flex w-full max-w-sm items-center gap-3 rounded-2xl border-[3px] border-danger bg-cream p-3 text-start">
               <WifiOff className="shrink-0 text-danger" aria-hidden />
               <p className="flex-1 text-sm font-semibold">{t('welcome.offline')}</p>
-              <Button variant="secondary" onClick={() => window.location.assign('/')}>
+              <Button variant="secondary" onClick={() => window.location.assign(withBase('/'))}>
                 {t('common.retry')}
               </Button>
             </div>
