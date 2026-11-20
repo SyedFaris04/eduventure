@@ -6,7 +6,7 @@ import { isUnlocked, unlockLevel } from '../../game/unlocks'
 import type { Pet } from '../pet/petRules'
 import { CATALOGUE, type ShopItem } from './catalogue'
 
-export const PET_ITEMS = CATALOGUE.filter((i) => i.slot.startsWith('pet_') && !('craft' in i))
+export const PET_ITEMS = CATALOGUE.filter((i) => i.slot.startsWith('pet_') && !('craft' in i) && !('festival' in i))
 export const petSlot = (item: ShopItem) => item.slot.replace('pet_', '') as 'hat' | 'neck' | 'dye'
 
 type Props = { pet: Pet | null | undefined; owned: Set<string>; level: number; gold: number; busy: boolean; onBuy: (item: ShopItem) => void; onWear: (item: ShopItem) => void }
