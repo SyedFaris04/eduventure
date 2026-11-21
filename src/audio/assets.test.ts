@@ -22,7 +22,10 @@ describe('recorded audio files', () => {
 
   it('every mood has a recorded track, and only CC0 sources are credited', () => {
     for (const mood of Object.keys(MOODS) as Mood[]) expect(manifest).toContain(`music-${mood}.mp3`)
-    expect(credits).not.toMatch(/CC[- ]BY/i)
+    const licences = credits.split(/\r?\n/).filter((l) => l.startsWith('| music-')).map((l) => l.split('|').at(-2)!.trim())
+    expect(licences).toHaveLength(Object.keys(MOODS).length)
+    for (const l of licences) expect(l).toBe('CC0')
+    expect(credits).toMatch(/All by Kenney \(www\.kenney\.nl\), CC0/)
   })
 
   it('picks the effects that have a recorded file; the rest keep their code sound', () => {

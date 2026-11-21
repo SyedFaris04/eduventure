@@ -152,6 +152,6 @@ sound. Each mood (plus a new `cozy` mood for My island) plays a recorded loop, a
 splash, chirp and sparkle stay code-made (already gentle, and no recorded clip fitted). Only CC0 sources are used, so
 there is no attribution duty or commercial limit; every file is still credited in `public/assets/audio/CREDITS.md`, and
 a test checks the manifest, the files and the credits agree. Music is levelled to −16 LUFS, effects to a −6 dB peak.
-Recorded music skips the echo the code music uses. Files missing from the manifest, still loading, or failing to load
+The engine trims recorded sound to a quarter (RECORDED_TRIM) so it sits beside the code sounds and old slider settings stay comfortable. Recorded music skips the echo the code music uses, and falls back to the code music if the browser refuses to play it or the file fails to load. Files missing from the manifest, still loading, or failing to load
 fall back to the code sound, so nothing goes silent. The picks were made without listening (by licence, length and
 measurement); the owner listens and swaps any file by name.

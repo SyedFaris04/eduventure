@@ -12,7 +12,10 @@ let master: GainNode
 let musicBus: GainNode
 let synthBus: GainNode // code-made music, which gets the echo; recorded tracks have their own room
 let fxBus: GainNode
+let recordedFx: GainNode
 let echo: DelayNode
+/** Recorded files are levelled loud (music -16 LUFS, effects -6 dB peak); these trims sit them beside the code sounds. */
+export const RECORDED_TRIM = { music: 0.25, sfx: 0.25 }
 let noise: AudioBuffer
 let musicLevel = 1 // 1 normal, lower while battles, lessons or speech need attention
 
@@ -37,6 +40,9 @@ function audio(): AudioContext | null {
   echo.connect(feedback).connect(echo)
   echo.connect(wet).connect(musicBus)
   fxBus.connect(master)
+  recordedFx = ctx.createGain()
+  recordedFx.gain.value = RECORDED_TRIM.sfx
+  recordedFx.connect(fxBus)
   master.connect(ctx.destination)
   noise = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate)
   const data = noise.getChannelData(0)
@@ -93,7 +99,7 @@ export function playSfx(name: SfxName) {
   if (clip) {
     const src = c.createBufferSource()
     src.buffer = clip
-    src.connect(fxBus)
+    src.connect(recordedFx)
     src.start(start)
     return
   }
@@ -192,8 +198,17 @@ function startPlayer(c: AudioContext, mood: Mood, file: boolean): Player {
   if (file) {
     const el = new Audio(withBase(`/assets/audio/music-${mood}.mp3`))
     el.loop = true
-    c.createMediaElementSource(el).connect(out)
-    void el.play().catch(() => undefined)
+    const trim = c.createGain()
+    trim.gain.value = RECORDED_TRIM.music
+    c.createMediaElementSource(el).connect(trim).connect(out)
+    // Refused (iOS without a fresh tap) or failed to load (offline): play the code music rather than nothing.
+    const fallback = () => {
+      if (current !== p) return
+      stopPlayer(c, p)
+      current = startPlayer(c, mood, false)
+    }
+    el.addEventListener('error', fallback)
+    void el.play().catch(fallback)
     p.file = el
     return p
   }
