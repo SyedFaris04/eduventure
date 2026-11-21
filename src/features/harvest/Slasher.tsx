@@ -21,9 +21,13 @@ export function Slasher() {
   const toast = useGame((s) => s.harvestToast)
   const state = useRef(START)
   const busy = useRef(false)
+  // A swing already in the store when the world opens belongs to an earlier visit: never replay it.
+  const seen = useRef(useGame.getState().slashReq?.seq)
+  useEffect(() => () => useGame.setState({ slashReq: null, harvestToast: null }), [])
 
   useEffect(() => {
-    if (!req) return
+    if (!req || req.seq === seen.current) return
+    seen.current = req.seq
     const { state: next, done } = slashStep(state.current, `${req.x},${req.y}`, performance.now())
     state.current = next
     useGame.setState((s) => ({ slashSeq: s.slashSeq + 1 }))
@@ -34,13 +38,15 @@ export function Slasher() {
     slashHarvest(place, req.x, req.y)
       .then((r) => {
         queryClient.setQueryData(materialsKey(uid), (m: MyMaterials | undefined) => ({ tools: m?.tools ?? [], materials: r.materials }))
-        void queryClient.invalidateQueries({ queryKey: cooldownsKey(uid, place) })
+        // Regrowing at once (the prompt goes), before the refetch confirms it.
+        queryClient.setQueryData(cooldownsKey(uid, place), (s: Set<string> | undefined) => new Set([...(s ?? []), `${req.x},${req.y}`]))
         say(t('harvest.gained', { n: r.gained, name: t(`harvest.material.${r.material}`) }), true)
         playSfx('coin')
       })
       .catch((e) => say(t(e instanceof HarvestError ? e.message : 'battle.errors.generic'), false))
       .finally(() => {
         busy.current = false
+        void queryClient.invalidateQueries({ queryKey: cooldownsKey(uid, place) })
       })
     // Each request (its seq) is one swing.
   }, [req?.seq]) // eslint-disable-line react-hooks/exhaustive-deps
