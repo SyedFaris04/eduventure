@@ -1286,5 +1286,9 @@
       "12": "Which language would you like to learn?",
       "13": "What's something kind you did today?"
     }
+  },
+  "rotate": {
+    "title": "Turn your phone sideways",
+    "body": "Eduventure plays in landscape. Rotate your phone to continue."
   }
 }

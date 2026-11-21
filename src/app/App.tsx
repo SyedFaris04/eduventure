@@ -13,6 +13,7 @@ import { RequireProgress } from './guards'
 import { nextRequiredRoute } from './progress'
 import { queryClient } from './providers'
 import { routerBasename } from './base'
+import { RotatePrompt } from './RotatePrompt'
 
 function NotFound() {
   const { t } = useTranslation()
@@ -129,5 +130,11 @@ startMusicDirector(router)
 if (Capacitor.isNativePlatform()) void import('./native').then((m) => m.startNative(router))
 
 export function App() {
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <RouterProvider router={router} />
+      {/* The Android app is locked to landscape; browsers on phones are asked to turn sideways. */}
+      {!Capacitor.isNativePlatform() && <RotatePrompt />}
+    </>
+  )
 }

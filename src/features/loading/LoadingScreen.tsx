@@ -7,6 +7,7 @@ import { Leaves } from './Leaves'
 import { AMBIENT, ART, CHARACTERS, PAINTED, cutoutBackground, placeAt, type CharacterId, type Rect } from './hotspots'
 import { getSoundEnabled, playChime, setSoundEnabled } from './sound'
 import './loading.css'
+import { isPhone, lockLandscape } from '../../app/orientation'
 
 const REACTION: Record<CharacterId, { anim: string; emoji: string }> = {
   boy: { anim: 'react-hop', emoji: '⭐' },
@@ -46,6 +47,8 @@ export function LoadingScreen({ tasks, onDone }: Props) {
 
   function start() {
     if (!result || leaving) return
+    // Phones play sideways: a tap is when browsers allow full screen and the landscape lock.
+    if (isPhone({ width: innerWidth, height: innerHeight, coarse: matchMedia?.('(pointer: coarse)').matches ?? false })) void lockLandscape()
     playChime('done')
     setLeaving(true)
     setTimeout(() => onDone(result), prefersReducedMotion() ? 0 : 500)
