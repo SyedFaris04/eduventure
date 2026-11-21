@@ -24,6 +24,9 @@ export function Caption({ text, y = 760, size = 104, stagger = 4, delay = 0, out
   const frame = useCurrentFrame()
   const { fps, durationInFrames } = useVideoConfig()
   const words = text.split(' ')
+  // Long words (Malay has many) shrink the whole caption so the longest word fits the safe width.
+  const longest = Math.max(...words.map((w) => w.replace(/\*/g, '').length))
+  size = Math.min(size, Math.floor((SAFE.right - SAFE.left - 20) / (longest * 0.68)))
   const out = outAt ? spring({ frame: frame - (durationInFrames - outAt), fps, config: { damping: 200 }, durationInFrames: 8 }) : 0
   return (
     <div

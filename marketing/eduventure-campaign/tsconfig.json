@@ -7,7 +7,8 @@
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "lib": ["ES2022", "DOM"]
+    "lib": ["ES2022", "DOM"],
+    "resolveJsonModule": true
   },
-  "include": ["source/index.ts", "source/Root.tsx", "source/components", "source/compositions", "source/styles", "source/animations"]
+  "include": ["source/index.ts", "source/Root.tsx", "source/components", "source/compositions", "source/styles", "source/animations", "source/copy.ts", "source/voiceover/ms.json"]
 }
