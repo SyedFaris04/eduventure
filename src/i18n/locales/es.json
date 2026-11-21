@@ -14,7 +14,8 @@
     "backToStart": "Volver al inicio",
     "prevPage": "Página anterior",
     "nextPage": "Página siguiente",
-    "pageOf": "Página {{n}} de {{total}}"
+    "pageOf": "Página {{n}} de {{total}}",
+    "pages": "Páginas: {{label}}"
   },
   "loading": {
     "title": "Cargando tu aventura…",

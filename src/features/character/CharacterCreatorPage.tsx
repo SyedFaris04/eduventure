@@ -152,7 +152,8 @@ export function CharacterCreatorPage() {
 
             <div role="tabpanel" className="flex flex-col gap-5 short:min-h-0 short:gap-2">
               {/* Phones held sideways: one part per page (‹ 1 2 3 ›) instead of a long scroll. */}
-              <Paged items={current?.parts ?? []} perPage={short ? 1 : Infinity} label={t(`character.tabs.${tab}`)} className="flex flex-col gap-5 short:gap-2">
+              {current && (
+              <Paged items={current.parts} perPage={short ? 1 : Infinity} resetKey={tab} label={t(`character.tabs.${tab}`)} className="flex flex-col gap-5 short:gap-2">
               {(part) => (
                 <fieldset key={part} className="flex flex-col gap-2 short:gap-1">
                   <legend className="mb-2 font-display text-lg font-semibold short:mb-1 short:text-sm">{t(`character.parts.${part}`)}</legend>
@@ -191,6 +192,7 @@ export function CharacterCreatorPage() {
                 </fieldset>
               )}
               </Paged>
+              )}
 
               {tab === 'name' &&
                 (safeNamesOnly ? (

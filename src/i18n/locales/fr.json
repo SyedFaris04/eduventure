@@ -14,7 +14,8 @@
     "backToStart": "Retour au début",
     "prevPage": "Page précédente",
     "nextPage": "Page suivante",
-    "pageOf": "Page {{n}} sur {{total}}"
+    "pageOf": "Page {{n}} sur {{total}}",
+    "pages": "Pages : {{label}}"
   },
   "loading": {
     "title": "Chargement de ton aventure…",

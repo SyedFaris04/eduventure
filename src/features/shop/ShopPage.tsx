@@ -43,7 +43,9 @@ export function ShopPage() {
   const festivalOn = Boolean(useFestivals(uid).data?.festivals.length)
   // Phones held sideways show one section at a time: hero items, the pet corner, the festival stall.
   const [section, setSection] = useState<'hero' | 'pet' | 'festival'>('hero')
-  const show = (s: 'hero' | 'pet' | 'festival') => !short || section === s
+  // A festival can end while its tab is open: fall back to the hero items.
+  const current = section === 'festival' && !festivalOn ? 'hero' : section
+  const show = (s: 'hero' | 'pet' | 'festival') => !short || current === s
   const look = character.data?.appearance
 
   async function buy(item: ShopItem) {
@@ -92,7 +94,7 @@ export function ShopPage() {
   return (
     <main className="relative min-h-dvh">
       <SceneBackdrop />
-      <div className="relative mx-auto flex max-w-5xl flex-col gap-5 px-4 py-6 short:gap-2 short:py-1.5">
+      <div className="relative mx-auto flex max-w-5xl flex-col gap-5 px-4 py-6 short:gap-2 short:py-1.5 tiny:gap-1.5 tiny:py-1">
         <header className="flex flex-wrap items-center gap-3">
           <Link to="/home" aria-label={t('common.back')} className={buttonClasses('secondary', 'md', 'px-3!')}>
             <ArrowLeft size={18} className="rtl:rotate-180" aria-hidden />
@@ -107,9 +109,9 @@ export function ShopPage() {
                   key={s}
                   type="button"
                   role="tab"
-                  aria-selected={section === s}
+                  aria-selected={current === s}
                   onClick={() => setSection(s)}
-                  className={`rounded-xl border-2 px-2.5 py-1 font-display text-sm font-semibold ${section === s ? 'border-wood-dark bg-wood text-cream' : 'border-wood/40 bg-cream/90 text-wood-dark'}`}
+                  className={`rounded-xl border-2 px-2.5 py-1 font-display text-sm font-semibold ${current === s ? 'border-wood-dark bg-wood text-cream' : 'border-wood/40 bg-cream/90 text-wood-dark'}`}
                 >
                   {t(s === 'hero' ? 'shop.heroItems' : s === 'pet' ? 'shop.petCorner' : 'festival.stall')}
                 </button>
@@ -126,7 +128,7 @@ export function ShopPage() {
         {message && <FormMessage kind={message.kind}>{message.text}</FormMessage>}
 
         {show('hero') && (
-        <Panel>
+        <Panel className="tiny:p-2">
           <Paged list items={HERO_ITEMS} perPage={short ? 4 : Infinity} label={t('shop.heroItems')} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 short:grid-cols-4 short:gap-2">
             {(item) => {
               const mine = owned.data?.has(item.id) ?? false
@@ -135,7 +137,7 @@ export function ShopPage() {
               const lockedAt = isUnlocked(progression.data?.level ?? 1, 'shop_tier', item.rarity) ? null : unlockLevel('shop_tier', item.rarity)
               const name = t(`character.opt.${item.id}`)
               return (
-                <li key={item.id} className="flex flex-col items-center gap-2 rounded-2xl border-[3px] border-wood/40 bg-white/85 p-3 short:gap-0.5 short:p-1.5" data-testid={`item-${item.id}`}>
+                <li key={item.id} className="flex flex-col items-center gap-2 rounded-2xl border-[3px] border-wood/40 bg-white/85 p-3 short:gap-0.5 short:p-1.5 tiny:p-1" data-testid={`item-${item.id}`}>
                   <div className="flex w-full items-center justify-between gap-2">
                     <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${RARITY_STYLE[item.rarity]}`}>{t(`shop.rarity.${item.rarity}`)}</span>
                     <span className="flex items-center gap-1 font-display font-bold text-wood-dark">

@@ -3,9 +3,11 @@ import { enterWorld } from './helpers'
 
 // Every screen on the player's path fits a phone held sideways, with no page scroll and nothing off the side
 // (spec docs/superpowers/specs/2026-11-21-phone-fit-design.md). 640 × 300 is a phone in Chrome with the address bar.
+// 844 × 390 (most iPhones and Pixels sideways) is wide enough for the tablet (md) rules to apply too.
 const SIZES = [
   { width: 740, height: 360 },
   { width: 640, height: 300 },
+  { width: 844, height: 390 },
 ]
 
 async function phone(browser: Browser, size: { width: number; height: number }, storageState?: string) {
@@ -13,8 +15,8 @@ async function phone(browser: Browser, size: { width: number; height: number }, 
   return ctx.newPage()
 }
 
-/** The page does not scroll either way; returns how far it overflows, for a readable failure. */
-async function expectFits(page: Page, name: string) {
+/** The page does not scroll either way, and no box clips or scrolls its own content (a modal's body may). */
+async function expectFits(page: Page, name: string, { boxes = true } = {}) {
   await page.waitForTimeout(600)
   const m = await page.evaluate(() => ({
     h: Math.max(document.documentElement.scrollHeight, document.body.scrollHeight),
@@ -24,6 +26,20 @@ async function expectFits(page: Page, name: string) {
   }))
   expect.soft(m.h, `${name}: ${m.h}px tall on a ${m.vh}px screen`).toBeLessThanOrEqual(m.vh + 1)
   expect.soft(m.w, `${name}: ${m.w}px wide on a ${m.vw}px screen`).toBeLessThanOrEqual(m.vw + 1)
+  if (!boxes) return
+  const clipped = await page.evaluate(() =>
+    [...document.querySelectorAll('main *')]
+      .filter((e) => {
+        const el = e as HTMLElement
+        const css = getComputedStyle(el)
+        const oy = css.overflowY
+        // A deliberate line clamp (text ending in …) is not a clipped layout.
+        if (css.webkitLineClamp && css.webkitLineClamp !== 'none') return false
+        return oy !== 'visible' && el.clientHeight > 24 && el.scrollHeight > el.clientHeight + 2 && !el.closest('dialog') && !(el instanceof HTMLSelectElement)
+      })
+      .map((e) => `${e.tagName.toLowerCase()}.${(e as HTMLElement).className.toString().split(' ').slice(0, 4).join('.')} (${(e as HTMLElement).scrollHeight}>${(e as HTMLElement).clientHeight})`),
+  )
+  expect.soft(clipped, `${name}: boxes that clip or scroll their content`).toEqual([])
 }
 
 async function expectInView(page: Page, name: string, locator: ReturnType<Page['locator']>) {
@@ -105,15 +121,24 @@ test.describe('phone fit', () => {
         await expectFits(page, `${tag} ${path}`)
       }
 
+      // The egg picker appears at level 2: stand in a level-2 answer for the player's XP row and look at it.
+      await page.route('**/rest/v1/player_xp*', (route) => route.fulfill({ json: { xp: 150, level: 2 } }))
+      await page.goto('/pet')
+      await expect(page.getByRole('button', { name: /Hatch!/ })).toBeVisible()
+      await expectFits(page, `${tag} pet egg picker`)
+      await expectInView(page, `${tag} hatch`, page.getByRole('button', { name: /Hatch!/ }))
+      await page.unroute('**/rest/v1/player_xp*')
+
       await page.goto('/home')
       await enterWorld(page)
-      await expectFits(page, `${tag} world`)
+      await expectFits(page, `${tag} world`, { boxes: false })
       const box = async (name: string) => (await page.getByLabel(name, { exact: true }).first().boundingBox())!
       const hud = await box('Your hero')
       const map = await box('Enlarge map')
       const pad = await box('Movement pad')
       expect.soft(hud.height, `${tag} hero card height`).toBeLessThanOrEqual(56)
       expect.soft(map.width, `${tag} minimap width`).toBeLessThanOrEqual(130)
+      expect.soft(map.height, `${tag} minimap height`).toBeLessThanOrEqual(90)
       expect.soft(pad.width, `${tag} joystick size`).toBeLessThanOrEqual(104)
       await page.context().close()
     }

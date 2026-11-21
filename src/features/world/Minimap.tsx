@@ -111,7 +111,7 @@ export function Minimap() {
       type="button"
       onClick={() => setBig((b) => !b)}
       aria-label={t(big ? 'world.minimapShrink' : 'world.minimapEnlarge')}
-      className="pointer-events-auto absolute end-3 top-[10.5rem] z-10 rounded-2xl border-[3px] border-wood bg-[#5fb3d9]/90 p-1 short:top-[9.25rem] short:rounded-xl short:p-0.5 shadow-[0_4px_0_var(--color-wood-dark)] md:top-auto md:bottom-3"
+      className="pointer-events-auto absolute end-3 top-[10.5rem] z-10 rounded-2xl border-[3px] border-wood bg-[#5fb3d9]/90 p-1 short:top-[9.25rem] short:bottom-auto short:rounded-xl short:p-0.5 shadow-[0_4px_0_var(--color-wood-dark)] md:top-auto md:bottom-3"
     >
       <canvas ref={ref} width={W} height={H} className={`block transition-[width] ${big ? 'w-[min(80vw,320px)] short:w-[min(60vw,260px)]' : 'w-28 sm:w-40 short:w-28'}`} />
     </button>

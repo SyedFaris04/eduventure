@@ -83,7 +83,7 @@ export function InteractButton() {
     <button
       type="button"
       onClick={pressInteract}
-      className="pointer-events-auto absolute end-5 bottom-6 z-10 flex items-center gap-2 rounded-full border-[3px] border-wood-dark bg-gradient-to-b from-gold to-path-dark px-5 py-3 font-display text-lg font-semibold short:end-3 short:bottom-3 short:px-4 short:py-2 short:text-base text-ink shadow-[0_4px_0_var(--color-wood-dark)] active:translate-y-0.5 md:start-1/2 md:end-auto md:-translate-x-1/2 md:rtl:translate-x-1/2"
+      className="pointer-events-auto absolute end-5 bottom-6 z-10 flex items-center gap-2 rounded-full border-[3px] border-wood-dark bg-gradient-to-b from-gold to-path-dark px-5 py-3 font-display text-lg font-semibold short:start-auto short:end-3 short:bottom-3 short:translate-x-0 short:px-4 short:py-2 short:text-base short:rtl:translate-x-0 text-ink shadow-[0_4px_0_var(--color-wood-dark)] active:translate-y-0.5 md:start-1/2 md:end-auto md:-translate-x-1/2 md:rtl:translate-x-1/2"
     >
       <Icon size={22} aria-hidden /> {label}
       <kbd className="hidden rounded-md border-2 border-wood-dark bg-cream px-1.5 text-sm md:inline">E</kbd>

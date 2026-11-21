@@ -15,26 +15,33 @@ type Props<T> = {
   list?: boolean
   /** Extra attributes for the box that holds the items (e.g. role="listbox" and its label). */
   boxProps?: HTMLAttributes<HTMLElement>
+  /** When this changes (a new search, filter or tab), go back to page 1. */
+  resetKey?: unknown
 }
 
 /**
  * One page of a list at a time, with ‹ › arrows, dots and swipe, so short phone screens never scroll. A list that
  * fits shows as is. The page stays valid when the list shrinks (a search narrowed it).
  */
-export function Paged<T>({ items, perPage, label, children, className = '', list = false, boxProps }: Props<T>) {
+export function Paged<T>({ items, perPage, label, children, className = '', list = false, boxProps, resetKey }: Props<T>) {
   const { t } = useTranslation()
-  const [wanted, setPage] = useState(0)
+  const [state, setState] = useState({ key: resetKey, page: 0 })
+  const wanted = state.key === resetKey ? state.page : 0
+  const setPage = (page: number) => setState({ key: resetKey, page })
   const start = useRef<{ x: number; y: number } | null>(null)
   const pages = Number.isFinite(perPage) ? Math.max(1, Math.ceil(items.length / perPage)) : 1
   const page = Math.min(wanted, pages - 1)
-  const shown = pages > 1 ? items.slice(page * perPage, (page + 1) * perPage) : items
+  const first = pages > 1 ? page * perPage : 0 // never page × Infinity (NaN) when everything shows
+  const shown = pages > 1 ? items.slice(first, first + perPage) : items
   const go = (p: number) => setPage(Math.max(0, Math.min(pages - 1, p)))
 
   return (
     <section
       aria-label={label}
-      className="flex min-h-0 flex-col gap-2"
+      // touch-pan-y: the browser keeps vertical panning and gives sideways swipes to us (no pointercancel mid-swipe).
+      className="flex min-h-0 touch-pan-y flex-col gap-2"
       onPointerDown={(e) => (start.current = { x: e.clientX, y: e.clientY })}
+      onPointerCancel={() => (start.current = null)}
       onPointerUp={(e) => {
         const s = start.current
         start.current = null
@@ -44,13 +51,13 @@ export function Paged<T>({ items, perPage, label, children, className = '', list
       }}
     >
       {list ? (
-        <ul {...boxProps} className={className}>{shown.map((item, i) => children(item, page * perPage + i))}</ul>
+        <ul {...boxProps} className={className}>{shown.map((item, i) => children(item, first + i))}</ul>
       ) : (
-        <div {...boxProps} className={className}>{shown.map((item, i) => children(item, page * perPage + i))}</div>
+        <div {...boxProps} className={className}>{shown.map((item, i) => children(item, first + i))}</div>
       )}
       {pages > 1 && (
-        <nav className="flex items-center justify-center gap-2" aria-label={label}>
-          <button type="button" aria-label={t('common.prevPage')} disabled={page === 0} onClick={() => go(page - 1)} className="grid size-9 place-items-center rounded-full border-2 border-wood bg-cream text-wood-dark disabled:opacity-35">
+        <nav className="flex items-center justify-center gap-2" aria-label={t('common.pages', { label })}>
+          <button type="button" aria-label={t('common.prevPage')} disabled={page === 0} onClick={() => go(page - 1)} className="grid size-9 place-items-center rounded-full border-2 border-wood bg-cream text-wood-dark disabled:opacity-35 tiny:size-8">
             <ChevronLeft size={18} className="rtl:rotate-180" aria-hidden />
           </button>
           {Array.from({ length: pages }, (_, p) => (
@@ -68,7 +75,7 @@ export function Paged<T>({ items, perPage, label, children, className = '', list
           <span className="sr-only" aria-live="polite">
             {t('common.pageOf', { n: page + 1, total: pages })}
           </span>
-          <button type="button" aria-label={t('common.nextPage')} disabled={page === pages - 1} onClick={() => go(page + 1)} className="grid size-9 place-items-center rounded-full border-2 border-wood bg-cream text-wood-dark disabled:opacity-35">
+          <button type="button" aria-label={t('common.nextPage')} disabled={page === pages - 1} onClick={() => go(page + 1)} className="grid size-9 place-items-center rounded-full border-2 border-wood bg-cream text-wood-dark disabled:opacity-35 tiny:size-8">
             <ChevronRight size={18} className="rtl:rotate-180" aria-hidden />
           </button>
         </nav>

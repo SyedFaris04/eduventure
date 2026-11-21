@@ -14,7 +14,8 @@
     "backToStart": "回到起点",
     "prevPage": "上一页",
     "nextPage": "下一页",
-    "pageOf": "第 {{n}} 页，共 {{total}} 页"
+    "pageOf": "第 {{n}} 页，共 {{total}} 页",
+    "pages": "分页：{{label}}"
   },
   "loading": {
     "title": "正在加载你的冒险…",

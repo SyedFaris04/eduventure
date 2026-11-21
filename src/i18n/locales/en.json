@@ -14,7 +14,8 @@
     "backToStart": "Back to the start",
     "prevPage": "Previous page",
     "nextPage": "Next page",
-    "pageOf": "Page {{n}} of {{total}}"
+    "pageOf": "Page {{n}} of {{total}}",
+    "pages": "Pages: {{label}}"
   },
   "loading": {
     "title": "Loading your adventure…",

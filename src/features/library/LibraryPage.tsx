@@ -104,7 +104,8 @@ export function LibraryPage() {
         </label>
         </div>
 
-        <Paged list items={entries} perPage={short ? 1 : Infinity} label={t('library.title')} className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3">
+        <Paged list items={entries} perPage={short ? 1 : Infinity} resetKey={`${topic}|${onlyMistakes}`} label={t('library.title')} className="flex flex-col gap-3">
           {(e) => (
             <li key={e.id}>
               <Panel className="flex flex-col gap-2">
@@ -120,6 +121,7 @@ export function LibraryPage() {
           )}
         </Paged>
         {library.data && !entries.length && <p className="rounded-xl bg-cream/90 p-4 text-center text-sm">{t('library.nothingHere')}</p>}
+        </div>
         </div>
       </div>
     </main>

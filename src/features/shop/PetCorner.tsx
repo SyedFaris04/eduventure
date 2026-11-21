@@ -15,7 +15,7 @@ type Props = { pet: Pet | null | undefined; owned: Set<string>; level: number; g
 export function PetCorner({ pet, owned, level, gold, busy, onBuy, onWear, perPage = Infinity }: Props & { perPage?: number }) {
   const { t } = useTranslation()
   return (
-    <Panel>
+    <Panel className="tiny:p-2">
       <h2 className="mb-3 flex items-center gap-2 font-display text-2xl font-bold text-wood-dark short:hidden">
         <PawPrint aria-hidden /> {t('shop.petCorner')}
       </h2>

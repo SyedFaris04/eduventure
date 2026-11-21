@@ -408,6 +408,7 @@ function CountryStep({ countries, value, onChange, short }: { countries: { code:
       <Paged
         items={ordered}
         perPage={short ? 8 : Infinity}
+        resetKey={q}
         label={t('onboarding.steps.country')}
         boxProps={{ role: 'listbox', 'aria-label': t('onboarding.steps.country') }}
         className={`grid gap-2 p-1 sm:grid-cols-2 ${short ? 'grid-cols-2' : 'max-h-[46dvh] overflow-y-auto'}`}

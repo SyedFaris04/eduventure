@@ -52,22 +52,23 @@ export function PetView({ level, gold, pet, owned, busy, onHatch, onEvolve, onDr
         </Panel>
       )
     return (
-      <Panel className="flex flex-col gap-4">
-        <h2 className="font-display text-xl font-semibold">{t('pet.chooseEgg')}</h2>
-        <div className="grid grid-cols-3 gap-3">
+      <Panel className="flex flex-col gap-4 short:grid short:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] short:items-center short:gap-x-3 short:gap-y-2">
+        <h2 className="font-display text-xl font-semibold short:col-span-2 short:text-base">{t('pet.chooseEgg')}</h2>
+        <div className="grid grid-cols-3 gap-3 short:gap-2">
           {PET_SPECIES.map((s) => (
             <button
               key={s}
               type="button"
               aria-pressed={species === s}
               onClick={() => setSpecies(s)}
-              className={`flex flex-col items-center gap-1 rounded-2xl border-[3px] bg-white/85 p-2 font-display font-semibold ${species === s ? 'border-grass-dark' : 'border-wood/30'}`}
+              className={`flex flex-col items-center gap-1 rounded-2xl border-[3px] bg-white/85 p-2 font-display font-semibold short:p-1 short:text-xs ${species === s ? 'border-grass-dark' : 'border-wood/30'}`}
             >
-              <Snapshot subject={{ kind: 'pet', pet: { species: s, stage: 'baby', form: null, look: {} } }} px={96} alt="" className="w-[96px]" />
+              <Snapshot subject={{ kind: 'pet', pet: { species: s, stage: 'baby', form: null, look: {} } }} px={96} alt="" className="w-[96px] short:w-14" />
               {t(`pet.species.${s}`)}
             </button>
           ))}
         </div>
+        <div className="flex flex-col gap-4 short:gap-2">
         <Select label={t('pet.nameLabel')} value={name} onChange={(e) => setName(e.target.value)}>
           {PET_NAMES.map((n) => (
             <option key={n} value={n}>
@@ -78,7 +79,8 @@ export function PetView({ level, gold, pet, owned, busy, onHatch, onEvolve, onDr
         <Button size="lg" disabled={busy} onClick={() => onHatch(species, name)}>
           <Egg size={20} aria-hidden /> {t('pet.hatch')}
         </Button>
-        <p className="text-sm">{t('pet.howToGrow')}</p>
+        </div>
+        <p className="text-sm short:hidden">{t('pet.howToGrow')}</p>
       </Panel>
     )
   }
@@ -146,14 +148,14 @@ export function PetView({ level, gold, pet, owned, busy, onHatch, onEvolve, onDr
               {souvenirs.length === 0 ? (
                 <p className="text-sm">{t('pet.noSouvenirs')}</p>
               ) : (
-                <ul className="flex flex-col gap-1 text-sm short:max-h-[50dvh] short:overflow-y-auto short:text-xs">
-                  {souvenirs.map((f) => (
+                <Paged list items={souvenirs} perPage={short ? 3 : Infinity} label={t('pet.souvenirs', { n: souvenirs.length })} className="flex flex-col gap-1 text-sm short:text-xs">
+                  {(f) => (
                     <li key={f.id} className="rounded-lg bg-white/70 px-2 py-1">
                       <span className="me-1 text-xs font-bold text-path-dark">{t(`regions.${f.island}.name`)} ·</span>
                       {factText(f, i18n.language)}
                     </li>
-                  ))}
-                </ul>
+                  )}
+                </Paged>
               )}
             </Panel>
           )}

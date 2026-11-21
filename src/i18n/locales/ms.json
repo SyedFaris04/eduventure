@@ -14,7 +14,8 @@
     "backToStart": "Kembali ke permulaan",
     "prevPage": "Halaman sebelumnya",
     "nextPage": "Halaman seterusnya",
-    "pageOf": "Halaman {{n}} daripada {{total}}"
+    "pageOf": "Halaman {{n}} daripada {{total}}",
+    "pages": "Halaman: {{label}}"
   },
   "loading": {
     "title": "Memuatkan pengembaraan anda…",

@@ -49,6 +49,52 @@ describe('Paged', () => {
     expect(screen.getByText('Item 1')).toBeTruthy()
   })
 
+  it('goes back to page 1 when resetKey changes (a new search, filter or tab)', () => {
+    const view = (key: string) => (
+      <Paged items={items} perPage={4} label="Things" resetKey={key}>
+        {(x) => <span key={x}>{x}</span>}
+      </Paged>
+    )
+    const { rerender } = render(view('a'))
+    fireEvent.click(screen.getByRole('button', { name: 'Page 3 of 3' }))
+    expect(screen.getByText('Item 9')).toBeTruthy()
+    rerender(view('b'))
+    expect(screen.getByText('Item 1')).toBeTruthy()
+  })
+
+  it('lets the page pan sideways on touch screens and ignores a cancelled swipe', () => {
+    render(list(4))
+    const area = screen.getByRole('region', { name: 'Things' })
+    expect(area.className).toContain('touch-pan-y') // the browser hands horizontal swipes to us instead of cancelling them
+    fireEvent.pointerDown(area, { clientX: 300, clientY: 10 })
+    fireEvent.pointerCancel(area)
+    fireEvent.pointerUp(area, { clientX: 100, clientY: 10 })
+    expect(screen.getByText('Item 1')).toBeTruthy()
+  })
+
+  it('names the page controls apart from the list', () => {
+    render(list(4))
+    expect(screen.getByRole('navigation', { name: 'Pages: Things' })).toBeTruthy()
+  })
+
+  it('gives each item its index in the whole list, paged or not', () => {
+    const seen: number[] = []
+    const indexed = (perPage: number) => (
+      <Paged items={items} perPage={perPage} label="Things">
+        {(x, i) => {
+          seen.push(i)
+          return <span key={x}>{x}</span>
+        }}
+      </Paged>
+    )
+    render(indexed(Infinity))
+    expect(seen).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    seen.length = 0
+    render(indexed(4))
+    fireEvent.click(screen.getAllByRole('button', { name: 'Page 2 of 3' })[0])
+    expect(seen.slice(-4)).toEqual([4, 5, 6, 7])
+  })
+
   it('stays on a real page when the list shrinks (a search narrowed it)', () => {
     const { rerender } = render(list(4))
     fireEvent.click(screen.getByRole('button', { name: 'Page 3 of 3' }))

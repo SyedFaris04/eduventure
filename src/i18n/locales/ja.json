@@ -14,7 +14,8 @@
     "backToStart": "最初に戻る",
     "prevPage": "前のページ",
     "nextPage": "次のページ",
-    "pageOf": "{{total}} ページ中 {{n}} ページ目"
+    "pageOf": "{{total}} ページ中 {{n}} ページ目",
+    "pages": "ページ：{{label}}"
   },
   "loading": {
     "title": "冒険を読み込んでいます…",

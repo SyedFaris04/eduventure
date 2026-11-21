@@ -14,7 +14,8 @@
     "backToStart": "العودة إلى البداية",
     "prevPage": "الصفحة السابقة",
     "nextPage": "الصفحة التالية",
-    "pageOf": "الصفحة {{n}} من {{total}}"
+    "pageOf": "الصفحة {{n}} من {{total}}",
+    "pages": "الصفحات: {{label}}"
   },
   "loading": {
     "title": "جارٍ تحميل مغامرتك…",
