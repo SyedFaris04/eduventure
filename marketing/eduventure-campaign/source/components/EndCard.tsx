@@ -13,6 +13,8 @@ export const campaignProps = z.object({
   feedbackForm: z.string(),
   /** A voice-over file in assets/audio (for example 'audio/voiceover-main.mp3'); empty = music and captions only. */
   voiceover: z.string(),
+  /** On-screen text language; 'ms' also plays the generated Malay voice-over (source/voiceover/ms.json). */
+  lang: z.enum(['en', 'ms']),
 })
 export type CampaignProps = z.infer<typeof campaignProps>
 export const DEFAULT_PROPS: CampaignProps = {
@@ -22,6 +24,7 @@ export const DEFAULT_PROPS: CampaignProps = {
   threads: '',
   feedbackForm: '',
   voiceover: '',
+  lang: 'en',
 }
 
 /** Overall level for music and effects: keeps the mix's true peak about 1.5 dB under full scale (no clipping). */
@@ -36,14 +39,29 @@ export function Sfx({ at, src, volume = 0.8 }: { at: number; src: string; volume
   )
 }
 
-/** Background music with a fade in and a fade out; ducked under an optional voice-over. */
-export function Music({ src, from = 0, total, volume = 0.55, fadeIn = 10, fadeOut = 45, duck = false }: { src: string; from?: number; total: number; volume?: number; fadeIn?: number; fadeOut?: number; duck?: boolean }) {
+export type VoiceLine = { at: number; text: string; file: string; seconds: number }
+
+/** How far the music dips while a voice line plays (6-frame ramps either side). */
+function duckAt(f: number, lines: VoiceLine[], fps: number) {
+  let d = 1
+  for (const l of lines) {
+    if (!l.file) continue
+    const a = l.at
+    const b = l.at + Math.ceil(l.seconds * fps)
+    const k = f < a - 6 || f > b + 6 ? 0 : f < a ? (f - (a - 6)) / 6 : f > b ? (b + 6 - f) / 6 : 1
+    d = Math.min(d, 1 - 0.62 * k) // the music drops to 38% under the voice
+  }
+  return d
+}
+
+/** Background music with a fade in and a fade out; ducked under a voice-over file or under each voice line. */
+export function Music({ src, from = 0, total, volume = 0.55, fadeIn = 10, fadeOut = 45, duck = false, lines = [] }: { src: string; from?: number; total: number; volume?: number; fadeIn?: number; fadeOut?: number; duck?: boolean; lines?: VoiceLine[] }) {
   const { fps } = useVideoConfig()
   return (
     <Audio
       src={staticFile(`audio/music/${src}`)}
       startFrom={Math.round(from * fps)}
-      volume={(f) => MASTER * volume * (duck ? 0.55 : 1) * Math.min(1, f / fadeIn) * Math.min(1, Math.max(0, (total - f) / fadeOut))}
+      volume={(f) => MASTER * volume * (duck ? 0.55 : 1) * duckAt(f, lines, fps) * Math.min(1, f / fadeIn) * Math.min(1, Math.max(0, (total - f) / fadeOut))}
     />
   )
 }
@@ -52,8 +70,21 @@ export function Voiceover({ file }: { file: string }) {
   return file ? <Audio src={staticFile(file)} volume={1} /> : null
 }
 
+/** The generated voice lines, each on its own frame. Lines not generated yet (no file) are skipped. */
+export function VoiceLines({ lines }: { lines: VoiceLine[] }) {
+  return (
+    <>
+      {lines.filter((l) => l.file).map((l) => (
+        <Sequence key={l.at} from={l.at} durationInFrames={Math.ceil(l.seconds * 30) + 10} layout="none">
+          <Audio src={staticFile(l.file)} volume={0.95} />
+        </Sequence>
+      ))}
+    </>
+  )
+}
+
 /** The closing card: logo, tagline, call to action, the real website and its QR code, and any handles that are set. */
-export function EndCard({ props, lines }: { props: CampaignProps; lines: [string, string] }) {
+export function EndCard({ props, lines, badge }: { props: CampaignProps; lines: [string, string]; badge: string }) {
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
   const logo = spring({ frame: frame - 2, fps, config: { damping: 10, stiffness: 120 } })
@@ -87,7 +118,7 @@ export function EndCard({ props, lines }: { props: CampaignProps; lines: [string
           opacity: spring({ frame: frame - 14, fps, config: { damping: 200 } }),
         }}
       >
-        <span style={{ background: C.gold, border: `4px solid ${C.ink}`, borderRadius: 999, padding: '8px 26px' }}>EARLY ACCESS · FREE · WEB & ANDROID</span>
+        <span style={{ background: C.gold, border: `4px solid ${C.ink}`, borderRadius: 999, padding: '8px 26px' }}>{badge}</span>
       </div>
       <Subline text={lines[0]} y={755} size={lines[0].length > 22 ? 44 : 56} delay={18} />
       <Subline text={lines[1]} y={860} size={lines[1].length > 26 ? 38 : 44} delay={24} color={C.gold} />
@@ -97,6 +128,11 @@ export function EndCard({ props, lines }: { props: CampaignProps; lines: [string
       <div style={{ position: 'absolute', left: 0, width: W, top: 1350, textAlign: 'center', fontFamily: DISPLAY, fontWeight: 700, fontSize: 50, color: C.cream, WebkitTextStroke: `10px ${C.ink}`, paintOrder: 'stroke fill', opacity: qr }}>
         {props.website}
       </div>
+      {props.lang === 'ms' ? (
+        <div style={{ position: 'absolute', left: 0, width: W, top: 1488, textAlign: 'center', fontFamily: BODY, fontWeight: 700, fontSize: 24, color: C.cream, opacity: 0.85 * qr, textShadow: '0 2px 6px rgba(0,0,0,0.6)' }}>
+          Suara latar dijana AI (Microsoft Azure)
+        </div>
+      ) : null}
       {handles.length || props.feedbackForm ? (
         <div style={{ position: 'absolute', left: 0, width: W, top: 1430, textAlign: 'center', fontFamily: BODY, fontWeight: 800, fontSize: 34, color: C.cream, WebkitTextStroke: `7px ${C.ink}`, paintOrder: 'stroke fill', opacity: qr }}>
           {[...handles, props.feedbackForm && `Feedback: ${props.feedbackForm}`].filter(Boolean).join('  ·  ')}

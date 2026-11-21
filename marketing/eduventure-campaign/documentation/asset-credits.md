@@ -49,6 +49,15 @@ Sources:
 
 Each source page was checked on 2026-11-21 and listed only CC0. The Kenney packs also contain a CC0 licence file.
 
+## Malay voice-over (Bahasa Melayu versions)
+| Item | Source |
+|---|---|
+| Voice | Microsoft Azure AI Speech, prebuilt neural voice **ms-MY-OsmanNeural** (male, Malaysian Malay), generated with the owner's own Azure account (free tier F0) by `source/voiceover/tts.mjs` |
+| Script | Written for this campaign (`scripts/bm-voiceover.md`, `source/voiceover/ms.json`) |
+
+Azure's terms allow prebuilt neural voices in your own products and adverts. The voice is synthetic, so each Malay end
+card says "Suara latar dijana AI (Microsoft Azure)". This follows Microsoft's transparency guidance for synthetic voices.
+
 ## Tools (all free)
 - Remotion 4.0.545 (video composition and rendering). Remotion is free for individuals and for companies with up to 3 employees; a larger company needs a Remotion company licence (https://www.remotion.dev/license).
 - Playwright and Google Chrome (gameplay capture).

@@ -139,3 +139,13 @@ example to Google Drive.
   - The boat ride wasn't used: in portrait the boat sits at the edge of the frame.
 - **Remotion licence:** free for individuals and companies of up to 3 people. A larger company needs a paid licence.
 - **The 630 questions are still "in review":** they are served in the early-access game, but per the project's standing rules a person should approve them before a full launch.
+
+## 7. Bahasa Melayu versions (added 2026-11-21)
+The owner wants to reach Malaysian players first, so each video now has a Bahasa Melayu version: Malay on-screen
+text (`source/copy.ts`, using the game's own Malay terms) and a male Malay voice-over (Microsoft Azure,
+ms-MY-OsmanNeural), timed line by line to the cuts, with the music ducking under the voice. The English versions are
+unchanged.
+
+**Wording notes:**
+- The game calls the Language Hall "Dewan Bahasa", which is close to the name of the government agency Dewan Bahasa dan Pustaka. The videos say "Pelajaran Bahasa" instead. The owner may want to rename it in the game too.
+- The Malay captions and the voice script need a native speaker's read before posting (the project's standing rule for Malay text).

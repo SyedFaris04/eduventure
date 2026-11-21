@@ -39,6 +39,24 @@ Every video has editable fields (Studio's right-hand panel, or `DEFAULT_PROPS` i
 `website`, `instagram`, `tiktok`, `threads`, `feedbackForm`, `voiceover`. Empty fields are hidden, so nothing shows
 an unfinished placeholder. Once your accounts exist, fill them in (for example `instagram: '@eduventure.game'`) and re-render.
 
+## Bahasa Melayu versions (Malay captions and voice-over)
+`A-MainTrailer-BM`, `B-Learning-BM`, `C-RPG-BM` and `D-Community-BM` use the same footage with `lang: 'ms'`:
+- Every on-screen word comes from `source/copy.ts` (English and Malay side by side); edit both there.
+- The Malay voice-over is one clip per line, placed at the frame in `source/voiceover/ms.json`. The music dips under each line by itself.
+
+**Generate the voice (Microsoft Azure AI Speech, male voice ms-MY-OsmanNeural):**
+1. Put your key in `marketing/eduventure-campaign/.env.local` (git ignores it; never commit or share it):
+   ```
+   AZURE_SPEECH_KEY=your-key
+   AZURE_SPEECH_REGION=southeastasia
+   ```
+2. `node source/voiceover/tts.mjs`. This writes `assets/audio/vo/ms/A-01.mp3` and the rest, measures each line and speeds up any line that would run into the next one (up to +20%). It reports any line that still doesn't fit: shorten its text or move its `at`.
+3. `node source/render-all.mjs A-BM B-BM C-BM D-BM`
+
+**To change a line:** edit its `text` in `ms.json` and run step 2 again. One run uses about 2,000 characters; the free tier allows 500,000 a month.
+
+**To use a real voice instead:** record each line as `assets/audio/vo/ms/A-01.mp3` (and so on, in the order of `ms.json`), run `node source/voiceover/tts.mjs --measure` (no key needed), then render.
+
 ## Adding a voice-over
 1. Record the script in `scripts/<video>.md` (a phone voice memo is fine) and save it as `assets/audio/voiceover-main.mp3`.
 2. Set `voiceover: 'audio/voiceover-main.mp3'` for that video. The music ducks to 55% automatically.
@@ -48,7 +66,7 @@ an unfinished placeholder. Once your accounts exist, fill them in (for example `
 ```
 cd marketing/eduventure-campaign
 npm run render:all            # all four videos, then the checks
-node source/render-all.mjs A  # just one (A, B, C or D)
+node source/render-all.mjs A  # just one (A, B, C, D, or A-BM … D-BM for the Malay versions)
 node source/render-all.mjs --check   # re-check the existing exports without rendering
 ```
 Each video goes to `exports/tiktok/`. The same file is copied to `exports/instagram/`, `exports/youtube-shorts/` and

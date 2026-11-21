@@ -1,0 +1,258 @@
+{
+  "_about": "Malay voice-over (male, Azure ms-MY-OsmanNeural). 'at' is the frame (30 fps) where the line starts; it must end before the next line. 'file' and 'seconds' are filled in by source/voiceover/tts.mjs. 'rate' speeds up a line that is too long (e.g. '+8%').",
+  "voice": "ms-MY-OsmanNeural",
+  "A": [
+    {
+      "at": 12,
+      "text": "Macam mana kalau belajar… sebenarnya satu pengembaraan?",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 138,
+      "text": "Kenali, EDUVENTURE.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 196,
+      "text": "Belajar. Teroka. Berkembang. Takluk.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 292,
+      "text": "Setiap raksasa akan tanya soalan sebenar.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 368,
+      "text": "Jawab betul, serangan anda kena!",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 430,
+      "text": "Kumpul XP, emas, dan naik tahap.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 486,
+      "text": "Cipta wira anda sendiri,",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 557,
+      "text": "tetaskan haiwan peliharaan,",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 617,
+      "text": "kumpul bahan,",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 662,
+      "text": "dan bina pulau anda sendiri.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 724,
+      "text": "Teroka lima pulau,",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 783,
+      "text": "bina kem bersama-sama,",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 848,
+      "text": "dan tak lama lagi, main dengan kawan-kawan.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 964,
+      "text": "Kami sedang membina sesuatu yang berbeza…",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 1030,
+      "text": "dan kami mahu anda turut serta.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 1098,
+      "text": "EDUVENTURE. Percuma dalam akses awal, di web dan Android.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 1196,
+      "text": "Cuba sekarang, dan beritahu kami apa perlu dibaiki.",
+      "file": "",
+      "seconds": 0
+    }
+  ],
+  "B": [
+    {
+      "at": 6,
+      "text": "Siapa kata belajar itu membosankan?",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 96,
+      "text": "Soalan sebenar, dua puluh lima subjek.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 186,
+      "text": "Jawab salah? Permainan ini terangkan kenapa.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 274,
+      "text": "Jawab betul, terus serang!",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 364,
+      "text": "Naik tahap sambil belajar.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 454,
+      "text": "Tulis kod yang sebenar.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 544,
+      "text": "Belajar bahasa baharu.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 616,
+      "text": "Percuma dalam akses awal. Beritahu kami subjek apa nak ditambah.",
+      "file": "",
+      "seconds": 0
+    }
+  ],
+  "C": [
+    {
+      "at": 6,
+      "text": "Macam mana kalau anda boleh bina dunia anda sendiri?",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 96,
+      "text": "Cipta wira anda.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 174,
+      "text": "Kumpul kayu, batu dan herba,",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 244,
+      "text": "dan bina pulau ikut cita rasa anda.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 334,
+      "text": "Bela haiwan peliharaan.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 404,
+      "text": "Tukar gaya wira anda.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 474,
+      "text": "Teroka lima pulau,",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 562,
+      "text": "dan bina kem bersama-sama.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 624,
+      "text": "Dunia anda. Pengembaraan anda. Main percuma dalam akses awal.",
+      "file": "",
+      "seconds": 0
+    }
+  ],
+  "D": [
+    {
+      "at": 6,
+      "text": "Kami ada satu idea… tapi kami perlukan bantuan anda.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 104,
+      "text": "EDUVENTURE, permainan RPG pembelajaran yang boleh dimain sekarang, percuma.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 214,
+      "text": "Tapi ia belum siap. Di situlah anda boleh membantu.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 296,
+      "text": "Subjek apa patut kami tambah?",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 356,
+      "text": "Apa yang buat anda nak main setiap hari?",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 418,
+      "text": "Solo, atau dengan kawan? Komen di bawah.",
+      "file": "",
+      "seconds": 0
+    },
+    {
+      "at": 486,
+      "text": "Cuba, uji, dan beritahu kami apa perlu dibaiki.",
+      "file": "",
+      "seconds": 0
+    }
+  ]
+}

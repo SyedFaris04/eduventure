@@ -1,6 +1,6 @@
 // Renders the campaign videos with Remotion, copies each to every platform folder, then checks them with the FFmpeg
 // and FFprobe that ship with Remotion: size, frame rate, codecs, duration, true peak (clipping) and black frames.
-// Usage: node source/render-all.mjs [A|B|C|D ...] [--check]   (no letters: all four; --check: only check existing exports)
+// Usage: node source/render-all.mjs [A B C D A-BM B-BM C-BM D-BM ...] [--check]   (none: all eight; --check: only check existing exports)
 import { execFileSync, spawnSync } from 'node:child_process'
 import { copyFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -14,6 +14,11 @@ const VIDEOS = {
   B: { id: 'B-Learning', file: 'eduventure-B-learning', seconds: [20, 30] },
   C: { id: 'C-RPG', file: 'eduventure-C-rpg', seconds: [20, 30] },
   D: { id: 'D-Community', file: 'eduventure-D-community', seconds: [15, 25] },
+  // Bahasa Melayu versions (Malay captions + Malay voice-over)
+  'A-BM': { id: 'A-MainTrailer-BM', file: 'eduventure-A-main-trailer-BM', seconds: [35, 45] },
+  'B-BM': { id: 'B-Learning-BM', file: 'eduventure-B-learning-BM', seconds: [20, 30] },
+  'C-BM': { id: 'C-RPG-BM', file: 'eduventure-C-rpg-BM', seconds: [20, 30] },
+  'D-BM': { id: 'D-Community-BM', file: 'eduventure-D-community-BM', seconds: [15, 25] },
 }
 const PLATFORMS = ['tiktok', 'instagram', 'youtube-shorts', 'threads']
 const args = process.argv.slice(2)
