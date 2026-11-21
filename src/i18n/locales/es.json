@@ -115,6 +115,10 @@
     "world_boss_arena": {
       "name": "Arena del Jefe Mundial",
       "blurb": "Todos unen fuerzas contra jefes gigantes."
+    },
+    "my_island": {
+      "name": "Mi isla",
+      "blurb": "Tu propia isla para construir."
     }
   },
   "auth": {

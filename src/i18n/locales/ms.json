@@ -115,6 +115,10 @@
     "world_boss_arena": {
       "name": "Arena Bos Dunia",
       "blurb": "Semua bergabung tenaga menentang bos gergasi."
+    },
+    "my_island": {
+      "name": "Pulau saya",
+      "blurb": "Pulau anda sendiri untuk dibina."
     }
   },
   "auth": {

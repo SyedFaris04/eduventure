@@ -33,6 +33,7 @@ import type { FestivalKind } from '../features/festival/festivalRules'
 import { THEMES } from './themes'
 import { windTime } from './wind'
 import { SlashChips } from './SlashChips'
+import { isPrivatePlace } from '../game/places'
 
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 
@@ -267,7 +268,7 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
   }, [sim, returning])
   const look = THEMES[map.theme]
   const festive = useMemo(() => decoratedKinds(map.id, festivals), [map.id, festivals])
-  const room = useRoomConnection(map.id)
+  const room = useRoomConnection(isPrivatePlace(map.id) ? null : map.id)
   const covered = useGame((s) => Boolean(s.battle || s.boss))
   const level = useQuality(qualityLevel)
   const reduced = useMemo(reducedMotion, [])

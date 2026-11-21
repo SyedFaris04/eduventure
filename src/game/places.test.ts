@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { areaAt, parseMap } from './map'
 import { INTERACT_RANGE } from './movement'
-import { BUILT_PLACES, PLACES } from './places'
+import { BUILT_PLACES, isPrivatePlace, PLACES } from './places'
 import { loadPlace } from './placeStore'
 import { canStandBeside, reachable } from './reach.testutil'
 
@@ -24,6 +24,12 @@ describe('place store', () => {
 })
 
 describe('places', () => {
+  it('My island is first on the boat list, and private', () => {
+    expect(Object.keys(PLACES)[0]).toBe('my_island')
+    expect(isPrivatePlace('my_island')).toBe(true)
+    expect(isPrivatePlace('greenhaven')).toBe(false)
+  })
+
   it('every built place loads and parses', async () => {
     expect(BUILT_PLACES).toContain('greenhaven')
     for (const id of BUILT_PLACES) {

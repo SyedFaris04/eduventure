@@ -115,6 +115,10 @@
     "world_boss_arena": {
       "name": "Arène du Boss Mondial",
       "blurb": "Tout le monde s'unit contre des boss géants."
+    },
+    "my_island": {
+      "name": "Mon île",
+      "blurb": "Ton île à toi, pour construire."
     }
   },
   "auth": {

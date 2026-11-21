@@ -24,6 +24,11 @@ describe('useRoomConnection', () => {
     vi.stubEnv('VITE_ROOMS_URL', 'ws://rooms')
     started.n = 0
     started.visibility = undefined
+    // A private place (My island) never joins a room.
+    started.visibility = { visible: true }
+    renderHook(() => useRoomConnection(null))
+    expect(started.n).toBe(0)
+    started.visibility = undefined
     const { rerender } = renderHook(() => useRoomConnection('greenhaven'))
     expect(started.n).toBe(0)
     started.visibility = { visible: true }

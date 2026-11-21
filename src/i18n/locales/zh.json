@@ -115,6 +115,10 @@
     "world_boss_arena": {
       "name": "世界首领竞技场",
       "blurb": "所有人联手对抗巨型首领。"
+    },
+    "my_island": {
+      "name": "我的岛",
+      "blurb": "属于你的岛，可以自由建造。"
     }
   },
   "auth": {

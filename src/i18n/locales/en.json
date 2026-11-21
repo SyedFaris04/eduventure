@@ -115,6 +115,10 @@
     "world_boss_arena": {
       "name": "World Boss Arena",
       "blurb": "Everyone joins forces against giant bosses."
+    },
+    "my_island": {
+      "name": "My island",
+      "blurb": "Your own island to build on."
     }
   },
   "auth": {

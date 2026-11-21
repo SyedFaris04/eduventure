@@ -34,6 +34,9 @@ export class WorldSim {
   cameraYaw = Math.PI / 4
   /** Harvest nodes ("x,y") this player harvested recently: they show as regrowing and offer nothing. */
   regrowing = new Set<string>()
+  /** Tiles taken by things built on My island ("x,y"); updated as items are placed, moved or removed. */
+  extraBlocked = new Set<string>()
+  readonly blocked = (x: number, y: number) => this.map.blocked(x, y) || this.extraBlocked.has(`${x},${y}`)
 
   constructor(
     readonly map: GameMap,
@@ -73,7 +76,7 @@ export class WorldSim {
   /** A tap or click on the ground at a (fractional) grid point. */
   tap(grid: Point) {
     const from = { x: Math.floor(this.hero.pos.x), y: Math.floor(this.hero.pos.y) }
-    this.path = tapGoal({ x: Math.floor(grid.x), y: Math.floor(grid.y) }, from, this.map.blocked) ?? []
+    this.path = tapGoal({ x: Math.floor(grid.x), y: Math.floor(grid.y) }, from, this.blocked) ?? []
   }
 
   defeat(id: string, now: number) {
@@ -102,9 +105,9 @@ export class WorldSim {
       const len = Math.min(1, Math.hypot(input.x, input.y))
       const g = screenDirToGrid(input, this.cameraYaw)
       dir = { x: g.x * len, y: g.y * len }
-      next = step(h.pos, dir, dt, this.map.blocked)
+      next = step(h.pos, dir, dt, this.blocked)
     } else if (this.path.length) {
-      const r = followPath(h.pos, this.path, dt, this.map.blocked)
+      const r = followPath(h.pos, this.path, dt, this.blocked)
       ;({ dir, path: this.path } = r)
       next = r.pos
     }
@@ -130,7 +133,7 @@ export class WorldSim {
     if (!m.hop && !paused && now > m.nextMove) {
       m.nextMove = now + 2000 + this.rng() * 3500
       const zone = this.map.monsterZones[m.kind]!
-      const options = zone.filter((t) => Math.abs(t.x + 0.5 - m.pos.x) <= 1 && Math.abs(t.y + 0.5 - m.pos.y) <= 1 && !(t.x + 0.5 === m.pos.x && t.y + 0.5 === m.pos.y) && !this.map.blocked(t.x, t.y))
+      const options = zone.filter((t) => Math.abs(t.x + 0.5 - m.pos.x) <= 1 && Math.abs(t.y + 0.5 - m.pos.y) <= 1 && !(t.x + 0.5 === m.pos.x && t.y + 0.5 === m.pos.y) && !this.blocked(t.x, t.y))
       const t = options[Math.floor(this.rng() * options.length)]
       if (t) {
         m.hop = { from: { ...m.pos }, to: { x: t.x + 0.5, y: t.y + 0.5 } }
