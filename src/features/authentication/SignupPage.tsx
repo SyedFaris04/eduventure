@@ -60,8 +60,12 @@ export function SignupPage() {
 
   return (
     <AuthLayout title={t('auth.signupTitle')}>
-      <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
-        {formError && <FormMessage kind="error">{t(formError)}</FormMessage>}
+      <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4 short:grid short:grid-cols-2 short:items-start short:gap-x-3 short:gap-y-2">
+        {formError && (
+          <div className="short:col-span-2">
+            <FormMessage kind="error">{t(formError)}</FormMessage>
+          </div>
+        )}
         <Select
           label={t('auth.birthYear')}
           hint={t('auth.birthYearHint')}
@@ -80,7 +84,7 @@ export function SignupPage() {
         </Select>
 
         {under13 && (
-          <div className="flex gap-3 rounded-xl border-2 border-water-dark bg-water/25 p-3 text-sm">
+          <div className="flex gap-3 rounded-xl border-2 border-water-dark bg-water/25 p-3 text-sm short:col-span-2 short:p-2 short:text-xs">
             <ShieldCheck className="shrink-0 text-water-dark" aria-hidden />
             <p className="font-semibold">{t('auth.under13Notice')}</p>
           </div>
@@ -104,8 +108,8 @@ export function SignupPage() {
         <ShowPasswordToggle checked={showPassword} onChange={setShowPassword} />
 
         {under13 && (
-          <div className="flex flex-col gap-1">
-            <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold">
+          <div className="flex flex-col gap-1 short:col-span-2">
+            <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold short:text-xs">
               <input type="checkbox" className="mt-0.5 size-5 shrink-0 accent-grass-dark" {...register('guardianConsent')} />
               {t('auth.guardianConsent')}
             </label>
@@ -120,7 +124,7 @@ export function SignupPage() {
         <Button type="submit" size="lg" disabled={formState.isSubmitting}>
           {formState.isSubmitting ? t('common.loading') : t('auth.signupButton')}
         </Button>
-        <Link to="/login" className="text-center text-sm font-semibold text-water-dark underline">
+        <Link to="/login" className="text-center text-sm font-semibold text-water-dark underline short:self-center">
           {t('auth.haveAccount')}
         </Link>
       </form>

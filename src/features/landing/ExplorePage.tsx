@@ -16,7 +16,8 @@ import {
   Trees,
   type LucideIcon,
 } from 'lucide-react'
-import { buttonClasses } from '../../components/ui'
+import { buttonClasses, Paged } from '../../components/ui'
+import { useShortScreen } from '../../app/useShortScreen'
 import { LanguagePicker } from '../../i18n/LanguagePicker'
 import { SceneBackdrop } from './SceneBackdrop'
 import { REGIONS, type RegionId } from './regions'
@@ -39,24 +40,27 @@ const ICONS: Record<RegionId, LucideIcon> = {
 
 export function ExplorePage() {
   const { t } = useTranslation()
+  const short = useShortScreen()
   return (
     <main className="relative min-h-dvh">
       <SceneBackdrop />
-      <div className="relative mx-auto max-w-6xl px-4 py-6">
+      <div className="relative mx-auto max-w-6xl px-4 py-6 short:py-2">
         <header className="flex flex-wrap items-center justify-between gap-3">
           <Link to="/welcome" className={buttonClasses('secondary', 'md')}>
             <ArrowLeft size={18} className="rtl:rotate-180" aria-hidden /> {t('common.back')}
           </Link>
+          <h1 className="title-outline hidden bg-gradient-to-b from-[#fff1a8] via-gold to-[#ef9b2f] bg-clip-text font-display text-3xl font-bold text-transparent short:block">{t('explore.title')}</h1>
           <LanguagePicker />
         </header>
 
-        <h1 className="title-outline mt-6 bg-gradient-to-b from-[#fff1a8] via-gold to-[#ef9b2f] bg-clip-text text-center font-display text-[clamp(2rem,7vw,3.5rem)] font-bold text-transparent">
+        <h1 className="title-outline mt-6 bg-gradient-to-b short:hidden from-[#fff1a8] via-gold to-[#ef9b2f] bg-clip-text text-center font-display text-[clamp(2rem,7vw,3.5rem)] font-bold text-transparent">
           {t('explore.title')}
         </h1>
-        <p className="mx-auto mt-2 max-w-2xl rounded-xl bg-cream/80 px-4 py-2 text-center font-semibold">{t('explore.intro')}</p>
+        <p className="mx-auto mt-2 max-w-2xl rounded-xl bg-cream/80 px-4 py-2 text-center font-semibold short:hidden">{t('explore.intro')}</p>
 
-        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {REGIONS.map((r, i) => {
+        <div className="mt-8 short:mt-2">
+        <Paged list items={[...REGIONS]} perPage={short ? 3 : Infinity} label={t('explore.title')} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 short:grid-cols-3 short:gap-3">
+          {(r, i) => {
             const Icon = ICONS[r.id]
             const first = r.id === 'greenhaven'
             return (
@@ -65,27 +69,28 @@ export function ExplorePage() {
                 className={`rise-in overflow-hidden rounded-3xl border-4 bg-cream shadow-[0_6px_0_rgb(92_58_36/0.35)] ${first ? 'border-grass-dark' : 'border-wood'}`}
                 style={{ animationDelay: `${i * 50}ms` }}
               >
-                <div className="relative grid h-28 place-items-center" style={{ background: `linear-gradient(160deg, ${r.colour}, color-mix(in srgb, ${r.colour} 55%, #3b2a1e))` }}>
-                  <Icon size={56} strokeWidth={1.6} className="text-cream drop-shadow-[0_3px_0_rgb(0_0_0/0.25)]" aria-hidden />
+                <div className="relative grid h-28 place-items-center short:h-16 tiny:h-11" style={{ background: `linear-gradient(160deg, ${r.colour}, color-mix(in srgb, ${r.colour} 55%, #3b2a1e))` }}>
+                  <Icon size={56} strokeWidth={1.6} className="text-cream short:size-10 tiny:size-7 drop-shadow-[0_3px_0_rgb(0_0_0/0.25)]" aria-hidden />
                   {first && (
                     <span className="absolute top-2 start-2 rounded-full border-2 border-wood-dark bg-gold px-3 py-0.5 font-display text-sm font-semibold text-ink">
                       {t('explore.firstStop')}
                     </span>
                   )}
                 </div>
-                <div className="p-4">
-                  <h2 className="text-xl font-semibold text-wood-dark">{t(`regions.${r.id}.name`)}</h2>
-                  <p className="mt-1 text-sm text-ink/80">{t(`regions.${r.id}.blurb`)}</p>
+                <div className="p-4 short:p-2.5">
+                  <h2 className="text-xl font-semibold text-wood-dark short:text-base">{t(`regions.${r.id}.name`)}</h2>
+                  <p className="mt-1 text-sm text-ink/80 short:line-clamp-2 short:text-xs tiny:line-clamp-1">{t(`regions.${r.id}.blurb`)}</p>
                   {'open' in r ? (
-                    <p className="mt-3 inline-block rounded-full border-2 border-grass-dark bg-grass/30 px-3 py-0.5 text-xs font-bold text-ink">{t('explore.openNow')}</p>
+                    <p className="mt-3 inline-block rounded-full short:mt-1.5 border-2 border-grass-dark bg-grass/30 px-3 py-0.5 text-xs font-bold text-ink">{t('explore.openNow')}</p>
                   ) : (
-                    <p className="mt-3 inline-block rounded-full border-2 border-wood/50 px-3 py-0.5 text-xs font-bold text-wood-dark">{t('explore.opensIn', { phase: r.phase })}</p>
+                    <p className="mt-3 inline-block rounded-full short:mt-1.5 border-2 border-wood/50 px-3 py-0.5 text-xs font-bold text-wood-dark">{t('explore.opensIn', { phase: r.phase })}</p>
                   )}
                 </div>
               </li>
             )
-          })}
-        </ul>
+          }}
+        </Paged>
+        </div>
       </div>
     </main>
   )

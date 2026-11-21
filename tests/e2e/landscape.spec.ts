@@ -96,7 +96,7 @@ test("each page's main button is on a sideways phone screen without scrolling", 
   await page.goto('/home')
   await expectInView(page, 'home', page.getByRole('link', { name: /Enter the World/ }))
   await page.goto('/settings/academic')
-  await expectInView(page, 'learning profile', page.getByRole('button', { name: /^Next/ }))
+  await expectInView(page, 'learning profile', page.getByRole('button', { name: 'Next', exact: true }))
   await page.goto('/shop')
   await expectInView(page, 'shop', page.getByRole('button', { name: /Buy/ }))
   await page.goto('/academy')

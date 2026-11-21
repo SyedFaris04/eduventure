@@ -274,6 +274,9 @@ Spec: `docs/superpowers/specs/2026-11-20-whiteboard-camps-design.md`. Decision #
 ### My island — built
 Each player's own island, first on the boatman's list (decision #48): build a house and decorate with 50 items (houses, garden, trees, paths and fences, lights, furniture, Malaysian, water) paid for with harvested materials; 15 unlock by level. Place, turn, move, and remove with a full refund; the server checks every placement. Private for now (visiting comes later).
 
+### Phone fit — built
+Every screen on the player's path fits a phone held sideways, even in a browser with the address bar showing (640 × 300); long lists turn into pages (‹ 1 2 3 ›, swipe) and Home is a game lobby on phones; the in-game HUD is smaller (decision #50). Tablets and laptops are unchanged.
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

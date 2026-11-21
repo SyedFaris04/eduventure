@@ -4,7 +4,8 @@ import { usePlayClock } from '../parents/usePlayClock'
 import { Link, useNavigate, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft, Braces, CheckCircle2, Code2, Languages, Lock, PlayCircle } from 'lucide-react'
-import { buttonClasses, Panel, ProgressBar } from '../../components/ui'
+import { buttonClasses, Paged, Panel, ProgressBar } from '../../components/ui'
+import { useShortScreen } from '../../app/useShortScreen'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
 import { useCatalogue, useCourseProgress, type Catalogue, type CourseKind } from './academyApi'
 import { LessonPlayer } from './LessonPlayer'
@@ -19,12 +20,12 @@ function Shell({ back, backLabel, title, kind = 'code', children }: { back: stri
   return (
     <main className="relative min-h-dvh">
       <SceneBackdrop />
-      <div className="relative mx-auto flex max-w-4xl flex-col gap-5 px-4 py-6">
+      <div className="relative mx-auto flex max-w-4xl flex-col gap-5 px-4 py-6 short:gap-3 short:py-2">
         <header className="flex flex-wrap items-center gap-3">
           <Link to={back} aria-label={backLabel} className={buttonClasses('secondary', 'md', 'px-3!')}>
             <ArrowLeft size={18} className="rtl:rotate-180" aria-hidden />
           </Link>
-          <h1 className="flex items-center gap-2 rounded-full bg-cream/90 px-4 py-1 text-2xl font-bold text-wood-dark">
+          <h1 className="flex items-center gap-2 rounded-full bg-cream/90 px-4 py-1 text-2xl font-bold text-wood-dark short:py-0.5 short:text-lg">
             {kind === 'code' ? <Code2 aria-hidden /> : <Languages aria-hidden />} {title}
           </h1>
         </header>
@@ -43,14 +44,14 @@ export function AcademyPage({ kind = 'code' }: { kind?: CourseKind }) {
   const courses = catalogue.data?.courses.filter((c) => c.kind === kind)
   return (
     <Shell kind={kind} back={academyOrigin()} backLabel={academyOrigin() === '/world' ? t('academy.backToWorld') : t('academy.backToHome')} title={t(`${NS[kind]}.title`)}>
-      <p className="rounded-xl bg-cream/85 px-4 py-2 font-semibold text-wood-dark">{t(`${NS[kind]}.intro`)}</p>
+      <p className="rounded-xl bg-cream/85 px-4 py-2 font-semibold text-wood-dark short:py-1 short:text-sm tiny:hidden">{t(`${NS[kind]}.intro`)}</p>
       {catalogue.isError && (
         <p role="alert" className="rounded-xl border-2 border-danger bg-danger/10 p-2 font-semibold">
           {t('academy.errors.generic')}
         </p>
       )}
       {!catalogue.data && !catalogue.isError && <p className="font-display text-wood-dark">{t('common.loading')}</p>}
-      <ul className="grid gap-4 sm:grid-cols-2">
+      <ul className="grid gap-4 sm:grid-cols-2 short:grid-cols-2 short:gap-3">
         {courses?.map((c) => (
           <CourseCard key={c.id} course={c} />
         ))}
@@ -66,8 +67,8 @@ function CourseCard({ course }: { course: Catalogue['courses'][number] }) {
   const done = progress.data?.size ?? 0
   return (
     <li>
-      <Link to={`${BASE[course.kind]}/${course.id}`} className="block rounded-3xl border-4 border-wood bg-cream p-4 shadow-[0_6px_0_rgb(92_58_36/0.35)] hover:-translate-y-0.5">
-        <p className="flex items-center gap-2 font-display text-xl font-bold text-wood-dark">
+      <Link to={`${BASE[course.kind]}/${course.id}`} className="block rounded-3xl border-4 border-wood bg-cream p-4 shadow-[0_6px_0_rgb(92_58_36/0.35)] hover:-translate-y-0.5 short:rounded-2xl short:border-[3px] short:p-3">
+        <p className="flex items-center gap-2 font-display text-xl font-bold text-wood-dark short:text-base">
           <Braces aria-hidden /> {course.title}
         </p>
         <ProgressBar value={total ? done / total : 0} label={t('academy.lessonsDone', { done, total })} className="mt-3 h-3!" />
@@ -86,10 +87,13 @@ export function CoursePage() {
   const course = courseOf(catalogue.data, id)
   const completed = progress.data ?? new Set<string>()
   const units = course?.units.map((u) => ({ lessonIds: u.lessons.map((l) => l.id) })) ?? []
+  const short = useShortScreen()
   return (
     <Shell kind={course?.kind} back={BASE[course?.kind ?? 'code']} backLabel={t('academy.backToAcademy')} title={course?.title ?? ''}>
       {!course && <p className="font-display text-wood-dark">{t('common.loading')}</p>}
-      {course?.units.map((u, ui) => {
+      {/* Phones held sideways: one unit per page (‹ 1 2 3 ›). */}
+      <Paged items={course?.units ?? []} perPage={short ? 1 : Infinity} label={course?.title ?? ''} className="flex flex-col gap-5">
+      {(u, ui) => {
         const open = unitUnlocked(units, ui, completed)
         return (
           <Panel key={u.index} title={t('academy.unit', { n: u.index, title: u.title })}>
@@ -98,7 +102,7 @@ export function CoursePage() {
                 <Lock size={16} aria-hidden /> {t('academy.lockedUnit')}
               </p>
             )}
-            <ol className="grid gap-2">
+            <ol className="grid gap-2 short:grid-cols-2">
               {u.lessons.map((l) => {
                 const finished = completed.has(l.id)
                 const body = (
@@ -112,11 +116,11 @@ export function CoursePage() {
                 return (
                   <li key={l.id}>
                     {open ? (
-                      <Link to={`${BASE[course.kind]}/${course.id}/${l.id}`} className="flex min-h-12 items-center gap-3 rounded-2xl border-[3px] border-wood/50 bg-white px-3 hover:border-wood">
+                      <Link to={`${BASE[course!.kind]}/${course!.id}/${l.id}`} className="flex min-h-12 items-center gap-3 rounded-2xl border-[3px] border-wood/50 bg-white px-3 hover:border-wood short:min-h-11 short:gap-2 short:text-sm">
                         {body}
                       </Link>
                     ) : (
-                      <span aria-disabled className="flex min-h-12 items-center gap-3 rounded-2xl border-[3px] border-wood/20 bg-white/50 px-3 opacity-70">
+                      <span aria-disabled className="flex min-h-12 items-center gap-3 rounded-2xl border-[3px] border-wood/20 bg-white/50 px-3 opacity-70 short:min-h-11 short:gap-2 short:text-sm">
                         {body}
                       </span>
                     )}
@@ -126,7 +130,8 @@ export function CoursePage() {
             </ol>
           </Panel>
         )
-      })}
+      }}
+      </Paged>
     </Shell>
   )
 }

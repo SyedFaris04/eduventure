@@ -11,7 +11,11 @@
     "language": "Language",
     "sound": "Sound",
     "notFound": "This path leads nowhere",
-    "backToStart": "Back to the start"
+    "backToStart": "Back to the start",
+    "prevPage": "Previous page",
+    "nextPage": "Next page",
+    "pageOf": "Page {{n}} of {{total}}",
+    "pages": "Pages: {{label}}"
   },
   "loading": {
     "title": "Loading your adventure…",
@@ -422,7 +426,8 @@
     "library": "Academic Library",
     "shop": "Shop",
     "academy": "Code Academy",
-    "hall": "Language Hall"
+    "hall": "Language Hall",
+    "more": "More"
   },
   "world": {
     "canvasLabel": "{{place}}. Move with W A S D or the arrow keys, tap to walk, press E to talk.",
@@ -685,7 +690,8 @@
     },
     "lockedLevel": "Level {{level}}",
     "petCorner": "Pet corner",
-    "hatchFirst": "Hatch a pet to try this on"
+    "hatchFirst": "Hatch a pet to try this on",
+    "heroItems": "Hero items"
   },
   "unlocks": {
     "second_chance": "Second Chance: your first wrong answer in each battle costs nothing",

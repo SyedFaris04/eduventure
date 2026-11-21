@@ -5,7 +5,7 @@ type Props = { selected?: boolean; onSelect?: () => void; className?: string; ch
 
 /** Selectable card. With onSelect it is a toggle button; without, a static box. */
 export function Card({ selected = false, onSelect, className = '', children }: Props) {
-  const look = `relative rounded-2xl border-[3px] bg-white/80 p-4 text-start transition ${
+  const look = `relative rounded-2xl border-[3px] bg-white/80 p-4 text-start short:rounded-xl short:p-2.5 transition ${
     selected
       ? 'border-grass-dark bg-grass/15 shadow-[0_0_0_3px_var(--color-grass)]'
       : 'border-wood/50 shadow-[0_3px_0_rgb(92_58_36/0.35)]'

@@ -14,7 +14,7 @@ export const state = (page: Page) => page.evaluate(() => (window as unknown as {
 
 /** A new guest through onboarding and the creator. Born 2016 by default (safe-list name); pass a year and a name for an older player. */
 export async function newPlayer(page: Page, opts: { year?: string; name?: string } = {}) {
-  const next = () => page.getByRole('button', { name: /^Next/ }).click()
+  const next = () => page.getByRole('button', { name: 'Next', exact: true }).click()
   await page.goto('/welcome')
   // The walking tests tap far-off tiles; the Classic camera (the original, higher view) keeps them on screen.
   await page.evaluate(() => localStorage.setItem('eduventure.camera', JSON.stringify({ tilt: 52, distance: 22, fov: 30, turn: 0 })))
@@ -23,6 +23,7 @@ export async function newPlayer(page: Page, opts: { year?: string; name?: string
   await next()
   await page.getByRole('button', { name: /Lower Secondary School/ }).click()
   await next()
+  await page.getByPlaceholder('Search countries').fill('Malaysia') // phones page the list: search, as a player would
   await page.getByRole('listbox', { name: 'Where do you study?' }).getByRole('option', { name: /Malaysia/ }).click()
   await next()
   await page.getByRole('button', { name: /International/ }).click()

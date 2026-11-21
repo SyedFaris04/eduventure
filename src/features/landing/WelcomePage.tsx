@@ -53,7 +53,7 @@ export function WelcomePage() {
       <SceneBackdrop />
       <LanguagePicker className="absolute top-4 end-4 z-10" />
 
-      <div className="relative mx-auto grid min-h-dvh max-w-6xl items-center gap-4 px-4 pt-16 pb-10 short:grid-cols-2 short:gap-6 short:pt-4 short:pb-4 md:grid-cols-2 md:gap-8 md:pt-6">
+      <div className="relative mx-auto grid min-h-dvh max-w-6xl items-center gap-4 px-4 pt-16 pb-10 short:grid-cols-2 short:gap-4 short:pt-3 short:pb-3 md:grid-cols-2 md:gap-8 md:pt-6">
         <div className="order-1 h-[34dvh] min-h-56 short:order-2 short:h-[80dvh] short:min-h-0 md:order-2 md:h-[70dvh]">
           {show3D && (
             <Suspense fallback={null}>
@@ -63,13 +63,13 @@ export function WelcomePage() {
         </div>
 
         <div className="rise-in order-2 flex flex-col items-center text-center short:order-1 md:order-1 md:items-start md:text-start">
-          <h1 className="title-outline bg-gradient-to-b from-[#fff1a8] via-gold to-[#ef9b2f] bg-clip-text font-display text-[clamp(2.5rem,10vw,4.5rem)] leading-none font-bold short:text-5xl tracking-wide text-transparent">
+          <h1 className="title-outline bg-gradient-to-b from-[#fff1a8] via-gold to-[#ef9b2f] bg-clip-text font-display text-[clamp(2.5rem,10vw,4.5rem)] leading-none font-bold short:text-4xl tracking-wide text-transparent">
             {t('common.appName').toUpperCase()}
           </h1>
-          <p className="mt-4 -rotate-1 rounded-xl border-[3px] border-wood bg-cream px-4 py-1.5 font-display text-lg font-semibold text-wood-dark shadow-[0_3px_0_var(--color-wood)] sm:text-xl">
+          <p className="mt-4 -rotate-1 rounded-xl border-[3px] border-wood bg-cream px-4 py-1.5 font-display text-lg font-semibold text-wood-dark shadow-[0_3px_0_var(--color-wood)] sm:text-xl short:mt-2 short:py-0.5 short:text-base">
             {t('common.tagline')}
           </p>
-          <p className="mt-4 max-w-md text-base font-semibold text-ink/80 sm:text-lg">{t('welcome.subtitle')}</p>
+          <p className="mt-4 max-w-md text-base font-semibold text-ink/80 sm:text-lg short:mt-2 short:text-sm short:leading-snug tiny:hidden">{t('welcome.subtitle')}</p>
 
           {offline && (
             <div role="alert" className="mt-5 flex w-full max-w-sm items-center gap-3 rounded-2xl border-[3px] border-danger bg-cream p-3 text-start">
@@ -81,7 +81,7 @@ export function WelcomePage() {
             </div>
           )}
 
-          <nav className="mt-6 flex w-full max-w-sm flex-col gap-3">
+          <nav className="mt-6 flex w-full max-w-sm flex-col gap-3 short:mt-3 short:max-w-md short:gap-2">
             <Button size="lg" className="w-full" onClick={start} disabled={starting}>
               <Sparkles size={22} aria-hidden /> {starting ? t('common.loading') : t('welcome.start')}
             </Button>
@@ -90,17 +90,17 @@ export function WelcomePage() {
                 <CircleAlert size={18} className="mt-0.5 shrink-0 text-danger" aria-hidden /> {t(startError)}
               </p>
             )}
-            <div className="grid gap-3 min-[420px]:grid-cols-2">
+            <div className="grid gap-3 min-[420px]:grid-cols-2 short:gap-2">
               <Link to="/login" className={buttonClasses('secondary', 'md', 'whitespace-nowrap px-3')}>
                 <LogIn size={18} aria-hidden /> {t('welcome.login')}
               </Link>
               <Link to="/signup" className={buttonClasses('secondary', 'md', 'whitespace-nowrap px-3')}>
                 <UserPlus size={18} aria-hidden /> {t('welcome.signup')}
               </Link>
+                            <Link to="/explore" className={buttonClasses('ghost', 'md', 'col-span-full bg-cream/70 border-wood/40!')}>
+                <Compass size={18} aria-hidden /> {t('welcome.explore')}
+              </Link>
             </div>
-            <Link to="/explore" className={buttonClasses('ghost', 'md', 'bg-cream/70 border-wood/40!')}>
-              <Compass size={18} aria-hidden /> {t('welcome.explore')}
-            </Link>
           </nav>
         </div>
       </div>

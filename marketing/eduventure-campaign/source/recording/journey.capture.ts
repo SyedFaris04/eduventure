@@ -14,12 +14,13 @@ type Step = { kind: string; text: string; options?: { id: string; text: string }
 const lessonOf = (file: string) => (JSON.parse(readFileSync(new URL(`../../../../content/courses/${file}`, import.meta.url), 'utf8')) as { units: { lessons: { steps: Step[] }[] }[] }).units[0].lessons[0].steps
 
 async function onboard(page: Page) {
-  const next = () => page.getByRole('button', { name: /^Next/ }).click()
+  const next = () => page.getByRole('button', { name: 'Next', exact: true }).click()
   await page.getByRole('button', { name: /Start Your Adventure/ }).click()
   await page.getByLabel('Year you were born').selectOption('2000')
   await next()
   await page.getByRole('button', { name: /Lower Secondary School/ }).click()
   await next()
+  await page.getByPlaceholder('Search countries').fill('Malaysia') // phones page the list: search, as a player would
   await page.getByRole('listbox', { name: 'Where do you study?' }).getByRole('option', { name: /Malaysia/ }).click()
   await next()
   await page.getByRole('button', { name: /International/ }).click()

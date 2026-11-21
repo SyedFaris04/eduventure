@@ -14,7 +14,7 @@ export function Select({ label, error, hint, className = '', ref, children, ...r
   const describedBy = [hint && `${id}-hint`, error && `${id}-error`].filter(Boolean).join(' ') || undefined
   return (
     <div className={`flex flex-col gap-1 ${className}`}>
-      <label htmlFor={id} className="font-display font-medium">
+      <label htmlFor={id} className="font-display font-medium short:text-sm">
         {label}
       </label>
       <div className="relative">
@@ -33,7 +33,7 @@ export function Select({ label, error, hint, className = '', ref, children, ...r
         <ChevronDown aria-hidden className="pointer-events-none absolute end-3 top-1/2 size-5 -translate-y-1/2 text-wood" />
       </div>
       {hint && (
-        <p id={`${id}-hint`} className="text-sm text-ink/70">
+        <p id={`${id}-hint`} className="text-sm text-ink/70 short:text-xs tiny:hidden">
           {hint}
         </p>
       )}

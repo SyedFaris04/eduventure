@@ -74,7 +74,7 @@ export function WorldPage() {
           <FestivalChip />
           <RoomStatus />
         </div>
-        <Link to="/home" aria-label={t('world.home')} className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-3 z-10 px-3!')}>
+        <Link to="/home" aria-label={t('world.home')} className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-3 z-10 px-3! short:px-2.5!')}>
           <House size={20} aria-hidden />
         </Link>
         <button
@@ -82,14 +82,14 @@ export function WorldPage() {
           onClick={() => setSettingsOpen(true)}
           aria-label={t('settings.open')}
           title={t('settings.open')}
-          className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-16 z-10 px-3!')}
+          className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-16 z-10 px-3! short:top-[3.6rem] short:px-2.5!')}
         >
           <Settings size={20} aria-hidden />
         </button>
-        <Link to="/pet" aria-label={t('pet.open')} title={t('pet.open')} className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-[7.25rem] z-10 px-3!')}>
+        <Link to="/pet" aria-label={t('pet.open')} title={t('pet.open')} className={buttonClasses('secondary', 'md', 'pointer-events-auto absolute end-3 top-[7.25rem] z-10 px-3! short:top-[6.4rem] short:px-2.5!')}>
           <PawPrint size={20} aria-hidden />
         </Link>
-        <div className="absolute end-3 top-[10.5rem] z-10">
+        <div className="absolute end-3 top-[10.5rem] z-10 short:top-[9.25rem]">
           <EmoteBar onEmote={sendEmote} />
         </div>
         <Suspense fallback={null}>

@@ -11,7 +11,11 @@
     "language": "Idioma",
     "sound": "Sonido",
     "notFound": "Este camino no lleva a ninguna parte",
-    "backToStart": "Volver al inicio"
+    "backToStart": "Volver al inicio",
+    "prevPage": "Página anterior",
+    "nextPage": "Página siguiente",
+    "pageOf": "Página {{n}} de {{total}}",
+    "pages": "Páginas: {{label}}"
   },
   "loading": {
     "title": "Cargando tu aventura…",
@@ -422,7 +426,8 @@
     "library": "Biblioteca académica",
     "shop": "Tienda",
     "academy": "Academia de Código",
-    "hall": "Salón de Idiomas"
+    "hall": "Salón de Idiomas",
+    "more": "Más"
   },
   "world": {
     "canvasLabel": "{{place}}. Muévete con W A S D o las flechas, toca para caminar y pulsa E para hablar.",
@@ -685,7 +690,8 @@
     },
     "lockedLevel": "Nivel {{level}}",
     "petCorner": "Rincón de mascotas",
-    "hatchFirst": "Abre un huevo para probártelo"
+    "hatchFirst": "Abre un huevo para probártelo",
+    "heroItems": "Objetos del héroe"
   },
   "unlocks": {
     "second_chance": "Segunda oportunidad: tu primer error en cada batalla no cuesta nada",

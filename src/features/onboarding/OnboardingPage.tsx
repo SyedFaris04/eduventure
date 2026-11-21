@@ -19,7 +19,8 @@ import {
   Wrench,
   type LucideIcon,
 } from 'lucide-react'
-import { Button, Card, Panel, Select } from '../../components/ui'
+import { Button, Card, Paged, Panel, Select } from '../../components/ui'
+import { useShortScreen } from '../../app/useShortScreen'
 import { currentLanguage, LANGUAGES } from '../../i18n'
 import { LanguagePicker } from '../../i18n/LanguagePicker'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
@@ -90,6 +91,7 @@ export function OnboardingPage({ mode = 'create' }: { mode?: 'create' | 'edit' }
   const ref = useReferenceData()
   const profile = useMyProfile(userId)
   const existing = useMyAcademicProfile(mode === 'edit' ? userId : undefined)
+  const short = useShortScreen()
 
   const [values, setValues] = useState<Partial<OnboardingValues>>(() => ({
     language: currentLanguage(),
@@ -197,8 +199,8 @@ export function OnboardingPage({ mode = 'create' }: { mode?: 'create' | 'edit' }
       }
       case 'level':
         return (
-          <div className="grid gap-3 sm:grid-cols-2">
-            {data.levels.map((l) => {
+          <Paged items={data.levels} perPage={short ? 4 : Infinity} label={t('onboarding.steps.level')} className="grid gap-3 sm:grid-cols-2 short:grid-cols-2 short:gap-2">
+            {(l) => {
               const Icon = LEVEL_ICONS[l.id] ?? BookOpen
               return (
                 <Card
@@ -207,61 +209,63 @@ export function OnboardingPage({ mode = 'create' }: { mode?: 'create' | 'edit' }
                   onSelect={() => set({ level_id: l.id, curriculum_id: undefined, grade_id: null, subject_ids: [] })}
                 >
                   <div className="flex items-start gap-3">
-                    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-grass/25 text-grass-dark">
+                    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-grass/25 text-grass-dark short:size-8">
                       <Icon aria-hidden />
                     </span>
                     <span>
-                      <strong className="block font-display text-lg leading-tight">{t(`levels.${l.id}.name`)}</strong>
-                      <span className="block text-sm text-ink/75">{t(`levels.${l.id}.description`)}</span>
-                      <span className="mt-1 inline-block rounded-full bg-wood/10 px-2 text-xs font-bold text-wood-dark">
+                      <strong className="block font-display text-lg leading-tight short:text-sm">{t(`levels.${l.id}.name`)}</strong>
+                      <span className="block text-sm text-ink/75 short:line-clamp-2 short:text-xs">{t(`levels.${l.id}.description`)}</span>
+                      <span className="mt-1 inline-block rounded-full bg-wood/10 px-2 text-xs font-bold text-wood-dark short:hidden">
                         {t('onboarding.isced', { code: l.isced })}
                       </span>
                     </span>
                   </div>
                 </Card>
               )
-            })}
-          </div>
+            }}
+          </Paged>
         )
       case 'country':
-        return <CountryStep countries={data.countries} value={values.country_code} onChange={(code) => set({ country_code: code, curriculum_id: undefined, grade_id: null })} />
+        return <CountryStep short={short} countries={data.countries} value={values.country_code} onChange={(code) => set({ country_code: code, curriculum_id: undefined, grade_id: null })} />
       case 'curriculum':
         return (
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 short:gap-2">
             {curriculaFor(data.curricula, values.country_code, values.level_id).map((c) => (
               <Card key={c.id} selected={values.curriculum_id === c.id} onSelect={() => set({ curriculum_id: c.id, grade_id: null })}>
-                <strong className="font-display text-lg">{c.id === 'international' ? t('onboarding.international') : c.name}</strong>
+                <strong className="font-display text-lg short:text-sm">{c.id === 'international' ? t('onboarding.international') : c.name}</strong>
               </Card>
             ))}
-            <p className="text-sm text-ink/70">{t('onboarding.curriculumHint')}</p>
+            <p className="text-sm text-ink/70 short:text-xs">{t('onboarding.curriculumHint')}</p>
           </div>
         )
       case 'grade':
         return (
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {grades.map((g) => (
-              <Card key={g.id} selected={values.grade_id === g.id} onSelect={() => set({ grade_id: g.id })}>
-                <strong className="font-display">{g.name}</strong>
+          <Paged
+            items={[...grades.map((g) => ({ id: g.id as string | null, name: g.name })), { id: null, name: t('onboarding.gradeSkip') }]}
+            perPage={short ? 6 : Infinity}
+            label={t('onboarding.steps.grade')}
+            className="grid grid-cols-2 gap-3 sm:grid-cols-3 short:gap-2"
+          >
+            {(g) => (
+              <Card key={g.id ?? 'skip'} selected={values.grade_id === g.id} onSelect={() => set({ grade_id: g.id })}>
+                <strong className={`font-display short:text-sm ${g.id === null ? 'font-normal text-ink/70' : ''}`}>{g.name}</strong>
               </Card>
-            ))}
-            <Card selected={values.grade_id === null} onSelect={() => set({ grade_id: null })}>
-              <span className="font-display text-ink/70">{t('onboarding.gradeSkip')}</span>
-            </Card>
-          </div>
+            )}
+          </Paged>
         )
       case 'language':
         return (
-          <div className="flex flex-col gap-3">
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div className="flex flex-col gap-3 short:gap-2">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 short:grid-cols-4 short:gap-2">
               {LANGUAGES.map((l) => (
                 <Card key={l.code} selected={values.language === l.code} onSelect={() => set({ language: l.code })}>
-                  <strong lang={l.code} className="font-display text-lg">
+                  <strong lang={l.code} className="font-display text-lg short:text-sm">
                     {l.nativeName}
                   </strong>
                 </Card>
               ))}
             </div>
-            <p className="text-sm text-ink/70">{t('onboarding.languageHint')}</p>
+            <p className="text-sm text-ink/70 short:text-xs">{t('onboarding.languageHint')}</p>
           </div>
         )
       case 'subjects':
@@ -271,6 +275,8 @@ export function OnboardingPage({ mode = 'create' }: { mode?: 'create' | 'edit' }
             selected={values.subject_ids ?? []}
             onChange={(subject_ids) => set({ subject_ids })}
             hint={t('onboarding.subjectsHint')}
+            short={short}
+            label={t('onboarding.steps.subjects')}
           />
         )
       case 'goals':
@@ -280,23 +286,73 @@ export function OnboardingPage({ mode = 'create' }: { mode?: 'create' | 'edit' }
             selected={values.goals ?? []}
             onChange={(goals) => set({ goals: goals as OnboardingValues['goals'] })}
             hint={t('onboarding.goalsHint')}
+            short={short}
+            label={t('onboarding.steps.goals')}
           />
         )
       case 'difficulty':
         return (
-          <div className="grid gap-3 sm:grid-cols-5">
+          <div className="grid gap-3 sm:grid-cols-5 short:grid-cols-5 short:gap-2">
             {DIFFICULTIES.map((d) => (
               <Card key={d} selected={values.difficulty === d} onSelect={() => set({ difficulty: d })} className="text-center">
                 <span aria-hidden className="block text-xl tracking-tight text-gold">
                   {'★'.repeat(d)}
                 </span>
-                <strong className="font-display">{t(`difficulty.${d}`)}</strong>
+                <strong className="font-display short:text-sm">{t(`difficulty.${d}`)}</strong>
               </Card>
             ))}
           </div>
         )
     }
   }
+
+  const dots = (
+    <ol className="flex gap-1.5" aria-hidden>
+      {steps.map((s, i) => (
+        <li key={s} className={`h-2.5 rounded-full transition-all ${i === index ? 'w-7 bg-gold' : i < index ? 'w-2.5 bg-grass-dark' : 'w-2.5 bg-cream/80 short:bg-wood/25'}`} />
+      ))}
+    </ol>
+  )
+  const backButton = (
+    <Button variant="secondary" onClick={() => go(steps[index - 1])} disabled={index === 0 || busy}>
+      <ArrowLeft size={18} className="rtl:rotate-180" aria-hidden /> {t('common.back')}
+    </Button>
+  )
+  const nextButton = (
+    <Button onClick={next} disabled={!stepValid[current] || busy}>
+      {busy ? t('common.loading') : isLast ? t('onboarding.finish') : t('common.next')}
+      {!busy && !isLast && <ArrowRight size={18} className="rtl:rotate-180" aria-hidden />}
+    </Button>
+  )
+
+  // A phone held sideways: the step and its buttons in a side column, the answers filling the rest; nothing scrolls.
+  if (short)
+    return (
+      <main className="relative h-dvh overflow-hidden">
+        <SceneBackdrop />
+        <div className="relative mx-auto flex h-dvh max-w-4xl gap-3 px-3 py-2">
+          <aside className="flex w-44 shrink-0 flex-col gap-2">
+            <p className="truncate rounded-full bg-cream/90 px-3 py-0.5 text-center font-display text-sm font-semibold text-wood-dark">
+              {t(mode === 'edit' ? 'onboarding.editTitle' : 'onboarding.title')}
+            </p>
+            <LanguagePicker />
+            <div className="flex flex-col items-center gap-1 rounded-2xl bg-cream/90 p-2 text-center">
+              {dots}
+              <p className="text-xs font-bold text-wood-dark">{t('onboarding.stepOf', { n: index + 1, total: steps.length })}</p>
+              <h2 className="font-display text-base leading-tight font-semibold text-wood-dark">{t(`onboarding.steps.${current}`)}</h2>
+            </div>
+            <div className="mt-auto flex flex-col gap-2">
+              {nextButton}
+              {backButton}
+            </div>
+          </aside>
+          <Panel className="flex min-h-0 min-w-0 flex-1 flex-col gap-2 overflow-hidden">
+            {error && <FormMessage kind="error">{t(error)}</FormMessage>}
+            {body()}
+          </Panel>
+        </div>
+      </main>
+    )
 
   return (
     <main className="relative min-h-dvh">
@@ -310,11 +366,7 @@ export function OnboardingPage({ mode = 'create' }: { mode?: 'create' | 'edit' }
         </header>
 
         <div className="flex flex-col items-center gap-2 pt-6">
-          <ol className="flex gap-1.5" aria-hidden>
-            {steps.map((s, i) => (
-              <li key={s} className={`h-2.5 rounded-full transition-all ${i === index ? 'w-7 bg-gold' : i < index ? 'w-2.5 bg-grass-dark' : 'w-2.5 bg-cream/80'}`} />
-            ))}
-          </ol>
+          {dots}
           <p className="text-sm font-bold text-wood-dark">{t('onboarding.stepOf', { n: index + 1, total: steps.length })}</p>
         </div>
 
@@ -323,13 +375,8 @@ export function OnboardingPage({ mode = 'create' }: { mode?: 'create' | 'edit' }
           {body()}
           {/* Sticky so Next stays reachable on phones even below long lists. */}
           <div className="sticky bottom-0 -mx-5 -mb-5 flex justify-between gap-3 rounded-b-3xl border-t-2 border-wood/20 bg-cream px-5 pt-4 pb-5">
-            <Button variant="secondary" onClick={() => go(steps[index - 1])} disabled={index === 0 || busy}>
-              <ArrowLeft size={18} className="rtl:rotate-180" aria-hidden /> {t('common.back')}
-            </Button>
-            <Button onClick={next} disabled={!stepValid[current] || busy}>
-              {busy ? t('common.loading') : isLast ? t('onboarding.finish') : t('common.next')}
-              {!busy && !isLast && <ArrowRight size={18} className="rtl:rotate-180" aria-hidden />}
-            </Button>
+            {backButton}
+            {nextButton}
           </div>
         </Panel>
       </div>
@@ -337,7 +384,7 @@ export function OnboardingPage({ mode = 'create' }: { mode?: 'create' | 'edit' }
   )
 }
 
-function CountryStep({ countries, value, onChange }: { countries: { code: string; name: string }[]; value?: string; onChange: (code: string) => void }) {
+function CountryStep({ countries, value, onChange, short }: { countries: { code: string; name: string }[]; value?: string; onChange: (code: string) => void; short: boolean }) {
   const { t, i18n } = useTranslation()
   const [query, setQuery] = useState('')
   const suggested = useMemo(browserRegion, [])
@@ -352,40 +399,47 @@ function CountryStep({ countries, value, onChange }: { countries: { code: string
   const ordered = q ? shown : [...shown.filter((c) => c.code === suggested), ...shown.filter((c) => c.code !== suggested)]
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex min-h-0 flex-col gap-3 short:gap-2">
       <label className="flex items-center gap-2 rounded-xl border-[3px] border-wood/60 bg-white px-3 focus-within:border-water-dark">
         <Search size={18} className="text-wood" aria-hidden />
         <span className="sr-only">{t('onboarding.searchCountry')}</span>
-        <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t('onboarding.searchCountry')} className="min-h-11 flex-1 bg-transparent outline-none" />
+        <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t('onboarding.searchCountry')} className="min-h-11 flex-1 bg-transparent outline-none short:min-h-9" />
       </label>
-      <div role="listbox" aria-label={t('onboarding.steps.country')} className="grid max-h-[46dvh] gap-2 overflow-y-auto p-1 sm:grid-cols-2">
-        {ordered.map((c) => (
+      <Paged
+        items={ordered}
+        perPage={short ? 8 : Infinity}
+        resetKey={q}
+        label={t('onboarding.steps.country')}
+        boxProps={{ role: 'listbox', 'aria-label': t('onboarding.steps.country') }}
+        className={`grid gap-2 p-1 sm:grid-cols-2 ${short ? 'grid-cols-2' : 'max-h-[46dvh] overflow-y-auto'}`}
+      >
+        {(c) => (
           <button
             key={c.code}
             type="button"
             role="option"
             aria-selected={value === c.code}
             onClick={() => onChange(c.code)}
-            className={`flex items-center gap-2 rounded-xl border-2 px-3 py-2 text-start font-semibold ${value === c.code ? 'border-grass-dark bg-grass/20' : 'border-wood/30 bg-white/80 hover:border-wood'}`}
+            className={`flex items-center gap-2 rounded-xl border-2 px-3 py-2 text-start font-semibold short:py-1.5 short:text-sm ${value === c.code ? 'border-grass-dark bg-grass/20' : 'border-wood/30 bg-white/80 hover:border-wood'}`}
           >
             <span aria-hidden className="text-xl leading-none">
               {String.fromCodePoint(...[...c.code].map((ch) => 0x1f1a5 + ch.charCodeAt(0)))}
             </span>
             {c.name}
           </button>
-        ))}
-      </div>
+        )}
+      </Paged>
     </div>
   )
 }
 
-function Chips({ options, selected, onChange, hint }: { options: { id: string; label: string }[]; selected: string[]; onChange: (ids: string[]) => void; hint: string }) {
+function Chips({ options, selected, onChange, hint, short, label }: { options: { id: string; label: string }[]; selected: string[]; onChange: (ids: string[]) => void; hint: string; short: boolean; label: string }) {
   const toggle = (id: string) => onChange(selected.includes(id) ? selected.filter((x) => x !== id) : [...selected, id])
   return (
-    <div className="flex flex-col gap-3">
-      <p className="text-sm text-ink/70">{hint}</p>
-      <div className="flex max-h-[46dvh] flex-wrap gap-2 overflow-y-auto p-1">
-        {options.map((o) => {
+    <div className="flex flex-col gap-3 short:gap-2">
+      <p className="text-sm text-ink/70 short:text-xs">{hint}</p>
+      <Paged items={options} perPage={short ? 12 : Infinity} label={label} className={`flex flex-wrap gap-2 p-1 ${short ? '' : 'max-h-[46dvh] overflow-y-auto'}`}>
+        {(o) => {
           const on = selected.includes(o.id)
           return (
             <button
@@ -393,13 +447,13 @@ function Chips({ options, selected, onChange, hint }: { options: { id: string; l
               type="button"
               aria-pressed={on}
               onClick={() => toggle(o.id)}
-              className={`rounded-full border-2 px-4 py-2 font-semibold transition ${on ? 'border-grass-dark bg-grass text-white' : 'border-wood/40 bg-white/85 text-ink hover:border-wood'}`}
+              className={`rounded-full border-2 px-4 py-2 font-semibold transition short:px-3 short:py-1.5 short:text-sm ${on ? 'border-grass-dark bg-grass text-white' : 'border-wood/40 bg-white/85 text-ink hover:border-wood'}`}
             >
               {o.label}
             </button>
           )
-        })}
-      </div>
+        }}
+      </Paged>
     </div>
   )
 }

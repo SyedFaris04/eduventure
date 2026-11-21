@@ -11,7 +11,11 @@
     "language": "Langue",
     "sound": "Son",
     "notFound": "Ce chemin ne mène nulle part",
-    "backToStart": "Retour au début"
+    "backToStart": "Retour au début",
+    "prevPage": "Page précédente",
+    "nextPage": "Page suivante",
+    "pageOf": "Page {{n}} sur {{total}}",
+    "pages": "Pages : {{label}}"
   },
   "loading": {
     "title": "Chargement de ton aventure…",
@@ -422,7 +426,8 @@
     "library": "Bibliothèque",
     "shop": "Boutique",
     "academy": "Académie du code",
-    "hall": "Salle des langues"
+    "hall": "Salle des langues",
+    "more": "Plus"
   },
   "world": {
     "canvasLabel": "{{place}}. Déplace-toi avec W A S D ou les flèches, touche pour marcher, appuie sur E pour parler.",
@@ -685,7 +690,8 @@
     },
     "lockedLevel": "Niveau {{level}}",
     "petCorner": "Coin des compagnons",
-    "hatchFirst": "Fais éclore un compagnon pour l’essayer"
+    "hatchFirst": "Fais éclore un compagnon pour l’essayer",
+    "heroItems": "Objets du héros"
   },
   "unlocks": {
     "second_chance": "Seconde chance : ta première erreur de chaque combat ne coûte rien",

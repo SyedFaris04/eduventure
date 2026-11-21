@@ -2,6 +2,8 @@
 
 /* Phones held sideways: short and wide, so layouts go side by side instead of stacking below the fold. */
 @custom-variant short (@media (orientation: landscape) and (max-height: 500px));
+/* The shortest of those: a phone in a browser with its address bar showing (about 300 px tall). Trims extras. */
+@custom-variant tiny (@media (orientation: landscape) and (max-height: 340px));
 
 /* Palette sampled from the loading art and the isometric reference.
    `static` emits every token as a CSS variable, even ones no utility class uses yet (inline styles, SVG, canvas). */
