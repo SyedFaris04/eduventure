@@ -93,8 +93,8 @@ test('Cikgu Byte opens the Academy, and Back returns to the Academy door', async
   expect(Math.hypot(back.x - door.x, back.y - door.y)).toBeLessThan(2)
 })
 
-test.describe('360 × 740 phone', () => {
-  test.use({ viewport: { width: 360, height: 740 }, hasTouch: true, isMobile: true })
+test.describe('phone, sideways', () => {
+  test.use({ viewport: { width: 740, height: 360 }, hasTouch: true, isMobile: true })
 
   test('the lesson page fits without horizontal scroll', async ({ page }) => {
     test.setTimeout(240_000)

@@ -1286,5 +1286,9 @@
       "12": "¿Qué idioma te gustaría aprender?",
       "13": "¿Qué cosa amable hiciste hoy?"
     }
+  },
+  "rotate": {
+    "title": "Gira tu teléfono",
+    "body": "Eduventure se juega en horizontal. Gira tu teléfono para continuar."
   }
 }

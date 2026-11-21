@@ -1286,5 +1286,9 @@
       "12": "Quelle langue aimerais-tu apprendre ?",
       "13": "Quelle gentillesse as-tu faite aujourd’hui ?"
     }
+  },
+  "rotate": {
+    "title": "Tourne ton téléphone",
+    "body": "Eduventure se joue en mode paysage. Tourne ton téléphone pour continuer."
   }
 }

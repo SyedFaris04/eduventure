@@ -88,3 +88,9 @@
 .safe-inset {
   inset: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
 }
+
+/* The "turn your phone sideways" screen: the phone turns a quarter, waits, and turns back. */
+.rotate-phone { animation: rotate-phone 2.4s ease-in-out infinite; }
+@keyframes rotate-phone { 0%, 20% { transform: rotate(0deg); } 45%, 75% { transform: rotate(-90deg); } 100% { transform: rotate(0deg); } }
+@media (prefers-reduced-motion: reduce) { .rotate-phone { animation: none; transform: rotate(-90deg); } }
+

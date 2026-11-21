@@ -5,13 +5,20 @@ import { enterWorld, newPlayer } from './helpers'
 // Screenshots of every main screen at phone, tablet and laptop sizes, for the device pass (a tool, not a check).
 // Run: DEVICE_SHOTS=<folder> npx playwright test device-shots --project devices
 const OUT = process.env.DEVICE_SHOTS
-const SIZES = [
+// DEVICE_SIZES=landscape: three common sideways phones only.
+const ALL_SIZES = [
   { name: 'phone', width: 360, height: 740, touch: true },
   { name: 'phone-land', width: 740, height: 360, touch: true },
   { name: 'tablet', width: 768, height: 1024, touch: true },
   { name: 'tablet-land', width: 1024, height: 768, touch: true },
   { name: 'laptop', width: 1366, height: 768, touch: false },
 ]
+const LANDSCAPE = [
+  { name: 'land-740', width: 740, height: 360, touch: true },
+  { name: 'land-800', width: 800, height: 360, touch: true },
+  { name: 'land-915', width: 915, height: 412, touch: true },
+]
+const SIZES = process.env.DEVICE_SIZES === 'landscape' ? LANDSCAPE : ALL_SIZES
 const SIGNED_OUT = ['/welcome', '/login', '/signup', '/explore']
 const SIGNED_IN = ['/home', '/character', '/settings/academic', '/shop', '/pet', '/library', '/academy', '/hall', '/parent', '/dev/board?place=qa_camp']
 

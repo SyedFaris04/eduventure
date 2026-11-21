@@ -48,7 +48,7 @@ Every push to `main` runs `.github/workflows/release.yml`: the tests, then the g
 signed Android app is built and attached to a GitHub Release. The newest app is always at
 **https://github.com/SyedFaris04/eduventure/releases/latest/download/eduventure.apk**.
 
-The app opens the hosted game, so game updates reach every player without a new APK. That address is built into every
+The app opens the hosted game, so game updates reach every player without a new APK. It always plays sideways (landscape); in a phone browser the game asks for landscape on "Tap to start". That address is built into every
 installed app: keep the repository's name and GitHub Pages on. (If you ever add your own domain, installed apps will
 open the game in the phone's browser until they install a new APK.)
 

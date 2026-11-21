@@ -11,14 +11,14 @@ export function AuthLayout({ title, children, back = '/welcome' }: { title: stri
   return (
     <main className="relative min-h-dvh">
       <SceneBackdrop />
-      <div className="relative mx-auto flex min-h-dvh max-w-md flex-col px-4 pt-4 pb-10">
-        <div className="flex items-center justify-between gap-3">
+      <div className="relative mx-auto flex min-h-dvh max-w-md flex-col px-4 pt-4 pb-10 short:max-w-3xl short:flex-row short:gap-4 short:pt-2 short:pb-2">
+        <div className="flex items-center justify-between gap-3 short:flex-col short:items-start short:justify-start">
           <Link to={back} className={buttonClasses('secondary', 'md')}>
             <ArrowLeft size={18} className="rtl:rotate-180" aria-hidden /> {t('common.back')}
           </Link>
           <LanguagePicker />
         </div>
-        <div className="flex flex-1 flex-col justify-center pt-10">
+        <div className="flex flex-1 flex-col justify-center pt-10 short:justify-start short:pt-3">
           <Panel title={title}>{children}</Panel>
         </div>
       </div>

@@ -41,14 +41,15 @@ export function LoginPage() {
 
   return (
     <AuthLayout title={t('auth.loginTitle')}>
-      <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
+      <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4 short:grid short:grid-cols-2 short:gap-x-3 short:gap-y-2 short:[&>*]:col-span-2">
         {params.has('verified') && <FormMessage kind="success">{t('auth.verified')}</FormMessage>}
         {formError && <FormMessage kind="error">{t(formError)}</FormMessage>}
-        <Field label={t('auth.email')} type="email" autoComplete="email" error={err(formState.errors.email?.message)} {...register('email')} />
+        <Field label={t('auth.email')} type="email" autoComplete="email" error={err(formState.errors.email?.message)} className="short:col-span-1!" {...register('email')} />
         <Field
           label={t('auth.password')}
           type={showPassword ? 'text' : 'password'}
           autoComplete="current-password"
+          className="short:col-span-1!"
           error={err(formState.errors.password?.message)}
           {...register('password')}
         />
