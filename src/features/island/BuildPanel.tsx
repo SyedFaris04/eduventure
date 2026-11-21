@@ -117,10 +117,10 @@ export function BuildPanel() {
   )
 
   return (
-    <section aria-label={t('island.build')} className="pointer-events-auto absolute inset-x-2 bottom-2 z-20 flex max-h-[55%] flex-col gap-1.5 rounded-2xl border-[3px] border-wood bg-cream/95 p-2 shadow-[0_4px_0_var(--color-wood-dark)]">
+    <section aria-label={t('island.build')} className="pointer-events-auto absolute inset-x-2 bottom-2 z-20 flex max-h-[55%] flex-col gap-1.5 rounded-2xl border-[3px] border-wood bg-cream/95 p-2 shadow-[0_4px_0_var(--color-wood-dark)] short:gap-1 short:p-1.5">
       <div role="tablist" className="flex gap-1 overflow-x-auto">
         {CATEGORIES.map((c) => (
-          <button key={c} role="tab" type="button" aria-selected={tab === c} onClick={() => setTab(c)} className={`shrink-0 rounded-full border-2 px-3 py-0.5 text-sm font-bold whitespace-nowrap ${tab === c ? 'border-wood-dark bg-gold' : 'border-wood/40 bg-white'}`}>
+          <button key={c} role="tab" type="button" aria-selected={tab === c} onClick={() => setTab(c)} className={`shrink-0 rounded-full border-2 px-3 py-0.5 text-sm font-bold whitespace-nowrap short:px-2 short:py-0 short:text-xs ${tab === c ? 'border-wood-dark bg-gold' : 'border-wood/40 bg-white'}`}>
             {t(`island.category.${c}`)}
           </button>
         ))}
@@ -136,10 +136,10 @@ export function BuildPanel() {
                 disabled={locked}
                 aria-pressed={chosen}
                 onClick={() => set({ item: i.id, mode: 'place', moving: null })}
-                className={`flex w-24 flex-col items-center rounded-xl border-[3px] p-1 text-center disabled:opacity-60 ${chosen ? 'border-wood-dark bg-gold/50' : 'border-wood/30 bg-white'}`}
+                className={`flex w-24 flex-col items-center rounded-xl border-[3px] p-1 text-center disabled:opacity-60 short:w-[4.5rem] short:border-2 short:p-0.5 ${chosen ? 'border-wood-dark bg-gold/50' : 'border-wood/30 bg-white'}`}
               >
-                <Snapshot subject={{ kind: 'islandItem', id: i.id }} px={88} alt="" className="size-11" />
-                <span className="line-clamp-1 text-xs font-bold">{t(`island.item.${i.id}`)}</span>
+                <Snapshot subject={{ kind: 'islandItem', id: i.id }} px={88} alt="" className="size-11 short:size-7" />
+                <span className="line-clamp-1 text-xs font-bold short:text-[11px]">{t(`island.item.${i.id}`)}</span>
                 {locked ? (
                   <span className="flex items-center gap-0.5 text-[11px] font-bold text-wood-dark">
                     <Lock size={11} aria-hidden /> {t('island.level', { n: i.level })}
