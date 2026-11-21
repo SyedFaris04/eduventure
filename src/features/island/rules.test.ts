@@ -42,7 +42,6 @@ describe('island rules (the server checks the same)', () => {
     expect(locked.length).toBeGreaterThan(10)
     for (const i of locked) expect(UNLOCKS).toContainEqual({ level: i.level, kind: 'island_item', key: i.id })
   })
-  })
 
   it('every item has a name and a group', () => {
     const names = (en as unknown as { island: { item: Record<string, string>; category: Record<string, string> } }).island
