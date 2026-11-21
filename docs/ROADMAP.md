@@ -270,6 +270,9 @@ Spec: `docs/superpowers/specs/2026-11-20-whiteboard-camps-design.md`. Decision #
 - **Safety:** report a note or hide its writer; 3 reports hide a note until a moderator removes or keeps it in `/admin`. Hidden, banned and adult-guest players can read but not write. Up to 5 notes an hour; writing earns nothing.
 - **Works without the room server:** notes are saved in the database and an open board refreshes every 20 seconds.
 
+### My island — built
+Each player's own island, first on the boatman's list (decision #48): build a house and decorate with 50 items (houses, garden, trees, paths and fences, lights, furniture, Malaysian, water) paid for with harvested materials; 15 unlock by level. Place, turn, move, and remove with a full refund; the server checks every placement. Private for now (visiting comes later).
+
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
 

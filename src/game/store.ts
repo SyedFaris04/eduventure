@@ -39,6 +39,12 @@ type GameState = {
   slashSeq: number
   /** What a finished slash gave, or why it was refused. */
   harvestToast: { text: string; ok: boolean; seq: number } | null
+  /** Build mode on My island: the chosen item and turn, or moving / removing. */
+  build: { open: boolean; item: string | null; rot: number; mode: 'place' | 'move' | 'remove'; moving: number | null }
+  /** A tile tapped while building (instead of walking there). */
+  buildTap: { x: number; y: number; seq: number } | null
+  /** The tile under the pointer while building (laptops), for the ghost. */
+  buildHover: { x: number; y: number } | null
   /** The camp workbench is open. */
   workbench: boolean
   /** The island's camp board is open. */
@@ -71,6 +77,9 @@ export const useGame = create<GameState>(() => ({
   slashReq: null,
   slashSeq: 0,
   harvestToast: null,
+  build: { open: false, item: null, rot: 0, mode: 'place', moving: null },
+  buildTap: null,
+  buildHover: null,
   workbench: false,
   board: false,
   settings: false,

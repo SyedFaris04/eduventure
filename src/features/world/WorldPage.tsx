@@ -33,11 +33,14 @@ import { RoomStatus } from '../multiplayer/RoomStatus'
 import { sendEmote } from '../multiplayer/useRoom'
 import { CraftPanel } from '../harvest/CraftPanel'
 import { BoardPanel } from '../board/BoardPanel'
+import { BuildPanel } from '../island/BuildPanel'
+import { isPrivatePlace } from '../../game/places'
 
 export function WorldPage() {
   const { t } = useTranslation()
   const { session } = useSession()
   const uid = session?.user.id
+  const place = usePlace((s) => s.place)
   const character = useMyCharacter(uid)
   const progression = useProgression(uid)
   const title = useMyTitle(uid)
@@ -100,6 +103,7 @@ export function WorldPage() {
         <BattlePanel />
         <BossPanel />
         <Slasher />
+        {isPrivatePlace(place) && <BuildPanel />}
         <CraftPanel />
         <BoardPanel />
         <CoinBurst />

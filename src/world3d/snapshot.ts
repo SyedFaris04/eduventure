@@ -1,10 +1,11 @@
-import { AnimationMixer, DirectionalLight, HemisphereLight, PerspectiveCamera, Scene, WebGLRenderer, type Object3D, type AnimationClip } from 'three'
+import { AnimationMixer, Box3, DirectionalLight, HemisphereLight, PerspectiveCamera, Scene, Vector3, WebGLRenderer, type Object3D, type AnimationClip } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { buildHero } from './hero/buildHero'
 import { RIG_URL } from './hero/useRig'
 import { buildMonster } from './monsters/buildMonster'
 import { buildPet } from './pet/buildPet'
 import { aspect, snapshotKey, type Subject } from './snapshotKey'
+import { buildIslandItem } from './props/islandProps'
 
 /**
  * Still pictures of the 3D hero and monsters for the HUD, Home, Shop, dialogue and battle panels.
@@ -21,6 +22,7 @@ const loadRig = () =>
 
 async function model(s: Subject): Promise<Object3D> {
   if (s.kind === 'pet') return buildPet(s.pet.species, s.pet.stage, s.pet.form, s.pet.look)
+  if (s.kind === 'islandItem') return buildIslandItem(s.id)
   if (s.kind !== 'hero') return buildMonster(s.kind === 'boss' ? s.boss : s.monster)
   const { scene, clips } = await loadRig()
   const body = scene.clone(true)
@@ -46,7 +48,10 @@ async function draw(s: Subject, px: number): Promise<string> {
   const subject = await model(s)
   scene.add(subject)
   // Three-quarter front view, framed per kind (hero ~2.3 tall, monsters ~1, the guardian ~2.2).
-  const frame = s.kind === 'hero' ? { y: 1.15, d: 7.4 } : s.kind === 'boss' ? { y: 1.1, d: 6.6 } : { y: 0.45, d: 2.7 }
+  // Island items run from a grass tuft to a villa, so they are framed by their own size.
+  const fit = s.kind === 'islandItem' ? new Box3().setFromObject(subject).getSize(new Vector3()) : null
+  const frame = fit ? { y: fit.y / 2, d: Math.max(fit.x, fit.y, fit.z) * 2.4 + 0.6 }
+    : s.kind === 'hero' ? { y: 1.15, d: 7.4 } : s.kind === 'boss' ? { y: 1.1, d: 6.6 } : { y: 0.45, d: 2.7 }
   const cam = new PerspectiveCamera(30, w / h, 0.1, 50)
   cam.position.set(frame.d * 0.36, frame.y + frame.d * 0.16, frame.d * 0.92)
   cam.lookAt(0, frame.y, 0)

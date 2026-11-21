@@ -185,4 +185,16 @@ describe('harvesting and the camp', () => {
     sim.hero.pos = { x: board.x + 0.5, y: board.y + 0.5 }
     expect(sim.prompt()).toEqual({ kind: 'board' })
   })
+
+  it('items placed on an island block walking at once', () => {
+    const sim = new WorldSim(map, seeded())
+    const free = map.cells.flatMap((row, y) => row.map((c, x) => ({ c, x, y }))).find(({ c, x, y }) => !c.blocks && !map.blocked(x, y))!
+    expect(sim.blocked(free.x, free.y)).toBe(false)
+    sim.extraBlocked = new Set([`${free.x},${free.y}`])
+    expect(sim.blocked(free.x, free.y)).toBe(true)
+    sim.hero.pos = { x: free.x - 1 + 0.5, y: free.y + 0.5 }
+    sim.tap({ x: free.x + 0.5, y: free.y + 0.5 })
+    expect(sim.path.some((p) => Math.floor(p.x) === free.x && Math.floor(p.y) === free.y)).toBe(false)
+  })
 })
+

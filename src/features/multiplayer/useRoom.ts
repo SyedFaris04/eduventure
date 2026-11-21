@@ -32,7 +32,8 @@ let active: RoomClient | null = null
 export const sendEmote = (e: Emote) => active?.sendEmote(e)
 
 /** The live room for this place, or null when multiplayer is off (no VITE_ROOMS_URL, no session). */
-export function useRoomConnection(place: string): RoomClient | null {
+/** `place` null: a private place (My island), where nobody else can be. */
+export function useRoomConnection(place: string | null): RoomClient | null {
   const uid = useSession().session?.user.id
   const visible = useMyVisibility(uid).data?.visible
   const blocks = useBlocks(uid).data
@@ -43,7 +44,7 @@ export function useRoomConnection(place: string): RoomClient | null {
   useEffect(() => {
     const url = import.meta.env.VITE_ROOMS_URL as string | undefined
     // Wait for my own visibility, so the first join isn't thrown away a moment later (which could leave a ghost).
-    if (!url || !uid || !supabase || visible === undefined) return
+    if (!place || !url || !uid || !supabase || visible === undefined) return
     const c = startRoom({
       url,
       place,

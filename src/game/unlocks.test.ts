@@ -22,7 +22,7 @@ describe('level unlocks', () => {
     expect(unlockLevel('pet', 'pet_adult')).toBe(10)
   })
   it('lists what a level-up brings', () => {
-    expect(newUnlocks(4, 8).map((u) => u.key).sort()).toEqual(['fifty', 'island_bosses', 'pet_young', 'rare', 'swift_perahu'])
+    expect(newUnlocks(4, 8).map((u) => u.key).sort()).toEqual(['fifty', 'fountain', 'house_twostorey', 'island_bosses', 'kampung_gate', 'light_arch', 'pet_young', 'rare', 'swift_perahu'])
     expect(newUnlocks(5, 5)).toEqual([])
   })
 })
