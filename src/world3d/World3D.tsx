@@ -36,6 +36,7 @@ import { SlashChips } from './SlashChips'
 import { isPrivatePlace } from '../game/places'
 import { IslandItems } from './IslandItems'
 import { blockedTiles, type Placed } from '../features/island/rules'
+import { BuildGhost } from './BuildGhost'
 
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 
@@ -219,10 +220,24 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     if (useQuality.getState().choice === 'auto' && useQuality.getState().auto === 'high' && monitor.sample(delta * 1000) === 'low') useQuality.setState({ auto: 'low' })
   })
 
+  // A laptop pointer shows where the item would go (only while building, and only when the tile changes).
+  const hover = (e: ThreeEvent<PointerEvent>) => {
+    if (e.nativeEvent.pointerType !== 'mouse' || !useGame.getState().build.open) return
+    const g = worldToGrid(e.point.x, e.point.z)
+    const x = Math.floor(g.x)
+    const y = Math.floor(g.y)
+    const h = useGame.getState().buildHover
+    if (!h || h.x !== x || h.y !== y) useGame.setState({ buildHover: { x, y } })
+  }
   const tap = (e: ThreeEvent<PointerEvent>) => {
     // Only a left click or a single finger walks; the right button turns the camera.
     if (!e.nativeEvent.isPrimary || e.nativeEvent.button !== 0 || worldPaused()) return
     const g = worldToGrid(e.point.x, e.point.z)
+    // Building on My island: a tap places (or picks up) instead of walking.
+    if (useGame.getState().build.open) {
+      useGame.setState((s) => ({ buildTap: { x: Math.floor(g.x), y: Math.floor(g.y), seq: (s.buildTap?.seq ?? 0) + 1 } }))
+      return
+    }
     sim.tap(g)
     ringAt.current = performance.now()
     ring.current?.position.set(Math.floor(g.x) + 0.5, 0.02, Math.floor(g.y) + 0.5)
@@ -233,7 +248,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       <hemisphereLight args={['#bfe6ff', '#8bc34a', 1.15]} />
       <directionalLight ref={sun} color="#fff1d6" intensity={2.4} castShadow={level === 'high'} shadow-mapSize={[2048, 2048]} shadow-camera-left={-16} shadow-camera-right={16} shadow-camera-top={16} shadow-camera-bottom={-16} shadow-camera-far={50} shadow-bias={-0.0006} />
       {/* The tap target: an invisible floor over the whole island. */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[sim.map.width / 2, 0.001, sim.map.height / 2]} onPointerDown={tap} visible={false}>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[sim.map.width / 2, 0.001, sim.map.height / 2]} onPointerDown={tap} onPointerMove={hover} visible={false}>
         <planeGeometry args={[sim.map.width, sim.map.height]} />
       </mesh>
       <mesh ref={ring} geometry={ringGeo} material={ringMat} visible={false} />
@@ -300,6 +315,7 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
       <Props map={map} shadows={level === 'high'} />
       <HarvestNodes map={map} regrowing={regrowing} built={built} shadows={level === 'high'} />
       {island.length > 0 && <IslandItems items={island} shadows={level === 'high'} />}
+      {isPrivatePlace(map.id) && <BuildGhost items={island} />}
       {!reduced && <SlashChips />}
       <Decor map={map} fancy={level === 'high' && !reduced} />
       <FestivalDecor map={map} kinds={festive} fancy={level === 'high' && !reduced} shadows={level === 'high'} />
