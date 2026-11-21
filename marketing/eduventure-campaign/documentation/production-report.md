@@ -142,10 +142,38 @@ example to Google Drive.
 
 ## 7. Bahasa Melayu versions (added 2026-11-21)
 The owner wants to reach Malaysian players first, so each video now has a Bahasa Melayu version: Malay on-screen
-text (`source/copy.ts`, using the game's own Malay terms) and a male Malay voice-over (Microsoft Azure,
-ms-MY-OsmanNeural), timed line by line to the cuts, with the music ducking under the voice. The English versions are
+text (`source/copy.ts`, using the game's own Malay terms) and a male Malay voice-over (Microsoft's ms-MY-OsmanNeural
+voice, generated through Edge's free read-aloud service because Azure wasn't available; see the licence caveat in
+asset-credits.md), timed line by line to the cuts, with the music ducking under the voice. The English versions are
 unchanged.
 
 **Wording notes:**
 - The game calls the Language Hall "Dewan Bahasa", which is close to the name of the government agency Dewan Bahasa dan Pustaka. The videos say "Pelajaran Bahasa" instead. The owner may want to rename it in the game too.
 - The Malay captions and the voice script need a native speaker's read before posting (the project's standing rule for Malay text).
+
+**Bahasa Melayu checks (2026-11-21, all passed):**
+
+| Video | Duration | Size | Loudness | True peak | Black frames |
+|---|---|---|---|---|---|
+| A-BM | 43.01 s | 27.1 MB | -17.7 LUFS | -3 dBTP | none |
+| B-BM | 25.00 s | 9.3 MB | -17.6 LUFS | -3 dBTP | none |
+| C-BM | 25.00 s | 13.6 MB | -17.9 LUFS | -2.4 dBTP | none |
+| D-BM | 20.01 s | 11.2 MB | -17.8 LUFS | -3.8 dBTP | none |
+
+**The mix:**
+- Each voice line is levelled to −16 LUFS.
+- The music dips to 30% under the voice, and effects to 55%.
+- The voice was measured, not heard, at about 9 dB above the music.
+
+**The voice:**
+- Lines start on their shots and can run up to 0.7 s past a cut. They never overlap, and each video's voice ends before its last 0.4 s.
+- How it was generated, and the licence caveat for Edge's free read-aloud voice, are in asset-credits.md.
+
+**Exports:**
+```
+C:\dev\eduventure\marketing\eduventure-campaign\exports	iktok\eduventure-A-main-trailer-BM.mp4
+C:\dev\eduventure\marketing\eduventure-campaign\exports	iktok\eduventure-B-learning-BM.mp4
+C:\dev\eduventure\marketing\eduventure-campaign\exports	iktok\eduventure-C-rpg-BM.mp4
+C:\dev\eduventure\marketing\eduventure-campaign\exports	iktok\eduventure-D-community-BM.mp4
+```
+The same files are in `exports\instagram`, `youtube-shorts` and `threads`.

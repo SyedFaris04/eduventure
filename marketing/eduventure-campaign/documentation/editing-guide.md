@@ -44,6 +44,14 @@ an unfinished placeholder. Once your accounts exist, fill them in (for example `
 - Every on-screen word comes from `source/copy.ts` (English and Malay side by side); edit both there.
 - The Malay voice-over is one clip per line, placed at the frame in `source/voiceover/ms.json`. The music dips under each line by itself.
 
+**Generate the voice without an account (what was used):**
+`python -m venv .venv && .venv/Scripts/python -m pip install edge-tts`, then `node source/voiceover/tts.mjs --edge`.
+This uses the same male voice through Edge's free read-aloud service. It is unofficial; see asset-credits.md.
+
+The generator trims the silence around each line, reads at +5% (or +10% if a video's lines run long) and starts each
+line at its planned frame, or just after the line before. It prints where each line lands and fails if the voice runs
+past the end of a video. If it does, shorten a line in `ms.json`.
+
 **Generate the voice (Microsoft Azure AI Speech, male voice ms-MY-OsmanNeural):**
 1. Put your key in `marketing/eduventure-campaign/.env.local` (git ignores it; never commit or share it):
    ```

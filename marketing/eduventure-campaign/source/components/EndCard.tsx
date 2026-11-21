@@ -1,3 +1,4 @@
+import { createContext, useContext } from 'react'
 import { AbsoluteFill, Audio, Img, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion'
 import { z } from 'zod'
 import { BODY, C, DISPLAY, W } from '../styles/theme'
@@ -30,26 +31,32 @@ export const DEFAULT_PROPS: CampaignProps = {
 /** Overall level for music and effects: keeps the mix's true peak about 1.5 dB under full scale (no clipping). */
 const MASTER = 0.82
 
-/** One sound effect at a frame. */
+/** The voice lines playing in this video, so effects can step back under the voice. */
+export const VoiceCtx = createContext<VoiceLine[]>([])
+
+/** One sound effect at a frame; quieter (55%) when it lands while the voice is speaking. */
 export function Sfx({ at, src, volume = 0.8 }: { at: number; src: string; volume?: number }) {
+  const lines = useContext(VoiceCtx)
+  const underVoice = lines.some((l) => l.file && at >= (l.start ?? l.at) - 3 && at <= (l.start ?? l.at) + l.seconds * 30)
   return (
     <Sequence from={at} durationInFrames={150} layout="none">
-      <Audio src={staticFile(`audio/sfx/${src}.ogg`)} volume={volume * MASTER} />
+      <Audio src={staticFile(`audio/sfx/${src}.ogg`)} volume={volume * MASTER * (underVoice ? 0.55 : 1)} />
     </Sequence>
   )
 }
 
-export type VoiceLine = { at: number; text: string; file: string; seconds: number }
+/** `start` (set by tts.mjs) is where the line actually plays: its planned `at`, or just after the line before. */
+export type VoiceLine = { at: number; start?: number; text: string; file: string; seconds: number }
 
 /** How far the music dips while a voice line plays (6-frame ramps either side). */
 function duckAt(f: number, lines: VoiceLine[], fps: number) {
   let d = 1
   for (const l of lines) {
     if (!l.file) continue
-    const a = l.at
-    const b = l.at + Math.ceil(l.seconds * fps)
+    const a = l.start ?? l.at
+    const b = a + Math.ceil(l.seconds * fps)
     const k = f < a - 6 || f > b + 6 ? 0 : f < a ? (f - (a - 6)) / 6 : f > b ? (b + 6 - f) / 6 : 1
-    d = Math.min(d, 1 - 0.62 * k) // the music drops to 38% under the voice
+    d = Math.min(d, 1 - 0.7 * k) // the music drops to 30% under the voice
   }
   return d
 }
@@ -75,8 +82,8 @@ export function VoiceLines({ lines }: { lines: VoiceLine[] }) {
   return (
     <>
       {lines.filter((l) => l.file).map((l) => (
-        <Sequence key={l.at} from={l.at} durationInFrames={Math.ceil(l.seconds * 30) + 10} layout="none">
-          <Audio src={staticFile(l.file)} volume={0.95} />
+        <Sequence key={l.at} from={l.start ?? l.at} durationInFrames={Math.ceil(l.seconds * 30) + 10} layout="none">
+          <Audio src={staticFile(l.file)} volume={0.8} />
         </Sequence>
       ))}
     </>

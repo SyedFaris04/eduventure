@@ -1,6 +1,6 @@
 import { AbsoluteFill, Freeze, Img, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion'
 import { Caption } from '../components/Caption'
-import { EndCard, Music, Sfx, VoiceLines, Voiceover, type CampaignProps, type VoiceLine } from '../components/EndCard'
+import { EndCard, Music, Sfx, VoiceCtx, VoiceLines, Voiceover, type CampaignProps, type VoiceLine } from '../components/EndCard'
 import { COPY } from '../copy'
 import VO from '../voiceover/ms.json'
 import { CAP_Y, CARD, Clip, CoinBurst, Flash, KeyArt, PortalGlow, Shade, Shake, Sparkles, Tag } from '../components/Visuals'
@@ -20,6 +20,7 @@ export function MainTrailer(props: CampaignProps) {
   const t = COPY[props.lang]
   const vo = props.lang === 'ms' ? (VO.A as VoiceLine[]) : []
   return (
+    <VoiceCtx.Provider value={vo}>
     <AbsoluteFill style={{ backgroundColor: '#1d140d' }}>
       {/* SCENE 1 — the hook (0–4 s): into the portal. */}
       <Sequence durationInFrames={120}>
@@ -172,5 +173,6 @@ export function MainTrailer(props: CampaignProps) {
       <Sfx at={1090} src="finale" volume={0.9} />
       <Sfx at={1098} src="sparkle" />
     </AbsoluteFill>
+    </VoiceCtx.Provider>
   )
 }

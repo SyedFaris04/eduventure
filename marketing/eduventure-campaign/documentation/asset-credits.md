@@ -52,11 +52,20 @@ Each source page was checked on 2026-11-21 and listed only CC0. The Kenney packs
 ## Malay voice-over (Bahasa Melayu versions)
 | Item | Source |
 |---|---|
-| Voice | Microsoft Azure AI Speech, prebuilt neural voice **ms-MY-OsmanNeural** (male, Malaysian Malay), generated with the owner's own Azure account (free tier F0) by `source/voiceover/tts.mjs` |
+| Voice | Microsoft neural voice **ms-MY-OsmanNeural** (male, Malaysian Malay), generated 2026-11-21 through Microsoft Edge's free read-aloud service with the open-source `edge-tts` tool (7.3.1), by `source/voiceover/tts.mjs --edge` |
 | Script | Written for this campaign (`scripts/bm-voiceover.md`, `source/voiceover/ms.json`) |
 
-Azure's terms allow prebuilt neural voices in your own products and adverts. The voice is synthetic, so each Malay end
-card says "Suara latar dijana AI (Microsoft Azure)". This follows Microsoft's transparency guidance for synthetic voices.
+**Licence caveat:** Edge's read-aloud service is meant for reading text in the browser. Using its audio in adverts
+isn't clearly covered by Microsoft's terms, and `edge-tts` is unofficial. This was the owner's informed choice, made
+because Azure wasn't available. To be fully covered, regenerate the same voice through Azure AI Speech (free tier, whose
+terms allow prebuilt neural voices in your own content) or use a recorded human voice:
+- `node source/voiceover/tts.mjs` with a key in `.env.local`, or
+- `--measure` with recordings.
+
+The rest of the pipeline is unchanged.
+
+The voice is synthetic, so each Malay end card says "Suara latar dijana AI (Microsoft Azure)". The Edge voice is the
+same Azure neural voice.
 
 ## Tools (all free)
 - Remotion 4.0.545 (video composition and rendering). Remotion is free for individuals and for companies with up to 3 employees; a larger company needs a Remotion company licence (https://www.remotion.dev/license).

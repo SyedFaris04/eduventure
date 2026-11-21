@@ -1,6 +1,6 @@
 import { AbsoluteFill, Freeze, Sequence } from 'remotion'
 import { Caption, Subline } from '../components/Caption'
-import { EndCard, Music, Sfx, VoiceLines, Voiceover, type CampaignProps, type VoiceLine } from '../components/EndCard'
+import { EndCard, Music, Sfx, VoiceCtx, VoiceLines, Voiceover, type CampaignProps, type VoiceLine } from '../components/EndCard'
 import { COPY } from '../copy'
 import VO from '../voiceover/ms.json'
 import { CAP_Y, CARD, Clip, CoinBurst, Flash, KeyArt, PhoneFrame, Shade, Shake, Sparkles, Tag } from '../components/Visuals'
@@ -14,6 +14,7 @@ export function LearningVideo(props: CampaignProps) {
   const t = COPY[props.lang]
   const vo = props.lang === 'ms' ? (VO.B as VoiceLine[]) : []
   return (
+    <VoiceCtx.Provider value={vo}>
     <AbsoluteFill style={{ backgroundColor: C.ink }}>
       <Sequence durationInFrames={90}>
         <Clip src="game-battle-2" from={1.7} rate={0.6} zoom={[1, 1.04]} focus={[0.5, 0.55]} card={CARD} whip={false} />
@@ -82,6 +83,7 @@ export function LearningVideo(props: CampaignProps) {
       <Sfx at={540} src="tap" />
       <Sfx at={610} src="finale" volume={0.9} />
     </AbsoluteFill>
+    </VoiceCtx.Provider>
   )
 }
 
@@ -91,6 +93,7 @@ export function RpgVideo(props: CampaignProps) {
   const t = COPY[props.lang]
   const vo = props.lang === 'ms' ? (VO.C as VoiceLine[]) : []
   return (
+    <VoiceCtx.Provider value={vo}>
     <AbsoluteFill style={{ backgroundColor: C.ink }}>
       <Sequence durationInFrames={90}>
         <Clip src="lab-showcase" from={1} rate={0.8} zoom={[1.05, 1.15]} whip={false} />
@@ -159,6 +162,7 @@ export function RpgVideo(props: CampaignProps) {
       <Sfx at={558} src="bell" volume={0.5} />
       <Sfx at={620} src="finale" volume={0.9} />
     </AbsoluteFill>
+    </VoiceCtx.Provider>
   )
 }
 
@@ -175,6 +179,7 @@ export function CommunityVideo(props: CampaignProps) {
   const t = COPY[props.lang]
   const vo = props.lang === 'ms' ? (VO.D as VoiceLine[]) : []
   return (
+    <VoiceCtx.Provider value={vo}>
     <AbsoluteFill style={{ backgroundColor: C.ink }}>
       <Sequence durationInFrames={100}>
         <Clip src="lab-dropin" from={0} rate={0.9} zoom={[1, 1.08]} whip={false} />
@@ -216,6 +221,7 @@ export function CommunityVideo(props: CampaignProps) {
       <Sfx at={414} src="pop" />
       <Sfx at={480} src="finale" volume={0.9} />
     </AbsoluteFill>
+    </VoiceCtx.Provider>
   )
 }
 

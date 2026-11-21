@@ -5,254 +5,336 @@
     {
       "at": 12,
       "text": "Macam mana kalau belajar… sebenarnya satu pengembaraan?",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/A-01.mp3",
+      "seconds": 3.24,
+      "rateUsed": "+5%",
+      "start": 12
     },
     {
       "at": 138,
       "text": "Kenali, EDUVENTURE.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/A-02.mp3",
+      "seconds": 1.39,
+      "rateUsed": "+5%",
+      "start": 138
     },
     {
       "at": 196,
-      "text": "Belajar. Teroka. Berkembang. Takluk.",
-      "file": "",
-      "seconds": 0
+      "text": "Belajar, teroka, berkembang, takluk!",
+      "file": "audio/vo/ms/A-03.mp3",
+      "seconds": 2.45,
+      "rateUsed": "+5%",
+      "start": 196
     },
     {
       "at": 292,
-      "text": "Setiap raksasa akan tanya soalan sebenar.",
-      "file": "",
-      "seconds": 0
+      "text": "Setiap raksasa tanya soalan sebenar.",
+      "file": "audio/vo/ms/A-04.mp3",
+      "seconds": 2.04,
+      "rateUsed": "+5%",
+      "start": 292
     },
     {
       "at": 368,
-      "text": "Jawab betul, serangan anda kena!",
-      "file": "",
-      "seconds": 0
+      "text": "Jawab betul, serangan kena!",
+      "file": "audio/vo/ms/A-05.mp3",
+      "seconds": 1.8,
+      "rateUsed": "+5%",
+      "start": 368
     },
     {
       "at": 430,
-      "text": "Kumpul XP, emas, dan naik tahap.",
-      "file": "",
-      "seconds": 0
+      "text": "Dapat XP, emas, naik tahap!",
+      "file": "audio/vo/ms/A-06.mp3",
+      "seconds": 2.4,
+      "rateUsed": "+5%",
+      "start": 430
     },
     {
       "at": 486,
-      "text": "Cipta wira anda sendiri,",
-      "file": "",
-      "seconds": 0
+      "text": "Cipta wira sendiri,",
+      "file": "audio/vo/ms/A-07.mp3",
+      "seconds": 1.22,
+      "rateUsed": "+5%",
+      "start": 507
     },
     {
       "at": 557,
       "text": "tetaskan haiwan peliharaan,",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/A-08.mp3",
+      "seconds": 1.75,
+      "rateUsed": "+5%",
+      "start": 557
     },
     {
       "at": 617,
       "text": "kumpul bahan,",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/A-09.mp3",
+      "seconds": 0.98,
+      "rateUsed": "+5%",
+      "start": 617
     },
     {
       "at": 662,
-      "text": "dan bina pulau anda sendiri.",
-      "file": "",
-      "seconds": 0
+      "text": "bina pulau sendiri.",
+      "file": "audio/vo/ms/A-10.mp3",
+      "seconds": 1.2,
+      "rateUsed": "+5%",
+      "start": 662
     },
     {
       "at": 724,
       "text": "Teroka lima pulau,",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/A-11.mp3",
+      "seconds": 1.1,
+      "rateUsed": "+5%",
+      "start": 724
     },
     {
       "at": 783,
       "text": "bina kem bersama-sama,",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/A-12.mp3",
+      "seconds": 1.42,
+      "rateUsed": "+5%",
+      "start": 783
     },
     {
       "at": 848,
       "text": "dan tak lama lagi, main dengan kawan-kawan.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/A-13.mp3",
+      "seconds": 2.54,
+      "rateUsed": "+5%",
+      "start": 848
     },
     {
       "at": 964,
       "text": "Kami sedang membina sesuatu yang berbeza…",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/A-14.mp3",
+      "seconds": 2.09,
+      "rateUsed": "+5%",
+      "start": 964
     },
     {
       "at": 1030,
       "text": "dan kami mahu anda turut serta.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/A-15.mp3",
+      "seconds": 1.97,
+      "rateUsed": "+5%",
+      "start": 1032
     },
     {
       "at": 1098,
-      "text": "EDUVENTURE. Percuma dalam akses awal, di web dan Android.",
-      "file": "",
-      "seconds": 0
+      "text": "EDUVENTURE. Percuma, di web dan Android.",
+      "file": "audio/vo/ms/A-16.mp3",
+      "seconds": 3.62,
+      "rateUsed": "+5%",
+      "start": 1098
     },
     {
       "at": 1196,
-      "text": "Cuba sekarang, dan beritahu kami apa perlu dibaiki.",
-      "file": "",
-      "seconds": 0
+      "text": "Cuba sekarang, dan beritahu kami!",
+      "file": "audio/vo/ms/A-17.mp3",
+      "seconds": 1.92,
+      "rateUsed": "+5%",
+      "start": 1212
     }
   ],
   "B": [
     {
       "at": 6,
       "text": "Siapa kata belajar itu membosankan?",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/B-01.mp3",
+      "seconds": 2.06,
+      "rateUsed": "+5%",
+      "start": 6
     },
     {
       "at": 96,
       "text": "Soalan sebenar, dua puluh lima subjek.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/B-02.mp3",
+      "seconds": 2.3,
+      "rateUsed": "+5%",
+      "start": 96
     },
     {
       "at": 186,
-      "text": "Jawab salah? Permainan ini terangkan kenapa.",
-      "file": "",
-      "seconds": 0
+      "text": "Salah? Permainan terangkan kenapa.",
+      "file": "audio/vo/ms/B-03.mp3",
+      "seconds": 2.76,
+      "rateUsed": "+5%",
+      "start": 186
     },
     {
       "at": 274,
       "text": "Jawab betul, terus serang!",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/B-04.mp3",
+      "seconds": 1.68,
+      "rateUsed": "+5%",
+      "start": 274
     },
     {
       "at": 364,
       "text": "Naik tahap sambil belajar.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/B-05.mp3",
+      "seconds": 1.51,
+      "rateUsed": "+5%",
+      "start": 364
     },
     {
       "at": 454,
       "text": "Tulis kod yang sebenar.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/B-06.mp3",
+      "seconds": 1.44,
+      "rateUsed": "+5%",
+      "start": 454
     },
     {
       "at": 544,
       "text": "Belajar bahasa baharu.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/B-07.mp3",
+      "seconds": 1.37,
+      "rateUsed": "+5%",
+      "start": 544
     },
     {
       "at": 616,
-      "text": "Percuma dalam akses awal. Beritahu kami subjek apa nak ditambah.",
-      "file": "",
-      "seconds": 0
+      "text": "Percuma sekarang. Subjek apa nak kami tambah?",
+      "file": "audio/vo/ms/B-08.mp3",
+      "seconds": 3.43,
+      "rateUsed": "+5%",
+      "start": 616
     }
   ],
   "C": [
     {
       "at": 6,
-      "text": "Macam mana kalau anda boleh bina dunia anda sendiri?",
-      "file": "",
-      "seconds": 0
+      "text": "Macam mana kalau anda bina dunia sendiri?",
+      "file": "audio/vo/ms/C-01.mp3",
+      "seconds": 2.3,
+      "rateUsed": "+10%",
+      "start": 6
     },
     {
       "at": 96,
       "text": "Cipta wira anda.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/C-02.mp3",
+      "seconds": 1.18,
+      "rateUsed": "+10%",
+      "start": 96
     },
     {
       "at": 174,
       "text": "Kumpul kayu, batu dan herba,",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/C-03.mp3",
+      "seconds": 1.94,
+      "rateUsed": "+10%",
+      "start": 174
     },
     {
       "at": 244,
       "text": "dan bina pulau ikut cita rasa anda.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/C-04.mp3",
+      "seconds": 2.11,
+      "rateUsed": "+10%",
+      "start": 244
     },
     {
       "at": 334,
       "text": "Bela haiwan peliharaan.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/C-05.mp3",
+      "seconds": 1.58,
+      "rateUsed": "+10%",
+      "start": 334
     },
     {
       "at": 404,
       "text": "Tukar gaya wira anda.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/C-06.mp3",
+      "seconds": 1.49,
+      "rateUsed": "+10%",
+      "start": 404
     },
     {
       "at": 474,
       "text": "Teroka lima pulau,",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/C-07.mp3",
+      "seconds": 1.06,
+      "rateUsed": "+10%",
+      "start": 474
     },
     {
       "at": 562,
       "text": "dan bina kem bersama-sama.",
-      "file": "",
-      "seconds": 0
+      "file": "audio/vo/ms/C-08.mp3",
+      "seconds": 1.54,
+      "rateUsed": "+10%",
+      "start": 562
     },
     {
       "at": 624,
-      "text": "Dunia anda. Pengembaraan anda. Main percuma dalam akses awal.",
-      "file": "",
-      "seconds": 0
+      "text": "Dunia anda, pengembaraan anda. Main percuma!",
+      "file": "audio/vo/ms/C-09.mp3",
+      "seconds": 3.74,
+      "rateUsed": "+10%",
+      "start": 624
     }
   ],
   "D": [
     {
       "at": 6,
-      "text": "Kami ada satu idea… tapi kami perlukan bantuan anda.",
-      "file": "",
-      "seconds": 0
+      "text": "Kami ada idea… tapi perlukan bantuan anda.",
+      "file": "audio/vo/ms/D-01.mp3",
+      "seconds": 2.64,
+      "rateUsed": "+10%",
+      "start": 6
     },
     {
       "at": 104,
-      "text": "EDUVENTURE, permainan RPG pembelajaran yang boleh dimain sekarang, percuma.",
-      "file": "",
-      "seconds": 0
+      "text": "EDUVENTURE, RPG pembelajaran yang boleh dimain sekarang.",
+      "file": "audio/vo/ms/D-02.mp3",
+      "seconds": 3.41,
+      "rateUsed": "+10%",
+      "start": 104
     },
     {
       "at": 214,
-      "text": "Tapi ia belum siap. Di situlah anda boleh membantu.",
-      "file": "",
-      "seconds": 0
+      "text": "Tapi ia belum siap. Bantu kami.",
+      "file": "audio/vo/ms/D-03.mp3",
+      "seconds": 2.76,
+      "rateUsed": "+10%",
+      "start": 214
     },
     {
       "at": 296,
-      "text": "Subjek apa patut kami tambah?",
-      "file": "",
-      "seconds": 0
+      "text": "Subjek apa patut ditambah?",
+      "file": "audio/vo/ms/D-04.mp3",
+      "seconds": 1.58,
+      "rateUsed": "+10%",
+      "start": 302
     },
     {
       "at": 356,
-      "text": "Apa yang buat anda nak main setiap hari?",
-      "file": "",
-      "seconds": 0
+      "text": "Apa buat anda nak main setiap hari?",
+      "file": "audio/vo/ms/D-05.mp3",
+      "seconds": 2.04,
+      "rateUsed": "+10%",
+      "start": 356
     },
     {
       "at": 418,
-      "text": "Solo, atau dengan kawan? Komen di bawah.",
-      "file": "",
-      "seconds": 0
+      "text": "Solo atau dengan kawan? Komen di bawah!",
+      "file": "audio/vo/ms/D-06.mp3",
+      "seconds": 3.02,
+      "rateUsed": "+10%",
+      "start": 423
     },
     {
       "at": 486,
-      "text": "Cuba, uji, dan beritahu kami apa perlu dibaiki.",
-      "file": "",
-      "seconds": 0
+      "text": "Cuba, uji, beritahu kami!",
+      "file": "audio/vo/ms/D-07.mp3",
+      "seconds": 2.04,
+      "rateUsed": "+10%",
+      "start": 519
     }
   ]
 }

@@ -7,3 +7,4 @@ out/
 
 # Azure Speech key and other secrets: never commit
 .env*
+.venv/
