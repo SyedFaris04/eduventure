@@ -81,9 +81,9 @@ export function HomePage() {
           </div>
         </header>
 
-        <h1 className="text-center font-display text-3xl font-bold text-wood-dark md:text-start">{t('home.welcome', { name: character.data?.name ?? '' })}</h1>
+        <h1 className="text-center font-display text-3xl font-bold text-wood-dark md:text-start short:text-xl">{t('home.welcome', { name: character.data?.name ?? '' })}</h1>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] short:grid-cols-2 short:gap-3">
           <Panel title={t('home.yourHero')} className="flex flex-col items-center gap-3 md:self-start">
             {character.data && (
               <Snapshot subject={{ kind: 'hero', appearance: character.data.appearance }} px={220} alt={t('character.previewAlt', { name: character.data.name })} className="hero-bob w-[min(60vw,200px)]" />
@@ -94,7 +94,7 @@ export function HomePage() {
               <Pencil size={18} aria-hidden /> {t('home.editHero')}
             </Link>
             {/* The main action sits right under the hero so it is always near the top. */}
-            <Link to="/world" className={buttonClasses('primary', 'lg', 'w-full')}>
+            <Link to="/world" className={buttonClasses('primary', 'lg', 'w-full short:order-first')}>
               <Globe2 size={22} aria-hidden /> {t('home.enterWorld')}
             </Link>
             <div className="grid w-full grid-cols-2 gap-2">

@@ -76,3 +76,36 @@ test('every world panel fits a sideways phone', async ({ page }) => {
   await page.getByRole('button', { name: /Settings/ }).first().click()
   await expectFits(page, 'settings')
 })
+
+/** The element is on screen without scrolling. */
+async function expectInView(page: Page, name: string, locator: ReturnType<Page['getByRole']>) {
+  await expect(locator.first(), name).toBeVisible({ timeout: 30_000 })
+  await page.evaluate(() => window.scrollTo(0, 0))
+  const box = (await locator.first().boundingBox())!
+  const h = await page.evaluate(() => innerHeight)
+  expect.soft(box.y, `${name}: below the top`).toBeGreaterThanOrEqual(0)
+  expect.soft(box.y + box.height, `${name}: on screen without scrolling`).toBeLessThanOrEqual(h + 1)
+}
+
+test("each page's main button is on a sideways phone screen without scrolling", async ({ page, browser }) => {
+  test.setTimeout(300_000)
+  const out = await browser.newContext({ viewport: { width: 740, height: 360 }, hasTouch: true, isMobile: true })
+  const anon = await out.newPage()
+  await anon.goto('/welcome')
+  await expectInView(anon, 'welcome', anon.getByRole('button', { name: /Start Your Adventure/ }))
+  await anon.goto('/login')
+  await expectInView(anon, 'login', anon.getByRole('button', { name: 'Log in' }))
+  await out.close()
+
+  await newPlayer(page)
+  await page.goto('/home')
+  await expectInView(page, 'home', page.getByRole('link', { name: /Enter the World/ }))
+  await page.goto('/settings/academic')
+  await expectInView(page, 'learning profile', page.getByRole('button', { name: /^Next/ }))
+  await page.goto('/shop')
+  await expectInView(page, 'shop', page.getByRole('button', { name: /Buy/ }))
+  await page.goto('/academy')
+  await expectInView(page, 'code academy', page.getByRole('link', { name: /Python Basics/ }))
+  await page.goto('/hall')
+  await expectInView(page, 'language hall', page.getByRole('link', { name: /English for Malaysian students/ }))
+})

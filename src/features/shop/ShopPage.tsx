@@ -85,7 +85,7 @@ export function ShopPage() {
   return (
     <main className="relative min-h-dvh">
       <SceneBackdrop />
-      <div className="relative mx-auto flex max-w-5xl flex-col gap-5 px-4 py-6">
+      <div className="relative mx-auto flex max-w-5xl flex-col gap-5 px-4 py-6 short:gap-2 short:py-2">
         <header className="flex flex-wrap items-center gap-3">
           <Link to="/home" aria-label={t('common.back')} className={buttonClasses('secondary', 'md', 'px-3!')}>
             <ArrowLeft size={18} className="rtl:rotate-180" aria-hidden />
@@ -99,11 +99,11 @@ export function ShopPage() {
         </header>
 
         <FestivalStall />
-        <p className="rounded-xl bg-cream/85 px-4 py-2 text-sm font-semibold text-wood-dark">{t('shop.intro')}</p>
+        <p className="rounded-xl bg-cream/85 px-4 py-2 text-sm font-semibold text-wood-dark short:hidden">{t('shop.intro')}</p>
         {message && <FormMessage kind={message.kind}>{message.text}</FormMessage>}
 
         <Panel>
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 short:grid-cols-3 short:gap-2">
             {HERO_ITEMS.map((item) => {
               const mine = owned.data?.has(item.id) ?? false
               const wearing = look?.[item.slot] === item.id
@@ -111,14 +111,14 @@ export function ShopPage() {
               const lockedAt = isUnlocked(progression.data?.level ?? 1, 'shop_tier', item.rarity) ? null : unlockLevel('shop_tier', item.rarity)
               const name = t(`character.opt.${item.id}`)
               return (
-                <li key={item.id} className="flex flex-col items-center gap-2 rounded-2xl border-[3px] border-wood/40 bg-white/85 p-3" data-testid={`item-${item.id}`}>
+                <li key={item.id} className="flex flex-col items-center gap-2 rounded-2xl border-[3px] border-wood/40 bg-white/85 p-3 short:gap-1 short:p-2" data-testid={`item-${item.id}`}>
                   <div className="flex w-full items-center justify-between gap-2">
                     <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${RARITY_STYLE[item.rarity]}`}>{t(`shop.rarity.${item.rarity}`)}</span>
                     <span className="flex items-center gap-1 font-display font-bold text-wood-dark">
                       <Coins size={16} className="text-gold" aria-hidden /> {item.price}
                     </span>
                   </div>
-                  {look && <Snapshot subject={{ kind: 'hero', appearance: { ...look, [item.slot]: item.id } as Appearance }} px={120} alt={t('shop.previewAlt', { item: name })} className="w-[120px]" />}
+                  {look && <Snapshot subject={{ kind: 'hero', appearance: { ...look, [item.slot]: item.id } as Appearance }} px={120} alt={t('shop.previewAlt', { item: name })} className="w-[120px] short:w-20" />}
                   <p className="font-display text-lg font-semibold">{name}</p>
                   {wearing ? (
                     <p className="flex min-h-11 items-center gap-1 font-bold text-grass-dark">
