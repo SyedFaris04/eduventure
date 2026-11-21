@@ -37,20 +37,20 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
   const active = PRESET_IDS.find((id) => PRESETS[id].tilt === cam.tilt && PRESETS[id].distance === cam.distance)
 
   return (
-    <div className="pointer-events-auto absolute inset-0 z-30 grid place-items-center overflow-y-auto bg-ink/45 p-3">
-      <section role="dialog" aria-modal="true" aria-label={t('settings.title')} className="relative flex w-full max-w-md flex-col gap-4 rounded-3xl border-4 border-wood bg-cream p-4 shadow-[0_0_0_3px_var(--color-wood-dark),0_16px_40px_rgb(0_0_0/0.4)]">
+    <div className="pointer-events-auto absolute inset-0 z-30 grid place-items-center overflow-y-auto bg-ink/45 p-3 short:p-1">
+      <section role="dialog" aria-modal="true" aria-label={t('settings.title')} className="relative flex w-full max-w-md flex-col gap-4 rounded-3xl border-4 border-wood bg-cream p-4 shadow-[0_0_0_3px_var(--color-wood-dark),0_16px_40px_rgb(0_0_0/0.4)] short:grid short:max-h-full short:max-w-4xl short:grid-cols-2 short:grid-rows-[auto_minmax(0,1fr)] short:gap-x-5 short:gap-y-2 short:overflow-hidden short:p-3">
         <button type="button" onClick={onClose} aria-label={t('common.close')} className="absolute end-3 top-3 rounded-lg p-1 hover:bg-wood/10">
           <X aria-hidden />
         </button>
-        <h2 className="flex items-center gap-2 font-display text-2xl font-bold text-wood-dark">
+        <h2 className="flex items-center gap-2 font-display text-2xl font-bold text-wood-dark short:col-span-2 short:text-xl">
           <Settings aria-hidden /> {t('settings.title')}
         </h2>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 short:min-h-0 short:gap-1 short:overflow-y-auto short:pe-1">
           <p className="font-display font-semibold">{t('settings.camera')}</p>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 short:gap-1">
             {PRESET_IDS.map((id) => (
-              <Button key={id} variant={active === id ? 'primary' : 'secondary'} aria-pressed={active === id} onClick={() => cam.preset(id)}>
+              <Button key={id} variant={active === id ? 'primary' : 'secondary'} aria-pressed={active === id} onClick={() => cam.preset(id)} className="short:min-h-10 short:px-1 short:text-sm short:whitespace-nowrap">
                 {t(`settings.preset.${id}`)}
               </Button>
             ))}
@@ -60,19 +60,21 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
           <Slider label={t('settings.fov')} value={cam.fov} min={25} max={50} onChange={(fov) => cam.set({ fov })} />
           <Slider label={t('settings.rotation')} value={cam.yaw} min={0} max={359} onChange={(yaw) => cam.set({ yaw })} />
           <div className="flex flex-wrap items-center gap-2">
-            <Button variant="secondary" onClick={() => cam.rotate(-45)} aria-label={t('settings.turnLeft')}>
+            <Button variant="secondary" onClick={() => cam.rotate(-45)} aria-label={t('settings.turnLeft')} className="short:min-h-10">
               <RotateCcw size={16} aria-hidden />
             </Button>
-            <Button variant="secondary" onClick={() => cam.rotate(45)} aria-label={t('settings.turnRight')}>
+            <Button variant="secondary" onClick={() => cam.rotate(45)} aria-label={t('settings.turnRight')} className="short:min-h-10">
               <RotateCw size={16} aria-hidden />
             </Button>
-            <Button variant="secondary" onClick={cam.reset} aria-label={t('settings.reset')} className="ms-auto">
+            <Button variant="secondary" onClick={cam.reset} aria-label={t('settings.reset')} className="ms-auto short:min-h-10">
               <Undo2 size={16} aria-hidden /> {t('settings.resetShort')}
             </Button>
           </div>
-          <p className="text-xs text-wood-dark/80">{t('settings.hint')}</p>
+          <p className="text-xs text-wood-dark/80 short:hidden">{t('settings.hint')}</p>
         </div>
 
+        {/* Sideways phones: sound, graphics and visibility share the right-hand column. */}
+        <div className="flex flex-col gap-4 short:min-h-0 short:gap-2 short:overflow-y-auto">
         <div className="flex flex-col gap-2">
           <p className="flex items-center justify-between font-display font-semibold">
             {t('settings.sound')}
@@ -95,6 +97,7 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
           </div>
         </div>
         {import.meta.env.VITE_ROOMS_URL && <VisibilitySetting />}
+        </div>
       </section>
     </div>
   )
