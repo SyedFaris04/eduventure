@@ -34,6 +34,8 @@ import { THEMES } from './themes'
 import { windTime } from './wind'
 import { SlashChips } from './SlashChips'
 import { isPrivatePlace } from '../game/places'
+import { IslandItems } from './IslandItems'
+import { blockedTiles, type Placed } from '../features/island/rules'
 
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 
@@ -241,13 +243,14 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
 
 /** One place in 3D. Default export so it loads as its own chunk with three.js. */
 const NONE = new Set<string>()
+const NO_ITEMS: Placed[] = []
 
 /** Identity of a prompt, so the store only changes when the thing nearby changes. */
 const promptKey = (p: Prompt | null) => (!p ? '' : p.kind === 'harvest' ? `harvest:${p.x},${p.y}` : p.kind === 'workbench' || p.kind === 'board' ? p.kind : `${p.kind}:${p.id}`)
 
 const NO_FESTIVALS: FestivalKind[] = []
 
-export default function World3D({ hero, pet, returning = 0, regrowing = NONE, built = NONE, festivals = NO_FESTIVALS, map, atArrival = false, startAt }: { hero: Appearance; pet?: Pet | null; returning?: number; regrowing?: Set<string>; built?: Set<string>; festivals?: FestivalKind[]; map: GameMap; atArrival?: boolean; startAt?: { x: number; y: number } }) {
+export default function World3D({ hero, pet, returning = 0, regrowing = NONE, built = NONE, festivals = NO_FESTIVALS, map, atArrival = false, startAt, island = NO_ITEMS }: { hero: Appearance; pet?: Pet | null; returning?: number; regrowing?: Set<string>; built?: Set<string>; festivals?: FestivalKind[]; map: GameMap; atArrival?: boolean; startAt?: { x: number; y: number }; island?: Placed[] }) {
   const sim = useMemo(() => {
     const s = new WorldSim(map, Math.random, { atArrival, start: startAt })
     // Development only: /dev/world?at=x,y starts the hero on that tile (for screenshots).
@@ -260,6 +263,10 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
   useEffect(() => {
     sim.regrowing = regrowing
   }, [sim, regrowing])
+  // Things built on My island block walking as soon as they are placed.
+  useEffect(() => {
+    sim.extraBlocked = blockedTiles(island)
+  }, [sim, island])
   // Due topics can arrive after the world has opened: top the Returning monsters up and redraw.
   const [, redraw] = useState(0)
   useEffect(() => {
@@ -292,6 +299,7 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
       <Water map={map} sparkles={level === 'high' && !reduced} />
       <Props map={map} shadows={level === 'high'} />
       <HarvestNodes map={map} regrowing={regrowing} built={built} shadows={level === 'high'} />
+      {island.length > 0 && <IslandItems items={island} shadows={level === 'high'} />}
       {!reduced && <SlashChips />}
       <Decor map={map} fancy={level === 'high' && !reduced} />
       <FestivalDecor map={map} kinds={festive} fancy={level === 'high' && !reduced} shadows={level === 'high'} />
