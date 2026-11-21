@@ -28,7 +28,8 @@ export function Hero({ sim, appearance, reduced }: { sim: WorldSim; appearance: 
   const speed = useMemo(() => ({ get current() { return sim.hero.speed01 } }), [sim])
   const hitSeq = useGame((s) => s.hitSeq)
   const cheerSeq = useGame((s) => s.cheerSeq)
-  const oneShot = useLatestReaction(hitSeq, cheerSeq)
+  const slashSeq = useGame((s) => s.slashSeq)
+  const oneShot = useLatestReaction(hitSeq, cheerSeq, slashSeq)
 
   useFrame((_, dt) => {
     const g = ref.current

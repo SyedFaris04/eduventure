@@ -60,7 +60,7 @@ export function Joystick() {
 export function InteractButton() {
   const { t } = useTranslation()
   const prompt = useGame((s) => s.prompt)
-  const busy = useGame((s) => Boolean(s.dialogue || s.battle || s.boss || s.harvest || s.workbench || s.board))
+  const busy = useGame((s) => Boolean(s.dialogue || s.battle || s.boss || s.workbench || s.board))
   if (!prompt || busy) return null
   const label =
     prompt.kind === 'npc' ? t('world.talkTo', { name: t(`npc.${prompt.id}.name`) })

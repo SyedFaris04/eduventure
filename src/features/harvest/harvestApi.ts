@@ -19,6 +19,7 @@ export function harvestErrorKey(message: string | undefined) {
   const m = message ?? ''
   return /regrowing/i.test(m) ? 'harvest.errors.regrowing'
     : /pickaxe/i.test(m) ? 'harvest.errors.pickaxe'
+    : /^too fast$/i.test(m) ? 'harvest.errors.tooFast'
     : /too fast/i.test(m) ? 'battle.errors.tooFast'
     : /time's up/i.test(m) ? 'parents.timeUp'
     : /given already|already built/i.test(m) ? 'craft.errors.taken'
@@ -34,6 +35,9 @@ async function call<T>(fn: string, args?: Record<string, unknown>): Promise<T> {
   return data as T
 }
 
+export type SlashResult = { material: Material; gained: number; materials: Materials; missions_completed: string[] }
+/** One finished slash (three swings): the materials it gave. The server checks the node, regrowth, tools and pace. */
+export const slashHarvest = (place: string, x: number, y: number) => call<SlashResult>('slash_harvest', { p_place: place, p_x: x, p_y: y })
 export const startHarvest = (place: string, x: number, y: number) => call<{ material: Material; question: PublicQuestion }>('start_harvest', { p_place: place, p_x: x, p_y: y })
 export const answerHarvest = (answer: AnswerPayload) => call<HarvestResult>('answer_harvest', { p_answer: answer })
 

@@ -24,7 +24,7 @@ async function expectFits(page: Page, name: string) {
   expect.soft(r.page, `${name}: the page does not scroll`).toBeLessThanOrEqual(1)
 }
 
-const close = (page: Page) => set(page, { battle: null, boss: null, harvest: null, workbench: false, board: false, jetty: false, dialogue: null, settings: false })
+const close = (page: Page) => set(page, { battle: null, boss: null, workbench: false, board: false, jetty: false, dialogue: null, settings: false })
 
 test('every world panel fits a sideways phone', async ({ page }) => {
   test.setTimeout(300_000)
@@ -50,11 +50,6 @@ test('every world panel fits a sideways phone', async ({ page }) => {
 
   await set(page, { boss: 'guardian' })
   await expectFits(page, 'boss')
-  await close(page)
-
-  await set(page, { harvest: { x: 17, y: 6, material: 'wood' } })
-  await page.waitForTimeout(2500)
-  await expectFits(page, 'harvest')
   await close(page)
 
   await set(page, { workbench: true })

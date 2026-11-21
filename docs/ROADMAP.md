@@ -246,7 +246,7 @@ Spec: `docs/superpowers/specs/2026-11-19-teach-your-pet-design.md`. Research fea
 ### Bigger islands, harvesting and crafting — built and merged
 Spec: `docs/superpowers/specs/2026-11-20-harvest-craft-design.md`. Decision #40.
 - **Bigger islands:** every island is about twice the area, with a forest, a rocky slope, an herb meadow, new monster zones (1.5× the monsters) and a camp.
-- **Harvesting:** walk up to a fruit tree, rock, herb bush or crystal and press E (or tap the button). Answer one question: right gives 2, wrong gives 1 and explains why. Nodes regrow after 3 minutes. Crystal needs a pickaxe.
+- **Harvesting:** walk up to a fruit tree, rock, herb bush or crystal and slash it three times (the action button, or E). It gives 2, more with a better tool; no question since 2026-11-21 (decision #47). Nodes regrow after 3 minutes. Crystal needs a pickaxe.
 - **Crafting at the camp workbench:** stone and crystal axes and pickaxes (more per harvest), and seven crafted-only items: woodcutter cap, herb crown, crystal staff, rattan basket, and a leaf hat, crystal collar and forest-green dye for the pet.
 - **Camp builds:** everyone on an island gives materials to build its bench, lantern, flag and whiteboard stand together; finished builds appear in the world for all players.
 

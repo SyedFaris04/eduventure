@@ -10,7 +10,7 @@ import { playSfx } from '../../audio/engine'
 import { useSession } from '../authentication/useSession'
 import { ownedItemsKey, useOwnedItems } from '../shop/useShop'
 import { campKey, contribute, craft, HarvestError, materialsKey, useCamp, useMaterials, useRecipes, type MyMaterials, type Recipe } from './harvestApi'
-import { MATERIAL_ICON } from './HarvestPanel'
+import { MATERIAL_ICON } from './materialIcons'
 import { canAfford, giveAmount, type Cost } from './craftRules'
 
 type Tab = 'tools' | 'items' | 'camp'
