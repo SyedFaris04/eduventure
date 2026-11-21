@@ -29,9 +29,7 @@ delete from public.island_catalog where id not in (${items.map((it) => q(it.id))
   and not exists (select 1 from public.island_items i where i.item = island_catalog.id);
 
 delete from public.level_unlocks where kind = 'island_item';
-insert into public.level_unlocks (level, kind, key) values
-${locked.map((it) => `  (${it.level}, 'island_item', ${q(it.id)})`).join(',\n')};
-`
+${locked.length ? `insert into public.level_unlocks (level, kind, key) values\n${locked.map((it) => `  (${it.level}, 'island_item', ${q(it.id)})`).join(',\n')};\n` : ''}`
 
 const dir = 'supabase/migrations'
 const latest = readdirSync(dir).filter((f) => /^\d{14}_/.test(f)).sort().at(-1).slice(0, 14)

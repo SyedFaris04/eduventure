@@ -37,6 +37,7 @@ import { isPrivatePlace } from '../game/places'
 import { IslandItems } from './IslandItems'
 import { blockedTiles, type Placed } from '../features/island/rules'
 import { BuildGhost } from './BuildGhost'
+import { isBuildTap } from './buildTap'
 
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 
@@ -59,6 +60,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
   const ring = useRef<Mesh>(null)
   const ringAt = useRef(-1)
   const target = useRef(new Vector3(sim.hero.pos.x, 0, sim.hero.pos.y))
+  const buildDown = useRef<{ x: number; y: number; multi: boolean } | null>(null)
   const lastEmit = useRef(0)
   const lastStep = useRef(0)
   const panelClosedAt = useRef(-Infinity)
@@ -104,6 +106,8 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     const down = (e: PointerEvent) => {
       if (e.pointerType === 'mouse' && e.button === 2) dragging = true
       if (e.pointerType !== 'mouse') touches.set(e.pointerId, { x: e.clientX, y: e.clientY })
+      // A second finger turns a pending build tap into a camera gesture.
+      if (touches.size >= 2 && buildDown.current) buildDown.current.multi = true
     }
     const move = (e: PointerEvent) => {
       if (dragging) {
@@ -229,13 +233,22 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     const h = useGame.getState().buildHover
     if (!h || h.x !== x || h.y !== y) useGame.setState({ buildHover: { x, y } })
   }
+  // Only a clean tap builds (not a drag, pinch or twist of the camera).
+  const buildUp = (e: ThreeEvent<PointerEvent>) => {
+    const start = buildDown.current
+    buildDown.current = null
+    if (!useGame.getState().build.open || !isBuildTap(start, { x: e.nativeEvent.clientX, y: e.nativeEvent.clientY })) return
+    const g = worldToGrid(e.point.x, e.point.z)
+    // The counter only ever grows: the panel clears the tap after a placement, and a reused number would be ignored.
+    useGame.setState({ buildTap: { x: Math.floor(g.x), y: Math.floor(g.y), seq: ++buildTaps } })
+  }
   const tap = (e: ThreeEvent<PointerEvent>) => {
     // Only a left click or a single finger walks; the right button turns the camera.
     if (!e.nativeEvent.isPrimary || e.nativeEvent.button !== 0 || worldPaused()) return
     const g = worldToGrid(e.point.x, e.point.z)
-    // Building on My island: a tap places (or picks up) instead of walking.
+    // Building on My island: a tap places (or picks up) instead of walking, decided when the finger lifts.
     if (useGame.getState().build.open) {
-      useGame.setState((s) => ({ buildTap: { x: Math.floor(g.x), y: Math.floor(g.y), seq: (s.buildTap?.seq ?? 0) + 1 } }))
+      buildDown.current = { x: e.nativeEvent.clientX, y: e.nativeEvent.clientY, multi: false }
       return
     }
     sim.tap(g)
@@ -248,7 +261,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       <hemisphereLight args={['#bfe6ff', '#8bc34a', 1.15]} />
       <directionalLight ref={sun} color="#fff1d6" intensity={2.4} castShadow={level === 'high'} shadow-mapSize={[2048, 2048]} shadow-camera-left={-16} shadow-camera-right={16} shadow-camera-top={16} shadow-camera-bottom={-16} shadow-camera-far={50} shadow-bias={-0.0006} />
       {/* The tap target: an invisible floor over the whole island. */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[sim.map.width / 2, 0.001, sim.map.height / 2]} onPointerDown={tap} onPointerMove={hover} visible={false}>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[sim.map.width / 2, 0.001, sim.map.height / 2]} onPointerDown={tap} onPointerUp={buildUp} onPointerMove={hover} visible={false}>
         <planeGeometry args={[sim.map.width, sim.map.height]} />
       </mesh>
       <mesh ref={ring} geometry={ringGeo} material={ringMat} visible={false} />
@@ -258,6 +271,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
 
 /** One place in 3D. Default export so it loads as its own chunk with three.js. */
 const NONE = new Set<string>()
+let buildTaps = 0
 const NO_ITEMS: Placed[] = []
 
 /** Identity of a prompt, so the store only changes when the thing nearby changes. */

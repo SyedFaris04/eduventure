@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { MeshBasicMaterial } from 'three'
 import { useGame } from '../game/store'
-import { centredAt, fits, ITEM, size, type Placed } from '../features/island/rules'
+import { blocksHero, centredAt, fits, ITEM, size, type Placed } from '../features/island/rules'
 import { islandParts } from './props/islandProps'
 
 const TINT = {
@@ -21,7 +21,7 @@ export function BuildGhost({ items }: { items: Placed[] }) {
   if (!build.open || !id || !tile || !ITEM[id]) return null
   const d = ITEM[id]
   const at = centredAt(d, tile.x, tile.y, build.rot)
-  const ok = fits(items, id, at.x, at.y, build.rot, moving?.id)
+  const ok = fits(items, id, at.x, at.y, build.rot, moving?.id) && !blocksHero(id, at.x, at.y, build.rot, useGame.getState().player)
   const { w, h } = size(d, build.rot)
   return (
     <group position={[at.x + w / 2, 0.02, at.y + h / 2]} rotation={[0, (build.rot * Math.PI) / 2, 0]}>

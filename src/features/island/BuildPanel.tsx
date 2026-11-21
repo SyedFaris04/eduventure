@@ -11,7 +11,7 @@ import { useProgression } from '../character/useCharacter'
 import { materialsKey, useMaterials, type Materials, type MyMaterials } from '../harvest/harvestApi'
 import { MATERIAL_ICON } from '../harvest/materialIcons'
 import { IslandError, islandKey, moveItem, placeItem, removeItem, useIslandItems } from './islandApi'
-import { CATEGORIES, centredAt, fits, footprint, ITEM, ITEMS, type Category, type Placed } from './rules'
+import { blocksHero, CATEGORIES, centredAt, fits, footprint, ITEM, ITEMS, type Category, type Placed } from './rules'
 
 const CLOSED = { open: false, item: null, rot: 0, mode: 'place' as const, moving: null }
 
@@ -83,12 +83,17 @@ export function BuildPanel() {
       say('island.notFit', false)
       return
     }
+    if (blocksHero(id, at.x, at.y, b.rot, useGame.getState().player)) {
+      say('island.heroInTheWay', false)
+      return
+    }
     if (b.mode === 'move') {
       const movingId = b.moving!
       void run(async () => {
         const r = await moveItem(movingId, at.x, at.y, b.rot)
         setItems((list) => list.map((p) => (p.id === movingId ? r.item : p)))
         set({ moving: null })
+        useGame.setState({ buildTap: null }) // the ghost leaves the spot (on phones it would turn red over the new item)
         say('island.moved', true)
       })
       return
@@ -97,6 +102,7 @@ export function BuildPanel() {
       const r = await placeItem(id, at.x, at.y, b.rot)
       setItems((list) => [...list, r.item])
       setMaterials(r.materials)
+      useGame.setState({ buildTap: null })
       say('island.placed', true)
     })
     // Each tap (its seq) is handled once.

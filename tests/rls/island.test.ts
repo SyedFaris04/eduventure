@@ -66,6 +66,22 @@ describe.skipIf(!url || !key)('my island (live project)', () => {
     expect((await a.rpc('move_island_item', { p_id: placed.item.id, p_x: bush.x, p_y: bush.y, p_rot: 0 })).error?.message).toMatch(/fit/)
   }, 60_000)
 
+  it('records what was paid (a refund gives that back even if prices change later)', async () => {
+    const bush = (await a.rpc('my_island')).data.find((i: { item: string }) => i.item === 'bush_round')
+    expect(bush.paid).toEqual({ herbs: 3 })
+  })
+
+  it("nobody can read the table directly or touch another player's items", async () => {
+    const other = createClient(url!, key!, { auth: { persistSession: false, autoRefreshToken: false } })
+    expect((await other.auth.signInAnonymously()).error).toBeNull()
+    const mine = ((await a.rpc('my_island')).data as Item[])[0]
+    expect((await other.rpc('move_island_item', { p_id: mine.id, p_x: 20, p_y: 20, p_rot: 0 })).error?.message).toMatch(/No such item/)
+    expect((await other.rpc('remove_island_item', { p_id: mine.id })).error?.message).toMatch(/No such item/)
+    const direct = await other.from('island_items').select('id')
+    expect(direct.error !== null || (direct.data ?? []).length === 0).toBe(true)
+    expect((await a.rpc('my_island')).data.some((i: Item) => i.id === mine.id)).toBe(true)
+  })
+
   it('big items need their level', async () => {
     expect((await place('house_villa', 10, 10)).error?.message).toMatch(/level 10/i)
   })

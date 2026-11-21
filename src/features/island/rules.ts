@@ -45,3 +45,18 @@ export function blockedTiles(items: Placed[]): Set<string> {
   for (const p of items) if (ITEM[p.item]?.blocks) for (const t of footprint(ITEM[p.item], p.x, p.y, p.rot)) out.add(t)
   return out
 }
+
+/** Tiles the hero's body touches (radius 0.3, like walking): a blocking item there would trap them. */
+export function heroTiles(pos: { x: number; y: number }, r = 0.3): string[] {
+  const out = new Set<string>()
+  for (const x of [pos.x - r, pos.x + r]) for (const y of [pos.y - r, pos.y + r]) out.add(`${Math.floor(x)},${Math.floor(y)}`)
+  return [...out]
+}
+
+/** A blocking item that would cover the hero (the server can't see the hero, so the client refuses it). */
+export function blocksHero(item: string, x: number, y: number, rot: number, hero: { x: number; y: number }): boolean {
+  const d = ITEM[item]
+  if (!d?.blocks) return false
+  const covered = new Set(footprint(d, x, y, rot))
+  return heroTiles(hero).some((t) => covered.has(t))
+}

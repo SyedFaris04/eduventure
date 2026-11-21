@@ -1395,6 +1395,7 @@
       "fountain": "Fountain",
       "well": "Well",
       "bridge_small": "Little bridge"
-    }
+    },
+    "heroInTheWay": "Step aside first: it would land on you!"
   }
 }

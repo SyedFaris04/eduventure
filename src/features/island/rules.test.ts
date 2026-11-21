@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { AREA, blockedTiles, centredAt, fits, footprint, ITEM, ITEMS, MAX_ITEMS } from './rules'
+import { AREA, blockedTiles, blocksHero, centredAt, fits, footprint, heroTiles, ITEM, ITEMS, MAX_ITEMS } from './rules'
 import { UNLOCKS } from '../../game/unlocks'
 import en from '../../i18n/locales/en.json'
 
@@ -49,5 +49,13 @@ describe('island rules (the server checks the same)', () => {
       expect(names.item[i.id], i.id).toBeTruthy()
       expect(names.category[i.category], i.category).toBeTruthy()
     }
+  })
+
+  it("never lets a blocking item land on the hero (it would trap them); flowers and paths may", () => {
+    expect(heroTiles({ x: 10.5, y: 10.5 })).toEqual(['10,10'])
+    expect(heroTiles({ x: 10.9, y: 10.5 }).sort()).toEqual(['10,10', '11,10'])
+    expect(blocksHero('house_pondok', 9, 9, 0, { x: 10.5, y: 10.5 })).toBe(true)
+    expect(blocksHero('house_pondok', 12, 12, 0, { x: 10.5, y: 10.5 })).toBe(false)
+    expect(blocksHero('path_dirt', 10, 10, 0, { x: 10.5, y: 10.5 })).toBe(false)
   })
 })

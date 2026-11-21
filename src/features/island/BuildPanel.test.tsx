@@ -15,7 +15,8 @@ vi.mock('../../world3d/SnapshotImage', () => ({ Snapshot: () => null }))
 
 const { BuildPanel } = await import('./BuildPanel')
 const show = () => render(<QueryClientProvider client={new QueryClient()}><BuildPanel /></QueryClientProvider>)
-const tap = (x: number, y: number) => act(() => useGame.setState((s) => ({ buildTap: { x, y, seq: (s.buildTap?.seq ?? 0) + 1 } })))
+let taps = 0
+const tap = (x: number, y: number) => act(() => useGame.setState({ buildTap: { x, y, seq: ++taps } }))
 const house: Placed = { id: 7, item: 'house_pondok', x: 10, y: 10, rot: 0 }
 
 describe('BuildPanel', () => {
@@ -83,5 +84,33 @@ describe('BuildPanel', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Remove' }))
     tap(10, 11)
     expect(api.removeItem).toHaveBeenCalledWith(7)
+  })
+
+  it('never drops a blocking item on the hero (it would trap them)', () => {
+    useGame.setState({ player: { x: 12.5, y: 12.5 } })
+    show()
+    fireEvent.click(screen.getByRole('button', { name: 'Build' }))
+    fireEvent.click(screen.getByRole('tab', { name: 'Garden' }))
+    fireEvent.click(screen.getByRole('button', { name: /Round bush/ }))
+    tap(12, 12)
+    expect(api.placeItem).not.toHaveBeenCalled()
+    expect(screen.getByText(/Step aside first/)).toBeTruthy()
+    useGame.setState({ player: { x: 0, y: 0 } })
+  })
+
+  it('a second tap on the same spot right after placing is still handled (it does not fit)', async () => {
+    api.placeItem.mockImplementation(async () => {
+      state.items = [{ id: 3, item: 'bush_round', x: 14, y: 14, rot: 0 }]
+      return { item: state.items[0], materials: state.materials }
+    })
+    const view = show()
+    fireEvent.click(screen.getByRole('button', { name: 'Build' }))
+    fireEvent.click(screen.getByRole('tab', { name: 'Garden' }))
+    fireEvent.click(screen.getByRole('button', { name: /Round bush/ }))
+    tap(14, 14)
+    await screen.findByText('Placed!')
+    view.rerender(<QueryClientProvider client={new QueryClient()}><BuildPanel /></QueryClientProvider>)
+    tap(14, 14)
+    expect(screen.getByText("Doesn't fit there")).toBeTruthy()
   })
 })
