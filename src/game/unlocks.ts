@@ -1,4 +1,6 @@
-export type UnlockKind = 'helper' | 'boss' | 'shop_tier' | 'boat' | 'title' | 'pet'
+import islandItems from '../../content/island-items.json'
+
+export type UnlockKind = 'helper' | 'boss' | 'shop_tier' | 'boat' | 'title' | 'pet' | 'island_item'
 export type Unlock = { level: number; kind: UnlockKind; key: string }
 
 /** Copy of public.level_unlocks (tests/rls/unlocks.test.ts checks they match). The server enforces every gate. */
@@ -15,6 +17,8 @@ export const UNLOCKS: Unlock[] = [
   { level: 10, kind: 'title', key: 'island_explorer' },
   { level: 10, kind: 'pet', key: 'pet_adult' },
   { level: 15, kind: 'title', key: 'scholar_of_the_seas' },
+  // Island items above level 1 (from content/island-items.json, like the server's rows).
+  ...islandItems.items.filter((i) => i.level > 1).map((i) => ({ level: i.level, kind: 'island_item' as const, key: i.id })),
 ]
 
 /** Level an unlock arrives at; common shop items are always open; unknown keys never unlock. */
