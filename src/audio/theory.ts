@@ -2,7 +2,7 @@
  * Calm generative music: a soft pad, a sparse plucked melody and a quiet bass, all on a major pentatonic scale, so
  * any two notes sound fine together. Each mood changes the key, tempo and timbre. Pure and seedable for tests.
  */
-export type Mood = 'study' | 'kampung' | 'rainforest' | 'alpine' | 'tech' | 'kingdom'
+export type Mood = 'study' | 'kampung' | 'rainforest' | 'alpine' | 'tech' | 'kingdom' | 'cozy'
 export type Voice = 'pad' | 'lead' | 'bass'
 export type Note = { voice: Voice; midi: number; at: number; dur: number } // at and dur in beats within a 4-beat bar
 
@@ -22,6 +22,7 @@ export const MOODS: Record<Mood, { root: number; bpm: number; scale: number[]; l
   alpine: { root: 67, bpm: 72, scale: PENTATONIC, lead: 'triangle', busy: 0.4 }, // Mathematics Mountains: music box
   tech: { root: 57, bpm: 80, scale: PENTATONIC, lead: 'triangle', busy: 0.55 }, // Technology City: soft arpeggios
   kingdom: { root: 64, bpm: 74, scale: PENTATONIC, lead: 'sine', busy: 0.45 }, // Language Kingdom: harp-like
+  cozy: { root: 62, bpm: 68, scale: PENTATONIC, lead: 'sine', busy: 0.35 }, // My island: unhurried, homely
 }
 
 export const midiToHz = (midi: number) => 440 * 2 ** ((midi - 69) / 12)

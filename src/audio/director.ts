@@ -4,7 +4,7 @@ import { useGame } from '../game/store'
 import { usePlace } from '../game/placeStore'
 import type { Mood } from './theory'
 
-const ISLAND_MOOD: Record<string, Mood> = { kampung: 'kampung', rainforest: 'rainforest', alpine: 'alpine', tech: 'tech', kingdom: 'kingdom' }
+const ISLAND_MOOD: Record<string, Mood> = { kampung: 'kampung', rainforest: 'rainforest', alpine: 'alpine', tech: 'tech', kingdom: 'kingdom', cozy: 'cozy' }
 
 /**
  * Which music plays where: each island has its mood in the world; everywhere else plays the calm study mood.
@@ -20,7 +20,14 @@ export function musicFor(path: string, islandTheme: string, panelOpen: boolean):
 // Runtime: follow the page, the island and open panels; start on the first tap (browsers need one).
 // ---------------------------------------------------------------------------------------------------------------
 
-const PLACE_THEME: Record<string, string> = { greenhaven: 'kampung', science_island: 'rainforest', mathematics_mountains: 'alpine', technology_city: 'tech', language_kingdom: 'kingdom' }
+export const PLACE_THEME: Record<string, string> = {
+  greenhaven: 'kampung',
+  science_island: 'rainforest',
+  mathematics_mountains: 'alpine',
+  technology_city: 'tech',
+  language_kingdom: 'kingdom',
+  my_island: 'cozy',
+}
 let speaking = false
 
 /** While a word is spoken in the Language Hall the music steps back further. */
