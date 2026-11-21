@@ -1,6 +1,6 @@
 import { startMusicDirector } from '../audio/director'
 import { Capacitor } from '@capacitor/core'
-import type { ComponentType } from 'react'
+import { useSyncExternalStore, type ComponentType } from 'react'
 import { createBrowserRouter, Link, RouterProvider, useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { LoadingScreen } from '../features/loading/LoadingScreen'
@@ -129,12 +129,15 @@ startMusicDirector(router)
 // Inside the Android app: the back button, status bar and splash screen.
 if (Capacitor.isNativePlatform()) void import('./native').then((m) => m.startNative(router))
 
+const currentPath = () => router.state.location.pathname
+
 export function App() {
+  const path = useSyncExternalStore(router.subscribe, currentPath)
   return (
     <>
       <RouterProvider router={router} />
       {/* The Android app is locked to landscape; browsers on phones are asked to turn sideways. */}
-      {!Capacitor.isNativePlatform() && <RotatePrompt />}
+      {!Capacitor.isNativePlatform() && <RotatePrompt path={path} />}
     </>
   )
 }

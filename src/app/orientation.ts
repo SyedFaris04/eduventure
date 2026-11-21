@@ -1,7 +1,24 @@
-/** Phones play sideways (owner's choice). A phone: a touch screen whose short side is under 600 CSS px. */
-type Screen = { width: number; height: number; coarse: boolean }
-export const isPhone = ({ width, height, coarse }: Screen) => coarse && Math.min(width, height) < 600
-export const needsRotate = (s: Screen) => isPhone(s) && s.height > s.width
+/**
+ * Phones play sideways (owner's choice). A phone: a touch device whose *screen* (not window: a tablet in split screen
+ * has a narrow window) has a short side under 600 CSS px.
+ */
+export const isPhone = ({ screenShort, coarse }: { screenShort: number; coarse: boolean }) => coarse && screenShort < 600
+
+// Pages people open from a message or use outside play stay usable upright: a parent approving from WhatsApp, a
+// password reset from email, teachers and admins.
+const UPRIGHT_OK = ['/parent', '/teacher', '/admin', '/login', '/signup', '/reset-password', '/update-password', '/styleguide']
+export const rotateApplies = (path: string) => !UPRIGHT_OK.some((p) => path === p || path.startsWith(`${p}/`))
+
+export const needsRotate = (s: { width: number; height: number; screenShort: number; coarse: boolean }, path: string) =>
+  isPhone(s) && s.height > s.width && rotateApplies(path)
+
+/** This device, now. */
+export const screenNow = () => ({
+  width: window.innerWidth,
+  height: window.innerHeight,
+  screenShort: Math.min(window.screen?.width ?? window.innerWidth, window.screen?.height ?? window.innerHeight),
+  coarse: window.matchMedia?.('(pointer: coarse)').matches ?? false,
+})
 
 type Lockable = { lock?: (o: string) => Promise<void> }
 

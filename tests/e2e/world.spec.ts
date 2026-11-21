@@ -69,23 +69,23 @@ test('walk, talk to the Elder, win a battle; Home shows the server totals after 
   }
 })
 
-test.describe('360 × 740 phone', () => {
-  test.use({ viewport: { width: 360, height: 740 }, hasTouch: true, isMobile: true })
+test.describe('phone (plays sideways, decision #46)', () => {
+  test.use({ viewport: { width: 740, height: 360 }, hasTouch: true, isMobile: true })
 
-  test('world controls fit without overlap or horizontal scroll', async ({ page }) => {
+  test('held upright it asks to turn; sideways the controls fit without overlap or horizontal scroll', async ({ page }) => {
     test.setTimeout(180_000)
     await newPlayer(page)
     await enterWorld(page)
-    // Turning the phone and back must leave the layout intact.
-    await page.setViewportSize({ width: 740, height: 360 })
-    await page.waitForTimeout(400)
     await page.setViewportSize({ width: 360, height: 740 })
+    await expect(page.getByRole('alertdialog', { name: 'Turn your phone sideways' })).toBeVisible()
+    await page.setViewportSize({ width: 740, height: 360 })
+    await expect(page.getByRole('alertdialog')).toHaveCount(0)
     await page.waitForTimeout(400)
-    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(360)
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(740)
     const hud = (await page.getByRole('region', { name: 'Your hero' }).boundingBox())!
-    const map = (await page.getByRole('button', { name: /Enlarge map/ }).boundingBox())!
     const pad = (await page.getByLabel('Movement pad').boundingBox())!
-    expect(map.y).toBeGreaterThanOrEqual(hud.y + hud.height) // minimap sits below the player card
-    expect(pad.y + pad.height).toBeLessThanOrEqual(740)
+    const overlap = hud.x < pad.x + pad.width && pad.x < hud.x + hud.width && hud.y < pad.y + pad.height && pad.y < hud.y + hud.height
+    expect(overlap).toBe(false)
+    expect(pad.y + pad.height).toBeLessThanOrEqual(360)
   })
 })

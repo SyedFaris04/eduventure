@@ -68,7 +68,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
     result && correctIds.includes(id) ? 'border-grass-dark bg-grass/30' : isPicked && result ? 'border-danger bg-danger/15' : isPicked ? 'border-wood-dark bg-gold/40' : 'border-wood/50 bg-white hover:border-wood'
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 short:space-y-2">
       <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
         <span className="rounded-full bg-water/40 px-2 py-0.5 text-ink">{t(`battle.subject.${question.subject}`, { defaultValue: question.subject })}</span>
         <span className="text-gold" aria-label={t('battle.difficulty', { n: question.difficulty })}>
@@ -94,7 +94,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
               type="button"
               disabled={locked}
               onClick={() => submit({ choice: o.id })}
-              className={`flex min-h-12 items-center gap-2 rounded-2xl border-[3px] px-3 py-2 text-start font-semibold transition disabled:cursor-default ${choiceStyle(o.id, Boolean(chosen && 'choice' in chosen && chosen.choice === o.id))}`}
+              className={`flex min-h-12 items-center gap-2 rounded-2xl border-[3px] px-3 py-2 text-start font-semibold transition disabled:cursor-default short:min-h-10 short:py-1 ${choiceStyle(o.id, Boolean(chosen && 'choice' in chosen && chosen.choice === o.id))}`}
             >
               <span className="grid size-7 shrink-0 place-items-center rounded-full bg-wood text-sm text-cream">{question.type === 'mcq' ? String.fromCharCode(65 + i) : i ? '✗' : '✓'}</span>
               {o.text}
@@ -117,7 +117,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
                   aria-pressed={on}
                   disabled={locked}
                   onClick={() => setPicked((p) => (on ? p.filter((x) => x !== o.id) : [...p, o.id]))}
-                  className={`flex min-h-12 items-center gap-2 rounded-2xl border-[3px] px-3 py-2 text-start font-semibold transition disabled:cursor-default ${choiceStyle(o.id, on)}`}
+                  className={`flex min-h-12 items-center gap-2 rounded-2xl border-[3px] px-3 py-2 text-start font-semibold transition disabled:cursor-default short:min-h-10 short:py-1 ${choiceStyle(o.id, on)}`}
                 >
                   <span className={`grid size-6 shrink-0 place-items-center rounded-md border-2 border-wood-dark ${on ? 'bg-wood text-cream' : 'bg-white'}`}>{on && <Check size={14} aria-hidden />}</span>
                   {o.text}
@@ -126,7 +126,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
             })}
           </div>
           {!result && (
-            <Button onClick={() => submit({ choices: picked })} disabled={locked || picked.length === 0}>
+            <Button onClick={() => submit({ choices: picked })} disabled={locked || picked.length === 0} className="short:sticky short:bottom-0">
               {t('battle.submit')}
             </Button>
           )}
@@ -137,7 +137,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
         <div className="space-y-2">
           <ol className="space-y-2">
             {order.map((o, i) => (
-              <li key={o.id} className="flex items-center gap-2 rounded-2xl border-[3px] border-wood/50 bg-white px-3 py-2 font-semibold">
+              <li key={o.id} className="flex items-center gap-2 rounded-2xl border-[3px] border-wood/50 bg-white px-3 py-2 font-semibold short:py-1">
                 <span className="grid size-7 shrink-0 place-items-center rounded-full bg-wood text-sm text-cream">{i + 1}</span>
                 <span className="flex-1">{o.text}</span>
                 <button ref={i === 0 ? (el) => void (first.current = el) : undefined} type="button" aria-label={t('battle.moveUp', { item: o.text })} disabled={locked || i === 0} onClick={() => move(i, -1)} className="rounded-lg border-2 border-wood/50 p-1 disabled:opacity-30">
@@ -150,7 +150,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
             ))}
           </ol>
           {!result && (
-            <Button onClick={() => submit({ order: order.map((o) => o.id) })} disabled={locked}>
+            <Button onClick={() => submit({ order: order.map((o) => o.id) })} disabled={locked} className="short:sticky short:bottom-0">
               {t('battle.submit')}
             </Button>
           )}
@@ -160,7 +160,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
       {question.type === 'matching' && (
         <div className="space-y-2">
           {(question.options as Pairs).left.map((l, i) => (
-            <label key={l.id} className="flex flex-wrap items-center gap-2 rounded-2xl border-[3px] border-wood/50 bg-white px-3 py-2 font-semibold">
+            <label key={l.id} className="flex flex-wrap items-center gap-2 rounded-2xl border-[3px] border-wood/50 bg-white px-3 py-2 font-semibold short:py-1">
               <span className="min-w-24 flex-1">{l.text}</span>
               <select
                 ref={i === 0 ? (el) => void (first.current = el) : undefined}
@@ -181,7 +181,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
             </label>
           ))}
           {!result && (
-            <Button onClick={() => submit({ pairs })} disabled={locked || Object.keys(pairs).length < (question.options as Pairs).left.length}>
+            <Button onClick={() => submit({ pairs })} disabled={locked || Object.keys(pairs).length < (question.options as Pairs).left.length} className="short:sticky short:bottom-0">
               {t('battle.submit')}
             </Button>
           )}

@@ -136,6 +136,21 @@ function Boss({ id }: { id: BossId }) {
 
   const roundKey = roundKeys[(run?.round ?? 1) - 1]
 
+  // The Run away / Continue buttons: under the question, or (sideways phones) in the left column, always on screen.
+  const actions = (className: string) => (
+    <div className={className}>
+      {!finished ? (
+        <Button variant="secondary" onClick={() => void close(true)} disabled={busy}>
+          <Flag size={18} aria-hidden /> {t('battle.flee')}
+        </Button>
+      ) : (
+        <span />
+      )}
+      {result && !finished && <Button onClick={next}>{t('battle.continue')}</Button>}
+      {(finished || (error && !run)) && <Button onClick={() => void close(false)}>{t('battle.backToVillage')}</Button>}
+    </div>
+  )
+
   return (
     <div className="pointer-events-auto absolute inset-0 z-30 grid place-items-center overflow-y-auto bg-ink/55 p-3 short:p-1">
       <section role="dialog" aria-modal="true" aria-label={t(bossText(shown, 'title'))} className="w-full max-w-xl rounded-3xl border-4 border-wood bg-cream shadow-[0_0_0_3px_var(--color-wood-dark),0_16px_40px_rgb(0_0_0/0.4)] short:flex short:max-h-full short:max-w-4xl short:overflow-hidden">
@@ -169,6 +184,7 @@ function Boss({ id }: { id: BossId }) {
               </>
             )}
           </div>
+          {actions('hidden w-full flex-col gap-2 short:flex')}
         </header>
 
         <div className="space-y-4 p-4 short:min-h-0 short:flex-1 short:space-y-2 short:overflow-y-auto short:p-3">
@@ -202,17 +218,7 @@ function Boss({ id }: { id: BossId }) {
             </div>
           )}
 
-          <div className="flex justify-between gap-2 border-t-2 border-wood/20 pt-3">
-            {!finished ? (
-              <Button variant="secondary" onClick={() => void close(true)} disabled={busy}>
-                <Flag size={18} aria-hidden /> {t('battle.flee')}
-              </Button>
-            ) : (
-              <span />
-            )}
-            {result && !finished && <Button onClick={next}>{t('battle.continue')}</Button>}
-            {(finished || (error && !run)) && <Button onClick={() => void close(false)}>{t('battle.backToVillage')}</Button>}
-          </div>
+          {actions('flex justify-between gap-2 border-t-2 border-wood/20 pt-3 short:hidden')}
         </div>
       </section>
     </div>

@@ -109,3 +109,45 @@ test("each page's main button is on a sideways phone screen without scrolling", 
   await page.goto('/hall')
   await expectInView(page, 'language hall', page.getByRole('link', { name: /English for Malaysian students/ }))
 })
+
+// The longest question of each hard type, so the check uses the worst case the game really shows.
+import { readdirSync, readFileSync } from 'node:fs'
+type Opt = { id: string; text: string }
+type Src = { id: string; type: string; prompt: string; options: Opt[] | { left: Opt[]; right: Opt[] }; explanation: string; difficulty: number; subject: string }
+const dir = new URL('../../content/questions/', import.meta.url)
+const bank = readdirSync(dir).filter((f) => f.endsWith('.json')).flatMap((f) => (JSON.parse(readFileSync(new URL(f, dir), 'utf8')) as { questions: Src[] }).questions)
+const longest = (type: string) => bank.filter((q) => q.type === type).sort((a, b) => JSON.stringify(b.options).length + b.prompt.length - JSON.stringify(a.options).length - a.prompt.length)[0]
+
+for (const size of [{ width: 740, height: 360 }, { width: 667, height: 320 }])
+  test(`battle buttons stay on screen for every question type at ${size.width}×${size.height}`, async ({ page }) => {
+    test.setTimeout(300_000)
+    await page.setViewportSize(size)
+    await newPlayer(page)
+    await enterWorld(page)
+    for (const type of ['multi_select', 'ordering', 'matching']) {
+      const q = longest(type)
+      // The server picks questions at random; this one is swapped in, and marked wrong with its real explanation.
+      await page.route('**/rest/v1/rpc/start_encounter', async (route) => {
+        const real = await (await route.fetch()).json()
+        await route.fulfill({ json: { ...real, pet_guess: null, question: { id: q.id, type: q.type, prompt: q.prompt, options: q.options, unit: null, difficulty: q.difficulty, subject: q.subject, status: 'published' } } })
+      })
+      await page.route('**/rest/v1/rpc/answer_question', (route) =>
+        route.fulfill({ json: { correct: false, correct_answer: [], explanation: q.explanation, wrong_reason: q.explanation, damage: 0, farmed: false, xp_gained: 0, gold_gained: 0, bonus: { xp: 0, gold: 0 }, totals: { xp: 0, level: 1, gold: 0 }, leveled_up: false, second_chance: false, missions_completed: [] } }),
+      )
+      const monster = await page.evaluate(() => (window as unknown as { __game: Store }).__game.getState().monsters[0])
+      await set(page, { battle: { monsterId: monster.id, monster: monster.kind } })
+      const dialog = page.getByRole('dialog')
+      const answer = dialog.getByRole('button', { name: 'Answer' })
+      await answer.waitFor({ timeout: 30_000 })
+      await expectInView(page, `${type}: Answer`, answer)
+      if (type === 'multi_select') await dialog.locator('button[aria-pressed]').first().click()
+      if (type === 'matching')
+        for (const select of await dialog.getByRole('combobox').all()) await select.selectOption({ index: 1 })
+      await answer.click()
+      const next = dialog.getByRole('button', { name: 'Continue' })
+      await expectInView(page, `${type}: Continue after answering`, next)
+      await expectInView(page, `${type}: Run away`, dialog.getByRole('button', { name: /Run away/ }))
+      await page.unrouteAll()
+      await close(page)
+    }
+  })
