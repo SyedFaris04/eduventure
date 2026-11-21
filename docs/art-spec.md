@@ -73,9 +73,13 @@ Monsters are code-built and animated in code: idle breathing, hopping, a squash 
 
 This is unchanged: `public/assets/loading/eduventure-loading.png`.
 
-## Music (optional)
-The game composes calm music in code. To use your own tracks instead, put MP3 files in `public/assets/audio/` named
-`music-<mood>.mp3` and list them in `public/assets/audio/manifest.json` (for example `["music-study.mp3"]`). Moods:
-`study` (Home, lessons, other pages), `kampung` (Greenhaven), `rainforest` (Science Island), `alpine` (Mathematics
-Mountains), `tech` (Technology City), `kingdom` (Language Kingdom). Use calm, loopable tracks you own or that are
-licensed for commercial use (for example CC0), about 1–3 minutes, normalised quieter than −16 LUFS.
+## Music and sound effects
+The game ships recorded CC0 tracks and effects in `public/assets/audio/`, each listed in `manifest.json` and credited in
+`CREDITS.md` (a test checks all three agree). Anything not listed falls back to the music and effects made in code.
+
+- **Music:** `music-<mood>.mp3`. Moods: `study` (Home, lessons, other pages), `kampung` (Greenhaven), `rainforest`
+  (Science Island), `alpine` (Mathematics Mountains), `tech` (Technology City), `kingdom` (Language Kingdom), `cozy`
+  (My island). Calm, loopable, about 1–3 minutes, levelled to −16 LUFS.
+- **Effects:** `sfx-<name>.mp3`, with the names in `src/audio/sfx.ts` (tap, correct, wrong, coin, …). Short, mono, peak
+  around −6 dB.
+- **Licence:** only files you own or that allow commercial use (CC0 is simplest). Add each one to `CREDITS.md`.

@@ -91,4 +91,9 @@ describe('which music plays where', () => {
     expect(musicFor('/academy', 'kampung', false)).toEqual({ mood: 'study', level: 1 })
     expect(musicFor('/home', 'alpine', false)).toEqual({ mood: 'study', level: 1 })
   })
+
+  it('My island has its own cozy music', async () => {
+    const { musicFor, PLACE_THEME } = await import('./director')
+    expect(musicFor('/world', PLACE_THEME.my_island, false)).toEqual({ mood: 'cozy', level: 1 })
+  })
 })

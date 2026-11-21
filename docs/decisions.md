@@ -145,3 +145,13 @@ The owner wanted harvesting to feel like action: near a tree, rock, herb bush or
 ## 48. My island: a private island each, built from harvested materials (2026-11-21)
 The owner wanted players to use what they harvest to build their own home and area, creatively, with a lot to choose from. "My island" is first on the boatman's list: a private 32 × 32 place (no monsters, harvest nodes, camp, festival decor or multiplayer room) with a 24 × 24 build area (x and y 4–27). Build mode (🔨) lists 50 items in 8 groups (houses, garden, trees, paths and fences, lights, furniture, Malaysian, water), each with a footprint, a blocking flag and a cost in wood, stone, herbs and crystal; 15 unlock by level through the shared `level_unlocks` list (kind `island_item`), so level-ups announce them. The catalogue's one source is `content/island-items.json`: `npm run gen:island` writes its seed migration and the client imports the same file. A tap places the chosen item centred on that tile (Turn rotates by 90°); Move picks an item up and puts it down; Remove refunds every material. The server decides everything (`place_island_item`, `move_island_item`, `remove_island_item`: inside the area, no overlap, level, materials, at most 400 items, one at a time per player, the daily play limit for placing and moving), and the client predicts with the same rules (`src/features/island/rules.ts`) so the ghost turns red before a refused tap. Items are drawn in batches by kind, block walking as soon as they are placed, and show as 3D thumbnails on the cards. Visiting other islands, interiors and signs with text are left for later.
 
+
+## 49. Recorded CC0 music and effects, code sound as the fallback (2026-11-21)
+The owner wanted cuter, more attractive sound and music and chose recorded, free-licence files over better code-made
+sound. Each mood (plus a new `cozy` mood for My island) plays a recorded loop, and 13 effects use recorded clips; defeat,
+splash, chirp and sparkle stay code-made (already gentle, and no recorded clip fitted). Only CC0 sources are used, so
+there is no attribution duty or commercial limit; every file is still credited in `public/assets/audio/CREDITS.md`, and
+a test checks the manifest, the files and the credits agree. Music is levelled to −16 LUFS, effects to a −6 dB peak.
+Recorded music skips the echo the code music uses. Files missing from the manifest, still loading, or failing to load
+fall back to the code sound, so nothing goes silent. The picks were made without listening (by licence, length and
+measurement); the owner listens and swaps any file by name.

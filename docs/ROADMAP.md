@@ -235,6 +235,7 @@ Spec: `docs/superpowers/specs/2026-11-18-sound-design.md`.
 - **Calm music composed in code:** a soft pad, a gentle melody and a quiet bass on a pentatonic scale, one mood per island plus a calm "study" mood for Home and lessons; moods crossfade; half volume in battles and lessons, lower still while a word is spoken.
 - **Sound effects:** taps, right and (soft) wrong answers, victory, defeat, coins, level up, missions, footsteps, boat splash, pet chirps and sparkles, shop purchases, lesson complete.
 - **Controls:** sound on/off plus Music and Effects sliders in ⚙️ Settings; the Home speaker button still mutes everything. Nothing plays before the first tap.
+- **Recorded sound (2026-11-21):** cheerful CC0 tracks, one per mood plus a cozy one for My island, and recorded CC0 effects (Kenney) for taps, answers, coins, harvesting, steps and jingles; the code versions remain as the fallback. Sources in `public/assets/audio/CREDITS.md`.
 - **Your own tracks:** see `docs/art-spec.md` (Music).
 
 ### Teach your pet and pet adventures — built and merged
