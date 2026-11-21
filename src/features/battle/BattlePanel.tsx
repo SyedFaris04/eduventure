@@ -218,7 +218,7 @@ export function HpBar({ label, name, value, max, colour }: { label: string; name
   const pct = Math.round((value / max) * 100)
   return (
     <div>
-      <div className="flex justify-between text-xs font-bold text-ink">
+      <div className="flex justify-between gap-2 text-xs font-bold text-ink">
         <span className="truncate">{name}</span>
         <span>
           {value} / {max}
