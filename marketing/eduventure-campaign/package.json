@@ -1,0 +1,25 @@
+{
+  "name": "eduventure-campaign",
+  "private": true,
+  "type": "module",
+  "description": "EDUVENTURE promotional videos (Remotion). See documentation/editing-guide.md.",
+  "scripts": {
+    "studio": "remotion studio source/index.ts --public-dir assets",
+    "render:all": "node source/render-all.mjs",
+    "record": "cd ../.. && npx playwright test -c marketing/eduventure-campaign/source/recording/playwright.config.ts"
+  },
+  "dependencies": {
+    "@fontsource/fredoka": "5.3.0",
+    "@fontsource/nunito": "5.3.0",
+    "@remotion/cli": "4.0.545",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.545",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "ffmpeg-static": "5.2.0",
+    "typescript": "5.9.3"
+  }
+}

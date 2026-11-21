@@ -1,0 +1,6 @@
+node_modules/
+# Large binaries, kept on this laptop (re-create with the recording scripts and npm run render:all; back them up separately)
+assets/recordings/
+exports/
+test-results/
+out/
