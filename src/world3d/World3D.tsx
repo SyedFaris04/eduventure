@@ -32,6 +32,7 @@ import { decoratedKinds } from './props/festivalProps'
 import type { FestivalKind } from '../features/festival/festivalRules'
 import { THEMES } from './themes'
 import { windTime } from './wind'
+import { SlashChips } from './SlashChips'
 
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 
@@ -70,7 +71,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       if (prompt?.kind === 'npc') useGame.setState(prompt.id === 'boatman' ? { jetty: true } : prompt.id === 'teacher' ? { academy: 'code' } : prompt.id === 'linguist' ? { academy: 'language' } : { dialogue: { npc: prompt.id, page: 0 } })
       if (prompt?.kind === 'monster') useGame.setState({ battle: { monsterId: prompt.id, monster: prompt.monster, returning: prompt.returning } })
       if (prompt?.kind === 'boss') useGame.setState({ boss: prompt.id })
-      if (prompt?.kind === 'harvest') useGame.setState({ harvest: { x: prompt.x, y: prompt.y, material: prompt.material } })
+      if (prompt?.kind === 'harvest') useGame.setState((s) => ({ slashReq: { x: prompt.x, y: prompt.y, material: prompt.material, seq: (s.slashReq?.seq ?? 0) + 1 } }))
       if (prompt?.kind === 'workbench') useGame.setState({ workbench: true })
       if (prompt?.kind === 'board') useGame.setState({ board: true })
     }
@@ -290,6 +291,7 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
       <Water map={map} sparkles={level === 'high' && !reduced} />
       <Props map={map} shadows={level === 'high'} />
       <HarvestNodes map={map} regrowing={regrowing} built={built} shadows={level === 'high'} />
+      {!reduced && <SlashChips />}
       <Decor map={map} fancy={level === 'high' && !reduced} />
       <FestivalDecor map={map} kinds={festive} fancy={level === 'high' && !reduced} shadows={level === 'high'} />
       <Npcs sim={sim} reduced={reduced} />

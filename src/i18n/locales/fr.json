@@ -1072,7 +1072,7 @@
       "crystal": "Miner le cristal"
     },
     "useWorkbench": "Utiliser l’établi",
-    "hint": "Réponds à une question pour récolter. Une bonne réponse rapporte plus !",
+    "hint": "Touche le bouton de coupe trois fois pour récolter.",
     "gained": "+{{n}} {{name}}",
     "done": "Terminé",
     "materials": "Tes matériaux",
@@ -1085,7 +1085,8 @@
     "errors": {
       "regrowing": "Il repousse encore. Reviens dans quelques minutes.",
       "pickaxe": "Il te faut une pioche pour le cristal. Fabriques-en une à l’établi du camp.",
-      "notEnough": "Pas encore assez de matériaux."
+      "notEnough": "Pas encore assez de matériaux.",
+      "tooFast": "Un peu plus doucement !"
     }
   },
   "craft": {

@@ -98,13 +98,13 @@ describe.skipIf(!url || !key)('harvesting and crafting', () => {
     expect((await a.rpc('craft', { p_recipe: 'stone_axe' })).error?.message).toMatch(/Not enough/)
     const t = nodes('harvest_tree')
     const rocks = nodes('harvest_rock')
-    await harvest(a, t[2]) // wood 5 or more
-    for (const r of rocks.slice(0, 2)) await harvest(a, r) // stone 4
+    for (const n of [t[2], t[4]]) await harvest(a, n) // wood 6 or more (the stone axe costs 6 wood and 5 stone since slashing)
+    for (const r of rocks.slice(0, 3)) await harvest(a, r) // stone 6
     const { data: before } = await a.rpc('my_materials')
     const { data, error } = await a.rpc('craft', { p_recipe: 'stone_axe' })
     expect(error).toBeNull()
     expect(data.tools).toEqual(['stone_axe'])
-    expect(data.materials).toMatchObject({ wood: before.materials.wood - 4, stone: before.materials.stone - 3 })
+    expect(data.materials).toMatchObject({ wood: before.materials.wood - 6, stone: before.materials.stone - 5 })
     expect((await harvest(a, t[3])).gained).toBe(3)
     expect((await a.rpc('craft', { p_recipe: 'stone_axe' })).error?.message).toMatch(/already/)
   }, 60000)

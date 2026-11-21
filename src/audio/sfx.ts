@@ -23,6 +23,9 @@ export const SFX = {
   levelup: [...chime([523, 659, 784, 1047], 0.08, 0.4, 0.12, 'triangle'), { type: 'sine', freq: 1568, at: 0.36, dur: 0.9, gain: 0.1 }],
   mission: chime([784, 988, 1175, 1568], 0.07, 0.4, 0.11),
   step: [{ type: 'noise', freq: 500, at: 0, dur: 0.06, gain: 0.05 }],
+  // A slash at a tree or herb bush (a soft woody thock), and at a rock or crystal (a bright little clink).
+  chop: [{ type: 'noise', freq: 700, at: 0, dur: 0.09, gain: 0.12 }, { type: 'sine', freq: 220, to: 160, at: 0, dur: 0.1, gain: 0.1 }],
+  clink: [{ type: 'triangle', freq: 1760, to: 1480, at: 0, dur: 0.12, gain: 0.08 }, { type: 'noise', freq: 3000, at: 0, dur: 0.05, gain: 0.05 }],
   splash: [
     { type: 'noise', freq: 900, at: 0, dur: 0.5, gain: 0.12 },
     { type: 'noise', freq: 2200, at: 0.08, dur: 0.35, gain: 0.06 },

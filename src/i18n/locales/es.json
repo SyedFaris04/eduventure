@@ -1072,7 +1072,7 @@
       "crystal": "Extraer cristal"
     },
     "useWorkbench": "Usar el banco de trabajo",
-    "hint": "Responde una pregunta para recoger. ¡Si aciertas, consigues más!",
+    "hint": "Toca el botón de cortar tres veces para recoger.",
     "gained": "+{{n}} {{name}}",
     "done": "Hecho",
     "materials": "Tus materiales",
@@ -1085,7 +1085,8 @@
     "errors": {
       "regrowing": "Todavía está volviendo a crecer. Vuelve en unos minutos.",
       "pickaxe": "Necesitas un pico para el cristal. Fabrica uno en el banco del campamento.",
-      "notEnough": "Aún no tienes suficientes materiales."
+      "notEnough": "Aún no tienes suficientes materiales.",
+      "tooFast": "¡Un poco más despacio!"
     }
   },
   "craft": {

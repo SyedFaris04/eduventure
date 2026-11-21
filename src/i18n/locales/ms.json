@@ -1072,7 +1072,7 @@
       "crystal": "Lombong kristal"
     },
     "useWorkbench": "Guna meja kerja",
-    "hint": "Jawab satu soalan untuk mengumpul. Betul dapat lebih!",
+    "hint": "Ketik butang tetak tiga kali untuk mengumpul.",
     "gained": "+{{n}} {{name}}",
     "done": "Selesai",
     "materials": "Bahan anda",
@@ -1085,7 +1085,8 @@
     "errors": {
       "regrowing": "Yang ini sedang tumbuh semula. Datang lagi dalam beberapa minit.",
       "pickaxe": "Anda perlukan beliung untuk kristal. Buat satu di meja kerja kem.",
-      "notEnough": "Bahan belum cukup."
+      "notEnough": "Bahan belum cukup.",
+      "tooFast": "Perlahan sedikit!"
     }
   },
   "craft": {

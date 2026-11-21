@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import type { Material } from '../../game/map'
 import { useSession } from '../authentication/useSession'
 import { useMaterials } from './harvestApi'
-import { MATERIAL_ICON } from './HarvestPanel'
+import { MATERIAL_ICON } from './materialIcons'
 
 const ORDER: Material[] = ['wood', 'stone', 'herbs', 'crystal']
 

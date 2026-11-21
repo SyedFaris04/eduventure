@@ -1,7 +1,7 @@
 import type { useGame } from '../game/store'
 
 type GameState = ReturnType<typeof useGame.getState>
-export type BackState = Pick<GameState, 'battle' | 'boss' | 'playerCard' | 'settings' | 'board' | 'workbench' | 'harvest' | 'jetty' | 'dialogue'>
+export type BackState = Pick<GameState, 'battle' | 'boss' | 'playerCard' | 'settings' | 'board' | 'workbench' | 'jetty' | 'dialogue'>
 
 // Topmost first. Battles and boss fights are not here: back never skips or closes a question.
 const PANELS = [
@@ -9,7 +9,6 @@ const PANELS = [
   ['settings', false],
   ['board', false],
   ['workbench', false],
-  ['harvest', null],
   ['jetty', false],
   ['dialogue', null],
 ] as const

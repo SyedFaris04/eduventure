@@ -1,18 +1,19 @@
 import { expect, test } from '@playwright/test'
-import { answerCorrectly, enterWorld, newPlayer, walkUntil } from './helpers'
+import { enterWorld, newPlayer, walkUntil } from './helpers'
 
-test('harvest a tree with one question, then open the camp workbench', async ({ page }) => {
+test('slash a tree three times to harvest it (no question), then open the camp workbench', async ({ page }) => {
   test.setTimeout(240_000)
   await newPlayer(page)
   await enterWorld(page)
 
   // The north forest: the tree at (17, 6), reached from the south (17, 7).
   await walkUntil(page, { x: 17, y: 7 }, 'harvest')
-  await page.keyboard.press('e')
-  await expect(page.getByRole('dialog')).toBeVisible()
-  await answerCorrectly(page)
-  await expect(page.getByText(/\+2 Wood/)).toBeVisible()
-  await page.getByRole('button', { name: 'Done' }).click()
+  for (let i = 0; i < 3; i++) {
+    await page.keyboard.press('e')
+    await page.waitForTimeout(250)
+  }
+  await expect(page.getByRole('dialog')).toHaveCount(0) // no question any more
+  await expect(page.getByRole('status').filter({ hasText: '+2 Wood' })).toBeVisible()
   await expect(page.getByRole('list', { name: 'Your materials' })).toBeVisible()
   // The materials sit under the player card, never on top of it.
   const card = (await page.getByRole('region', { name: 'Your hero' }).boundingBox())!

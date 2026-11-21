@@ -1072,7 +1072,7 @@
       "crystal": "开采水晶"
     },
     "useWorkbench": "使用工作台",
-    "hint": "回答一道题来采集。答对得到更多！",
+    "hint": "点三次砍击按钮来采集。",
     "gained": "+{{n}} {{name}}",
     "done": "完成",
     "materials": "你的材料",
@@ -1085,7 +1085,8 @@
     "errors": {
       "regrowing": "它还在重新生长，过几分钟再来吧。",
       "pickaxe": "采水晶需要镐。去营地工作台做一把吧。",
-      "notEnough": "材料还不够。"
+      "notEnough": "材料还不够。",
+      "tooFast": "慢一点！"
     }
   },
   "craft": {

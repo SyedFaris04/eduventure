@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { backAction, type BackState } from './backButton'
 
-const idle: BackState = { battle: null, boss: null, playerCard: null, settings: false, board: false, workbench: false, harvest: null, jetty: false, dialogue: null }
+const idle: BackState = { battle: null, boss: null, playerCard: null, settings: false, board: false, workbench: false, jetty: false, dialogue: null }
 
 describe('Android back button', () => {
   it('does nothing during a battle or boss fight, so a question cannot be skipped', () => {
@@ -12,7 +12,7 @@ describe('Android back button', () => {
   it('closes the top panel first', () => {
     expect(backAction({ ...idle, settings: true, board: true }, '/world')).toEqual({ patch: { settings: false } })
     expect(backAction({ ...idle, board: true }, '/world')).toEqual({ patch: { board: false } })
-    expect(backAction({ ...idle, harvest: { x: 1, y: 2, material: 'wood' } }, '/world')).toEqual({ patch: { harvest: null } })
+    expect(backAction({ ...idle, workbench: true }, '/world')).toEqual({ patch: { workbench: false } })
     expect(backAction({ ...idle, playerCard: 'p1', dialogue: { npc: 'elder', page: 0 } as never }, '/world')).toEqual({ patch: { playerCard: null } })
   })
 

@@ -1072,7 +1072,7 @@
       "crystal": "Mine crystal"
     },
     "useWorkbench": "Use the workbench",
-    "hint": "Answer one question to gather. Right gives more!",
+    "hint": "Tap the slash button three times to gather.",
     "gained": "+{{n}} {{name}}",
     "done": "Done",
     "materials": "Your materials",
@@ -1085,7 +1085,8 @@
     "errors": {
       "regrowing": "This one is still regrowing. Come back in a few minutes.",
       "pickaxe": "You need a pickaxe for crystal. Craft one at the camp workbench.",
-      "notEnough": "Not enough materials yet."
+      "notEnough": "Not enough materials yet.",
+      "tooFast": "A little slower!"
     }
   },
   "craft": {

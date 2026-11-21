@@ -1,17 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { supabase } from '../../services/supabase'
 import type { Material } from '../../game/map'
-import type { AnswerPayload, AnswerResult } from '../battle/battleApi'
-import type { PublicQuestion } from '../battle/questionSchema'
 
 export type Materials = Record<Material, number>
 export type Tool = 'stone_axe' | 'stone_pickaxe' | 'crystal_axe' | 'crystal_pickaxe'
 export type MyMaterials = { materials: Materials; tools: Tool[] }
-export type HarvestResult = Pick<AnswerResult, 'correct' | 'correct_answer' | 'explanation' | 'wrong_reason' | 'missions_completed'> & {
-  material: Material
-  gained: number
-  materials: Materials
-}
 type Cooldown = { x: number; y: number; ready_at: string }
 
 /** Turns database errors into i18n keys. */
@@ -19,6 +12,7 @@ export function harvestErrorKey(message: string | undefined) {
   const m = message ?? ''
   return /regrowing/i.test(m) ? 'harvest.errors.regrowing'
     : /pickaxe/i.test(m) ? 'harvest.errors.pickaxe'
+    : /^too fast$/i.test(m) ? 'harvest.errors.tooFast'
     : /too fast/i.test(m) ? 'battle.errors.tooFast'
     : /time's up/i.test(m) ? 'parents.timeUp'
     : /given already|already built/i.test(m) ? 'craft.errors.taken'
@@ -34,8 +28,9 @@ async function call<T>(fn: string, args?: Record<string, unknown>): Promise<T> {
   return data as T
 }
 
-export const startHarvest = (place: string, x: number, y: number) => call<{ material: Material; question: PublicQuestion }>('start_harvest', { p_place: place, p_x: x, p_y: y })
-export const answerHarvest = (answer: AnswerPayload) => call<HarvestResult>('answer_harvest', { p_answer: answer })
+export type SlashResult = { material: Material; gained: number; materials: Materials; missions_completed: string[] }
+/** One finished slash (three swings): the materials it gave. The server checks the node, regrowth, tools and pace. */
+export const slashHarvest = (place: string, x: number, y: number) => call<SlashResult>('slash_harvest', { p_place: place, p_x: x, p_y: y })
 
 /** "x,y" of every node this player has harvested recently. */
 export const regrowingSet = (cooldowns: Cooldown[], now = Date.now()) => new Set(cooldowns.filter((c) => Date.parse(c.ready_at) > now).map((c) => `${c.x},${c.y}`))

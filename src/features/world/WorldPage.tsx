@@ -24,7 +24,7 @@ import { AreaBanner } from './AreaBanner'
 import { BattlePanel } from '../battle/BattlePanel'
 import { BossPanel } from '../battle/BossPanel'
 import { WorldSettings } from './WorldSettings'
-import { HarvestPanel } from '../harvest/HarvestPanel'
+import { Slasher } from '../harvest/Slasher'
 import { MaterialsBar } from '../harvest/MaterialsBar'
 import { FestivalChip } from '../festival/FestivalChip'
 import { EmoteBar } from '../multiplayer/EmoteBar'
@@ -99,7 +99,7 @@ export function WorldPage() {
         <JettyPanel returning={returning.data} />
         <BattlePanel />
         <BossPanel />
-        <HarvestPanel />
+        <Slasher />
         <CraftPanel />
         <BoardPanel />
         <CoinBurst />
