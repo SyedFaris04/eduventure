@@ -64,6 +64,29 @@ test.describe('phone fit', () => {
         await page.goto(path)
         await expectFits(page, `${tag} ${path}`)
       }
+      // The sign-in forms use the width of the phone, not a narrow column in the middle.
+      await page.goto('/login')
+      const form = (await page.locator('form').boundingBox())!
+      expect.soft(form.width, `${tag} login form width`).toBeGreaterThanOrEqual(size.width * 0.6)
+      await page.context().close()
+    }
+  })
+
+  // Phones often run a larger font or display size (Android "Font size", Chrome text scaling): the first screens must
+  // still fit, and the login and signup forms use the width of wider phones instead of sitting in a narrow column.
+  test('welcome, login and signup fit with a 125% font and fill wide phones', async ({ browser }) => {
+    for (const size of [...SIZES, { width: 915, height: 412 }]) {
+      const tag = `${size.width}x${size.height} big font`
+      const page = await phone(browser, size)
+      await page.addInitScript(() => {
+        document.addEventListener('DOMContentLoaded', () => (document.documentElement.style.fontSize = '125%'))
+      })
+      for (const path of ['/welcome', '/login', '/signup']) {
+        await page.goto(path)
+        await page.waitForTimeout(800)
+        await expectFits(page, `${tag} ${path}`)
+      }
+      await expectInView(page, `${tag} signup button`, page.getByRole('button', { name: 'Create account' }))
       await page.context().close()
     }
   })

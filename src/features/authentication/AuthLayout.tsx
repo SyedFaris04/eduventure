@@ -2,25 +2,34 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft, CircleAlert, CircleCheck } from 'lucide-react'
-import { buttonClasses, Panel } from '../../components/ui'
+import { buttonClasses, FitToScreen, Panel } from '../../components/ui'
+import { useShortScreen } from '../../app/useShortScreen'
 import { LanguagePicker } from '../../i18n/LanguagePicker'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
 
 export function AuthLayout({ title, children, back = '/welcome' }: { title: string; children: ReactNode; back?: string }) {
   const { t } = useTranslation()
+  const short = useShortScreen()
+  const panel = <Panel title={title}>{children}</Panel>
   return (
-    <main className="relative min-h-dvh">
+    <main className="relative min-h-dvh short:h-dvh short:overflow-hidden">
       <SceneBackdrop />
-      <div className="relative mx-auto flex min-h-dvh max-w-md flex-col px-4 pt-4 pb-10 short:max-w-3xl short:flex-row short:gap-4 short:pt-2 short:pb-2">
+      <div className="relative mx-auto flex min-h-dvh max-w-md flex-col px-4 pt-4 pb-10 short:h-dvh short:max-w-none short:flex-row short:gap-4 short:px-4 short:pt-3 short:pb-3">
         <div className="flex items-center justify-between gap-3 short:flex-col short:items-start short:justify-start">
           <Link to={back} className={buttonClasses('secondary', 'md')}>
             <ArrowLeft size={18} className="rtl:rotate-180" aria-hidden /> {t('common.back')}
           </Link>
           <LanguagePicker />
         </div>
-        <div className="flex flex-1 flex-col justify-center pt-10 short:justify-start short:pt-3">
-          <Panel title={title}>{children}</Panel>
-        </div>
+        {/* Phones held sideways: the form fills the screen beside the back/language column and shrinks to fit when a
+            larger font or display size would make it scroll. */}
+        {short ? (
+          <FitToScreen center className="h-full min-w-0 flex-1">
+            <div className="pt-4">{panel}</div>
+          </FitToScreen>
+        ) : (
+          <div className="flex flex-1 flex-col justify-center pt-10">{panel}</div>
+        )}
       </div>
     </main>
   )
