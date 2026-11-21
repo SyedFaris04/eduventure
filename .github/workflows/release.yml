@@ -39,7 +39,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url || steps.deploy_again.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-node@v7.1.0
@@ -62,7 +62,15 @@ jobs:
       - uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: pages
+      # The deploy step sometimes can't find the package it was just given ("Fetching artifact metadata failed"),
+      # though the upload succeeded: wait a minute and try once more before failing the run.
       - id: deploy
+        uses: actions/deploy-pages@v5.0.1
+        continue-on-error: true
+      - if: steps.deploy.outcome == 'failure'
+        run: sleep 60
+      - id: deploy_again
+        if: steps.deploy.outcome == 'failure'
         uses: actions/deploy-pages@v5.0.1
 
   android:
