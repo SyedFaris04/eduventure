@@ -9,13 +9,14 @@ import { shot } from './recorder'
 test.use({ baseURL: 'http://localhost:5176' })
 
 async function player(page: Page, name: string) {
-  const next = () => page.getByRole('button', { name: /^Next/ }).click()
+  const next = () => page.getByRole('button', { name: 'Next', exact: true }).click()
   await page.goto('/welcome')
   await page.getByRole('button', { name: /Start Your Adventure/ }).click()
   await page.getByLabel('Year you were born').selectOption('2000')
   await next()
   await page.getByRole('button', { name: /Lower Secondary School/ }).click()
   await next()
+  await page.getByPlaceholder('Search countries').fill('Malaysia') // phones page the list: search, as a player would
   await page.getByRole('listbox', { name: 'Where do you study?' }).getByRole('option', { name: /Malaysia/ }).click()
   await next()
   await page.getByRole('button', { name: /International/ }).click()

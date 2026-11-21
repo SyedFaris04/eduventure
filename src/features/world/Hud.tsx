@@ -12,25 +12,28 @@ export function Hud({ character, xp, gold, title }: { character: MyCharacter; xp
   return (
     <section
       aria-label={t('world.hud')}
-      className="pointer-events-auto flex w-[min(calc(100vw-5.5rem),20rem)] items-center gap-3 rounded-2xl border-[3px] border-wood bg-cream/95 p-2 shadow-[0_4px_0_var(--color-wood-dark)]"
+      className="pointer-events-auto flex w-[min(calc(100vw-5.5rem),20rem)] items-center gap-3 rounded-2xl border-[3px] border-wood bg-cream/95 p-2 shadow-[0_4px_0_var(--color-wood-dark)] short:w-60 short:gap-2 short:rounded-xl short:p-1"
     >
-      <div className="size-12 shrink-0 overflow-hidden rounded-xl border-2 border-wood/50 bg-water/40 sm:size-14">
+      <div className="size-12 shrink-0 overflow-hidden rounded-xl border-2 border-wood/50 bg-water/40 sm:size-14 short:size-9! short:rounded-lg">
         <Snapshot subject={{ kind: 'hero', appearance: character.appearance }} px={72} alt="" className="-mt-1 w-full" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-baseline justify-between gap-2">
-          <p className="truncate font-display font-semibold">{character.name}</p>
+          <p className="truncate font-display font-semibold short:text-sm short:leading-tight">{character.name}</p>
           <p className="shrink-0 rounded-full bg-wood px-2 text-xs font-bold text-cream">{t('world.levelShort', { level: p.level })}</p>
         </div>
-        {title && <p className="-mt-0.5 truncate text-[11px] font-bold text-path-dark">{t(`titles.${title}`)}</p>}
-        <ProgressBar value={p.into / p.needed} label={t('world.xpLabel', { into: p.into, needed: p.needed })} className="mt-1 h-4!" />
-        <div className="mt-0.5 flex justify-between text-xs font-bold text-wood-dark">
-          <span>
-            {p.into} / {p.needed} XP
-          </span>
-          <span data-hud-gold className="flex items-center gap-1">
-            <Coins size={14} className="text-path-dark" aria-hidden /> {gold}
-          </span>
+        {title && <p className="-mt-0.5 truncate text-[11px] font-bold text-path-dark short:hidden">{t(`titles.${title}`)}</p>}
+        {/* Phones held sideways: the bar and the gold share one row; the XP numbers stay in the bar's label. */}
+        <div className="short:mt-0.5 short:flex short:items-center short:gap-2">
+          <ProgressBar value={p.into / p.needed} label={t('world.xpLabel', { into: p.into, needed: p.needed })} className="mt-1 h-4! short:mt-0 short:h-2.5! short:flex-1" />
+          <div className="mt-0.5 flex justify-between text-xs font-bold text-wood-dark short:mt-0 short:text-[11px] short:leading-tight">
+            <span className="short:hidden">
+              {p.into} / {p.needed} XP
+            </span>
+            <span data-hud-gold className="flex items-center gap-1">
+              <Coins size={14} className="text-path-dark" aria-hidden /> {gold}
+            </span>
+          </div>
         </div>
       </div>
     </section>

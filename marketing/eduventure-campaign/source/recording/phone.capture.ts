@@ -7,13 +7,14 @@ test.use({ viewport: { width: 844, height: 390 }, isMobile: true, hasTouch: true
 
 test('phone, sideways', async ({ page }) => {
   test.setTimeout(900_000)
-  const next = () => page.getByRole('button', { name: /^Next/ }).click()
+  const next = () => page.getByRole('button', { name: 'Next', exact: true }).click()
   await page.goto('/welcome')
   await page.getByRole('button', { name: /Start Your Adventure/ }).click()
   await page.getByLabel('Year you were born').selectOption('2000')
   await next()
   await page.getByRole('button', { name: /Lower Secondary School/ }).click()
   await next()
+  await page.getByPlaceholder('Search countries').fill('Malaysia') // phones page the list: search, as a player would
   await page.getByRole('listbox', { name: 'Where do you study?' }).getByRole('option', { name: /Malaysia/ }).click()
   await next()
   await page.getByRole('button', { name: /International/ }).click()

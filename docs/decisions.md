@@ -155,3 +155,31 @@ a test checks the manifest, the files and the credits agree. Music is levelled t
 The engine trims recorded sound to a quarter (RECORDED_TRIM) so it sits beside the code sounds and old slider settings stay comfortable. Recorded music skips the echo the code music uses, and falls back to the code music if the browser refuses to play it or the file fails to load. Files missing from the manifest, still loading, or failing to load
 fall back to the code sound, so nothing goes silent. The picks were made without listening (by licence, length and
 measurement); the owner listens and swaps any file by name.
+
+## 50. Every screen fits a phone held sideways; pages instead of scrolling (2026-11-21)
+The owner found that only the world fitted phones. The loading, welcome, onboarding, creator, Home and shop screens
+were built for tall screens and stacked their content, so on a 740 × 360 phone Home was 4.5 screens tall and the shop
+5.5. The HUD (hero card, minimap, joystick) also covered too much of the 3D view. The owner asked for everything to fit,
+with pages (1, 2, 3) instead of scrolling and smaller sizes, and chose a game lobby for Home.
+
+**How it works:**
+- On short screens (the `short` variant: landscape, ≤ 500 px tall, plus `tiny` at ≤ 340 px for phones in a browser with the address bar showing), each screen uses side-by-side layouts.
+- Long lists use one shared `Paged` control (‹ dots › and swipe) from `useShortScreen()`. On tablets and laptops they show everything, as before.
+- Home becomes `HomeLobby`:
+  - a top bar with level, XP, gold, language, sound and sign-out;
+  - menu tiles on the left;
+  - the hero in the middle;
+  - Enter the World on the right, with Missions, More (adventure, parent, learning profile, title, classes) and Save progress (guests).
+- The HUD shrinks: a hero card about 46 px tall, a 112 px minimap, a 96 px joystick and 40 px side buttons.
+
+**Sizes, from the research:**
+- 44 px for main actions (Apple, 44 pt) and 40 px for ordinary buttons on short screens.
+- Small controls of 32–36 px (Apple allows 28 pt for less important game controls).
+- Text no smaller than 11–12 px.
+
+**Rejected:**
+- A global zoom: tiny touch targets and blurry text, and the stacking stays.
+- Separate phone pages: every change would be made twice.
+
+`tests/e2e/phone-fit.spec.ts` checks every player screen at 740 × 360 and 640 × 300, with no page scroll and nothing
+off the side, and checks the HUD limits.

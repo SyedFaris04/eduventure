@@ -15,9 +15,9 @@ export function Joystick() {
   useEffect(() => () => useGame.setState({ stick: { x: 0, y: 0 } }), [])
   if (!show) return null
 
-  const R = 48
   const move = (e: PointerEvent) => {
     const rect = base.current!.getBoundingClientRect()
+    const R = rect.width * 0.375 // how far the knob travels: 48 px on the 128 px pad, less on the phone's smaller one
     let x = e.clientX - (rect.left + rect.width / 2)
     let y = e.clientY - (rect.top + rect.height / 2)
     const d = Math.hypot(x, y)
@@ -46,10 +46,10 @@ export function Joystick() {
       onPointerMove={(e) => e.buttons && move(e)}
       onPointerUp={end}
       onPointerCancel={end}
-      className="pointer-events-auto absolute start-5 bottom-5 z-10 grid size-32 touch-none place-items-center rounded-full border-[3px] border-wood/70 bg-cream/45"
+      className="pointer-events-auto absolute start-5 bottom-5 z-10 grid size-32 touch-none place-items-center rounded-full border-[3px] border-wood/70 bg-cream/45 short:start-3 short:bottom-3 short:size-24"
     >
       <div
-        className="size-14 rounded-full border-[3px] border-wood-dark bg-gradient-to-b from-cream to-path shadow-[0_3px_0_var(--color-wood-dark)]"
+        className="size-14 rounded-full border-[3px] border-wood-dark bg-gradient-to-b from-cream to-path shadow-[0_3px_0_var(--color-wood-dark)] short:size-10"
         style={{ transform: `translate(${knob.x}px, ${knob.y}px)` }}
       />
     </div>
@@ -83,7 +83,7 @@ export function InteractButton() {
     <button
       type="button"
       onClick={pressInteract}
-      className="pointer-events-auto absolute end-5 bottom-6 z-10 flex items-center gap-2 rounded-full border-[3px] border-wood-dark bg-gradient-to-b from-gold to-path-dark px-5 py-3 font-display text-lg font-semibold text-ink shadow-[0_4px_0_var(--color-wood-dark)] active:translate-y-0.5 md:start-1/2 md:end-auto md:-translate-x-1/2 md:rtl:translate-x-1/2"
+      className="pointer-events-auto absolute end-5 bottom-6 z-10 flex items-center gap-2 rounded-full border-[3px] border-wood-dark bg-gradient-to-b from-gold to-path-dark px-5 py-3 font-display text-lg font-semibold short:end-3 short:bottom-3 short:px-4 short:py-2 short:text-base text-ink shadow-[0_4px_0_var(--color-wood-dark)] active:translate-y-0.5 md:start-1/2 md:end-auto md:-translate-x-1/2 md:rtl:translate-x-1/2"
     >
       <Icon size={22} aria-hidden /> {label}
       <kbd className="hidden rounded-md border-2 border-wood-dark bg-cream px-1.5 text-sm md:inline">E</kbd>

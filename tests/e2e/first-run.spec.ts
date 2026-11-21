@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test'
 
 const tapToStart = (page: Page) => page.getByRole('button', { name: 'Tap to start' })
-const next = (page: Page) => page.getByRole('button', { name: /^Next/ }).click()
+const next = (page: Page) => page.getByRole('button', { name: 'Next', exact: true }).click()
 
 async function passLoading(page: Page) {
   await page.goto('/')
@@ -30,6 +30,7 @@ test('first run: loading → guest → onboarding → character → home, still 
   await next(page)
   await page.getByRole('button', { name: /Upper Secondary School/ }).click()
   await next(page)
+  await page.getByPlaceholder('Search countries').fill('Malaysia') // phones page the list: search, as a player would
   await page.getByRole('listbox', { name: 'Where do you study?' }).getByRole('option', { name: /Malaysia/ }).click()
   await next(page)
   await page.getByRole('button', { name: /KSSM/ }).click()

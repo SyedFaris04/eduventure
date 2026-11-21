@@ -11,7 +11,10 @@
     "language": "言語",
     "sound": "サウンド",
     "notFound": "この道はどこにも通じていません",
-    "backToStart": "最初に戻る"
+    "backToStart": "最初に戻る",
+    "prevPage": "前のページ",
+    "nextPage": "次のページ",
+    "pageOf": "{{total}} ページ中 {{n}} ページ目"
   },
   "loading": {
     "title": "冒険を読み込んでいます…",
@@ -422,7 +425,8 @@
     "library": "学習ライブラリー",
     "shop": "ショップ",
     "academy": "コードアカデミー",
-    "hall": "ことばホール"
+    "hall": "ことばホール",
+    "more": "もっと見る"
   },
   "world": {
     "canvasLabel": "{{place}}。W A S D か矢印キーで移動、タップで歩く、E で話す。",
@@ -685,7 +689,8 @@
     },
     "lockedLevel": "レベル{{level}}",
     "petCorner": "ペットコーナー",
-    "hatchFirst": "ペットをかえすと試着できます"
+    "hatchFirst": "ペットをかえすと試着できます",
+    "heroItems": "ヒーローのアイテム"
   },
   "unlocks": {
     "second_chance": "セカンドチャンス：各バトルで最初のまちがいはノーダメージ",

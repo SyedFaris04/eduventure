@@ -12,8 +12,9 @@ const variants: Record<Variant, string> = {
 }
 
 const sizes: Record<Size, string> = {
-  md: 'min-h-11 px-5 text-base',
-  lg: 'min-h-14 px-8 text-xl',
+  // Phones held sideways: 40 px buttons and 44 px main actions (touch-target floor), smaller type.
+  md: 'min-h-11 px-5 text-base short:min-h-10 short:px-3.5 short:text-sm',
+  lg: 'min-h-14 px-8 text-xl short:min-h-11 short:px-5 short:text-base',
 }
 
 /** Shared so router links can look exactly like buttons. */

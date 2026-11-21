@@ -11,7 +11,10 @@
     "language": "Bahasa",
     "sound": "Bunyi",
     "notFound": "Jalan ini tidak menuju ke mana-mana",
-    "backToStart": "Kembali ke permulaan"
+    "backToStart": "Kembali ke permulaan",
+    "prevPage": "Halaman sebelumnya",
+    "nextPage": "Halaman seterusnya",
+    "pageOf": "Halaman {{n}} daripada {{total}}"
   },
   "loading": {
     "title": "Memuatkan pengembaraan anda…",
@@ -422,7 +425,8 @@
     "library": "Perpustakaan Akademik",
     "shop": "Kedai",
     "academy": "Akademi Kod",
-    "hall": "Dewan Bahasa"
+    "hall": "Dewan Bahasa",
+    "more": "Lagi"
   },
   "world": {
     "canvasLabel": "{{place}}. Bergerak dengan W A S D atau kekunci anak panah, ketik untuk berjalan, tekan E untuk bercakap.",
@@ -685,7 +689,8 @@
     },
     "lockedLevel": "Tahap {{level}}",
     "petCorner": "Sudut Peliharaan",
-    "hatchFirst": "Tetaskan haiwan peliharaan untuk mencuba ini"
+    "hatchFirst": "Tetaskan haiwan peliharaan untuk mencuba ini",
+    "heroItems": "Barang wira"
   },
   "unlocks": {
     "second_chance": "Peluang Kedua: jawapan salah pertama dalam setiap pertarungan tidak menjejaskan apa-apa",
