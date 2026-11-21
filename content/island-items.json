@@ -1,0 +1,62 @@
+{
+  "_about": "Every item players can build on their own island. Costs are harvested materials; level > 1 adds a level_unlocks row (kind island_item). w × h is the footprint in tiles (turning swaps them); blocks: players can't walk through it. After editing: npm run gen:island (writes a new, later migration), then push it.",
+  "items": [
+    { "id": "house_pondok", "category": "house", "cost": { "wood": 20, "stone": 8 }, "level": 1, "w": 2, "h": 2, "blocks": true },
+    { "id": "house_kampung", "category": "house", "cost": { "wood": 60, "stone": 24, "herbs": 10 }, "level": 3, "w": 3, "h": 3, "blocks": true },
+    { "id": "house_twostorey", "category": "house", "cost": { "wood": 110, "stone": 70, "crystal": 8 }, "level": 6, "w": 3, "h": 3, "blocks": true },
+    { "id": "house_villa", "category": "house", "cost": { "wood": 180, "stone": 140, "crystal": 20 }, "level": 10, "w": 4, "h": 3, "blocks": true },
+
+    { "id": "bush_round", "category": "garden", "cost": { "herbs": 3 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "bush_pink", "category": "garden", "cost": { "herbs": 4 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "bush_yellow", "category": "garden", "cost": { "herbs": 4 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "bunga_raya", "category": "garden", "cost": { "herbs": 5 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+    { "id": "orchid_pot", "category": "garden", "cost": { "herbs": 4, "stone": 2 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+    { "id": "sunflower", "category": "garden", "cost": { "herbs": 3 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+    { "id": "flowerbed_red", "category": "garden", "cost": { "herbs": 4, "wood": 2 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+    { "id": "flowerbed_yellow", "category": "garden", "cost": { "herbs": 4, "wood": 2 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+    { "id": "flowerbed_purple", "category": "garden", "cost": { "herbs": 4, "wood": 2 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+    { "id": "veg_patch", "category": "garden", "cost": { "herbs": 6, "wood": 4 }, "level": 1, "w": 2, "h": 2, "blocks": false },
+    { "id": "grass_tuft", "category": "garden", "cost": { "herbs": 1 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+
+    { "id": "tree_coconut", "category": "trees", "cost": { "wood": 6, "herbs": 2 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "tree_durian", "category": "trees", "cost": { "wood": 8, "herbs": 3 }, "level": 2, "w": 1, "h": 1, "blocks": true },
+    { "id": "tree_rambutan", "category": "trees", "cost": { "wood": 8, "herbs": 3 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "tree_banana", "category": "trees", "cost": { "wood": 5, "herbs": 3 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "tree_frangipani", "category": "trees", "cost": { "wood": 6, "herbs": 4 }, "level": 4, "w": 1, "h": 1, "blocks": true },
+    { "id": "bamboo_clump", "category": "trees", "cost": { "wood": 6 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "tree_pine", "category": "trees", "cost": { "wood": 6 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+
+    { "id": "path_dirt", "category": "paths", "cost": { "stone": 1 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+    { "id": "path_stones", "category": "paths", "cost": { "stone": 2 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+    { "id": "path_boardwalk", "category": "paths", "cost": { "wood": 2 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+    { "id": "fence_wood", "category": "paths", "cost": { "wood": 3 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "fence_bamboo", "category": "paths", "cost": { "wood": 3, "herbs": 1 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "fence_picket", "category": "paths", "cost": { "wood": 4 }, "level": 2, "w": 1, "h": 1, "blocks": true },
+    { "id": "gate_wood", "category": "paths", "cost": { "wood": 6 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+
+    { "id": "pelita", "category": "lights", "cost": { "wood": 2, "herbs": 1 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+    { "id": "lantern_hanging", "category": "lights", "cost": { "wood": 4, "crystal": 1 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "lamp_post", "category": "lights", "cost": { "stone": 4, "crystal": 2 }, "level": 4, "w": 1, "h": 1, "blocks": true },
+    { "id": "campfire", "category": "lights", "cost": { "wood": 6, "stone": 4 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "light_arch", "category": "lights", "cost": { "wood": 12, "crystal": 6 }, "level": 8, "w": 2, "h": 1, "blocks": false },
+
+    { "id": "bench", "category": "furniture", "cost": { "wood": 6 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "table_set", "category": "furniture", "cost": { "wood": 10 }, "level": 2, "w": 2, "h": 2, "blocks": true },
+    { "id": "hammock", "category": "furniture", "cost": { "wood": 8, "herbs": 4 }, "level": 3, "w": 2, "h": 1, "blocks": true },
+    { "id": "swing", "category": "furniture", "cost": { "wood": 10 }, "level": 3, "w": 1, "h": 1, "blocks": true },
+    { "id": "picnic_mat", "category": "furniture", "cost": { "herbs": 4 }, "level": 1, "w": 2, "h": 2, "blocks": false },
+    { "id": "mailbox", "category": "furniture", "cost": { "wood": 3, "stone": 1 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "pet_bed", "category": "furniture", "cost": { "wood": 4, "herbs": 4 }, "level": 1, "w": 1, "h": 1, "blocks": false },
+    { "id": "scarecrow", "category": "furniture", "cost": { "wood": 4, "herbs": 3 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+
+    { "id": "wau_stand", "category": "malaysian", "cost": { "wood": 6, "herbs": 4 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "sampan", "category": "malaysian", "cost": { "wood": 12 }, "level": 2, "w": 2, "h": 1, "blocks": true },
+    { "id": "kampung_gate", "category": "malaysian", "cost": { "wood": 16, "stone": 6 }, "level": 5, "w": 3, "h": 1, "blocks": false },
+    { "id": "congkak_table", "category": "malaysian", "cost": { "wood": 8, "stone": 4 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+
+    { "id": "pond", "category": "water", "cost": { "stone": 10, "herbs": 4 }, "level": 1, "w": 2, "h": 2, "blocks": true },
+    { "id": "fountain", "category": "water", "cost": { "stone": 24, "crystal": 4 }, "level": 6, "w": 2, "h": 2, "blocks": true },
+    { "id": "well", "category": "water", "cost": { "stone": 14, "wood": 4 }, "level": 1, "w": 1, "h": 1, "blocks": true },
+    { "id": "bridge_small", "category": "water", "cost": { "wood": 10 }, "level": 2, "w": 2, "h": 1, "blocks": false }
+  ]
+}

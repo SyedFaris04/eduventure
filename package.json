@@ -18,7 +18,8 @@
     "build:pages": "node -e \"process.env.BASE_PATH='/eduventure/play/';require('node:child_process').execSync('npm run build',{stdio:'inherit'})\" && npm run build:site && node scripts/pages-bundle.mjs",
     "check:pages": "node scripts/check-pages.mjs",
     "build:site": "vite build -c vite.site.config.ts",
-    "dev:site": "vite -c vite.site.config.ts"
+    "dev:site": "vite -c vite.site.config.ts",
+    "gen:island": "node scripts/gen-island-items.mjs"
   },
   "dependencies": {
     "@capacitor/app": "8.1.2",
