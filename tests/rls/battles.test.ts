@@ -29,10 +29,17 @@ describe.skipIf(!configured)('battles (live project)', () => {
     b = await player('primary', ['science'])
   })
 
+  it('every normal monster falls to about three right answers (health 55–65)', async () => {
+    const { data } = await a.from('monsters').select('id, max_hp')
+    expect(data!.length).toBeGreaterThanOrEqual(15)
+    for (const m of data!) expect(m.max_hp, m.id).toBeGreaterThanOrEqual(55)
+    for (const m of data!) expect(m.max_hp, m.id).toBeLessThanOrEqual(65)
+  })
+
   it('starts a battle without sending the answer', async () => {
     const { data, error } = await a.rpc('start_encounter', { p_monster: 'sproutling' })
     expect(error).toBeNull()
-    expect(data.monster_hp).toBe(60)
+    expect(data.monster_hp).toBe(55) // a first-tier monster (decision #51)
     expect(data.player_hp).toBe(100)
     expect(data.question.id).toMatch(/^(pri|gen)-/)
     const text = JSON.stringify(data)
@@ -67,7 +74,7 @@ describe.skipIf(!configured)('battles (live project)', () => {
     expect(error).toBeNull()
     expect(data.correct).toBe(true)
     expect(data.damage).toBeGreaterThan(0)
-    expect(data.state.monster_hp).toBe(60 - data.damage)
+    expect(data.state.monster_hp).toBe(55 - data.damage)
     expect(data.xp_gained).toBeGreaterThan(0)
     const after = (await a.from('player_xp').select('xp').single()).data!.xp
     expect(Number(after)).toBe(Number(before) + data.xp_gained)

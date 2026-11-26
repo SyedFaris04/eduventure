@@ -184,6 +184,13 @@ with pages (1, 2, 3) instead of scrolling and smaller sizes, and chose a game lo
 `tests/e2e/phone-fit.spec.ts` checks every player screen at 740 × 360 and 640 × 300, with no page scroll and nothing
 off the side, and checks the HUD limits.
 
+## 51. Normal monsters fall to about three right answers (2026-11-26)
+The owner felt normal battles were too long: with 60–130 health and 16–32 damage a right answer, a fight took 3–8
+right answers. Health is now 55, 60 or 65 by tier, so most fights end on the third right answer. Harder questions
+still hit harder, so a very hard run can end in two answers and a very easy one in four (the owner chose this over
+a fixed three). The XP and gold for winning are unchanged. Bosses are unchanged. Migration
+`20261126100000_easier_monsters.sql`.
+
 ## 52. Phones start with a closer camera; battle and settings compact on phones (2026-11-26)
 The owner found the interface out of proportion on a phone: tiny characters under chunky controls. On a short screen a
 player with no saved camera starts closer (tilt 40, distance 11, `PHONE_CAMERA`), and Reset returns there. The battle
