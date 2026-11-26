@@ -29,6 +29,13 @@ describe.skipIf(!configured)('battles (live project)', () => {
     b = await player('primary', ['science'])
   })
 
+  it('every normal monster falls to about three right answers (health 55–65)', async () => {
+    const { data } = await a.from('monsters').select('id, max_hp')
+    expect(data!.length).toBeGreaterThanOrEqual(15)
+    for (const m of data!) expect(m.max_hp, m.id).toBeGreaterThanOrEqual(55)
+    for (const m of data!) expect(m.max_hp, m.id).toBeLessThanOrEqual(65)
+  })
+
   it('starts a battle without sending the answer', async () => {
     const { data, error } = await a.rpc('start_encounter', { p_monster: 'sproutling' })
     expect(error).toBeNull()

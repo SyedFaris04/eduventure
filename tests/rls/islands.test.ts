@@ -47,12 +47,12 @@ describe.skipIf(!url || !key)('islands (live project)', () => {
     const { data } = await a.from('monsters').select('id, island_id, max_hp, xp_reward, gold_reward')
     const byId = Object.fromEntries((data ?? []).map((m) => [m.id, m]))
     for (const id of ['sproutling', 'pebblewing', 'dinobud']) expect(byId[id].island_id).toBe('greenhaven')
-    expect(byId.hornbill).toMatchObject({ island_id: 'science_island', max_hp: 100, xp_reward: 40, gold_reward: 16 })
-    expect(byId.tapir).toMatchObject({ island_id: 'science_island', max_hp: 120, xp_reward: 48, gold_reward: 19 })
-    expect(byId.pangolin).toMatchObject({ island_id: 'science_island', max_hp: 130, xp_reward: 55, gold_reward: 22 })
-    expect(byId.cubelet).toMatchObject({ island_id: 'mathematics_mountains', max_hp: 100 })
-    expect(byId.hexowl).toMatchObject({ island_id: 'mathematics_mountains', max_hp: 120 })
-    expect(byId.pisnake).toMatchObject({ island_id: 'mathematics_mountains', max_hp: 130 })
+    expect(byId.hornbill).toMatchObject({ island_id: 'science_island', max_hp: 55, xp_reward: 40, gold_reward: 16 })
+    expect(byId.tapir).toMatchObject({ island_id: 'science_island', max_hp: 60, xp_reward: 48, gold_reward: 19 })
+    expect(byId.pangolin).toMatchObject({ island_id: 'science_island', max_hp: 65, xp_reward: 55, gold_reward: 22 })
+    expect(byId.cubelet).toMatchObject({ island_id: 'mathematics_mountains', max_hp: 55 })
+    expect(byId.hexowl).toMatchObject({ island_id: 'mathematics_mountains', max_hp: 60 })
+    expect(byId.pisnake).toMatchObject({ island_id: 'mathematics_mountains', max_hp: 65 })
   })
 
   it('island monsters ask island subjects', async () => {
