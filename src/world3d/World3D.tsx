@@ -343,8 +343,8 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
   const look = THEMES[map.theme]
   const festive = useMemo(() => decoratedKinds(map.id, festivals), [map.id, festivals])
   const room = useRoomConnection(isPrivatePlace(map.id) ? null : map.id)
-  // A battle panel covers the world, except while the defeat cutscene plays on it.
-  const covered = useGame((s) => Boolean((s.battle && !s.finisher) || s.boss))
+  // A battle panel covers the world (except while the defeat cutscene plays on it), and so does the turn-your-phone screen.
+  const covered = useGame((s) => Boolean((s.battle && !s.finisher) || s.boss || s.upright))
   const level = useQuality(qualityLevel)
   const reduced = useMemo(reducedMotion, [])
   useEffect(preloadProps, [])

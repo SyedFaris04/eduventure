@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useGame } from '../game/store'
 import { needsRotate, screenNow } from './orientation'
 
 /**
@@ -19,6 +20,11 @@ export function RotatePrompt({ path }: { path: string }) {
     }
   }, [])
   const show = needsRotate(screen, path)
+  // The game waits behind the prompt: the world stops moving and drawing, and play time stops counting.
+  useEffect(() => {
+    useGame.setState({ upright: show })
+    return () => useGame.setState({ upright: false })
+  }, [show])
   // Keep screen readers and taps off the game behind the prompt.
   useEffect(() => {
     const app = document.getElementById('root')?.firstElementChild as HTMLElement | null

@@ -154,7 +154,7 @@ function Boss({ id }: { id: BossId }) {
   return (
     <div className="pointer-events-auto absolute inset-0 z-30 grid place-items-center overflow-y-auto bg-ink/55 p-3 short:p-1">
       <section role="dialog" aria-modal="true" aria-label={t(bossText(shown, 'title'))} className="w-full max-w-xl rounded-3xl border-4 border-wood bg-cream shadow-[0_0_0_3px_var(--color-wood-dark),0_16px_40px_rgb(0_0_0/0.4)] short:flex short:max-h-full short:max-w-4xl short:overflow-hidden">
-        <header className="flex items-center gap-3 rounded-t-[20px] bg-gradient-to-b from-[#8fa3c7] to-[#5e7aa6] p-3 text-cream short:w-56 short:shrink-0 short:flex-col short:justify-center short:rounded-tr-none short:rounded-s-[20px]">
+        <header className="flex items-center gap-3 rounded-t-[20px] bg-gradient-to-b from-[#8fa3c7] to-[#5e7aa6] p-3 text-cream short:w-56 short:shrink-0 short:flex-col short:justify-center short:rounded-se-none short:rounded-s-[20px]">
           <Snapshot subject={{ kind: 'boss', boss: shown }} px={160} alt="" className={`size-20 shrink-0 sm:size-24 ${result?.correct ? 'battle-hit' : 'hero-bob'}`} />
           <div className="min-w-0 flex-1 space-y-2">
             <p className="font-display text-lg font-bold">{name}</p>
