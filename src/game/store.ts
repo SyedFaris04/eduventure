@@ -27,6 +27,8 @@ type GameState = {
   monsters: { id: string; kind: MonsterKind; x: number; y: number }[]
   /** Set by the battle panel when a defeated monster's sprite should be removed. */
   defeated: string[]
+  /** The defeat cutscene is playing (the battle panel steps aside until it ends); see src/world3d/finisher.ts. */
+  finisher: { monsterId: string; name: string; startedAt: number } | null
   /** Bumped on a wrong answer / a won battle; the hero flinches or cheers once the panel closes. */
   hitSeq: number
   cheerSeq: number
@@ -71,6 +73,7 @@ export const useGame = create<GameState>(() => ({
   player: { x: 0, y: 0 },
   monsters: [],
   defeated: [],
+  finisher: null,
   hitSeq: 0,
   cheerSeq: 0,
   jetty: false,

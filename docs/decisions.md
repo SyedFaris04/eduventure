@@ -189,3 +189,17 @@ The owner found the interface out of proportion on a phone: tiny characters unde
 player with no saved camera starts closer (tilt 40, distance 11, `PHONE_CAMERA`), and Reset returns there. The battle
 on short screens uses smaller question text and slimmer answers, with a bigger monster; the world shows around it.
 The settings panel fits without its own scroll. A camera the player saved is always kept.
+
+## 53. A defeat cutscene when the last answer wins a battle (2026-11-26)
+The owner asked for a more dramatic win. The winning answer shows for 0.8 s, then the battle panel steps aside and a
+2.6 s cutscene plays on the world: cinema bars, the camera swoops low to the side of the hero and monster (the side
+nearer the player's own view, so it turns the short way), the hero strikes, a white flash and camera shake on the
+blow, the monster bursts into sparkles in slow motion, a VICTORY banner, the hero cheers; then the rewards card.
+A tap skips it. Timings and the camera are pure functions in `src/world3d/finisher.ts` (unit-tested).
+
+- **Nothing about rewards changes:** the server has already paid out when the cutscene starts; it is presentation only.
+- **Reduced motion:** no cutscene; the monster just goes, as before.
+- **No 3D (no WebGL):** the 2D overlay still ends on its own and removes the monster, so nothing waits on the world.
+- Bosses keep their own victory screen (a boss is a multi-round fight with its own panel).
+
+**Rejected:** a pre-rendered video (heavy downloads, and it could not show the player's own hero and monster).
