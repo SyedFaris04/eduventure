@@ -448,6 +448,7 @@
     "qualityLevel": {
       "auto": "自動",
       "high": "高",
+      "normal": "標準",
       "low": "低"
     }
   },
@@ -590,7 +591,8 @@
       "fiftyUsed": "このバトルでは使用済み",
       "fiftyNeedsOptions": "まちがいの選択肢が2つ以上ある問題で使えます",
       "fiftyFailed": "この問題では50/50を使えません。"
-    }
+    },
+    "finisher": "{{name}}をたおした！"
   },
   "library": {
     "title": "学習ライブラリー",

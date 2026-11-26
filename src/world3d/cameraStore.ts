@@ -1,9 +1,13 @@
+import { SHORT_QUERY } from '../app/useShortScreen'
 import { create } from 'zustand'
 import { CAMERA, PRESETS, type PresetId } from './projection'
 
 /** `yaw` turns the camera around the hero, in degrees (0–359, 0 = the original diagonal view). */
 export type CameraSettings = { tilt: number; distance: number; fov: number; yaw: number }
 export const DEFAULT_CAMERA: CameraSettings = { ...PRESETS.balanced, fov: CAMERA.fov, yaw: 0 }
+/** Phones held sideways start closer, so heroes and monsters are big enough to read on a small screen. */
+export const PHONE_CAMERA: CameraSettings = { tilt: 40, distance: 11, fov: CAMERA.fov, yaw: 0 }
+const startCamera = () => (typeof window !== 'undefined' && window.matchMedia?.(SHORT_QUERY).matches ? PHONE_CAMERA : DEFAULT_CAMERA)
 const KEY = 'eduventure.camera'
 const LIMITS = { tilt: [25, 70], distance: [CAMERA.minDistance, CAMERA.maxDistance], fov: [25, 50] } as const
 const clamp = (v: number, [lo, hi]: readonly [number, number]) => Math.min(hi, Math.max(lo, v))
@@ -23,9 +27,9 @@ function tidy(c: Partial<CameraSettings> & { turn?: number }): CameraSettings {
 export function loadCamera(): CameraSettings {
   try {
     const raw = localStorage.getItem(KEY)
-    return raw ? tidy(JSON.parse(raw)) : DEFAULT_CAMERA
+    return raw ? tidy(JSON.parse(raw)) : startCamera()
   } catch {
-    return DEFAULT_CAMERA
+    return startCamera()
   }
 }
 function save(c: CameraSettings) {
@@ -65,6 +69,6 @@ export const useCamera = create<Store>((set, get) => {
       clearTimeout(saveSoon)
       saveSoon = setTimeout(() => save(next), 400)
     },
-    reset: () => update(DEFAULT_CAMERA),
+    reset: () => update(startCamera()),
   }
 })

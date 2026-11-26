@@ -76,7 +76,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
         </span>
         {question.status !== 'published' && <span className="rounded-full border-2 border-path-dark bg-path/40 px-2 py-0.5 text-ink">{t('battle.draft')}</span>}
       </div>
-      <p className="font-display text-xl leading-snug font-semibold">{lead}</p>
+      <p className="font-display text-xl leading-snug font-semibold short:text-base short:leading-tight">{lead}</p>
       {program && (
         <pre dir="ltr" className="overflow-x-auto rounded-xl border-[3px] border-wood-dark bg-[#1f2433] p-3 text-start text-sm leading-relaxed text-[#f4f1ea]">
           <code>{program}</code>
@@ -94,9 +94,9 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
               type="button"
               disabled={locked}
               onClick={() => submit({ choice: o.id })}
-              className={`flex min-h-12 items-center gap-2 rounded-2xl border-[3px] px-3 py-2 text-start font-semibold transition disabled:cursor-default short:min-h-10 short:py-1 ${choiceStyle(o.id, Boolean(chosen && 'choice' in chosen && chosen.choice === o.id))}`}
+              className={`flex min-h-12 items-center gap-2 rounded-2xl border-[3px] px-3 py-2 text-start font-semibold transition disabled:cursor-default short:min-h-9 short:rounded-xl short:border-2 short:py-0.5 short:text-sm ${choiceStyle(o.id, Boolean(chosen && 'choice' in chosen && chosen.choice === o.id))}`}
             >
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-wood text-sm text-cream">{question.type === 'mcq' ? String.fromCharCode(65 + i) : i ? '✗' : '✓'}</span>
+              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-wood text-sm text-cream short:size-6 short:text-xs">{question.type === 'mcq' ? String.fromCharCode(65 + i) : i ? '✗' : '✓'}</span>
               {o.text}
             </button>
           ))}
@@ -117,7 +117,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
                   aria-pressed={on}
                   disabled={locked}
                   onClick={() => setPicked((p) => (on ? p.filter((x) => x !== o.id) : [...p, o.id]))}
-                  className={`flex min-h-12 items-center gap-2 rounded-2xl border-[3px] px-3 py-2 text-start font-semibold transition disabled:cursor-default short:min-h-10 short:py-1 ${choiceStyle(o.id, on)}`}
+                  className={`flex min-h-12 items-center gap-2 rounded-2xl border-[3px] px-3 py-2 text-start font-semibold transition disabled:cursor-default short:min-h-9 short:rounded-xl short:border-2 short:py-0.5 short:text-sm ${choiceStyle(o.id, on)}`}
                 >
                   <span className={`grid size-6 shrink-0 place-items-center rounded-md border-2 border-wood-dark ${on ? 'bg-wood text-cream' : 'bg-white'}`}>{on && <Check size={14} aria-hidden />}</span>
                   {o.text}
@@ -137,7 +137,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
         <div className="space-y-2">
           <ol className="space-y-2">
             {order.map((o, i) => (
-              <li key={o.id} className="flex items-center gap-2 rounded-2xl border-[3px] border-wood/50 bg-white px-3 py-2 font-semibold short:py-1">
+              <li key={o.id} className="flex items-center gap-2 rounded-2xl border-[3px] border-wood/50 bg-white px-3 py-2 font-semibold short:rounded-xl short:border-2 short:py-0.5 short:text-sm">
                 <span className="grid size-7 shrink-0 place-items-center rounded-full bg-wood text-sm text-cream">{i + 1}</span>
                 <span className="flex-1">{o.text}</span>
                 <button ref={i === 0 ? (el) => void (first.current = el) : undefined} type="button" aria-label={t('battle.moveUp', { item: o.text })} disabled={locked || i === 0} onClick={() => move(i, -1)} className="rounded-lg border-2 border-wood/50 p-1 disabled:opacity-30">
@@ -160,7 +160,7 @@ export function QuestionCard({ question, hidden, busy, result, onSubmit, badge, 
       {question.type === 'matching' && (
         <div className="space-y-2">
           {(question.options as Pairs).left.map((l, i) => (
-            <label key={l.id} className="flex flex-wrap items-center gap-2 rounded-2xl border-[3px] border-wood/50 bg-white px-3 py-2 font-semibold short:py-1">
+            <label key={l.id} className="flex flex-wrap items-center gap-2 rounded-2xl border-[3px] border-wood/50 bg-white px-3 py-2 font-semibold short:rounded-xl short:border-2 short:py-0.5 short:text-sm">
               <span className="min-w-24 flex-1">{l.text}</span>
               <select
                 ref={i === 0 ? (el) => void (first.current = el) : undefined}

@@ -12,12 +12,15 @@ import { newUnlocks } from '../../game/unlocks'
 import { useSession } from '../authentication/useSession'
 import { useProgression } from '../character/useCharacter'
 import { playSfx } from '../../audio/engine'
+import { FINISHER } from '../../world3d/finisher'
 import { answerQuestion, askFifty, BattleError, fleeEncounter, startEncounter, type AnswerPayload, type AnswerResult, type EncounterState } from './battleApi'
 import type { PublicQuestion } from './questionSchema'
 import { HelperBar } from './HelperBar'
 import { QuestionCard } from './QuestionCard'
 
 export const MIN_READ_MS = 1600 // the server rejects answers sooner than 1.5 s after a question appears
+const HIT_MS = 800 // how long the winning answer shows before the defeat cutscene
+const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 
 export function BattlePanel() {
   const battle = useGame((s) => s.battle)
@@ -60,6 +63,7 @@ function Battle({ monsterId, kind, returning }: { monsterId: string; kind: Monst
   const shownAt = useRef(0)
   const guessShown = useRef<string | null>(null)
   const { level, startLevel } = usePlayerLevel()
+  const cutscene = useGame((s) => s.finisher !== null)
 
   useEffect(() => {
     let cancelled = false
@@ -95,13 +99,17 @@ function Battle({ monsterId, kind, returning }: { monsterId: string; kind: Monst
       setEarned((e) => ({ xp: e.xp + r.xp_gained, gold: e.gold + r.gold_gained, leveledTo: r.leveled_up ? r.totals.level : e.leveledTo }))
       playSfx(r.correct ? 'correct' : 'wrong')
       if (r.pet === 'taught') setTimeout(() => playSfx('chirp'), 500)
-      reactToAnswer(r.correct, r.state.status === 'won')
-      if (r.state.status === 'won') {
-        useGame.setState((s) => ({ defeated: [...s.defeated, monsterId] }))
-        setTimeout(() => playSfx('victory'), 350)
-      } else if (r.state.status === 'lost') setTimeout(() => playSfx('defeat'), 350)
-      if (r.leveled_up) setTimeout(() => playSfx('levelup'), 900)
-      else if (r.missions_completed?.length) setTimeout(() => playSfx('mission'), 900)
+      const won = r.state.status === 'won'
+      // The defeat cutscene (decision #53): the last answer shows for a moment, then the world takes the stage.
+      const cut = won && !reducedMotion()
+      reactToAnswer(r.correct, won && !cut)
+      if (cut) setTimeout(() => useGame.setState({ finisher: { monsterId, name: monsterName, startedAt: performance.now() } }), HIT_MS)
+      else if (won) useGame.setState((s) => ({ defeated: [...s.defeated, monsterId] }))
+      if (won) setTimeout(() => playSfx('victory'), cut ? HIT_MS + FINISHER.bannerAt : 350)
+      else if (r.state.status === 'lost') setTimeout(() => playSfx('defeat'), 350)
+      const later = cut ? HIT_MS + FINISHER.duration : 900
+      if (r.leveled_up) setTimeout(() => playSfx('levelup'), later)
+      else if (r.missions_completed?.length) setTimeout(() => playSfx('mission'), later)
     } catch (e) {
       setError(e instanceof BattleError ? e.key : 'battle.errors.generic')
     } finally {
@@ -150,11 +158,12 @@ function Battle({ monsterId, kind, returning }: { monsterId: string; kind: Monst
     </div>
   )
 
+  if (cutscene) return null // the panel steps aside while the defeat cutscene plays (it keeps its state)
   return (
     <div className="pointer-events-auto absolute inset-0 z-30 grid place-items-center overflow-y-auto bg-ink/45 p-3 short:p-1">
       <section role="dialog" aria-modal="true" aria-label={t('battle.title', { name: monsterName })} className="w-full max-w-xl rounded-3xl border-4 border-wood bg-cream shadow-[0_0_0_3px_var(--color-wood-dark),0_16px_40px_rgb(0_0_0/0.4)] short:flex short:max-h-full short:max-w-4xl short:overflow-hidden">
         <header className="flex items-center gap-3 rounded-t-[20px] bg-gradient-to-b from-[#a6d672] to-grass p-3 short:w-52 short:shrink-0 short:flex-col short:justify-center short:rounded-tr-none short:rounded-s-[20px]">
-          <Snapshot subject={{ kind: 'monster', monster }} px={160} alt="" className={`size-20 shrink-0 sm:size-24 ${result?.correct ? 'battle-hit' : 'hero-bob'}`} />
+          <Snapshot subject={{ kind: 'monster', monster }} px={160} alt="" className={`size-20 shrink-0 sm:size-24 short:size-28 ${result?.correct ? 'battle-hit' : 'hero-bob'}`} />
           <div className="min-w-0 flex-1 space-y-2">
             {enc?.returning && (
               <span className="inline-flex items-center gap-1 rounded-full border-2 border-wood-dark bg-gold px-2 text-xs font-bold">
@@ -172,7 +181,7 @@ function Battle({ monsterId, kind, returning }: { monsterId: string; kind: Monst
           {actions('hidden w-full flex-col gap-2 short:flex')}
         </header>
 
-        <div className="space-y-4 p-4 short:min-h-0 short:flex-1 short:space-y-2 short:overflow-y-auto short:p-3">
+        <div className="space-y-4 p-4 short:min-h-0 short:flex-1 short:space-y-1.5 short:overflow-y-auto short:p-2.5">
           {error && (
             <p role="alert" className="rounded-xl border-2 border-danger bg-danger/10 p-2 text-sm font-semibold">
               {t(error)}

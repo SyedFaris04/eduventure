@@ -36,11 +36,17 @@ test('walk, talk to the Elder, win a battle; Home shows the server totals after 
   await expect(battle).toBeVisible()
   // One mistake first: the "Why not?" card explains it and promises it will come back.
   let missed = false
-  for (let i = 0; i < 12 && !(await page.getByRole('button', { name: 'Back to the village' }).count()); i++) {
+  // The defeat cutscene is short, so note it in the page the moment it starts rather than hoping to catch it on screen.
+  type Seen = { __game: { subscribe: (f: (s: { finisher: { name: string } | null }) => void) => void }; __finisher?: string }
+  await page.evaluate(() => (window as unknown as Seen).__game.subscribe((s) => s.finisher && ((window as unknown as Seen).__finisher = s.finisher.name)))
+  const won = async () => (await page.getByRole('button', { name: 'Back to the village' }).count()) > 0 || Boolean(await page.evaluate(() => (window as unknown as Seen).__finisher))
+  for (let i = 0; i < 12 && !(await won()); i++) {
     if (missed || !(missed = await answerWrongly(page))) await answerCorrectly(page)
     if (await page.getByRole('button', { name: 'Continue' }).count()) await page.getByRole('button', { name: 'Continue' }).click()
   }
   expect(missed).toBe(true)
+  // The defeat cutscene plays on the world, then the rewards come back.
+  await page.waitForFunction(() => (window as unknown as Seen).__finisher === 'Sproutling')
   await expect(battle).toContainText('Victory!')
   await page.getByRole('button', { name: 'Back to the village' }).click()
 

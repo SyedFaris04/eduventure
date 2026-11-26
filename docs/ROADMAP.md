@@ -275,7 +275,13 @@ Spec: `docs/superpowers/specs/2026-11-20-whiteboard-camps-design.md`. Decision #
 Each player's own island, first on the boatman's list (decision #48): build a house and decorate with 50 items (houses, garden, trees, paths and fences, lights, furniture, Malaysian, water) paid for with harvested materials; 15 unlock by level. Place, turn, move, and remove with a full refund; the server checks every placement. Private for now (visiting comes later).
 
 ### Phone fit — built
-Every screen on the player's path fits a phone held sideways, even in a browser with the address bar showing (640 × 300); long lists turn into pages (‹ 1 2 3 ›, swipe) and Home is a game lobby on phones; the in-game HUD is smaller (decision #50). Tablets and laptops are unchanged.
+Every screen on the player's path fits a phone held sideways, even in a browser with the address bar showing (640 × 300); long lists turn into pages (‹ 1 2 3 ›, swipe) and Home is a game lobby on phones; the in-game HUD is smaller (decision #50). Tablets and laptops are unchanged. Phones start with a closer camera, and battles are compact on them (decision #52).
+
+### Defeat cutscene — built
+Winning a battle plays a 2.6 s cutscene on the world before the rewards: the camera swoops in from the side, the hero strikes, the monster bursts into sparkles, VICTORY (decision #53). Tap to skip; off under reduced motion.
+
+### High graphics — built
+Settings offer Auto / High / Normal / Low; Normal is the old High. High adds a swaying meadow, rolling gusts of wind, drifting cloud shadows, butterflies and pollen (fireflies on the rainforest and tech islands), softer shadows and a lens vignette. Auto picks High on laptops and Normal on phones, and steps down when frames are slow (decision #54).
 
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.

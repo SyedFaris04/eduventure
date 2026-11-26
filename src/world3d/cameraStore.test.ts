@@ -1,5 +1,6 @@
-import { beforeEach, describe, expect, it } from 'vitest'
-import { DEFAULT_CAMERA, loadCamera, useCamera } from './cameraStore'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { DEFAULT_CAMERA, loadCamera, PHONE_CAMERA, useCamera } from './cameraStore'
+import { SHORT_QUERY } from '../app/useShortScreen'
 
 describe('camera settings', () => {
   beforeEach(() => {
@@ -34,6 +35,27 @@ describe('camera settings', () => {
   it('ignores broken saved data', () => {
     localStorage.setItem('eduventure.camera', '{not json')
     expect(loadCamera()).toEqual(DEFAULT_CAMERA)
+  })
+
+  describe('on a phone held sideways', () => {
+    beforeEach(() => {
+      vi.stubGlobal('matchMedia', (q: string) => ({ matches: q === SHORT_QUERY, addEventListener() {}, removeEventListener() {} }))
+      localStorage.clear() // the outer reset saved the desktop default before this stub
+    })
+    afterEach(() => vi.unstubAllGlobals())
+
+    it('starts closer, so heroes and monsters are big enough on a small screen; reset goes back there', () => {
+      expect(loadCamera()).toEqual(PHONE_CAMERA)
+      expect(PHONE_CAMERA.distance).toBeLessThan(DEFAULT_CAMERA.distance)
+      useCamera.getState().set({ distance: 20 })
+      useCamera.getState().reset()
+      expect(loadCamera()).toEqual(PHONE_CAMERA)
+    })
+
+    it("keeps the player's own saved camera", () => {
+      localStorage.setItem('eduventure.camera', JSON.stringify({ tilt: 50, distance: 20, fov: 30, yaw: 0 }))
+      expect(loadCamera()).toMatchObject({ tilt: 50, distance: 20 })
+    })
   })
 
   it('a camera saved with the old quarter turns keeps its heading', () => {

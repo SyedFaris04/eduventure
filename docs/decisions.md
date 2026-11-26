@@ -190,3 +190,43 @@ right answers. Health is now 55, 60 or 65 by tier, so most fights end on the thi
 still hit harder, so a very hard run can end in two answers and a very easy one in four (the owner chose this over
 a fixed three). The XP and gold for winning are unchanged. Bosses are unchanged. Migration
 `20261126100000_easier_monsters.sql`.
+
+## 52. Phones start with a closer camera; battle and settings compact on phones (2026-11-26)
+The owner found the interface out of proportion on a phone: tiny characters under chunky controls. On a short screen a
+player with no saved camera starts closer (tilt 40, distance 11, `PHONE_CAMERA`), and Reset returns there. The battle
+on short screens uses smaller question text and slimmer answers, with a bigger monster; the world shows around it.
+The settings panel fits without its own scroll. A camera the player saved is always kept.
+
+## 53. A defeat cutscene when the last answer wins a battle (2026-11-26)
+The owner asked for a more dramatic win. The winning answer shows for 0.8 s, then the battle panel steps aside and a
+2.6 s cutscene plays on the world: cinema bars, the camera swoops low to the side of the hero and monster (the side
+nearer the player's own view, so it turns the short way), the hero strikes, a white flash and camera shake on the
+blow, the monster bursts into sparkles in slow motion, a VICTORY banner, the hero cheers; then the rewards card.
+A tap skips it. Timings and the camera are pure functions in `src/world3d/finisher.ts` (unit-tested).
+
+- **Nothing about rewards changes:** the server has already paid out when the cutscene starts; it is presentation only.
+- **Reduced motion:** no cutscene; the monster just goes, as before.
+- **No 3D (no WebGL):** the 2D overlay still ends on its own and removes the monster, so nothing waits on the world.
+- Bosses keep their own victory screen (a boss is a multi-round fight with its own panel).
+
+**Rejected:** a pre-rendered video (heavy downloads, and it could not show the player's own hero and monster).
+
+## 54. Three graphics levels: today's look is Normal, and a new High (2026-11-26)
+The owner liked the current graphics and asked for a richer, more natural and lively "High" on top. Settings now offer
+Auto / High / Normal / Low. Normal is exactly the old High; Low is unchanged. High adds:
+- a meadow: dense swaying grass blades in shades of each island's own grass;
+- gusts: waves of stronger wind rolling across grass, bushes and trees (one shared uniform; zero on Normal);
+- soft cloud shadows drifting over the island (the camera looks down, so their shade is what shows of clouds);
+- butterflies around the flower beds, and drifting pollen (fireflies on the rainforest and tech islands);
+- softer shadow edges and a gentle lens vignette.
+
+All of it uses three.js and drei only; no new dependencies and no post-processing pass (heavy on phones).
+
+- **Auto** starts on High with a mouse (laptops, desktops) and on Normal on touch screens, then steps down one level
+  at a time (High → Normal → Low) after 3 s of slow frames. It never steps back up during a visit.
+- **Saved choices:** a new storage key. A player who had picked the old High (now called Normal) keeps the same look.
+- **Reduced motion:** none of the moving extras (as before for sparkles and decor).
+- Motion (butterfly paths, flower homes, cloud drift) is pure functions in `src/world3d/livelyMotion.ts`, unit-tested.
+
+**Rejected:** a sky dome (the camera rarely sees the horizon), drei `Cloud` (loads its texture from a CDN), and
+bloom or ambient occlusion via post-processing (a large cost on phones for a small gain at this camera angle).

@@ -448,6 +448,7 @@
     "qualityLevel": {
       "auto": "Auto",
       "high": "High",
+      "normal": "Normal",
       "low": "Low"
     }
   },
@@ -590,7 +591,8 @@
       "fiftyUsed": "Already used this battle",
       "fiftyNeedsOptions": "Needs a question with at least two wrong options",
       "fiftyFailed": "50/50 can't be used on this question."
-    }
+    },
+    "finisher": "{{name}} defeated!"
   },
   "library": {
     "title": "Academic Library",

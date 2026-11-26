@@ -448,6 +448,7 @@
     "qualityLevel": {
       "auto": "Auto",
       "high": "Altos",
+      "normal": "Normales",
       "low": "Bajos"
     }
   },
@@ -590,7 +591,8 @@
       "fiftyUsed": "Ya usado en esta batalla",
       "fiftyNeedsOptions": "Necesita una pregunta con al menos dos opciones incorrectas",
       "fiftyFailed": "El 50/50 no se puede usar en esta pregunta."
-    }
+    },
+    "finisher": "¡{{name}} derrotado!"
   },
   "library": {
     "title": "Biblioteca académica",

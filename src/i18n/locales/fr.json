@@ -448,6 +448,7 @@
     "qualityLevel": {
       "auto": "Auto",
       "high": "Élevés",
+      "normal": "Normaux",
       "low": "Faibles"
     }
   },
@@ -590,7 +591,8 @@
       "fiftyUsed": "Déjà utilisé pendant ce combat",
       "fiftyNeedsOptions": "Il faut une question avec au moins deux mauvaises réponses",
       "fiftyFailed": "Le 50/50 ne peut pas être utilisé sur cette question."
-    }
+    },
+    "finisher": "{{name}} vaincu !"
   },
   "library": {
     "title": "Bibliothèque",

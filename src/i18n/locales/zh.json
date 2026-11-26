@@ -448,6 +448,7 @@
     "qualityLevel": {
       "auto": "自动",
       "high": "高",
+      "normal": "标准",
       "low": "低"
     }
   },
@@ -590,7 +591,8 @@
       "fiftyUsed": "本场战斗已使用",
       "fiftyNeedsOptions": "需要至少有两个错误选项的题目",
       "fiftyFailed": "这道题不能使用 50/50。"
-    }
+    },
+    "finisher": "{{name}} 被打败了！"
   },
   "library": {
     "title": "学术图书馆",

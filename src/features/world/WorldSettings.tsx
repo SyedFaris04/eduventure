@@ -10,11 +10,11 @@ import type { QualityChoice } from '../../world3d/quality'
 import { VisibilitySetting } from '../multiplayer/VisibilitySetting'
 
 const PRESET_IDS = Object.keys(PRESETS) as PresetId[]
-const QUALITIES: QualityChoice[] = ['auto', 'high', 'low']
+const QUALITIES: QualityChoice[] = ['auto', 'high', 'normal', 'low']
 
 function Slider({ label, value, min, max, step = 1, onChange }: { label: string; value: number; min: number; max: number; step?: number; onChange: (v: number) => void }) {
   return (
-    <label className="flex flex-col gap-1 text-sm font-semibold">
+    <label className="flex flex-col gap-1 text-sm font-semibold short:gap-0 short:text-xs">
       <span className="flex justify-between">
         {label} <span className="text-wood-dark/70">{Math.round(value)}</span>
       </span>
@@ -50,7 +50,7 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
           <p className="font-display font-semibold">{t('settings.camera')}</p>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 short:gap-1">
             {PRESET_IDS.map((id) => (
-              <Button key={id} variant={active === id ? 'primary' : 'secondary'} aria-pressed={active === id} onClick={() => cam.preset(id)} className="short:min-h-10 short:px-1 short:text-sm short:whitespace-nowrap">
+              <Button key={id} variant={active === id ? 'primary' : 'secondary'} aria-pressed={active === id} onClick={() => cam.preset(id)} className="short:min-h-8 short:px-1 short:text-xs short:whitespace-nowrap">
                 {t(`settings.preset.${id}`)}
               </Button>
             ))}
@@ -60,13 +60,13 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
           <Slider label={t('settings.fov')} value={cam.fov} min={25} max={50} onChange={(fov) => cam.set({ fov })} />
           <Slider label={t('settings.rotation')} value={cam.yaw} min={0} max={359} onChange={(yaw) => cam.set({ yaw })} />
           <div className="flex flex-wrap items-center gap-2">
-            <Button variant="secondary" onClick={() => cam.rotate(-45)} aria-label={t('settings.turnLeft')} className="short:min-h-10">
+            <Button variant="secondary" onClick={() => cam.rotate(-45)} aria-label={t('settings.turnLeft')} className="short:min-h-8 short:px-2.5">
               <RotateCcw size={16} aria-hidden />
             </Button>
-            <Button variant="secondary" onClick={() => cam.rotate(45)} aria-label={t('settings.turnRight')} className="short:min-h-10">
+            <Button variant="secondary" onClick={() => cam.rotate(45)} aria-label={t('settings.turnRight')} className="short:min-h-8 short:px-2.5">
               <RotateCw size={16} aria-hidden />
             </Button>
-            <Button variant="secondary" onClick={cam.reset} aria-label={t('settings.reset')} className="ms-auto short:min-h-10">
+            <Button variant="secondary" onClick={cam.reset} aria-label={t('settings.reset')} className="ms-auto short:min-h-8 short:px-2.5 short:text-xs">
               <Undo2 size={16} aria-hidden /> {t('settings.resetShort')}
             </Button>
           </div>

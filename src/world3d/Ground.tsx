@@ -38,14 +38,18 @@ function Instances({ geometry, material, items, castShadow = false, receiveShado
   return <instancedMesh ref={ref} args={[geometry, material, items.length]} castShadow={castShadow} receiveShadow={receiveShadow} frustumCulled={false} />
 }
 
-/** A place's ground: chunky tiles in the theme's colours, cliffs around the island, bridges, the jetty, flowers and grass. */
-export function Ground({ map }: { map: GameMap }) {
-  const geo = useMemo(() => ({ tile: new BoxGeometry(1, GROUND_DEPTH, 1), petal: new SphereGeometry(0.07, 6, 4), tuft: new ConeGeometry(0.05, 0.22, 4), plank: new BoxGeometry(1, 0.08, 0.2) }), [])
+/**
+ * A place's ground: chunky tiles in the theme's colours, cliffs around the island, bridges, the jetty, flowers and grass.
+ * `lush` (High graphics) adds a meadow of swaying blades in shades of the island's own grass.
+ */
+export function Ground({ map, lush = false }: { map: GameMap; lush?: boolean }) {
+  const geo = useMemo(() => ({ tile: new BoxGeometry(1, GROUND_DEPTH, 1), petal: new SphereGeometry(0.07, 6, 4), tuft: new ConeGeometry(0.05, 0.22, 4), plank: new BoxGeometry(1, 0.08, 0.2), blade: new ConeGeometry(0.035, 0.3, 3).translate(0, 0.15, 0) }), [])
   const mat = useMemo(
     () => ({
       tile: new MeshStandardMaterial({ roughness: 0.95 }),
       petal: new MeshStandardMaterial({ roughness: 0.7 }),
       tuft: addWind(new MeshStandardMaterial({ color: '#6fae4a', roughness: 0.9 }), 0.35),
+      blade: addWind(new MeshStandardMaterial({ roughness: 0.9 }), 0.45),
       wood: new MeshStandardMaterial({ color: '#a0612f', roughness: 0.85 }),
       rope: new MeshStandardMaterial({ color: '#8a5a3b', roughness: 0.9 }),
       cliff: new MeshStandardMaterial({ color: '#a98466', roughness: 1 }),
@@ -103,11 +107,28 @@ export function Ground({ map }: { map: GameMap }) {
     return { tiles, petals, tufts, planks, posts, cliffs }
   }, [map])
 
+  const blades = useMemo(() => {
+    if (!lush) return []
+    const out: Inst[] = []
+    const green = new Color(tileColour(map.theme, 'grass'))
+    map.cells.forEach((row, y) =>
+      row.forEach((cell, x) => {
+        if ((cell.tile !== 'grass' && cell.tile !== 'flowers') || cell.prop) return
+        for (let i = 0; i < 7; i++) {
+          const shade = green.clone().offsetHSL(0, 0.04, -0.1 + hash(x, y, i + 60) * 0.16)
+          out.push({ x: x + 0.08 + hash(x, y, i + 50) * 0.84, y: 0, z: y + 0.08 + hash(x, y, i + 70) * 0.84, ry: hash(x, y, i + 80) * 3, sy: 0.6 + hash(x, y, i + 90) * 0.8, colour: `#${shade.getHexString()}` })
+        }
+      }),
+    )
+    return out
+  }, [map, lush])
+
   return (
     <group>
       <Instances geometry={geo.tile} material={mat.tile} items={parts.tiles} />
       <Instances geometry={geo.petal} material={mat.petal} items={parts.petals} />
       <Instances geometry={geo.tuft} material={mat.tuft} items={parts.tufts} />
+      <Instances key={blades.length} geometry={geo.blade} material={mat.blade} items={blades} />
       <Instances geometry={geo.plank} material={mat.wood} items={parts.planks} castShadow />
       <Instances geometry={geo.tile} material={mat.rope} items={parts.posts} castShadow />
       {/* The island's rock base: a basin under the pond and cliffs on all four sides dropping into the sea. */}
