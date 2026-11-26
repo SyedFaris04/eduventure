@@ -31,7 +31,8 @@ import { useRoomConnection } from '../features/multiplayer/useRoom'
 import { decoratedKinds } from './props/festivalProps'
 import type { FestivalKind } from '../features/festival/festivalRules'
 import { THEMES } from './themes'
-import { windTime } from './wind'
+import { windGust, windTime } from './wind'
+import { Lively } from './Lively'
 import { SlashChips } from './SlashChips'
 import { isPrivatePlace } from '../game/places'
 import { IslandItems } from './IslandItems'
@@ -67,7 +68,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
   const lastStep = useRef(0)
   const panelClosedAt = useRef(-Infinity)
   const beats = useRef({ startedAt: -1, attack: false, impact: false, cheer: false }) // cutscene moments already played
-  const monitor = useMemo(() => createQualityMonitor(), [])
+  const monitor = useMemo(() => createQualityMonitor(useQuality.getState().auto), [])
   const level = useQuality(qualityLevel)
 
   useEffect(() => setDpr(level === 'low' ? Math.min(1.5, window.devicePixelRatio) : Math.min(2, window.devicePixelRatio)), [level, setDpr])
@@ -163,6 +164,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
     const dt = Math.min(delta, 0.05)
     const now = performance.now()
     windTime.value = reduced ? 0 : state.clock.elapsedTime
+    windGust.value = level === 'high' && !reduced ? 1 : 0
     const store = useGame.getState()
     if (store.defeated.length) {
       for (const id of store.defeated) sim.defeat(id, now)
@@ -258,7 +260,12 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       ringMat.opacity = 0.9 * (1 - t)
     }
 
-    if (useQuality.getState().choice === 'auto' && useQuality.getState().auto === 'high' && monitor.sample(delta * 1000) === 'low') useQuality.setState({ auto: 'low' })
+    // Auto steps down a level (High → Normal → Low) when frames stay slow.
+    const q = useQuality.getState()
+    if (q.choice === 'auto' && q.auto !== 'low') {
+      const next = monitor.sample(delta * 1000)
+      if (next !== q.auto) useQuality.setState({ auto: next })
+    }
   })
 
   // A laptop pointer shows where the item would go (only while building, and only when the tile changes).
@@ -296,7 +303,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
   return (
     <>
       <hemisphereLight args={['#bfe6ff', '#8bc34a', 1.15]} />
-      <directionalLight ref={sun} color="#fff1d6" intensity={2.4} castShadow={level === 'high'} shadow-mapSize={[2048, 2048]} shadow-camera-left={-16} shadow-camera-right={16} shadow-camera-top={16} shadow-camera-bottom={-16} shadow-camera-far={50} shadow-bias={-0.0006} />
+      <directionalLight ref={sun} color="#fff1d6" intensity={2.4} castShadow={level !== 'low'} shadow-radius={level === 'high' ? 4 : 1} shadow-mapSize={[2048, 2048]} shadow-camera-left={-16} shadow-camera-right={16} shadow-camera-top={16} shadow-camera-bottom={-16} shadow-camera-far={50} shadow-bias={-0.0006} />
       {/* The tap target: an invisible floor over the whole island. */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[sim.map.width / 2, 0.001, sim.map.height / 2]} onPointerDown={tap} onPointerUp={buildUp} onPointerMove={hover} visible={false}>
         <planeGeometry args={[sim.map.width, sim.map.height]} />
@@ -351,6 +358,7 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
   const start = cameraOffset(view.distance, view.tilt, DEFAULT_YAW + (view.yaw * Math.PI) / 180)
 
   return (
+    <>
     <Canvas
       // Battle panels cover the world: stop drawing it to save battery and keep phones responsive.
       frameloop={covered ? 'never' : 'always'}
@@ -362,23 +370,27 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
       <color attach="background" args={[look.sky]} />
       <fog attach="fog" args={[look.sky, ...look.fog]} />
       <Game sim={sim} reduced={reduced} />
-      <Ground map={map} />
-      <Water map={map} sparkles={level === 'high' && !reduced} />
-      <Props map={map} shadows={level === 'high'} />
-      <HarvestNodes map={map} regrowing={regrowing} built={built} shadows={level === 'high'} />
-      {island.length > 0 && <IslandItems items={island} shadows={level === 'high'} />}
+      <Ground map={map} lush={level === 'high'} />
+      <Water map={map} sparkles={level !== 'low' && !reduced} />
+      <Props map={map} shadows={level !== 'low'} />
+      <HarvestNodes map={map} regrowing={regrowing} built={built} shadows={level !== 'low'} />
+      {island.length > 0 && <IslandItems items={island} shadows={level !== 'low'} />}
       {isPrivatePlace(map.id) && <BuildGhost items={island} />}
       {!reduced && <SlashChips />}
       {!reduced && <DefeatBurst />}
-      <Decor map={map} fancy={level === 'high' && !reduced} />
-      <FestivalDecor map={map} kinds={festive} fancy={level === 'high' && !reduced} shadows={level === 'high'} />
+      <Decor map={map} fancy={level !== 'low' && !reduced} />
+      {level === 'high' && !reduced && <Lively map={map} />}
+      <FestivalDecor map={map} kinds={festive} fancy={level !== 'low' && !reduced} shadows={level !== 'low'} />
       <Npcs sim={sim} reduced={reduced} />
       <Monsters sim={sim} reduced={reduced} />
       <Bosses sim={sim} reduced={reduced} />
       <Hero sim={sim} appearance={hero} reduced={reduced} />
       <PetFollower leader={sim} pet={pet} reduced={reduced} />
-      <OtherPlayers sim={sim} client={room} reduced={reduced} lowQuality={level !== 'high'} />
+      <OtherPlayers sim={sim} client={room} reduced={reduced} lowQuality={level === 'low'} />
       {import.meta.env.DEV && location.search.includes('fps') && <Stats />}
     </Canvas>
+    {/* High graphics: a soft vignette draws the eye to the middle, like a camera lens. */}
+    {level === 'high' && <div aria-hidden className="world-vignette pointer-events-none absolute inset-0" />}
+    </>
   )
 }

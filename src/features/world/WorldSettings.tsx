@@ -10,7 +10,7 @@ import type { QualityChoice } from '../../world3d/quality'
 import { VisibilitySetting } from '../multiplayer/VisibilitySetting'
 
 const PRESET_IDS = Object.keys(PRESETS) as PresetId[]
-const QUALITIES: QualityChoice[] = ['auto', 'high', 'low']
+const QUALITIES: QualityChoice[] = ['auto', 'high', 'normal', 'low']
 
 function Slider({ label, value, min, max, step = 1, onChange }: { label: string; value: number; min: number; max: number; step?: number; onChange: (v: number) => void }) {
   return (

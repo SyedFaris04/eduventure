@@ -448,6 +448,7 @@
     "qualityLevel": {
       "auto": "自动",
       "high": "高",
+      "normal": "标准",
       "low": "低"
     }
   },
