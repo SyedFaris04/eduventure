@@ -22,4 +22,13 @@ describe('QuestionCard', () => {
     const { container } = render(<QuestionCard question={q} busy={false} result={null} onSubmit={() => undefined} />)
     expect(container.querySelector('pre')).toBeNull()
   })
+
+  it('question text keeps its own direction, so English reads right in an Arabic layout ("What…?", not "?What…")', () => {
+    const q = { id: 'z', type: 'mcq', prompt: 'What is the angle of reflection?', options: [{ id: 'a', text: '30 degrees.' }, { id: 'b', text: '60 degrees.' }], difficulty: 1, subject: 'science', status: 'published' } as unknown as PublicQuestion
+    const marked = { correct: true, correct_answer: 'a', explanation: 'The angles are equal.', wrong_reason: null }
+    render(<QuestionCard question={q} busy={false} result={marked} onSubmit={() => undefined} />)
+    expect(screen.getByText('What is the angle of reflection?').getAttribute('dir')).toBe('auto')
+    expect(screen.getByText('30 degrees.').tagName).toBe('BDI') // isolated inside the answer button
+    expect(screen.getByText('The angles are equal.').getAttribute('dir')).toBe('auto')
+  })
 })

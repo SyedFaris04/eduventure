@@ -9,8 +9,8 @@ export function WhyNot({ reason, explanation }: { reason?: string | null; explan
       <p className="flex items-center gap-1 font-display font-bold text-wood-dark">
         <Lightbulb size={18} className="text-path-dark" aria-hidden /> {t('review.whyNot')}
       </p>
-      {reason && <p className="text-sm font-semibold">{reason}</p>}
-      <p className="text-sm">{explanation}</p>
+      {reason && <p dir="auto" className="text-sm font-semibold">{reason}</p>}
+      <p dir="auto" className="text-sm">{explanation}</p>
       <p className="flex items-center gap-1 text-xs font-bold text-path-dark">
         <Sparkles size={14} aria-hidden /> {t('review.comesBack')}
       </p>

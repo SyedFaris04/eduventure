@@ -29,6 +29,8 @@ type GameState = {
   defeated: string[]
   /** The defeat cutscene is playing (the battle panel steps aside until it ends); see src/world3d/finisher.ts. */
   finisher: { monsterId: string; name: string; startedAt: number } | null
+  /** A phone is held upright and the "turn your phone" screen covers the game: the world pauses (src/app/RotatePrompt). */
+  upright: boolean
   /** Bumped on a wrong answer / a won battle; the hero flinches or cheers once the panel closes. */
   hitSeq: number
   cheerSeq: number
@@ -74,6 +76,7 @@ export const useGame = create<GameState>(() => ({
   monsters: [],
   defeated: [],
   finisher: null,
+  upright: false,
   hitSeq: 0,
   cheerSeq: 0,
   jetty: false,
@@ -95,10 +98,10 @@ export const useGame = create<GameState>(() => ({
 // Development builds only: lets automated tests and debugging read the game state.
 if (import.meta.env.DEV) (window as unknown as { __game: typeof useGame }).__game = useGame
 
-/** True while a panel owns the input (dialogue, battle, boss, jetty or settings): the world pauses movement. */
+/** True while a panel owns the input (dialogue, battle, boss, jetty or settings) or the phone is upright: the world pauses movement. */
 export const worldPaused = () => {
   const s = useGame.getState()
-  return Boolean(s.dialogue || s.battle || s.boss || s.jetty || s.settings || s.workbench || s.board)
+  return Boolean(s.dialogue || s.battle || s.boss || s.jetty || s.settings || s.workbench || s.board || s.upright)
 }
 
 /** Hero reaction after an answer: a flinch for a wrong one, a cheer for a win. */
