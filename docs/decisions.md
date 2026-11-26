@@ -222,8 +222,11 @@ Auto / High / Normal / Low. Normal is exactly the old High; Low is unchanged. Hi
 
 All of it uses three.js and drei only; no new dependencies and no post-processing pass (heavy on phones).
 
-- **Auto** starts on High with a mouse (laptops, desktops) and on Normal on touch screens, then steps down one level
-  at a time (High → Normal → Low) after 3 s of slow frames. It never steps back up during a visit.
+- **Auto** starts on Normal. With a mouse (laptops, desktops) it moves up to High once, after 4 s of smooth frames
+  (about 45 fps or better), so a weak laptop never shows a choppy start; touch screens stay on Normal. It steps down one
+  level (High → Normal → Low) after 3 s of slow frames, and after any step it never moves up again that visit.
+  A pause (a battle covering the world, a hidden tab) does not count as a slow frame: before this, every battle
+  dropped Auto a level.
 - **Saved choices:** a new storage key. A player who had picked the old High (now called Normal) keeps the same look.
 - **Reduced motion:** none of the moving extras (as before for sparkles and decor).
 - Motion (butterfly paths, flower homes, cloud drift) is pure functions in `src/world3d/livelyMotion.ts`, unit-tested.

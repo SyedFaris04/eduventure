@@ -21,8 +21,7 @@ import { listenKeys } from './input'
 import { cameraOffset, DEFAULT_YAW, lookHeight, worldToGrid } from './projection'
 import { useCamera } from './cameraStore'
 import { clearProps, preloadProps, Props } from './Props'
-import { createQualityMonitor } from './quality'
-import { qualityLevel, useQuality } from './qualityStore'
+import { qualityLevel, sampleAutoQuality, useQuality } from './qualityStore'
 import { Water } from './Water'
 import { Decor } from './Decor'
 import { FestivalDecor } from './FestivalDecor'
@@ -68,7 +67,6 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
   const lastStep = useRef(0)
   const panelClosedAt = useRef(-Infinity)
   const beats = useRef({ startedAt: -1, attack: false, impact: false, cheer: false }) // cutscene moments already played
-  const monitor = useMemo(() => createQualityMonitor(useQuality.getState().auto), [])
   const level = useQuality(qualityLevel)
 
   useEffect(() => setDpr(level === 'low' ? Math.min(1.5, window.devicePixelRatio) : Math.min(2, window.devicePixelRatio)), [level, setDpr])
@@ -260,12 +258,8 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       ringMat.opacity = 0.9 * (1 - t)
     }
 
-    // Auto steps down a level (High → Normal → Low) when frames stay slow.
-    const q = useQuality.getState()
-    if (q.choice === 'auto' && q.auto !== 'low') {
-      const next = monitor.sample(delta * 1000)
-      if (next !== q.auto) useQuality.setState({ auto: next })
-    }
+    // Auto: down a level when frames stay slow, up to High once on a smooth laptop (qualityStore.ts).
+    sampleAutoQuality(delta * 1000)
   })
 
   // A laptop pointer shows where the item would go (only while building, and only when the tile changes).

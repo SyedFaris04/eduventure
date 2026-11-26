@@ -281,7 +281,7 @@ Every screen on the player's path fits a phone held sideways, even in a browser 
 Winning a battle plays a 2.6 s cutscene on the world before the rewards: the camera swoops in from the side, the hero strikes, the monster bursts into sparkles, VICTORY (decision #53). Tap to skip; off under reduced motion.
 
 ### High graphics — built
-Settings offer Auto / High / Normal / Low; Normal is the old High. High adds a swaying meadow, rolling gusts of wind, drifting cloud shadows, butterflies and pollen (fireflies on the rainforest and tech islands), softer shadows and a lens vignette. Auto picks High on laptops and Normal on phones, and steps down when frames are slow (decision #54).
+Settings offer Auto / High / Normal / Low; Normal is the old High. High adds a swaying meadow, rolling gusts of wind, drifting cloud shadows, butterflies and pollen (fireflies on the rainforest and tech islands), softer shadows and a lens vignette. Auto starts on Normal, moves up to High on laptops that run smoothly, and steps down when frames are slow (decision #54).
 
 ### Phase 4 — Customization
 **Status (2026-11-16): gear slice built and merged.** Shop with 11 items (common 80–150, rare 500–600, epic 2,000–2,200 gold), server-side purchase, ownership enforced in the database, owned items selectable in the creator and drawn everywhere. Knowledge pet built (see above); island and skill tree still to build. Build record: `docs/phases/phase-4.md`.
