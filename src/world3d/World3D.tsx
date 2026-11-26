@@ -38,6 +38,8 @@ import { IslandItems } from './IslandItems'
 import { blockedTiles, type Placed } from '../features/island/rules'
 import { BuildGhost } from './BuildGhost'
 import { isBuildTap } from './buildTap'
+import { DefeatBurst } from './DefeatBurst'
+import { defeatBurst, facingToward, FINISHER, finisherCamera } from './finisher'
 
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 
@@ -64,6 +66,7 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
   const lastEmit = useRef(0)
   const lastStep = useRef(0)
   const panelClosedAt = useRef(-Infinity)
+  const beats = useRef({ startedAt: -1, attack: false, impact: false, cheer: false }) // cutscene moments already played
   const monitor = useMemo(() => createQualityMonitor(), [])
   const level = useQuality(qualityLevel)
 
@@ -188,19 +191,53 @@ function Game({ sim, reduced }: { sim: WorldSim; reduced: boolean }) {
       useGame.setState({ player: { ...sim.hero.pos }, monsters: sim.monsters.filter((m) => m.alive).map((m) => ({ id: m.id, kind: m.kind, x: m.pos.x, y: m.pos.y })), ...(area !== store.area ? { area } : {}) })
     }
 
-    // Camera eases after the hero (instantly under reduced motion), frame-rate independent.
+    // The defeat cutscene (finisher.ts): the hero turns and strikes, the monster bursts, the camera swoops in and shakes.
+    const shot = { distance: view.distance, tilt: view.tilt, yaw, shake: 0 }
     const goal = new Vector3(sim.hero.pos.x, lookHeight(view.tilt), sim.hero.pos.y)
+    const fin = store.finisher
+    const foe = fin && sim.monsters.find((m) => m.id === fin.monsterId)
+    if (fin && foe) {
+      const t = now - fin.startedAt
+      if (beats.current.startedAt !== fin.startedAt) beats.current = { startedAt: fin.startedAt, attack: false, impact: false, cheer: false }
+      const b = beats.current
+      sim.hero.facing = facingToward(sim.hero.pos, foe.pos)
+      if (foe.alive) foe.facing = facingToward(foe.pos, sim.hero.pos)
+      if (!b.attack && t >= FINISHER.attackAt) {
+        b.attack = true
+        useGame.setState((s) => ({ slashSeq: s.slashSeq + 1 }))
+        playSfx('chop')
+      }
+      if (!b.impact && t >= FINISHER.impactAt) {
+        b.impact = true
+        sim.defeat(foe.id, now)
+        Object.assign(defeatBurst, { at: now, x: foe.pos.x, z: foe.pos.y })
+        playSfx('sparkle')
+      }
+      if (!b.cheer && t >= FINISHER.cheerAt) {
+        b.cheer = true
+        useGame.setState((s) => ({ cheerSeq: s.cheerSeq + 1 }))
+      }
+      const c = finisherCamera(t, view, yaw, sim.hero.pos, foe.pos)
+      Object.assign(shot, { distance: c.distance, tilt: c.tilt, yaw: c.yaw, shake: c.shake })
+      goal.set((sim.hero.pos.x + foe.pos.x) / 2, lookHeight(c.tilt), (sim.hero.pos.y + foe.pos.y) / 2)
+    }
+
+    // Camera eases after the hero (instantly under reduced motion), frame-rate independent.
     target.current.lerp(goal, reduced ? 1 : 1 - Math.pow(1 - 0.12, dt * 60))
-    const [ox, oy, oz] = cameraOffset(view.distance, view.tilt, yaw)
-    camera.position.set(target.current.x + ox, target.current.y + oy, target.current.z + oz)
-    camera.lookAt(target.current)
+    const [ox, oy, oz] = cameraOffset(shot.distance, shot.tilt, shot.yaw)
+    const jolt = shot.shake * 0.18
+    const [jx, jy] = [(Math.random() - 0.5) * jolt, (Math.random() - 0.5) * jolt]
+    camera.position.set(target.current.x + ox + jx, target.current.y + oy + jy, target.current.z + oz)
+    camera.lookAt(target.current.x + jx, target.current.y + jy, target.current.z)
     // Tell the scenery where the hero is, so whatever stands in front of them is cut away.
-    const chest = new Vector3(sim.hero.pos.x, 0.8, sim.hero.pos.y)
+    // In the defeat cutscene the cut-away is centred on the pair and wide enough for both.
+    const pair = Boolean(fin && foe)
+    const chest = pair ? new Vector3(goal.x, 0.8, goal.z) : new Vector3(sim.hero.pos.x, 0.8, sim.hero.pos.y)
     const depth = camera.position.distanceTo(chest)
     chest.project(camera)
     seeThrough.hero.value.set((chest.x + 1) / 2, (chest.y + 1) / 2)
     seeThrough.depth.value = depth
-    seeThrough.radius.value = seeThroughRadius(depth, camera.fov)
+    seeThrough.radius.value = Math.min(0.45, seeThroughRadius(depth, camera.fov) * (pair ? 1.8 : 1))
     gl.getDrawingBufferSize(seeThrough.resolution.value)
     seeThrough.aspect.value = seeThrough.resolution.value.x / Math.max(1, seeThrough.resolution.value.y)
     if (camera.fov !== view.fov) {
@@ -305,7 +342,8 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
   const look = THEMES[map.theme]
   const festive = useMemo(() => decoratedKinds(map.id, festivals), [map.id, festivals])
   const room = useRoomConnection(isPrivatePlace(map.id) ? null : map.id)
-  const covered = useGame((s) => Boolean(s.battle || s.boss))
+  // A battle panel covers the world, except while the defeat cutscene plays on it.
+  const covered = useGame((s) => Boolean((s.battle && !s.finisher) || s.boss))
   const level = useQuality(qualityLevel)
   const reduced = useMemo(reducedMotion, [])
   useEffect(preloadProps, [])
@@ -331,6 +369,7 @@ export default function World3D({ hero, pet, returning = 0, regrowing = NONE, bu
       {island.length > 0 && <IslandItems items={island} shadows={level === 'high'} />}
       {isPrivatePlace(map.id) && <BuildGhost items={island} />}
       {!reduced && <SlashChips />}
+      {!reduced && <DefeatBurst />}
       <Decor map={map} fancy={level === 'high' && !reduced} />
       <FestivalDecor map={map} kinds={festive} fancy={level === 'high' && !reduced} shadows={level === 'high'} />
       <Npcs sim={sim} reduced={reduced} />

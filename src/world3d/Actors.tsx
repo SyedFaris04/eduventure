@@ -93,7 +93,7 @@ function MonsterActor({ m, seed, reduced }: { m: SimMonster; seed: number; reduc
   const body = useRef<Group>(null)
   const model = useMemo(() => buildMonster(m.kind), [m.kind])
   const marker = useMemo(() => (m.returning ? buildReturningMarker() : null), [m.returning])
-  const seen = useRef({ alive: m.alive, poofFrom: -1, popFrom: -1 })
+  const seen = useRef({ alive: m.alive, poofFrom: -1, popFrom: -1, poofMs: 500 })
   // Each monster fades on its own, so its materials are copies (the shared ones stay opaque elsewhere).
   const fadeMats = useMemo(() => {
     const mats: Material[] = []
@@ -114,7 +114,10 @@ function MonsterActor({ m, seed, reduced }: { m: SimMonster; seed: number; reduc
     if (!r || !b) return
     const now = performance.now()
     const s = seen.current
-    if (s.alive && !m.alive) s.poofFrom = now
+    if (s.alive && !m.alive) {
+      s.poofFrom = now
+      s.poofMs = useGame.getState().finisher?.monsterId === m.id ? 1100 : 500 // slow motion in the defeat cutscene
+    }
     if (!s.alive && m.alive) s.popFrom = now
     s.alive = m.alive
     r.position.set(m.pos.x, 0, m.pos.y)
@@ -122,7 +125,7 @@ function MonsterActor({ m, seed, reduced }: { m: SimMonster; seed: number; reduc
     let motion = monsterMotion('idle', reduced ? 0 : (now / 1600) % 1, seed)
     let scale = 1
     if (!m.alive) {
-      const t = (now - s.poofFrom) / 500
+      const t = (now - s.poofFrom) / s.poofMs
       motion = monsterMotion('poof', reduced ? 1 : t, seed)
       r.visible = t < 1 && !reduced
     } else {

@@ -590,7 +590,8 @@
       "fiftyUsed": "Sudah digunakan dalam pertarungan ini",
       "fiftyNeedsOptions": "Perlukan soalan dengan sekurang-kurangnya dua pilihan salah",
       "fiftyFailed": "50/50 tidak boleh digunakan untuk soalan ini."
-    }
+    },
+    "finisher": "{{name}} tewas!"
   },
   "library": {
     "title": "Perpustakaan Akademik",

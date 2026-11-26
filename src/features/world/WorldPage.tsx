@@ -22,6 +22,7 @@ import { CoinBurst } from './CoinBurst'
 import { JettyPanel } from './JettyPanel'
 import { AreaBanner } from './AreaBanner'
 import { BattlePanel } from '../battle/BattlePanel'
+import { FinisherOverlay } from '../battle/FinisherOverlay'
 import { BossPanel } from '../battle/BossPanel'
 import { WorldSettings } from './WorldSettings'
 import { Slasher } from '../harvest/Slasher'
@@ -101,6 +102,7 @@ export function WorldPage() {
         <AreaBanner />
         <JettyPanel returning={returning.data} />
         <BattlePanel />
+        <FinisherOverlay />
         <BossPanel />
         <Slasher />
         {isPrivatePlace(place) && <BuildPanel />}

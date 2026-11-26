@@ -96,3 +96,16 @@
 @keyframes rotate-phone { 0%, 20% { transform: rotate(0deg); } 45%, 75% { transform: rotate(-90deg); } 100% { transform: rotate(0deg); } }
 @media (prefers-reduced-motion: reduce) { .rotate-phone { animation: none; transform: rotate(-90deg); } }
 
+
+/* The defeat cutscene's 2D layer (src/features/battle/FinisherOverlay.tsx); times match FINISHER in world3d/finisher.ts:
+   bars slide in, a white flash on the blow (650 ms), the banner pops at 800 ms, everything fades before 2600 ms. */
+.finisher { animation: finisher-out 2600ms linear forwards; }
+.finisher-bar { position: absolute; left: 0; right: 0; height: 11%; background: #0b0704; animation: finisher-bar 350ms ease-out both; }
+.finisher-bar.top-0 { transform-origin: top; }
+.finisher-bar.bottom-0 { transform-origin: bottom; }
+.finisher-flash { opacity: 0; animation: finisher-flash 320ms ease-out 650ms forwards; } /* not `both`: that would hold the white frame before the blow */
+.finisher-banner { opacity: 0; animation: finisher-banner 600ms cubic-bezier(0.2, 1.6, 0.4, 1) 800ms both; }
+@keyframes finisher-bar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes finisher-flash { 0% { opacity: 0.85; } 100% { opacity: 0; } }
+@keyframes finisher-banner { 0% { opacity: 0; transform: scale(2.2) rotate(-6deg); } 60% { opacity: 1; } 100% { opacity: 1; transform: scale(1) rotate(-2deg); } }
+@keyframes finisher-out { 0%, 88% { opacity: 1; } 100% { opacity: 0; } }
