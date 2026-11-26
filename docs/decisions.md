@@ -203,3 +203,23 @@ A tap skips it. Timings and the camera are pure functions in `src/world3d/finish
 - Bosses keep their own victory screen (a boss is a multi-round fight with its own panel).
 
 **Rejected:** a pre-rendered video (heavy downloads, and it could not show the player's own hero and monster).
+
+## 54. Three graphics levels: today's look is Normal, and a new High (2026-11-26)
+The owner liked the current graphics and asked for a richer, more natural and lively "High" on top. Settings now offer
+Auto / High / Normal / Low. Normal is exactly the old High; Low is unchanged. High adds:
+- a meadow: dense swaying grass blades in shades of each island's own grass;
+- gusts: waves of stronger wind rolling across grass, bushes and trees (one shared uniform; zero on Normal);
+- soft cloud shadows drifting over the island (the camera looks down, so their shade is what shows of clouds);
+- butterflies around the flower beds, and drifting pollen (fireflies on the rainforest and tech islands);
+- softer shadow edges and a gentle lens vignette.
+
+All of it uses three.js and drei only; no new dependencies and no post-processing pass (heavy on phones).
+
+- **Auto** starts on High with a mouse (laptops, desktops) and on Normal on touch screens, then steps down one level
+  at a time (High → Normal → Low) after 3 s of slow frames. It never steps back up during a visit.
+- **Saved choices:** a new storage key. A player who had picked the old High (now called Normal) keeps the same look.
+- **Reduced motion:** none of the moving extras (as before for sparkles and decor).
+- Motion (butterfly paths, flower homes, cloud drift) is pure functions in `src/world3d/livelyMotion.ts`, unit-tested.
+
+**Rejected:** a sky dome (the camera rarely sees the horizon), drei `Cloud` (loads its texture from a CDN), and
+bloom or ambient occlusion via post-processing (a large cost on phones for a small gain at this camera angle).

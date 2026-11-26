@@ -48,9 +48,11 @@ describe('WorldSettings', () => {
     expect(useAudioSettings.getState()).toMatchObject({ music: 0.2, effects: 0.9 })
   })
 
-  it('graphics quality lives here too', () => {
+  it('graphics quality lives here too: Auto, High, Normal and Low', () => {
     render(<WorldSettings onClose={() => undefined} />)
-    fireEvent.click(screen.getByRole('button', { name: 'Low' }))
-    expect(useQuality.getState().choice).toBe('low')
+    for (const [name, choice] of [['Low', 'low'], ['Normal', 'normal'], ['High', 'high'], ['Auto', 'auto']] as const) {
+      fireEvent.click(screen.getByRole('button', { name }))
+      expect(useQuality.getState().choice).toBe(choice)
+    }
   })
 })

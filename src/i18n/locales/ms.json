@@ -448,6 +448,7 @@
     "qualityLevel": {
       "auto": "Auto",
       "high": "Tinggi",
+      "normal": "Biasa",
       "low": "Rendah"
     }
   },

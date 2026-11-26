@@ -448,6 +448,7 @@
     "qualityLevel": {
       "auto": "Auto",
       "high": "Altos",
+      "normal": "Normales",
       "low": "Bajos"
     }
   },
