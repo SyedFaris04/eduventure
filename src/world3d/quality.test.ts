@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { autoStart, createQualityMonitor, loadQualityChoice, saveQualityChoice } from './quality'
+import { canRise, createQualityMonitor, loadQualityChoice, saveQualityChoice } from './quality'
 
 const feed = (m: ReturnType<typeof createQualityMonitor>, n: number, ms: number) => {
   for (let i = 0; i < n; i++) m.sample(ms)
@@ -31,17 +31,39 @@ describe('quality monitor', () => {
     feed(m, 70, 45)
     expect(feed(m, 500, 10)).toBe('low')
   })
+
+  it('a pause (a battle covering the world, a hidden tab) is not a slow frame', () => {
+    const m = createQualityMonitor('high')
+    expect(m.sample(30_000)).toBe('high')
+    feed(m, 40, 45) // 1.8 s of slow frames
+    m.sample(20_000)
+    expect(feed(m, 20, 45)).toBe('high') // the pause neither adds to nor ends the streak
+    expect(feed(m, 30, 45)).toBe('normal')
+  })
+
+  it('a smooth laptop moves up from Normal to High after 4 s of smooth frames', () => {
+    expect(feed(createQualityMonitor('normal', { rise: true }), 300, 16)).toBe('high')
+    expect(feed(createQualityMonitor('normal', { rise: true }), 300, 30)).toBe('normal') // not smooth enough
+    expect(feed(createQualityMonitor('normal'), 300, 16)).toBe('normal') // touch screens never rise
+  })
+
+  it('moves up at most once: High that turns out too slow steps back down for good', () => {
+    const m = createQualityMonitor('normal', { rise: true })
+    feed(m, 300, 16)
+    expect(feed(m, 70, 45)).toBe('normal')
+    expect(feed(m, 600, 16)).toBe('normal')
+  })
 })
 
 describe('auto quality', () => {
   const pointer = (fine: boolean) => vi.stubGlobal('matchMedia', (q: string) => ({ matches: fine && q.includes('fine') }))
   beforeEach(() => vi.unstubAllGlobals())
 
-  it('starts on High with a mouse (laptops and desktops), Normal on touch screens', () => {
+  it('may move up to High only with a mouse (laptops and desktops), never on touch screens', () => {
     pointer(true)
-    expect(autoStart()).toBe('high')
+    expect(canRise()).toBe(true)
     pointer(false)
-    expect(autoStart()).toBe('normal')
+    expect(canRise()).toBe(false)
   })
 })
 
