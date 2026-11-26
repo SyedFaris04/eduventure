@@ -183,3 +183,9 @@ with pages (1, 2, 3) instead of scrolling and smaller sizes, and chose a game lo
 
 `tests/e2e/phone-fit.spec.ts` checks every player screen at 740 × 360 and 640 × 300, with no page scroll and nothing
 off the side, and checks the HUD limits.
+
+## 52. Phones start with a closer camera; battle and settings compact on phones (2026-11-26)
+The owner found the interface out of proportion on a phone: tiny characters under chunky controls. On a short screen a
+player with no saved camera starts closer (tilt 40, distance 11, `PHONE_CAMERA`), and Reset returns there. The battle
+on short screens uses smaller question text and slimmer answers, with a bigger monster; the world shows around it.
+The settings panel fits without its own scroll. A camera the player saved is always kept.
