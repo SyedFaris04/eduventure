@@ -805,7 +805,7 @@
   },
   "academy": {
     "title": "Code Academy",
-    "intro": "Learn to code one small step at a time. Every lesson runs real code right here.",
+    "intro": "Learn to code one small step at a time, from Python and JavaScript to AI, data structures and C++. Python and JavaScript run right here.",
     "lessonsDone": "{{done}} of {{total}} lessons",
     "unit": "Unit {{n}}: {{title}}",
     "lockedUnit": "Finish the unit before to unlock",

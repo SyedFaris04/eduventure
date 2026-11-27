@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next'
-import type { Lang } from './academyApi'
+import type { CodeLang } from './academyApi'
 
-const KEYS: Record<Lang, { label: string; text: string }[]> = {
+const KEYS: Record<CodeLang, { label: string; text: string }[]> = {
   python: ['print()', '""', '+', '=', 'if', 'else:', 'for', 'in', 'range()', ':'].map((k) => ({ label: k, text: k })).concat({ label: '⇥', text: '    ' }),
   javascript: ['console.log()', '""', '+', '=', 'let', 'if', 'else', 'for', '{}', ';'].map((k) => ({ label: k, text: k })).concat({ label: '⇥', text: '  ' }),
+  cpp: ['cout <<', '<<', '""', ';', '=', 'int', 'if', 'for', '{}', '()'].map((k) => ({ label: k, text: k })).concat({ label: '⇥', text: '    ' }),
 }
 
 /** Tap-to-insert keys, so phones need little typing. */
-export function KeyRow({ language, onKey, disabled }: { language: Lang; onKey: (text: string) => void; disabled?: boolean }) {
+export function KeyRow({ language, onKey, disabled }: { language: CodeLang; onKey: (text: string) => void; disabled?: boolean }) {
   const { t } = useTranslation()
   return (
     <div role="toolbar" aria-label={t('academy.keys')} className="flex flex-wrap gap-1.5">

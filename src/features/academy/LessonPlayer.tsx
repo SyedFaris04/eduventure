@@ -6,7 +6,7 @@ import { ArrowRight, Check, Coins, Eye, Lightbulb, Play, Sparkles, Trophy, X } f
 import { Button, ProgressBar } from '../../components/ui'
 import { useSession } from '../authentication/useSession'
 import { LevelUp, usePlayerLevel } from '../battle/BattlePanel'
-import { AcademyError, answerStep, completeLesson, lessonSolution, noteWriteAttempt, progressKey, startLesson, type CourseLang, type Lang, type LessonDone, type LessonStart, type LessonStep, type StepAnswer, type StepResult } from './academyApi'
+import { AcademyError, answerStep, completeLesson, lessonSolution, noteWriteAttempt, progressKey, startLesson, type CodeLang, type CourseLang, type Lang, type LessonDone, type LessonStart, type LessonStep, type StepAnswer, type StepResult } from './academyApi'
 import { checkWrite } from './checkWrite'
 import { fixLine } from './fixLine'
 import { KeyRow } from './KeyRow'
@@ -19,7 +19,10 @@ import { loadVoices, pickVoice } from './speech'
 const CodeEditor = lazy(() => import('./CodeEditor'))
 
 type Props = { courseId: string; lessonId: string; language: CourseLang; onExit: () => void; onNext?: () => void }
-const isCode = (l: CourseLang): l is Lang => l === 'python' || l === 'javascript'
+const isCode = (l: CourseLang): l is CodeLang => l === 'python' || l === 'javascript' || l === 'cpp'
+/** Python and JavaScript run in the browser. C++ can't on a phone: its lessons show each program's output instead. */
+const runs = (l: CodeLang): l is Lang => l !== 'cpp'
+const shown = (output: string | null | undefined): RunResult => ({ stdout: output ?? '', error: null, timedOut: false, truncated: false })
 
 /** One lesson: Learn, Predict, Fix and Write steps in order, then the reward (paid once, by the server). */
 export function LessonPlayer({ courseId, lessonId, language, onExit, onNext }: Props) {
@@ -110,7 +113,7 @@ export function LessonPlayer({ courseId, lessonId, language, onExit, onNext }: P
         key={step.id}
         step={step}
         attempt={data.attempt_id}
-        language={language as Lang}
+        language={language as CodeLang}
         alreadySolved={solved}
         last={last}
         finishing={finishing}
@@ -126,11 +129,13 @@ export function LessonPlayer({ courseId, lessonId, language, onExit, onNext }: P
   )
 }
 
-function StepView({ step, attempt, language, alreadySolved, last, finishing, onError, onContinue }: { step: LessonStep; attempt: string; language: Lang; alreadySolved: boolean; last: boolean; finishing: boolean; onError: (k: string | null) => void; onContinue: () => void }) {
+function StepView({ step, attempt, language, alreadySolved, last, finishing, onError, onContinue }: { step: LessonStep; attempt: string; language: CodeLang; alreadySolved: boolean; last: boolean; finishing: boolean; onError: (k: string | null) => void; onContinue: () => void }) {
   const { t } = useTranslation()
   const editable = step.kind === 'fix' || step.kind === 'write'
+  const runnable = runs(language)
   const [code, setCode] = useState(step.kind === 'write' ? (step.starter ?? '') : (step.code ?? ''))
-  const [run, setRun] = useState<RunResult | null>(null)
+  // Without a runner, a learn step shows its program's output straight away.
+  const [run, setRun] = useState<RunResult | null>(!runnable && step.kind === 'learn' ? shown(step.expected_output) : null)
   const [status, setStatus] = useState<RunStatus>('idle')
   const [marked, setMarked] = useState<StepResult | null>(null)
   const [passed, setPassed] = useState(step.kind === 'learn' || alreadySolved)
@@ -141,6 +146,7 @@ function StepView({ step, attempt, language, alreadySolved, last, finishing, onE
   const editor = useRef<EditorApi | null>(null)
 
   async function execute(source: string): Promise<RunResult | null> {
+    if (!runs(language)) return null
     setStatus(language === 'python' ? 'loading' : 'running')
     try {
       await runnerFor(language).ready()
@@ -155,6 +161,7 @@ function StepView({ step, attempt, language, alreadySolved, last, finishing, onE
     }
   }
   const retry = () => {
+    if (!runs(language)) return
     resetRunner(language)
     void execute(code)
   }
@@ -168,6 +175,8 @@ function StepView({ step, attempt, language, alreadySolved, last, finishing, onE
       setMarked(r)
       playSfx(r.correct ? 'correct' : 'wrong')
       if (r.correct) setPassed(true)
+      // Without a runner, a right fix shows what the fixed program prints.
+      if (r.correct && !runnable && step.kind === 'fix') setRun(shown(step.expected_output))
     } catch (e) {
       onError(e instanceof AcademyError ? e.key : 'academy.errors.generic')
     } finally {
@@ -182,7 +191,7 @@ function StepView({ step, attempt, language, alreadySolved, last, finishing, onE
       return
     }
     setNote(null)
-    void execute(code)
+    if (runnable) void execute(code)
     await mark({ line: f.line })
   }
 
@@ -272,10 +281,10 @@ function StepView({ step, attempt, language, alreadySolved, last, finishing, onE
           </p>
         )}
 
-        {(step.kind !== 'predict' || run) && <Terminal result={run} status={status} onRetry={retry} />}
+        {((runnable && step.kind !== 'predict') || run) && <Terminal result={run} status={status} onRetry={retry} />}
 
         <div className="flex flex-wrap justify-end gap-2">
-          {step.kind !== 'predict' && (
+          {runnable && step.kind !== 'predict' && (
             <Button variant="secondary" onClick={() => void execute(code)} disabled={status === 'loading' || status === 'running'}>
               <Play size={18} aria-hidden /> {t('academy.run')}
             </Button>

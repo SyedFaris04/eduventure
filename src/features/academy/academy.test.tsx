@@ -113,6 +113,37 @@ describe('LessonPlayer', () => {
     expect(api.completeLesson).toHaveBeenCalledWith('t1')
   })
 
+  it("C++ lessons show each program's output instead of running it: no Run button, nothing sent to a runner", async () => {
+    const program = (end: string) => `#include <iostream>
+int main() {
+  std::cout << "Hi"${end}
+}`
+    api.startLesson.mockResolvedValue({
+      attempt_id: 't2',
+      lesson: { id: 'cpp-u1-l1', title: 'Hello, C++', course_id: 'cpp-basics', unit_index: 1, lesson_index: 1 },
+      steps: [
+        { id: 'cpp-u1-l1-s1', kind: 'learn', text: 'Read it.', code: program(';'), expected_output: 'Hi' },
+        { id: 'cpp-u1-l1-s2', kind: 'fix', text: 'Fix line 3.', code: program(''), broken_line: 3, expected_output: 'Hi', hint: 'Every statement ends with ;' },
+      ],
+      results: [],
+    })
+    wrap(<LessonPlayer courseId="cpp-basics" lessonId="cpp-u1-l1" language="cpp" onExit={() => undefined} />)
+    expect(await screen.findByText('Hi')).toBeTruthy() // the output shows at once
+    expect(screen.queryByRole('button', { name: 'Run' })).toBeNull()
+    fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
+
+    // Fix: the server marks the line; then the program's output appears.
+    fireEvent.change(await screen.findByLabelText('Your code'), { target: { value: program(';') } })
+    api.answerStep.mockResolvedValueOnce({ correct: true, explanation: 'Every statement ends with a semicolon.', accepted: null })
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }))
+    expect(await screen.findByText('Every statement ends with a semicolon.')).toBeTruthy()
+    expect(screen.getByText('Hi')).toBeTruthy()
+    expect(screen.queryByRole('button', { name: 'Run' })).toBeNull()
+    expect(api.answerStep).toHaveBeenLastCalledWith('t2', 'cpp-u1-l1-s2', { line: '  std::cout << "Hi";' })
+    expect(runner.runCode).not.toHaveBeenCalled()
+    expect(runner.runnerFor).not.toHaveBeenCalled()
+  })
+
   it('python load failure keeps the lesson usable', async () => {
     runner.runCode.mockRejectedValue(new Error('python-unavailable'))
     runner.runnerFor.mockReturnValue({ ready: () => Promise.reject(new Error('python-unavailable')) })

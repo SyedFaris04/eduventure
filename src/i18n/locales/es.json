@@ -805,7 +805,7 @@
   },
   "academy": {
     "title": "Academia de Código",
-    "intro": "Aprende a programar paso a paso. Cada lección ejecuta código real aquí mismo.",
+    "intro": "Aprende a programar paso a paso, de Python y JavaScript a la IA, las estructuras de datos y C++. Python y JavaScript se ejecutan aquí mismo.",
     "lessonsDone": "{{done}} de {{total}} lecciones",
     "unit": "Unidad {{n}}: {{title}}",
     "lockedUnit": "Termina la unidad anterior para desbloquear",

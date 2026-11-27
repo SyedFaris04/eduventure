@@ -1,0 +1,827 @@
+{
+  "_meta": {
+    "author": "Eduventure (original lessons)",
+    "license": "CC BY 4.0"
+  },
+  "id": "cpp-basics",
+  "kind": "code",
+  "language": "cpp",
+  "title": "C++ Basics",
+  "units": [
+    {
+      "id": "cpp-u1",
+      "title": "Hello, C++",
+      "lessons": [
+        {
+          "id": "cpp-u1-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Your first program",
+          "objective": "Print text with cout.",
+          "steps": [
+            {
+              "id": "cpp-u1-l1-s1",
+              "kind": "learn",
+              "text": "Every C++ program starts in main(). cout << sends text to the screen, and endl starts a new line.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Hello, world!\" << endl;\n    return 0;\n}",
+              "expected_output": "Hello, world!"
+            },
+            {
+              "id": "cpp-u1-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Selamat pagi\" << endl;\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Selamat pagi"
+                },
+                {
+                  "id": "b",
+                  "text": "\"Selamat pagi\""
+                },
+                {
+                  "id": "c",
+                  "text": "cout << Selamat pagi"
+                }
+              ],
+              "answer": "a",
+              "explanation": "cout prints the text inside the quotes, without the quotes."
+            },
+            {
+              "id": "cpp-u1-l1-s3",
+              "kind": "learn",
+              "text": "Each cout line with endl prints one line.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Kuala\" << endl;\n    cout << \"Lumpur\" << endl;\n    return 0;\n}",
+              "expected_output": "Kuala\nLumpur"
+            },
+            {
+              "id": "cpp-u1-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Nasi\" << endl;\n    cout << \"lemak\" << endl;\n    return 0;\n}",
+              "answer_text": "Nasi\nlemak",
+              "explanation": "Each endl ends a line, so the words are on two lines."
+            },
+            {
+              "id": "cpp-u1-l1-s5",
+              "kind": "fix",
+              "text": "Every statement ends with a semicolon. Fix line 5.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Hello\" << endl\n    return 0;\n}",
+              "broken_line": 5,
+              "accept": [
+                "    cout << \"Hello\" << endl;"
+              ],
+              "expected_output": "Hello",
+              "hint": "Add ; at the end of the line.",
+              "explanation": "C++ needs a ; to end each statement."
+            }
+          ]
+        },
+        {
+          "id": "cpp-u1-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Variables",
+          "objective": "Store numbers and text in variables.",
+          "steps": [
+            {
+              "id": "cpp-u1-l2-s1",
+              "kind": "learn",
+              "text": "A variable has a type: int for whole numbers, double for decimals, string for text.",
+              "code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    int age = 12;\n    double height = 1.5;\n    string name = \"Aina\";\n    cout << name << \" is \" << age << endl;\n    cout << height << endl;\n    return 0;\n}",
+              "expected_output": "Aina is 12\n1.5"
+            },
+            {
+              "id": "cpp-u1-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 7;\n    int b = 3;\n    cout << a + b << endl;\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "10"
+                },
+                {
+                  "id": "b",
+                  "text": "73"
+                },
+                {
+                  "id": "c",
+                  "text": "a + b"
+                }
+              ],
+              "answer": "a",
+              "explanation": "a + b adds the numbers: 7 + 3 = 10."
+            },
+            {
+              "id": "cpp-u1-l2-s3",
+              "kind": "learn",
+              "text": "Change a variable by giving it a new value.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int score = 10;\n    score = score + 5;\n    cout << score << endl;\n    return 0;\n}",
+              "expected_output": "15"
+            },
+            {
+              "id": "cpp-u1-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 4;\n    x = x * 3;\n    cout << x << endl;\n    return 0;\n}",
+              "answer_text": "12",
+              "explanation": "4 × 3 = 12."
+            },
+            {
+              "id": "cpp-u1-l2-s5",
+              "kind": "fix",
+              "text": "Text needs the string type. Fix line 6.",
+              "code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    int city = \"Ipoh\";\n    cout << city << endl;\n    return 0;\n}",
+              "broken_line": 6,
+              "accept": [
+                "    string city = \"Ipoh\";"
+              ],
+              "expected_output": "Ipoh",
+              "hint": "Use string for text.",
+              "explanation": "int holds whole numbers; text goes in a string."
+            }
+          ]
+        },
+        {
+          "id": "cpp-u1-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Maths",
+          "objective": "Do sums, and see how C++ divides whole numbers.",
+          "steps": [
+            {
+              "id": "cpp-u1-l3-s1",
+              "kind": "learn",
+              "text": "C++ does + − * / and % (the remainder).",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << 7 + 3 << endl;\n    cout << 7 * 3 << endl;\n    cout << 7 % 3 << endl;\n    return 0;\n}",
+              "expected_output": "10\n21\n1"
+            },
+            {
+              "id": "cpp-u1-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << 7 / 2 << endl;\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "3"
+                },
+                {
+                  "id": "b",
+                  "text": "3.5"
+                },
+                {
+                  "id": "c",
+                  "text": "4"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Two whole numbers give a whole answer: 7 / 2 is 3 in C++."
+            },
+            {
+              "id": "cpp-u1-l3-s3",
+              "kind": "learn",
+              "text": "Use a decimal number to keep the decimal part.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << 7.0 / 2 << endl;\n    return 0;\n}",
+              "expected_output": "3.5"
+            },
+            {
+              "id": "cpp-u1-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << 10 % 4 << endl;\n    return 0;\n}",
+              "answer_text": "2",
+              "explanation": "10 divided by 4 is 2 remainder 2."
+            },
+            {
+              "id": "cpp-u1-l3-s5",
+              "kind": "fix",
+              "text": "We want 2.5, so divide with a decimal. Fix line 5.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    double half = 5 / 2;\n    cout << half << endl;\n    return 0;\n}",
+              "broken_line": 5,
+              "accept": [
+                "    double half = 5.0 / 2;",
+                "    double half = 5 / 2.0;",
+                "    double half = 5.0 / 2.0;"
+              ],
+              "expected_output": "2.5",
+              "hint": "Make one number a decimal: 5.0.",
+              "explanation": "5 / 2 is whole-number division (2); 5.0 / 2 gives 2.5."
+            }
+          ]
+        },
+        {
+          "id": "cpp-u1-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Putting it together",
+          "objective": "Combine variables, maths and output.",
+          "steps": [
+            {
+              "id": "cpp-u1-l4-s1",
+              "kind": "learn",
+              "text": "Programs combine variables, maths and output.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int apples = 4;\n    int price = 2;\n    cout << \"Total: RM\" << apples * price << endl;\n    return 0;\n}",
+              "expected_output": "Total: RM8"
+            },
+            {
+              "id": "cpp-u1-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 5;\n    a = a + a;\n    cout << a << endl;\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "10"
+                },
+                {
+                  "id": "b",
+                  "text": "5"
+                },
+                {
+                  "id": "c",
+                  "text": "a + a"
+                }
+              ],
+              "answer": "a",
+              "explanation": "a becomes 5 + 5 = 10."
+            },
+            {
+              "id": "cpp-u1-l4-s3",
+              "kind": "learn",
+              "text": "+= adds to a variable; ++ adds one.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n = 3;\n    n += 4;\n    n++;\n    cout << n << endl;\n    return 0;\n}",
+              "expected_output": "8"
+            },
+            {
+              "id": "cpp-u1-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int k = 10;\n    k -= 3;\n    cout << k << endl;\n    return 0;\n}",
+              "answer_text": "7",
+              "explanation": "10 − 3 = 7."
+            },
+            {
+              "id": "cpp-u1-l4-s5",
+              "kind": "fix",
+              "text": "cout uses <<, not <. Fix line 6.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int score = 90;\n    cout < score << endl;\n    return 0;\n}",
+              "broken_line": 6,
+              "accept": [
+                "    cout << score << endl;"
+              ],
+              "expected_output": "90",
+              "hint": "Use << with cout.",
+              "explanation": "cout << sends a value to the screen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cpp-u2",
+      "title": "Choices and loops",
+      "lessons": [
+        {
+          "id": "cpp-u2-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "if and else",
+          "objective": "Make decisions with if and else.",
+          "steps": [
+            {
+              "id": "cpp-u2-l1-s1",
+              "kind": "learn",
+              "text": "if runs code when a condition is true; else runs when it is false.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int mark = 75;\n    if (mark >= 50) {\n        cout << \"Pass\" << endl;\n    } else {\n        cout << \"Try again\" << endl;\n    }\n    return 0;\n}",
+              "expected_output": "Pass"
+            },
+            {
+              "id": "cpp-u2-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int temp = 25;\n    if (temp > 30) {\n        cout << \"Hot\" << endl;\n    } else {\n        cout << \"Nice\" << endl;\n    }\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Nice"
+                },
+                {
+                  "id": "b",
+                  "text": "Hot"
+                },
+                {
+                  "id": "c",
+                  "text": "25"
+                }
+              ],
+              "answer": "a",
+              "explanation": "25 is not above 30, so else runs."
+            },
+            {
+              "id": "cpp-u2-l1-s3",
+              "kind": "learn",
+              "text": "else if checks another condition.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int age = 15;\n    if (age < 13) {\n        cout << \"child\" << endl;\n    } else if (age < 18) {\n        cout << \"teen\" << endl;\n    } else {\n        cout << \"adult\" << endl;\n    }\n    return 0;\n}",
+              "expected_output": "teen"
+            },
+            {
+              "id": "cpp-u2-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    if (x == 5) {\n        cout << \"five\" << endl;\n    }\n    return 0;\n}",
+              "answer_text": "five",
+              "explanation": "x is 5, so the condition is true."
+            },
+            {
+              "id": "cpp-u2-l1-s5",
+              "kind": "fix",
+              "text": "== compares; = stores. Fix line 6.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n = 3;\n    if (n = 4) {\n        cout << \"four\" << endl;\n    } else {\n        cout << \"not four\" << endl;\n    }\n    return 0;\n}",
+              "broken_line": 6,
+              "accept": [
+                "    if (n == 4) {"
+              ],
+              "expected_output": "not four",
+              "hint": "Use == to compare.",
+              "explanation": "n = 4 stores 4 (and counts as true); n == 4 compares."
+            }
+          ]
+        },
+        {
+          "id": "cpp-u2-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "for loops",
+          "objective": "Repeat with a for loop.",
+          "steps": [
+            {
+              "id": "cpp-u2-l2-s1",
+              "kind": "learn",
+              "text": "for (start; keep going while; step) repeats code.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 1; i <= 3; i++) {\n        cout << i << endl;\n    }\n    return 0;\n}",
+              "expected_output": "1\n2\n3"
+            },
+            {
+              "id": "cpp-u2-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 0; i < 3; i++) {\n        cout << \"Hi\" << endl;\n    }\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Hi\nHi\nHi"
+                },
+                {
+                  "id": "b",
+                  "text": "Hi\nHi"
+                },
+                {
+                  "id": "c",
+                  "text": "Hi"
+                }
+              ],
+              "answer": "a",
+              "explanation": "i is 0, 1 and 2: three times."
+            },
+            {
+              "id": "cpp-u2-l2-s3",
+              "kind": "learn",
+              "text": "Add up numbers in a loop.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int total = 0;\n    for (int i = 1; i <= 4; i++) {\n        total += i;\n    }\n    cout << total << endl;\n    return 0;\n}",
+              "expected_output": "10"
+            },
+            {
+              "id": "cpp-u2-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 2; i <= 6; i += 2) {\n        cout << i << endl;\n    }\n    return 0;\n}",
+              "answer_text": "2\n4\n6",
+              "explanation": "i starts at 2 and goes up by 2 while it is at most 6."
+            },
+            {
+              "id": "cpp-u2-l2-s5",
+              "kind": "fix",
+              "text": "Count from 1 to 5. Fix line 5.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 1; i < 5; i++) {\n        cout << i << endl;\n    }\n    return 0;\n}",
+              "broken_line": 5,
+              "accept": [
+                "    for (int i = 1; i <= 5; i++) {",
+                "    for (int i = 1; i < 6; i++) {"
+              ],
+              "expected_output": "1\n2\n3\n4\n5",
+              "hint": "Keep going while i <= 5.",
+              "explanation": "i < 5 stops at 4; i <= 5 includes 5."
+            }
+          ]
+        },
+        {
+          "id": "cpp-u2-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "while loops",
+          "objective": "Repeat while something is true.",
+          "steps": [
+            {
+              "id": "cpp-u2-l3-s1",
+              "kind": "learn",
+              "text": "while repeats as long as its condition is true.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n = 3;\n    while (n > 0) {\n        cout << n << endl;\n        n--;\n    }\n    cout << \"Go!\" << endl;\n    return 0;\n}",
+              "expected_output": "3\n2\n1\nGo!"
+            },
+            {
+              "id": "cpp-u2-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 1;\n    while (x < 10) {\n        x = x * 2;\n    }\n    cout << x << endl;\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "16"
+                },
+                {
+                  "id": "b",
+                  "text": "8"
+                },
+                {
+                  "id": "c",
+                  "text": "10"
+                }
+              ],
+              "answer": "a",
+              "explanation": "x goes 1, 2, 4, 8, 16, and 16 is not below 10."
+            },
+            {
+              "id": "cpp-u2-l3-s3",
+              "kind": "learn",
+              "text": "break leaves a loop early.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 1; i <= 10; i++) {\n        if (i == 4) {\n            break;\n        }\n        cout << i << endl;\n    }\n    return 0;\n}",
+              "expected_output": "1\n2\n3"
+            },
+            {
+              "id": "cpp-u2-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int count = 0;\n    while (count < 3) {\n        count++;\n    }\n    cout << count << endl;\n    return 0;\n}",
+              "answer_text": "3",
+              "explanation": "The loop stops when count reaches 3."
+            },
+            {
+              "id": "cpp-u2-l3-s5",
+              "kind": "fix",
+              "text": "The countdown should stop before 0. Fix line 6.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n = 3;\n    while (n >= 0) {\n        cout << n << endl;\n        n--;\n    }\n    return 0;\n}",
+              "broken_line": 6,
+              "accept": [
+                "    while (n > 0) {",
+                "    while (n >= 1) {"
+              ],
+              "expected_output": "3\n2\n1",
+              "hint": "Keep going while n > 0.",
+              "explanation": "n >= 0 also prints 0; n > 0 stops at 1."
+            }
+          ]
+        },
+        {
+          "id": "cpp-u2-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Loops and choices",
+          "objective": "Combine loops and if.",
+          "steps": [
+            {
+              "id": "cpp-u2-l4-s1",
+              "kind": "learn",
+              "text": "Print only the even numbers: i % 2 == 0 means even.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 1; i <= 6; i++) {\n        if (i % 2 == 0) {\n            cout << i << endl;\n        }\n    }\n    return 0;\n}",
+              "expected_output": "2\n4\n6"
+            },
+            {
+              "id": "cpp-u2-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int count = 0;\n    for (int i = 1; i <= 10; i++) {\n        if (i % 5 == 0) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "2"
+                },
+                {
+                  "id": "b",
+                  "text": "5"
+                },
+                {
+                  "id": "c",
+                  "text": "10"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Only 5 and 10 divide by 5."
+            },
+            {
+              "id": "cpp-u2-l4-s3",
+              "kind": "learn",
+              "text": "FizzBuzz is a famous practice program.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 1; i <= 5; i++) {\n        if (i % 3 == 0) {\n            cout << \"Fizz\" << endl;\n        } else if (i % 5 == 0) {\n            cout << \"Buzz\" << endl;\n        } else {\n            cout << i << endl;\n        }\n    }\n    return 0;\n}",
+              "expected_output": "1\n2\nFizz\n4\nBuzz"
+            },
+            {
+              "id": "cpp-u2-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 3; i <= 9; i += 3) {\n        cout << i << endl;\n    }\n    return 0;\n}",
+              "answer_text": "3\n6\n9",
+              "explanation": "i goes up by 3: 3, 6, 9."
+            },
+            {
+              "id": "cpp-u2-l4-s5",
+              "kind": "fix",
+              "text": "Odd numbers leave a remainder of 1. Fix line 6.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 1; i <= 5; i++) {\n        if (i % 2 == 0) {\n            cout << i << endl;\n        }\n    }\n    return 0;\n}",
+              "broken_line": 6,
+              "accept": [
+                "        if (i % 2 == 1) {",
+                "        if (i % 2 != 0) {"
+              ],
+              "expected_output": "1\n3\n5",
+              "hint": "Odd means i % 2 == 1.",
+              "explanation": "i % 2 == 0 finds even numbers; odd numbers have remainder 1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cpp-u3",
+      "title": "Functions and arrays",
+      "lessons": [
+        {
+          "id": "cpp-u3-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Functions",
+          "objective": "Write your own functions.",
+          "steps": [
+            {
+              "id": "cpp-u3-l1-s1",
+              "kind": "learn",
+              "text": "A function is a named block of code. void means it gives nothing back.",
+              "code": "#include <iostream>\nusing namespace std;\n\nvoid greet() {\n    cout << \"Hai!\" << endl;\n}\n\nint main() {\n    greet();\n    greet();\n    return 0;\n}",
+              "expected_output": "Hai!\nHai!"
+            },
+            {
+              "id": "cpp-u3-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\nusing namespace std;\n\nint square(int x) {\n    return x * x;\n}\n\nint main() {\n    cout << square(5) << endl;\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "25"
+                },
+                {
+                  "id": "b",
+                  "text": "10"
+                },
+                {
+                  "id": "c",
+                  "text": "5"
+                }
+              ],
+              "answer": "a",
+              "explanation": "square(5) returns 5 × 5 = 25."
+            },
+            {
+              "id": "cpp-u3-l1-s3",
+              "kind": "learn",
+              "text": "Functions can take inputs (parameters) and return a value.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint add(int a, int b) {\n    return a + b;\n}\n\nint main() {\n    cout << add(2, 3) << endl;\n    cout << add(10, -4) << endl;\n    return 0;\n}",
+              "expected_output": "5\n6"
+            },
+            {
+              "id": "cpp-u3-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint twice(int n) {\n    return n * 2;\n}\n\nint main() {\n    cout << twice(twice(3)) << endl;\n    return 0;\n}",
+              "answer_text": "12",
+              "explanation": "twice(3) is 6, and twice(6) is 12."
+            },
+            {
+              "id": "cpp-u3-l1-s5",
+              "kind": "fix",
+              "text": "Every statement ends with a semicolon, return too. Fix line 5.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint triple(int n) {\n    return n * 3\n}\n\nint main() {\n    cout << triple(4) << endl;\n    return 0;\n}",
+              "broken_line": 5,
+              "accept": [
+                "    return n * 3;"
+              ],
+              "expected_output": "12",
+              "hint": "Add ; after return n * 3.",
+              "explanation": "return n * 3; needs its semicolon."
+            }
+          ]
+        },
+        {
+          "id": "cpp-u3-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Arrays",
+          "objective": "Store many values in an array.",
+          "steps": [
+            {
+              "id": "cpp-u3-l2-s1",
+              "kind": "learn",
+              "text": "An array holds many values of one type. Positions start at 0.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int marks[3] = {70, 85, 90};\n    cout << marks[0] << endl;\n    cout << marks[2] << endl;\n    return 0;\n}",
+              "expected_output": "70\n90"
+            },
+            {
+              "id": "cpp-u3-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a[4] = {5, 10, 15, 20};\n    cout << a[1] << endl;\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "10"
+                },
+                {
+                  "id": "b",
+                  "text": "5"
+                },
+                {
+                  "id": "c",
+                  "text": "15"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Position 1 is the second value: 10."
+            },
+            {
+              "id": "cpp-u3-l2-s3",
+              "kind": "learn",
+              "text": "Loop through an array with for.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int nums[4] = {2, 4, 6, 8};\n    int total = 0;\n    for (int i = 0; i < 4; i++) {\n        total += nums[i];\n    }\n    cout << total << endl;\n    return 0;\n}",
+              "expected_output": "20"
+            },
+            {
+              "id": "cpp-u3-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x[3] = {1, 2, 3};\n    x[1] = 9;\n    cout << x[0] + x[1] << endl;\n    return 0;\n}",
+              "answer_text": "10",
+              "explanation": "x[1] becomes 9, and 1 + 9 = 10."
+            },
+            {
+              "id": "cpp-u3-l2-s5",
+              "kind": "fix",
+              "text": "This array holds 3 numbers. Fix line 5.",
+              "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int days[2] = {1, 2, 3};\n    cout << days[2] << endl;\n    return 0;\n}",
+              "broken_line": 5,
+              "accept": [
+                "    int days[3] = {1, 2, 3};"
+              ],
+              "expected_output": "3",
+              "hint": "The size in [ ] must fit all 3 values.",
+              "explanation": "An array of size 2 can't hold 3 values; make it days[3]."
+            }
+          ]
+        },
+        {
+          "id": "cpp-u3-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Vectors",
+          "objective": "Use vector, a list that can grow.",
+          "steps": [
+            {
+              "id": "cpp-u3-l3-s1",
+              "kind": "learn",
+              "text": "vector is like an array that can grow: push_back() adds to the end and size() counts.",
+              "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> v = {3, 1, 4};\n    v.push_back(1);\n    cout << v.size() << endl;\n    cout << v[3] << endl;\n    return 0;\n}",
+              "expected_output": "4\n1"
+            },
+            {
+              "id": "cpp-u3-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<string> names = {\"Ali\", \"Mei\"};\n    names.push_back(\"Raju\");\n    cout << names[2] << endl;\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Raju"
+                },
+                {
+                  "id": "b",
+                  "text": "Mei"
+                },
+                {
+                  "id": "c",
+                  "text": "3"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Raju was added at position 2."
+            },
+            {
+              "id": "cpp-u3-l3-s3",
+              "kind": "learn",
+              "text": "A range-based for loop visits every item.",
+              "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> v = {5, 10, 15};\n    for (int x : v) {\n        cout << x << endl;\n    }\n    return 0;\n}",
+              "expected_output": "5\n10\n15"
+            },
+            {
+              "id": "cpp-u3-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> v;\n    v.push_back(7);\n    v.push_back(8);\n    cout << v.size() << endl;\n    return 0;\n}",
+              "answer_text": "2",
+              "explanation": "Two items were added."
+            },
+            {
+              "id": "cpp-u3-l3-s5",
+              "kind": "fix",
+              "text": "push_back() adds to a vector. Fix line 7.",
+              "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> v = {1, 2};\n    v.append(3);\n    cout << v.size() << endl;\n    return 0;\n}",
+              "broken_line": 7,
+              "accept": [
+                "    v.push_back(3);"
+              ],
+              "expected_output": "3",
+              "hint": "Use push_back().",
+              "explanation": "A C++ vector has push_back(), not append()."
+            }
+          ]
+        },
+        {
+          "id": "cpp-u3-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Putting it together",
+          "objective": "Use a function, a loop and a vector together.",
+          "steps": [
+            {
+              "id": "cpp-u3-l4-s1",
+              "kind": "learn",
+              "text": "Find the biggest value in a vector.",
+              "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint biggest(vector<int> v) {\n    int best = v[0];\n    for (int x : v) {\n        if (x > best) {\n            best = x;\n        }\n    }\n    return best;\n}\n\nint main() {\n    vector<int> marks = {67, 92, 85};\n    cout << biggest(marks) << endl;\n    return 0;\n}",
+              "expected_output": "92"
+            },
+            {
+              "id": "cpp-u3-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> v = {2, 4, 6};\n    int sum = 0;\n    for (int x : v) {\n        sum += x;\n    }\n    cout << sum / 3 << endl;\n    return 0;\n}",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "4"
+                },
+                {
+                  "id": "b",
+                  "text": "12"
+                },
+                {
+                  "id": "c",
+                  "text": "3"
+                }
+              ],
+              "answer": "a",
+              "explanation": "The sum is 12, and 12 / 3 = 4."
+            },
+            {
+              "id": "cpp-u3-l4-s3",
+              "kind": "learn",
+              "text": "Count the items that pass a test.",
+              "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> marks = {45, 80, 51, 30};\n    int passed = 0;\n    for (int m : marks) {\n        if (m >= 50) {\n            passed++;\n        }\n    }\n    cout << passed << \" passed\" << endl;\n    return 0;\n}",
+              "expected_output": "2 passed"
+            },
+            {
+              "id": "cpp-u3-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> v = {1, 2, 3, 4};\n    int evens = 0;\n    for (int x : v) {\n        if (x % 2 == 0) {\n            evens++;\n        }\n    }\n    cout << evens << endl;\n    return 0;\n}",
+              "answer_text": "2",
+              "explanation": "2 and 4 are even."
+            },
+            {
+              "id": "cpp-u3-l4-s5",
+              "kind": "fix",
+              "text": "To find the smallest value, keep x when it is smaller. Fix line 9.",
+              "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> v = {8, 3, 5};\n    int smallest = v[0];\n    for (int x : v) {\n        if (x > smallest) {\n            smallest = x;\n        }\n    }\n    cout << smallest << endl;\n    return 0;\n}",
+              "broken_line": 9,
+              "accept": [
+                "        if (x < smallest) {"
+              ],
+              "expected_output": "3",
+              "hint": "Smaller means <.",
+              "explanation": "x > smallest keeps the biggest value; x < smallest keeps the smallest."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

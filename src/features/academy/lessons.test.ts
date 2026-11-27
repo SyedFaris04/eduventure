@@ -1,5 +1,8 @@
 // @vitest-environment node
-import { readdirSync, readFileSync } from 'node:fs'
+import { mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { spawnSync } from 'node:child_process'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { runInNewContext } from 'node:vm'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { loadPyodide, type PyodideInterface } from 'pyodide'
@@ -47,12 +50,28 @@ async function runPy(code: string): Promise<{ out: string; error: string | null 
   }
 }
 
-const run = (lang: Course['language'], code: string) => (lang === 'javascript' ? Promise.resolve(runJs(code)) : runPy(code))
+/** Compiles and runs a C++ program with g++, as a learner's computer would: its output, or the compiler's or program's error. */
+function runCpp(code: string): { out: string; error: string | null } {
+  const dir = mkdtempSync(join(tmpdir(), 'lesson-cpp-'))
+  try {
+    writeFileSync(join(dir, 'main.cpp'), code)
+    const exe = join(dir, 'main')
+    const built = spawnSync('g++', ['-std=c++17', '-o', exe, join(dir, 'main.cpp')], { encoding: 'utf8' })
+    if (built.status !== 0) return { out: '', error: built.stderr || 'compile error' }
+    const ran = spawnSync(exe, [], { encoding: 'utf8', timeout: 5000 })
+    return { out: ran.stdout ?? '', error: ran.status === 0 ? null : ran.stderr || `exit ${ran.status}` }
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+const hasGpp = spawnSync('g++', ['--version']).status === 0
+
+const run = (lang: Course['language'], code: string) => (lang === 'javascript' ? Promise.resolve(runJs(code)) : lang === 'cpp' ? Promise.resolve(runCpp(code)) : runPy(code))
 const steps = (c: Course) => c.units.flatMap((u) => u.lessons.flatMap((l) => l.steps))
 
 describe('course files', () => {
   it('has the coding and language courses', () => {
-    expect(courses.map((c) => c.id).sort()).toEqual(['arabic-basics', 'english-basics', 'japanese-basics', 'javascript-basics', 'korean-basics', 'malay-basics', 'mandarin-basics', 'python-basics'])
+    expect(courses.map((c) => c.id).sort()).toEqual(['ai-basics', 'arabic-basics', 'cpp-basics', 'data-structures', 'english-basics', 'japanese-basics', 'javascript-basics', 'korean-basics', 'machine-learning', 'malay-basics', 'mandarin-basics', 'python-basics'])
   })
 
   it('every course file matches the schema and the content rules', () => {
@@ -96,6 +115,18 @@ describe('course files', () => {
     expect(contentRules(d).join(' ')).toMatch(/en-u1/)
   })
 
+  it('C++ lessons only read, predict and fix: a phone cannot run C++, so nothing asks it to', () => {
+    const lesson = (steps: Step[]) => ({ id: 'cpp-u1-l1', version: 1, status: 'in_review' as const, title: 'Hello', objective: 'Print with cout.', steps })
+    const learn = { id: 'cpp-u1-l1-s1', kind: 'learn' as const, text: 'Read it.', code: 'int main() {}', expected_output: '' }
+    const predict = { id: 'cpp-u1-l1-s2', kind: 'predict' as const, text: 'What prints?', code: 'int main() {}', answer_text: '', explanation: 'Nothing is printed.' }
+    const write = { id: 'cpp-u1-l1-s3', kind: 'write' as const, text: 'Print Hi.', starter: '', expected_output: 'Hi', solution: 'cout', hint: 'Use cout.' }
+    const course = (steps: Step[]) => ({ _meta: { author: 'Test', license: 'CC BY 4.0' }, id: 'cpp-basics' as const, kind: 'code' as const, language: 'cpp' as const, title: 'C++', units: [{ id: 'cpp-u1', title: 'Hello', lessons: [lesson(steps)] }] })
+    const more = (n: number) => ({ ...learn, id: `cpp-u1-l1-s${n}` })
+    expect(courseSource.safeParse(course([learn, predict, more(3), more(4), more(5)])).success).toBe(true)
+    expect(contentRules(course([learn, predict, more(3), more(4), more(5)]) as Course)).toEqual([])
+    expect(contentRules(course([learn, predict, write, more(4), more(5)]) as Course).join(' ')).toMatch(/cpp-u1-l1-s3.*C\+\+/)
+  })
+
   it('the rules catch broken language steps', () => {
     const c = structuredClone(courses.find((x) => x.id === 'english-basics')!)
     const b = steps(c).find((s) => s.kind === 'build') as Extract<Step, { kind: 'build' }>
@@ -109,13 +140,23 @@ describe('course files', () => {
   })
 })
 
+describe('C++ lessons are checked by a real compiler', () => {
+  it('the Lessons workflow compiles them with g++ on every push that touches a lesson', () => {
+    const wf = readFileSync(new URL('../../../.github/workflows/content.yml', import.meta.url), 'utf8')
+    expect(wf).toMatch(/content\/courses/)
+    expect(wf).toMatch(/vitest run src\/features\/academy\/lessons\.test\.ts/)
+    expect(wf).toMatch(/REQUIRE_GPP/)
+  })
+})
+
 describe('every sample prints what the lesson says', () => {
   beforeAll(async () => {
     py = await loadPyodide()
   }, 120_000)
 
   for (const c of courses.filter((x) => x.kind === 'code'))
-    it(`${c.id}: learn, fix, write and predict outputs are real`, async () => {
+    // C++ needs g++: GitHub's "Lessons" workflow always has it (REQUIRE_GPP); a PC without it skips just these.
+    it.skipIf(c.language === 'cpp' && !hasGpp && !process.env.REQUIRE_GPP)(`${c.id}: learn, fix, write and predict outputs are real`, async () => {
       for (const s of steps(c)) {
         const check = async (code: string, expected: string, what: string) => {
           const r = await run(c.language, code)

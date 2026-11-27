@@ -2,7 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 import { supabase } from '../../services/supabase'
 
 export type Lang = 'python' | 'javascript'
-export type CourseLang = Lang | 'english' | 'malay' | 'arabic' | 'japanese' | 'korean' | 'mandarin'
+/** A coding course's language. Python and JavaScript run in the browser; C++ lessons only read, predict and fix. */
+export type CodeLang = Lang | 'cpp'
+export type CourseLang = CodeLang | 'english' | 'malay' | 'arabic' | 'japanese' | 'korean' | 'mandarin'
 export type CourseKind = 'code' | 'language'
 export type LessonStep = {
   id: string

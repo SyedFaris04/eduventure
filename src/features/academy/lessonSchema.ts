@@ -6,6 +6,10 @@ const STATUSES = ['draft', 'in_review', 'approved', 'published', 'rejected'] as 
 export const COURSE_PREFIX = {
   'python-basics': 'py',
   'javascript-basics': 'js',
+  'data-structures': 'ds',
+  'ai-basics': 'ai',
+  'machine-learning': 'ml',
+  'cpp-basics': 'cpp',
   'english-basics': 'en',
   'malay-basics': 'ms',
   'arabic-basics': 'ar',
@@ -86,7 +90,7 @@ export const courseSource = z.object({
   _meta: z.object({ author: z.string().min(3), license: z.string().min(3) }),
   id: z.enum(COURSE_IDS),
   kind: z.enum(['code', 'language']),
-  language: z.enum(['python', 'javascript', 'english', 'malay', 'arabic', 'japanese', 'korean', 'mandarin']),
+  language: z.enum(['python', 'javascript', 'cpp', 'english', 'malay', 'arabic', 'japanese', 'korean', 'mandarin']),
   title: z.string().min(3),
   units: z.array(unit).min(1),
 })
@@ -107,7 +111,7 @@ export function contentRules(c: Course): string[] {
   const seen = (id: string) => (ids.has(id) ? problems.push(`duplicate id ${id}`) : ids.add(id))
   const prefix = COURSE_PREFIX[c.id]
   const allowed: readonly string[] = c.kind === 'code' ? CODE_KINDS : LANGUAGE_KINDS
-  if ((c.kind === 'code') !== (c.language === 'python' || c.language === 'javascript')) problems.push(`${c.id}: kind and language don't match`)
+  if ((c.kind === 'code') !== (c.language === 'python' || c.language === 'javascript' || c.language === 'cpp')) problems.push(`${c.id}: kind and language don't match`)
   c.units.forEach((u, ui) => {
     seen(u.id)
     if (u.id !== `${prefix}-u${ui + 1}`) problems.push(`${u.id}: units must be numbered ${prefix}-u1, ${prefix}-u2, …`)
@@ -121,6 +125,8 @@ export function contentRules(c: Course): string[] {
         seen(s.id)
         if (s.id !== `${l.id}-s${si + 1}`) problems.push(`${s.id}: steps must be numbered ${l.id}-s1, -s2, …`)
         if (!allowed.includes(s.kind)) problems.push(`${s.id}: ${s.kind} steps don't belong in a ${c.kind} course`)
+        // Phones can't run C++, so its lessons read, predict and fix (all marked by the server), and never ask to write.
+        if (c.language === 'cpp' && s.kind === 'write') problems.push(`${s.id}: write steps need a runner, and C++ has none on a phone`)
         if (s.kind === 'predict') {
           if ((s.answer === undefined) === (s.answer_text === undefined)) problems.push(`${s.id}: needs exactly one of answer / answer_text`)
           if (s.answer !== undefined && !s.options?.some((o) => o.id === s.answer)) problems.push(`${s.id}: answer is not one of the options`)

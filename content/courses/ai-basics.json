@@ -1,0 +1,972 @@
+{
+  "_meta": {
+    "author": "Eduventure (original lessons)",
+    "license": "CC BY 4.0"
+  },
+  "id": "ai-basics",
+  "kind": "code",
+  "language": "python",
+  "title": "AI basics with Python",
+  "units": [
+    {
+      "id": "ai-u1",
+      "title": "Rules and decisions",
+      "lessons": [
+        {
+          "id": "ai-u1-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Rules",
+          "objective": "Make a program decide with rules.",
+          "steps": [
+            {
+              "id": "ai-u1-l1-s1",
+              "kind": "learn",
+              "text": "AI is software that makes decisions. The simplest AI follows rules written by people.",
+              "code": "temperature = 34\nif temperature > 30:\n    print(\"Turn the fan on\")\nelse:\n    print(\"Fan off\")",
+              "expected_output": "Turn the fan on"
+            },
+            {
+              "id": "ai-u1-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "rain = True\nif rain:\n    print(\"Bring an umbrella\")\nelse:\n    print(\"Wear a cap\")",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Bring an umbrella"
+                },
+                {
+                  "id": "b",
+                  "text": "Wear a cap"
+                },
+                {
+                  "id": "c",
+                  "text": "True"
+                }
+              ],
+              "answer": "a",
+              "explanation": "rain is True, so the first rule runs."
+            },
+            {
+              "id": "ai-u1-l1-s3",
+              "kind": "learn",
+              "text": "Rules can combine conditions with and / or.",
+              "code": "hungry = True\nhas_money = True\nif hungry and has_money:\n    print(\"Buy nasi lemak\")",
+              "expected_output": "Buy nasi lemak"
+            },
+            {
+              "id": "ai-u1-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "score = 45\nif score >= 50:\n    print(\"Pass\")\nelse:\n    print(\"Try again\")",
+              "answer_text": "Try again",
+              "explanation": "45 is less than 50, so the else part runs."
+            },
+            {
+              "id": "ai-u1-l1-s5",
+              "kind": "fix",
+              "text": "The robot should stop when an obstacle is close: less than 10 cm. Fix line 2.",
+              "code": "distance = 5\nif distance > 10:\n    print(\"Stop\")\nelse:\n    print(\"Go\")",
+              "broken_line": 2,
+              "accept": [
+                "if distance < 10:",
+                "if distance <= 10:"
+              ],
+              "expected_output": "Stop",
+              "hint": "Close means a small distance: <.",
+              "explanation": "Stop when the distance is less than 10: distance < 10."
+            },
+            {
+              "id": "ai-u1-l1-s6",
+              "kind": "write",
+              "text": "A heater rule: with temp = 18, print \"Heater on\" if temp is below 20.",
+              "starter": "",
+              "expected_output": "Heater on",
+              "must_use": [
+                "if"
+              ],
+              "solution": "temp = 18\nif temp < 20:\n    print(\"Heater on\")",
+              "hint": "Use if temp < 20:"
+            }
+          ]
+        },
+        {
+          "id": "ai-u1-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "A rule-based chatbot",
+          "objective": "Build a chatbot that answers with rules.",
+          "steps": [
+            {
+              "id": "ai-u1-l2-s1",
+              "kind": "learn",
+              "text": "A chatbot can look for keywords in a message.",
+              "code": "message = \"hello there\"\nif \"hello\" in message:\n    print(\"Hi! How can I help?\")",
+              "expected_output": "Hi! How can I help?"
+            },
+            {
+              "id": "ai-u1-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "msg = \"what time is it\"\nif \"time\" in msg:\n    print(\"It is 3 pm\")\nelif \"name\" in msg:\n    print(\"I am Bot\")\nelse:\n    print(\"Sorry?\")",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "It is 3 pm"
+                },
+                {
+                  "id": "b",
+                  "text": "I am Bot"
+                },
+                {
+                  "id": "c",
+                  "text": "Sorry?"
+                }
+              ],
+              "answer": "a",
+              "explanation": "The message contains \"time\", so the first answer is chosen."
+            },
+            {
+              "id": "ai-u1-l2-s3",
+              "kind": "learn",
+              "text": "lower() makes HELLO and hello the same, so the bot understands both.",
+              "code": "msg = \"HELLO BOT\"\nprint(\"hello\" in msg.lower())",
+              "expected_output": "True"
+            },
+            {
+              "id": "ai-u1-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "replies = {\"hi\": \"Hello!\", \"bye\": \"See you!\"}\nprint(replies.get(\"bye\", \"Hmm?\"))",
+              "answer_text": "See you!",
+              "explanation": "\"bye\" is a key, so get() gives its reply."
+            },
+            {
+              "id": "ai-u1-l2-s5",
+              "kind": "fix",
+              "text": "The bot should answer an unknown word with \"Hmm?\". Fix line 2.",
+              "code": "replies = {\"hi\": \"Hello!\"}\nprint(replies[\"thanks\"])",
+              "broken_line": 2,
+              "accept": [
+                "print(replies.get(\"thanks\", \"Hmm?\"))",
+                "print(replies.get('thanks', 'Hmm?'))"
+              ],
+              "expected_output": "Hmm?",
+              "hint": "get(key, default) gives the default when the key is missing.",
+              "explanation": "replies[\"thanks\"] is a KeyError; replies.get(\"thanks\", \"Hmm?\") answers safely."
+            },
+            {
+              "id": "ai-u1-l2-s6",
+              "kind": "write",
+              "text": "With msg = \"Good morning\", print \"Selamat pagi!\" if \"morning\" is in the message.",
+              "starter": "",
+              "expected_output": "Selamat pagi!",
+              "must_use": [
+                "in"
+              ],
+              "solution": "msg = \"Good morning\"\nif \"morning\" in msg:\n    print(\"Selamat pagi!\")",
+              "hint": "Use if \"morning\" in msg:"
+            }
+          ]
+        },
+        {
+          "id": "ai-u1-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Decision trees",
+          "objective": "Classify things by asking questions in order.",
+          "steps": [
+            {
+              "id": "ai-u1-l3-s1",
+              "kind": "learn",
+              "text": "A decision tree asks yes-or-no questions, one after another, to reach an answer.",
+              "code": "legs = 4\nbarks = True\nif legs == 4:\n    if barks:\n        print(\"dog\")\n    else:\n        print(\"cat\")\nelse:\n    print(\"bird\")",
+              "expected_output": "dog"
+            },
+            {
+              "id": "ai-u1-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "legs = 2\nflies = True\nif legs == 4:\n    print(\"cat\")\nelif flies:\n    print(\"bird\")\nelse:\n    print(\"person\")",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "bird"
+                },
+                {
+                  "id": "b",
+                  "text": "cat"
+                },
+                {
+                  "id": "c",
+                  "text": "person"
+                }
+              ],
+              "answer": "a",
+              "explanation": "legs is not 4, but flies is True: bird."
+            },
+            {
+              "id": "ai-u1-l3-s3",
+              "kind": "learn",
+              "text": "Put the tree in a function to classify many things.",
+              "code": "def classify(legs, barks):\n    if legs == 4:\n        return \"dog\" if barks else \"cat\"\n    return \"bird\"\n\nprint(classify(4, False))\nprint(classify(2, False))",
+              "expected_output": "cat\nbird"
+            },
+            {
+              "id": "ai-u1-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "def fruit(colour, size):\n    if colour == \"yellow\":\n        return \"banana\" if size == \"long\" else \"lemon\"\n    return \"apple\"\n\nprint(fruit(\"yellow\", \"round\"))",
+              "answer_text": "lemon",
+              "explanation": "It is yellow but not long, so the tree says lemon."
+            },
+            {
+              "id": "ai-u1-l3-s5",
+              "kind": "fix",
+              "text": "Durians are spiky. Fix line 2 so a spiky fruit is a durian.",
+              "code": "def classify(spiky):\n    if spiky == False:\n        return \"durian\"\n    return \"mango\"\n\nprint(classify(True))",
+              "broken_line": 2,
+              "accept": [
+                "    if spiky:",
+                "    if spiky == True:"
+              ],
+              "expected_output": "durian",
+              "hint": "Ask whether spiky is True.",
+              "explanation": "The question is \"is it spiky?\", so test if spiky:."
+            },
+            {
+              "id": "ai-u1-l3-s6",
+              "kind": "write",
+              "text": "With age = 15, print \"teen\" if age is from 13 to 17, otherwise \"not teen\".",
+              "starter": "",
+              "expected_output": "teen",
+              "must_use": [
+                "if"
+              ],
+              "solution": "age = 15\nif age >= 13 and age <= 17:\n    print(\"teen\")\nelse:\n    print(\"not teen\")",
+              "hint": "Use and to join two comparisons."
+            }
+          ]
+        },
+        {
+          "id": "ai-u1-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Scoring choices",
+          "objective": "Let a program choose the best option by scoring.",
+          "steps": [
+            {
+              "id": "ai-u1-l4-s1",
+              "kind": "learn",
+              "text": "An AI can give each choice a score and pick the highest.",
+              "code": "scores = {\"bus\": 6, \"LRT\": 9, \"walk\": 4}\nbest = max(scores, key=scores.get)\nprint(best)",
+              "expected_output": "LRT"
+            },
+            {
+              "id": "ai-u1-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "votes = {\"red\": 3, \"blue\": 5, \"green\": 2}\nprint(max(votes, key=votes.get))",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "blue"
+                },
+                {
+                  "id": "b",
+                  "text": "red"
+                },
+                {
+                  "id": "c",
+                  "text": "5"
+                }
+              ],
+              "answer": "a",
+              "explanation": "max with key=votes.get picks the key with the biggest value: blue."
+            },
+            {
+              "id": "ai-u1-l4-s3",
+              "kind": "learn",
+              "text": "A score can add up several reasons.",
+              "code": "def score(fast, cheap):\n    total = 0\n    if fast:\n        total = total + 2\n    if cheap:\n        total = total + 1\n    return total\n\nprint(score(True, False))\nprint(score(True, True))",
+              "expected_output": "2\n3"
+            },
+            {
+              "id": "ai-u1-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "options = {\"A\": 4, \"B\": 7}\nprint(min(options, key=options.get))",
+              "answer_text": "A",
+              "explanation": "min picks the key with the smallest value: A."
+            },
+            {
+              "id": "ai-u1-l4-s5",
+              "kind": "fix",
+              "text": "The robot should take the path that costs least. Fix line 2.",
+              "code": "cost = {\"left\": 8, \"right\": 3}\nprint(max(cost, key=cost.get))",
+              "broken_line": 2,
+              "accept": [
+                "print(min(cost, key=cost.get))"
+              ],
+              "expected_output": "right",
+              "hint": "Least means min.",
+              "explanation": "min() picks the smallest cost: right."
+            },
+            {
+              "id": "ai-u1-l4-s6",
+              "kind": "write",
+              "text": "Print the name with the highest score in {\"Aina\": 88, \"Bala\": 92}.",
+              "starter": "",
+              "expected_output": "Bala",
+              "must_use": [
+                "max("
+              ],
+              "solution": "s = {\"Aina\": 88, \"Bala\": 92}\nprint(max(s, key=s.get))",
+              "hint": "max(s, key=s.get)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai-u2",
+      "title": "Search and games",
+      "lessons": [
+        {
+          "id": "ai-u2-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Grids and neighbours",
+          "objective": "Read a grid map and list the squares next to a square.",
+          "steps": [
+            {
+              "id": "ai-u2-l1-s1",
+              "kind": "learn",
+              "text": "A grid map: 0 is open, 1 is a wall. grid[row][col] reads a square.",
+              "code": "grid = [[0, 1],\n        [0, 0]]\nprint(grid[0][1])\nprint(grid[1][1])",
+              "expected_output": "1\n0"
+            },
+            {
+              "id": "ai-u2-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "grid = [[0, 0, 1],\n        [1, 0, 0]]\nprint(grid[1][0])",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "1"
+                },
+                {
+                  "id": "b",
+                  "text": "0"
+                },
+                {
+                  "id": "c",
+                  "text": "[1, 0, 0]"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Row 1, column 0 is the first value of the second row: 1."
+            },
+            {
+              "id": "ai-u2-l1-s3",
+              "kind": "learn",
+              "text": "To search, list the neighbours of a square: up, down, left and right.",
+              "code": "def neighbours(r, c):\n    return [(r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)]\n\nprint(neighbours(2, 2))",
+              "expected_output": "[(1, 2), (3, 2), (2, 1), (2, 3)]"
+            },
+            {
+              "id": "ai-u2-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "def neighbours(r, c):\n    return [(r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)]\n\nprint(len(neighbours(0, 0)))",
+              "answer_text": "4",
+              "explanation": "The function always lists 4 neighbours (some may be off the map)."
+            },
+            {
+              "id": "ai-u2-l1-s5",
+              "kind": "fix",
+              "text": "Only open squares (0) can be walked on. Fix line 3.",
+              "code": "grid = [[0, 1], [0, 0]]\nr, c = 0, 1\nif grid[r][c] == 1:\n    print(\"You can walk here\")\nelse:\n    print(\"Wall!\")",
+              "broken_line": 3,
+              "accept": [
+                "if grid[r][c] == 0:"
+              ],
+              "expected_output": "Wall!",
+              "hint": "Open squares are 0.",
+              "explanation": "A square is walkable when it is 0."
+            },
+            {
+              "id": "ai-u2-l1-s6",
+              "kind": "write",
+              "text": "With grid = [[0, 1], [1, 0]], print the value at row 1, column 1 (0).",
+              "starter": "",
+              "expected_output": "0",
+              "must_use": [
+                "grid[1][1]"
+              ],
+              "solution": "grid = [[0, 1], [1, 0]]\nprint(grid[1][1])",
+              "hint": "grid[1][1]"
+            }
+          ]
+        },
+        {
+          "id": "ai-u2-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Breadth-first search",
+          "objective": "Find the shortest way with breadth-first search.",
+          "steps": [
+            {
+              "id": "ai-u2-l2-s1",
+              "kind": "learn",
+              "text": "Breadth-first search (BFS) explores the closest squares first, so the first time it reaches the goal is the shortest way.",
+              "code": "from collections import deque\ngrid = [[0, 0, 0],\n        [1, 1, 0],\n        [0, 0, 0]]\nstart, goal = (0, 0), (2, 0)\nqueue = deque([(start, 0)])\nseen = {start}\nwhile queue:\n    (r, c), steps = queue.popleft()\n    if (r, c) == goal:\n        print(\"Shortest path:\", steps, \"steps\")\n        break\n    for nr, nc in [(r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)]:\n        if 0 <= nr < 3 and 0 <= nc < 3 and grid[nr][nc] == 0 and (nr, nc) not in seen:\n            seen.add((nr, nc))\n            queue.append(((nr, nc), steps + 1))",
+              "expected_output": "Shortest path: 6 steps"
+            },
+            {
+              "id": "ai-u2-l2-s2",
+              "kind": "predict",
+              "text": "BFS keeps a queue. What does popleft() take?",
+              "code": "from collections import deque\nq = deque([\"near\", \"far\"])\nprint(q.popleft())",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "near"
+                },
+                {
+                  "id": "b",
+                  "text": "far"
+                },
+                {
+                  "id": "c",
+                  "text": "['near', 'far']"
+                }
+              ],
+              "answer": "a",
+              "explanation": "popleft() takes the oldest item, the one that joined first."
+            },
+            {
+              "id": "ai-u2-l2-s3",
+              "kind": "learn",
+              "text": "A seen set stops the search from visiting a square twice.",
+              "code": "seen = {(0, 0)}\nprint((0, 0) in seen)\nseen.add((0, 1))\nprint(len(seen))",
+              "expected_output": "True\n2"
+            },
+            {
+              "id": "ai-u2-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "start, goal = (0, 0), (0, 3)\nprint(abs(goal[0] - start[0]) + abs(goal[1] - start[1]))",
+              "answer_text": "3",
+              "explanation": "On an open grid the shortest way is the row difference plus the column difference: 0 + 3."
+            },
+            {
+              "id": "ai-u2-l2-s5",
+              "kind": "fix",
+              "text": "Breadth-first must take the oldest item from the queue. Fix line 7.",
+              "code": "from collections import deque\ngraph = {\"A\": [\"B\", \"C\"], \"B\": [\"D\"], \"C\": [\"D\"], \"D\": []}\nqueue = deque([\"A\"])\nseen = {\"A\"}\norder = []\nwhile queue:\n    node = queue.pop()\n    order.append(node)\n    for nxt in graph[node]:\n        if nxt not in seen:\n            seen.add(nxt)\n            queue.append(nxt)\nprint(order)",
+              "broken_line": 7,
+              "accept": [
+                "    node = queue.popleft()"
+              ],
+              "expected_output": "['A', 'B', 'C', 'D']",
+              "hint": "Breadth-first takes from the front: popleft().",
+              "explanation": "pop() takes the newest item (that is depth-first). BFS takes the oldest with popleft()."
+            },
+            {
+              "id": "ai-u2-l2-s6",
+              "kind": "write",
+              "text": "Print the steps between (1, 1) and (4, 5) on an open grid (7).",
+              "starter": "",
+              "expected_output": "7",
+              "must_use": [
+                "abs("
+              ],
+              "solution": "print(abs(4 - 1) + abs(5 - 1))",
+              "hint": "Add the row and column differences with abs()."
+            }
+          ]
+        },
+        {
+          "id": "ai-u2-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Spotting a win",
+          "objective": "Teach a program to spot a win in tic-tac-toe.",
+          "steps": [
+            {
+              "id": "ai-u2-l3-s1",
+              "kind": "learn",
+              "text": "A board can be a list of 9 squares. A win is three of the same in a line.",
+              "code": "board = [\"X\", \"X\", \"X\",\n         \"O\", \"O\", \" \",\n         \" \", \" \", \" \"]\nprint(board[0] == board[1] == board[2] == \"X\")",
+              "expected_output": "True"
+            },
+            {
+              "id": "ai-u2-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "board = [\"O\", \"X\", \" \",\n         \"O\", \"X\", \" \",\n         \"O\", \" \", \" \"]\nprint(board[0] == board[3] == board[6] == \"O\")",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "True"
+                },
+                {
+                  "id": "b",
+                  "text": "False"
+                },
+                {
+                  "id": "c",
+                  "text": "O"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Squares 0, 3 and 6 are the left column, all O."
+            },
+            {
+              "id": "ai-u2-l3-s3",
+              "kind": "learn",
+              "text": "List every winning line once, then check them all.",
+              "code": "LINES = [(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)]\n\ndef winner(b):\n    for x, y, z in LINES:\n        if b[x] != \" \" and b[x] == b[y] == b[z]:\n            return b[x]\n    return None\n\nprint(winner([\"X\", \"O\", \" \", \" \", \"X\", \"O\", \" \", \" \", \"X\"]))",
+              "expected_output": "X"
+            },
+            {
+              "id": "ai-u2-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "LINES = [(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)]\n\ndef winner(b):\n    for x, y, z in LINES:\n        if b[x] != \" \" and b[x] == b[y] == b[z]:\n            return b[x]\n    return None\n\nprint(winner([\" \"] * 9))",
+              "answer_text": "None",
+              "explanation": "An empty board has no winner, so the function returns None."
+            },
+            {
+              "id": "ai-u2-l3-s5",
+              "kind": "fix",
+              "text": "Three empty squares in a row are not a win. Fix line 5.",
+              "code": "LINES = [(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)]\n\ndef winner(b):\n    for x, y, z in LINES:\n        if b[x] == b[y] == b[z]:\n            return b[x]\n    return None\n\nprint(winner([\"X\", \"O\", \"X\", \" \", \" \", \" \", \"O\", \"X\", \"O\"]))",
+              "broken_line": 5,
+              "accept": [
+                "        if b[x] != \" \" and b[x] == b[y] == b[z]:",
+                "        if b[x] != ' ' and b[x] == b[y] == b[z]:"
+              ],
+              "expected_output": "None",
+              "hint": "Check that the square is not empty first.",
+              "explanation": "Three empty squares are equal too, so first check b[x] != \" \"."
+            },
+            {
+              "id": "ai-u2-l3-s6",
+              "kind": "write",
+              "text": "Print True if all three items of [1, 1, 1] are the same, using ==.",
+              "starter": "",
+              "expected_output": "True",
+              "must_use": [
+                "=="
+              ],
+              "solution": "a = [1, 1, 1]\nprint(a[0] == a[1] == a[2])",
+              "hint": "Chain them: a[0] == a[1] == a[2]"
+            }
+          ]
+        },
+        {
+          "id": "ai-u2-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Smart moves",
+          "objective": "Let the computer choose a winning move.",
+          "steps": [
+            {
+              "id": "ai-u2-l4-s1",
+              "kind": "learn",
+              "text": "A simple game AI tries every empty square and keeps the move that wins.",
+              "code": "LINES = [(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)]\n\ndef winner(b):\n    for x, y, z in LINES:\n        if b[x] != \" \" and b[x] == b[y] == b[z]:\n            return b[x]\n    return None\n\nboard = [\"X\", \"X\", \" \",\n         \"O\", \"O\", \" \",\n         \" \", \" \", \" \"]\nfor i in range(9):\n    if board[i] == \" \":\n        board[i] = \"X\"\n        if winner(board) == \"X\":\n            print(\"Winning move:\", i)\n        board[i] = \" \"",
+              "expected_output": "Winning move: 2"
+            },
+            {
+              "id": "ai-u2-l4-s2",
+              "kind": "predict",
+              "text": "Which squares are empty?",
+              "code": "board = [\"X\", \" \", \"O\", \" \"]\nprint([i for i in range(4) if board[i] == \" \"])",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "[1, 3]"
+                },
+                {
+                  "id": "b",
+                  "text": "[0, 2]"
+                },
+                {
+                  "id": "c",
+                  "text": "[1, 2, 3]"
+                }
+              ],
+              "answer": "a",
+              "explanation": "Squares 1 and 3 hold a space."
+            },
+            {
+              "id": "ai-u2-l4-s3",
+              "kind": "learn",
+              "text": "A good AI also blocks: if the other player could win next, it takes that square first.",
+              "code": "LINES = [(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)]\n\ndef winner(b):\n    for x, y, z in LINES:\n        if b[x] != \" \" and b[x] == b[y] == b[z]:\n            return b[x]\n    return None\n\nboard = [\"O\", \"O\", \" \",\n         \"X\", \" \", \" \",\n         \"X\", \" \", \" \"]\nfor i in range(9):\n    if board[i] == \" \":\n        board[i] = \"O\"\n        if winner(board) == \"O\":\n            print(\"Block at\", i)\n        board[i] = \" \"",
+              "expected_output": "Block at 2"
+            },
+            {
+              "id": "ai-u2-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "board = [\"X\", \"X\", \" \"]\nprint(board.index(\" \"))",
+              "answer_text": "2",
+              "explanation": "index() finds the first space, at position 2."
+            },
+            {
+              "id": "ai-u2-l4-s5",
+              "kind": "fix",
+              "text": "The AI should try X only in the empty squares. Fix line 11.",
+              "code": "LINES = [(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)]\n\ndef winner(b):\n    for x, y, z in LINES:\n        if b[x] != \" \" and b[x] == b[y] == b[z]:\n            return b[x]\n    return None\n\nboard = [\" \", \"X\", \"X\", \"O\", \"O\", \" \", \" \", \" \", \" \"]\nfor i in range(9):\n    if board[i] != \" \":\n        board[i] = \"X\"\n        if winner(board) == \"X\":\n            print(\"Winning move:\", i)\n        board[i] = \" \"",
+              "broken_line": 11,
+              "accept": [
+                "    if board[i] == \" \":",
+                "    if board[i] == ' ':"
+              ],
+              "expected_output": "Winning move: 0",
+              "hint": "Only empty squares can take a new X.",
+              "explanation": "The AI must try the empty squares: board[i] == \" \"."
+            },
+            {
+              "id": "ai-u2-l4-s6",
+              "kind": "write",
+              "text": "Print the first empty square in [\"X\", \"O\", \" \", \" \"] using index() (2).",
+              "starter": "",
+              "expected_output": "2",
+              "must_use": [
+                "index("
+              ],
+              "solution": "board = [\"X\", \"O\", \" \", \" \"]\nprint(board.index(\" \"))",
+              "hint": "board.index(\" \")"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai-u3",
+      "title": "Learning from data",
+      "lessons": [
+        {
+          "id": "ai-u3-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Data and features",
+          "objective": "Describe examples with features and labels.",
+          "steps": [
+            {
+              "id": "ai-u3-l1-s1",
+              "kind": "learn",
+              "text": "AI learns from data. Each example has features (what we measure) and a label (the answer).",
+              "code": "fruit = {\"weight\": 150, \"colour\": \"red\", \"label\": \"apple\"}\nprint(fruit[\"weight\"])\nprint(fruit[\"label\"])",
+              "expected_output": "150\napple"
+            },
+            {
+              "id": "ai-u3-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "data = [(150, \"apple\"), (120, \"orange\"), (160, \"apple\")]\nprint(len(data))",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "3"
+                },
+                {
+                  "id": "b",
+                  "text": "2"
+                },
+                {
+                  "id": "c",
+                  "text": "6"
+                }
+              ],
+              "answer": "a",
+              "explanation": "There are 3 examples (each is one tuple)."
+            },
+            {
+              "id": "ai-u3-l1-s3",
+              "kind": "learn",
+              "text": "Count the labels to see what the data holds.",
+              "code": "labels = [\"spam\", \"ok\", \"ok\", \"spam\", \"ok\"]\nprint(labels.count(\"ok\"))\nprint(labels.count(\"spam\"))",
+              "expected_output": "3\n2"
+            },
+            {
+              "id": "ai-u3-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "weights = [100, 200, 300]\nprint(sum(weights) / len(weights))",
+              "answer_text": "200.0",
+              "explanation": "The total is 600 and there are 3 weights: 600 / 3 = 200.0."
+            },
+            {
+              "id": "ai-u3-l1-s5",
+              "kind": "fix",
+              "text": "An average is the total divided by how many there are. Fix line 2.",
+              "code": "marks = [80, 90, 70]\naverage = sum(marks) / 2\nprint(average)",
+              "broken_line": 2,
+              "accept": [
+                "average = sum(marks) / len(marks)",
+                "average = sum(marks) / 3"
+              ],
+              "expected_output": "80.0",
+              "hint": "Divide by len(marks).",
+              "explanation": "There are 3 marks, so divide by len(marks)."
+            },
+            {
+              "id": "ai-u3-l1-s6",
+              "kind": "write",
+              "text": "Print how many \"cat\" labels are in [\"cat\", \"dog\", \"cat\"] (2).",
+              "starter": "",
+              "expected_output": "2",
+              "must_use": [
+                "count("
+              ],
+              "solution": "print([\"cat\", \"dog\", \"cat\"].count(\"cat\"))",
+              "hint": "Use count(\"cat\")."
+            }
+          ]
+        },
+        {
+          "id": "ai-u3-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Learning a rule",
+          "objective": "Learn a cut-off that separates two groups.",
+          "steps": [
+            {
+              "id": "ai-u3-l2-s1",
+              "kind": "learn",
+              "text": "A program can learn a rule from examples: put the cut-off halfway between the two groups' averages.",
+              "code": "small = [2, 3, 4]\nbig = [10, 12, 14]\ncut = (sum(small) / len(small) + sum(big) / len(big)) / 2\nprint(cut)",
+              "expected_output": "7.5"
+            },
+            {
+              "id": "ai-u3-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "cut = 7.5\nsize = 9\nprint(\"big\" if size > cut else \"small\")",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "big"
+                },
+                {
+                  "id": "b",
+                  "text": "small"
+                },
+                {
+                  "id": "c",
+                  "text": "9"
+                }
+              ],
+              "answer": "a",
+              "explanation": "9 is above the cut-off of 7.5."
+            },
+            {
+              "id": "ai-u3-l2-s3",
+              "kind": "learn",
+              "text": "Test the learned rule on new examples.",
+              "code": "cut = 7.5\nfor size in [3, 8, 11]:\n    print(size, \"big\" if size > cut else \"small\")",
+              "expected_output": "3 small\n8 big\n11 big"
+            },
+            {
+              "id": "ai-u3-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "def classify(x, cut):\n    return \"high\" if x > cut else \"low\"\n\nprint(classify(5, 5))",
+              "answer_text": "low",
+              "explanation": "5 is not bigger than 5, so it is low."
+            },
+            {
+              "id": "ai-u3-l2-s5",
+              "kind": "fix",
+              "text": "The cut-off is halfway between the two averages. Fix line 3.",
+              "code": "a = [1, 3]\nb = [9, 11]\ncut = (sum(a) / len(a) + sum(b) / len(b))\nprint(cut)",
+              "broken_line": 3,
+              "accept": [
+                "cut = (sum(a) / len(a) + sum(b) / len(b)) / 2"
+              ],
+              "expected_output": "6.0",
+              "hint": "Halfway means divide the total by 2.",
+              "explanation": "The middle of two numbers is their sum divided by 2."
+            },
+            {
+              "id": "ai-u3-l2-s6",
+              "kind": "write",
+              "text": "Print the average of [4, 6, 8] (6.0).",
+              "starter": "",
+              "expected_output": "6.0",
+              "must_use": [
+                "sum("
+              ],
+              "solution": "nums = [4, 6, 8]\nprint(sum(nums) / len(nums))",
+              "hint": "sum() divided by len()."
+            }
+          ]
+        },
+        {
+          "id": "ai-u3-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Nearest neighbour",
+          "objective": "Classify something by the most similar example.",
+          "steps": [
+            {
+              "id": "ai-u3-l3-s1",
+              "kind": "learn",
+              "text": "Nearest neighbour: a new thing gets the label of the closest known example.",
+              "code": "examples = [(1, \"small\"), (9, \"big\")]\nnew = 7\nclosest = min(examples, key=lambda e: abs(e[0] - new))\nprint(closest[1])",
+              "expected_output": "big"
+            },
+            {
+              "id": "ai-u3-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "print(abs(3 - 8))",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "5"
+                },
+                {
+                  "id": "b",
+                  "text": "-5"
+                },
+                {
+                  "id": "c",
+                  "text": "11"
+                }
+              ],
+              "answer": "a",
+              "explanation": "abs() gives the distance without a minus sign."
+            },
+            {
+              "id": "ai-u3-l3-s3",
+              "kind": "learn",
+              "text": "With two features, use the straight-line distance on a grid.",
+              "code": "import math\nprint(math.dist((0, 0), (3, 4)))",
+              "expected_output": "5.0"
+            },
+            {
+              "id": "ai-u3-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "examples = [(2, \"cat\"), (6, \"dog\")]\nnew = 3\nbest = min(examples, key=lambda e: abs(e[0] - new))\nprint(best[1])",
+              "answer_text": "cat",
+              "explanation": "3 is 1 away from 2 but 3 away from 6, so cat is nearest."
+            },
+            {
+              "id": "ai-u3-l3-s5",
+              "kind": "fix",
+              "text": "The nearest example has the smallest distance. Fix line 3.",
+              "code": "examples = [(10, \"kitten\"), (40, \"cat\")]\nnew = 15\nbest = max(examples, key=lambda e: abs(e[0] - new))\nprint(best[1])",
+              "broken_line": 3,
+              "accept": [
+                "best = min(examples, key=lambda e: abs(e[0] - new))"
+              ],
+              "expected_output": "kitten",
+              "hint": "Nearest means smallest: min.",
+              "explanation": "min() finds the example with the smallest distance."
+            },
+            {
+              "id": "ai-u3-l3-s6",
+              "kind": "write",
+              "text": "Print the distance between (1, 1) and (4, 5) using math.dist (5.0).",
+              "starter": "",
+              "expected_output": "5.0",
+              "must_use": [
+                "math.dist"
+              ],
+              "solution": "import math\nprint(math.dist((1, 1), (4, 5)))",
+              "hint": "import math first."
+            }
+          ]
+        },
+        {
+          "id": "ai-u3-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "How accurate?",
+          "objective": "Measure how often a model is right.",
+          "steps": [
+            {
+              "id": "ai-u3-l4-s1",
+              "kind": "learn",
+              "text": "Accuracy is the share of predictions that match the right answers.",
+              "code": "predicted = [\"cat\", \"dog\", \"cat\", \"dog\"]\nactual = [\"cat\", \"dog\", \"dog\", \"dog\"]\nright = 0\nfor p, a in zip(predicted, actual):\n    if p == a:\n        right = right + 1\nprint(right / len(actual))",
+              "expected_output": "0.75"
+            },
+            {
+              "id": "ai-u3-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "print(list(zip([1, 2], [\"a\", \"b\"])))",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "[(1, 'a'), (2, 'b')]"
+                },
+                {
+                  "id": "b",
+                  "text": "[1, 2, 'a', 'b']"
+                },
+                {
+                  "id": "c",
+                  "text": "[(1, 2), ('a', 'b')]"
+                }
+              ],
+              "answer": "a",
+              "explanation": "zip pairs the items up by position."
+            },
+            {
+              "id": "ai-u3-l4-s3",
+              "kind": "learn",
+              "text": "Show accuracy as a percentage with round().",
+              "code": "accuracy = 7 / 9\nprint(round(accuracy * 100), \"%\")",
+              "expected_output": "78 %"
+            },
+            {
+              "id": "ai-u3-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "right, total = 9, 10\nprint(right / total * 100)",
+              "answer_text": "90.0",
+              "explanation": "9 / 10 is 0.9, and 0.9 × 100 is 90.0."
+            },
+            {
+              "id": "ai-u3-l4-s5",
+              "kind": "fix",
+              "text": "A prediction is right when it matches. Fix line 5.",
+              "code": "predicted = [\"yes\", \"no\", \"yes\"]\nactual = [\"yes\", \"yes\", \"yes\"]\nright = 0\nfor p, a in zip(predicted, actual):\n    if p != a:\n        right = right + 1\nprint(right)",
+              "broken_line": 5,
+              "accept": [
+                "    if p == a:"
+              ],
+              "expected_output": "2",
+              "hint": "Right means equal: ==.",
+              "explanation": "A prediction is right when p == a."
+            },
+            {
+              "id": "ai-u3-l4-s6",
+              "kind": "write",
+              "text": "A model got 18 of 20 right. Print its accuracy as a decimal (0.9).",
+              "starter": "",
+              "expected_output": "0.9",
+              "must_use": [
+                "/"
+              ],
+              "solution": "print(18 / 20)",
+              "hint": "Right divided by total."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

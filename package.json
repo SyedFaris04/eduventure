@@ -26,6 +26,7 @@
     "@capacitor/core": "8.6.2",
     "@capacitor/splash-screen": "8.0.2",
     "@capacitor/status-bar": "8.0.4",
+    "@codemirror/lang-cpp": "6.0.3",
     "@codemirror/lang-javascript": "6.2.5",
     "@codemirror/lang-python": "6.2.1",
     "@codemirror/state": "6.7.6",
