@@ -805,7 +805,7 @@
   },
   "academy": {
     "title": "Akademi Kod",
-    "intro": "Belajar mengekod sedikit demi sedikit. Setiap pelajaran menjalankan kod sebenar di sini.",
+    "intro": "Belajar mengekod selangkah demi selangkah, daripada Python dan JavaScript hingga AI, struktur data dan C++. Python dan JavaScript berjalan terus di sini.",
     "lessonsDone": "{{done}} daripada {{total}} pelajaran",
     "unit": "Unit {{n}}: {{title}}",
     "lockedUnit": "Tamatkan unit sebelumnya untuk membuka",

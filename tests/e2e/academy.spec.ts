@@ -5,6 +5,7 @@ import { enterWorld, newPlayer, place, sail, state, walkUntil, type GameState } 
 type Step = { kind: string; text: string; code?: string; options?: { id: string; text: string }[]; answer?: string; answer_text?: string; broken_line?: number; accept?: string[]; solution?: string; expected_output?: string }
 const course = JSON.parse(readFileSync(new URL('../../content/courses/python-basics.json', import.meta.url), 'utf8')) as { units: { lessons: { id: string; steps: Step[] }[] }[] }
 const lesson1 = course.units[0].lessons[0]
+const cpp = JSON.parse(readFileSync(new URL('../../content/courses/cpp-basics.json', import.meta.url), 'utf8')) as typeof course
 
 /** Replaces everything in the code editor (insertText skips CodeMirror's auto-closing brackets). */
 async function setCode(page: Page, code: string) {
@@ -14,13 +15,14 @@ async function setCode(page: Page, code: string) {
   await page.keyboard.insertText(code)
 }
 
-/** Plays every step of a lesson like a learner who knows the answers. */
-async function playLesson(page: Page, steps: Step[]) {
+/** Plays every step of a lesson like a learner who knows the answers. C++ has no runner: outputs are shown instead. */
+async function playLesson(page: Page, steps: Step[], { runs = true } = {}) {
   for (const [i, s] of steps.entries()) {
     await expect(page.getByText(s.text)).toBeVisible({ timeout: 20_000 })
     const next = i === steps.length - 1 ? 'Finish lesson' : 'Continue'
     if (s.kind === 'learn') {
-      await page.getByRole('button', { name: 'Run' }).click()
+      if (runs) await page.getByRole('button', { name: 'Run' }).click()
+      else await expect(page.getByRole('button', { name: 'Run' })).toHaveCount(0)
       await expect(page.getByLabel('Terminal')).toContainText(s.expected_output!.split('\n')[0], { timeout: 60_000 }) // Python downloads on the first run
     }
     if (s.kind === 'predict') {
@@ -39,6 +41,7 @@ async function playLesson(page: Page, steps: Step[]) {
       await setCode(page, lines.join('\n'))
       await page.getByRole('button', { name: 'Check' }).click()
       await expect(page.getByText('Correct!')).toBeVisible()
+      if (!runs) await expect(page.getByLabel('Terminal')).toContainText(s.expected_output!.split('\n')[0]) // the fixed program's output
     }
     if (s.kind === 'write') {
       await setCode(page, s.solution!)
@@ -110,4 +113,15 @@ test.describe('phone, sideways', () => {
       await cont.click()
     }
   })
+})
+
+// C++ can't run on a phone (decision #57): each program's output is shown, and the server marks every answer.
+test('a C++ lesson plays to the end with no runner', async ({ page }) => {
+  test.setTimeout(300_000)
+  await newPlayer(page)
+  await page.goto('/academy')
+  await page.getByRole('link', { name: /C\+\+ Basics/ }).click()
+  await page.getByRole('link', { name: /1\.1 Your first program/ }).click()
+  await playLesson(page, cpp.units[0].lessons[0].steps, { runs: false })
+  await expect(page.getByText(/\+\d+ XP/)).toBeVisible()
 })

@@ -805,7 +805,7 @@
   },
   "academy": {
     "title": "编程学院",
-    "intro": "一小步一小步地学编程。每节课都在这里运行真正的代码。",
+    "intro": "一步一步学编程：从 Python、JavaScript 到人工智能、数据结构和 C++。Python 和 JavaScript 可以直接在这里运行。",
     "lessonsDone": "已完成 {{done}}/{{total}} 节课",
     "unit": "第 {{n}} 单元：{{title}}",
     "lockedUnit": "完成前一个单元后解锁",

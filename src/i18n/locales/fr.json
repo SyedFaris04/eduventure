@@ -805,7 +805,7 @@
   },
   "academy": {
     "title": "Académie du code",
-    "intro": "Apprends à coder un petit pas à la fois. Chaque leçon exécute du vrai code, ici même.",
+    "intro": "Apprends à coder petit à petit, de Python et JavaScript à l'IA, aux structures de données et au C++. Python et JavaScript s'exécutent ici même.",
     "lessonsDone": "{{done}} leçons sur {{total}}",
     "unit": "Unité {{n}} : {{title}}",
     "lockedUnit": "Termine l'unité précédente pour débloquer",

@@ -805,7 +805,7 @@
   },
   "academy": {
     "title": "コードアカデミー",
-    "intro": "少しずつプログラミングを学ぼう。どのレッスンもここで本物のコードを動かすよ。",
+    "intro": "Python や JavaScript から AI、データ構造、C++ まで、一歩ずつプログラミングを学ぼう。Python と JavaScript はここで実行できます。",
     "lessonsDone": "{{total}} レッスン中 {{done}} 完了",
     "unit": "ユニット{{n}}：{{title}}",
     "lockedUnit": "前のユニットを終えると開くよ",
