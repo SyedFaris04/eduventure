@@ -182,6 +182,12 @@ test.describe('phone fit', () => {
         await expectFits(page, `${tag} ${path}`)
       }
 
+      // A language lesson's word card leaves its Continue button on screen.
+      await page.goto('/hall/japanese-basics')
+      await page.getByRole('link', { name: /Greetings/ }).first().click()
+      await expect(page.getByText('こんにちは')).toBeVisible()
+      await expectInView(page, `${tag} lesson continue`, page.getByRole('button', { name: 'Continue' }))
+
       // The egg picker appears at level 2: stand in a level-2 answer for the player's XP row and look at it.
       await page.route('**/rest/v1/player_xp*', (route) => route.fulfill({ json: { xp: 150, level: 2 } }))
       await page.goto('/pet')

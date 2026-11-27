@@ -33,5 +33,5 @@ export const normAnswer = (s: string) =>
     .replace(/['"‘’“”]/g, '')
     .trim()
     .replace(/\s+/g, ' ')
-    .replace(/[.!?]+$/, '')
+    .replace(/[.!?。！？؟]+$/, '') // also the full stops and question marks of Japanese, Chinese and Arabic
     .trim()

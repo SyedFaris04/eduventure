@@ -246,3 +246,18 @@ side, and the bottom of Home (for a reviewer), the pet page and the world settin
 - Progress bars thinner than 24 px use a thinner frame (`thin`): the 3 px frame had left 10–12 px bars (the Home and HUD
   XP bars, course and subject bars) with no visible fill at all.
 - `tests/e2e/phone-fit.spec.ts` now also checks a reviewer with a hatched pet at 694 × 296 with a 125% font.
+
+## 56. The Language Hall teaches Arabic, Japanese, Korean and Mandarin (2026-11-27)
+Four new 12-lesson courses (3 units × 4), shaped like the English course: instructions in English with Malay, each word
+in its own script with a rumi romanisation note (rōmaji, Korean romanisation, pinyin with tones, Arabic transliteration),
+meanings in English and Malay. Mandarin uses simplified characters, as Malaysian schools do; Arabic words carry their
+vowel marks (harakat) for beginners. Like every lesson they start "in review" and are published from `/admin`; a native
+speaker should check them before they are published.
+- **No special keyboard:** typing exercises accept the romanisation (several common spellings) or the native script.
+  Answers typed in those scripts may end in 。！？؟, which the server's `norm_answer` and the app's `normAnswer` ignore.
+- **Arabic has no build-the-sentence exercises:** tiles laid out left to right would teach a right-to-left language
+  backwards. Course text takes its direction from its own letters (`dir="auto"`, `<bdi>`), and the word on a card
+  carries its language tag so the phone picks the right font (Japanese and Chinese characters are drawn differently).
+- **Voices:** the phone's built-in voices; Mandarin never uses a Hong Kong voice (Cantonese). Listening stays a bonus.
+- Unit, lesson and step ids take a prefix per course (`COURSE_PREFIX`), so courses in the same programming language
+  can follow without id clashes. On sideways phones the Hall and the Academy show compact cards, six to a page.

@@ -1,0 +1,1367 @@
+{
+  "_meta": {
+    "author": "Eduventure (original lessons)",
+    "license": "CC BY 4.0"
+  },
+  "id": "japanese-basics",
+  "kind": "language",
+  "language": "japanese",
+  "title": "Japanese for beginners",
+  "units": [
+    {
+      "id": "ja-u1",
+      "title": "Hello & me · Salam & diri saya",
+      "lessons": [
+        {
+          "id": "ja-u1-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Greetings",
+          "objective": "Greet people in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u1-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "こんにちは",
+              "meaning": "Hello · Helo",
+              "emoji": "👋",
+              "note": "konnichiwa"
+            },
+            {
+              "id": "ja-u1-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "おはよう",
+              "meaning": "Good morning · Selamat pagi",
+              "emoji": "🌅",
+              "note": "ohayou · more polite: おはようございます (ohayou gozaimasu)"
+            },
+            {
+              "id": "ja-u1-l1-s3",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does おはよう mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Good morning"
+                },
+                {
+                  "id": "b",
+                  "text": "Good night"
+                },
+                {
+                  "id": "c",
+                  "text": "Thank you"
+                }
+              ],
+              "answer": "a",
+              "explanation": "おはよう (ohayou) = Good morning.",
+              "say": "おはよう"
+            },
+            {
+              "id": "ja-u1-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "ありがとう",
+              "meaning": "Thank you · Terima kasih",
+              "emoji": "🙏",
+              "note": "arigatou"
+            },
+            {
+              "id": "ja-u1-l1-s5",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "さようなら",
+              "meaning": "Goodbye · Selamat tinggal",
+              "emoji": "👋",
+              "note": "sayounara"
+            },
+            {
+              "id": "ja-u1-l1-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "こんにちは",
+                  "Hello"
+                ],
+                [
+                  "おはよう",
+                  "Good morning"
+                ],
+                [
+                  "ありがとう",
+                  "Thank you"
+                ],
+                [
+                  "さようなら",
+                  "Goodbye"
+                ]
+              ]
+            },
+            {
+              "id": "ja-u1-l1-s7",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "ありがとう",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "ありがとう (arigatou)"
+                },
+                {
+                  "id": "b",
+                  "text": "こんにちは (konnichiwa)"
+                },
+                {
+                  "id": "c",
+                  "text": "おはよう (ohayou)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "ja-u1-l1-s8",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "Hello",
+              "accept": [
+                "konnichiwa",
+                "konnichi wa",
+                "konnichiha",
+                "こんにちは"
+              ],
+              "explanation": "Hello = こんにちは (konnichiwa)."
+            }
+          ]
+        },
+        {
+          "id": "ja-u1-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Introducing yourself",
+          "objective": "Introduce yourself in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u1-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "わたし",
+              "meaning": "I, me · Saya",
+              "emoji": "🙋",
+              "note": "watashi"
+            },
+            {
+              "id": "ja-u1-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "なまえ",
+              "meaning": "name · nama",
+              "emoji": "📛",
+              "note": "namae"
+            },
+            {
+              "id": "ja-u1-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "はじめまして",
+              "meaning": "Nice to meet you · Selamat berkenalan",
+              "emoji": "🤝",
+              "note": "hajimemashite · say it when you meet someone for the first time"
+            },
+            {
+              "id": "ja-u1-l2-s4",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "I am Aina. · Saya Aina.",
+              "tiles": [
+                "わたしは",
+                "アイナ",
+                "です",
+                "ありがとう"
+              ],
+              "answer": [
+                "わたしは",
+                "アイナ",
+                "です"
+              ],
+              "explanation": "わたしは アイナ です (watashi wa Aina desu). Here は is read \"wa\"."
+            },
+            {
+              "id": "ja-u1-l2-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "はじめまして。わたしは アイナ ___。",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "です"
+                },
+                {
+                  "id": "b",
+                  "text": "さようなら"
+                },
+                {
+                  "id": "c",
+                  "text": "おはよう"
+                }
+              ],
+              "answer": "a",
+              "explanation": "です (desu) ends a polite sentence: わたしは アイナ です."
+            },
+            {
+              "id": "ja-u1-l2-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does はじめまして mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Nice to meet you"
+                },
+                {
+                  "id": "b",
+                  "text": "See you tomorrow"
+                },
+                {
+                  "id": "c",
+                  "text": "Excuse me"
+                }
+              ],
+              "answer": "a",
+              "explanation": "はじめまして (hajimemashite) = Nice to meet you."
+            },
+            {
+              "id": "ja-u1-l2-s7",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "name",
+              "accept": [
+                "namae",
+                "なまえ",
+                "名前"
+              ],
+              "explanation": "Name = なまえ (namae)."
+            }
+          ]
+        },
+        {
+          "id": "ja-u1-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Numbers 1 to 5",
+          "objective": "Count from one to five in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u1-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "いち",
+              "meaning": "one · satu (1)",
+              "emoji": "1️⃣",
+              "note": "ichi"
+            },
+            {
+              "id": "ja-u1-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "に",
+              "meaning": "two · dua (2)",
+              "emoji": "2️⃣",
+              "note": "ni"
+            },
+            {
+              "id": "ja-u1-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "さん",
+              "meaning": "three · tiga (3)",
+              "emoji": "3️⃣",
+              "note": "san"
+            },
+            {
+              "id": "ja-u1-l3-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "よん",
+              "meaning": "four · empat (4)",
+              "emoji": "4️⃣",
+              "note": "yon · also し (shi)"
+            },
+            {
+              "id": "ja-u1-l3-s5",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "ご",
+              "meaning": "five · lima (5)",
+              "emoji": "5️⃣",
+              "note": "go"
+            },
+            {
+              "id": "ja-u1-l3-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "いち",
+                  "1"
+                ],
+                [
+                  "に",
+                  "2"
+                ],
+                [
+                  "さん",
+                  "3"
+                ],
+                [
+                  "よん",
+                  "4"
+                ],
+                [
+                  "ご",
+                  "5"
+                ]
+              ]
+            },
+            {
+              "id": "ja-u1-l3-s7",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Which number is さん?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "3"
+                },
+                {
+                  "id": "b",
+                  "text": "2"
+                },
+                {
+                  "id": "c",
+                  "text": "5"
+                }
+              ],
+              "answer": "a",
+              "explanation": "さん (san) = 3."
+            },
+            {
+              "id": "ja-u1-l3-s8",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "4",
+              "accept": [
+                "yon",
+                "shi",
+                "よん",
+                "し",
+                "四"
+              ],
+              "explanation": "4 = よん (yon), also し (shi)."
+            }
+          ]
+        },
+        {
+          "id": "ja-u1-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Yes, no and sorry",
+          "objective": "Say yes, no and excuse me in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u1-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "はい",
+              "meaning": "Yes · Ya",
+              "emoji": "✅",
+              "note": "hai"
+            },
+            {
+              "id": "ja-u1-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "いいえ",
+              "meaning": "No · Tidak",
+              "emoji": "❌",
+              "note": "iie"
+            },
+            {
+              "id": "ja-u1-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "すみません",
+              "meaning": "Excuse me, sorry · Maaf",
+              "emoji": "🙇",
+              "note": "sumimasen"
+            },
+            {
+              "id": "ja-u1-l4-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "げんき",
+              "meaning": "well, healthy · sihat",
+              "emoji": "💪",
+              "note": "genki · おげんきですか？ (ogenki desu ka) = How are you?"
+            },
+            {
+              "id": "ja-u1-l4-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does いいえ mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "No"
+                },
+                {
+                  "id": "b",
+                  "text": "Yes"
+                },
+                {
+                  "id": "c",
+                  "text": "Please"
+                }
+              ],
+              "answer": "a",
+              "explanation": "いいえ (iie) = No."
+            },
+            {
+              "id": "ja-u1-l4-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "おげんきですか？ — はい、___ です。",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "げんき"
+                },
+                {
+                  "id": "b",
+                  "text": "いいえ"
+                },
+                {
+                  "id": "c",
+                  "text": "すみません"
+                }
+              ],
+              "answer": "a",
+              "explanation": "はい、げんきです (hai, genki desu) = Yes, I am well."
+            },
+            {
+              "id": "ja-u1-l4-s7",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "すみません",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "すみません (sumimasen)"
+                },
+                {
+                  "id": "b",
+                  "text": "さようなら (sayounara)"
+                },
+                {
+                  "id": "c",
+                  "text": "はじめまして (hajimemashite)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "ja-u1-l4-s8",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "Yes",
+              "accept": [
+                "hai",
+                "はい"
+              ],
+              "explanation": "Yes = はい (hai)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ja-u2",
+      "title": "Family & things · Keluarga & benda",
+      "lessons": [
+        {
+          "id": "ja-u2-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Family",
+          "objective": "Name family members in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u2-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "おかあさん",
+              "meaning": "mother · ibu",
+              "emoji": "👩",
+              "note": "okaasan"
+            },
+            {
+              "id": "ja-u2-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "おとうさん",
+              "meaning": "father · ayah",
+              "emoji": "👨",
+              "note": "otousan"
+            },
+            {
+              "id": "ja-u2-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "おにいさん",
+              "meaning": "older brother · abang",
+              "emoji": "👦",
+              "note": "oniisan"
+            },
+            {
+              "id": "ja-u2-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "おねえさん",
+              "meaning": "older sister · kakak",
+              "emoji": "👧",
+              "note": "oneesan"
+            },
+            {
+              "id": "ja-u2-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "おかあさん",
+                  "mother"
+                ],
+                [
+                  "おとうさん",
+                  "father"
+                ],
+                [
+                  "おにいさん",
+                  "older brother"
+                ],
+                [
+                  "おねえさん",
+                  "older sister"
+                ]
+              ]
+            },
+            {
+              "id": "ja-u2-l1-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Who is おとうさん?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "father"
+                },
+                {
+                  "id": "b",
+                  "text": "mother"
+                },
+                {
+                  "id": "c",
+                  "text": "older sister"
+                }
+              ],
+              "answer": "a",
+              "explanation": "おとうさん (otousan) = father."
+            },
+            {
+              "id": "ja-u2-l1-s7",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "mother",
+              "accept": [
+                "okaasan",
+                "okasan",
+                "おかあさん",
+                "お母さん"
+              ],
+              "explanation": "Mother = おかあさん (okaasan)."
+            }
+          ]
+        },
+        {
+          "id": "ja-u2-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Numbers 6 to 10",
+          "objective": "Count from six to ten in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u2-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "ろく",
+              "meaning": "six · enam (6)",
+              "emoji": "6️⃣",
+              "note": "roku"
+            },
+            {
+              "id": "ja-u2-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "なな",
+              "meaning": "seven · tujuh (7)",
+              "emoji": "7️⃣",
+              "note": "nana · also しち (shichi)"
+            },
+            {
+              "id": "ja-u2-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "はち",
+              "meaning": "eight · lapan (8)",
+              "emoji": "8️⃣",
+              "note": "hachi"
+            },
+            {
+              "id": "ja-u2-l2-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "きゅう",
+              "meaning": "nine · sembilan (9)",
+              "emoji": "9️⃣",
+              "note": "kyuu · also く (ku)"
+            },
+            {
+              "id": "ja-u2-l2-s5",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "じゅう",
+              "meaning": "ten · sepuluh (10)",
+              "emoji": "🔟",
+              "note": "juu"
+            },
+            {
+              "id": "ja-u2-l2-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "ろく",
+                  "6"
+                ],
+                [
+                  "なな",
+                  "7"
+                ],
+                [
+                  "はち",
+                  "8"
+                ],
+                [
+                  "きゅう",
+                  "9"
+                ],
+                [
+                  "じゅう",
+                  "10"
+                ]
+              ]
+            },
+            {
+              "id": "ja-u2-l2-s7",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Which number is はち?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "8"
+                },
+                {
+                  "id": "b",
+                  "text": "6"
+                },
+                {
+                  "id": "c",
+                  "text": "10"
+                }
+              ],
+              "answer": "a",
+              "explanation": "はち (hachi) = 8."
+            },
+            {
+              "id": "ja-u2-l2-s8",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "10",
+              "accept": [
+                "juu",
+                "jyuu",
+                "ju",
+                "じゅう",
+                "十"
+              ],
+              "explanation": "10 = じゅう (juu)."
+            }
+          ]
+        },
+        {
+          "id": "ja-u2-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Colours",
+          "objective": "Name colours in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u2-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "あか",
+              "meaning": "red · merah",
+              "emoji": "🔴",
+              "note": "aka"
+            },
+            {
+              "id": "ja-u2-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "あお",
+              "meaning": "blue · biru",
+              "emoji": "🔵",
+              "note": "ao"
+            },
+            {
+              "id": "ja-u2-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "しろ",
+              "meaning": "white · putih",
+              "emoji": "⚪",
+              "note": "shiro"
+            },
+            {
+              "id": "ja-u2-l3-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "くろ",
+              "meaning": "black · hitam",
+              "emoji": "⚫",
+              "note": "kuro"
+            },
+            {
+              "id": "ja-u2-l3-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "あか",
+                  "red"
+                ],
+                [
+                  "あお",
+                  "blue"
+                ],
+                [
+                  "しろ",
+                  "white"
+                ],
+                [
+                  "くろ",
+                  "black"
+                ]
+              ]
+            },
+            {
+              "id": "ja-u2-l3-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What colour is あお?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "blue"
+                },
+                {
+                  "id": "b",
+                  "text": "red"
+                },
+                {
+                  "id": "c",
+                  "text": "white"
+                }
+              ],
+              "answer": "a",
+              "explanation": "あお (ao) = blue."
+            },
+            {
+              "id": "ja-u2-l3-s7",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "red",
+              "accept": [
+                "aka",
+                "あか",
+                "赤"
+              ],
+              "explanation": "Red = あか (aka)."
+            }
+          ]
+        },
+        {
+          "id": "ja-u2-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "This is…",
+          "objective": "Say what something is in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u2-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "これ",
+              "meaning": "this · ini",
+              "emoji": "👉",
+              "note": "kore"
+            },
+            {
+              "id": "ja-u2-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "ほん",
+              "meaning": "book · buku",
+              "emoji": "📕",
+              "note": "hon"
+            },
+            {
+              "id": "ja-u2-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "ねこ",
+              "meaning": "cat · kucing",
+              "emoji": "🐱",
+              "note": "neko"
+            },
+            {
+              "id": "ja-u2-l4-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "いぬ",
+              "meaning": "dog · anjing",
+              "emoji": "🐶",
+              "note": "inu"
+            },
+            {
+              "id": "ja-u2-l4-s5",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "This is a cat. · Ini kucing.",
+              "tiles": [
+                "これは",
+                "ねこ",
+                "です",
+                "いぬ"
+              ],
+              "answer": [
+                "これは",
+                "ねこ",
+                "です"
+              ],
+              "explanation": "これは ねこ です (kore wa neko desu)."
+            },
+            {
+              "id": "ja-u2-l4-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "これは ___ です。🐶",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "いぬ"
+                },
+                {
+                  "id": "b",
+                  "text": "ねこ"
+                },
+                {
+                  "id": "c",
+                  "text": "ほん"
+                }
+              ],
+              "answer": "a",
+              "explanation": "いぬ (inu) = dog: これは いぬ です."
+            },
+            {
+              "id": "ja-u2-l4-s7",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "cat",
+              "accept": [
+                "neko",
+                "ねこ",
+                "猫"
+              ],
+              "explanation": "Cat = ねこ (neko)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ja-u3",
+      "title": "Food & my day · Makanan & hari saya",
+      "lessons": [
+        {
+          "id": "ja-u3-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Food and drink",
+          "objective": "Name food and drinks in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u3-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "ごはん",
+              "meaning": "rice, a meal · nasi",
+              "emoji": "🍚",
+              "note": "gohan"
+            },
+            {
+              "id": "ja-u3-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "みず",
+              "meaning": "water · air",
+              "emoji": "💧",
+              "note": "mizu"
+            },
+            {
+              "id": "ja-u3-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "おちゃ",
+              "meaning": "tea · teh",
+              "emoji": "🍵",
+              "note": "ocha"
+            },
+            {
+              "id": "ja-u3-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "りんご",
+              "meaning": "apple · epal",
+              "emoji": "🍎",
+              "note": "ringo"
+            },
+            {
+              "id": "ja-u3-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "ごはん",
+                  "rice"
+                ],
+                [
+                  "みず",
+                  "water"
+                ],
+                [
+                  "おちゃ",
+                  "tea"
+                ],
+                [
+                  "りんご",
+                  "apple"
+                ]
+              ]
+            },
+            {
+              "id": "ja-u3-l1-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What is みず?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "water"
+                },
+                {
+                  "id": "b",
+                  "text": "tea"
+                },
+                {
+                  "id": "c",
+                  "text": "rice"
+                }
+              ],
+              "answer": "a",
+              "explanation": "みず (mizu) = water."
+            },
+            {
+              "id": "ja-u3-l1-s7",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "apple",
+              "accept": [
+                "ringo",
+                "りんご",
+                "林檎"
+              ],
+              "explanation": "Apple = りんご (ringo)."
+            }
+          ]
+        },
+        {
+          "id": "ja-u3-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "I like…",
+          "objective": "Say what you like in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u3-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "すき",
+              "meaning": "like · suka",
+              "emoji": "❤️",
+              "note": "suki · ～が すきです = I like ～"
+            },
+            {
+              "id": "ja-u3-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "すし",
+              "meaning": "sushi",
+              "emoji": "🍣",
+              "note": "sushi"
+            },
+            {
+              "id": "ja-u3-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "ラーメン",
+              "meaning": "ramen (noodles) · mi",
+              "emoji": "🍜",
+              "note": "raamen · words from other languages are written in katakana"
+            },
+            {
+              "id": "ja-u3-l2-s4",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "I like ramen. · Saya suka ramen.",
+              "tiles": [
+                "ラーメンが",
+                "すき",
+                "です",
+                "みず"
+              ],
+              "answer": [
+                "ラーメンが",
+                "すき",
+                "です"
+              ],
+              "explanation": "ラーメンが すきです (raamen ga suki desu) = I like ramen."
+            },
+            {
+              "id": "ja-u3-l2-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "すしが ___ です。❤️",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "すき"
+                },
+                {
+                  "id": "b",
+                  "text": "いいえ"
+                },
+                {
+                  "id": "c",
+                  "text": "みず"
+                }
+              ],
+              "answer": "a",
+              "explanation": "すしが すきです (sushi ga suki desu) = I like sushi."
+            },
+            {
+              "id": "ja-u3-l2-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does すき mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "like"
+                },
+                {
+                  "id": "b",
+                  "text": "eat"
+                },
+                {
+                  "id": "c",
+                  "text": "go"
+                }
+              ],
+              "answer": "a",
+              "explanation": "すき (suki) = like."
+            },
+            {
+              "id": "ja-u3-l2-s7",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "sushi",
+              "accept": [
+                "sushi",
+                "すし",
+                "寿司"
+              ],
+              "explanation": "Sushi = すし."
+            }
+          ]
+        },
+        {
+          "id": "ja-u3-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Eat, drink, go",
+          "objective": "Say what you do in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u3-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "たべます",
+              "meaning": "eat · makan",
+              "emoji": "🍽️",
+              "note": "tabemasu"
+            },
+            {
+              "id": "ja-u3-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "のみます",
+              "meaning": "drink · minum",
+              "emoji": "🥤",
+              "note": "nomimasu"
+            },
+            {
+              "id": "ja-u3-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "いきます",
+              "meaning": "go · pergi",
+              "emoji": "🚶",
+              "note": "ikimasu"
+            },
+            {
+              "id": "ja-u3-l3-s4",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "I eat rice. · Saya makan nasi.",
+              "tiles": [
+                "ごはんを",
+                "たべます",
+                "のみます",
+                "みずを"
+              ],
+              "answer": [
+                "ごはんを",
+                "たべます"
+              ],
+              "explanation": "ごはんを たべます (gohan o tabemasu). The verb comes last in Japanese."
+            },
+            {
+              "id": "ja-u3-l3-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "みずを ___。💧",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "のみます"
+                },
+                {
+                  "id": "b",
+                  "text": "たべます"
+                },
+                {
+                  "id": "c",
+                  "text": "いきます"
+                }
+              ],
+              "answer": "a",
+              "explanation": "みずを のみます (mizu o nomimasu) = I drink water."
+            },
+            {
+              "id": "ja-u3-l3-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does いきます mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "go"
+                },
+                {
+                  "id": "b",
+                  "text": "eat"
+                },
+                {
+                  "id": "c",
+                  "text": "drink"
+                }
+              ],
+              "answer": "a",
+              "explanation": "いきます (ikimasu) = go."
+            },
+            {
+              "id": "ja-u3-l3-s7",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "eat",
+              "accept": [
+                "tabemasu",
+                "taberu",
+                "たべます",
+                "食べます"
+              ],
+              "explanation": "Eat = たべます (tabemasu)."
+            }
+          ]
+        },
+        {
+          "id": "ja-u3-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Morning to night",
+          "objective": "Talk about the time of day in Japanese.",
+          "steps": [
+            {
+              "id": "ja-u3-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "あさ",
+              "meaning": "morning · pagi",
+              "emoji": "🌅",
+              "note": "asa"
+            },
+            {
+              "id": "ja-u3-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "ひる",
+              "meaning": "daytime, noon · tengah hari",
+              "emoji": "☀️",
+              "note": "hiru"
+            },
+            {
+              "id": "ja-u3-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "よる",
+              "meaning": "night · malam",
+              "emoji": "🌙",
+              "note": "yoru"
+            },
+            {
+              "id": "ja-u3-l4-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "おやすみなさい",
+              "meaning": "Good night · Selamat malam",
+              "emoji": "😴",
+              "note": "oyasuminasai · said before you go to sleep"
+            },
+            {
+              "id": "ja-u3-l4-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "When do you say おやすみなさい?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Before you go to sleep"
+                },
+                {
+                  "id": "b",
+                  "text": "In the morning"
+                },
+                {
+                  "id": "c",
+                  "text": "Before you eat"
+                }
+              ],
+              "answer": "a",
+              "explanation": "おやすみなさい (oyasuminasai) = Good night, before sleeping."
+            },
+            {
+              "id": "ja-u3-l4-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "よる",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "よる (yoru)"
+                },
+                {
+                  "id": "b",
+                  "text": "あさ (asa)"
+                },
+                {
+                  "id": "c",
+                  "text": "ひる (hiru)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "ja-u3-l4-s7",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "あさ",
+                  "morning"
+                ],
+                [
+                  "ひる",
+                  "daytime"
+                ],
+                [
+                  "よる",
+                  "night"
+                ],
+                [
+                  "おやすみなさい",
+                  "Good night"
+                ]
+              ]
+            },
+            {
+              "id": "ja-u3-l4-s8",
+              "kind": "type",
+              "text": "Type it in rōmaji. · Taip dalam rōmaji.",
+              "prompt": "morning",
+              "accept": [
+                "asa",
+                "あさ",
+                "朝"
+              ],
+              "explanation": "Morning = あさ (asa)."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

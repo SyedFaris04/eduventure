@@ -1,0 +1,1347 @@
+{
+  "_meta": {
+    "author": "Eduventure (original lessons)",
+    "license": "CC BY 4.0"
+  },
+  "id": "korean-basics",
+  "kind": "language",
+  "language": "korean",
+  "title": "Korean for beginners",
+  "units": [
+    {
+      "id": "ko-u1",
+      "title": "Hello & me · Salam & diri saya",
+      "lessons": [
+        {
+          "id": "ko-u1-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Greetings",
+          "objective": "Greet people in Korean.",
+          "steps": [
+            {
+              "id": "ko-u1-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "안녕하세요",
+              "meaning": "Hello · Helo",
+              "emoji": "👋",
+              "note": "annyeonghaseyo"
+            },
+            {
+              "id": "ko-u1-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "감사합니다",
+              "meaning": "Thank you · Terima kasih",
+              "emoji": "🙏",
+              "note": "gamsahamnida"
+            },
+            {
+              "id": "ko-u1-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "안녕히 가세요",
+              "meaning": "Goodbye · Selamat jalan",
+              "emoji": "👋",
+              "note": "annyeonghi gaseyo · said to the person who is leaving"
+            },
+            {
+              "id": "ko-u1-l1-s4",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does 감사합니다 mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Thank you"
+                },
+                {
+                  "id": "b",
+                  "text": "Hello"
+                },
+                {
+                  "id": "c",
+                  "text": "Sorry"
+                }
+              ],
+              "answer": "a",
+              "explanation": "감사합니다 (gamsahamnida) = Thank you.",
+              "say": "감사합니다"
+            },
+            {
+              "id": "ko-u1-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "안녕하세요",
+                  "Hello"
+                ],
+                [
+                  "감사합니다",
+                  "Thank you"
+                ],
+                [
+                  "안녕히 가세요",
+                  "Goodbye"
+                ]
+              ]
+            },
+            {
+              "id": "ko-u1-l1-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "안녕하세요",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "안녕하세요 (annyeonghaseyo)"
+                },
+                {
+                  "id": "b",
+                  "text": "감사합니다 (gamsahamnida)"
+                },
+                {
+                  "id": "c",
+                  "text": "안녕히 가세요 (annyeonghi gaseyo)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "ko-u1-l1-s7",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "Hello",
+              "accept": [
+                "annyeonghaseyo",
+                "annyeong haseyo",
+                "anyeonghaseyo",
+                "안녕하세요"
+              ],
+              "explanation": "Hello = 안녕하세요 (annyeonghaseyo)."
+            }
+          ]
+        },
+        {
+          "id": "ko-u1-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Introducing yourself",
+          "objective": "Introduce yourself in Korean.",
+          "steps": [
+            {
+              "id": "ko-u1-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "저",
+              "meaning": "I, me (polite) · Saya",
+              "emoji": "🙋",
+              "note": "jeo"
+            },
+            {
+              "id": "ko-u1-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "이름",
+              "meaning": "name · nama",
+              "emoji": "📛",
+              "note": "ireum"
+            },
+            {
+              "id": "ko-u1-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "반갑습니다",
+              "meaning": "Nice to meet you · Selamat berkenalan",
+              "emoji": "🤝",
+              "note": "bangapseumnida"
+            },
+            {
+              "id": "ko-u1-l2-s4",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "I am Aina. · Saya Aina.",
+              "tiles": [
+                "저는",
+                "아이나예요",
+                "감사합니다"
+              ],
+              "answer": [
+                "저는",
+                "아이나예요"
+              ],
+              "explanation": "저는 아이나예요 (jeoneun Ainayeyo). 예요 / 이에요 means \"am, is\"."
+            },
+            {
+              "id": "ko-u1-l2-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "제 ___은 아이나예요.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "이름"
+                },
+                {
+                  "id": "b",
+                  "text": "저"
+                },
+                {
+                  "id": "c",
+                  "text": "감사"
+                }
+              ],
+              "answer": "a",
+              "explanation": "제 이름은 아이나예요 (je ireumeun Ainayeyo) = My name is Aina."
+            },
+            {
+              "id": "ko-u1-l2-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does 반갑습니다 mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Nice to meet you"
+                },
+                {
+                  "id": "b",
+                  "text": "Goodbye"
+                },
+                {
+                  "id": "c",
+                  "text": "Excuse me"
+                }
+              ],
+              "answer": "a",
+              "explanation": "반갑습니다 (bangapseumnida) = Nice to meet you."
+            },
+            {
+              "id": "ko-u1-l2-s7",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "name",
+              "accept": [
+                "ireum",
+                "ileum",
+                "irum",
+                "이름"
+              ],
+              "explanation": "Name = 이름 (ireum)."
+            }
+          ]
+        },
+        {
+          "id": "ko-u1-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Numbers 1 to 5",
+          "objective": "Count from one to five with Korean numbers.",
+          "steps": [
+            {
+              "id": "ko-u1-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "일",
+              "meaning": "one · satu (1)",
+              "emoji": "1️⃣",
+              "note": "il · these numbers are for dates, money and phone numbers"
+            },
+            {
+              "id": "ko-u1-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "이",
+              "meaning": "two · dua (2)",
+              "emoji": "2️⃣",
+              "note": "i"
+            },
+            {
+              "id": "ko-u1-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "삼",
+              "meaning": "three · tiga (3)",
+              "emoji": "3️⃣",
+              "note": "sam"
+            },
+            {
+              "id": "ko-u1-l3-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "사",
+              "meaning": "four · empat (4)",
+              "emoji": "4️⃣",
+              "note": "sa"
+            },
+            {
+              "id": "ko-u1-l3-s5",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "오",
+              "meaning": "five · lima (5)",
+              "emoji": "5️⃣",
+              "note": "o"
+            },
+            {
+              "id": "ko-u1-l3-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "일",
+                  "1"
+                ],
+                [
+                  "이",
+                  "2"
+                ],
+                [
+                  "삼",
+                  "3"
+                ],
+                [
+                  "사",
+                  "4"
+                ],
+                [
+                  "오",
+                  "5"
+                ]
+              ]
+            },
+            {
+              "id": "ko-u1-l3-s7",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Which number is 삼?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "3"
+                },
+                {
+                  "id": "b",
+                  "text": "2"
+                },
+                {
+                  "id": "c",
+                  "text": "5"
+                }
+              ],
+              "answer": "a",
+              "explanation": "삼 (sam) = 3."
+            },
+            {
+              "id": "ko-u1-l3-s8",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "3",
+              "accept": [
+                "sam",
+                "삼"
+              ],
+              "explanation": "3 = 삼 (sam)."
+            }
+          ]
+        },
+        {
+          "id": "ko-u1-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Yes, no and sorry",
+          "objective": "Say yes, no and sorry in Korean.",
+          "steps": [
+            {
+              "id": "ko-u1-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "네",
+              "meaning": "Yes · Ya",
+              "emoji": "✅",
+              "note": "ne · also 예 (ye)"
+            },
+            {
+              "id": "ko-u1-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "아니요",
+              "meaning": "No · Tidak",
+              "emoji": "❌",
+              "note": "aniyo"
+            },
+            {
+              "id": "ko-u1-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "미안해요",
+              "meaning": "Sorry · Maaf",
+              "emoji": "🙇",
+              "note": "mianhaeyo"
+            },
+            {
+              "id": "ko-u1-l4-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "괜찮아요",
+              "meaning": "It's okay · Tidak apa-apa",
+              "emoji": "👌",
+              "note": "gwaenchanayo"
+            },
+            {
+              "id": "ko-u1-l4-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does 아니요 mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "No"
+                },
+                {
+                  "id": "b",
+                  "text": "Yes"
+                },
+                {
+                  "id": "c",
+                  "text": "Okay"
+                }
+              ],
+              "answer": "a",
+              "explanation": "아니요 (aniyo) = No."
+            },
+            {
+              "id": "ko-u1-l4-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "미안해요. — ___.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "괜찮아요"
+                },
+                {
+                  "id": "b",
+                  "text": "안녕하세요"
+                },
+                {
+                  "id": "c",
+                  "text": "이름"
+                }
+              ],
+              "answer": "a",
+              "explanation": "괜찮아요 (gwaenchanayo) = It's okay, a kind reply to 미안해요 (sorry)."
+            },
+            {
+              "id": "ko-u1-l4-s7",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "네",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "네 (ne)"
+                },
+                {
+                  "id": "b",
+                  "text": "아니요 (aniyo)"
+                },
+                {
+                  "id": "c",
+                  "text": "오 (o)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "ko-u1-l4-s8",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "Yes",
+              "accept": [
+                "ne",
+                "ye",
+                "네",
+                "예"
+              ],
+              "explanation": "Yes = 네 (ne), also 예 (ye)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ko-u2",
+      "title": "Family & things · Keluarga & benda",
+      "lessons": [
+        {
+          "id": "ko-u2-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Family",
+          "objective": "Name family members in Korean.",
+          "steps": [
+            {
+              "id": "ko-u2-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "엄마",
+              "meaning": "mum · emak",
+              "emoji": "👩",
+              "note": "eomma"
+            },
+            {
+              "id": "ko-u2-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "아빠",
+              "meaning": "dad · ayah",
+              "emoji": "👨",
+              "note": "appa"
+            },
+            {
+              "id": "ko-u2-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "할머니",
+              "meaning": "grandmother · nenek",
+              "emoji": "👵",
+              "note": "halmeoni"
+            },
+            {
+              "id": "ko-u2-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "동생",
+              "meaning": "younger brother or sister · adik",
+              "emoji": "🧒",
+              "note": "dongsaeng"
+            },
+            {
+              "id": "ko-u2-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "엄마",
+                  "mum"
+                ],
+                [
+                  "아빠",
+                  "dad"
+                ],
+                [
+                  "할머니",
+                  "grandmother"
+                ],
+                [
+                  "동생",
+                  "younger sibling"
+                ]
+              ]
+            },
+            {
+              "id": "ko-u2-l1-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Who is 아빠?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "dad"
+                },
+                {
+                  "id": "b",
+                  "text": "mum"
+                },
+                {
+                  "id": "c",
+                  "text": "grandmother"
+                }
+              ],
+              "answer": "a",
+              "explanation": "아빠 (appa) = dad."
+            },
+            {
+              "id": "ko-u2-l1-s7",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "mum",
+              "accept": [
+                "eomma",
+                "umma",
+                "omma",
+                "엄마"
+              ],
+              "explanation": "Mum = 엄마 (eomma)."
+            }
+          ]
+        },
+        {
+          "id": "ko-u2-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Counting things 1 to 5",
+          "objective": "Count things from one to five in Korean.",
+          "steps": [
+            {
+              "id": "ko-u2-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "하나",
+              "meaning": "one · satu (1)",
+              "emoji": "1️⃣",
+              "note": "hana · these numbers count things and say your age"
+            },
+            {
+              "id": "ko-u2-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "둘",
+              "meaning": "two · dua (2)",
+              "emoji": "2️⃣",
+              "note": "dul"
+            },
+            {
+              "id": "ko-u2-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "셋",
+              "meaning": "three · tiga (3)",
+              "emoji": "3️⃣",
+              "note": "set"
+            },
+            {
+              "id": "ko-u2-l2-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "넷",
+              "meaning": "four · empat (4)",
+              "emoji": "4️⃣",
+              "note": "net"
+            },
+            {
+              "id": "ko-u2-l2-s5",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "다섯",
+              "meaning": "five · lima (5)",
+              "emoji": "5️⃣",
+              "note": "daseot"
+            },
+            {
+              "id": "ko-u2-l2-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "하나",
+                  "1"
+                ],
+                [
+                  "둘",
+                  "2"
+                ],
+                [
+                  "셋",
+                  "3"
+                ],
+                [
+                  "넷",
+                  "4"
+                ],
+                [
+                  "다섯",
+                  "5"
+                ]
+              ]
+            },
+            {
+              "id": "ko-u2-l2-s7",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Which number is 셋?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "3"
+                },
+                {
+                  "id": "b",
+                  "text": "2"
+                },
+                {
+                  "id": "c",
+                  "text": "4"
+                }
+              ],
+              "answer": "a",
+              "explanation": "셋 (set) = 3."
+            },
+            {
+              "id": "ko-u2-l2-s8",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "1",
+              "accept": [
+                "hana",
+                "하나"
+              ],
+              "explanation": "1 = 하나 (hana) when you count things."
+            }
+          ]
+        },
+        {
+          "id": "ko-u2-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Colours",
+          "objective": "Name colours in Korean.",
+          "steps": [
+            {
+              "id": "ko-u2-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "빨간색",
+              "meaning": "red · merah",
+              "emoji": "🔴",
+              "note": "ppalgansaek"
+            },
+            {
+              "id": "ko-u2-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "파란색",
+              "meaning": "blue · biru",
+              "emoji": "🔵",
+              "note": "paransaek"
+            },
+            {
+              "id": "ko-u2-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "하얀색",
+              "meaning": "white · putih",
+              "emoji": "⚪",
+              "note": "hayansaek"
+            },
+            {
+              "id": "ko-u2-l3-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "노란색",
+              "meaning": "yellow · kuning",
+              "emoji": "🟡",
+              "note": "noransaek"
+            },
+            {
+              "id": "ko-u2-l3-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "빨간색",
+                  "red"
+                ],
+                [
+                  "파란색",
+                  "blue"
+                ],
+                [
+                  "하얀색",
+                  "white"
+                ],
+                [
+                  "노란색",
+                  "yellow"
+                ]
+              ]
+            },
+            {
+              "id": "ko-u2-l3-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What colour is 노란색?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "yellow"
+                },
+                {
+                  "id": "b",
+                  "text": "red"
+                },
+                {
+                  "id": "c",
+                  "text": "blue"
+                }
+              ],
+              "answer": "a",
+              "explanation": "노란색 (noransaek) = yellow."
+            },
+            {
+              "id": "ko-u2-l3-s7",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "blue",
+              "accept": [
+                "paransaek",
+                "paran",
+                "파란색",
+                "파랑"
+              ],
+              "explanation": "Blue = 파란색 (paransaek)."
+            }
+          ]
+        },
+        {
+          "id": "ko-u2-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "This is…",
+          "objective": "Say what something is in Korean.",
+          "steps": [
+            {
+              "id": "ko-u2-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "이것",
+              "meaning": "this (thing) · ini",
+              "emoji": "👉",
+              "note": "igeot"
+            },
+            {
+              "id": "ko-u2-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "책",
+              "meaning": "book · buku",
+              "emoji": "📕",
+              "note": "chaek"
+            },
+            {
+              "id": "ko-u2-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "고양이",
+              "meaning": "cat · kucing",
+              "emoji": "🐱",
+              "note": "goyangi"
+            },
+            {
+              "id": "ko-u2-l4-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "개",
+              "meaning": "dog · anjing",
+              "emoji": "🐶",
+              "note": "gae"
+            },
+            {
+              "id": "ko-u2-l4-s5",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "This is a cat. · Ini kucing.",
+              "tiles": [
+                "이것은",
+                "고양이예요",
+                "개예요"
+              ],
+              "answer": [
+                "이것은",
+                "고양이예요"
+              ],
+              "explanation": "이것은 고양이예요 (igeoseun goyangiyeyo) = This is a cat."
+            },
+            {
+              "id": "ko-u2-l4-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "이것은 ___예요. 🐶",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "개"
+                },
+                {
+                  "id": "b",
+                  "text": "고양이"
+                },
+                {
+                  "id": "c",
+                  "text": "책"
+                }
+              ],
+              "answer": "a",
+              "explanation": "이것은 개예요 (igeoseun gaeyeyo) = This is a dog."
+            },
+            {
+              "id": "ko-u2-l4-s7",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "dog",
+              "accept": [
+                "gae",
+                "kae",
+                "개"
+              ],
+              "explanation": "Dog = 개 (gae)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ko-u3",
+      "title": "Food & my day · Makanan & hari saya",
+      "lessons": [
+        {
+          "id": "ko-u3-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Food and drink",
+          "objective": "Name food and drinks in Korean.",
+          "steps": [
+            {
+              "id": "ko-u3-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "밥",
+              "meaning": "rice, a meal · nasi",
+              "emoji": "🍚",
+              "note": "bap"
+            },
+            {
+              "id": "ko-u3-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "물",
+              "meaning": "water · air",
+              "emoji": "💧",
+              "note": "mul"
+            },
+            {
+              "id": "ko-u3-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "김치",
+              "meaning": "kimchi",
+              "emoji": "🥬",
+              "note": "gimchi · spicy pickled cabbage"
+            },
+            {
+              "id": "ko-u3-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "사과",
+              "meaning": "apple · epal",
+              "emoji": "🍎",
+              "note": "sagwa"
+            },
+            {
+              "id": "ko-u3-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "밥",
+                  "rice"
+                ],
+                [
+                  "물",
+                  "water"
+                ],
+                [
+                  "김치",
+                  "kimchi"
+                ],
+                [
+                  "사과",
+                  "apple"
+                ]
+              ]
+            },
+            {
+              "id": "ko-u3-l1-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What is 물?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "water"
+                },
+                {
+                  "id": "b",
+                  "text": "rice"
+                },
+                {
+                  "id": "c",
+                  "text": "apple"
+                }
+              ],
+              "answer": "a",
+              "explanation": "물 (mul) = water."
+            },
+            {
+              "id": "ko-u3-l1-s7",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "apple",
+              "accept": [
+                "sagwa",
+                "사과"
+              ],
+              "explanation": "Apple = 사과 (sagwa)."
+            }
+          ]
+        },
+        {
+          "id": "ko-u3-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "I like…",
+          "objective": "Say what you like in Korean.",
+          "steps": [
+            {
+              "id": "ko-u3-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "좋아해요",
+              "meaning": "like · suka",
+              "emoji": "❤️",
+              "note": "joahaeyo"
+            },
+            {
+              "id": "ko-u3-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "우유",
+              "meaning": "milk · susu",
+              "emoji": "🥛",
+              "note": "uyu"
+            },
+            {
+              "id": "ko-u3-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "라면",
+              "meaning": "ramyeon (noodles) · mi segera",
+              "emoji": "🍜",
+              "note": "ramyeon"
+            },
+            {
+              "id": "ko-u3-l2-s4",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "I like milk. · Saya suka susu.",
+              "tiles": [
+                "저는",
+                "우유를",
+                "좋아해요",
+                "물"
+              ],
+              "answer": [
+                "저는",
+                "우유를",
+                "좋아해요"
+              ],
+              "explanation": "저는 우유를 좋아해요 (jeoneun uyureul joahaeyo). The verb comes last in Korean."
+            },
+            {
+              "id": "ko-u3-l2-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "저는 라면을 ___. ❤️",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "좋아해요"
+                },
+                {
+                  "id": "b",
+                  "text": "감사합니다"
+                },
+                {
+                  "id": "c",
+                  "text": "안녕하세요"
+                }
+              ],
+              "answer": "a",
+              "explanation": "저는 라면을 좋아해요 = I like ramyeon."
+            },
+            {
+              "id": "ko-u3-l2-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does 좋아해요 mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "like"
+                },
+                {
+                  "id": "b",
+                  "text": "eat"
+                },
+                {
+                  "id": "c",
+                  "text": "go"
+                }
+              ],
+              "answer": "a",
+              "explanation": "좋아해요 (joahaeyo) = like."
+            },
+            {
+              "id": "ko-u3-l2-s7",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "milk",
+              "accept": [
+                "uyu",
+                "우유"
+              ],
+              "explanation": "Milk = 우유 (uyu)."
+            }
+          ]
+        },
+        {
+          "id": "ko-u3-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Eat, drink, go",
+          "objective": "Say what you do in Korean.",
+          "steps": [
+            {
+              "id": "ko-u3-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "먹어요",
+              "meaning": "eat · makan",
+              "emoji": "🍽️",
+              "note": "meogeoyo"
+            },
+            {
+              "id": "ko-u3-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "마셔요",
+              "meaning": "drink · minum",
+              "emoji": "🥤",
+              "note": "masyeoyo"
+            },
+            {
+              "id": "ko-u3-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "가요",
+              "meaning": "go · pergi",
+              "emoji": "🚶",
+              "note": "gayo"
+            },
+            {
+              "id": "ko-u3-l3-s4",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "I eat rice. · Saya makan nasi.",
+              "tiles": [
+                "저는",
+                "밥을",
+                "먹어요",
+                "마셔요"
+              ],
+              "answer": [
+                "저는",
+                "밥을",
+                "먹어요"
+              ],
+              "explanation": "저는 밥을 먹어요 (jeoneun bapeul meogeoyo)."
+            },
+            {
+              "id": "ko-u3-l3-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "물을 ___. 💧",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "마셔요"
+                },
+                {
+                  "id": "b",
+                  "text": "먹어요"
+                },
+                {
+                  "id": "c",
+                  "text": "가요"
+                }
+              ],
+              "answer": "a",
+              "explanation": "물을 마셔요 (mureul masyeoyo) = I drink water."
+            },
+            {
+              "id": "ko-u3-l3-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does 가요 mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "go"
+                },
+                {
+                  "id": "b",
+                  "text": "eat"
+                },
+                {
+                  "id": "c",
+                  "text": "drink"
+                }
+              ],
+              "answer": "a",
+              "explanation": "가요 (gayo) = go."
+            },
+            {
+              "id": "ko-u3-l3-s7",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "eat",
+              "accept": [
+                "meogeoyo",
+                "mogoyo",
+                "meokeoyo",
+                "먹어요"
+              ],
+              "explanation": "Eat = 먹어요 (meogeoyo)."
+            }
+          ]
+        },
+        {
+          "id": "ko-u3-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Morning to night",
+          "objective": "Talk about the time of day in Korean.",
+          "steps": [
+            {
+              "id": "ko-u3-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "아침",
+              "meaning": "morning · pagi",
+              "emoji": "🌅",
+              "note": "achim · also means breakfast"
+            },
+            {
+              "id": "ko-u3-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "점심",
+              "meaning": "lunchtime · tengah hari",
+              "emoji": "☀️",
+              "note": "jeomsim · also means lunch"
+            },
+            {
+              "id": "ko-u3-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "저녁",
+              "meaning": "evening · petang",
+              "emoji": "🌇",
+              "note": "jeonyeok · also means dinner"
+            },
+            {
+              "id": "ko-u3-l4-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "잘 자요",
+              "meaning": "Good night · Selamat malam",
+              "emoji": "😴",
+              "note": "jal jayo · \"sleep well\""
+            },
+            {
+              "id": "ko-u3-l4-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "When do you say 잘 자요?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Before you go to sleep"
+                },
+                {
+                  "id": "b",
+                  "text": "In the morning"
+                },
+                {
+                  "id": "c",
+                  "text": "Before you eat"
+                }
+              ],
+              "answer": "a",
+              "explanation": "잘 자요 (jal jayo) = Good night, sleep well."
+            },
+            {
+              "id": "ko-u3-l4-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "아침",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "아침 (achim)"
+                },
+                {
+                  "id": "b",
+                  "text": "점심 (jeomsim)"
+                },
+                {
+                  "id": "c",
+                  "text": "저녁 (jeonyeok)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "ko-u3-l4-s7",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "아침",
+                  "morning"
+                ],
+                [
+                  "점심",
+                  "lunchtime"
+                ],
+                [
+                  "저녁",
+                  "evening"
+                ],
+                [
+                  "잘 자요",
+                  "Good night"
+                ]
+              ]
+            },
+            {
+              "id": "ko-u3-l4-s8",
+              "kind": "type",
+              "text": "Type it in romanised Korean. · Taip dalam rumi.",
+              "prompt": "morning",
+              "accept": [
+                "achim",
+                "achhim",
+                "아침"
+              ],
+              "explanation": "Morning = 아침 (achim)."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1397 @@
+{
+  "_meta": {
+    "author": "Eduventure (original lessons)",
+    "license": "CC BY 4.0"
+  },
+  "id": "arabic-basics",
+  "kind": "language",
+  "language": "arabic",
+  "title": "Arabic for beginners",
+  "units": [
+    {
+      "id": "ar-u1",
+      "title": "Hello & me · Salam & diri saya",
+      "lessons": [
+        {
+          "id": "ar-u1-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Greetings",
+          "objective": "Greet people in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u1-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "السَّلَامُ عَلَيْكُمْ",
+              "meaning": "Peace be upon you (hello) · Assalamualaikum",
+              "emoji": "👋",
+              "note": "as-salāmu ʿalaykum"
+            },
+            {
+              "id": "ar-u1-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "وَعَلَيْكُمُ السَّلَامُ",
+              "meaning": "And upon you peace (the reply) · Waalaikumsalam",
+              "emoji": "🙂",
+              "note": "wa ʿalaykumu s-salām"
+            },
+            {
+              "id": "ar-u1-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "مَرْحَبًا",
+              "meaning": "Hi, welcome · Hai",
+              "emoji": "👋",
+              "note": "marḥaban"
+            },
+            {
+              "id": "ar-u1-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "شُكْرًا",
+              "meaning": "Thank you · Terima kasih",
+              "emoji": "🙏",
+              "note": "shukran"
+            },
+            {
+              "id": "ar-u1-l1-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does شُكْرًا mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Thank you"
+                },
+                {
+                  "id": "b",
+                  "text": "Hello"
+                },
+                {
+                  "id": "c",
+                  "text": "Goodbye"
+                }
+              ],
+              "answer": "a",
+              "explanation": "شُكْرًا (shukran) = Thank you.",
+              "say": "شُكْرًا"
+            },
+            {
+              "id": "ar-u1-l1-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "مَرْحَبًا",
+                  "Hi"
+                ],
+                [
+                  "شُكْرًا",
+                  "Thank you"
+                ],
+                [
+                  "السَّلَامُ عَلَيْكُمْ",
+                  "Peace be upon you"
+                ],
+                [
+                  "وَعَلَيْكُمُ السَّلَامُ",
+                  "And upon you peace"
+                ]
+              ]
+            },
+            {
+              "id": "ar-u1-l1-s7",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "مَرْحَبًا",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "مَرْحَبًا (marḥaban)"
+                },
+                {
+                  "id": "b",
+                  "text": "شُكْرًا (shukran)"
+                },
+                {
+                  "id": "c",
+                  "text": "السَّلَامُ عَلَيْكُمْ (as-salāmu ʿalaykum)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "ar-u1-l1-s8",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "Thank you",
+              "accept": [
+                "shukran",
+                "syukran",
+                "shukraan",
+                "شكرا",
+                "شُكْرًا"
+              ],
+              "explanation": "Thank you = شُكْرًا (shukran)."
+            }
+          ]
+        },
+        {
+          "id": "ar-u1-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Introducing yourself",
+          "objective": "Introduce yourself in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u1-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أَنَا",
+              "meaning": "I, me · Saya",
+              "emoji": "🙋",
+              "note": "anā"
+            },
+            {
+              "id": "ar-u1-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "اِسْمِي",
+              "meaning": "my name · nama saya",
+              "emoji": "📛",
+              "note": "ismī"
+            },
+            {
+              "id": "ar-u1-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "تَشَرَّفْنَا",
+              "meaning": "Nice to meet you · Selamat berkenalan",
+              "emoji": "🤝",
+              "note": "tasharrafnā"
+            },
+            {
+              "id": "ar-u1-l2-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "مَا اسْمُكَ؟",
+              "meaning": "What is your name? · Siapa nama awak?",
+              "emoji": "🤔",
+              "note": "mā ismuka · to a girl: مَا اسْمُكِ؟ (mā ismuki)"
+            },
+            {
+              "id": "ar-u1-l2-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "___ أَحْمَدُ. (My name is Ahmad.)",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "اِسْمِي"
+                },
+                {
+                  "id": "b",
+                  "text": "شُكْرًا"
+                },
+                {
+                  "id": "c",
+                  "text": "مَرْحَبًا"
+                }
+              ],
+              "answer": "a",
+              "explanation": "اِسْمِي أَحْمَدُ (ismī Aḥmad) = My name is Ahmad."
+            },
+            {
+              "id": "ar-u1-l2-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does أَنَا mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "I, me"
+                },
+                {
+                  "id": "b",
+                  "text": "you"
+                },
+                {
+                  "id": "c",
+                  "text": "name"
+                }
+              ],
+              "answer": "a",
+              "explanation": "أَنَا (anā) = I, me."
+            },
+            {
+              "id": "ar-u1-l2-s7",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "أَنَا",
+                  "I, me"
+                ],
+                [
+                  "اِسْمِي",
+                  "my name"
+                ],
+                [
+                  "تَشَرَّفْنَا",
+                  "Nice to meet you"
+                ]
+              ]
+            },
+            {
+              "id": "ar-u1-l2-s8",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "my name",
+              "accept": [
+                "ismi",
+                "ismee",
+                "ismī",
+                "اسمي",
+                "اِسْمِي"
+              ],
+              "explanation": "My name = اِسْمِي (ismī)."
+            }
+          ]
+        },
+        {
+          "id": "ar-u1-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Numbers 1 to 5",
+          "objective": "Count from one to five in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u1-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "وَاحِد",
+              "meaning": "one · satu (1)",
+              "emoji": "1️⃣",
+              "note": "wāḥid · Arabic digits: ١ ٢ ٣ ٤ ٥"
+            },
+            {
+              "id": "ar-u1-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "اِثْنَان",
+              "meaning": "two · dua (2)",
+              "emoji": "2️⃣",
+              "note": "ithnān"
+            },
+            {
+              "id": "ar-u1-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "ثَلَاثَة",
+              "meaning": "three · tiga (3)",
+              "emoji": "3️⃣",
+              "note": "thalātha"
+            },
+            {
+              "id": "ar-u1-l3-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أَرْبَعَة",
+              "meaning": "four · empat (4)",
+              "emoji": "4️⃣",
+              "note": "arbaʿa"
+            },
+            {
+              "id": "ar-u1-l3-s5",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "خَمْسَة",
+              "meaning": "five · lima (5)",
+              "emoji": "5️⃣",
+              "note": "khamsa"
+            },
+            {
+              "id": "ar-u1-l3-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "وَاحِد",
+                  "1"
+                ],
+                [
+                  "اِثْنَان",
+                  "2"
+                ],
+                [
+                  "ثَلَاثَة",
+                  "3"
+                ],
+                [
+                  "أَرْبَعَة",
+                  "4"
+                ],
+                [
+                  "خَمْسَة",
+                  "5"
+                ]
+              ]
+            },
+            {
+              "id": "ar-u1-l3-s7",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Which number is ثَلَاثَة?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "3"
+                },
+                {
+                  "id": "b",
+                  "text": "2"
+                },
+                {
+                  "id": "c",
+                  "text": "5"
+                }
+              ],
+              "answer": "a",
+              "explanation": "ثَلَاثَة (thalātha) = 3."
+            },
+            {
+              "id": "ar-u1-l3-s8",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "5",
+              "accept": [
+                "khamsa",
+                "khamsah",
+                "khamsa",
+                "خمسة",
+                "خَمْسَة"
+              ],
+              "explanation": "5 = خَمْسَة (khamsa)."
+            }
+          ]
+        },
+        {
+          "id": "ar-u1-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Yes, no and thanks",
+          "objective": "Say yes, no and you are welcome in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u1-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "نَعَمْ",
+              "meaning": "Yes · Ya",
+              "emoji": "✅",
+              "note": "naʿam"
+            },
+            {
+              "id": "ar-u1-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "لَا",
+              "meaning": "No · Tidak",
+              "emoji": "❌",
+              "note": "lā"
+            },
+            {
+              "id": "ar-u1-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "عَفْوًا",
+              "meaning": "You're welcome · Sama-sama",
+              "emoji": "😊",
+              "note": "ʿafwan · also \"excuse me\""
+            },
+            {
+              "id": "ar-u1-l4-s4",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does لَا mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "No"
+                },
+                {
+                  "id": "b",
+                  "text": "Yes"
+                },
+                {
+                  "id": "c",
+                  "text": "Please"
+                }
+              ],
+              "answer": "a",
+              "explanation": "لَا (lā) = No."
+            },
+            {
+              "id": "ar-u1-l4-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "شُكْرًا! — ___",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "عَفْوًا"
+                },
+                {
+                  "id": "b",
+                  "text": "لَا"
+                },
+                {
+                  "id": "c",
+                  "text": "نَعَمْ"
+                }
+              ],
+              "answer": "a",
+              "explanation": "عَفْوًا (ʿafwan) = You're welcome, the reply to شُكْرًا (thank you)."
+            },
+            {
+              "id": "ar-u1-l4-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "نَعَمْ",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "نَعَمْ (naʿam)"
+                },
+                {
+                  "id": "b",
+                  "text": "لَا (lā)"
+                },
+                {
+                  "id": "c",
+                  "text": "عَفْوًا (ʿafwan)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "ar-u1-l4-s7",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "Yes",
+              "accept": [
+                "naam",
+                "naʿam",
+                "na am",
+                "نعم",
+                "نَعَمْ"
+              ],
+              "explanation": "Yes = نَعَمْ (naʿam)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ar-u2",
+      "title": "Family & things · Keluarga & benda",
+      "lessons": [
+        {
+          "id": "ar-u2-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Family",
+          "objective": "Name family members in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u2-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أَبِي",
+              "meaning": "my father · ayah saya",
+              "emoji": "👨",
+              "note": "abī · ـي (-ī) at the end means \"my\""
+            },
+            {
+              "id": "ar-u2-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أُمِّي",
+              "meaning": "my mother · ibu saya",
+              "emoji": "👩",
+              "note": "ummī"
+            },
+            {
+              "id": "ar-u2-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أَخِي",
+              "meaning": "my brother · abang / adik lelaki saya",
+              "emoji": "👦",
+              "note": "akhī"
+            },
+            {
+              "id": "ar-u2-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أُخْتِي",
+              "meaning": "my sister · kakak / adik perempuan saya",
+              "emoji": "👧",
+              "note": "ukhtī"
+            },
+            {
+              "id": "ar-u2-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "أَبِي",
+                  "my father"
+                ],
+                [
+                  "أُمِّي",
+                  "my mother"
+                ],
+                [
+                  "أَخِي",
+                  "my brother"
+                ],
+                [
+                  "أُخْتِي",
+                  "my sister"
+                ]
+              ]
+            },
+            {
+              "id": "ar-u2-l1-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Who is أُمِّي?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "my mother"
+                },
+                {
+                  "id": "b",
+                  "text": "my father"
+                },
+                {
+                  "id": "c",
+                  "text": "my sister"
+                }
+              ],
+              "answer": "a",
+              "explanation": "أُمِّي (ummī) = my mother."
+            },
+            {
+              "id": "ar-u2-l1-s7",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "my brother",
+              "accept": [
+                "akhi",
+                "akhee",
+                "akhī",
+                "أخي",
+                "أَخِي"
+              ],
+              "explanation": "My brother = أَخِي (akhī)."
+            }
+          ]
+        },
+        {
+          "id": "ar-u2-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Numbers 6 to 10",
+          "objective": "Count from six to ten in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u2-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "سِتَّة",
+              "meaning": "six · enam (6)",
+              "emoji": "6️⃣",
+              "note": "sitta · Arabic digits: ٦ ٧ ٨ ٩ ١٠"
+            },
+            {
+              "id": "ar-u2-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "سَبْعَة",
+              "meaning": "seven · tujuh (7)",
+              "emoji": "7️⃣",
+              "note": "sabʿa"
+            },
+            {
+              "id": "ar-u2-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "ثَمَانِيَة",
+              "meaning": "eight · lapan (8)",
+              "emoji": "8️⃣",
+              "note": "thamāniya"
+            },
+            {
+              "id": "ar-u2-l2-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "تِسْعَة",
+              "meaning": "nine · sembilan (9)",
+              "emoji": "9️⃣",
+              "note": "tisʿa"
+            },
+            {
+              "id": "ar-u2-l2-s5",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "عَشَرَة",
+              "meaning": "ten · sepuluh (10)",
+              "emoji": "🔟",
+              "note": "ʿashara"
+            },
+            {
+              "id": "ar-u2-l2-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "سِتَّة",
+                  "6"
+                ],
+                [
+                  "سَبْعَة",
+                  "7"
+                ],
+                [
+                  "ثَمَانِيَة",
+                  "8"
+                ],
+                [
+                  "تِسْعَة",
+                  "9"
+                ],
+                [
+                  "عَشَرَة",
+                  "10"
+                ]
+              ]
+            },
+            {
+              "id": "ar-u2-l2-s7",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Which number is عَشَرَة?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "10"
+                },
+                {
+                  "id": "b",
+                  "text": "7"
+                },
+                {
+                  "id": "c",
+                  "text": "9"
+                }
+              ],
+              "answer": "a",
+              "explanation": "عَشَرَة (ʿashara) = 10."
+            },
+            {
+              "id": "ar-u2-l2-s8",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "6",
+              "accept": [
+                "sitta",
+                "sittah",
+                "sita",
+                "ستة",
+                "سِتَّة"
+              ],
+              "explanation": "6 = سِتَّة (sitta)."
+            }
+          ]
+        },
+        {
+          "id": "ar-u2-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Colours",
+          "objective": "Name colours in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u2-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أَحْمَر",
+              "meaning": "red · merah",
+              "emoji": "🔴",
+              "note": "aḥmar"
+            },
+            {
+              "id": "ar-u2-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أَزْرَق",
+              "meaning": "blue · biru",
+              "emoji": "🔵",
+              "note": "azraq"
+            },
+            {
+              "id": "ar-u2-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أَبْيَض",
+              "meaning": "white · putih",
+              "emoji": "⚪",
+              "note": "abyaḍ"
+            },
+            {
+              "id": "ar-u2-l3-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أَسْوَد",
+              "meaning": "black · hitam",
+              "emoji": "⚫",
+              "note": "aswad"
+            },
+            {
+              "id": "ar-u2-l3-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "أَحْمَر",
+                  "red"
+                ],
+                [
+                  "أَزْرَق",
+                  "blue"
+                ],
+                [
+                  "أَبْيَض",
+                  "white"
+                ],
+                [
+                  "أَسْوَد",
+                  "black"
+                ]
+              ]
+            },
+            {
+              "id": "ar-u2-l3-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What colour is أَزْرَق?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "blue"
+                },
+                {
+                  "id": "b",
+                  "text": "red"
+                },
+                {
+                  "id": "c",
+                  "text": "white"
+                }
+              ],
+              "answer": "a",
+              "explanation": "أَزْرَق (azraq) = blue."
+            },
+            {
+              "id": "ar-u2-l3-s7",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "red",
+              "accept": [
+                "ahmar",
+                "aḥmar",
+                "أحمر",
+                "أَحْمَر"
+              ],
+              "explanation": "Red = أَحْمَر (aḥmar)."
+            }
+          ]
+        },
+        {
+          "id": "ar-u2-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "This is…",
+          "objective": "Say what something is in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u2-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "هٰذَا",
+              "meaning": "this · ini",
+              "emoji": "👉",
+              "note": "hādhā · for \"girl\" words like قِطَّة use هٰذِهِ (hādhihi)"
+            },
+            {
+              "id": "ar-u2-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "كِتَاب",
+              "meaning": "book · buku",
+              "emoji": "📕",
+              "note": "kitāb"
+            },
+            {
+              "id": "ar-u2-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "قِطَّة",
+              "meaning": "cat · kucing",
+              "emoji": "🐱",
+              "note": "qiṭṭa"
+            },
+            {
+              "id": "ar-u2-l4-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "بَيْت",
+              "meaning": "house · rumah",
+              "emoji": "🏠",
+              "note": "bayt"
+            },
+            {
+              "id": "ar-u2-l4-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "هٰذَا ___. 📕",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "كِتَاب"
+                },
+                {
+                  "id": "b",
+                  "text": "بَيْت"
+                },
+                {
+                  "id": "c",
+                  "text": "لَا"
+                }
+              ],
+              "answer": "a",
+              "explanation": "هٰذَا كِتَاب (hādhā kitāb) = This is a book."
+            },
+            {
+              "id": "ar-u2-l4-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does قِطَّة mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "cat"
+                },
+                {
+                  "id": "b",
+                  "text": "book"
+                },
+                {
+                  "id": "c",
+                  "text": "house"
+                }
+              ],
+              "answer": "a",
+              "explanation": "قِطَّة (qiṭṭa) = cat."
+            },
+            {
+              "id": "ar-u2-l4-s7",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "book",
+              "accept": [
+                "kitab",
+                "kitaab",
+                "kitāb",
+                "كتاب",
+                "كِتَاب"
+              ],
+              "explanation": "Book = كِتَاب (kitāb)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ar-u3",
+      "title": "Food & my day · Makanan & hari saya",
+      "lessons": [
+        {
+          "id": "ar-u3-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Food and drink",
+          "objective": "Name food and drinks in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u3-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "مَاء",
+              "meaning": "water · air",
+              "emoji": "💧",
+              "note": "māʾ"
+            },
+            {
+              "id": "ar-u3-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "خُبْز",
+              "meaning": "bread · roti",
+              "emoji": "🍞",
+              "note": "khubz"
+            },
+            {
+              "id": "ar-u3-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أَرُزّ",
+              "meaning": "rice · nasi",
+              "emoji": "🍚",
+              "note": "aruzz"
+            },
+            {
+              "id": "ar-u3-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "تَمْر",
+              "meaning": "dates · kurma",
+              "emoji": "🌴",
+              "note": "tamr"
+            },
+            {
+              "id": "ar-u3-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "مَاء",
+                  "water"
+                ],
+                [
+                  "خُبْز",
+                  "bread"
+                ],
+                [
+                  "أَرُزّ",
+                  "rice"
+                ],
+                [
+                  "تَمْر",
+                  "dates"
+                ]
+              ]
+            },
+            {
+              "id": "ar-u3-l1-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What is خُبْز?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "bread"
+                },
+                {
+                  "id": "b",
+                  "text": "water"
+                },
+                {
+                  "id": "c",
+                  "text": "rice"
+                }
+              ],
+              "answer": "a",
+              "explanation": "خُبْز (khubz) = bread."
+            },
+            {
+              "id": "ar-u3-l1-s7",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "water",
+              "accept": [
+                "maa",
+                "maa’",
+                "māʾ",
+                "ma",
+                "ماء",
+                "مَاء"
+              ],
+              "explanation": "Water = مَاء (māʾ)."
+            }
+          ]
+        },
+        {
+          "id": "ar-u3-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "I like…",
+          "objective": "Say what you like in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u3-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أُحِبُّ",
+              "meaning": "I love, I like · saya suka",
+              "emoji": "❤️",
+              "note": "uḥibbu"
+            },
+            {
+              "id": "ar-u3-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "حَلِيب",
+              "meaning": "milk · susu",
+              "emoji": "🥛",
+              "note": "ḥalīb"
+            },
+            {
+              "id": "ar-u3-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "تُفَّاح",
+              "meaning": "apples · epal",
+              "emoji": "🍎",
+              "note": "tuffāḥ"
+            },
+            {
+              "id": "ar-u3-l2-s4",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "أَنَا ___ التَّمْرَ. ❤️",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "أُحِبُّ"
+                },
+                {
+                  "id": "b",
+                  "text": "شُكْرًا"
+                },
+                {
+                  "id": "c",
+                  "text": "هٰذَا"
+                }
+              ],
+              "answer": "a",
+              "explanation": "أَنَا أُحِبُّ التَّمْرَ (anā uḥibbu t-tamr) = I like dates."
+            },
+            {
+              "id": "ar-u3-l2-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does أُحِبُّ mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "I like"
+                },
+                {
+                  "id": "b",
+                  "text": "I eat"
+                },
+                {
+                  "id": "c",
+                  "text": "I drink"
+                }
+              ],
+              "answer": "a",
+              "explanation": "أُحِبُّ (uḥibbu) = I love, I like."
+            },
+            {
+              "id": "ar-u3-l2-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "حَلِيب",
+                  "milk"
+                ],
+                [
+                  "تُفَّاح",
+                  "apples"
+                ],
+                [
+                  "تَمْر",
+                  "dates"
+                ]
+              ]
+            },
+            {
+              "id": "ar-u3-l2-s7",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "milk",
+              "accept": [
+                "halib",
+                "haleeb",
+                "ḥalīb",
+                "حليب",
+                "حَلِيب"
+              ],
+              "explanation": "Milk = حَلِيب (ḥalīb)."
+            }
+          ]
+        },
+        {
+          "id": "ar-u3-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Eat, drink, go",
+          "objective": "Say what you do in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u3-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "آكُلُ",
+              "meaning": "I eat · saya makan",
+              "emoji": "🍽️",
+              "note": "ākulu"
+            },
+            {
+              "id": "ar-u3-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أَشْرَبُ",
+              "meaning": "I drink · saya minum",
+              "emoji": "🥤",
+              "note": "ashrabu"
+            },
+            {
+              "id": "ar-u3-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "أَذْهَبُ",
+              "meaning": "I go · saya pergi",
+              "emoji": "🚶",
+              "note": "adhhabu"
+            },
+            {
+              "id": "ar-u3-l3-s4",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "أَشْرَبُ ___. 💧",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "الْمَاءَ"
+                },
+                {
+                  "id": "b",
+                  "text": "الْخُبْزَ"
+                },
+                {
+                  "id": "c",
+                  "text": "الْبَيْتَ"
+                }
+              ],
+              "answer": "a",
+              "explanation": "أَشْرَبُ الْمَاءَ (ashrabu l-māʾ) = I drink the water."
+            },
+            {
+              "id": "ar-u3-l3-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does أَذْهَبُ mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "I go"
+                },
+                {
+                  "id": "b",
+                  "text": "I eat"
+                },
+                {
+                  "id": "c",
+                  "text": "I drink"
+                }
+              ],
+              "answer": "a",
+              "explanation": "أَذْهَبُ (adhhabu) = I go."
+            },
+            {
+              "id": "ar-u3-l3-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "آكُلُ",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "آكُلُ (ākulu)"
+                },
+                {
+                  "id": "b",
+                  "text": "أَشْرَبُ (ashrabu)"
+                },
+                {
+                  "id": "c",
+                  "text": "أَذْهَبُ (adhhabu)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "ar-u3-l3-s7",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "I eat",
+              "accept": [
+                "akulu",
+                "aakulu",
+                "ākulu",
+                "akul",
+                "آكل",
+                "آكُلُ"
+              ],
+              "explanation": "I eat = آكُلُ (ākulu)."
+            }
+          ]
+        },
+        {
+          "id": "ar-u3-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Morning to night",
+          "objective": "Greet people at different times of day in Arabic.",
+          "steps": [
+            {
+              "id": "ar-u3-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "صَبَاحُ الْخَيْرِ",
+              "meaning": "Good morning · Selamat pagi",
+              "emoji": "🌅",
+              "note": "ṣabāḥu l-khayr"
+            },
+            {
+              "id": "ar-u3-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "صَبَاحُ النُّورِ",
+              "meaning": "Good morning to you (the reply) · Selamat pagi juga",
+              "emoji": "☀️",
+              "note": "ṣabāḥu n-nūr"
+            },
+            {
+              "id": "ar-u3-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "مَسَاءُ الْخَيْرِ",
+              "meaning": "Good evening · Selamat petang",
+              "emoji": "🌇",
+              "note": "masāʾu l-khayr"
+            },
+            {
+              "id": "ar-u3-l4-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "تُصْبِحُ عَلَى خَيْرٍ",
+              "meaning": "Good night · Selamat malam",
+              "emoji": "😴",
+              "note": "tuṣbiḥu ʿalā khayr · said before you go to sleep"
+            },
+            {
+              "id": "ar-u3-l4-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "When do you say مَسَاءُ الْخَيْرِ?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "In the evening"
+                },
+                {
+                  "id": "b",
+                  "text": "In the morning"
+                },
+                {
+                  "id": "c",
+                  "text": "Before you sleep"
+                }
+              ],
+              "answer": "a",
+              "explanation": "مَسَاءُ الْخَيْرِ (masāʾu l-khayr) = Good evening."
+            },
+            {
+              "id": "ar-u3-l4-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "صَبَاحُ الْخَيْرِ! — صَبَاحُ ___!",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "النُّورِ"
+                },
+                {
+                  "id": "b",
+                  "text": "شُكْرًا"
+                },
+                {
+                  "id": "c",
+                  "text": "نَعَمْ"
+                }
+              ],
+              "answer": "a",
+              "explanation": "The reply to صَبَاحُ الْخَيْرِ is صَبَاحُ النُّورِ (ṣabāḥu n-nūr)."
+            },
+            {
+              "id": "ar-u3-l4-s7",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "صَبَاحُ الْخَيْرِ",
+                  "Good morning"
+                ],
+                [
+                  "مَسَاءُ الْخَيْرِ",
+                  "Good evening"
+                ],
+                [
+                  "تُصْبِحُ عَلَى خَيْرٍ",
+                  "Good night"
+                ]
+              ]
+            },
+            {
+              "id": "ar-u3-l4-s8",
+              "kind": "type",
+              "text": "Type it in rumi letters. · Taip dalam huruf rumi.",
+              "prompt": "Good morning",
+              "accept": [
+                "sabah al khair",
+                "sabah al-khair",
+                "sabah alkhair",
+                "sabahul khair",
+                "sabah al khayr",
+                "sabah al-khayr",
+                "sabah el kheir",
+                "صباح الخير",
+                "صَبَاحُ الْخَيْرِ"
+              ],
+              "explanation": "Good morning = صَبَاحُ الْخَيْرِ (ṣabāḥu l-khayr)."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

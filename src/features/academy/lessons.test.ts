@@ -52,7 +52,7 @@ const steps = (c: Course) => c.units.flatMap((u) => u.lessons.flatMap((l) => l.s
 
 describe('course files', () => {
   it('has the coding and language courses', () => {
-    expect(courses.map((c) => c.id).sort()).toEqual(['english-basics', 'javascript-basics', 'malay-basics', 'python-basics'])
+    expect(courses.map((c) => c.id).sort()).toEqual(['arabic-basics', 'english-basics', 'japanese-basics', 'javascript-basics', 'korean-basics', 'malay-basics', 'mandarin-basics', 'python-basics'])
   })
 
   it('every course file matches the schema and the content rules', () => {
@@ -80,10 +80,24 @@ describe('course files', () => {
     expect(normAnswer('Selamat  pagi.')).toBe(normAnswer('selamat pagi'))
     expect(normAnswer("I'm Aina!")).toBe(normAnswer('im aina'))
     expect(normAnswer('hello')).not.toBe(normAnswer('hallo'))
+    // Answers typed in Japanese, Chinese or Arabic end with their own full stops and question marks.
+    expect(normAnswer('ありがとう。')).toBe(normAnswer('ありがとう'))
+    expect(normAnswer('你好！')).toBe(normAnswer('你好'))
+    expect(normAnswer('كيف حالك؟')).toBe(normAnswer('كيف حالك'))
+  })
+
+  it("ids carry their own course's prefix, so two courses never share a lesson id", () => {
+    const c = structuredClone(courses.find((x) => x.id === 'malay-basics')!)
+    expect(courseSource.safeParse(c).success).toBe(true)
+    c.units[0].lessons[0].steps[0].id = 'zz-u1-l1-s1' // no course has this prefix
+    expect(courseSource.safeParse(c).success).toBe(false)
+    const d = structuredClone(courses.find((x) => x.id === 'malay-basics')!)
+    d.units[0].id = 'en-u1' // English's prefix inside the Malay course
+    expect(contentRules(d).join(' ')).toMatch(/en-u1/)
   })
 
   it('the rules catch broken language steps', () => {
-    const c = structuredClone(courses.find((x) => x.kind === 'language')!)
+    const c = structuredClone(courses.find((x) => x.id === 'english-basics')!)
     const b = steps(c).find((s) => s.kind === 'build') as Extract<Step, { kind: 'build' }>
     b.answer = [...b.answer, 'zebra']
     expect(contentRules(c).join(' ')).toMatch(/zebra/)

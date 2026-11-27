@@ -1,0 +1,1359 @@
+{
+  "_meta": {
+    "author": "Eduventure (original lessons)",
+    "license": "CC BY 4.0"
+  },
+  "id": "mandarin-basics",
+  "kind": "language",
+  "language": "mandarin",
+  "title": "Mandarin for beginners",
+  "units": [
+    {
+      "id": "zh-u1",
+      "title": "Hello & me · Salam & diri saya",
+      "lessons": [
+        {
+          "id": "zh-u1-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Greetings",
+          "objective": "Greet people in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u1-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "你好",
+              "meaning": "Hello · Helo",
+              "emoji": "👋",
+              "note": "nǐ hǎo"
+            },
+            {
+              "id": "zh-u1-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "早上好",
+              "meaning": "Good morning · Selamat pagi",
+              "emoji": "🌅",
+              "note": "zǎoshang hǎo · also 早安 (zǎo ān)"
+            },
+            {
+              "id": "zh-u1-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "谢谢",
+              "meaning": "Thank you · Terima kasih",
+              "emoji": "🙏",
+              "note": "xièxie"
+            },
+            {
+              "id": "zh-u1-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "再见",
+              "meaning": "Goodbye · Selamat tinggal",
+              "emoji": "👋",
+              "note": "zàijiàn"
+            },
+            {
+              "id": "zh-u1-l1-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does 谢谢 mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Thank you"
+                },
+                {
+                  "id": "b",
+                  "text": "Hello"
+                },
+                {
+                  "id": "c",
+                  "text": "Goodbye"
+                }
+              ],
+              "answer": "a",
+              "explanation": "谢谢 (xièxie) = Thank you.",
+              "say": "谢谢"
+            },
+            {
+              "id": "zh-u1-l1-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "你好",
+                  "Hello"
+                ],
+                [
+                  "早上好",
+                  "Good morning"
+                ],
+                [
+                  "谢谢",
+                  "Thank you"
+                ],
+                [
+                  "再见",
+                  "Goodbye"
+                ]
+              ]
+            },
+            {
+              "id": "zh-u1-l1-s7",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "你好",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "你好 (nǐ hǎo)"
+                },
+                {
+                  "id": "b",
+                  "text": "谢谢 (xièxie)"
+                },
+                {
+                  "id": "c",
+                  "text": "再见 (zàijiàn)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "zh-u1-l1-s8",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "Hello",
+              "accept": [
+                "ni hao",
+                "nihao",
+                "nǐ hǎo",
+                "nǐhǎo",
+                "你好"
+              ],
+              "explanation": "Hello = 你好 (nǐ hǎo)."
+            }
+          ]
+        },
+        {
+          "id": "zh-u1-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Introducing yourself",
+          "objective": "Introduce yourself in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u1-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "我",
+              "meaning": "I, me · saya",
+              "emoji": "🙋",
+              "note": "wǒ"
+            },
+            {
+              "id": "zh-u1-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "叫",
+              "meaning": "to be called · bernama",
+              "emoji": "📛",
+              "note": "jiào"
+            },
+            {
+              "id": "zh-u1-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "名字",
+              "meaning": "name · nama",
+              "emoji": "🏷️",
+              "note": "míngzi"
+            },
+            {
+              "id": "zh-u1-l2-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "很高兴认识你",
+              "meaning": "Nice to meet you · Selamat berkenalan",
+              "emoji": "🤝",
+              "note": "hěn gāoxìng rènshi nǐ"
+            },
+            {
+              "id": "zh-u1-l2-s5",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "My name is Aina. · Nama saya Aina.",
+              "tiles": [
+                "我",
+                "叫",
+                "阿依娜",
+                "谢谢"
+              ],
+              "answer": [
+                "我",
+                "叫",
+                "阿依娜"
+              ],
+              "explanation": "我叫阿依娜 (wǒ jiào Āyīnà) = I am called Aina."
+            },
+            {
+              "id": "zh-u1-l2-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "你叫什么___？",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "名字"
+                },
+                {
+                  "id": "b",
+                  "text": "我"
+                },
+                {
+                  "id": "c",
+                  "text": "好"
+                }
+              ],
+              "answer": "a",
+              "explanation": "你叫什么名字？(nǐ jiào shénme míngzi) = What is your name?"
+            },
+            {
+              "id": "zh-u1-l2-s7",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "I, me",
+              "accept": [
+                "wo",
+                "wǒ",
+                "我"
+              ],
+              "explanation": "I, me = 我 (wǒ)."
+            }
+          ]
+        },
+        {
+          "id": "zh-u1-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Numbers 1 to 5",
+          "objective": "Count from one to five in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u1-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "一",
+              "meaning": "one · satu (1)",
+              "emoji": "1️⃣",
+              "note": "yī"
+            },
+            {
+              "id": "zh-u1-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "二",
+              "meaning": "two · dua (2)",
+              "emoji": "2️⃣",
+              "note": "èr"
+            },
+            {
+              "id": "zh-u1-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "三",
+              "meaning": "three · tiga (3)",
+              "emoji": "3️⃣",
+              "note": "sān"
+            },
+            {
+              "id": "zh-u1-l3-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "四",
+              "meaning": "four · empat (4)",
+              "emoji": "4️⃣",
+              "note": "sì"
+            },
+            {
+              "id": "zh-u1-l3-s5",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "五",
+              "meaning": "five · lima (5)",
+              "emoji": "5️⃣",
+              "note": "wǔ"
+            },
+            {
+              "id": "zh-u1-l3-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "一",
+                  "1"
+                ],
+                [
+                  "二",
+                  "2"
+                ],
+                [
+                  "三",
+                  "3"
+                ],
+                [
+                  "四",
+                  "4"
+                ],
+                [
+                  "五",
+                  "5"
+                ]
+              ]
+            },
+            {
+              "id": "zh-u1-l3-s7",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Which number is 三?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "3"
+                },
+                {
+                  "id": "b",
+                  "text": "2"
+                },
+                {
+                  "id": "c",
+                  "text": "5"
+                }
+              ],
+              "answer": "a",
+              "explanation": "三 (sān) = 3."
+            },
+            {
+              "id": "zh-u1-l3-s8",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "2",
+              "accept": [
+                "er",
+                "èr",
+                "二"
+              ],
+              "explanation": "2 = 二 (èr)."
+            }
+          ]
+        },
+        {
+          "id": "zh-u1-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Yes, no and sorry",
+          "objective": "Say yes, no and sorry in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u1-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "是",
+              "meaning": "yes, to be · ya, ialah",
+              "emoji": "✅",
+              "note": "shì"
+            },
+            {
+              "id": "zh-u1-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "不",
+              "meaning": "no, not · tidak",
+              "emoji": "❌",
+              "note": "bù"
+            },
+            {
+              "id": "zh-u1-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "对不起",
+              "meaning": "Sorry · Maaf",
+              "emoji": "🙇",
+              "note": "duìbuqǐ"
+            },
+            {
+              "id": "zh-u1-l4-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "没关系",
+              "meaning": "It's okay · Tidak apa-apa",
+              "emoji": "👌",
+              "note": "méi guānxi"
+            },
+            {
+              "id": "zh-u1-l4-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does 对不起 mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Sorry"
+                },
+                {
+                  "id": "b",
+                  "text": "Thank you"
+                },
+                {
+                  "id": "c",
+                  "text": "Hello"
+                }
+              ],
+              "answer": "a",
+              "explanation": "对不起 (duìbuqǐ) = Sorry."
+            },
+            {
+              "id": "zh-u1-l4-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "对不起。— ___。",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "没关系"
+                },
+                {
+                  "id": "b",
+                  "text": "你好"
+                },
+                {
+                  "id": "c",
+                  "text": "再见"
+                }
+              ],
+              "answer": "a",
+              "explanation": "没关系 (méi guānxi) = It's okay, the kind reply to 对不起 (sorry)."
+            },
+            {
+              "id": "zh-u1-l4-s7",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "不",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "不 (bù)"
+                },
+                {
+                  "id": "b",
+                  "text": "是 (shì)"
+                },
+                {
+                  "id": "c",
+                  "text": "五 (wǔ)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "zh-u1-l4-s8",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "Sorry",
+              "accept": [
+                "duibuqi",
+                "dui bu qi",
+                "duìbuqǐ",
+                "duì bu qǐ",
+                "对不起"
+              ],
+              "explanation": "Sorry = 对不起 (duìbuqǐ)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zh-u2",
+      "title": "Family & things · Keluarga & benda",
+      "lessons": [
+        {
+          "id": "zh-u2-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Family",
+          "objective": "Name family members in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u2-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "爸爸",
+              "meaning": "dad · ayah",
+              "emoji": "👨",
+              "note": "bàba"
+            },
+            {
+              "id": "zh-u2-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "妈妈",
+              "meaning": "mum · emak",
+              "emoji": "👩",
+              "note": "māma"
+            },
+            {
+              "id": "zh-u2-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "哥哥",
+              "meaning": "older brother · abang",
+              "emoji": "👦",
+              "note": "gēge"
+            },
+            {
+              "id": "zh-u2-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "姐姐",
+              "meaning": "older sister · kakak",
+              "emoji": "👧",
+              "note": "jiějie"
+            },
+            {
+              "id": "zh-u2-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "爸爸",
+                  "dad"
+                ],
+                [
+                  "妈妈",
+                  "mum"
+                ],
+                [
+                  "哥哥",
+                  "older brother"
+                ],
+                [
+                  "姐姐",
+                  "older sister"
+                ]
+              ]
+            },
+            {
+              "id": "zh-u2-l1-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Who is 妈妈?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "mum"
+                },
+                {
+                  "id": "b",
+                  "text": "dad"
+                },
+                {
+                  "id": "c",
+                  "text": "older sister"
+                }
+              ],
+              "answer": "a",
+              "explanation": "妈妈 (māma) = mum."
+            },
+            {
+              "id": "zh-u2-l1-s7",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "dad",
+              "accept": [
+                "baba",
+                "bàba",
+                "爸爸"
+              ],
+              "explanation": "Dad = 爸爸 (bàba)."
+            }
+          ]
+        },
+        {
+          "id": "zh-u2-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Numbers 6 to 10",
+          "objective": "Count from six to ten in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u2-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "六",
+              "meaning": "six · enam (6)",
+              "emoji": "6️⃣",
+              "note": "liù"
+            },
+            {
+              "id": "zh-u2-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "七",
+              "meaning": "seven · tujuh (7)",
+              "emoji": "7️⃣",
+              "note": "qī"
+            },
+            {
+              "id": "zh-u2-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "八",
+              "meaning": "eight · lapan (8)",
+              "emoji": "8️⃣",
+              "note": "bā"
+            },
+            {
+              "id": "zh-u2-l2-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "九",
+              "meaning": "nine · sembilan (9)",
+              "emoji": "9️⃣",
+              "note": "jiǔ"
+            },
+            {
+              "id": "zh-u2-l2-s5",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "十",
+              "meaning": "ten · sepuluh (10)",
+              "emoji": "🔟",
+              "note": "shí"
+            },
+            {
+              "id": "zh-u2-l2-s6",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "六",
+                  "6"
+                ],
+                [
+                  "七",
+                  "7"
+                ],
+                [
+                  "八",
+                  "8"
+                ],
+                [
+                  "九",
+                  "9"
+                ],
+                [
+                  "十",
+                  "10"
+                ]
+              ]
+            },
+            {
+              "id": "zh-u2-l2-s7",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "Which number is 八?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "8"
+                },
+                {
+                  "id": "b",
+                  "text": "6"
+                },
+                {
+                  "id": "c",
+                  "text": "9"
+                }
+              ],
+              "answer": "a",
+              "explanation": "八 (bā) = 8."
+            },
+            {
+              "id": "zh-u2-l2-s8",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "10",
+              "accept": [
+                "shi",
+                "shí",
+                "十"
+              ],
+              "explanation": "10 = 十 (shí)."
+            }
+          ]
+        },
+        {
+          "id": "zh-u2-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Colours",
+          "objective": "Name colours in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u2-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "红色",
+              "meaning": "red · merah",
+              "emoji": "🔴",
+              "note": "hóngsè"
+            },
+            {
+              "id": "zh-u2-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "蓝色",
+              "meaning": "blue · biru",
+              "emoji": "🔵",
+              "note": "lánsè"
+            },
+            {
+              "id": "zh-u2-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "白色",
+              "meaning": "white · putih",
+              "emoji": "⚪",
+              "note": "báisè"
+            },
+            {
+              "id": "zh-u2-l3-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "黄色",
+              "meaning": "yellow · kuning",
+              "emoji": "🟡",
+              "note": "huángsè"
+            },
+            {
+              "id": "zh-u2-l3-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "红色",
+                  "red"
+                ],
+                [
+                  "蓝色",
+                  "blue"
+                ],
+                [
+                  "白色",
+                  "white"
+                ],
+                [
+                  "黄色",
+                  "yellow"
+                ]
+              ]
+            },
+            {
+              "id": "zh-u2-l3-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What colour is 蓝色?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "blue"
+                },
+                {
+                  "id": "b",
+                  "text": "red"
+                },
+                {
+                  "id": "c",
+                  "text": "yellow"
+                }
+              ],
+              "answer": "a",
+              "explanation": "蓝色 (lánsè) = blue."
+            },
+            {
+              "id": "zh-u2-l3-s7",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "red",
+              "accept": [
+                "hongse",
+                "hong se",
+                "hóngsè",
+                "红色",
+                "红"
+              ],
+              "explanation": "Red = 红色 (hóngsè)."
+            }
+          ]
+        },
+        {
+          "id": "zh-u2-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "This is…",
+          "objective": "Say what something is in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u2-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "这",
+              "meaning": "this · ini",
+              "emoji": "👉",
+              "note": "zhè"
+            },
+            {
+              "id": "zh-u2-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "书",
+              "meaning": "book · buku",
+              "emoji": "📕",
+              "note": "shū"
+            },
+            {
+              "id": "zh-u2-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "猫",
+              "meaning": "cat · kucing",
+              "emoji": "🐱",
+              "note": "māo"
+            },
+            {
+              "id": "zh-u2-l4-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "狗",
+              "meaning": "dog · anjing",
+              "emoji": "🐶",
+              "note": "gǒu"
+            },
+            {
+              "id": "zh-u2-l4-s5",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "This is a cat. · Ini kucing.",
+              "tiles": [
+                "这",
+                "是",
+                "猫",
+                "狗"
+              ],
+              "answer": [
+                "这",
+                "是",
+                "猫"
+              ],
+              "explanation": "这是猫 (zhè shì māo) = This is a cat."
+            },
+            {
+              "id": "zh-u2-l4-s6",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "这是___。🐶",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "狗"
+                },
+                {
+                  "id": "b",
+                  "text": "猫"
+                },
+                {
+                  "id": "c",
+                  "text": "书"
+                }
+              ],
+              "answer": "a",
+              "explanation": "这是狗 (zhè shì gǒu) = This is a dog."
+            },
+            {
+              "id": "zh-u2-l4-s7",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "book",
+              "accept": [
+                "shu",
+                "shū",
+                "书"
+              ],
+              "explanation": "Book = 书 (shū)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zh-u3",
+      "title": "Food & my day · Makanan & hari saya",
+      "lessons": [
+        {
+          "id": "zh-u3-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Food and drink",
+          "objective": "Name food and drinks in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u3-l1-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "米饭",
+              "meaning": "cooked rice · nasi",
+              "emoji": "🍚",
+              "note": "mǐfàn"
+            },
+            {
+              "id": "zh-u3-l1-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "水",
+              "meaning": "water · air",
+              "emoji": "💧",
+              "note": "shuǐ"
+            },
+            {
+              "id": "zh-u3-l1-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "茶",
+              "meaning": "tea · teh",
+              "emoji": "🍵",
+              "note": "chá"
+            },
+            {
+              "id": "zh-u3-l1-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "苹果",
+              "meaning": "apple · epal",
+              "emoji": "🍎",
+              "note": "píngguǒ"
+            },
+            {
+              "id": "zh-u3-l1-s5",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "米饭",
+                  "rice"
+                ],
+                [
+                  "水",
+                  "water"
+                ],
+                [
+                  "茶",
+                  "tea"
+                ],
+                [
+                  "苹果",
+                  "apple"
+                ]
+              ]
+            },
+            {
+              "id": "zh-u3-l1-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What is 水?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "water"
+                },
+                {
+                  "id": "b",
+                  "text": "tea"
+                },
+                {
+                  "id": "c",
+                  "text": "rice"
+                }
+              ],
+              "answer": "a",
+              "explanation": "水 (shuǐ) = water."
+            },
+            {
+              "id": "zh-u3-l1-s7",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "apple",
+              "accept": [
+                "pingguo",
+                "ping guo",
+                "píngguǒ",
+                "苹果"
+              ],
+              "explanation": "Apple = 苹果 (píngguǒ)."
+            }
+          ]
+        },
+        {
+          "id": "zh-u3-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "I like…",
+          "objective": "Say what you like in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u3-l2-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "喜欢",
+              "meaning": "like · suka",
+              "emoji": "❤️",
+              "note": "xǐhuan"
+            },
+            {
+              "id": "zh-u3-l2-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "牛奶",
+              "meaning": "milk · susu",
+              "emoji": "🥛",
+              "note": "niúnǎi"
+            },
+            {
+              "id": "zh-u3-l2-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "面",
+              "meaning": "noodles · mi",
+              "emoji": "🍜",
+              "note": "miàn"
+            },
+            {
+              "id": "zh-u3-l2-s4",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "I like milk. · Saya suka susu.",
+              "tiles": [
+                "我",
+                "喜欢",
+                "牛奶",
+                "水"
+              ],
+              "answer": [
+                "我",
+                "喜欢",
+                "牛奶"
+              ],
+              "explanation": "我喜欢牛奶 (wǒ xǐhuan niúnǎi) = I like milk."
+            },
+            {
+              "id": "zh-u3-l2-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "我___茶。❤️",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "喜欢"
+                },
+                {
+                  "id": "b",
+                  "text": "是"
+                },
+                {
+                  "id": "c",
+                  "text": "叫"
+                }
+              ],
+              "answer": "a",
+              "explanation": "我喜欢茶 (wǒ xǐhuan chá) = I like tea."
+            },
+            {
+              "id": "zh-u3-l2-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does 喜欢 mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "like"
+                },
+                {
+                  "id": "b",
+                  "text": "eat"
+                },
+                {
+                  "id": "c",
+                  "text": "drink"
+                }
+              ],
+              "answer": "a",
+              "explanation": "喜欢 (xǐhuan) = like."
+            },
+            {
+              "id": "zh-u3-l2-s7",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "milk",
+              "accept": [
+                "niunai",
+                "niu nai",
+                "niúnǎi",
+                "牛奶"
+              ],
+              "explanation": "Milk = 牛奶 (niúnǎi)."
+            }
+          ]
+        },
+        {
+          "id": "zh-u3-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Eat, drink, go",
+          "objective": "Say what you do in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u3-l3-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "吃",
+              "meaning": "eat · makan",
+              "emoji": "🍽️",
+              "note": "chī"
+            },
+            {
+              "id": "zh-u3-l3-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "喝",
+              "meaning": "drink · minum",
+              "emoji": "🥤",
+              "note": "hē"
+            },
+            {
+              "id": "zh-u3-l3-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "去",
+              "meaning": "go · pergi",
+              "emoji": "🚶",
+              "note": "qù"
+            },
+            {
+              "id": "zh-u3-l3-s4",
+              "kind": "build",
+              "text": "Build the sentence. · Bina ayat.",
+              "prompt": "I eat rice. · Saya makan nasi.",
+              "tiles": [
+                "我",
+                "吃",
+                "米饭",
+                "喝"
+              ],
+              "answer": [
+                "我",
+                "吃",
+                "米饭"
+              ],
+              "explanation": "我吃米饭 (wǒ chī mǐfàn) = I eat rice."
+            },
+            {
+              "id": "zh-u3-l3-s5",
+              "kind": "gap",
+              "text": "Fill the gap. · Isi tempat kosong.",
+              "sentence": "我___水。💧",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "喝"
+                },
+                {
+                  "id": "b",
+                  "text": "吃"
+                },
+                {
+                  "id": "c",
+                  "text": "去"
+                }
+              ],
+              "answer": "a",
+              "explanation": "我喝水 (wǒ hē shuǐ) = I drink water."
+            },
+            {
+              "id": "zh-u3-l3-s6",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "What does 去 mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "go"
+                },
+                {
+                  "id": "b",
+                  "text": "eat"
+                },
+                {
+                  "id": "c",
+                  "text": "drink"
+                }
+              ],
+              "answer": "a",
+              "explanation": "去 (qù) = go."
+            },
+            {
+              "id": "zh-u3-l3-s7",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "eat",
+              "accept": [
+                "chi",
+                "chī",
+                "吃"
+              ],
+              "explanation": "Eat = 吃 (chī)."
+            }
+          ]
+        },
+        {
+          "id": "zh-u3-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Morning to night",
+          "objective": "Talk about the time of day in Mandarin.",
+          "steps": [
+            {
+              "id": "zh-u3-l4-s1",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "早上",
+              "meaning": "morning · pagi",
+              "emoji": "🌅",
+              "note": "zǎoshang"
+            },
+            {
+              "id": "zh-u3-l4-s2",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "中午",
+              "meaning": "noon · tengah hari",
+              "emoji": "☀️",
+              "note": "zhōngwǔ"
+            },
+            {
+              "id": "zh-u3-l4-s3",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "晚上",
+              "meaning": "evening, night · malam",
+              "emoji": "🌙",
+              "note": "wǎnshang"
+            },
+            {
+              "id": "zh-u3-l4-s4",
+              "kind": "card",
+              "text": "New word · Perkataan baharu",
+              "word": "晚安",
+              "meaning": "Good night · Selamat malam",
+              "emoji": "😴",
+              "note": "wǎn ān · said before you go to sleep"
+            },
+            {
+              "id": "zh-u3-l4-s5",
+              "kind": "pick",
+              "text": "Pick the meaning. · Pilih maksudnya.",
+              "prompt": "When do you say 晚安?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Before you go to sleep"
+                },
+                {
+                  "id": "b",
+                  "text": "In the morning"
+                },
+                {
+                  "id": "c",
+                  "text": "Before you eat"
+                }
+              ],
+              "answer": "a",
+              "explanation": "晚安 (wǎn ān) = Good night, before sleeping."
+            },
+            {
+              "id": "zh-u3-l4-s6",
+              "kind": "listen",
+              "text": "Listen and pick what you hear. · Dengar dan pilih.",
+              "say": "早上",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "早上 (zǎoshang)"
+                },
+                {
+                  "id": "b",
+                  "text": "中午 (zhōngwǔ)"
+                },
+                {
+                  "id": "c",
+                  "text": "晚上 (wǎnshang)"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "id": "zh-u3-l4-s7",
+              "kind": "match",
+              "text": "Match the pairs. · Padankan pasangan.",
+              "pairs": [
+                [
+                  "早上",
+                  "morning"
+                ],
+                [
+                  "中午",
+                  "noon"
+                ],
+                [
+                  "晚上",
+                  "evening"
+                ],
+                [
+                  "晚安",
+                  "Good night"
+                ]
+              ]
+            },
+            {
+              "id": "zh-u3-l4-s8",
+              "kind": "type",
+              "text": "Type the pinyin. · Taip pinyin.",
+              "prompt": "Good night",
+              "accept": [
+                "wanan",
+                "wan an",
+                "wǎnān",
+                "wǎn ān",
+                "晚安"
+              ],
+              "explanation": "Good night = 晚安 (wǎn ān)."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
