@@ -41,6 +41,7 @@ const courseOf = (cat: Catalogue | undefined, id: string | undefined) => cat?.co
 export function AcademyPage({ kind = 'code' }: { kind?: CourseKind }) {
   const { t } = useTranslation()
   const catalogue = useCatalogue()
+  const short = useShortScreen()
   const courses = catalogue.data?.courses.filter((c) => c.kind === kind)
   return (
     <Shell kind={kind} back={academyOrigin()} backLabel={academyOrigin() === '/world' ? t('academy.backToWorld') : t('academy.backToHome')} title={t(`${NS[kind]}.title`)}>
@@ -51,11 +52,10 @@ export function AcademyPage({ kind = 'code' }: { kind?: CourseKind }) {
         </p>
       )}
       {!catalogue.data && !catalogue.isError && <p className="font-display text-wood-dark">{t('common.loading')}</p>}
-      <ul className="grid gap-4 sm:grid-cols-2 short:grid-cols-2 short:gap-3">
-        {courses?.map((c) => (
-          <CourseCard key={c.id} course={c} />
-        ))}
-      </ul>
+      {/* Sideways phones: compact cards, three across, six to a page. */}
+      <Paged list items={courses ?? []} perPage={short ? 6 : Infinity} label={t(`${NS[kind]}.title`)} className="grid gap-4 sm:grid-cols-2 short:grid-cols-3 short:gap-2">
+        {(c) => <CourseCard key={c.id} course={c} />}
+      </Paged>
     </Shell>
   )
 }
@@ -67,12 +67,12 @@ function CourseCard({ course }: { course: Catalogue['courses'][number] }) {
   const done = progress.data?.size ?? 0
   return (
     <li>
-      <Link to={`${BASE[course.kind]}/${course.id}`} className="block rounded-3xl border-4 border-wood bg-cream p-4 shadow-[0_6px_0_rgb(92_58_36/0.35)] hover:-translate-y-0.5 short:rounded-2xl short:border-[3px] short:p-3">
-        <p className="flex items-center gap-2 font-display text-xl font-bold text-wood-dark short:text-base">
+      <Link to={`${BASE[course.kind]}/${course.id}`} className="block rounded-3xl border-4 border-wood bg-cream p-4 shadow-[0_6px_0_rgb(92_58_36/0.35)] hover:-translate-y-0.5 short:rounded-2xl short:border-[3px] short:p-2">
+        <p className="flex items-center gap-2 font-display text-xl font-bold text-wood-dark short:text-sm short:leading-tight">
           {course.kind === 'code' ? <Braces aria-hidden /> : <Languages aria-hidden />} {course.title}
         </p>
-        <ProgressBar thin value={total ? done / total : 0} label={t('academy.lessonsDone', { done, total })} className="mt-3 h-3!" />
-        <p className="mt-1 text-sm font-semibold">{t('academy.lessonsDone', { done, total })}</p>
+        <ProgressBar thin value={total ? done / total : 0} label={t('academy.lessonsDone', { done, total })} className="mt-3 h-3! short:mt-1.5" />
+        <p className="mt-1 text-sm font-semibold short:text-xs">{t('academy.lessonsDone', { done, total })}</p>
       </Link>
     </li>
   )

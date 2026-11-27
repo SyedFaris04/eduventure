@@ -1,8 +1,25 @@
 import { z } from 'zod'
 
 const STATUSES = ['draft', 'in_review', 'approved', 'published', 'rejected'] as const
+
+/** Every course and the prefix its unit, lesson and step ids start with (ids are unique across all courses). */
+export const COURSE_PREFIX = {
+  'python-basics': 'py',
+  'javascript-basics': 'js',
+  'english-basics': 'en',
+  'malay-basics': 'ms',
+  'arabic-basics': 'ar',
+  'japanese-basics': 'ja',
+  'korean-basics': 'ko',
+  'mandarin-basics': 'zh',
+} as const
+const COURSE_IDS = Object.keys(COURSE_PREFIX) as [keyof typeof COURSE_PREFIX, ...(keyof typeof COURSE_PREFIX)[]]
+const PREFIXES = Object.values(COURSE_PREFIX).join('|')
+/** An id pattern: a course prefix, the unit (-u1), then `tail` (a regular expression source, e.g. String.raw`-l\d`). */
+const idOf = (tail: string) => z.string().regex(new RegExp(String.raw`^(${PREFIXES})-u\d${tail}$`))
+
 const option = z.object({ id: z.string().regex(/^[a-z]$/), text: z.string() })
-const stepBase = { id: z.string().regex(/^(py|js|en|ms)-u\d-l\d-s\d+$/), text: z.string().min(3) }
+const stepBase = { id: idOf(String.raw`-l\d-s\d+`), text: z.string().min(3) }
 
 // ---- Code courses (Code Academy) ----
 const learn = z.object({ ...stepBase, kind: z.literal('learn'), code: z.string().min(1), expected_output: z.string() })
@@ -55,21 +72,21 @@ const type = z.object({ ...stepBase, kind: z.literal('type'), prompt: z.string()
 const step = z.discriminatedUnion('kind', [learn, predict, fix, write, card, pick, match, build, gap, listen, type])
 
 const lesson = z.object({
-  id: z.string().regex(/^(py|js|en|ms)-u\d-l\d$/),
+  id: idOf(String.raw`-l\d`),
   version: z.number().int().min(1),
   status: z.enum(STATUSES),
   title: z.string().min(3),
   objective: z.string().min(5),
   steps: z.array(step).min(5).max(8),
 })
-const unit = z.object({ id: z.string().regex(/^(py|js|en|ms)-u\d$/), title: z.string().min(3), lessons: z.array(lesson).min(1) })
+const unit = z.object({ id: idOf(''), title: z.string().min(3), lessons: z.array(lesson).min(1) })
 
 /** A course file in content/courses/. The database splits it into public steps and server-only keys. */
 export const courseSource = z.object({
   _meta: z.object({ author: z.string().min(3), license: z.string().min(3) }),
-  id: z.enum(['python-basics', 'javascript-basics', 'english-basics', 'malay-basics']),
+  id: z.enum(COURSE_IDS),
   kind: z.enum(['code', 'language']),
-  language: z.enum(['python', 'javascript', 'english', 'malay']),
+  language: z.enum(['python', 'javascript', 'english', 'malay', 'arabic', 'japanese', 'korean', 'mandarin']),
   title: z.string().min(3),
   units: z.array(unit).min(1),
 })
@@ -83,14 +100,12 @@ export const LANGUAGE_KINDS = ['card', 'pick', 'match', 'build', 'gap', 'listen'
 /** Steps the server marks and that must be right before a lesson pays (listen is a bonus: some phones can't speak). */
 export const REQUIRED_KINDS = ['predict', 'fix', 'pick', 'match', 'build', 'gap', 'type'] as const
 
-const PREFIX: Record<Course['language'], string> = { python: 'py', javascript: 'js', english: 'en', malay: 'ms' }
-
 /** Rules the schema can't express. Returns every problem found (empty when the course is fine). */
 export function contentRules(c: Course): string[] {
   const problems: string[] = []
   const ids = new Set<string>()
   const seen = (id: string) => (ids.has(id) ? problems.push(`duplicate id ${id}`) : ids.add(id))
-  const prefix = PREFIX[c.language]
+  const prefix = COURSE_PREFIX[c.id]
   const allowed: readonly string[] = c.kind === 'code' ? CODE_KINDS : LANGUAGE_KINDS
   if ((c.kind === 'code') !== (c.language === 'python' || c.language === 'javascript')) problems.push(`${c.id}: kind and language don't match`)
   c.units.forEach((u, ui) => {

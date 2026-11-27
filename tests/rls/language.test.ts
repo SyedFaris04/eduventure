@@ -41,6 +41,7 @@ describe.skipIf(!url || !key)('language lessons (live project)', () => {
     const { data } = await a.from('courses').select('id, kind')
     const kind = Object.fromEntries((data ?? []).map((c) => [c.id, c.kind]))
     expect(kind).toMatchObject({ 'python-basics': 'code', 'javascript-basics': 'code', 'english-basics': 'language', 'malay-basics': 'language' })
+    for (const id of ['arabic-basics', 'japanese-basics', 'korean-basics', 'mandarin-basics']) expect(kind[id], id).toBe('language')
   })
 
   it('keys are not readable', async () => {
@@ -53,7 +54,7 @@ describe.skipIf(!url || !key)('language lessons (live project)', () => {
   })
 
   it('the server normalises answers like the app', async () => {
-    for (const s of ['Selamat  pagi.', "I'm Aina!", '  Thank You ', 'Apa khabar?', '“Hello”']) {
+    for (const s of ['Selamat  pagi.', "I'm Aina!", '  Thank You ', 'Apa khabar?', '“Hello”', 'ありがとう。', '你好！', 'كيف حالك؟']) {
       expect((await a.rpc('norm_answer', { p: s })).data).toBe(normAnswer(s))
     }
   })

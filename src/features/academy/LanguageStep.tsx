@@ -8,6 +8,9 @@ import { canSpeak, speak, type SpeechLang } from './speech'
 
 type Props = { step: LessonStep; attempt: string; language: SpeechLang; alreadySolved: boolean; last: boolean; finishing: boolean; onError: (k: string | null) => void; onContinue: () => void }
 
+/** Language tags for the course languages: the phone picks the right font (Japanese and Chinese characters differ). */
+const TAG: Record<SpeechLang, string> = { english: 'en', malay: 'ms', arabic: 'ar', japanese: 'ja', korean: 'ko', mandarin: 'zh' }
+
 const tileClass = 'min-h-11 rounded-xl border-[3px] border-wood-dark bg-white px-3 py-1.5 font-semibold shadow-[0_3px_0_var(--color-wood-dark)] active:translate-y-[2px] disabled:opacity-40'
 const optionClass = (picked: boolean, right: boolean) =>
   `min-h-12 rounded-2xl border-[3px] px-3 py-2 text-start font-semibold ${right ? 'border-grass-dark bg-grass/30' : picked ? 'border-wood-dark bg-gold/40' : 'border-wood/50 bg-white hover:border-wood'}`
@@ -67,16 +70,16 @@ export function LanguageStep({ step, attempt, language, alreadySolved, last, fin
   const accepted = marked && !marked.correct && marked.accepted !== null ? (options.find((o) => o.id === marked.accepted)?.text ?? (Array.isArray(marked.accepted) ? (marked.accepted as string[]).join(' ') : String(marked.accepted))) : null
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
-      <p className="text-lg font-bold text-wood-dark">{step.text}</p>
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 short:gap-2">
+      <p className="text-lg font-bold text-wood-dark short:text-base">{step.text}</p>
 
       {step.kind === 'card' && (
-        <div className="flex flex-col items-center gap-2 rounded-3xl border-4 border-wood bg-cream p-6 text-center">
-          <span className="text-6xl">{step.emoji}</span>
-          <p className="flex items-center gap-2 font-display text-3xl font-bold text-ink">
-            {step.word} <Speak text={step.say ?? step.word ?? ''} lang={language} />
+        <div className="flex flex-col items-center gap-2 rounded-3xl border-4 border-wood bg-cream p-6 text-center short:gap-0.5 short:rounded-2xl short:p-2">
+          <span className="text-6xl short:text-4xl">{step.emoji}</span>
+          <p className="flex items-center gap-2 font-display text-3xl font-bold text-ink short:text-2xl">
+            <span lang={TAG[language]} dir="auto">{step.word}</span> <Speak text={step.say ?? step.word ?? ''} lang={language} />
           </p>
-          <p className="text-xl font-semibold text-wood-dark">{step.meaning}</p>
+          <p className="text-xl font-semibold text-wood-dark short:text-base">{step.meaning}</p>
           {step.note && <p className="text-sm">{step.note}</p>}
         </div>
       )}
@@ -85,10 +88,10 @@ export function LanguageStep({ step, attempt, language, alreadySolved, last, fin
         <>
           {step.kind === 'pick' && (
             <p className="flex items-center gap-2 rounded-2xl border-[3px] border-wood bg-cream p-3 font-display text-2xl font-bold">
-              {step.prompt} {step.say && <Speak text={step.say} lang={language} />}
+              <bdi>{step.prompt}</bdi> {step.say && <Speak text={step.say} lang={language} />}
             </p>
           )}
-          {step.kind === 'gap' && <p className="rounded-2xl border-[3px] border-wood bg-cream p-3 font-display text-2xl font-bold">{step.sentence}</p>}
+          {step.kind === 'gap' && <p dir="auto" className="rounded-2xl border-[3px] border-wood bg-cream p-3 font-display text-2xl font-bold">{step.sentence}</p>}
           {step.kind === 'listen' && (
             <div className="flex justify-center">
               <Button variant="secondary" size="lg" onClick={() => speak(step.say ?? '', language)}>
@@ -99,7 +102,7 @@ export function LanguageStep({ step, attempt, language, alreadySolved, last, fin
           <div className="grid gap-2 sm:grid-cols-2">
             {options.map((o) => (
               <button key={o.id} type="button" disabled={busy || passed} onClick={() => choose(o.id)} className={optionClass(picked === o.id, passed && picked === o.id)}>
-                {o.text}
+                <bdi>{o.text}</bdi>
               </button>
             ))}
           </div>
@@ -108,11 +111,11 @@ export function LanguageStep({ step, attempt, language, alreadySolved, last, fin
 
       {step.kind === 'build' && (
         <>
-          <p className="rounded-2xl border-[3px] border-wood bg-cream p-3 font-display text-2xl font-bold">{step.prompt}</p>
+          <p dir="auto" className="rounded-2xl border-[3px] border-wood bg-cream p-3 font-display text-2xl font-bold">{step.prompt}</p>
           <div role="group" aria-label={t('academy.answerLine')} className="flex min-h-14 flex-wrap gap-2 border-b-[3px] border-wood/40 pb-2">
             {order.map((i) => (
               <button key={i} type="button" disabled={busy || passed} className={tileClass} onClick={() => setOrder((o) => o.filter((x) => x !== i))}>
-                {tiles[i]}
+                <bdi>{tiles[i]}</bdi>
               </button>
             ))}
           </div>
@@ -120,7 +123,7 @@ export function LanguageStep({ step, attempt, language, alreadySolved, last, fin
             {tiles.map((w, i) =>
               order.includes(i) ? null : (
                 <button key={i} type="button" disabled={busy || passed} className={tileClass} onClick={() => setOrder((o) => [...o, i])}>
-                  {w}
+                  <bdi>{w}</bdi>
                 </button>
               ),
             )}
@@ -150,7 +153,7 @@ export function LanguageStep({ step, attempt, language, alreadySolved, last, fin
                   }}
                   className={optionClass(left === l, Boolean(pairs[l]))}
                 >
-                  {l}
+                  <bdi>{l}</bdi>
                 </button>
               ))}
             </div>
@@ -167,7 +170,7 @@ export function LanguageStep({ step, attempt, language, alreadySolved, last, fin
                   }}
                   className={optionClass(false, pairedRights.has(r))}
                 >
-                  {r}
+                  <bdi>{r}</bdi>
                 </button>
               ))}
             </div>
@@ -188,13 +191,13 @@ export function LanguageStep({ step, attempt, language, alreadySolved, last, fin
             void mark({ text: typed })
           }}
         >
-          <p className="rounded-2xl border-[3px] border-wood bg-cream p-3 font-display text-2xl font-bold">{step.prompt}</p>
+          <p dir="auto" className="rounded-2xl border-[3px] border-wood bg-cream p-3 font-display text-2xl font-bold">{step.prompt}</p>
           <label htmlFor={`${step.id}-typed`} className="text-sm font-bold text-wood-dark">
             {t('academy.yourAnswer')}
           </label>
           <input
             id={`${step.id}-typed`}
-            lang={language === 'english' ? 'en' : 'ms'}
+            lang={language === 'english' || language === 'malay' ? TAG[language] : undefined}
             autoCapitalize="off"
             autoComplete="off"
             spellCheck={false}

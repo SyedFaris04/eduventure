@@ -50,7 +50,7 @@ describe.skipIf(!url || !key)('academy (live project)', () => {
     const steps = await a.from('lesson_steps').select('*').eq('lesson_id', 'py-u1-l1')
     expect(steps.error).toBeNull()
     expect(steps.data).toHaveLength(lessonSteps.get('py-u1-l1')!.length)
-    expect((await a.from('courses').select('id')).data!.map((c) => c.id).sort()).toEqual(['english-basics', 'javascript-basics', 'malay-basics', 'python-basics'])
+    expect((await a.from('courses').select('id')).data!.map((c) => c.id).sort()).toEqual(['arabic-basics', 'english-basics', 'japanese-basics', 'javascript-basics', 'korean-basics', 'malay-basics', 'mandarin-basics', 'python-basics'])
   })
 
   it('the server normalises code like the app does', async () => {

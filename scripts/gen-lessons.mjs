@@ -11,7 +11,7 @@ const migrations = new URL('supabase/migrations/', root)
 const q = (s) => (s === null || s === undefined ? 'null' : `'${String(s).replaceAll("'", "''")}'`)
 const j = (v) => (v === null || v === undefined ? 'null' : `${q(JSON.stringify(v))}::jsonb`)
 const arr = (xs) => (xs ? `array[${xs.map(q).join(',')}]::text[]` : 'null')
-const SORT = { 'python-basics': 10, 'javascript-basics': 20, 'english-basics': 30, 'malay-basics': 40 }
+const SORT = { 'python-basics': 10, 'javascript-basics': 20, 'english-basics': 30, 'malay-basics': 40, 'arabic-basics': 50, 'japanese-basics': 60, 'korean-basics': 70, 'mandarin-basics': 80 }
 
 // A fixed shuffle per step, so match lists and build tiles never show the answer order and never change between runs.
 function shuffled(xs, seed) {

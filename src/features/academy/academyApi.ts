@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { supabase } from '../../services/supabase'
 
 export type Lang = 'python' | 'javascript'
-export type CourseLang = Lang | 'english' | 'malay'
+export type CourseLang = Lang | 'english' | 'malay' | 'arabic' | 'japanese' | 'korean' | 'mandarin'
 export type CourseKind = 'code' | 'language'
 export type LessonStep = {
   id: string

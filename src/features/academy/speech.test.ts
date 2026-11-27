@@ -14,4 +14,13 @@ describe('pickVoice', () => {
     expect(pickVoice([v('en-US'), v('id-ID')], 'malay')?.lang).toBe('id-ID')
     expect(pickVoice([v('en-US'), v('ja-JP')], 'malay')).toBeNull()
   })
+  it('finds Arabic, Japanese and Korean voices, and Mandarin before Cantonese', () => {
+    expect(pickVoice([v('en-US'), v('ar-SA')], 'arabic')?.lang).toBe('ar-SA')
+    expect(pickVoice([v('ko-KR'), v('ja-JP')], 'japanese')?.lang).toBe('ja-JP')
+    expect(pickVoice([v('ja-JP'), v('ko_KR')], 'korean')?.lang).toBe('ko_KR')
+    expect(pickVoice([v('zh-HK'), v('zh-TW'), v('zh-CN')], 'mandarin')?.lang).toBe('zh-CN')
+    expect(pickVoice([v('zh-HK'), v('zh-TW')], 'mandarin')?.lang).toBe('zh-TW')
+    expect(pickVoice([v('yue-HK'), v('zh-HK')], 'mandarin')).toBeNull() // Cantonese voices would read Mandarin wrongly
+    expect(pickVoice([v('en-US')], 'arabic')).toBeNull()
+  })
 })

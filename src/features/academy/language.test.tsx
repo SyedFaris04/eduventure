@@ -38,6 +38,14 @@ describe('language exercises', () => {
     expect(screen.getByRole('button', { name: 'Continue' })).toBeTruthy()
   })
 
+  it('a word card in another script carries its language, so the phone picks the right font and Arabic reads right to left', async () => {
+    api.startLesson.mockResolvedValue({ ...lesson([{ id: 'ja-u1-l1-s1', kind: 'card', text: 'New word', word: 'こんにちは', meaning: 'Hello', emoji: '👋', note: 'konnichiwa' }]), lesson: { id: 'ja-u1-l1', title: 'Greetings', course_id: 'japanese-basics', unit_index: 1, lesson_index: 1 } })
+    wrap(<LessonPlayer courseId="japanese-basics" lessonId="ja-u1-l1" language="japanese" onExit={() => undefined} />)
+    const word = (await screen.findByText('こんにちは')).closest('[lang]')
+    expect(word?.getAttribute('lang')).toBe('ja')
+    expect(word?.getAttribute('dir')).toBe('auto')
+  })
+
   it('pick: a wrong pick explains, the right one unlocks Continue', async () => {
     play([{ id: 'en-u1-l1-s2', kind: 'pick', text: 'Pick the meaning', prompt: 'Selamat pagi', options: opts }, card])
     api.answerStep.mockResolvedValueOnce({ correct: false, explanation: 'Pagi means morning.', accepted: null })
@@ -118,6 +126,18 @@ describe('academies are separate', () => {
     expect(screen.getByText('English for Malaysian students')).toBeTruthy()
     expect(screen.queryByText('Python Basics')).toBeNull()
     expect(screen.getByRole('heading', { name: /Language Hall/ })).toBeTruthy()
+  })
+
+  it('on a sideways phone the courses page six at a time, so many courses never run off the screen', () => {
+    vi.stubGlobal('matchMedia', (q: string) => ({ matches: q.includes('max-height'), addEventListener: () => undefined, removeEventListener: () => undefined }))
+    const many = Array.from({ length: 8 }, (_, i) => ({ id: `c${i}`, kind: 'language', language: 'english', title: `Course ${i}`, units: [] }))
+    api.useCatalogue.mockReturnValue({ data: { courses: many } })
+    api.useCourseProgress.mockReturnValue({ data: new Set() })
+    wrap(<AcademyPage kind="language" />)
+    expect(screen.getAllByText(/^Course \d$/)).toHaveLength(6)
+    fireEvent.click(screen.getByRole('button', { name: 'Next page' }))
+    expect(screen.getAllByText(/^Course \d$/)).toHaveLength(2)
+    vi.unstubAllGlobals()
   })
 
   it('language course cards show a language icon, not the code braces', () => {

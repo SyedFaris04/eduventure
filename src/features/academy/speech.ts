@@ -1,14 +1,28 @@
 import { setSpeaking } from '../../audio/director'
-export type SpeechLang = 'english' | 'malay'
+export type SpeechLang = 'english' | 'malay' | 'arabic' | 'japanese' | 'korean' | 'mandarin'
 type Voice = { lang: string; name: string }
 
-/** The best built-in voice: British then any English; Malay, then any Malay, then Indonesian (very close), else none. */
+/**
+ * Voice tags to try, best first; each matches exactly or as a prefix ("en" matches "en-US"). Malay falls back to
+ * Indonesian (very close). Mandarin never takes a Hong Kong voice: those speak Cantonese.
+ */
+const PREFER: Record<SpeechLang, string[]> = {
+  english: ['en-gb', 'en'],
+  malay: ['ms-my', 'ms', 'id'],
+  arabic: ['ar'],
+  japanese: ['ja'],
+  korean: ['ko'],
+  mandarin: ['zh-cn', 'cmn', 'zh-sg', 'zh-tw'],
+}
+
+/** The best built-in voice for a course language, or none. */
 export function pickVoice<V extends Voice>(voices: V[], lang: SpeechLang): V | null {
   const tag = (v: V) => v.lang.replace('_', '-').toLowerCase()
-  const find = (ok: (t: string) => boolean) => voices.find((v) => ok(tag(v))) ?? null
-  return lang === 'english'
-    ? (find((t) => t === 'en-gb') ?? find((t) => t.startsWith('en')))
-    : (find((t) => t === 'ms-my') ?? find((t) => t.startsWith('ms')) ?? find((t) => t.startsWith('id')))
+  for (const p of PREFER[lang]) {
+    const v = voices.find((x) => tag(x) === p || tag(x).startsWith(`${p}-`))
+    if (v) return v
+  }
+  return null
 }
 
 const synth = () => (typeof speechSynthesis === 'undefined' ? null : speechSynthesis)
