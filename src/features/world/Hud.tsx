@@ -25,7 +25,7 @@ export function Hud({ character, xp, gold, title }: { character: MyCharacter; xp
         {title && <p className="-mt-0.5 truncate text-[11px] font-bold text-path-dark short:hidden">{t(`titles.${title}`)}</p>}
         {/* Phones held sideways: the bar and the gold share one row; the XP numbers stay in the bar's label. */}
         <div className="short:mt-0.5 short:flex short:items-center short:gap-2">
-          <ProgressBar value={p.into / p.needed} label={t('world.xpLabel', { into: p.into, needed: p.needed })} className="mt-1 h-4! short:mt-0 short:h-2.5! short:flex-1" />
+          <ProgressBar thin value={p.into / p.needed} label={t('world.xpLabel', { into: p.into, needed: p.needed })} className="mt-1 h-4! short:mt-0 short:h-2.5! short:flex-1" />
           <div className="mt-0.5 flex justify-between text-xs font-bold text-wood-dark short:mt-0 short:text-[11px] short:leading-tight">
             <span className="short:hidden">
               {p.into} / {p.needed} XP

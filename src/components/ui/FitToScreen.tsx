@@ -17,10 +17,15 @@ export function FitToScreen({ children, className = '', center = false }: { chil
       const need = content.current?.scrollHeight ?? 0 // a transform does not change this, so it is the full size
       setFit({ scale: have > 0 && need > have ? Math.floor((have / need) * 100) / 100 : 1, need })
     }
+    fit()
+    // Older Android WebViews have no ResizeObserver: follow the window instead (turning the phone, the bars hiding).
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', fit)
+      return () => window.removeEventListener('resize', fit)
+    }
     const watch = new ResizeObserver(fit)
     if (box.current) watch.observe(box.current)
     if (content.current) watch.observe(content.current)
-    fit()
     return () => watch.disconnect()
   }, [])
 

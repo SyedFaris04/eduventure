@@ -1,10 +1,11 @@
 /**
  * Painted-style sky, clouds, floating islands and hills in SVG. Always rendered behind the welcome
  * and explore pages; it is also the full fallback when the 3D hero is skipped.
+ * Fixed to the whole screen, so the sky also fills the strips the pages keep clear (a phone's camera cut-out).
  */
 export function SceneBackdrop() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden bg-gradient-to-b from-[#7fc8f0] via-[#bfe6f7] to-[#fdf2d6]">
+    <div aria-hidden className="pointer-events-none fixed inset-0 overflow-hidden bg-gradient-to-b from-[#7fc8f0] via-[#bfe6f7] to-[#fdf2d6]">
       <div className="scene-sun absolute top-[8%] left-[12%] size-40 rounded-full bg-[radial-gradient(circle,#fff7d1_0%,#ffe9a0_35%,transparent_70%)]" />
       {[
         { top: '10%', size: 1, dur: 70, delay: -10 },

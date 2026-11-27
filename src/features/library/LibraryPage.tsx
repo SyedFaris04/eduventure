@@ -88,7 +88,7 @@ export function LibraryPage() {
                       <span>{m.topic}</span>
                       <span className="text-wood-dark">{t('library.score', { correct: m.correct, attempts: m.attempts })}</span>
                     </span>
-                    <ProgressBar value={Number(m.mastery)} label={t('library.masteryOf', { topic: m.topic })} className="mt-1 h-4! short:h-2.5!" />
+                    <ProgressBar thin value={Number(m.mastery)} label={t('library.masteryOf', { topic: m.topic })} className="mt-1 h-4! short:h-2.5!" />
                   </button>
                 </li>
               )}

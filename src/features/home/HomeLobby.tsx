@@ -2,7 +2,7 @@ import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { BookOpen, ClipboardCheck, Code2, Coins, Globe2, GraduationCap, Languages, LogOut, MoreHorizontal, PawPrint, Pencil, Save, ShoppingBag, Target, Volume2, VolumeX } from 'lucide-react'
-import { Button, buttonClasses, Modal, Panel, ProgressBar } from '../../components/ui'
+import { Button, buttonClasses, FitToScreen, Modal, Panel, ProgressBar } from '../../components/ui'
 import { LanguagePicker } from '../../i18n/LanguagePicker'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
 import { Snapshot } from '../../world3d/SnapshotImage'
@@ -55,7 +55,7 @@ export function HomeLobby(p: LobbyProps) {
         <header className="flex items-center gap-2">
           <section aria-label={t('home.progress')} className="flex min-w-0 flex-1 items-center gap-2 rounded-2xl border-[3px] border-wood bg-cream/95 px-2 py-1 shadow-[0_3px_0_var(--color-wood-dark)]">
             <span className="shrink-0 rounded-full bg-wood px-2 text-xs font-bold text-cream">{t('world.levelShort', { level: lp.level })}</span>
-            <ProgressBar value={lp.into / lp.needed} label={t('world.xpLabel', { into: lp.into, needed: lp.needed })} className="h-3! min-w-16 flex-1" />
+            <ProgressBar thin value={lp.into / lp.needed} label={t('world.xpLabel', { into: lp.into, needed: lp.needed })} className="h-3! min-w-16 flex-1" />
             <span className="shrink-0 text-xs font-bold text-wood-dark">
               {lp.into}/{lp.needed} XP
             </span>
@@ -73,7 +73,9 @@ export function HomeLobby(p: LobbyProps) {
         </header>
 
         <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)_minmax(0,1fr)] gap-3">
-          <nav aria-label={t('home.yourHero')} className="grid grid-cols-2 content-center gap-2">
+          {/* Shrinks to fit when a teacher or reviewer has extra buttons, or the phone uses a larger font. */}
+          <FitToScreen center>
+          <nav aria-label={t('home.yourHero')} className="grid grid-cols-2 gap-2">
             <Link to="/library" className={tile}>
               <BookOpen size={20} aria-hidden /> {t('home.library')}
             </Link>
@@ -100,6 +102,7 @@ export function HomeLobby(p: LobbyProps) {
               </Link>
             )}
           </nav>
+          </FitToScreen>
 
           <section aria-label={t('home.yourHero')} className="flex min-h-0 flex-col items-center justify-end gap-1">
             {p.appearance && (
@@ -113,7 +116,8 @@ export function HomeLobby(p: LobbyProps) {
             </div>
           </section>
 
-          <div className="flex flex-col justify-center gap-2">
+          <FitToScreen center>
+          <div className="flex flex-col gap-2">
             <Link to="/world" className={buttonClasses('primary', 'lg', 'min-h-16! w-full text-lg! tiny:min-h-14!')}>
               <Globe2 size={22} aria-hidden /> {t('home.enterWorld')}
             </Link>
@@ -131,6 +135,7 @@ export function HomeLobby(p: LobbyProps) {
               )}
             </div>
           </div>
+          </FitToScreen>
         </div>
       </div>
 

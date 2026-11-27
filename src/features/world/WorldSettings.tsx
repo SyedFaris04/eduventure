@@ -2,7 +2,7 @@ import { useAudioSettings } from '../../audio/settings'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RotateCcw, RotateCw, Settings, Undo2, X } from 'lucide-react'
-import { Button } from '../../components/ui'
+import { Button, FitToScreen } from '../../components/ui'
 import { useCamera } from '../../world3d/cameraStore'
 import { PRESETS, type PresetId } from '../../world3d/projection'
 import { useQuality } from '../../world3d/qualityStore'
@@ -46,7 +46,9 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
           <Settings aria-hidden /> {t('settings.title')}
         </h2>
 
-        <div className="flex flex-col gap-2 short:min-h-0 short:gap-1 short:overflow-y-auto short:pe-1">
+        {/* Sideways phones: each column shrinks to fit rather than scrolling, so no button ends up cut off. */}
+        <FitToScreen>
+        <div className="flex flex-col gap-2 short:gap-1">
           <p className="font-display font-semibold">{t('settings.camera')}</p>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 short:gap-1">
             {PRESET_IDS.map((id) => (
@@ -72,9 +74,11 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
           </div>
           <p className="text-xs text-wood-dark/80 short:hidden">{t('settings.hint')}</p>
         </div>
+        </FitToScreen>
 
         {/* Sideways phones: sound, graphics and visibility share the right-hand column. */}
-        <div className="flex flex-col gap-4 short:min-h-0 short:gap-2 short:overflow-y-auto">
+        <FitToScreen>
+        <div className="flex flex-col gap-4 short:gap-2">
         <div className="flex flex-col gap-2">
           <p className="flex items-center justify-between font-display font-semibold">
             {t('settings.sound')}
@@ -98,6 +102,7 @@ export function WorldSettings({ onClose }: { onClose: () => void }) {
         </div>
         {import.meta.env.VITE_ROOMS_URL && <VisibilitySetting />}
         </div>
+        </FitToScreen>
       </section>
     </div>
   )
