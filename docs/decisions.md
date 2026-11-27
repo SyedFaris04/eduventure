@@ -233,3 +233,16 @@ All of it uses three.js and drei only; no new dependencies and no post-processin
 
 **Rejected:** a sky dome (the camera rarely sees the horizon), drei `Cloud` (loads its texture from a CDN), and
 bloom or ambient occlusion via post-processing (a large cost on phones for a small gain at this camera angle).
+
+## 55. The Android app plays full screen; phone screens fit the owner's phone (2026-11-27)
+On the owner's phone the game sat in a frame: the status bar on top (about 36 of 332 px), a cream strip down the camera
+side, and the bottom of Home (for a reviewer), the pet page and the world settings cut off.
+- The app hides the status and navigation bars (`SystemBars.hide()`, part of Capacitor's core, so no new APK) at start
+  and again each time it comes back to the front; a swipe from the edge shows them for a moment.
+- The sky backdrop is fixed to the whole screen, so it also fills the strips the pages keep clear of a camera cut-out.
+- Home's columns, the world settings' columns and the pet page shrink to fit (`FitToScreen`) instead of overflowing or
+  scrolling; on sideways phones the pet's growth panel is two columns. `FitToScreen` follows window resizes where a
+  browser has no ResizeObserver.
+- Progress bars thinner than 24 px use a thinner frame (`thin`): the 3 px frame had left 10–12 px bars (the Home and HUD
+  XP bars, course and subject bars) with no visible fill at all.
+- `tests/e2e/phone-fit.spec.ts` now also checks a reviewer with a hatched pet at 694 × 296 with a 125% font.

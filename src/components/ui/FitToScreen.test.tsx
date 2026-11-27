@@ -53,4 +53,15 @@ describe('FitToScreen', () => {
     expect(content().style.transform).toBe('')
     sizes.box = 300
   })
+
+  it('still fits in an old browser without ResizeObserver (older Android WebViews), following window resizes', () => {
+    vi.stubGlobal('ResizeObserver', undefined)
+    sizes.content = 600
+    render(<FitToScreen>{<p>Hello</p>}</FitToScreen>)
+    expect(content().style.transform).toBe('scale(0.5)')
+    sizes.box = 700
+    act(() => void window.dispatchEvent(new Event('resize')))
+    expect(content().style.transform).toBe('')
+    sizes.box = 300
+  })
 })

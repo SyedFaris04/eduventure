@@ -119,4 +119,14 @@ describe('academies are separate', () => {
     expect(screen.queryByText('Python Basics')).toBeNull()
     expect(screen.getByRole('heading', { name: /Language Hall/ })).toBeTruthy()
   })
+
+  it('language course cards show a language icon, not the code braces', () => {
+    api.useCatalogue.mockReturnValue({ data: catalogue })
+    api.useCourseProgress.mockReturnValue({ data: new Set() })
+    const { unmount } = wrap(<AcademyPage kind="code" />)
+    expect(screen.getByText('Python Basics').querySelector('svg')?.getAttribute('class')).toContain('lucide-braces')
+    unmount()
+    wrap(<AcademyPage kind="language" />)
+    expect(screen.getByText('English for Malaysian students').querySelector('svg')?.getAttribute('class')).toContain('lucide-languages')
+  })
 })

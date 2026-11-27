@@ -105,7 +105,7 @@ export function MissionsPanel({ uid }: { uid: string }) {
         )}
       </div>
       <div className="mt-1 flex items-center gap-2">
-        <ProgressBar value={m.progress / m.target} label={title(m)} className="h-3.5! flex-1" />
+        <ProgressBar thin value={m.progress / m.target} label={title(m)} className="h-3.5! flex-1" />
         <span className="text-xs font-bold">
           {Math.min(m.progress, m.target)}/{m.target}
         </span>

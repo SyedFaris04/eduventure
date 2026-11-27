@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { ArrowLeft, Check, Coins, Egg, PawPrint, Sparkles, X } from 'lucide-react'
-import { Button, buttonClasses, Paged, Panel, ProgressBar, Select } from '../../components/ui'
+import { Button, buttonClasses, FitToScreen, Paged, Panel, ProgressBar, Select } from '../../components/ui'
 import { useShortScreen } from '../../app/useShortScreen'
 import { SceneBackdrop } from '../landing/SceneBackdrop'
 import { FormMessage } from '../authentication/AuthLayout'
@@ -92,7 +92,7 @@ export function PetView({ level, gold, pet, owned, busy, onHatch, onEvolve, onDr
 
   return (
     // Phones held sideways: two panels per page (the pet and its growth, then souvenirs and dressing up).
-    <Paged items={[0, 1, 2, 3]} perPage={short ? 2 : Infinity} label={petName} className="grid gap-5 md:grid-cols-2 short:grid-cols-2 short:gap-3">
+    <Paged items={[0, 1, 2, 3]} perPage={short ? 2 : Infinity} label={petName} className="grid gap-5 md:grid-cols-2 short:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] short:gap-3">
       {(n) => (
         <Fragment key={n}>
           {n === 0 && (
@@ -107,12 +107,13 @@ export function PetView({ level, gold, pet, owned, busy, onHatch, onEvolve, onDr
             </Panel>
           )}
           {n === 1 && (
-            <Panel className="flex flex-col gap-4">
+            <Panel className="flex flex-col gap-4 short:grid short:grid-cols-2 short:items-start short:gap-x-3">
+              <div className="flex flex-col gap-4 short:gap-1.5">
               {next.next ? (
                 <>
-                  <p className="font-display text-lg font-semibold">{t('pet.points', { n: pet.points, need: next.points })}</p>
+                  <p className="font-display text-lg font-semibold short:text-base">{t('pet.points', { n: pet.points, need: next.points })}</p>
                   <ProgressBar value={pet.points / next.points} label={t('pet.points', { n: pet.points, need: next.points })} />
-                  <ul className="flex flex-col gap-1 text-sm font-semibold">
+                  <ul className="flex flex-col gap-1 text-sm font-semibold short:gap-0 short:text-xs">
                     {(['points', 'level', 'gold'] as const).map((k) => {
                       const ok = !next.missing.includes(k)
                       return (
@@ -122,22 +123,23 @@ export function PetView({ level, gold, pet, owned, busy, onHatch, onEvolve, onDr
                       )
                     })}
                   </ul>
-                  <Button size="lg" disabled={busy || next.missing.length > 0} onClick={onEvolve}>
+                  <Button size={short ? 'md' : 'lg'} disabled={busy || next.missing.length > 0} onClick={onEvolve}>
                     <Sparkles size={20} aria-hidden /> {t('pet.evolve', { stage: t(`pet.stage.${next.next}`) })}
                   </Button>
                 </>
               ) : (
                 <p className="font-display text-lg font-semibold">{t('pet.fullyGrown')}</p>
               )}
+              </div>
               {pet.stage !== 'adult' && (
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 short:gap-1">
                   {BRANCHES.map((b) => (
-                    <div key={b} className="flex items-center gap-2 text-sm font-semibold">
-                      <span className="w-24 shrink-0">{t(`pet.branch.${b}`)}</span>
-                      <ProgressBar value={branchTotal ? pet.branches[b] / branchTotal : 0} label={`${t(`pet.branch.${b}`)}: ${pet.branches[b]}`} className="h-4! flex-1" />
+                    <div key={b} className="flex items-center gap-2 text-sm font-semibold short:text-xs">
+                      <span className="w-24 shrink-0 short:w-20">{t(`pet.branch.${b}`)}</span>
+                      <ProgressBar thin value={branchTotal ? pet.branches[b] / branchTotal : 0} label={`${t(`pet.branch.${b}`)}: ${pet.branches[b]}`} className="h-4! flex-1 short:h-3!" />
                     </div>
                   ))}
-                  <p className="text-sm font-bold text-path-dark">{t('pet.heading', { form: t(`pet.form.${petForm(pet.branches)}`) })}</p>
+                  <p className="text-sm font-bold text-path-dark short:text-xs">{t('pet.heading', { form: t(`pet.form.${petForm(pet.branches)}`) })}</p>
                 </div>
               )}
             </Panel>
@@ -238,9 +240,9 @@ export function PetPage() {
 
   const name = pet.data ? t(`pet.names.${pet.data.name}`) : ''
   return (
-    <main className="relative min-h-dvh">
+    <main className="relative min-h-dvh short:flex short:h-dvh short:flex-col">
       <SceneBackdrop />
-      <div className="relative mx-auto flex max-w-4xl flex-col gap-5 px-4 py-6 short:gap-2 short:py-2">
+      <div className="relative mx-auto flex w-full max-w-4xl flex-col gap-5 px-4 py-6 short:min-h-0 short:flex-1 short:gap-2 short:py-2">
         <header className="flex flex-wrap items-center gap-3">
           <Link to="/world" aria-label={t('common.back')} className={buttonClasses('secondary', 'md', 'px-3!')}>
             <ArrowLeft size={18} className="rtl:rotate-180" aria-hidden />
@@ -253,7 +255,9 @@ export function PetPage() {
           </p>
         </header>
         {message && <FormMessage kind={message.kind}>{message.text}</FormMessage>}
+        {/* Sideways phones: the panels shrink a little if a larger font or a short screen would cut them off. */}
         {progression.data && pet.data !== undefined && (
+          <FitToScreen className="short:flex-1">
           <PetView
             level={progression.data.level}
             gold={progression.data.gold}
@@ -265,6 +269,7 @@ export function PetPage() {
             onEvolve={() => run(evolvePet, () => (playSfx('levelup'), t('pet.evolved', { name, fee: STEPS[pet.data!.stage === 'baby' ? 'young' : 'adult'].gold })))}
             onDress={(slot, item) => run(() => dressPet(slot, item))}
           />
+          </FitToScreen>
         )}
       </div>
     </main>

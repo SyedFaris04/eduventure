@@ -69,9 +69,9 @@ function CourseCard({ course }: { course: Catalogue['courses'][number] }) {
     <li>
       <Link to={`${BASE[course.kind]}/${course.id}`} className="block rounded-3xl border-4 border-wood bg-cream p-4 shadow-[0_6px_0_rgb(92_58_36/0.35)] hover:-translate-y-0.5 short:rounded-2xl short:border-[3px] short:p-3">
         <p className="flex items-center gap-2 font-display text-xl font-bold text-wood-dark short:text-base">
-          <Braces aria-hidden /> {course.title}
+          {course.kind === 'code' ? <Braces aria-hidden /> : <Languages aria-hidden />} {course.title}
         </p>
-        <ProgressBar value={total ? done / total : 0} label={t('academy.lessonsDone', { done, total })} className="mt-3 h-3!" />
+        <ProgressBar thin value={total ? done / total : 0} label={t('academy.lessonsDone', { done, total })} className="mt-3 h-3!" />
         <p className="mt-1 text-sm font-semibold">{t('academy.lessonsDone', { done, total })}</p>
       </Link>
     </li>

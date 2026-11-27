@@ -81,7 +81,7 @@ export function LessonPlayer({ courseId, lessonId, language, onExit, onNext }: P
         </button>
         <div className="flex-1">
           <p className="font-display text-lg font-bold text-wood-dark">{data.lesson.title}</p>
-          <ProgressBar value={index / data.steps.length} label={t('academy.step', { n: index + 1, total: data.steps.length })} className="h-3!" />
+          <ProgressBar thin value={index / data.steps.length} label={t('academy.step', { n: index + 1, total: data.steps.length })} className="h-3!" />
         </div>
       </header>
       {error && (

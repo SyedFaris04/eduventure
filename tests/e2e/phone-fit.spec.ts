@@ -1,5 +1,5 @@
 import { expect, test, type Browser, type Page } from '@playwright/test'
-import { enterWorld } from './helpers'
+import { enterWorld, newPlayer } from './helpers'
 
 // Every screen on the player's path fits a phone held sideways, with no page scroll and nothing off the side
 // (spec docs/superpowers/specs/2026-11-21-phone-fit-design.md). 640 × 300 is a phone in Chrome with the address bar.
@@ -16,7 +16,7 @@ async function phone(browser: Browser, size: { width: number; height: number }, 
 }
 
 /** The page does not scroll either way, and no box clips or scrolls its own content (a modal's body may). */
-async function expectFits(page: Page, name: string, { boxes = true } = {}) {
+async function expectFits(page: Page, name: string, { boxes = true, root = 'main' } = {}) {
   await page.waitForTimeout(600)
   const m = await page.evaluate(() => ({
     h: Math.max(document.documentElement.scrollHeight, document.body.scrollHeight),
@@ -27,8 +27,8 @@ async function expectFits(page: Page, name: string, { boxes = true } = {}) {
   expect.soft(m.h, `${name}: ${m.h}px tall on a ${m.vh}px screen`).toBeLessThanOrEqual(m.vh + 1)
   expect.soft(m.w, `${name}: ${m.w}px wide on a ${m.vw}px screen`).toBeLessThanOrEqual(m.vw + 1)
   if (!boxes) return
-  const clipped = await page.evaluate(() =>
-    [...document.querySelectorAll('main *')]
+  const clipped = await page.evaluate((root) =>
+    [...document.querySelectorAll(`${root} *`)]
       .filter((e) => {
         const el = e as HTMLElement
         const css = getComputedStyle(el)
@@ -38,8 +38,16 @@ async function expectFits(page: Page, name: string, { boxes = true } = {}) {
         return oy !== 'visible' && el.clientHeight > 24 && el.scrollHeight > el.clientHeight + 2 && !el.closest('dialog') && !(el instanceof HTMLSelectElement)
       })
       .map((e) => `${e.tagName.toLowerCase()}.${(e as HTMLElement).className.toString().split(' ').slice(0, 4).join('.')} (${(e as HTMLElement).scrollHeight}>${(e as HTMLElement).clientHeight})`),
+    root,
   )
   expect.soft(clipped, `${name}: boxes that clip or scroll their content`).toEqual([])
+}
+
+/** Thin progress bars still leave room for their gold fill (a thick frame once left them 0 px tall). */
+async function expectFillShows(page: Page, name: string) {
+  const fills = await page.getByRole('progressbar').evaluateAll((bars) => bars.map((b) => (b.firstElementChild as HTMLElement | null)?.getBoundingClientRect().height ?? 0))
+  expect.soft(fills.length, `${name}: no progress bars`).toBeGreaterThan(0)
+  expect.soft(Math.min(...fills), `${name}: fill heights ${fills.join(', ')}`).toBeGreaterThanOrEqual(3)
 }
 
 async function expectInView(page: Page, name: string, locator: ReturnType<Page['locator']>) {
@@ -89,6 +97,36 @@ test.describe('phone fit', () => {
       await expectInView(page, `${tag} signup button`, page.getByRole('button', { name: 'Create account' }))
       await page.context().close()
     }
+  })
+
+  // The owner's phone (2026-11-27): 694 × 296 once the status bar and camera cut-out are taken, with a larger font.
+  // A reviewer has an extra Home button, and a hatched pet fills the pet page: Home, the pet page and the world's
+  // settings must still fit with nothing cut off.
+  test('a reviewer with a hatched pet on a 694x296 phone with a 125% font', async ({ browser }) => {
+    const tag = '694x296 big font'
+    const page = await phone(browser, { width: 694, height: 296 })
+    await page.addInitScript(() => document.addEventListener('DOMContentLoaded', () => (document.documentElement.style.fontSize = '125%')))
+    await newPlayer(page)
+    await page.route('**/rest/v1/rpc/my_roles*', (route) => route.fulfill({ json: ['admin'] }))
+    await page.route('**/rest/v1/player_pets*', (route) =>
+      route.fulfill({ json: { species: 'naga', name: 'comel', stage: 'baby', form: null, points: 16, branches: { science: 6, maths: 4, technology: 3, language: 3 }, look: {} } }),
+    )
+    await page.goto('/home')
+    await expect(page.getByRole('link', { name: /Review questions/ })).toBeVisible()
+    await expectFits(page, `${tag} home`)
+    await expectInView(page, `${tag} review questions`, page.getByRole('link', { name: /Review questions/ }))
+    await expectFillShows(page, `${tag} home XP bar`)
+    await page.goto('/pet')
+    await expect(page.getByText('16 / 100 pet points')).toBeVisible()
+    await expectFits(page, `${tag} pet`)
+    await expectFillShows(page, `${tag} pet bars`)
+    await page.goto('/home')
+    await enterWorld(page)
+    await expectFillShows(page, `${tag} world HUD XP bar`)
+    await page.getByRole('button', { name: 'Settings' }).click()
+    await expectFits(page, `${tag} world settings`, { root: '[role=dialog]' }) // the HUD's round picture crops on purpose
+    await expectInView(page, `${tag} settings reset`, page.getByRole('button', { name: 'Reset camera' }))
+    await page.context().close()
   })
 
   for (const size of SIZES)
