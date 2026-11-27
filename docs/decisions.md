@@ -261,3 +261,15 @@ speaker should check them before they are published.
 - **Voices:** the phone's built-in voices; Mandarin never uses a Hong Kong voice (Cantonese). Listening stays a bonus.
 - Unit, lesson and step ids take a prefix per course (`COURSE_PREFIX`), so courses in the same programming language
   can follow without id clashes. On sideways phones the Hall and the Academy show compact cards, six to a page.
+
+## 57. The Code Academy teaches Data Structures, AI, Machine Learning and C++ (2026-11-27)
+Four new 12-lesson courses, like Python Basics, all starting "in review". Data Structures, AI basics and Machine Learning
+are in Python, so they run on the phone (Pyodide); every model is built from scratch with plain Python (rules, decision
+trees, breadth-first search, a tic-tac-toe AI, nearest neighbour, accuracy, least squares, gradient descent, k-NN, a
+word-count spam filter, a perceptron), because numpy or scikit-learn would be tens of megabytes on a phone.
+- **C++ can't run on a phone** without a 30 MB+ compiler download, so its lessons only read (each program shown with its
+  output), predict and fix; the server marks every answer, and the course rules forbid write steps.
+- **Every C++ program is compiled and run for real:** `lessons.test.ts` runs them with g++, like the Python samples in
+  Pyodide. The owner's PC has no g++ (those tests are skipped there and say so); the "Lessons" GitHub workflow
+  (`.github/workflows/content.yml`) runs on every push that touches a lesson, where g++ is required (`REQUIRE_GPP`).
+- The editor highlights C++ with `@codemirror/lang-cpp`; C++ has its own tap-to-insert key row.

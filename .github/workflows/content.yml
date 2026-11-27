@@ -1,0 +1,28 @@
+# Checks every lesson on every push that touches them: the content rules, and every sample program run for real —
+# Python in Pyodide, JavaScript in node, and C++ compiled with g++ (GitHub's Linux machines have it; the owner's PC
+# doesn't, so locally the C++ checks are skipped). Decision #57.
+name: Lessons
+
+on:
+  push:
+    paths: ['content/courses/**', 'src/features/academy/**', '.github/workflows/content.yml']
+  pull_request:
+    paths: ['content/courses/**', 'src/features/academy/**', '.github/workflows/content.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  lessons:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: g++ --version
+      - run: npx vitest run src/features/academy/lessons.test.ts
+        env:
+          REQUIRE_GPP: '1' # here a missing compiler is a failure, never a skip

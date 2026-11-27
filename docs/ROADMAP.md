@@ -280,6 +280,9 @@ Every screen on the player's path fits a phone held sideways, even in a browser 
 ### Defeat cutscene — built
 Winning a battle plays a 2.6 s cutscene on the world before the rewards: the camera swoops in from the side, the hero strikes, the monster bursts into sparkles, VICTORY (decision #53). Tap to skip; off under reduced motion.
 
+### More coding courses — built
+The Code Academy adds Data Structures, AI basics and Machine Learning in Python (from scratch, run on the phone) and C++ Basics (read, predict and fix; every program checked with a real compiler on GitHub), 12 lessons each, in review until published (decision #57).
+
 ### More languages — built
 The Language Hall adds Arabic, Japanese, Korean and Mandarin for beginners (12 lessons each, in review until published): words in their own script with a rumi romanisation, typing in rumi or the native script, and the phone's own voices (decision #56).
 

@@ -3,7 +3,8 @@ import { basicSetup, EditorView } from 'codemirror'
 import { EditorState } from '@codemirror/state'
 import { python } from '@codemirror/lang-python'
 import { javascript } from '@codemirror/lang-javascript'
-import type { Lang } from './academyApi'
+import { cpp } from '@codemirror/lang-cpp'
+import type { CodeLang } from './academyApi'
 
 export type EditorApi = { insert(text: string): void }
 
@@ -17,7 +18,7 @@ const theme = EditorView.theme({
 })
 
 /** CodeMirror 6 with coloured code. Loaded only with the lesson page, never with the first page. */
-export default function CodeEditor({ value, onChange, language, readOnly = false, label, apiRef }: { value: string; onChange?: (v: string) => void; language: Lang; readOnly?: boolean; label: string; apiRef?: RefObject<EditorApi | null> }) {
+export default function CodeEditor({ value, onChange, language, readOnly = false, label, apiRef }: { value: string; onChange?: (v: string) => void; language: CodeLang; readOnly?: boolean; label: string; apiRef?: RefObject<EditorApi | null> }) {
   const host = useRef<HTMLDivElement>(null)
   const view = useRef<EditorView | null>(null)
   const change = useRef(onChange)
@@ -30,7 +31,7 @@ export default function CodeEditor({ value, onChange, language, readOnly = false
         doc: value,
         extensions: [
           basicSetup,
-          language === 'python' ? python() : javascript(),
+          language === 'python' ? python() : language === 'cpp' ? cpp() : javascript(),
           theme,
           EditorView.lineWrapping,
           EditorState.readOnly.of(readOnly),

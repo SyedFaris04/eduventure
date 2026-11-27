@@ -42,6 +42,7 @@ describe.skipIf(!url || !key)('language lessons (live project)', () => {
     const kind = Object.fromEntries((data ?? []).map((c) => [c.id, c.kind]))
     expect(kind).toMatchObject({ 'python-basics': 'code', 'javascript-basics': 'code', 'english-basics': 'language', 'malay-basics': 'language' })
     for (const id of ['arabic-basics', 'japanese-basics', 'korean-basics', 'mandarin-basics']) expect(kind[id], id).toBe('language')
+    for (const id of ['data-structures', 'ai-basics', 'machine-learning', 'cpp-basics']) expect(kind[id], id).toBe('code')
   })
 
   it('keys are not readable', async () => {

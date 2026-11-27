@@ -1,0 +1,969 @@
+{
+  "_meta": {
+    "author": "Eduventure (original lessons)",
+    "license": "CC BY 4.0"
+  },
+  "id": "machine-learning",
+  "kind": "code",
+  "language": "python",
+  "title": "Machine Learning with Python",
+  "units": [
+    {
+      "id": "ml-u1",
+      "title": "Data and statistics",
+      "lessons": [
+        {
+          "id": "ml-u1-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "Mean, min and max",
+          "objective": "Summarise data with the average, the smallest and the largest.",
+          "steps": [
+            {
+              "id": "ml-u1-l1-s1",
+              "kind": "learn",
+              "text": "min(), max() and the mean (total ÷ count) describe a set of numbers.",
+              "code": "heights = [140, 152, 147, 160]\nprint(min(heights), max(heights))\nprint(sum(heights) / len(heights))",
+              "expected_output": "140 160\n149.75"
+            },
+            {
+              "id": "ml-u1-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "data = [3, 9, 6]\nprint(max(data) - min(data))",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "6"
+                },
+                {
+                  "id": "b",
+                  "text": "9"
+                },
+                {
+                  "id": "c",
+                  "text": "3"
+                }
+              ],
+              "answer": "a",
+              "explanation": "max − min is the range: 9 − 3 = 6."
+            },
+            {
+              "id": "ml-u1-l1-s3",
+              "kind": "learn",
+              "text": "The median is the middle value once the data is sorted.",
+              "code": "data = [7, 1, 5, 3, 9]\ns = sorted(data)\nprint(s[len(s) // 2])",
+              "expected_output": "5"
+            },
+            {
+              "id": "ml-u1-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "data = [2, 4, 6, 8]\nprint(sum(data) / len(data))",
+              "answer_text": "5.0",
+              "explanation": "The total is 20 and there are 4 numbers: 5.0."
+            },
+            {
+              "id": "ml-u1-l1-s5",
+              "kind": "fix",
+              "text": "The median needs sorted data. Fix line 2.",
+              "code": "data = [9, 2, 7]\ns = data\nprint(s[len(s) // 2])",
+              "broken_line": 2,
+              "accept": [
+                "s = sorted(data)"
+              ],
+              "expected_output": "7",
+              "hint": "Sort first with sorted().",
+              "explanation": "The middle of unsorted data isn't the median; sort it first."
+            },
+            {
+              "id": "ml-u1-l1-s6",
+              "kind": "write",
+              "text": "Print the mean of [10, 20, 30, 40] (25.0).",
+              "starter": "",
+              "expected_output": "25.0",
+              "must_use": [
+                "len("
+              ],
+              "solution": "d = [10, 20, 30, 40]\nprint(sum(d) / len(d))",
+              "hint": "sum() divided by len()."
+            }
+          ]
+        },
+        {
+          "id": "ml-u1-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Scaling",
+          "objective": "Scale features to between 0 and 1.",
+          "steps": [
+            {
+              "id": "ml-u1-l2-s1",
+              "kind": "learn",
+              "text": "Features can have very different sizes. Min-max scaling squeezes them into 0 to 1.",
+              "code": "marks = [40, 70, 100]\nlo, hi = min(marks), max(marks)\nprint([(m - lo) / (hi - lo) for m in marks])",
+              "expected_output": "[0.0, 0.5, 1.0]"
+            },
+            {
+              "id": "ml-u1-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "lo, hi = 0, 200\nprint((50 - lo) / (hi - lo))",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "0.25"
+                },
+                {
+                  "id": "b",
+                  "text": "50"
+                },
+                {
+                  "id": "c",
+                  "text": "0.5"
+                }
+              ],
+              "answer": "a",
+              "explanation": "50 is a quarter of the way from 0 to 200."
+            },
+            {
+              "id": "ml-u1-l2-s3",
+              "kind": "learn",
+              "text": "A list comprehension makes a new list in one line.",
+              "code": "nums = [1, 2, 3]\nprint([n * 10 for n in nums])",
+              "expected_output": "[10, 20, 30]"
+            },
+            {
+              "id": "ml-u1-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "print([x - 5 for x in [5, 15]])",
+              "answer_text": "[0, 10]",
+              "explanation": "Each value has 5 taken away."
+            },
+            {
+              "id": "ml-u1-l2-s5",
+              "kind": "fix",
+              "text": "Scaling divides by the range, hi − lo. Fix line 3.",
+              "code": "data = [10, 20, 30]\nlo, hi = min(data), max(data)\nscaled = [(d - lo) / hi for d in data]\nprint(scaled)",
+              "broken_line": 3,
+              "accept": [
+                "scaled = [(d - lo) / (hi - lo) for d in data]"
+              ],
+              "expected_output": "[0.0, 0.5, 1.0]",
+              "hint": "Divide by (hi - lo).",
+              "explanation": "Min-max scaling is (d - lo) / (hi - lo)."
+            },
+            {
+              "id": "ml-u1-l2-s6",
+              "kind": "write",
+              "text": "Print [2, 4, 6] doubled, as a list made with a comprehension.",
+              "starter": "",
+              "expected_output": "[4, 8, 12]",
+              "must_use": [
+                "for"
+              ],
+              "solution": "print([n * 2 for n in [2, 4, 6]])",
+              "hint": "[n * 2 for n in ...]"
+            }
+          ]
+        },
+        {
+          "id": "ml-u1-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Pairs of data",
+          "objective": "See how two features change together.",
+          "steps": [
+            {
+              "id": "ml-u1-l3-s1",
+              "kind": "learn",
+              "text": "Pairs of data, like hours studied and marks, can be stored together.",
+              "code": "study = [(1, 50), (2, 60), (3, 70)]\nfor hours, mark in study:\n    print(hours, \"hours ->\", mark)",
+              "expected_output": "1 hours -> 50\n2 hours -> 60\n3 hours -> 70"
+            },
+            {
+              "id": "ml-u1-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "pairs = [(1, 3), (2, 5)]\nprint(pairs[1][0])",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "2"
+                },
+                {
+                  "id": "b",
+                  "text": "5"
+                },
+                {
+                  "id": "c",
+                  "text": "1"
+                }
+              ],
+              "answer": "a",
+              "explanation": "pairs[1] is (2, 5), and [0] is its first value."
+            },
+            {
+              "id": "ml-u1-l3-s3",
+              "kind": "learn",
+              "text": "Find how much each step changes.",
+              "code": "marks = [50, 60, 70]\nprint([marks[i + 1] - marks[i] for i in range(len(marks) - 1)])",
+              "expected_output": "[10, 10]"
+            },
+            {
+              "id": "ml-u1-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "x = [1, 2, 3]\ny = [2, 4, 6]\nprint([b / a for a, b in zip(x, y)])",
+              "answer_text": "[2.0, 2.0, 2.0]",
+              "explanation": "Every y is twice its x."
+            },
+            {
+              "id": "ml-u1-l3-s5",
+              "kind": "fix",
+              "text": "A change is the next value minus the current one. Fix line 2.",
+              "code": "temps = [28, 30, 33]\nchanges = [temps[i] - temps[i + 1] for i in range(len(temps) - 1)]\nprint(changes)",
+              "broken_line": 2,
+              "accept": [
+                "changes = [temps[i + 1] - temps[i] for i in range(len(temps) - 1)]"
+              ],
+              "expected_output": "[2, 3]",
+              "hint": "Next minus now: temps[i + 1] - temps[i].",
+              "explanation": "A change is the next value minus the current one."
+            },
+            {
+              "id": "ml-u1-l3-s6",
+              "kind": "write",
+              "text": "Pair up [1, 2] and [\"a\", \"b\"] with zip and print the list of pairs.",
+              "starter": "",
+              "expected_output": "[(1, 'a'), (2, 'b')]",
+              "must_use": [
+                "zip("
+              ],
+              "solution": "print(list(zip([1, 2], [\"a\", \"b\"])))",
+              "hint": "list(zip(..., ...))"
+            }
+          ]
+        },
+        {
+          "id": "ml-u1-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Train and test",
+          "objective": "Split data into training and testing parts.",
+          "steps": [
+            {
+              "id": "ml-u1-l4-s1",
+              "kind": "learn",
+              "text": "Models learn from training data and are checked on test data they haven't seen.",
+              "code": "data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\ntrain, test = data[:8], data[8:]\nprint(len(train), len(test))",
+              "expected_output": "8 2"
+            },
+            {
+              "id": "ml-u1-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "data = list(range(10))\nprint(data[7:])",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "[7, 8, 9]"
+                },
+                {
+                  "id": "b",
+                  "text": "[8, 9]"
+                },
+                {
+                  "id": "c",
+                  "text": "[0, 1, 2, 3, 4, 5, 6]"
+                }
+              ],
+              "answer": "a",
+              "explanation": "[7:] takes position 7 to the end."
+            },
+            {
+              "id": "ml-u1-l4-s3",
+              "kind": "learn",
+              "text": "80% for training is a common split.",
+              "code": "data = list(range(20))\ncut = int(len(data) * 0.8)\nprint(cut)",
+              "expected_output": "16"
+            },
+            {
+              "id": "ml-u1-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "data = list(range(5))\ncut = int(len(data) * 0.6)\nprint(data[:cut])",
+              "answer_text": "[0, 1, 2]",
+              "explanation": "60% of 5 is 3, so the first 3 items."
+            },
+            {
+              "id": "ml-u1-l4-s5",
+              "kind": "fix",
+              "text": "Test data must not also be training data. Fix line 3.",
+              "code": "data = [5, 6, 7, 8, 9]\ntrain = data[:4]\ntest = data[3:]\nprint(train, test)",
+              "broken_line": 3,
+              "accept": [
+                "test = data[4:]"
+              ],
+              "expected_output": "[5, 6, 7, 8] [9]",
+              "hint": "Start the test part where training stops.",
+              "explanation": "train is data[:4], so test must start at 4: data[4:]."
+            },
+            {
+              "id": "ml-u1-l4-s6",
+              "kind": "write",
+              "text": "Split list(range(10)) at 7 and print the size of the test part (3).",
+              "starter": "",
+              "expected_output": "3",
+              "must_use": [
+                "["
+              ],
+              "solution": "data = list(range(10))\nprint(len(data[7:]))",
+              "hint": "data[7:] is the test part."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml-u2",
+      "title": "Predicting numbers",
+      "lessons": [
+        {
+          "id": "ml-u2-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "A line through data",
+          "objective": "Predict with a straight line: m × x + c.",
+          "steps": [
+            {
+              "id": "ml-u2-l1-s1",
+              "kind": "learn",
+              "text": "A model can be a line: prediction = m × x + c. m is the slope; c is where the line starts.",
+              "code": "m, c = 10, 40\nhours = 3\nprint(m * hours + c)",
+              "expected_output": "70"
+            },
+            {
+              "id": "ml-u2-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "m, c = 2, 1\nprint(m * 5 + c)",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "11"
+                },
+                {
+                  "id": "b",
+                  "text": "10"
+                },
+                {
+                  "id": "c",
+                  "text": "7"
+                }
+              ],
+              "answer": "a",
+              "explanation": "2 × 5 + 1 = 11."
+            },
+            {
+              "id": "ml-u2-l1-s3",
+              "kind": "learn",
+              "text": "Put the model in a function.",
+              "code": "def predict(x):\n    return 5 * x + 20\n\nfor x in [0, 2, 4]:\n    print(predict(x))",
+              "expected_output": "20\n30\n40"
+            },
+            {
+              "id": "ml-u2-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "def predict(x):\n    return 3 * x - 1\n\nprint(predict(4))",
+              "answer_text": "11",
+              "explanation": "3 × 4 − 1 = 11."
+            },
+            {
+              "id": "ml-u2-l1-s5",
+              "kind": "fix",
+              "text": "The model is m × x + c. Fix line 2.",
+              "code": "def predict(x, m, c):\n    return m + x * c\n\nprint(predict(2, 10, 5))",
+              "broken_line": 2,
+              "accept": [
+                "    return m * x + c",
+                "    return x * m + c"
+              ],
+              "expected_output": "25",
+              "hint": "Multiply the slope by x, then add c.",
+              "explanation": "A line is m * x + c: 10 × 2 + 5 = 25."
+            },
+            {
+              "id": "ml-u2-l1-s6",
+              "kind": "write",
+              "text": "With m = 4 and c = 3, print the prediction for x = 5 (23).",
+              "starter": "",
+              "expected_output": "23",
+              "must_use": [
+                "*"
+              ],
+              "solution": "m, c = 4, 3\nprint(m * 5 + c)",
+              "hint": "m * x + c"
+            }
+          ]
+        },
+        {
+          "id": "ml-u2-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "Measuring error",
+          "objective": "Measure how wrong predictions are.",
+          "steps": [
+            {
+              "id": "ml-u2-l2-s1",
+              "kind": "learn",
+              "text": "Error is the gap between a prediction and the real value.",
+              "code": "real = [50, 60, 70]\npred = [52, 58, 75]\nprint([p - r for p, r in zip(pred, real)])",
+              "expected_output": "[2, -2, 5]"
+            },
+            {
+              "id": "ml-u2-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "print(abs(48 - 50))",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "2"
+                },
+                {
+                  "id": "b",
+                  "text": "-2"
+                },
+                {
+                  "id": "c",
+                  "text": "98"
+                }
+              ],
+              "answer": "a",
+              "explanation": "abs() drops the minus sign."
+            },
+            {
+              "id": "ml-u2-l2-s3",
+              "kind": "learn",
+              "text": "Mean squared error (MSE) squares each error, so big mistakes count more, then takes the average.",
+              "code": "real = [3, 5]\npred = [4, 7]\nmse = sum((p - r) ** 2 for p, r in zip(pred, real)) / len(real)\nprint(mse)",
+              "expected_output": "2.5"
+            },
+            {
+              "id": "ml-u2-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "print((5 - 2) ** 2)",
+              "answer_text": "9",
+              "explanation": "3 squared is 9."
+            },
+            {
+              "id": "ml-u2-l2-s5",
+              "kind": "fix",
+              "text": "Square each error before taking the average. Fix line 3.",
+              "code": "real = [10, 20]\npred = [12, 17]\nmse = sum((p - r) for p, r in zip(pred, real)) / len(real)\nprint(mse)",
+              "broken_line": 3,
+              "accept": [
+                "mse = sum((p - r) ** 2 for p, r in zip(pred, real)) / len(real)"
+              ],
+              "expected_output": "6.5",
+              "hint": "Use ** 2.",
+              "explanation": "Squaring makes every error count as positive: (p - r) ** 2."
+            },
+            {
+              "id": "ml-u2-l2-s6",
+              "kind": "write",
+              "text": "Print the squared error of predicting 9 when the answer is 6 (9).",
+              "starter": "",
+              "expected_output": "9",
+              "must_use": [
+                "**"
+              ],
+              "solution": "print((9 - 6) ** 2)",
+              "hint": "(prediction - answer) ** 2"
+            }
+          ]
+        },
+        {
+          "id": "ml-u2-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "The best line",
+          "objective": "Fit a line to data with least squares.",
+          "steps": [
+            {
+              "id": "ml-u2-l3-s1",
+              "kind": "learn",
+              "text": "The best slope comes from the data itself (least squares). c makes the line pass through the averages.",
+              "code": "x = [1, 2, 3, 4]\ny = [3, 5, 7, 9]\nxm = sum(x) / len(x)\nym = sum(y) / len(y)\nm = sum((a - xm) * (b - ym) for a, b in zip(x, y)) / sum((a - xm) ** 2 for a in x)\nc = ym - m * xm\nprint(m, c)",
+              "expected_output": "2.0 1.0"
+            },
+            {
+              "id": "ml-u2-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "m, c = 2.0, 1.0\nprint(m * 10 + c)",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "21.0"
+                },
+                {
+                  "id": "b",
+                  "text": "20.0"
+                },
+                {
+                  "id": "c",
+                  "text": "12.0"
+                }
+              ],
+              "answer": "a",
+              "explanation": "2.0 × 10 + 1.0 = 21.0."
+            },
+            {
+              "id": "ml-u2-l3-s3",
+              "kind": "learn",
+              "text": "Use the fitted line to predict new values.",
+              "code": "m, c = 2.0, 1.0\nfor hours in [5, 6]:\n    print(hours, \"->\", m * hours + c)",
+              "expected_output": "5 -> 11.0\n6 -> 13.0"
+            },
+            {
+              "id": "ml-u2-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "x = [2, 4]\nprint(sum(x) / len(x))",
+              "answer_text": "3.0",
+              "explanation": "The mean of 2 and 4 is 3.0."
+            },
+            {
+              "id": "ml-u2-l3-s5",
+              "kind": "fix",
+              "text": "c is the mean of y minus m times the mean of x. Fix line 6.",
+              "code": "x = [1, 2, 3, 4]\ny = [3, 5, 7, 9]\nxm = sum(x) / len(x)\nym = sum(y) / len(y)\nm = sum((a - xm) * (b - ym) for a, b in zip(x, y)) / sum((a - xm) ** 2 for a in x)\nc = ym + m * xm\nprint(m, c)",
+              "broken_line": 6,
+              "accept": [
+                "c = ym - m * xm"
+              ],
+              "expected_output": "2.0 1.0",
+              "hint": "Subtract m * xm from ym.",
+              "explanation": "The line passes through the averages, so c = ym - m * xm."
+            },
+            {
+              "id": "ml-u2-l3-s6",
+              "kind": "write",
+              "text": "Print the mean of the y values [3, 5, 7, 9] (6.0).",
+              "starter": "",
+              "expected_output": "6.0",
+              "must_use": [
+                "sum("
+              ],
+              "solution": "y = [3, 5, 7, 9]\nprint(sum(y) / len(y))",
+              "hint": "sum() divided by len()."
+            }
+          ]
+        },
+        {
+          "id": "ml-u2-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Learning step by step",
+          "objective": "Improve a model a little at a time with gradient descent.",
+          "steps": [
+            {
+              "id": "ml-u2-l4-s1",
+              "kind": "learn",
+              "text": "Instead of a formula, a model can learn by nudging its slope to cut the error, again and again (gradient descent).",
+              "code": "x = [1, 2, 3]\ny = [2, 4, 6]\nm = 0.0\nfor step in range(50):\n    grad = sum((m * a - b) * a for a, b in zip(x, y)) / len(x)\n    m = m - 0.1 * grad\nprint(round(m, 2))",
+              "expected_output": "2.0"
+            },
+            {
+              "id": "ml-u2-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "m = 1.0\ngrad = 4.0\nm = m - 0.1 * grad\nprint(round(m, 1))",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "0.6"
+                },
+                {
+                  "id": "b",
+                  "text": "1.4"
+                },
+                {
+                  "id": "c",
+                  "text": "0.4"
+                }
+              ],
+              "answer": "a",
+              "explanation": "1.0 − 0.1 × 4.0 = 0.6."
+            },
+            {
+              "id": "ml-u2-l4-s3",
+              "kind": "learn",
+              "text": "The learning rate sets the size of each nudge. Too big and it overshoots the target (3).",
+              "code": "def train(rate, steps=5):\n    m = 0.0\n    for _ in range(steps):\n        m = m - rate * (m - 3)\n    return round(m, 2)\n\nprint(train(0.5))\nprint(train(1.9))",
+              "expected_output": "2.91\n4.77"
+            },
+            {
+              "id": "ml-u2-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "m = 2.0\nfor _ in range(2):\n    m = m - 0.5 * (m - 4)\nprint(m)",
+              "answer_text": "3.5",
+              "explanation": "2.0 → 3.0 → 3.5: each step moves halfway to 4."
+            },
+            {
+              "id": "ml-u2-l4-s5",
+              "kind": "fix",
+              "text": "Each step must move against the error. Fix line 4.",
+              "code": "target = 5\nm = 0.0\nfor _ in range(20):\n    m = m + 0.5 * (m - target)\nprint(round(m))",
+              "broken_line": 4,
+              "accept": [
+                "    m = m - 0.5 * (m - target)"
+              ],
+              "expected_output": "5",
+              "hint": "Subtract: m - 0.5 * (m - target).",
+              "explanation": "Moving against the error (minus) brings m closer to the target."
+            },
+            {
+              "id": "ml-u2-l4-s6",
+              "kind": "write",
+              "text": "Start with m = 0.0, do m = m - 0.5 * (m - 8) three times, then print m (7.0).",
+              "starter": "",
+              "expected_output": "7.0",
+              "must_use": [
+                "for"
+              ],
+              "solution": "m = 0.0\nfor _ in range(3):\n    m = m - 0.5 * (m - 8)\nprint(m)",
+              "hint": "Use a for loop with range(3)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml-u3",
+      "title": "Classifying",
+      "lessons": [
+        {
+          "id": "ml-u3-l1",
+          "version": 1,
+          "status": "in_review",
+          "title": "k-nearest neighbours",
+          "objective": "Classify with the k nearest examples.",
+          "steps": [
+            {
+              "id": "ml-u3-l1-s1",
+              "kind": "learn",
+              "text": "k-nearest neighbours (k-NN) looks at the k closest examples and takes a vote.",
+              "code": "import math\npoints = [((1, 1), \"A\"), ((2, 1), \"A\"), ((8, 9), \"B\"), ((9, 8), \"B\")]\nnew = (2, 2)\nnearest = sorted(points, key=lambda p: math.dist(p[0], new))[:3]\nprint([label for _, label in nearest])",
+              "expected_output": "['A', 'A', 'B']"
+            },
+            {
+              "id": "ml-u3-l1-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "import math\nprint(math.dist((0, 0), (6, 8)))",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "10.0"
+                },
+                {
+                  "id": "b",
+                  "text": "14.0"
+                },
+                {
+                  "id": "c",
+                  "text": "48.0"
+                }
+              ],
+              "answer": "a",
+              "explanation": "The straight-line distance is √(6² + 8²) = 10.0."
+            },
+            {
+              "id": "ml-u3-l1-s3",
+              "kind": "learn",
+              "text": "Count the votes with a dictionary and take the most common.",
+              "code": "votes = [\"A\", \"B\", \"A\"]\ncounts = {}\nfor v in votes:\n    counts[v] = counts.get(v, 0) + 1\nprint(max(counts, key=counts.get))",
+              "expected_output": "A"
+            },
+            {
+              "id": "ml-u3-l1-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "votes = [\"cat\", \"dog\", \"dog\"]\nprint(max(set(votes), key=votes.count))",
+              "answer_text": "dog",
+              "explanation": "dog has 2 votes, cat has 1."
+            },
+            {
+              "id": "ml-u3-l1-s5",
+              "kind": "fix",
+              "text": "k-NN uses the k smallest distances. Fix line 4.",
+              "code": "import math\npoints = [((0, 0), \"red\"), ((1, 0), \"red\"), ((5, 5), \"blue\")]\nnew = (1, 1)\nnearest = sorted(points, key=lambda p: math.dist(p[0], new), reverse=True)[:2]\nprint([label for _, label in nearest])",
+              "broken_line": 4,
+              "accept": [
+                "nearest = sorted(points, key=lambda p: math.dist(p[0], new))[:2]"
+              ],
+              "expected_output": "['red', 'red']",
+              "hint": "Nearest first: no reverse=True.",
+              "explanation": "sorted() puts the smallest distances first; reverse=True would take the farthest."
+            },
+            {
+              "id": "ml-u3-l1-s6",
+              "kind": "write",
+              "text": "Print the most common item in [\"x\", \"y\", \"y\"] (y).",
+              "starter": "",
+              "expected_output": "y",
+              "must_use": [
+                "max("
+              ],
+              "solution": "v = [\"x\", \"y\", \"y\"]\nprint(max(set(v), key=v.count))",
+              "hint": "max(set(v), key=v.count)"
+            }
+          ]
+        },
+        {
+          "id": "ml-u3-l2",
+          "version": 1,
+          "status": "in_review",
+          "title": "A spam filter",
+          "objective": "Classify messages by their words.",
+          "steps": [
+            {
+              "id": "ml-u3-l2-s1",
+              "kind": "learn",
+              "text": "A simple filter counts words that often appear in spam.",
+              "code": "spam_words = {\"free\", \"win\", \"prize\"}\nmsg = \"win a free prize now\"\nscore = sum(1 for w in msg.split() if w in spam_words)\nprint(score)",
+              "expected_output": "3"
+            },
+            {
+              "id": "ml-u3-l2-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "print(\"Win a FREE gift\".lower().split())",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "['win', 'a', 'free', 'gift']"
+                },
+                {
+                  "id": "b",
+                  "text": "['Win', 'a', 'FREE', 'gift']"
+                },
+                {
+                  "id": "c",
+                  "text": "win a free gift"
+                }
+              ],
+              "answer": "a",
+              "explanation": "lower() makes it small letters, then split() makes a list of words."
+            },
+            {
+              "id": "ml-u3-l2-s3",
+              "kind": "learn",
+              "text": "Decide with a threshold: two or more spam words means spam.",
+              "code": "def is_spam(msg):\n    spam_words = {\"free\", \"win\", \"prize\"}\n    score = sum(1 for w in msg.lower().split() if w in spam_words)\n    return score >= 2\n\nprint(is_spam(\"Win a FREE trip\"))\nprint(is_spam(\"See you at school\"))",
+              "expected_output": "True\nFalse"
+            },
+            {
+              "id": "ml-u3-l2-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "words = \"jom makan\".split()\nprint(len(words))",
+              "answer_text": "2",
+              "explanation": "split() makes two words."
+            },
+            {
+              "id": "ml-u3-l2-s5",
+              "kind": "fix",
+              "text": "Compare words in small letters. Fix line 3.",
+              "code": "spam_words = {\"free\", \"win\"}\nmsg = \"FREE WIN\"\nscore = sum(1 for w in msg.split() if w in spam_words)\nprint(score)",
+              "broken_line": 3,
+              "accept": [
+                "score = sum(1 for w in msg.lower().split() if w in spam_words)"
+              ],
+              "expected_output": "2",
+              "hint": "Use msg.lower() before split().",
+              "explanation": "\"FREE\" and \"free\" are different strings until you lower() them."
+            },
+            {
+              "id": "ml-u3-l2-s6",
+              "kind": "write",
+              "text": "Print how many words are in \"saya suka belajar\" (3).",
+              "starter": "",
+              "expected_output": "3",
+              "must_use": [
+                "split("
+              ],
+              "solution": "print(len(\"saya suka belajar\".split()))",
+              "hint": "split() then len()."
+            }
+          ]
+        },
+        {
+          "id": "ml-u3-l3",
+          "version": 1,
+          "status": "in_review",
+          "title": "Learning from words",
+          "objective": "Let the data decide which words mean spam.",
+          "steps": [
+            {
+              "id": "ml-u3-l3-s1",
+              "kind": "learn",
+              "text": "Count how often a word appears in spam and in normal messages.",
+              "code": "from collections import Counter\nspam = [\"win money\", \"free money\"]\nok = [\"money for lunch\"]\nprint(Counter(\" \".join(spam).split())[\"money\"])\nprint(Counter(\" \".join(ok).split())[\"money\"])",
+              "expected_output": "2\n1"
+            },
+            {
+              "id": "ml-u3-l3-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "from collections import Counter\nc = Counter([\"a\", \"b\", \"a\"])\nprint(c[\"a\"])",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "2"
+                },
+                {
+                  "id": "b",
+                  "text": "1"
+                },
+                {
+                  "id": "c",
+                  "text": "3"
+                }
+              ],
+              "answer": "a",
+              "explanation": "\"a\" appears twice."
+            },
+            {
+              "id": "ml-u3-l3-s3",
+              "kind": "learn",
+              "text": "A word's spam score: how often it is in spam minus how often it is in normal messages.",
+              "code": "from collections import Counter\nspam = Counter(\"win free win prize\".split())\nok = Counter(\"free lunch today\".split())\nfor w in [\"win\", \"free\", \"lunch\"]:\n    print(w, spam[w] - ok[w])",
+              "expected_output": "win 2\nfree 0\nlunch -1"
+            },
+            {
+              "id": "ml-u3-l3-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "from collections import Counter\nc = Counter(\"hi hi bye\".split())\nprint(c[\"hello\"])",
+              "answer_text": "0",
+              "explanation": "A Counter gives 0 for a word it has never seen."
+            },
+            {
+              "id": "ml-u3-l3-s5",
+              "kind": "fix",
+              "text": "Join the messages with spaces, then split into words. Fix line 3.",
+              "code": "from collections import Counter\nmessages = [\"win now\", \"win big\"]\nwords = \"\".join(messages).split()\nprint(Counter(words)[\"win\"])",
+              "broken_line": 3,
+              "accept": [
+                "words = \" \".join(messages).split()",
+                "words = ' '.join(messages).split()"
+              ],
+              "expected_output": "2",
+              "hint": "Join with a space: \" \".join(...).",
+              "explanation": "Joining with \"\" glues \"now\" and \"win\" into one word."
+            },
+            {
+              "id": "ml-u3-l3-s6",
+              "kind": "write",
+              "text": "Print how many times \"ya\" appears in \"ya tidak ya\", using Counter (2).",
+              "starter": "",
+              "expected_output": "2",
+              "must_use": [
+                "Counter"
+              ],
+              "solution": "from collections import Counter\nprint(Counter(\"ya tidak ya\".split())[\"ya\"])",
+              "hint": "from collections import Counter"
+            }
+          ]
+        },
+        {
+          "id": "ml-u3-l4",
+          "version": 1,
+          "status": "in_review",
+          "title": "Neurons",
+          "objective": "See how an artificial neuron decides and learns.",
+          "steps": [
+            {
+              "id": "ml-u3-l4-s1",
+              "kind": "learn",
+              "text": "A neuron multiplies each input by a weight, adds them with a bias, and fires if the total is above 0.",
+              "code": "inputs = [1, 0, 1]\nweights = [0.5, -1.0, 0.8]\nbias = -1.0\ntotal = sum(i * w for i, w in zip(inputs, weights)) + bias\nprint(round(total, 2))\nprint(\"fire\" if total > 0 else \"rest\")",
+              "expected_output": "0.3\nfire"
+            },
+            {
+              "id": "ml-u3-l4-s2",
+              "kind": "predict",
+              "text": "What will this print?",
+              "code": "print(2 * 0.5 + 1 * -1.0)",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "0.0"
+                },
+                {
+                  "id": "b",
+                  "text": "2.0"
+                },
+                {
+                  "id": "c",
+                  "text": "-1.0"
+                }
+              ],
+              "answer": "a",
+              "explanation": "1.0 + (−1.0) = 0.0."
+            },
+            {
+              "id": "ml-u3-l4-s3",
+              "kind": "learn",
+              "text": "Training nudges the weight and bias whenever the neuron is wrong (the perceptron rule).",
+              "code": "w, b = 0.0, 0.0\ndata = [(0, 0), (1, 1), (2, 1), (-1, 0)]\nfor _ in range(10):\n    for x, label in data:\n        out = 1 if w * x + b > 0 else 0\n        w = w + 0.1 * (label - out) * x\n        b = b + 0.1 * (label - out)\nprint([1 if w * x + b > 0 else 0 for x, _ in data])",
+              "expected_output": "[0, 1, 1, 0]"
+            },
+            {
+              "id": "ml-u3-l4-s4",
+              "kind": "predict",
+              "text": "Type exactly what this prints.",
+              "code": "w, b = 2.0, -3.0\nx = 2\nprint(1 if w * x + b > 0 else 0)",
+              "answer_text": "1",
+              "explanation": "2.0 × 2 − 3.0 = 1.0, which is above 0."
+            },
+            {
+              "id": "ml-u3-l4-s5",
+              "kind": "fix",
+              "text": "A neuron fires when its total is above 0. Fix line 4.",
+              "code": "weights = [1.0, 1.0]\ninputs = [1, 1]\ntotal = sum(i * w for i, w in zip(inputs, weights)) - 1.5\nprint(\"fire\" if total < 0 else \"rest\")",
+              "broken_line": 4,
+              "accept": [
+                "print(\"fire\" if total > 0 else \"rest\")",
+                "print('fire' if total > 0 else 'rest')"
+              ],
+              "expected_output": "fire",
+              "hint": "Fire when total > 0.",
+              "explanation": "The total is 0.5, above 0, so the neuron should fire."
+            },
+            {
+              "id": "ml-u3-l4-s6",
+              "kind": "write",
+              "text": "Inputs [1, 1], weights [0.4, 0.4], bias -0.5: print the total rounded to 1 decimal place (0.3).",
+              "starter": "",
+              "expected_output": "0.3",
+              "must_use": [
+                "round("
+              ],
+              "solution": "total = 1 * 0.4 + 1 * 0.4 - 0.5\nprint(round(total, 1))",
+              "hint": "round(total, 1)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
